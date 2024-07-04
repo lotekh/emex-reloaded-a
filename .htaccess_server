@@ -1,0 +1,571 @@
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin SAMEORIGIN
+</IfModule>
+
+ErrorDocument 404 "/404.html"
+ErrorDocument 500 "/500.html"
+
+##PREVENT DIRECTORY LISTING##
+Options -Indexes
+
+       ##HTTPS REDIRECT##
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{SERVER_PORT} !^443$
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+      ##WWW TO NON-WWW##
+RewriteCond %{HTTP_HOST} ^www.emex.ro [NC]
+RewriteRule ^(.*)$ https://emex.ro/$1 [L,R=301]
+
+</IfModule>
+
+       ##IMPLEMENT HSTS##
+<IfModule mod_headers.c>
+Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+</IfModule>
+
+       ##SECURE TLS##
+Header always set X-Frame-Options SAMEORIGIN
+Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
+Header always set X-Content-Type-Options nosniff
+Header set X-XSS-Protection "1; mode=block"
+Header set X-Permitted-Cross-Domain-Policies "none"
+Header always set Referrer-Policy "same-origin"
+
+##CONTENT SECURITY POLICY##
+Header set X-Content-Security-Policy "allow 'self'; media-src *; img-src *; script-src 'self' https://ajax.googleapis.com; style-src 'self';"
+
+     ##FEATURE POLICY##
+#<IfModule mod_headers.c>
+#Header set Feature-Policy "geolocation 'self'; vibrate 'none'"
+#</IfModule>
+
+<ifModule ModSecurity.c>
+  SecServerSignature ''
+</ifModule>
+
+    ##HEADER EXPECT-CT##
+
+<IfModule mod_headers.c>
+ Header set Expect-CT "max-age=7776000, enforce"
+</IfModule>
+
+       ##INDEX 301 NO CONFLICT - www##
+#RewriteEngine on
+#RewriteCond %{HTTP_HOST} ^(www\.)?emex\.ro$
+#RewriteRule ^/?$ https://emex.ro/index [L,R=301]
+
+
+       ##ROBOTS FOLLOW##
+<Files ~ "\.(png|jpeg|jpg|gif|pdf|html|php|htm|xml\webp)$">
+Header set X-Robots-Tag "index, follow"
+</Files>
+
+       ##REDIRECT NO.HTML NO.PHP##
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+#    RewriteCond %{REQUEST_FILENAME} !-d
+#    RewriteCond %{REQUEST_FILENAME}.php -f
+#    RewriteRule ^(.*)$ $1.php
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    RewriteRule ^(.*)$ $1.html
+</IfModule>
+
+       ##DEFLATE##
+ <IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/css application/x-javascript text/x-component text/html text/richtext image/svg+xml text/plain text/xsd text/xsl text/xml image/x-icon application/javascript
+    <IfModule mod_setenvif.c>
+        BrowserMatch ^Mozilla/4 gzip-only-text/html
+        BrowserMatch ^Mozilla/4\.0[678] no-gzip
+        BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+    </IfModule>
+    <IfModule mod_headers.c>
+        Header append Vary User-Agent env=!dont-vary
+    </IfModule>
+</IfModule>
+
+<IfModule mod_deflate.c>
+<FilesMatch "\.(html|php|txt|xml|js|css)$">
+SetOutputFilter DEFLATE
+</FilesMatch>
+</IfModule>
+
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+
+         ##KEEP ALIVE##
+<ifModule mod_headers.c>
+Header set Connection keep-alive
+</ifModule>
+
+<IfModule mod_headers.c>
+    # Serve gzip compressed CSS files if they exist
+    # and the client accepts gzip.
+    RewriteCond "%{HTTP:Accept-encoding}" "gzip"
+    RewriteCond "%{REQUEST_FILENAME}\.gz" -s
+    RewriteRule "^(.*)\.css" "$1\.css\.gz" [QSA]
+
+    # Serve gzip compressed JS files if they exist
+    # and the client accepts gzip.
+    RewriteCond "%{HTTP:Accept-encoding}" "gzip"
+    RewriteCond "%{REQUEST_FILENAME}\.gz" -s
+    RewriteRule "^(.*)\.js" "$1\.js\.gz" [QSA]
+
+	    # and the client accepts gzip.
+    RewriteCond "%{HTTP:Accept-encoding}" "gzip"
+    RewriteCond "%{REQUEST_FILENAME}\.gz" -s
+    RewriteRule "^(.*)\.html" "$1\.html\.gz" [QSA]
+
+
+    # Serve correct content types, and prevent mod_deflate double gzip.
+    RewriteRule "\.css\.gz$" "-" [T=text/css,E=no-gzip:1]
+    RewriteRule "\.js\.gz$" "-" [T=text/javascript,E=no-gzip:1]
+
+    <FilesMatch "(\.js\.gz|\.css\.gz)$">
+      # Serve correct encoding type.
+      Header append Content-Encoding gzip
+
+      # Force proxies to cache gzipped &
+      # non-gzipped css/js files separately.
+      Header append Vary Accept-Encoding
+    </FilesMatch>
+</IfModule>
+
+       ##EXPIRES CACHING##
+
+<IfModule mod_mime.c>
+    AddType application/x-javascript .js
+    AddType text/css .css
+</IfModule>
+
+ <IfModule mod_expires.c>
+<FilesMatch ".(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf|webp)$">
+    Header set Expires "Thu, 15 Apr 2027 20:00:00 GMT"
+</FilesMatch>
+</IfModule>
+
+
+<IfModule mod_expires.c>
+ExpiresActive On
+<FilesMatch ".(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf|webp)$">
+    ExpiresDefault "access plus 10 years"
+</FilesMatch>
+</IfModule>
+
+<filesMatch ".(css|js)$">
+ Header set Cache-Control "max-age=2628000, public"
+ </filesMatch>
+
+ <filesMatch ".(jpg|jpeg|png|gif|ico|webp)$">
+ Header set Cache-Control "max-age=31536000, public"
+ </filesMatch>
+
+Header set Cache-Control "public"
+Header set Expires "Thu, 15 Apr 2027 20:00:00 GMT"
+AddType video/ogg .ogvAddType video/mp4 .mp4
+AddType video/mp4 .m4vAddType video/webm .webm
+SetEnvIfNoCase Request_URI \.(ogv|mp4|m4v|webm)$ no-gzip dont-vary
+
+       ##SIMULATE ETAG CACHING##
+
+<ifModule mod_headers.c>
+<filesMatch "\\.(html|htm|php)$">
+Header set Cache-Control "max-age=31536000, public"
+</filesMatch>
+</ifModule>
+
+<IfModule mod_mime.c>
+    AddType text/css .css
+    AddType application/x-javascript .js
+    AddType image/bmp .bmp
+    AddType image/gif .gif
+    AddType application/x-gzip .gz .gzip
+    AddType image/x-icon .ico
+    AddType image/jpeg .jpg .jpeg .jpe
+    AddType image/png .png
+    AddType image/webp .webp
+    AddType application/x-font-ttf .ttf .ttc
+    AddType application/zip .zip
+</IfModule>
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css A31536000
+    ExpiresByType application/x-javascript A31536000
+    ExpiresByType application/javascript A31536000
+    ExpiresByType text/javascript A31536000
+    ExpiresByType text/x-js A31536000
+    ExpiresByType image/bmp A31536000
+    ExpiresByType image/gif A31536000
+    ExpiresByType application/x-gzip A31536000
+    ExpiresByType image/x-icon A31536000
+    ExpiresByType image/jpeg A31536000
+    ExpiresByType application/x-font-otf A31536000
+    ExpiresByType image/png A31536000
+    ExpiresByType application/x-font-ttf A31536000
+    ExpiresByType application/zip A31536000
+</IfModule>
+<IfModule mod_deflate.c>
+    <IfModule mod_headers.c>
+        Header append Vary User-Agent env=!dont-vary
+    </IfModule>
+        AddOutputFilterByType DEFLATE text/html text/css text/x-component application/x-javascript application/javascript text/javascript text/x-js text/plain image/x-icon image/png image/gif
+    <IfModule mod_mime.c>
+        # DEFLATE by extension
+        AddOutputFilter DEFLATE js css htm html xml png gif
+    </IfModule>
+</IfModule>
+<FilesMatch "\.(gif|ico|jpg|jpeg|png|css|js|woff|ttf|webp)$">
+
+    <IfModule mod_headers.c>
+         Header unset Set-Cookie
+         Header set Cache-Control "max-age=31536000, public"
+    </IfModule>
+</FilesMatch>
+
+ ##PEARL BOT PROTECT##
+RewriteEngine On
+RewriteCond %{HTTP_USER_AGENT} libwww-perl.*
+RewriteRule .* ? [F,L]
+
+##BLOCKING BAD USER AGENTS##
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_USER_AGENT} ^.*(dav.pm/v|libwww-perl|urllib|python-requests|python-httplib2|winhttp.winhttprequest|lwp-request|lwp-trivial|fasthttp|Go-http-client|Java|httplib|httpclient|Zend_Http_Client).*$ [NC]
+RewriteRule .* - [F,L]
+RewriteCond %{HTTP_USER_AGENT} ^.*(CtrlFunc|w00tw00t|Apachebench).*$ [NC]
+RewriteRule .* - [F,L]
+</IfModule>
+
+ ##SET MIME TYPET##
+ AddType text/css .css
+AddType application/xhtml+xml .xhtml
+AddType text/xml .xml
+AddType image/svg+xml .svg .svgz
+AddEncoding x-gzip .svgz
+AddType text/html .shtml
+AddType text/html .asp
+AddType image/vnd.microsoft.icon .ico
+AddType application/pdf .pdf
+
+############################################
+
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>
+
+deny from 180.96.0.0/11
+deny from 122.4.0.0/14
+deny from 113.120.0.0/13
+deny from 113.128.0.0/15
+
+####################################################
+
+##REDIRECT FILES##
+
+#Options +FollowSymLinks -MultiViews
+RewriteEngine On
+#RewriteRule ^Doc/[a-z]+/?$ ${emex:$1} [L,R]
+
+#RewriteRule ^([^D]*)D(.*)$ $1d$2
+RewriteRule ^Doc/Lavabila\-cuartz\-profesioanala\-Emex\-QT\.pdf$	/doc/lavabila-cuartz-profesionala-emex-qt.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Lavabila\-Premium\-Emex\-Gold\.pdf$	/doc/vopsea-lavabila-premium-emex-gold.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Lavabila\-Lucioasa\-Emex\-Gloss\.pdf$	/doc/vopsea-lavabila-lucioasa-emex-gloss.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Superlavabila\-Interior\-Emex\.pdf$	/doc/vopsea-superlavabila-interior-emex.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Lavabila\-Satinata\-Interior\.pdf$	/doc/vopsea-lavabila-satinata-interior.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Lavabila\-Antimucegai\-Emex\.pdf$	/doc/vopsea-lavabila-antimucegai-emex.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Lavabila\-Practica\-Interior\-Neomatt\-Plus\.pdf$	/doc/vopsea-lavabila-practica-interior-neomatt-plus.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Lavabila\-Economica\-Interior\-Neomatt\.pdf$	/doc/vopsea-lavabila-economica-interior-neomatt.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Lavabila\-Siliconica\-Interior\.pdf$	/doc/vopsea-lavabila-siliconica-interior.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Lavabila\-Silicatica\-Interior\.pdf$ /Doc/vopsea-lavabila-silicatica-interior.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Superlavabila\-Exterior\-Emex\.pdf$	/doc/vopsea-superlavabila-exterior-emex.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Lavabila\-Siliconica\-Exterior\.pdf$	/doc/vopsea-lavabila-siliconica-exterior.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Lavabila\-Silicatica\-Exterior\.pdf$	/doc/vopsea-lavabila-silicatica-exterior.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Lavabila\-Economica\-Exterior\-Neomatt\.pdf$	/doc/vopsea-lavabila-economica-exterior-neomatt.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Lavabila\-Reflectorizanta\-Emex\.pdf$	/doc/vopsea-lavabila-reflectorizanta-emex.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Lavabila\-Premium\-Efect\-Culoare\.pdf$	/doc/vopsea-lavabila-premium-efect-culoare.pdf? [L,R=301]
+RewriteRule ^Doc/Email\-alchidic\-premium\-Emex\-Gold\.pdf$	/doc/email-alchidic-premium-emex-gold.pdf? [L,R=301]
+RewriteRule ^Doc/Email\-Alchidic\-Emex\-Extracolor\.pdf$	/doc/email-alchidic-emex-extracolor.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Economica\-Satinata\-Emcolor\.pdf$	/doc/vopsea-economica-satinata-emcolor.pdf? [L,R=301]
+RewriteRule ^Doc/Sistem\-Anticoroziv\-Emex\-Dual\-Protect\.pdf$	/doc/sistem-anticoroziv-emex-dual-protect.pdf? [L,R=301]
+RewriteRule ^Doc/Email\-Argintiu\-Bronz\-Aluminiu\.pdf$	/doc/email-argintiu-bronz-aluminiu.pdf? [L,R=301]
+RewriteRule ^Doc/Lac\-de\-Parchet\.pdf$	/doc/lac-parchet-monocomponent.pdf? [L,R=301]
+RewriteRule ^Doc/Lac\-Alchidic\-pentru\-Lemn\.pdf$	/doc/lac-alchidic-pentru-lemn.pdf? [L,R=301]
+RewriteRule ^Doc/lac\-pigmentat\-semitransparent\.pdf$ /Doc/lazura\-lac\-colorat\-pentru\-lemn.pdf? [L,R=301]
+RewriteRule ^Doc/Lac\-Piatra\-Solvent\-Emex\-WS\.pdf$	/doc/lac-piatra-solvent-emex-ws.pdf? [L,R=301]
+RewriteRule ^Doc/Grund\-Alchidic\-Lemn\-Binale\.pdf$	/doc/grund-alchidic-lemn-binale.pdf? [L,R=301]
+RewriteRule ^Doc/Grund\-Anticoroziv\-Emex\.pdf$	/doc/grund-alchidic-anticoroziv-emex.pdf? [L,R=301]
+RewriteRule ^Doc/Grund\-Alchidic\-Economic\-Anticoroziv\.pdf$	/doc/grund-alchidic-economic-anticoroziv.pdf? [L,R=301]
+RewriteRule ^Doc/Solutie\-Indepartarea\-Ruginii\.pdf$	/doc/solutie-indepartarea-ruginii.pdf? [L,R=301]
+RewriteRule ^Doc/Decapant\-Ecologic\-Vopsele\.pdf$	/doc/pasta-ecologica-decapare.pdf? [L,R=301]
+RewriteRule ^Doc/Diluant\-Vopsele\-Alchidice\.pdf$	/doc/diluant-vopsele-alchidice.pdf? [L,R=301]
+RewriteRule ^Doc/Tencuiala\-Decorativa\-Structurata\-Acrilica\.pdf$	/doc/tencuiala-decorativa-structurata-acrilica.pdf? [L,R=301]
+RewriteRule ^Doc/Tencuiala\-Decorativa\-Impermeabila\.pdf$	/doc/tencuiala-decorativa-impermeabila.pdf? [L,R=301]
+RewriteRule ^Doc/Tencuiala\-Decorativa\-Structurata\-Siliconica\.pdf$	/doc/tencuiala-decorativa-structurata-siliconica.pdf? [L,R=301]
+RewriteRule ^Doc/Tencuiala\-Marmorata\-de\-Soclu\.pdf$	/doc/tencuiala-marmorata-de-soclu.pdf? [L,R=301]
+RewriteRule ^Doc/Tencuiala\-Decorativa\-Periata\.pdf$	/doc/tencuiala-decorativa-periata.pdf? [L,R=301]
+RewriteRule ^Doc/Tencuiala\-Decorativa\-Structurata\-Silicatica\.pdf$	/doc/tencuiala-decorativa-structurata-silicatica.pdf? [L,R=301]
+RewriteRule ^Doc/Grund\-Amorsare\-Tencuieli\-Decorative\.pdf$	/doc/grund-amorsare-tencuieli-decorative.pdf? [L,R=301]
+RewriteRule ^Doc/Grund\-Amorsare\-Tencuiala\-Siliconica\.pdf$	/doc/grund-amorsare-tencuiala-siliconica.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Decorativa\-Texturata\.pdf$	/doc/vopsea-decorativa-texturata.pdf? [L,R=301]
+RewriteRule ^Doc/Grund\-Silicatic\-Amorsare\-Tencuiala\.pdf$	/doc/grund-silicatic-amorsare-tencuiala.pdf? [L,R=301]
+RewriteRule ^Doc/Tencuiala\-Decorativa\-Praf\-Piatra\.pdf$	/doc/tencuiala-decorativa-praf-piatra.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Clorcauciuc\.pdf$	/doc/vopsea-clorcauciuc-piscine-si-metal.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Epoxidica\-Bicomponenta\.pdf$	/doc/vopsea-epoxidica-bicomponenta.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Poliuretanica\-Bicomponenta\.pdf$ /Doc/vopsea-poliuretanica-bicomponenta.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Auto\-Utilaje\.pdf$	/doc/vopsea-auto-utilaje.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Poliuretanica\-Mobila\.pdf$	/doc/vopsea-poliuretanica-mobila.pdf? [L,R=301]
+RewriteRule ^Doc/Lac\-Poliuretanic\-Mobila\.pdf$	/doc/lac-poliuretanic-mobila.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Poliuretanica\-Yahturi\.pdf$	/doc/vopsea-poliuretanica-yachturi.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Siliconica\-Termorezistenta\.pdf$	/doc/vopsea-termorezistenta-emex-trs-700.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Acrilica\-Metalizata\-Bronz\-Aluminiu\.pdf$	/doc/vopsea-aurie-metalizata-bronz-aluminiu.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Lovitura\-de\-Ciocan\.pdf$	/doc/hammerschlag-lovitura-de-ciocan.pdf? [L,R=301]
+RewriteRule ^Doc/Diluant\-Vopsele\-Auto\-Utilaje\.pdf$	/doc/diluant-vopsele-auto-utilaje.pdf? [L,R=301]
+RewriteRule ^Doc/Diluant\-Vopsele\-Clorcauciuc\.pdf$	/doc/diluant-vopsele-clorcauciuc.pdf? [L,R=301]
+RewriteRule ^Doc/Diluant\-Vopsele\-Epoxidice\.pdf$	/doc/diluant-pentru-vopsele-epoxidice.pdf? [L,R=301]
+RewriteRule ^Doc/Diluant\-Vopsele\-Poliuretanice\.pdf$	/doc/diluant-pentru-vopsele-poliuretanice.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Epoxidica\-Bicomponenta\.pdf$	/doc/vopsea-tigla-azbociment-emex.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Hidroizolanta\-Elastica\-Multiprotectoare\.pdf$	/doc/vopsea-hidroizolanta-elastica-multiprotectoare.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Metal\-Solubila\-Apa\.pdf$	/doc/vopsea-metal-solubila-apa.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Acrilica\-Universala\-Emex\-Spectrum\.pdf$	/doc/vopsea-acrilica-universala-emex-spectrum.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Acrilica\-Mobila\.pdf$	/doc/vopsea-acrilica-mobila.pdf? [L,R=301]
+RewriteRule ^Doc/Lac\-Acrilic\-Mobila\.pdf$	/doc/lac-acrilic-mobila.pdf? [L,R=301]
+RewriteRule ^Doc/Lac\-Piatra\-Solubil\-Apa\-Emex\-AQS\.pdf$	/doc/lac-piatra-solubil-apa-Emex-AQS.pdf? [L,R=301]
+RewriteRule ^Doc/Lac\-Protectie\-Beton\-Emex\-Mineral\-Protect\.pdf$	/doc/lac-protectie-beton-emex-mineral-protect.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Insonorizanta\-Emex\-Antifonic\.pdf$	/doc/vopsea-antifonica-insonorizanta-emex.pdf? [L,R=301]
+RewriteRule ^Doc/Grund\-Anticoroziv\-Solubil\-Apa\.pdf$	/doc/grund-anticoroziv-solubil-apa.pdf? [L,R=301]
+RewriteRule ^Doc/Lac\-Protectie\-Rosturi\.pdf$	/doc/lac-protectie-rosturi.pdf? [L,R=301]
+RewriteRule ^Doc/Solutie\-Hidrofobizare\-Beton\.pdf$	/doc/solutie-hidrofobizare-beton.pdf? [L,R=301]
+RewriteRule ^Doc/Pardoseala\-Epoxidica\-Autonivelanta\.pdf$	/doc/pardoseala-epoxidica-autonivelanta.pdf? [L,R=301]
+RewriteRule ^Doc/Pardoseala\-Epoxidica\-Antiderapanta\.pdf$	/doc/pardoseala-epoxidica-antiderapanta.pdf? [L,R=301]
+RewriteRule ^Doc/Pardoseala\-Poliuretanica\-Autonivelanta\.pdf$	/doc/pardoseala-poliuretanica-autonivelanta.pdf? [L,R=301]
+RewriteRule ^Doc/Pardoseala\-Poliuretanica\-Elastica\.pdf$	/doc/pardoseala-poliuretanica-elastica.pdf? [L,R=301]
+RewriteRule ^Doc/Pardoseala\-Poliuretanica\-Antiderapanta\.pdf$	/doc/pardoseala-poliuretanica-antiderapanta.pdf? [L,R=301]
+RewriteRule ^Doc/Membrana\-Poliuretanica\-Hidroizolanta\.pdf$	/doc/membrana-poliuretanica-hidroizolanta.pdf? [L,R=301]
+RewriteRule ^Doc/Mortar\-Epoxidic\-Bicomponent\.pdf$	/doc/mortar-epoxidic-bicomponent.pdf? [L,R=301]
+RewriteRule ^Doc/Sapa\-Epoxidica\-Cimentica\-Emex\-Mineral\.pdf$	/doc/sapa-epoxidica-cimentica-emex-mineral.pdf? [L,R=301]
+RewriteRule ^Doc/Pardoseala\-Epoxidica\-Decorativa\-Quartz\.pdf$	/doc/pardoseala-epoxidica-decorativa-cuartz-STB.pdf? [L,R=301]
+RewriteRule ^Doc/Pardoseala\-Epoxidica\-Decorativa\-Emex\-Multicolor\.pdf$	/doc/pardoseala-epoxidica-decorativa-emex-multicolor.pdf? [L,R=301]
+RewriteRule ^Doc/Grund\-Epoxidic\-Amorsare\-Pardoseli\.pdf$	/doc/amorsa-rasini-epoxidice-solventate.pdf? [L,R=301]
+RewriteRule ^Doc/Grund\-Poliuretanic\-Amorsare\-Pardoseli\.pdf$	/doc/grund-poliuretanic-amorsare-pardoseli.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Epoxidica\-Pardoseli\.pdf$	/doc/vopsea-epoxidica-pardoseli.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Poliuretanica\-Pardoseli\.pdf$	/doc/vopsea-poliuretanica-pardoseli.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Poliuretanica\-Elastica\.pdf$	/doc/vopsea-poliuretanica-elastica.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Clorcauciuc\-Pardoseala\.pdf$	/doc/vopsea-clorcauciuc-pardoseala.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Marcaj\-Rutier\.pdf$	/doc/vopsea-marcaj-rutier.pdf? [L,R=301]
+RewriteRule ^Doc/Grund\-Clorcauciuc\-Amorsare\-Pardoseli\.pdf$	/doc/grund-clorcauciuc-amorsare-pardoseli.pdf? [L,R=301]
+RewriteRule ^Doc/Amorsa\-Acrilica\-Perete\.pdf$	/doc/amorsa-acrilica-perete.pdf? [L,R=301]
+RewriteRule ^Doc/Amorsa\-Acrilica\-Antimucegai\.pdf$	/doc/amorsa-acrilica-antimucegai.pdf? [L,R=301]
+RewriteRule ^Doc/Amorsa\-Acrilica\-Economica\.pdf$	/doc/amorsa-acrilica-economica.pdf? [L,R=301]
+RewriteRule ^Doc/Amorsa\-Siliconica\-Perete\.pdf$	/doc/amorsa-siliconica-vopsele-lavabile.pdf? [L,R=301]
+RewriteRule ^Doc/Amorsa\-Silicatica\-Perete\.pdf$	/doc/amorsa-silicatica-perete.pdf? [L,R=301]
+RewriteRule ^Doc/Grund\-Amorsare\-Pereti\.pdf$	/doc/grund-amorsare-pereti.pdf? [L,R=301]
+RewriteRule ^Doc/Masa\-Spaclu\-Emex\.pdf$	/doc/masa-spaclu-emex.pdf? [L,R=301]
+RewriteRule ^Doc/Sanitizant\-Antimucegai\-Emex\-Forte\.pdf$	/doc/sanitizant-antimucegai-emex-forte.pdf? [L,R=301]
+RewriteRule ^Doc/Grund\-Epoxidic\-Anticoroziv\.pdf$	/doc/grund-epoxidic-anticoroziv.pdf? [L,R=301]
+RewriteRule ^Doc/Grund\-Poliuretanic\-Anticoroziv\.pdf$	/doc/grund-poliuretanic-anticoroziv.pdf? [L,R=301]
+RewriteRule ^Doc/Grund\-Anticoroziv\-Clorcauciuc\.pdf$	/doc/grund-anticoroziv-clorcauciuc.pdf? [L,R=301]
+RewriteRule ^Doc/Grund\-Auto\-Utilaje\.pdf$	/doc/grund-auto-utilaje.pdf? [L,R=301]
+RewriteRule ^Doc/Grund\-Alchido\-Melaminic\-Cuptor\.pdf$	/doc/grund-alchido-melaminic-cuptor.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-siliconic\-termorezistent\-HTP\-700\.pdf$ /Doc/grund-siliconic-termorezistent-HTP.pdf? [L,R=301]
+RewriteRule ^Doc/Adeziv\-Tip\-Aracet\-Constructii\.pdf$ /Doc/adeziv-tip-aracet-constructii.pdf? [L,R=301]
+RewriteRule ^Doc/Decapant\-Ecologic\-Vopsele\.pdf$ /Doc/pasta-decapanta-vopsea-adezivi.pdf? [L,R=301]
+RewriteRule ^Doc/Diluant\-pentru\-Vopsele\-Epoxidice\.pdf$ /Doc/diluant-pentru-vopsele-epoxidice.pdf? [L,R=301]
+RewriteRule ^Doc/Grund\-Anticoroziv\-Poliuretanic\.pdf$ /Doc/grund-poliuretanic-anticoroziv.pdf? [L,R=301]
+RewriteRule ^Doc/Diluant\-pentru\-Vopsele\-Poliuretanice\.pdf$ /Doc/diluant-pentru-vopsele-poliuretanice.pdf? [L,R=301]
+RewriteRule ^Doc/Pardoseala\-Epoxidica\.pdf$ /Doc/pardoseala-epoxidica-autonivelanta.pdf? [L,R=301]
+RewriteRule ^Doc/Tencuiala\-Decorativa\-Hidroprotectoare\.pdf$ /Doc/tencuiala-decorativa-impermeabila.pdf? [L,R=301]
+RewriteRule ^Doc/Lac\-Piatra\-Solvent\-Emex\-WX\.pdf$ /Doc/lac-piatra-solvent-emex-ws.pdf? [L,R=301]
+RewriteRule ^Doc/Vopsea\-Tigla\-Azbociment\.pdf$ /Doc/vopsea-tigla-azbociment-emex.pdf? [L,R=301]
+RewriteRule ^cartela\-culori\-ral\-vopsele\.html$ /cartela-culori-ral-vopsele? [L,R=301]
+RewriteRule ^Doc/Tencuiala\-Decorativa$ /Doc/tencuiala-decorativa-structurata-acrilica.pdf? [L,R=301]
+RewriteRule ^cartela\-culori\-ral\-vopsele\.html\.$ /cartela-culori-ral-vopsele? [L,R=301]
+RewriteRule ^Doc/amorsa\-acrilica\-antimucegai\.pdf$ /doc/amorsa-acrilica-antimucegai.pdf? [L,R=301]
+RewriteRule ^Doc/amorsa\-acrilica\-economica\.pdf$ /doc/amorsa-acrilica-economica.pdf? [L,R=301]
+RewriteRule ^Doc/amorsa\-acrilica\-perete\.pdf$ /doc/amorsa-acrilica-perete.pdf? [L,R=301]
+RewriteRule ^Doc/amorsa\-epoxidica\-solvent\-free\.pdf$ /doc/amorsa-epoxidica-solvent-free.pdf? [L,R=301]
+RewriteRule ^Doc/amorsa\-rasini\-epoxidice\-solventate\.pdf$ /doc/amorsa-rasini-epoxidice-solventate.pdf? [L,R=301]
+RewriteRule ^Doc/amorsa\-silicatica\-perete\.pdf$ /doc/amorsa-silicatica-perete.pdf? [L,R=301]
+RewriteRule ^Doc/amorsa\-siliconica\-vopsele\-lavabile\.pdf$ /doc/amorsa-siliconica-vopsele-lavabile.pdf? [L,R=301]
+RewriteRule ^Doc/dezinfectant\-Emex\-Advanced\-Klor\.pdf$ /doc/dezinfectant-Emex-Advanced-Klor.pdf? [L,R=301]
+RewriteRule ^Doc/dezinfectant\-fara\-clor\-Bactiguard\.pdf$ /doc/dezinfectant-fara-clor-Bactiguard.pdf? [L,R=301]
+RewriteRule ^Doc/diluant\-pentru\-rasini\-poliesterice\.pdf$ /doc/diluant-pentru-rasini-poliesterice.pdf? [L,R=301]
+RewriteRule ^Doc/diluant\-vopsea\-marcaj\-rutier\.pdf$ /doc/diluant-vopsea-marcaj-rutier.pdf? [L,R=301]
+RewriteRule ^Doc/diluant\-vopsele\-alchidice\.pdf$ /doc/diluant-vopsele-alchidice.pdf? [L,R=301]
+RewriteRule ^Doc/diluant\-vopsele\-auto\-utilaje\.pdf$ /doc/diluant-vopsele-auto-utilaje.pdf? [L,R=301]
+RewriteRule ^Doc/diluant\-vopsele\-clorcauciuc\.pdf$ /doc/diluant-vopsele-clorcauciuc.pdf? [L,R=301]
+RewriteRule ^Doc/email\-alchidic\-emex\-extracolor\.pdf$ /doc/email-alchidic-emex-extracolor.pdf? [L,R=301]
+RewriteRule ^Doc/email\-alchidic\-premium\-emex\-gold\.pdf$ /doc/email-alchidic-premium-emex-gold.pdf? [L,R=301]
+RewriteRule ^Doc/email\-argintiu\-bronz\-aluminiu\.pdf$ /doc/email-argintiu-bronz-aluminiu.pdf? [L,R=301]
+RewriteRule ^Doc/email\-poliesteric\-bicomponent\-pentru\-metal\.pdf$ /doc/email-poliesteric-bicomponent-pentru-metal.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-alchidic\-anticoroziv\-emex\.pdf$ /doc/grund-alchidic-anticoroziv-emex.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-alchidic\-economic\-anticoroziv\.pdf$ /doc/grund-alchidic-economic-anticoroziv.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-alchidic\-lemn\-binale\.pdf$ /doc/grund-alchidic-lemn-binale.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-alchido\-melaminic\-cuptor\.pdf$ /doc/grund-alchido-melaminic-cuptor.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-amorsare\-pereti\.pdf$ /doc/grund-amorsare-pereti.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-amorsare\-tencuiala\-siliconica\.pdf$ /doc/grund-amorsare-tencuiala-siliconica.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-amorsare\-tencuieli\-decorative\.pdf$ /doc/grund-amorsare-tencuieli-decorative.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-anticoroziv\-alchido\-stirenic\.pdf$ /doc/grund-anticoroziv-alchido-stirenic.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-anticoroziv\-clorcauciuc\.pdf$ /doc/grund-anticoroziv-clorcauciuc.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-anticoroziv\-epoxi\-ester\.pdf$ /doc/grund-anticoroziv-epoxi-ester.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-anticoroziv\-poliesteric\.pdf$ /doc/grund-anticoroziv-poliesteric.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-anticoroziv\-solubil\-apa\.pdf$ /doc/grund-anticoroziv-solubil-apa.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-auto\-utilaje\.pdf$ /doc/grund-auto-utilaje.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-clorcauciuc\-amorsare\-pardoseli\.pdf$ /doc/grund-clorcauciuc-amorsare-pardoseli.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-epoxidic\-anticoroziv\.pdf$ /doc/grund-epoxidic-anticoroziv.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-poliuretanic\-amorsare\-pardoseli\.pdf$ /doc/grund-poliuretanic-amorsare-pardoseli.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-poliuretanic\-anticoroziv\.pdf$ /doc/grund-poliuretanic-anticoroziv.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-silicatic\-amorsare\-tencuiala\.pdf$ /doc/grund-silicatic-amorsare-tencuiala.pdf? [L,R=301]
+RewriteRule ^Doc/grund\-siliconic\-termorezistent\-HTP\.pdf$ /doc/grund-siliconic-termorezistent-HTP.pdf? [L,R=301]
+RewriteRule ^Doc/hammerschlag\-lovitura\-de\-ciocan\.pdf$ /doc/hammerschlag-lovitura-de-ciocan.pdf? [L,R=301]
+RewriteRule ^Doc/intaritor\-epoxidice\-solventate\.pdf$ /doc/intaritor-epoxidice-solventate.pdf? [L,R=301]
+RewriteRule ^Doc/intaritor\-poliuretanice\-solventate\.pdf$ /doc/intaritor-poliuretanice-solventate.pdf? [L,R=301]
+RewriteRule ^Doc/intaritor\-rasini\-epoxidice\-nesolventate\.pdf$ /doc/intaritor-rasini-epoxidice-nesolventate.pdf? [L,R=301]
+RewriteRule ^Doc/intaritor\-rasini\-poliuretanice\-nesolventate\.pdf$ /doc/intaritor-rasini-poliuretanice-nesolventate.pdf? [L,R=301]
+RewriteRule ^Doc/ISO\-14001\-IqNet\.pdf$ /doc/ISO-14001-IqNet.pdf? [L,R=301]
+RewriteRule ^Doc/ISO\-14001\.pdf$ /doc/ISO-14001.pdf? [L,R=301]
+RewriteRule ^Doc/ISO\-18001\-IqNet\.pdf$ /doc/ISO-18001-IqNet.pdf? [L,R=301]
+RewriteRule ^Doc/ISO\-18001\.pdf$ /doc/ISO-18001.pdf? [L,R=301]
+RewriteRule ^Doc/ISO\-9001\-IqNet\.pdf$ /doc/ISO-9001-IqNet.pdf? [L,R=301]
+RewriteRule ^Doc/ISO\-9001\.pdf$ /doc/ISO-9001.pdf? [L,R=301]
+RewriteRule ^Doc/lac\-acrilic\-mobila\.pdf$ /doc/lac-acrilic-mobila.pdf? [L,R=301]
+RewriteRule ^Doc/lac\-alchidic\-pentru\-lemn\.pdf$ /doc/lac-alchidic-pentru-lemn.pdf? [L,R=301]
+RewriteRule ^Doc/lac\-alchido\-uretanizat\-exterior\.pdf$ /doc/lac-alchido-uretanizat-exterior.pdf? [L,R=301]
+RewriteRule ^Doc/lac\-beton\-amprentat\-emex\-ls\-patio\.pdf$ /doc/lac-beton-amprentat-emex-ls-patio.pdf? [L,R=301]
+RewriteRule ^Doc/lac\-epoxidic\-sigilare\.pdf$ /doc/lac-epoxidic-sigilare.pdf? [L,R=301]
+RewriteRule ^Doc/lac\-epoxidic\-solventat\.pdf$ /doc/lac-epoxidic-solventat.pdf? [L,R=301]
+RewriteRule ^Doc/lac\-parchet\-monocomponent\.pdf$ /doc/lac-parchet-monocomponent.pdf? [L,R=301]
+RewriteRule ^Doc/lac\-piatra\-solubil\-apa\-Emex\-AQS\.pdf$ /doc/lac-piatra-solubil-apa-Emex-AQS.pdf? [L,R=301]
+RewriteRule ^Doc/lac\-piatra\-solvent\-emex\-ws\.pdf$ /doc/lac-piatra-solvent-emex-ws.pdf? [L,R=301]
+RewriteRule ^Doc/lac\-poliuretanic\-beton\-amprentat\.pdf$ /doc/lac-poliuretanic-beton-amprentat.pdf? [L,R=301]
+RewriteRule ^Doc/lac\-poliuretanic\-mobila\.pdf$ /doc/lac-poliuretanic-mobila.pdf? [L,R=301]
+RewriteRule ^Doc/lac\-poliuretanic\-protectie\-emex\-uv\-shield\.pdf$ /doc/lac-poliuretanic-protectie-emex-uv-shield.pdf? [L,R=301]
+RewriteRule ^Doc/lac\-protectie\-beton\-emex\-mineral\-protect\.pdf$ /doc/lac-protectie-beton-emex-mineral-protect.pdf? [L,R=301]
+RewriteRule ^Doc/lac\-protectie\-rosturi\.pdf$ /doc/lac-protectie-rosturi.pdf? [L,R=301]
+RewriteRule ^Doc/lavabila\-cuartz\-profesionala\-emex\-qt\.pdf$ /doc/lavabila-cuartz-profesionala-emex-qt.pdf? [L,R=301]
+RewriteRule ^Doc/lazura\-lac\-colorat\-pentru\-lemn\.pdf$ /doc/lazura-lac-colorat-pentru-lemn.pdf? [L,R=301]
+RewriteRule ^Doc/masa\-spaclu\-emex\.pdf$ /doc/masa-spaclu-emex.pdf? [L,R=301]
+RewriteRule ^Doc/membrana\-poliuretanica\-hidroizolanta\.pdf$ /doc/membrana-poliuretanica-hidroizolanta.pdf? [L,R=301]
+RewriteRule ^Doc/mortar\-epoxidic\-bicomponent\.pdf$ /doc/mortar-epoxidic-bicomponent.pdf? [L,R=301]
+RewriteRule ^Doc/pardoseala\-epoxidica\-antiderapanta\.pdf$ /doc/pardoseala-epoxidica-antiderapanta.pdf? [L,R=301]
+RewriteRule ^Doc/pardoseala\-epoxidica\-autonivelanta\.pdf$ /doc/pardoseala-epoxidica-autonivelanta.pdf? [L,R=301]
+RewriteRule ^Doc/pardoseala\-epoxidica\-decorativa\-cuartz\-STB\.pdf$ /doc/pardoseala-epoxidica-decorativa-cuartz-STB.pdf? [L,R=301]
+RewriteRule ^Doc/pardoseala\-epoxidica\-decorativa\-emex\-multicolor\.pdf$ /doc/pardoseala-epoxidica-decorativa-emex-multicolor.pdf? [L,R=301]
+RewriteRule ^Doc/pardoseala\-poliuretanica\-antiderapanta\.pdf$ /doc/pardoseala-poliuretanica-antiderapanta.pdf? [L,R=301]
+RewriteRule ^Doc/pardoseala\-poliuretanica\-autonivelanta\.pdf$ /doc/pardoseala-poliuretanica-autonivelanta.pdf? [L,R=301]
+RewriteRule ^Doc/pardoseala\-poliuretanica\-elastica\.pdf$ /doc/pardoseala-poliuretanica-elastica.pdf? [L,R=301]
+RewriteRule ^Doc/pasta\-decapanta\-vopsea\-adezivi\.pdf$ /doc/pasta-decapanta-vopsea-adezivi.pdf? [L,R=301]
+RewriteRule ^Doc/pasta\-ecologica\-decapare\.pdf$ /doc/pasta-ecologica-decapare.pdf? [L,R=301]
+RewriteRule ^Doc/sanitizant\-antimucegai\-emex\-forte\.pdf$ /doc/sanitizant-antimucegai-emex-forte.pdf? [L,R=301]
+RewriteRule ^Doc/sapa\-epoxidica\-cimentica\-emex\-mineral\.pdf$ /doc/sapa-epoxidica-cimentica-emex-mineral.pdf? [L,R=301]
+RewriteRule ^Doc/sistem\-anticoroziv\-convertor\-de\-rugina\.pdf$ /doc/sistem-anticoroziv-convertor-de-rugina.pdf? [L,R=301]
+RewriteRule ^Doc/sistem\-anticoroziv\-emex\-dual\-protect\.pdf$ /doc/sistem-anticoroziv-emex-dual-protect.pdf? [L,R=301]
+RewriteRule ^Doc/solutie\-hidrofobizare\-beton\.pdf$ /doc/solutie-hidrofobizare-beton.pdf? [L,R=301]
+RewriteRule ^Doc/solutie\-indepartarea\-ruginii\.pdf$ /doc/solutie-indepartarea-ruginii.pdf? [L,R=301]
+RewriteRule ^Doc/Solvent\-reactiv\-epoxidic\.pdf$ /doc/Solvent-reactiv-epoxidic.pdf? [L,R=301]
+RewriteRule ^Doc/Solvent\-reactiv\-poliuretanic\.pdf$ /doc/Solvent-reactiv-poliuretanic.pdf? [L,R=301]
+RewriteRule ^Doc/tencuiala\-decorativa\-impermeabila\.pdf$ /doc/tencuiala-decorativa-impermeabila.pdf? [L,R=301]
+RewriteRule ^Doc/tencuiala\-decorativa\-periata\.pdf$ /doc/tencuiala-decorativa-periata.pdf? [L,R=301]
+RewriteRule ^Doc/tencuiala\-decorativa\-praf\-piatra\.pdf$ /doc/tencuiala-decorativa-praf-piatra.pdf? [L,R=301]
+RewriteRule ^Doc/tencuiala\-decorativa\-structurata\-acrilica\.pdf$ /doc/tencuiala-decorativa-structurata-acrilica.pdf? [L,R=301]
+RewriteRule ^Doc/tencuiala\-decorativa\-structurata\-silicatica\.pdf$ /doc/tencuiala-decorativa-structurata-silicatica.pdf? [L,R=301]
+RewriteRule ^Doc/tencuiala\-decorativa\-structurata\-siliconica\.pdf$ /doc/tencuiala-decorativa-structurata-siliconica.pdf? [L,R=301]
+RewriteRule ^Doc/tencuiala\-marmorata\-de\-soclu\.pdf$ /doc/tencuiala-marmorata-de-soclu.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-acrilica\-mobila\.pdf$ /doc/vopsea-acrilica-mobila.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-acrilica\-universala\-emex\-spectrum\.pdf$ /doc/vopsea-acrilica-universala-emex-spectrum.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-antifonica\-insonorizanta\-emex\.pdf$ /doc/vopsea-antifonica-insonorizanta-emex.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-aurie\-metalizata\-bronz\-aluminiu\.pdf$ /doc/vopsea-aurie-metalizata-bronz-aluminiu.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-auto\-utilaje\.pdf$ /doc/vopsea-auto-utilaje.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-clorcauciuc\-pardoseala\.pdf$ /doc/vopsea-clorcauciuc-pardoseala.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-clorcauciuc\-piscine\-si\-metal\.pdf$ /doc/vopsea-clorcauciuc-piscine-si-metal.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-decorativa\-texturata\.pdf$ /doc/vopsea-decorativa-texturata.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-economica\-satinata\-emcolor\.pdf$ /doc/vopsea-economica-satinata-emcolor.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-epoxidica\-bicomponenta\.pdf$ /doc/vopsea-epoxidica-bicomponenta.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-epoxidica\-monocomponenta\-epoxi\-ester\.pdf$ /doc/vopsea-epoxidica-monocomponenta-epoxi-ester.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-epoxidica\-pardoseli\.pdf$ /doc/vopsea-epoxidica-pardoseli.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-hidroizolanta\-elastica\-multiprotectoare\.pdf$ /doc/vopsea-hidroizolanta-elastica-multiprotectoare.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-lavabila\-antimucegai\-emex\.pdf$ /doc/vopsea-lavabila-antimucegai-emex.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-lavabila\-economica\-exterior\-neomatt\.pdf$ /doc/vopsea-lavabila-economica-exterior-neomatt.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-lavabila\-economica\-interior\-neomatt\.pdf$ /doc/vopsea-lavabila-economica-interior-neomatt.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-lavabila\-lucioasa\-emex\-gloss\.pdf$ /doc/vopsea-lavabila-lucioasa-emex-gloss.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-lavabila\-practica\-interior\-neomatt\-plus\.pdf$ /doc/vopsea-lavabila-practica-interior-neomatt-plus.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-lavabila\-premium\-efect\-culoare\.pdf$ /doc/vopsea-lavabila-premium-efect-culoare.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-lavabila\-premium\-emex\-gold\.pdf$ /doc/vopsea-lavabila-premium-emex-gold.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-lavabila\-reflectorizanta\-emex\.pdf$ /doc/vopsea-lavabila-reflectorizanta-emex.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-lavabila\-satinata\-interior\.pdf$ /doc/vopsea-lavabila-satinata-interior.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-lavabila\-silicatica\-exterior\.pdf$ /doc/vopsea-lavabila-silicatica-exterior.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-lavabila\-siliconica\-exterior\.pdf$ /doc/vopsea-lavabila-siliconica-exterior.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-lavabila\-siliconica\-interior\.pdf$ /doc/vopsea-lavabila-siliconica-interior.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-marcaj\-rutier\-bicomponenta\.pdf$ /doc/vopsea-marcaj-rutier-bicomponenta.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-marcaj\-rutier\.pdf$ /doc/vopsea-marcaj-rutier.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-metal\-alchidica\-uretanizata\.pdf$ /doc/vopsea-metal-alchidica-uretanizata.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-metal\-alchido\-stirenica\.pdf$ /doc/vopsea-metal-alchido-stirenica.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-metal\-solubila\-apa\.pdf$ /doc/vopsea-metal-solubila-apa.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-poliuretanica\-elastica\.pdf$ /doc/vopsea-poliuretanica-elastica.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-poliuretanica\-mobila\.pdf$ /doc/vopsea-poliuretanica-mobila.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-poliuretanica\-pardoseli\.pdf$ /doc/vopsea-poliuretanica-pardoseli.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-poliuretanica\-yachturi\.pdf$ /doc/vopsea-poliuretanica-yachturi.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-superlavabila\-exterior\-emex\.pdf$ /doc/vopsea-superlavabila-exterior-emex.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-superlavabila\-interior\-emex\.pdf$ /doc/vopsea-superlavabila-interior-emex.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-termorezistenta\-emex\-trs\-700\.pdf$ /doc/vopsea-termorezistenta-emex-trs-700.pdf? [L,R=301]
+RewriteRule ^Doc/vopsea\-tigla\-azbociment\-emex\.pdf$ /doc/vopsea-tigla-azbociment-emex.pdf? [L,R=301]
+#RewriteCond %{HTTP_HOST} ^emex\.ro$
+#RewriteRule ^blog/$ https://blog.emex.ro/? [L,R=301]
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php70” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php70 .php .php7 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
+
+
+# "-Indexes" will have Apache block users from browsing folders without a default document
+# Usually you should leave this activated, because you shouldn't allow everybody to surf through
+# every folder on your server (which includes rather private places like CMS system folders).
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>
+
+# Block access to "hidden" directories whose names begin with a period. This
+# includes directories used by version control systems such as Subversion or Git.
+<IfModule mod_rewrite.c>
+  RewriteCond %{SCRIPT_FILENAME} -d
+  RewriteCond %{SCRIPT_FILENAME} -f
+  RewriteRule "(^|/)\." - [F]
+</IfModule>
+
+# Block access to backup and source files
+# This files may be left by some text/html editors and
+# pose a great security danger, when someone can access them
+<FilesMatch "(\.(bak|bat|config|sql|fla|md|psd|ini|log|sh|inc|swp|dist)|~|init|composer\.json|composer\.lock)$">
+  Order allow,deny
+  Deny from all
+  Satisfy All
+</FilesMatch>
+
+# Increase cookie security
+<IfModule php5_module>
+  php_value session.cookie_httponly true
+</IfModule>
+
+# Settings to hide index.php and ensure pretty urls
+RewriteEngine on
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# otherwise forward it to index.php
+RewriteRule . index.php
