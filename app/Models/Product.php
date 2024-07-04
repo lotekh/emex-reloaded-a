@@ -59,4 +59,19 @@ class Product extends Model
     {
         return $this->morphOne(JsonLd::class, 'model');
     }
+
+    public function categorySubfilters(): BelongsToMany
+    {
+        return $this->belongsToMany(CategorySubfilter::class);
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function wishlistUsers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'wishlist_items', 'user_id', 'product_id');
+    }
 }

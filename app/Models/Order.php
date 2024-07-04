@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Order extends Model
 {
@@ -46,4 +48,14 @@ class Order extends Model
         'total_no_tva',
         'discount_code_id'
     ];
+
+    public function productVariations(): BelongsToMany
+    {
+        return $this->belongsToMany(ProductVariation::class);
+    }
+
+    public function user(): HasOne
+    {
+        return $this->hasOne(User::class);
+    }
 }
