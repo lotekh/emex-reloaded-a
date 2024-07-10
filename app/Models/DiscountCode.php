@@ -13,5 +13,5 @@ class DiscountCode extends Model
         'code',
         'percentage',
         'is_active'
-    ]
+    ];
 }

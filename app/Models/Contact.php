@@ -17,5 +17,5 @@ class Contact extends Model
         'message',
         'ip_address',
         'page_url',
-    ]
+    ];
 }
