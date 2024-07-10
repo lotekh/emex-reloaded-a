@@ -8,8 +8,8 @@ use App\Http\Controllers\PageController;
 //     return view('header');
 // });
 
-Route::get('/mainbody', function () {
-    return view('mainbody');
+Route::get('/footer', function () {
+    return view('footer');
 });
 
 Route::get('/mainbody2', function () {
