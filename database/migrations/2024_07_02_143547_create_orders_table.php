@@ -19,15 +19,15 @@ return new class extends Migration
             $table->string('delivery_first_name')->nullable();
             $table->string('delivery_phone')->nullable();
             $table->foreignId('delivery_county_id')->nullable()->constrained('counties', 'id');
-            $table->foreignId('delivery_city_id')->nullable()->constrained('cities', 'id');
+            $table->string('delivery_city')->nullable();
             $table->string('delivery_address')->nullable();
             $table->string('delivery_email')->nullable();
-            $table->foreignId('billing_type');
+            $table->boolean('billing_type');
             $table->string('person_last_name')->nullable();
             $table->string('person_first_name')->nullable();
             $table->string('person_phone')->nullable();
             $table->foreignId('person_county_id')->nullable()->constrained('counties', 'id');
-            $table->foreignId('person_city_id')->nullable()->constrained('cities', 'id');
+            $table->string('person_city')->nullable();
             $table->string('person_address')->nullable();
             $table->string('person_email')->nullable();
             $table->string('organization_name')->nullable();
@@ -35,7 +35,7 @@ return new class extends Migration
             $table->string('organization_bank')->nullable();
             $table->string('organization_bank_account')->nullable();
             $table->foreignId('organization_county_id')->nullable()->constrained('counties', 'id');
-            $table->foreignId('organization_city_id')->nullable()->constrained('cities', 'id');
+            $table->string('organization_city')->nullable();
             $table->string('organization_address')->nullable();
             $table->string('organization_phone')->nullable();
             $table->string('organization_email')->nullable();
@@ -48,7 +48,6 @@ return new class extends Migration
             $table->double('transport_price_no_tva')->default(0);
             $table->double('total_no_tva')->default(0);
             $table->foreignId('discount_code_id')->nullable()->constrained('discount_codes', 'id');
-
             $table->timestamps();
         });
     }

@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('counties', function (Blueprint $table) {
             $table->id();
-            $table->string('code', 2);
-            $table->string('name')->unique();
+            $table->foreignId('country_id')->constrained('countries', 'id');
+            $table->string('code', 5);
+            $table->string('name');
             $table->timestamps();
         });
     }
