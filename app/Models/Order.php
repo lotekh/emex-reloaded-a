@@ -58,4 +58,24 @@ class Order extends Model
     {
         return $this->hasOne(User::class);
     }
+
+    public function code(): HasOne
+    {
+        return $this->hasOne(DiscountCode::class, 'id', 'discount_code_id');
+    }
+
+    public function county(): HasOne
+    {
+        return $this->hasOne(County::class, 'id', 'delivery_county_id');
+    }
+
+    public function city(): HasOne
+    {
+        return $this->hasOne(City::class, 'id', 'delivery_city_id');
+    }
+
+    public function personCounty(): HasOne
+    {
+        return $this->hasOne(County::class, 'id', 'person_county_id');
+    }
 }

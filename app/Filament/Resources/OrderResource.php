@@ -12,112 +12,26 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Infolists;
+use Filament\Infolists\Infolist;
 
 class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
 
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Forms\Components\TextInput::make('user_id')
-                    ->numeric(),
-                Forms\Components\Toggle::make('delivery_type')
-                    ->required(),
-                Forms\Components\TextInput::make('delivery_last_name')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('delivery_first_name')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('delivery_phone')
-                    ->tel()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('delivery_county_id')
-                    ->numeric(),
-                Forms\Components\TextInput::make('delivery_city_id')
-                    ->numeric(),
-                Forms\Components\TextInput::make('delivery_address')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('delivery_email')
-                    ->email()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('billing_type')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('person_last_name')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('person_first_name')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('person_phone')
-                    ->tel()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('person_county_id')
-                    ->numeric(),
-                Forms\Components\TextInput::make('person_city_id')
-                    ->numeric(),
-                Forms\Components\TextInput::make('person_address')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('person_email')
-                    ->email()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('organization_name')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('organization_vat_code')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('organization_bank')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('organization_bank_account')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('organization_county_id')
-                    ->numeric(),
-                Forms\Components\TextInput::make('organization_city_id')
-                    ->numeric(),
-                Forms\Components\TextInput::make('organization_address')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('organization_phone')
-                    ->tel()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('organization_email')
-                    ->email()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('guid')
-                    ->required()
-                    ->maxLength(36),
-                Forms\Components\TextInput::make('payment_method')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('total')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('identifier')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Toggle::make('is_paid')
-                    ->required(),
-                Forms\Components\TextInput::make('transport_price')
-                    ->required()
-                    ->numeric()
-                    ->default(0),
-                Forms\Components\TextInput::make('transport_price_no_tva')
-                    ->required()
-                    ->numeric()
-                    ->default(0),
-                Forms\Components\TextInput::make('total_no_tva')
-                    ->required()
-                    ->numeric()
-                    ->default(0),
-                Forms\Components\TextInput::make('discount_code_id')
-                    ->numeric(),
-            ]);
+            ->schema([]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id')
+                Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('delivery_type')
@@ -128,10 +42,10 @@ class OrderResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('delivery_phone')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('delivery_county_id')
+                Tables\Columns\TextColumn::make('country.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('delivery_city_id')
+                Tables\Columns\TextColumn::make('city.name')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('delivery_address')
@@ -234,7 +148,17 @@ class OrderResource extends Resource
         return [
             'index' => Pages\ListOrders::route('/'),
             'create' => Pages\CreateOrder::route('/create'),
-            'edit' => Pages\EditOrder::route('/{record}/edit'),
         ];
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Infolists\Components\TextEntry::make('name'),
+                Infolists\Components\TextEntry::make('email'),
+                Infolists\Components\TextEntry::make('notes')
+                    ->columnSpanFull(),
+            ]);
     }
 }

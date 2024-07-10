@@ -11,7 +11,7 @@ class Popup extends Model
 
     protected $fillable = [
         'message',
-        'slug_id',
+        'slug',
         'is_active'
     ];
 }

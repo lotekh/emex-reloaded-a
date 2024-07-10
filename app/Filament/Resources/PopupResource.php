@@ -17,18 +17,19 @@ class PopupResource extends Resource
 {
     protected static ?string $model = Popup::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-megaphone';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('slug')
+                    ->required()
+                    ->columnSpanFull()
+                    ->maxLength(255),
                 Forms\Components\Textarea::make('message')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255),
                 Forms\Components\Toggle::make('is_active')
                     ->required(),
             ]);
@@ -40,6 +41,17 @@ class PopupResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('message')
+                    ->tooltip(function (Tables\Columns\TextColumn $column): ?string {
+                        $state = $column->getState();
+
+                        if (strlen($state) <= $column->getCharacterLimit()) {
+                            return null;
+                        }
+
+                        return $state;
+                    })
+                    ->limit(50),
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')

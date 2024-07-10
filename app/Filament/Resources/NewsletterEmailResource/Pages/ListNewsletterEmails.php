@@ -10,10 +10,4 @@ class ListNewsletterEmails extends ListRecords
 {
     protected static string $resource = NewsletterEmailResource::class;
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            Actions\CreateAction::make(),
-        ];
-    }
 }

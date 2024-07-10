@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CategoryFilter extends Model
 {
@@ -11,7 +12,7 @@ class CategoryFilter extends Model
 
     protected $fillable = ['name'];
 
-    public function categorySubfilters()
+    public function categorySubfilters(): HasMany
     {
         return $this->hasMany(CategorySubfilter::class);
     }

@@ -17,7 +17,7 @@ class NewsletterEmailResource extends Resource
 {
     protected static ?string $model = NewsletterEmail::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-envelope-open';
 
     public static function form(Form $form): Form
     {
@@ -57,7 +57,7 @@ class NewsletterEmailResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -77,8 +77,7 @@ class NewsletterEmailResource extends Resource
     {
         return [
             'index' => Pages\ListNewsletterEmails::route('/'),
-            'create' => Pages\CreateNewsletterEmail::route('/create'),
-            'edit' => Pages\EditNewsletterEmail::route('/{record}/edit'),
+            'view' => Pages\ViewNewsletterEmail::route('/{record}'),
         ];
     }
 }

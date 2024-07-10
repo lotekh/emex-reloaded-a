@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('organization_address')->nullable();
             $table->string('organization_phone')->nullable();
             $table->string('organization_email')->nullable();
-            $table->boolean('delivery_type');
+            $table->boolean('delivery_type')->nullable();
             $table->string('delivery_last_name')->nullable();
             $table->string('delivery_first_name')->nullable();
             $table->string('delivery_phone', 20)->nullable();

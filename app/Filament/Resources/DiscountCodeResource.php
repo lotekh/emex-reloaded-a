@@ -17,7 +17,7 @@ class DiscountCodeResource extends Resource
 {
     protected static ?string $model = DiscountCode::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-currency-dollar';
 
     public static function form(Form $form): Form
     {
@@ -42,6 +42,7 @@ class DiscountCodeResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('percentage')
                     ->numeric()
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),

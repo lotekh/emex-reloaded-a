@@ -10,14 +10,12 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class OfferRequestResource extends Resource
 {
     protected static ?string $model = OfferRequest::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
     public static function form(Form $form): Form
     {
@@ -85,7 +83,7 @@ class OfferRequestResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -105,8 +103,7 @@ class OfferRequestResource extends Resource
     {
         return [
             'index' => Pages\ListOfferRequests::route('/'),
-            'create' => Pages\CreateOfferRequest::route('/create'),
-            'edit' => Pages\EditOfferRequest::route('/{record}/edit'),
+            'view' => Pages\ViewOfferRequest::route('/{record}'),
         ];
     }
 }

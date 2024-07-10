@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ReviewResource\Pages;
 use App\Filament\Resources\ReviewResource\RelationManagers;
+use App\Models\Product;
 use App\Models\Review;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -17,18 +18,17 @@ class ReviewResource extends Resource
 {
     protected static ?string $model = Review::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-star';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('product_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('product_id')
+                    ->searchable()
+                    ->label('Product')
+                    ->getSearchResultsUsing(fn (string $search): array => Product::where('name', 'like', "{$search}%")->limit(10)->pluck('name', 'id')->toArray())
+                    ->required(),
                 Forms\Components\TextInput::make('rating')
                     ->required()
                     ->numeric(),
@@ -44,11 +44,11 @@ class ReviewResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('user.first_name')
+                    ->searchable(isIndividual: true)
                     ->sortable(),
-                Tables\Columns\TextColumn::make('product_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('product.name')
+                    ->searchable(isIndividual: true)
                     ->sortable(),
                 Tables\Columns\TextColumn::make('rating')
                     ->numeric()

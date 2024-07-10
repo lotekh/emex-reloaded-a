@@ -9,6 +9,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -17,22 +18,31 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('first_name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('last_name')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\DateTimePicker::make('email_verified_at'),
+                Forms\Components\Select::make('role')
+                    ->options([
+                        'admin' => 'Admin',
+                        'user' => 'User',
+                    ])
+                    ->required(),
                 Forms\Components\TextInput::make('password')
                     ->password()
+                    ->hiddenOn(['edit'])
                     ->required()
                     ->maxLength(255),
             ]);
@@ -42,28 +52,47 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('first_name')
+                    ->searchable(isIndividual: true),
+                Tables\Columns\TextColumn::make('last_name')
+                    ->searchable(isIndividual: true),
                 Tables\Columns\TextColumn::make('email')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
+                    ->searchable(isIndividual: true),
+                Tables\Columns\TextColumn::make('role')
+                    ->searchable(isIndividual: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                Tables\Columns\TextColumn::make('phone')
+                    ->sortable()
+                    ->searchable(isIndividual: true)
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('organization_email')
+                    ->sortable()
+                    ->searchable(isIndividual: true)
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('organization_phone')
                     ->dateTime()
                     ->sortable()
+                    ->searchable(isIndividual: true)
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('organization_address')
+                    ->sortable()
+                    ->searchable(isIndividual: true)
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Filter::make('is_admin')
+                    ->query(fn (Builder $query): Builder => $query->where('role', '=', 'admin')),
+                Filter::make('is_user')
+                    ->query(fn (Builder $query): Builder => $query->where('role', '=', 'user'))
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

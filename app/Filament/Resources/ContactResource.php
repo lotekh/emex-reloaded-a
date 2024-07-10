@@ -17,7 +17,7 @@ class ContactResource extends Resource
 {
     protected static ?string $model = Contact::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-circle';
 
     public static function form(Form $form): Form
     {
@@ -75,7 +75,7 @@ class ContactResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -95,8 +95,7 @@ class ContactResource extends Resource
     {
         return [
             'index' => Pages\ListContacts::route('/'),
-            'create' => Pages\CreateContact::route('/create'),
-            'edit' => Pages\EditContact::route('/{record}/edit'),
+            'view' => Pages\ViewContact::route('/{record}'),
         ];
     }
 }
