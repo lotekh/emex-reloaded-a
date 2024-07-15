@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('blog_articles', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('og_image_id')->nullable()->constrained('media');
+            $table->foreignId('twitter_image_id')->nullable()->constrained('media');
+            $table->foreignId('featured_image_id')->nullable()->constrained('media');
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('body');

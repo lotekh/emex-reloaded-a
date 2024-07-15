@@ -12,40 +12,37 @@ use Filament\Forms\Components\Grid;
 
 class SeoForm
 {
-    public static function make(): array
+    public static function make($prefix = ''): array
     {
+        ray($prefix);
         return [
             Section::make('General SEO')
+                ->columns(2)
                 ->schema([
-                    Grid::make(3)
-                        ->schema([
-                            TextInput::make('seo_title')
-                                ->label('SEO Title')
-                                ->columnSpan(2),
-                            TextInput::make('seo_meta_keywords')
-                                ->label('Meta Keywords')
-                                ->columnSpan(1),
-                        ]),
-                    Textarea::make('seo_meta_description')
-                        ->label('Meta Description')
-                        ->rows(3)
-                        ->columnSpanFull(),
+                            TextInput::make($prefix . 'seo.title')
+                                ->label('SEO Title'),
+                            TextInput::make($prefix . 'seo.meta_keywords')
+                                ->label('Meta Keywords'),
+                            Textarea::make($prefix . 'seo.meta_description')
+                                ->label('Meta Description')
+                                ->rows(3)
+                                ->columnSpanFull(),
                 ])->collapsible(),
 
             Section::make('Open Graph (Facebook)')
                 ->schema([
                     Grid::make(3)
                         ->schema([
-                            TextInput::make('seo_og_title')
+                            TextInput::make($prefix . 'seo.og_title')
                                 ->label('OG Title')
-                                ->columnSpan(2),
-                            TextInput::make('seo_og_site_name')
+                                ->columnSpan(1),
+                            TextInput::make($prefix . 'seo.og_site_name')
                                 ->label('OG Site Name')
                                 ->columnSpan(1),
-                            TextInput::make('seo_og_url')
+                            TextInput::make($prefix . 'seo.og_url')
                                 ->label('OG URL')
-                                ->columnSpan(2),
-                            Select::make('seo_og_type')
+                                ->columnSpan(1),
+                            Select::make($prefix . 'seo.og_type')
                                 ->label('OG Type')
                                 ->options([
                                     'website' => 'Website',
@@ -53,40 +50,34 @@ class SeoForm
                                     'product' => 'Product',
                                 ])
                                 ->columnSpan(1),
-                            TextInput::make('seo_og_locale')
+                            TextInput::make($prefix . 'seo.og_locale')
                                 ->label('OG Locale')
                                 ->columnSpan(1),
-                            TextInput::make('seo_fb_app_id')
+                            TextInput::make($prefix . 'seo.fb_app_id')
                                 ->label('Facebook App ID')
                                 ->columnSpan(1),
-                        ]),
-                    Textarea::make('seo_og_description')
-                        ->label('OG Description')
-                        ->rows(3)
-                        ->columnSpanFull(),
-                    CuratorPicker::make('seo_og_image')
-                        ->label('OG Image')
-                        ->relationship('seoOgImage', 'id')
-                        ->pathGenerator(UserPathGenerator::class)
-                        ->tenantAware(false)
-                        ->preserveFilenames()
-                        ->columnSpanFull(),
-                    Grid::make(3)
-                        ->schema([
-                            TextInput::make('seo_og_image_secure_url')
-                                ->label('OG Image Secure URL')
-                                ->columnSpan(1),
-                            TextInput::make('seo_og_image_width')
+                            Textarea::make($prefix . 'seo.og_description')
+                                ->label('OG Description')
+                                ->rows(3)
+                                ->columnSpan(3),
+                            CuratorPicker::make($prefix . 'og_image_id')
+                                ->label('OG Image')
+                                ->relationship($prefix ? str_replace($prefix, '_', '') . 'SeoOgImage' : 'seoOgImage', 'id')
+                                ->pathGenerator(UserPathGenerator::class)
+                                ->tenantAware(false)
+                                ->preserveFilenames()
+                                ->columnSpan(3),
+                            TextInput::make($prefix . 'seo.og_image_width')
                                 ->label('OG Image Width')
                                 ->numeric()
                                 ->columnSpan(1),
-                            TextInput::make('seo_og_image_height')
+                            TextInput::make($prefix . 'seo.og_image_height')
                                 ->label('OG Image Height')
                                 ->numeric()
                                 ->columnSpan(1),
-                            TextInput::make('seo_og_image_alt')
+                            TextInput::make($prefix . 'seo.og_image_alt')
                                 ->label('OG Image Alt')
-                                ->columnSpan(3),
+                                ->columnSpan(1),
                         ]),
                 ])->collapsible(),
 
@@ -94,7 +85,7 @@ class SeoForm
                 ->schema([
                     Grid::make(3)
                         ->schema([
-                            Select::make('seo_twitter_card')
+                            Select::make($prefix . 'seo.twitter_card')
                                 ->label('Twitter Card')
                                 ->options([
                                     'summary' => 'Summary',
@@ -103,30 +94,30 @@ class SeoForm
                                     'player' => 'Player',
                                 ])
                                 ->columnSpan(1),
-                            TextInput::make('seo_twitter_site')
+                            TextInput::make($prefix . 'seo.twitter_site')
                                 ->label('Twitter Site')
                                 ->columnSpan(1),
-                            TextInput::make('seo_twitter_title')
+                            TextInput::make($prefix . 'seo.twitter_title')
                                 ->label('Twitter Title')
-                                ->columnSpan(2),
-                            TextInput::make('seo_twitter_url')
+                                ->columnSpan(1),
+                            TextInput::make($prefix . 'seo.twitter_url')
                                 ->label('Twitter URL')
                                 ->columnSpan(3),
+                            Textarea::make($prefix . 'seo.twitter_description')
+                                ->label('Twitter Description')
+                                ->rows(3)
+                                ->columnSpan(3),
+                            CuratorPicker::make($prefix . 'twitter_image_id')
+                                ->label('Twitter Image')
+                                ->relationship($prefix ? str_replace($prefix, '_', '').'SeoTwitterImage' : 'seoTwitterImage', 'id')
+                                ->pathGenerator(UserPathGenerator::class)
+                                ->tenantAware(false)
+                                ->preserveFilenames()
+                                ->columnSpan(3),
+                            TextInput::make($prefix . 'seo.twitter_image_alt')
+                                ->label('Twitter Image Alt')
+                                ->columnSpan(3),
                         ]),
-                    Textarea::make('seo_twitter_description')
-                        ->label('Twitter Description')
-                        ->rows(3)
-                        ->columnSpanFull(),
-                    CuratorPicker::make('seo_twitter_image')
-                        ->label('Twitter Image')
-                        ->relationship('seoTwitterImage', 'id')
-                        ->pathGenerator(UserPathGenerator::class)
-                        ->tenantAware(false)
-                        ->preserveFilenames()
-                        ->columnSpanFull(),
-                    TextInput::make('seo_twitter_image_alt')
-                        ->label('Twitter Image Alt')
-                        ->columnSpanFull(),
                 ])->collapsible(),
         ];
     }
