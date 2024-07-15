@@ -42,8 +42,9 @@ class UserResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('password')
                     ->password()
-                    ->hiddenOn(['edit'])
+                    ->visibleOn(['create'])
                     ->required()
+                    ->revealable()
                     ->maxLength(255),
             ]);
     }
@@ -59,27 +60,15 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(isIndividual: true),
                 Tables\Columns\TextColumn::make('role')
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->searchable(isIndividual: true),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('phone')
                     ->sortable()
                     ->searchable(isIndividual: true)
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('organization_email')
-                    ->sortable()
-                    ->searchable(isIndividual: true)
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('organization_phone')
+                Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
-                    ->searchable(isIndividual: true)
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('organization_address')
-                    ->sortable()
-                    ->searchable(isIndividual: true)
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
@@ -92,7 +81,6 @@ class UserResource extends Resource
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
-
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

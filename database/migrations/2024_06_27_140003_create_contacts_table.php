@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('company')->nullable();
-            $table->longText('message');
             $table->string('ip_address')->nullable();
             $table->string('page_url')->nullable();
+            $table->text('message');
+
             $table->timestamps();
         });
     }

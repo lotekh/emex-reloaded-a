@@ -13,11 +13,24 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('person_county_id')->nullable()->constrained('counties');
+            $table->foreignId('organization_county_id')->nullable()->constrained('counties');
+
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('role', 12)->default('user');
+            $table->string('phone', 20)->nullable();
             $table->rememberToken();
+
+            $table->boolean('billing_type')->nullable();
+
+            $table->json('contact_information')->nullable();
+            $table->json('delivery_information')->nullable();
+            $table->json('company_information')->nullable();
+
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
 

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('category_filters', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_filter_id')->nullable()->constrained();
             $table->string('name')->unique();
             $table->timestamps();
         });

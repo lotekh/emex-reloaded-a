@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -13,40 +14,29 @@ class Order extends Model
 
     protected $fillable = [
         'user_id',
-        'delivery_type',
-        'delivery_last_name',
-        'delivery_first_name',
-        'delivery_phone',
         'delivery_county_id',
-        'delivery_city_id',
-        'delivery_address',
-        'delivery_email',
-        'billing_type',
-        'person_last_name',
-        'person_first_name',
-        'person_phone',
         'person_county_id',
-        'person_city_id',
-        'person_address',
-        'person_email',
-        'organization_name',
-        'organization_vat_code',
-        'organization_bank',
-        'organization_bank_account',
-        'organization_county_id',
-        'organization_city_id',
-        'organization_address',
-        'organization_phone',
-        'organization_email',
+        'company_county_id',
+        'discount_code_id',
         'guid',
-        'payment_method',
-        'total',
         'identifier',
-        'is_paid',
+        'payment_method',
         'transport_price',
         'transport_price_no_tva',
         'total_no_tva',
-        'discount_code_id'
+        'total',
+        'delivery_type',
+        'billing_type',
+        'is_paid',
+        'contact_information',
+        'delivery_information',
+        'company_information',
+    ];
+
+    protected $casts = [
+        'contact_information' => 'object',
+        'delivery_information' => 'object',
+        'company_information' => 'object',
     ];
 
     public function productVariations(): BelongsToMany
@@ -54,28 +44,28 @@ class Order extends Model
         return $this->belongsToMany(ProductVariation::class);
     }
 
-    public function user(): HasOne
+    public function user(): BelongsTo
     {
-        return $this->hasOne(User::class);
+        return $this->BelongsTo(User::class);
     }
 
-    public function code(): HasOne
+    public function discountCode(): BelongsTo
     {
-        return $this->hasOne(DiscountCode::class, 'id', 'discount_code_id');
+        return $this->belongsTo(DiscountCode::class,);
     }
 
-    public function county(): HasOne
+    public function deliveryCounty(): belongsTo
     {
-        return $this->hasOne(County::class, 'id', 'delivery_county_id');
-    }
-
-    public function city(): HasOne
-    {
-        return $this->hasOne(City::class, 'id', 'delivery_city_id');
+        return $this->belongsTo(County::class, 'id', 'delivery_county_id');
     }
 
     public function personCounty(): HasOne
     {
         return $this->hasOne(County::class, 'id', 'person_county_id');
+    }
+
+    public function companyCounty(): HasOne
+    {
+        return $this->hasOne(County::class, 'id', 'company_county_id');
     }
 }

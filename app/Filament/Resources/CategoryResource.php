@@ -4,9 +4,12 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
+use App\Helpers\SeoForm;
 use App\Models\Category;
 use Filament\Forms;
+use Filament\Forms\Components\Tabs;
 use Filament\Forms\Form;
+use Filament\Resources\Components\Tab;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -17,19 +20,37 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-folder';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
-                Forms\Components\Toggle::make('active')
-                    ->required(),
+                Tabs::make('Tabs')
+                    ->columnSpanFull()
+                    ->tabs([
+                        Tabs\Tab::make('General Information')
+                            ->schema([
+                                Forms\Components\TextInput::make('name')
+                                    ->required()
+                                    ->columnSpanFull()
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('slug')
+                                    ->required()
+                                    ->columnSpanFull()
+                                    ->maxLength(255),
+                                Forms\Components\RichEditor::make('description')
+                                    ->columnSpanFull(),
+                                Forms\Components\Toggle::make('active')
+                                    ->required()
+                            ]),
+                        Tabs\Tab::make('SEO')
+                            ->schema(SeoForm::make()),
+                        Tabs\Tab::make('JSON-LD')
+                            ->schema([
+                                // ...
+                            ]),
+                    ]),
             ]);
     }
 

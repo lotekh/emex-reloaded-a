@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('popups', function (Blueprint $table) {
             $table->id();
-            $table->text('message');
             $table->string('slug');
+            $table->text('message');
             $table->boolean('is_active')->default(false);
             $table->timestamps();
         });

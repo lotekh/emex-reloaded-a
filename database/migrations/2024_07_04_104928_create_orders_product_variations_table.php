@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_variation_id')->constrained('product_variations', 'id');
             $table->foreignId('order_id')->constrained('orders', 'id');
-            $table->integer('quantity');
-            $table->double('price');
-            $table->double('price_no_vat');
             $table->string('mentions')->nullable();
+
+            $table->integer('quantity');
+
+            $table->decimal('price',10, 2);
+            $table->decimal('price_no_vat', 10, 2);
+
             $table->timestamps();
         });
     }

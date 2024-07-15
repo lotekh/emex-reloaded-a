@@ -9,11 +9,4 @@ use Filament\Resources\Pages\ViewRecord;
 class ViewCareerContact extends ViewRecord
 {
     protected static string $resource = CareerContactResource::class;
-
-    protected function getHeaderActions(): array
-    {
-        return [
-            Actions\EditAction::make(),
-        ];
-    }
 }

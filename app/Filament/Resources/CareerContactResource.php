@@ -17,7 +17,7 @@ class CareerContactResource extends Resource
 {
     protected static ?string $model = CareerContact::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document';
 
     public static function form(Form $form): Form
     {
@@ -49,22 +49,29 @@ class CareerContactResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
+                    ->sortable()
+                    ->searchable(isIndividual: true),
                 Tables\Columns\TextColumn::make('email')
-                    ->searchable(),
+                    ->sortable()
+                    ->searchable(isIndividual: true),
                 Tables\Columns\TextColumn::make('date_of_birth')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('gender')
-                    ->searchable(),
+                    ->sortable()
+                    ->searchable(isIndividual: true),
                 Tables\Columns\TextColumn::make('address')
-                    ->searchable(),
+                    ->sortable()
+                    ->searchable(isIndividual: true),
                 Tables\Columns\TextColumn::make('postal_code')
-                    ->searchable(),
+                    ->sortable()
+                    ->searchable(isIndividual: true),
                 Tables\Columns\TextColumn::make('city')
-                    ->searchable(),
+                    ->sortable()
+                    ->searchable(isIndividual: true),
                 Tables\Columns\TextColumn::make('ip')
-                    ->searchable(),
+                    ->sortable()
+                    ->searchable(isIndividual: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -79,7 +86,6 @@ class CareerContactResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -99,9 +105,7 @@ class CareerContactResource extends Resource
     {
         return [
             'index' => Pages\ListCareerContacts::route('/'),
-            'create' => Pages\CreateCareerContact::route('/create'),
             'view' => Pages\ViewCareerContact::route('/{record}'),
-            'edit' => Pages\EditCareerContact::route('/{record}/edit'),
         ];
     }
 }

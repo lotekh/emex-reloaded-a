@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class ProductVariation extends Model
 {
@@ -24,14 +24,14 @@ class ProductVariation extends Model
         'weight',
     ];
 
-    public function product(): HasOne
+    public function product(): BelongsTo
     {
-        return $this->hasOne(Product::class);
+        return $this->belongsTo(Product::class);
     }
 
-    public function measurementUnit(): HasOne
+    public function measurementUnit(): BelongsTo
     {
-        return $this->hasOne(MeasurementUnit::class);
+        return $this->belongsTo(MeasurementUnit::class);
     }
 
     public function orders(): BelongsToMany

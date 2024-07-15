@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constained('users', 'id');
-            $table->foreignId('product_id')->constrained('products', 'id');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('product_id')->constrained();
+            $table->text('review');
             $table->integer('rating');
-            $table->longText('review');
             $table->boolean('approved')->default(false);
             $table->timestamps();
         });

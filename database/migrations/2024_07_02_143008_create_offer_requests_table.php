@@ -16,13 +16,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone')->nullable();
+            $table->string('city')->nullable();
             $table->string('address')->nullable();
             $table->string('surface')->nullable();
             $table->string('usage')->nullable();
             $table->string('application')->nullable();
+            $table->text('message');
             $table->boolean('interior_exterior')->nullable();
-            $table->longText('message');
-            $table->string('city')->nullable();
             $table->timestamps();
         });
     }

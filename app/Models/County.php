@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class County extends Model
 {
@@ -15,8 +15,8 @@ class County extends Model
         'code'
     ];
 
-    public function cities(): HasMany
+    public function country(): BelongsTo
     {
-        return $this->hasMany(City::class);
+        return $this->belongsTo(County::class);
     }
 }

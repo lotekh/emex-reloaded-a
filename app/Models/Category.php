@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Category extends Model
 {
@@ -13,27 +12,20 @@ class Category extends Model
 
     protected $fillable = [
         'name',
+        'slug',
         'description',
-        'active'
+        'active',
+        'seo',
+        'jsonld'
+    ];
+
+    protected $casts = [
+        'seo' => 'object',
+        'jsonld' => 'object'
     ];
 
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class);
-    }
-
-    public function slug(): MorphOne
-    {
-        return $this->morphOne(Slug::class, 'model');
-    }
-
-    public function seo(): MorphOne
-    {
-        return $this->morphOne(Seo::class, 'model');
-    }
-
-    public function jsonLd(): MorphOne
-    {
-        return $this->morphOne(JsonLd::class, 'model');
+        return $this->belongsToMany(Product::class, 'categories_products', 'category_id', 'product_id');
     }
 }

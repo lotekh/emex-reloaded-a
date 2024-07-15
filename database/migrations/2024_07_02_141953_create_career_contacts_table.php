@@ -15,13 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('email')->nullable();
-            $table->date('date_of_birth')->nullable();
             $table->string('gender', 1)->nullable();
             $table->string('address')->nullable();
             $table->string('postal_code', 6)->nullable();
             $table->string('city')->nullable();
-            $table->longText('message')->nullable();
             $table->string('ip')->nullable();
+
+            $table->text('message')->nullable();
+
+            $table->date('date_of_birth')->nullable();
             $table->timestamps();
         });
     }
