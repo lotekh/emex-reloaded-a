@@ -12,12 +12,12 @@ Route::get('/footer', function () {
     return view('footer');
 });
 
-Route::get('/mainbody2', function () {
-    return view('mainbody2');
+Route::get('/pagina1', function () {
+    return view('pagina1');
 });
 
-Route::get('/sidebar', function () {
-    return view('sidebar');
+Route::get('/homepage', function () {
+    return view('homepage');
 });
 
 

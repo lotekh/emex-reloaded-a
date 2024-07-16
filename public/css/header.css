@@ -49,7 +49,7 @@ header {
   transition: all 0.3s ease;
 }
 
-#header_login_actions_wrapper.dropdown:hover amp-img[alt='See more'] {
+#header_login_actions_wrapper.dropdown:hover amp-img[alt="See more"] {
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
@@ -203,7 +203,7 @@ header {
   text-overflow: ellipsis;
 }
 
-.breadcrumbs a[href=''] {
+.breadcrumbs a[href=""] {
   color: var(--black);
 }
 
@@ -405,6 +405,20 @@ header {
   width: 75vw;
   background-color: var(--lightgrey);
   padding: 32px 16px;
+  --story-page-vh: 1vh;
+  position: fixed !important;
+  top: 0;
+  max-height: 100vh !important;
+  height: 100vh;
+  max-width: 80vw;
+  background-color: var(--lightgrey);
+  min-width: 45px !important;
+  outline: none;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  z-index: 2147483647;
+  -webkit-overflow-scrolling: touch;
+  will-change: transform;
 }
 
 .sidebar section {
@@ -485,7 +499,7 @@ header {
   width: 100%;
 }
 
-.search-lightbox .btns input[type='submit'],
+.search-lightbox .btns input[type="submit"],
 .search-lightbox .btns p,
 .search-lightbox .btns div {
   width: 100%;
@@ -505,7 +519,7 @@ header {
   justify-content: center;
 }
 
-.search-lightbox .btns input[type='submit'] {
+.search-lightbox .btns input[type="submit"] {
   background-color: var(--blue);
   color: var(--white);
 }
@@ -572,4 +586,47 @@ header {
 
 .products-menuitm-icon {
   margin-right: 8px;
+}
+
+.sidebar.open {
+  display: block;
+  transform: translateX(0);
+}
+
+.categorii > * {
+  float: none !important;
+  display: block;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+.categorii > :last-child {
+  display: none;
+}
+
+/* .i-amphtml-accordion-header {
+  cursor: pointer;
+  background-color: #efefef;
+  padding-right: 20px;
+  border: 1px solid #dfdfdf;
+} */
+
+.categorii {
+  margin-top: 16px;
+}
+
+.categorii > header {
+  background-color: var(--lightgrey);
+  border: none;
+  font-size: 18px;
+  color: var(--darkgrey);
+  font-weight: 700;
+  margin: 0;
+  box-shadow: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  /* --story-page-vh: 1vh;
+  line-height: 1.42857143;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%; */
 }

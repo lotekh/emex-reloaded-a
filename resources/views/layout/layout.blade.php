@@ -207,6 +207,9 @@
         <img width="50" height="50" src="{{ asset('images/images/Mail-mobile.png') }}" alt="Email Emex">
     </div>
 
+    <div>
+        @yield('content')
+    </div>
 
     <footer class="w-full">
         <div class="sixth_top"></div>
@@ -526,50 +529,51 @@
         </nav>
     </div>
 
-    <script>
-        function toggleSidebar() {
-            var sidebar = document.getElementById('sidebar-left');
-            if(sidebar.classList.contains('hidden')) {
-                sidebar.classList.remove('hidden');
-            }
-            else {
-                sidebar.classList.add('hidden');
-            }
+
+<script>
+    function toggleSidebar() {
+        var sidebar = document.getElementById('sidebar-left');
+        if(sidebar.classList.contains('hidden')) {
+            sidebar.classList.remove('hidden');
         }
-
-        // function toggleSidebar() {
-        //     var sidebar = document.getElementById('sidebar-left');
-        //     if (sidebar.style.display === 'none' || sidebar.style.display === '') {
-        //         sidebar.style.display = 'block';
-        //     } else {
-        //         sidebar.style.display = 'none';
-        //     }
-        // }
-
-        function toggleAccordion(id) {
-            var menu = document.getElementById(id + '-menu');
-            console.log('menu', menu);
-            console.log('menu style', menu.style.display);
-            if (menu.style.display === 'none' || menu.style.display === '') {
-                menu.style.display = 'block';
-            } else {
-                menu.style.display = 'none';
-            }
+        else {
+            sidebar.classList.add('hidden');
         }
+    }
 
-        // function toggleAuthLightbox() {
-        //     // Implement authentication lightbox toggle logic here
-        // }
+    // function toggleSidebar() {
+    //     var sidebar = document.getElementById('sidebar-left');
+    //     if (sidebar.style.display === 'none' || sidebar.style.display === '') {
+    //         sidebar.style.display = 'block';
+    //     } else {
+    //         sidebar.style.display = 'none';
+    //     }
+    // }
 
-        // function toggleSearchLightbox() {
-        //     var lightbox = document.getElementById('search-lightbox');
-        //     if (lightbox.style.display === 'none' || lightbox.style.display === '') {
-        //         lightbox.style.display = 'block';
-        //     } else {
-        //         lightbox.style.display = 'none';
-        //     }
-        // }
-    </script>
+    function toggleAccordion(id) {
+        var menu = document.getElementById(id + '-menu');
+        console.log('menu', menu);
+        console.log('menu style', menu.style.display);
+        if (menu.style.display === 'none' || menu.style.display === '') {
+            menu.style.display = 'block';
+        } else {
+            menu.style.display = 'none';
+        }
+    }
+
+    // function toggleAuthLightbox() {
+    //     // Implement authentication lightbox toggle logic here
+    // }
+
+    // function toggleSearchLightbox() {
+    //     var lightbox = document.getElementById('search-lightbox');
+    //     if (lightbox.style.display === 'none' || lightbox.style.display === '') {
+    //         lightbox.style.display = 'block';
+    //     } else {
+    //         lightbox.style.display = 'none';
+    //     }
+    // }
+</script>
     
     
     
