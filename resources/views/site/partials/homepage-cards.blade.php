@@ -1,7 +1,5 @@
 <?php
 
-// use yii\ helpers\ Url;
-
 $data = [
   '{
         "title": "Vopsele Lavabile",
@@ -11,7 +9,7 @@ $data = [
 		  "Sunt produse care protejeaza mediul, avand limite foarte scazute de compusi organici volatili, si miros foarte slab, numai la aplicare."
         ],
         "image": {
-          "url": "/resources/new_design/images/homepage/vopsele-lavabile.webp",
+          "url": "/images/new_design/images/homepage/vopsele-lavabile.webp",
           "title": "Vopselele Lavabile",
           "position": "right-bottom"
         },
@@ -246,3 +244,52 @@ $data = [
         }
     }'
 ];
+
+$base_url = url('/');
+
+?>
+
+<section class="main-container flex col gap-lg" id="homepage-cards">
+  <?php foreach ($data as $key => $item) : ?>
+    <?php $json = json_decode($item); ?>
+    <!-- reverse if index % 2 === 0  -->
+    <div class="homepage-section flex <?= $key % 2 == 0 ? "row" : "row-reverse" ?> gap-lg">
+      <div class="w-full">
+        <a href="<?= $base_url . $json->link ?>">
+          <h2>
+            <?= $json->title ?>
+          </h2>
+        </a>
+        <?php foreach ($json->paragraph as $p) : ?>
+          <p><span class="alineat_span"></span>
+            <?= $p ?>
+          </p>
+        <?php endforeach; ?>
+      </div>
+      <div class="section-tech relative w-full <?= $key % 2 == 0 ? "" : "flex-end" ?>">
+        <div class="tech-text <?= $key % 2 == 0 ? "card-shadow" : "reverse-card-shadow" ?>">
+          <p class=" title">
+            <?= $json->techData->title ?>
+          </p>
+          <?php if (is_array($json->techData->li)) : ?>
+            <ul>
+              <?php foreach ($json->techData->li as $li) : ?>
+                <li>
+                  <?= $li ?>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          <?php else : ?>
+            <p>
+              <?= $json->techData->li ?>
+            </p>
+          <?php endif; ?>
+        </div>
+        <div class="image <?= $key % 2 == 0 ? "clip" : "clip-reverse" ?>">
+          <img src="{{ $base_url . $json->image->url }}" title="{{ $json->image->title }}" width="450" height="400" alt="{{ $json->image->title }}">
+        </div>
+      </div>
+    </div>
+  <?php endforeach; ?>
+
+</section>
