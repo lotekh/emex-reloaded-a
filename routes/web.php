@@ -12,8 +12,8 @@ Route::get('/footer', function () {
     return view('footer');
 });
 
-Route::get('/pagina1', function () {
-    return view('pagina1');
+Route::get('/vopsele-lavabile-2', function () {
+    return view('categories.vopsele-lavabile2');
 });
 
 Route::get('/homepage', function () {
