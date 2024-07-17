@@ -36,7 +36,9 @@
             </div>
 
             <div class="image clip">
-                <img src="{{ asset('images/new_design/images/homepage/emex-general.webp') }}" title="Emex by Romtehnochim - Generalitati" width="450" height="400" alt="generalitati">
+                <div class="image_homepage_div">
+                    <img src="{{ asset('images/new_design/images/homepage/emex-general.webp') }}" title="Emex by Romtehnochim - Generalitati" class="image_homepage" width="450" height="400"  alt="generalitati">
+                </div>
             </div>
 
         </div>
