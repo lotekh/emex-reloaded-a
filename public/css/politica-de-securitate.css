@@ -11,7 +11,7 @@
 
 .politica h1::before {
   border-image-width: 8px;
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   padding: 8px;
@@ -28,7 +28,7 @@
   mask-composite: exclude;
 }
 .header_img_bg {
-  height: 500px;
+  /* height: 500px; */
   display: none;
   width: 100%;
   text-align: center;
@@ -37,7 +37,7 @@
 }
 
 #header_img_bg {
-  background-image: url('resources/images/securitate-in-munca.jpg');
+  background-image: url("resources/images/securitate-in-munca.jpg");
 }
 
 @media (min-width: 768px) {
