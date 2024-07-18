@@ -119,7 +119,8 @@
                 <div class="row align-center gap-md" id="favorites-cart">
                     <a href="{{ url('/wishlist') }}" title="produse favorite">
                         @php
-                            $wishlist_products_count = Auth::check() ? App\Models\Wishlist::where('user_id', Auth::id())->count() : session('wish_list_products', collect())->count();
+                            // $wishlist_products_count = Auth::check() ? App\Models\Wishlist::where('user_id', Auth::id())->count() : session('wish_list_products', collect())->count();
+                            $wishlist_products_count = 0;
                         @endphp
                         <div class="flex align-center">
                             <svg width="20" height="19" viewBox="0 0 14 13" fill="#1071FF" xmlns="http://www.w3.org/2000/svg">
@@ -528,7 +529,7 @@
             menu.style.display = 'none';
         }
     }
-    
+
 </script>
     
     
