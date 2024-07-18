@@ -504,6 +504,8 @@
         </nav>
     </div>
 
+    @include('components.sidebar-contact', ['secondary_title' => 'vopsele'])
+
 
 <script>
     function toggleSidebar() {
@@ -516,15 +518,6 @@
         }
     }
 
-    // function toggleSidebar() {
-    //     var sidebar = document.getElementById('sidebar-left');
-    //     if (sidebar.style.display === 'none' || sidebar.style.display === '') {
-    //         sidebar.style.display = 'block';
-    //     } else {
-    //         sidebar.style.display = 'none';
-    //     }
-    // }
-
     function toggleAccordion(id) {
         var menu = document.getElementById(id + '-menu');
         console.log('menu', menu);
@@ -535,19 +528,7 @@
             menu.style.display = 'none';
         }
     }
-
-    // function toggleAuthLightbox() {
-    //     // Implement authentication lightbox toggle logic here
-    // }
-
-    // function toggleSearchLightbox() {
-    //     var lightbox = document.getElementById('search-lightbox');
-    //     if (lightbox.style.display === 'none' || lightbox.style.display === '') {
-    //         lightbox.style.display = 'block';
-    //     } else {
-    //         lightbox.style.display = 'none';
-    //     }
-    // }
+    
 </script>
     
     
