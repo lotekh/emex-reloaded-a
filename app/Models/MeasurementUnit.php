@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MeasurementUnit extends Model
 {
@@ -13,7 +14,7 @@ class MeasurementUnit extends Model
         'name'
     ];
 
-    public function productVariation()
+    public function variations(): HasMany
     {
         return $this->hasMany(ProductVariation::class);
     }

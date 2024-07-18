@@ -2,38 +2,33 @@
 
 namespace App\Models;
 
+use App\Traits\HasSeoImages;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSeoImages;
 
     protected $fillable = [
+        'og_image_id',
+        'twitter_image_id',
         'name',
+        'slug',
         'description',
-        'active'
+        'active',
+        'seo',
+        'jsonld'
+    ];
+
+    protected $casts = [
+        'seo' => 'json',
+        'jsonld' => 'json'
     ];
 
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class);
-    }
-
-    public function slug(): MorphOne
-    {
-        return $this->morphOne(Slug::class, 'model');
-    }
-
-    public function seo(): MorphOne
-    {
-        return $this->morphOne(Seo::class, 'model');
-    }
-
-    public function jsonLd(): MorphOne
-    {
-        return $this->morphOne(JsonLd::class, 'model');
+        return $this->belongsToMany(Product::class, 'categories_products', 'category_id', 'product_id');
     }
 }

@@ -17,8 +17,7 @@ class OfferRequest extends Model
         'surface',
         'usage',
         'application',
-        'interior_exterior',
         'message',
-        'city'
+        'interior_exterior',
     ];
 }

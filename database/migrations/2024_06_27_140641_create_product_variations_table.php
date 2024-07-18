@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('product_variations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained('products', 'id');
-            $table->foreignId('measurement_unit_id')->constrained('measurement_units', 'id');
+            $table->foreignId('product_id')->constrained();
+            $table->foreignId('measurement_unit_id')->constrained();
             $table->double('quantity');
             $table->string('colour');
             $table->double('price');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('addon_text')->nullable();
             $table->string('ean');
             $table->string('sku');
-            $table->double('weight');
+            $table->decimal('weight', 10, 2);
             $table->timestamps();
         });
     }

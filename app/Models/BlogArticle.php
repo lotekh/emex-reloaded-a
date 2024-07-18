@@ -2,37 +2,37 @@
 
 namespace App\Models;
 
+use App\Traits\HasSeoImages;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class BlogArticle extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSeoImages;
 
     protected $fillable = [
+        'featured_image_id',
         'title',
-        'body'
+        'slug',
+        'body',
+        'seo',
+        'jsonld'
+    ];
+
+    protected $casts = [
+        'seo' => 'json',
+        'jsonld' => 'json'
     ];
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class, 'blog_articles_tags', 'blog_article_id', 'tag_id');
     }
 
-    public function slug(): MorphOne
+    public function featuredImage(): BelongsTo
     {
-        return $this->morphOne(Slug::class, 'model');
-    }
-
-    public function seo(): MorphOne
-    {
-        return $this->morphOne(Seo::class, 'model');
-    }
-
-    public function jsonLd(): MorphOne
-    {
-        return $this->morphOne(JsonLd::class, 'model');
+        return $this->belongsTo(Media::class, 'featured_image_id', 'id');
     }
 }

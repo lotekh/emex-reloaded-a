@@ -1,0 +1,181 @@
+<?php
+
+namespace App\Filament\Resources;
+
+use App\Filament\Resources\ProductResource\Pages;
+use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Helpers\JSONLD;
+use App\Helpers\SeoForm;
+use App\Models\Product;
+use Filament\Forms;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+
+class ProductResource extends Resource
+{
+    protected static ?string $model = Product::class;
+
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                Tabs::make('Tabs')
+                    ->columnSpanFull()
+                    ->tabs([
+                        Tabs\Tab::make('General Information')
+                            ->schema([
+                                Forms\Components\TextInput::make('name')
+                                    ->required()
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('slug')
+                                    ->required()
+                                    ->unique(ignoreRecord: true)
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('plain_name')
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('sub_title')
+                                    ->maxLength(255),
+                                Forms\Components\RichEditor::make('description')
+                                    ->columnSpanFull(),
+                                Forms\Components\RichEditor::make('usage_details')
+                                    ->columnSpanFull(),
+                                Forms\Components\RichEditor::make('technical_details')
+                                    ->columnSpanFull(),
+                                Forms\Components\Grid::make(3)
+                                    ->schema([
+                                        Forms\Components\Toggle::make('has_palette')
+                                            ->default(true),
+                                        Forms\Components\Toggle::make('has_instructions')
+                                            ->default(true),
+                                        Forms\Components\Toggle::make('has_calculus')
+                                            ->default(true),
+                                        Forms\Components\Toggle::make('has_technical_file')
+                                            ->default(true),
+                                        Forms\Components\Toggle::make('has_hardener')
+                                            ->default(true),
+                                        Forms\Components\Toggle::make('is_package'),
+                                    ]),
+                                Forms\Components\Toggle::make('active')
+                                    ->required()
+                                    ->columnSpan(1),
+                            ])
+                            ->columns(2),
+                        Tabs\Tab::make('Category')
+                            ->columns(2)
+                            ->schema([
+                                Forms\Components\TextInput::make('category_page_title')
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('category_page_link_title')
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('h2_contact_title')
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('h3_contact_title')
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('price_disclaimer')
+                                    ->columnSpanFull()
+                                    ->maxLength(255),
+                                Forms\Components\RichEditor::make('category_page_description')
+                                    ->columnSpanFull(),
+                            ]),
+                        Tabs\Tab::make('SEO')
+                            ->schema(SeoForm::make()),
+                        Tabs\Tab::make('JSON-LD')
+                            ->schema(JSONLD::make()),
+                        Tabs\Tab::make('Consumption')
+                            ->schema([
+                                        Forms\Components\TextInput::make('consumption.surface_name')
+                                            ->required(),
+                                        Forms\Components\TextInput::make('consumption.surface_types')
+                                            ->required(),
+                                        Forms\Components\TextInput::make('consumption.surface_type_name')
+                                            ->required(),
+                            ]),
+
+                        Tabs\Tab::make('Consumption SEO')
+                            ->schema(SeoForm::make(prefix: 'consumption_')),
+                        Tabs\Tab::make('Consumption JSON-LD')
+                            ->schema(JSONLD::make(prefix: 'consumption_')),
+                    ])
+            ]);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('plain_name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('sub_title')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('category_page_link_title')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('category_page_title')
+                    ->searchable(),
+                Tables\Columns\IconColumn::make('active')
+                    ->boolean(),
+                Tables\Columns\IconColumn::make('has_palette')
+                    ->boolean(),
+                Tables\Columns\IconColumn::make('has_instructions')
+                    ->boolean(),
+                Tables\Columns\IconColumn::make('has_calculus')
+                    ->boolean(),
+                Tables\Columns\IconColumn::make('has_technical_file')
+                    ->boolean(),
+                Tables\Columns\IconColumn::make('has_hardener')
+                    ->boolean(),
+                Tables\Columns\TextColumn::make('h2_contact_title')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('h3_contact_title')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('price_disclaimer')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('available_since')
+                    ->date()
+                    ->sortable(),
+                Tables\Columns\IconColumn::make('is_package')
+                    ->boolean(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->filters([
+                //
+            ])
+            ->actions([
+                Tables\Actions\EditAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListProducts::route('/'),
+            'create' => Pages\CreateProduct::route('/create'),
+            'edit' => Pages\EditProduct::route('/{record}/edit'),
+        ];
+    }
+}

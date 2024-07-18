@@ -12,12 +12,12 @@ class CareerContact extends Model
     protected $fillable = [
         'name',
         'email',
-        'date_of_birth',
         'gender',
         'address',
         'postal_code',
         'city',
+        'ip',
         'message',
-        'ip'
+        'date_of_birth',
     ];
 }

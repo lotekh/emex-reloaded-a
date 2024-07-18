@@ -18,11 +18,6 @@ class Consumption extends Model
         'script'
     ];
 
-    public function slug(): MorphOne
-    {
-        return $this->morphOne(Slug::class, 'model');
-    }
-
     public function jsonLd(): MorphOne
     {
         return $this->morphOne(JsonLd::class, 'model');
