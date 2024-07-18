@@ -630,3 +630,7 @@ header {
   text-rendering: optimizeLegibility;
   text-size-adjust: 100%; */
 }
+
+#header-sidebar-contact {
+  height: auto;
+}

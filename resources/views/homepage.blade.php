@@ -37,6 +37,8 @@
 
 @endsection
 
+@include('components.sidebar-contact', ['secondary_title' => 'vopsele'])
+
 
 
 

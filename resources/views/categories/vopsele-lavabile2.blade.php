@@ -7,7 +7,7 @@ $base_url = url('/');
 $current_page = 1;
 $per_page = 6;
 $numsPerPage = [6, 12, 24, 48];
-$total_results = 15;
+$total_results = 17;
 $total_pages = ceil($total_results / $per_page);
 ?>
 
@@ -81,6 +81,7 @@ $total_pages = ceil($total_results / $per_page);
             </ul>
         </div>
     </div>
+    
     {{-- <div class="my-32 grid grid-3 gap-xl" id="clw">
         @foreach ($products as $ind => $product)
             @if (!empty($product))
