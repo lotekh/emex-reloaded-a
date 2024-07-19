@@ -3,9 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\CategoryProduct;
 use App\Models\Media;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
 class CategorySeeder extends Seeder
@@ -15,25 +17,28 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $jsonFile = resource_path('imports/categories_import.json');
+        CategoryProduct::truncate();
+        Schema::disableForeignKeyConstraints();
+        Category::truncate();
+        Schema::enableForeignKeyConstraints();
+
+        $jsonFile = resource_path('json/categoriesImport.json');
         $categories = json_decode(file_get_contents($jsonFile), true)['categories'];
 
         foreach($categories as $category) {
-            $dbCategory = Category::where('name', $category['name'])->first();
-            if(!$dbCategory) {
-                $seo = self::generateSeo($category);
+            $seo = self::generateSeo($category);
 
-                $dbCategory = Category::create([
-                    'name' => $category['name'],
-                    'slug' => $category['slug'],
-                    'description' => $category['description'],
-                    'active' => $category['active'],
-                    'seo' => $seo,
-                    'jsonld' => $category['jsonld_description']
-                ]);
+            $dbCategory = Category::create([
+                'name' => $category['name'],
+                'slug' => $category['slug'],
+                'description' => $category['description'],
+                'active' => $category['active'],
+                'seo' => $seo,
+                'jsonld' => $category['jsonld_description']
+            ]);
 
-                self::uploadImage($category['seo_og_image'], $dbCategory, 'og_image_id');
-            }
+            self::uploadImage($category['seo_og_image'], $dbCategory, 'og_image_id');
+            self::uploadImage($category['seo_twitter_image'], $dbCategory, 'twitter_image_id');
         }
     }
 
@@ -64,7 +69,7 @@ class CategorySeeder extends Seeder
                 $maxId = Media::max('id');
                 $newId = $maxId + 1;
                 $image = '/media/' . $newId . '/' . $dbCategory->id . '.jpg';
-                $file = Storage::disk('public')->put($image, $imageContent);
+                Storage::disk('public')->put($image, $imageContent);
 
                 Media::create([
                     'disk' => 'public',

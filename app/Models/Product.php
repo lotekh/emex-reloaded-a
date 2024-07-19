@@ -41,15 +41,16 @@ class Product extends Model
         'is_package',
         'seo',
         'jsonld',
-        'consumption',
+        'consumption_slug',
+        'application_slug',
         'consumption_seo',
         'consumption_jsonld',
+        'available_since'
     ];
 
     protected $casts = [
         'seo' => 'json',
         'jsonld' => 'json',
-        'consumption' => 'json',
         'consumption_seo' => 'json',
         'consumption_jsonld' => 'json',
     ];
@@ -61,7 +62,7 @@ class Product extends Model
 
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class, 'categories_products', 'product_id', 'category_id');
+        return $this->belongsToMany(Category::class, 'categories_products', 'product_id', 'category_id')->withTimestamps();
     }
 
     public function categoryfilters(): BelongsToMany

@@ -14,6 +14,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SettingsSeeder::class,
             CountryAndCountySeeder::class,
+            MeasurementUnitSeeder::class,
+            CategorySeeder::class,
+            ProductSeeder::class
         ]);
     }
 }
