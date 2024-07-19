@@ -179,7 +179,7 @@
         </a>
     </div>
 
-    <div id="contact_email_small_devices" class="email-icon" on="tap:contact-lightbox" tabindex="0" role="button">
+    <div id="contact_email_small_devices" class="email-icon" tabindex="0" role="button" onclick="openLightbox()">
         <img width="50" height="50" src="{{ asset('images/images/Mail-mobile.png') }}" alt="Email Emex">
     </div>
 
@@ -194,7 +194,7 @@
                 <a href="{{ empty($base_url) ? url('/') : url($base_url) }}" aria-label="Logo Emex by Romtehnochim" title="Marca Emex proprietate a Romtehnochim">
                     <img id="logo-footer" width="201" height="72" src="{{ asset('images/new_design/general/logo-footer.png') }}" alt="Emex by Romtehnochim logo" title="Marca Emex proprietate a Romtehnochim">
                 </a>
-                <ul id="fsrfcfu">
+                <ul id="fsrfcfu" style="list-style-image: url('{{ asset('images/images/light-list.png') }}'); margin: -10px 0 10px 15px;">
                     <li>
                         <p class="mt-16">Productie lacuri, vopsele, tencuieli, pardoseli.</p>
                     </li>

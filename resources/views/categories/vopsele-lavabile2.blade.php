@@ -137,6 +137,4 @@ $total_pages = ceil($total_results / $per_page);
     </ul>
 </div>
 
-{{-- @include('widgets.sidebar-contact', ['secondary_title' => $category->name]) --}}
-
 @endsection

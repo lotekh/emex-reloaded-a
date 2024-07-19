@@ -48,7 +48,7 @@ footer .logo-section {
 
   -ms-flex-align: start;
   align-items: flex-start;
- /*gap: 4px;*/
+  /*gap: 4px;*/
   text-align: left;
 }
 
@@ -310,10 +310,10 @@ footer .sprites {
   }
 }
 
-#fsrfcfu {
+/* #fsrfcfu {
   margin: -10px 0 10px 15px;
-  list-style: url(resources/images/light-list.png) none outside;
-}
+  list-style: url("images/images/light-list.png") none outside;
+} */
 
 #tags_h4 {
   margin: 0px;
