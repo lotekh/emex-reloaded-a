@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.layout')
 
 @section('content')
 <?php
@@ -84,7 +84,7 @@ $total_pages = ceil($total_results / $per_page);
         @foreach ($products as $ind => $product)
             @if (!empty($product))
                 <div>
-                    @include('widgets.product-card', ['key' => $ind, 'product' => $product])
+                    @include('components.product-card', ['key' => $ind, 'product' => $product])
                 </div>
             @endif
         @endforeach
@@ -136,5 +136,4 @@ $total_pages = ceil($total_results / $per_page);
     </ul>
 </div>
 
-@include('widgets.sidebar-contact', ['secondary_title' => $category->name])
 @endsection

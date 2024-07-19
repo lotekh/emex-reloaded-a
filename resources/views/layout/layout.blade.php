@@ -76,7 +76,7 @@
                             Contul meu
                         </span>
                     @endauth
-                    <img src="{{ asset('images/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
+                    <img src="{{ Storage::url('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
                 </div>
                 <div class="col dropdown-menu">
                     @auth
@@ -108,7 +108,9 @@
         <div class="desktop-header bg-white">
             <div class="main-container row second-layer">
                 <a id="logo" href="{{ empty($base_url) ? '/' : $base_url }}" title="acasa">
-                    <img src="{{ asset('images/new_design/general/logo.png') }}" height="84" width="252" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim">
+                    {{-- <img src="{{ asset('storage/resources/new_design/general/logo.png') }}" height="84" width="252" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim"> --}}
+                    <img src="{{ asset('storage/Fabrica-Emex.jpg') }}" height="84" width="252" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim">
+
                 </a>
                 <form class="relative flex align-center w-full justify-end" method="GET" action="{{ url('/search') }}">
                     <div class="flex align-center">

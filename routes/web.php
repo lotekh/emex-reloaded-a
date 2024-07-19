@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CategoryController;
 
 
 Route::get('/footer', function () {
@@ -23,3 +24,8 @@ Route::get('/vopsele-lavabile-2', [ProductsController::class, 'index'])->name('v
 // });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+
+
+Route::get('/{categorySlug}', [CategoryController::class, 'showCategory'])->name('category.show');
+
