@@ -7,21 +7,18 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function showCategory($categorySlug)
+    public function showCategory($slug)
     {
         $categories = Category::all();
 
-        // Găsește categoria după slug
-        $category = Category::where('slug', $categorySlug)->firstOrFail();
+        $category = Category::where('slug', $slug)->firstOrFail();
+        $products = $category->products()->with('featuredImage')->paginate(6);
 
-        // Obține produsele asociate categoriei
-        $products = $category->products()->paginate(6); // Paginare pentru 6 produse pe pagină
-
-        // Numărul total de produse găsite pentru categoria respectivă
         $total_results = $category->products()->count();
+        $per_page = request()->get('per_page', 6);
+        $numsPerPage = [6, 12, 24, 48];
+        $total_pages = ceil($total_results / $per_page);
 
-        // Transmite datele către view
-        return view('categories.view', compact('category', 'categories', 'products', 'total_results'));
+        return view('categories.view', compact('category', 'categories', 'products', 'total_results', 'per_page', 'numsPerPage', 'total_pages'));
     }
 }
-
