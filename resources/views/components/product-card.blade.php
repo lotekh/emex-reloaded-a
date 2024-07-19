@@ -1,50 +1,59 @@
+<!-- resources/views/components/product-card.blade.php -->
 @php
-    // Hard-coded values for the example
-    $initialPrice = "100.00";
-    $initialPackaging = "1L";
-    $initialColor = "Red";
-    $initialName = "Vopsea Emex";
-    $initialPriceNoTva = "84.03";
-    $initialIntaritor = "Yes";
-    $initialEan = "1234567890123";
+    $initialPrice = $product->variations->first()->price ?? "Pret indisponibil";
+    $initialPackaging = $product->variations->first()->packaging ?? "N/A";
+    $initialColor = $product->variations->first()->color ?? "N/A";
+    $initialName = $product->plain_name ?? "N/A";
+    $initialPriceNoTva = $product->variations->first()->price_no_tva ?? "N/A";
+    $initialIntaritor = $product->variations->first()->intaritor ?? "N/A";
+    $initialEan = $product->variations->first()->ean ?? "N/A";
 
-    $rating_sum = 4.5;
-    $countReviews = 10;
+    $ambalareValues = $product->variations->pluck('packaging')->unique()->toArray();
+    $colorsValues = $product->variations->pluck('color')->unique()->toArray();
 
-    $ambalareValues = ["1L", "5L", "10L"];
-    $colorsValues = ["Red", "Blue", "Green"];
+    $rating_sum = $product->reviews->avg('rating') ?? 5;
+    $countReviews = $product->reviews->count() ?? 1;
 
     $baseUrl = url('/');
 @endphp
 
-<div class="product-card" id="product-card-1">
+<div class="product-card">
   <!-- upper -->
   <div class="text-center">
-    <a href="{{ url('/vopsea-emex') }}" title="Vopsea Emex">
-      <h2 class="title">VOPSEA PROFESIONALA LAVABILA EXTERIOR “EMEX QT”</h2>
+    <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
+      <h2 class="title">{{ $product->plain_name }}</h2>
     </a>
   </div>
 
   <div>
     <div class="relative image">
-      <form method="get" class="addToWishlistBt absolute z-10" id="product_wish_list_form1" action="{{ url('/add-to-wishlist') }}">
+      <form method="get" class="addToWishlistBt absolute z-10" id="product_wish_list_form{{ $product->id }}" action="{{ url('/add-to-wishlist') }}">
         @csrf
-        <input type="hidden" name="product_id" value="1">
+        <input type="hidden" name="product_id" value="{{ $product->id }}">
         <button type="submit" aria-label="Adauga la favorite">
           <img width="20" height="20" src="{{ $baseUrl }}/images/new_design/icons/star.svg" title="review-star" alt="review-star">
         </button>
       </form>
       <div class="absolute z-10 stoc-container">
-        <div class="in-stoc">
-          <div class="flex align-center">
-            <img width="18" height="18" src="{{ $baseUrl }}/images/new_design/icons/check-mark.svg" alt="checkmark-icon" title="checkmark-icon">
+        @if (!$product->is_inactive)
+          <div class="in-stoc">
+            <div class="flex align-center">
+              <img width="18" height="18" src="{{ $baseUrl }}/images/new_design/icons/check-mark.svg" alt="checkmark-icon" title="checkmark-icon">
+            </div>
+            <p>In stoc</p>
           </div>
-          <p>In stoc</p>
-        </div>
+        @else
+          <div class="in-stoc not">
+            <div class="flex align-center">
+              <img width="18" height="18" src="{{ $baseUrl }}/images/new_design/icons/error-outline.svg" alt="error-icon" title="error-icon">
+            </div>
+            <p>Indisponibil</p>
+          </div>
+        @endif
       </div>
 
-      <a href="{{ url('/vopsea-emex') }}" title="Vopsea Emex">
-        <img src="{{ $baseUrl }}/images/new_design/images/vopsele-lavabile/Lavabila-exterior-cuartz-de-mare-duritate.webp" alt="Vopsea Emex" title="Vopsea Emex" width="300" height="300">
+      <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
+        <img src="{{ $baseUrl }}/images/new_design/images/vopsele-lavabile/Lavabila-exterior-cuartz-de-mare-duritate.webp" alt="{{ $product->name }}" title="{{ $product->name }}" width="300" height="300">
       </a>
     </div>
 
@@ -76,7 +85,7 @@
       </div>
 
       <form class="relative w-full col" method="GET" action="{{ url('/order-product') }}">
-        <input type="hidden" name="product_id" value="1">
+        <input type="hidden" name="product_id" value="{{ $product->id }}">
         <input type="hidden" name="submited" value="1">
         <input type="hidden" name="name" value="{{ $initialName }}">
         <input type="hidden" name="price" value="{{ $initialPrice }}">
