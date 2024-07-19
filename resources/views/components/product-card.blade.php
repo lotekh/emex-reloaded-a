@@ -1,12 +1,13 @@
 <!-- resources/views/components/product-card.blade.php -->
 @php
-    $initialPrice = $product->variations->first()->price ?? "Pret indisponibil";
-    $initialPackaging = $product->variations->first()->packaging ?? "N/A";
-    $initialColor = $product->variations->first()->color ?? "N/A";
+    $initialVariation = $product->variations->first();
+    $initialPrice = $initialVariation->price ?? "Pret indisponibil";
+    $initialPackaging = $initialVariation->packaging ?? "N/A";
+    $initialColor = $initialVariation->color ?? "N/A";
     $initialName = $product->plain_name ?? "N/A";
-    $initialPriceNoTva = $product->variations->first()->price_no_tva ?? "N/A";
-    $initialIntaritor = $product->variations->first()->intaritor ?? "N/A";
-    $initialEan = $product->variations->first()->ean ?? "N/A";
+    $initialPriceNoTva = $initialVariation->price_no_tva ?? "N/A";
+    $initialIntaritor = $initialVariation->intaritor ?? "N/A";
+    $initialEan = $initialVariation->ean ?? "N/A";
 
     $ambalareValues = $product->variations->pluck('packaging')->unique()->toArray();
     $colorsValues = $product->variations->pluck('color')->unique()->toArray();
@@ -52,9 +53,14 @@
         @endif
       </div>
 
+      @php
+        $featuredImageUrl = $product->featuredImage ? Storage::url($product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
+      @endphp
+
       <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
-        <img src="{{ $baseUrl }}/images/new_design/images/vopsele-lavabile/Lavabila-exterior-cuartz-de-mare-duritate.webp" alt="{{ $product->name }}" title="{{ $product->name }}" width="300" height="300">
+          <img src="{{ $featuredImageUrl }}" alt="{{ $product->name }}" title="{{ $product->name }}" width="300" height="300">
       </a>
+
     </div>
 
     <div class="w-full row align-center mb-8 product-rating-pl">
@@ -70,7 +76,7 @@
         @endif
       @endfor
       <p class="ml-8 rating-text">
-        <span class="font-700"> {{ number_format($rating_sum, 2, '.', '') }} </span>
+        <span class="font-700">{{ number_format($rating_sum, 2, '.', '') }}</span>
         ({{ $countReviews }})
       </p>
     </div>

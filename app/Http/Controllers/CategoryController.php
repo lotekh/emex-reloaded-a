@@ -7,18 +7,26 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function showCategory($slug)
+    public function showCategory($slug, Request $request)
     {
         $categories = Category::all();
 
         $category = Category::where('slug', $slug)->firstOrFail();
-        $products = $category->products()->with('featuredImage')->paginate(6);
 
-        $total_results = $category->products()->count();
-        $per_page = request()->get('per_page', 6);
+        $per_page = $request->input('per_page', 6);
+        // $current_page = $request->input('current_page_number', 1);
+        $current_page = $request->input('page', 1);
+
+        $products = $category->products()
+                             ->with('variations', 'reviews')
+                             ->paginate($per_page, ['*'], 'page', $current_page);
+
+        $total_results = $products->total();
+        $total_pages = $products->lastPage();
+
         $numsPerPage = [6, 12, 24, 48];
-        $total_pages = ceil($total_results / $per_page);
 
-        return view('categories.view', compact('category', 'categories', 'products', 'total_results', 'per_page', 'numsPerPage', 'total_pages'));
+        return view('categories.view', compact('category', 'categories','products', 'total_results', 'total_pages', 'per_page', 'current_page', 'numsPerPage'));
     }
 }
+
