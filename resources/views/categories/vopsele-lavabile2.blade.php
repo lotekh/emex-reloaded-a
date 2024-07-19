@@ -82,14 +82,23 @@ $total_pages = ceil($total_results / $per_page);
         </div>
     </div>
     
-    <div class="my-32 grid grid-3 gap-xl" id="clw">
+    {{-- <div class="my-32 grid grid-3 gap-xl" id="clw">
         @for ($i = 1; $i <= 5; $i++)
             <div>
                 @include('components.product-card')
             </div>
         @endfor
-    </div>
+    </div> --}}
     
+    <div class="my-32 grid grid-3 gap-xl" id="clw">
+        @foreach ($products as $ind => $product)
+            @if (!empty($product))
+                <div>
+                    @include('components.product-card', ['product' => $product, 'key' => $ind])
+                </div>
+            @endif
+        @endforeach
+    </div>
 
     <!-- pagination -->
     <ul class="row align-center justify-center pagination gap-md">
