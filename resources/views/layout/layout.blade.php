@@ -406,6 +406,7 @@
     </footer>
     
 
+    {{-- Sidebar Mobile --}}
     <div id="sidebar-left" class="sidebar hidden bg-white">
         <nav class="col">
             <a href="{{ url('/') }}" class="mb-32" title="acasa">

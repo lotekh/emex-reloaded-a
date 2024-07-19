@@ -1,3 +1,8 @@
+@php
+use Illuminate\Support\Str;
+@endphp
+
+
 <!doctype html>
 <html>
 <head>
@@ -48,6 +53,37 @@
 
  
     <ul class="navigation_ul row align-center gap-md font-500">
+
+    @php
+        $acasa = false;
+        $despre_noi = false;
+        $produse = false;
+        $aplicare = false;
+        $consum = false;
+        $servicii = false;
+        $paletar = false;
+
+        $url = request()->url();
+
+        if (Str::contains($url, ['despre-noi', 'politica', 'certificari'])) {
+            $despre_noi = true;
+        } elseif (Str::contains($url, 'produse') || (!empty($json_data) && !empty($json_data['type']) && $json_data['type'] == 'category')) {
+            $produse = true;
+        } elseif (!empty($json_data) && !empty($json_data['type']) && $json_data['type'] == 'product') {
+            $produse = true;
+        } elseif (Str::contains($url, 'consum')) {
+            $consum = true;
+        } elseif (Str::contains($url, ['aplicare-covor-epoxidic-stb', 'aplicare-pardoseala-epoxidica-autonivelanta', 'vopsire-epoxidica-pardoseli', 'servicii'])) {
+            $servicii = true;
+        } elseif (Str::contains($url, 'aplicare')) {
+            $aplicare = true;
+        } elseif (Str::contains($url, ['cartela-culori-ral-vopsele', 'cartela-culori-lavabile'])) {
+            $paletar = true;
+        } else {
+            $acasa = true;
+        }
+    @endphp
+
         <li class="dropdown products-dropdown" id="productsDropdown">
             <div class="dropdown-toggle menuitm" data-toggle="dropdown">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="products-menuitm-icon">
@@ -59,11 +95,22 @@
             </div>
             <div class="dropdown-menu">
                 <div class="products-dropdown-container">
+
                     <div class="products-dropdown-categories all-products">
                         <a href="{{ url('/produse') }}">
                             Toate produsele
                         </a>
                     </div>
+
+                    @foreach ($categories as $ind => $category)
+                        <div class="products-dropdown-categories{{ $ind % 2 > 0 ? ' blue-item' : '' }}">
+                            <a href="{{ url($category->slug) }}">
+                                {{ $category->name }}
+                            </a>
+                        </div>
+                    @endforeach
+
+
                 </div>
             </div>
         </li>
