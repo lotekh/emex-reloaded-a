@@ -118,7 +118,7 @@ use Illuminate\Support\Str;
         <li class="dropdown products-dropdown">
             <span class="dropdown-toggle menuitm" data-toggle="dropdown">
                 Aplicare
-                <img src="{{ asset('images/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
+                <img src="{{ asset('storage/resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
             </span>
             
             <div class="dropdown-menu">
@@ -140,7 +140,7 @@ use Illuminate\Support\Str;
         <li class="dropdown products-dropdown">
             <span class="dropdown-toggle menuitm" data-toggle="dropdown">
                 Servicii
-                <img src="{{ asset('images/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
+                <img src="{{ asset('storage/resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
             </span>
             <div class="dropdown-menu">
                 <ul class="category-wrapper">
@@ -155,7 +155,7 @@ use Illuminate\Support\Str;
         <li class="dropdown products-dropdown">
             <span class="dropdown-toggle menuitm" data-toggle="dropdown">
                 Consum
-                <img src="{{ asset('images/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
+                <img src="{{ asset('storage/resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
             </span>
             <div class="dropdown-menu">
                 <ul class="category-wrapper">
@@ -167,7 +167,7 @@ use Illuminate\Support\Str;
         <li class="dropdown products-dropdown">
             <span class="dropdown-toggle menuitm" data-toggle="dropdown">
                 Culori
-                <img src="{{ asset('images/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more"></img>
+                <img src="{{ asset('storage/resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
             </span>
             <ul class="dropdown-menu">
                 <div class="category-wrapper">

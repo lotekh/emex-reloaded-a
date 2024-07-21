@@ -9,7 +9,7 @@ $data = [
 		  "Sunt produse care protejeaza mediul, avand limite foarte scazute de compusi organici volatili, si miros foarte slab, numai la aplicare."
         ],
         "image": {
-          "url": "/images/new_design/images/homepage/vopsele-lavabile.webp",
+          "url": "/storage/resources/new_design/images/homepage/vopsele-lavabile.webp",
           "title": "Vopselele Lavabile",
           "position": "right-bottom"
         },
@@ -36,7 +36,7 @@ $data = [
           "Realizate in cea mai mare parte din rasina alchidica, sau variante modificate ale acesteia, cum ar fi rasina alchido-uretanizata sau alchido-stirenica, acestea sunt produse performante, durabile, cu calitati excelente de pelicula si durabilitate indelungata."
         ],
         "image": {
-          "url": "/images/new_design/images/homepage/vopsele-decorative.webp",
+          "url": "/storage/resources/new_design/images/homepage/vopsele-decorative.webp",
           "title": "Emailuri Decorative"
         },
         "techData": {
@@ -62,7 +62,7 @@ $data = [
           "Formulate cu materiale de ultima generatie, prezinta rezultate profesionale si caracteristici avansate ca: rezistenta la umezeala sau cicluri de inghet-dezghet. Majoritatea formularilor asigura respingerea apei si murdariei, dar si respirabilitatea suportului."
         ],
         "image": {
-          "url": "/images/new_design/images/homepage/tencuieli-decorative.webp",
+          "url": "/storage/resources/new_design/images/homepage/tencuieli-decorative.webp",
           "title": "Tencuielile Decorative",
           "position": "right-top"
         },
@@ -89,7 +89,7 @@ $data = [
           "Sunt vopsele cu caracteristici de inalta performanta, cu rezistenta foarte mare la factori agresivi chimici sau mecanici, la coroziune, variatii de temperatura, etc. Au de asemeni si o rezistenta superioara la imbatranire, cu durata indelungata de viata."
         ],
         "image": {
-          "url": "/images/new_design/images/homepage/vopselele-industriale.webp",
+          "url": "/storage/resources/new_design/images/homepage/vopselele-industriale.webp",
           "title": "Vopsele Industriale",
           "position": "left-top"
         },
@@ -116,7 +116,7 @@ $data = [
 		  "Prezinta un aspect chiar superior sistemelor conventionale de vopsire, in conditiile in care asigura o protectie superioara a mediului, prin caracteristicile lor ecologice."
         ],
         "image": {
-          "url": "/images/new_design/images/homepage/vopsele-pe-baza-de-apa.webp",
+          "url": "/storage/resources/new_design/images/homepage/vopsele-pe-baza-de-apa.webp",
           "title": "Vopselele Hidrosolubile",
           "position": "left-top"
         },
@@ -143,7 +143,7 @@ $data = [
 		  "Sunt adaptate atat cerintelelor de igiena, pentru spatiile ce desfasoara activitati in alimentatie sau similare, cat si celor de duritate sau durabilitate pentru spatiile expuse la trafic intens sau cu masini grele, dar si pentru zonele expuse unui mediu coroziv."
         ],
         "image": {
-          "url": "/images/new_design/images/homepage/pardoseli-turnate.webp",
+          "url": "/storage/resources/new_design/images/homepage/pardoseli-turnate.webp",
           "title": "Pardoseli Turnate",
           "position": "left"
         },
@@ -170,7 +170,7 @@ $data = [
 		  "Sunt, in general, destinate spatiilor comerciale dar si celor industriale, intens circulate, pentru care prezinta un aspect decorativ superior si inalta rezistenta."
         ],
         "image": {
-          "url": "/images/new_design/images/homepage/vopsele-pardoseala-trafic.webp",
+          "url": "/storage/resources/new_design/images/homepage/vopsele-pardoseala-trafic.webp",
           "title": "Vopsele Pardoseli si Trafic",
           "position": "left-top"
         },
@@ -197,7 +197,7 @@ $data = [
 		  "“Romtehnochim” a creat in aceasta directie o gama extinsa de produse de amorsare, care sa asigure o pregatire primara de exceptie, a suporturilor din beton si zidarie." 
         ],
         "image": {
-          "url": "/images/new_design/images/homepage/grunduri-amorse-apa.webp",
+          "url": "/storage/resources/new_design/images/homepage/grunduri-amorse-apa.webp",
           "title": "Grunduri si Amorse: Apa",
           "position": "left"
         },
@@ -224,7 +224,7 @@ $data = [
 		  "Toate produsele din aceasta categorie, realizate fie pe baza de rasini bicomponente, fie pe baza de rasini sintetice solubile in apa, sunt produse profesionale, de inalta calitate."
         ],
         "image": {
-          "url": "/images/new_design/images/homepage/grunduri-anticorozive.webp",
+          "url": "/storage/resources/new_design/images/homepage/grunduri-anticorozive.webp",
           "title": "Grunduri Anticorozive",
           "position": "left-top"
         },

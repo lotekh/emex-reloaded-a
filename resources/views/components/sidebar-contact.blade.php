@@ -23,9 +23,9 @@
         <div class="modal-container">
             <div class="relative header w-full row justify-between align-center" id="header-sidebar-contact">
                 <div></div>
-                <img class="logo-footer" width="201" height="72" src="{{ $baseUrl }}/images/new_design/general/logo-footer.png" alt="Logo Footer">
+                <img class="logo-footer" width="201" height="72" src="storage/resources/new_design/general/logo-footer.png" alt="Logo Footer">
                 <button onclick="closeLightbox()" role="button" tabindex="0" class="close-btn" aria-label="Inchide">
-                    <img width="32" height="32" src="{{ $baseUrl }}/images/new_design/icons/close.svg" alt="close">
+                    <img width="32" height="32" src="storage/resources/new_design/icons/close.svg" alt="close">
                 </button>
             </div>
             <div class="col align-center content">
