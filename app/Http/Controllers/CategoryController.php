@@ -9,6 +9,9 @@ class CategoryController extends Controller
 {
     public function showCategory($slug, Request $request)
     {
+
+        // dd($request->all());
+
         $categories = Category::all();
 
         $category = Category::where('slug', $slug)->firstOrFail();

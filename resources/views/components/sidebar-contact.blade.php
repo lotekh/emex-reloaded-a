@@ -31,7 +31,7 @@
             <div class="col align-center content">
                 <p class="gray-title"> $main_title </p>
                 <h2 id="contact_light_box_first_h5" class="mt-8">$secondary_title</h2>
-                <form class="col w-full" method="POST" action="{{ $baseUrl }}/side-contact">
+                <form id="formular-sidebar-contact" class="col w-full" method="POST" action="{{ $baseUrl }}/side-contact">
                     @csrf
                     <div class="form-group w-full">
                         <label for="side-contact-name">Nume</label>
@@ -99,7 +99,8 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('form').forEach(function (form) {
+        const form = document.getElementById('formular-sidebar-contact');
+        if (form) {
             form.addEventListener('submit', function (event) {
                 const consentCheckbox = document.getElementById('consent-checkbox');
                 if (!consentCheckbox.checked) {
@@ -107,6 +108,6 @@
                     document.querySelector('.form-validation').style.display = 'block';
                 }
             });
-        });
+        }
     });
 </script>

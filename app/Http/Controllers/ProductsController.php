@@ -15,7 +15,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::all();
-        $categories = Category::all();
-        return view('categories.vopsele-lavabile2', compact('products', 'categories'));
+        // $categories = Category::all();
+        return view('categories.vopsele-lavabile2', compact('products'));
     }
 }

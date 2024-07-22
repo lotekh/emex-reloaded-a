@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
-        return view('homepage', compact('categories'));
+        // $categories = Category::all();
+        return view('homepage');
     }
 }
