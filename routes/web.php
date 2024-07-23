@@ -22,4 +22,6 @@ Route::get('/{categorySlug}', [CategoryController::class, 'showCategory'])->name
 Route::view('/test-form', 'test-form');
 Route::post('/side-contact', [ContactController::class, 'store'])->name('side-contact.store');
 
+Route::view('/thank-you', 'thank-you')->name('thank-you');
+
 

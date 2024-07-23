@@ -56,16 +56,16 @@
                 </svg>
             </button>
             <a href="{{ url('/') }}" title="Pagina principala" class="mobile-logo">
-                <img src="{{ asset('storage/resources/new_design/general/logo.png') }}" height="47.22" width="144" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim" class="logo">
+                <img src="{{ asset('resources/new_design/general/logo.png') }}" height="47.22" width="144" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim" class="logo">
             </a>
 
             <div class="row gap-lg w-full justify-end">
                 <button id="open-search" title="open-search" role="button" class="cursor-pointer" onclick="toggleSearchLightbox()" aria-label="Cauta">
-                    <img src="{{ asset('storage/resources/new_design/icons/search.svg') }}" width="16" height="16" alt="search-icon">
+                    <img src="{{ asset('resources/new_design/icons/search.svg') }}" width="16" height="16" alt="search-icon">
                 </button>
                 <a href="{{ url('/wishlist') }}" class="relative nav-icon" title="Favorite">
                     <div class="flex align-center">
-                        <img width="20" height="20" src="{{ asset('storage/resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
+                        <img width="20" height="20" src="{{ asset('resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
                     </div>
                     <div class="circle">
                         <span>
@@ -75,7 +75,7 @@
                 </a>
                 <a href="{{ url('/produse-adaugate') }}" class="relative nav-icon" title="Cos">
                     <div class="flex align-center">
-                        <img width="20" height="20" src="{{ asset('storage/resources/new_design/icons/cart.svg') }}" alt="cart-icon">
+                        <img width="20" height="20" src="{{ asset('resources/new_design/icons/cart.svg') }}" alt="cart-icon">
                     </div>
                     <div class="circle">
                         <span>
@@ -89,7 +89,7 @@
                 <form class="relative col justify-center align-center w-full h-full gap-xs" method="GET" action="{{ url('/search') }}">
                     @csrf
                     <div class="row w-full align-center">
-                        <img src="{{ asset('storage/resources/new_design/icons/search.svg') }}" id="search-icon" width="16" height="16">
+                        <img src="{{ asset('resources/new_design/icons/search.svg') }}" id="search-icon" width="16" height="16">
                         <input id="search-input-mobile" type="text" name="zoom_query" class="form-control w-full" placeholder="Cauta dupa nume produs sau cod SKU">
                     </div>
                     <div class="btns">

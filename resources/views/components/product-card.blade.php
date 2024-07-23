@@ -32,21 +32,21 @@
         @csrf
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         <button type="submit" aria-label="Adauga la favorite">
-          <img width="20" height="20" src="storage/resources/new_design/icons/star.svg" title="review-star" alt="review-star">
+          <img width="20" height="20" src="resources/new_design/icons/star.svg" title="review-star" alt="review-star">
         </button>
       </form>
       <div class="absolute z-10 stoc-container">
         @if (!$product->is_inactive)
           <div class="in-stoc">
             <div class="flex align-center">
-              <img width="18" height="18" src="storage/resources/new_design/icons/check-mark.svg" alt="checkmark-icon" title="checkmark-icon">
+              <img width="18" height="18" src="resources/new_design/icons/check-mark.svg" alt="checkmark-icon" title="checkmark-icon">
             </div>
             <p>In stoc</p>
           </div>
         @else
           <div class="in-stoc not">
             <div class="flex align-center">
-              <img width="18" height="18" src="storage/resources/new_design/icons/error-outline.svg" alt="error-icon" title="error-icon">
+              <img width="18" height="18" src="resources/new_design/icons/error-outline.svg" alt="error-icon" title="error-icon">
             </div>
             <p>Indisponibil</p>
           </div>
@@ -54,8 +54,16 @@
       </div>
 
       @php
-        $featuredImageUrl = $product->featuredImage ? Storage::url($product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
+        // Verifică dacă există o imagine featured și construiește URL-ul corect
+        $featuredImageUrl = $product->featuredImage ? asset('storage/' . $product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
       @endphp
+      
+      <!-- Afișarea imaginii în HTML -->
+      <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
+          <img src="{{ $featuredImageUrl }}" alt="{{ $product->name }}" title="{{ $product->name }}" width="300" height="300">
+      </a>
+  
+
 
       <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
           <img src="{{ $featuredImageUrl }}" alt="{{ $product->name }}" title="{{ $product->name }}" width="300" height="300">
@@ -67,11 +75,11 @@
       @for ($i = 0; $i < 5; $i++)
         @if ($i + 1 <= $rating_sum)
           <div class="flex align-center">
-            <img src="storage/resources/new_design/icons/gold-star.svg" title="review-star" alt="review-star" width="18" height="18">
+            <img src="resources/new_design/icons/gold-star.svg" title="review-star" alt="review-star" width="18" height="18">
           </div>
         @else
           <div class="flex align-center">
-            <img src="storage/resources/new_design/icons/dark-star.svg" title="review-star" alt="review-star" width="18" height="18">
+            <img src="resources/new_design/icons/dark-star.svg" title="review-star" alt="review-star" width="18" height="18">
           </div>
         @endif
       @endfor

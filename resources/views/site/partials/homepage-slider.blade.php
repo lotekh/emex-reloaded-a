@@ -1,4 +1,4 @@
-<div class="m-0" id="homepage-header" style="background-image: url('{{ asset('storage/resources/images/Lacuri-si-vopsele-emex.jpg') }}')">
+<div class="m-0" id="homepage-header" style="background-image: url('{{ asset('resources/images/Lacuri-si-vopsele-emex.jpg') }}')">
     <div class="main-container grid-3">
         
         <div class="header_img_bg col justify-center align-center" id="mod_avl">

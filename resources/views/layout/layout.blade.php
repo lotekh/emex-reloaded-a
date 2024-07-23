@@ -76,7 +76,7 @@
                             Contul meu
                         </span>
                     @endauth
-                    <img src="{{ Storage::url('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
+                    <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
                 </div>
                 <div class="col dropdown-menu">
                     @auth
@@ -108,13 +108,11 @@
         <div class="desktop-header bg-white">
             <div class="main-container row second-layer">
                 <a id="logo" href="{{ empty($base_url) ? '/' : $base_url }}" title="acasa">
-                    <img src="{{ asset('storage/resources/new_design/general/logo.png') }}" height="84" width="252" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim">
-                    {{-- <img src="{{ asset('storage/Fabrica-Emex.jpg') }}" height="84" width="252" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim"> --}}
-
+                    <img src="{{ asset('resources/new_design/general/logo.png') }}" height="84" width="252" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim">
                 </a>
                 <form class="relative flex align-center w-full justify-end" method="GET" action="{{ url('/search') }}">
                     <div class="flex align-center">
-                        <img width="18" height="18" src="{{ asset('storage/resources/new_design/icons/search.svg') }}" id="search-icon" alt="search-icon" title="search-icon">
+                        <img width="18" height="18" src="{{ asset('resources/new_design/icons/search.svg') }}" id="search-icon" alt="search-icon" title="search-icon">
                     </div>
                     <input id="search-input-desktop" type="text" name="zoom_query" class="form-control w-full" placeholder="Cauta dupa nume produs sau cod SKU">
                 </form>
@@ -177,12 +175,12 @@
 
     <div class="phone-icon" id="scrollToTopButton">
         <a href="tel:+40724509552">
-            <img width="50" height="50" src="{{ asset('storage/resources/images/Phone-mobile.png') }}" alt="Phone Emex">
+            <img width="50" height="50" src="{{ asset('resources/images/Phone-mobile.png') }}" alt="Phone Emex">
         </a>
     </div>
 
     <div id="contact_email_small_devices" class="email-icon" tabindex="0" role="button" onclick="openLightbox()">
-        <img width="50" height="50" src="{{ asset('storage/resources/images/Mail-mobile.png') }}" alt="Email Emex">
+        <img width="50" height="50" src="{{ asset('resources/images/Mail-mobile.png') }}" alt="Email Emex">
     </div>
 
     <div class="m-0">
@@ -194,9 +192,9 @@
         <div id="fsr" class="main-container footer-container">
             <div class="logo-section">
                 <a href="{{ empty($base_url) ? url('/') : url($base_url) }}" aria-label="Logo Emex by Romtehnochim" title="Marca Emex proprietate a Romtehnochim">
-                    <img id="logo-footer" width="201" height="72" src="{{ asset('storage/resources/new_design/general/logo-footer.png') }}" alt="Emex by Romtehnochim logo" title="Marca Emex proprietate a Romtehnochim">
+                    <img id="logo-footer" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}" alt="Emex by Romtehnochim logo" title="Marca Emex proprietate a Romtehnochim">
                 </a>
-                <ul id="fsrfcfu" style="list-style-image: url('{{ asset('storage/resources/images/light-list.png') }}'); margin: -10px 0 10px 15px;">
+                <ul id="fsrfcfu" style="list-style-image: url('{{ asset('resources/images/light-list.png') }}'); margin: -10px 0 10px 15px;">
                     <li>
                         <p class="mt-16">Productie lacuri, vopsele, tencuieli, pardoseli.</p>
                     </li>
@@ -412,7 +410,7 @@
     <div id="sidebar-left" class="sidebar hidden bg-white">
         <nav class="col">
             <a href="{{ url('/') }}" class="mb-32" title="acasa">
-                <img src="{{ asset('storage/resources/new_design/general/logo-footer.png') }}" height="72" width="201" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim">
+                <img src="{{ asset('resources/new_design/general/logo-footer.png') }}" height="72" width="201" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim">
             </a>
             <section>
                 <header>
