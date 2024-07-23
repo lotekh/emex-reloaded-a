@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             CountryAndCountySeeder::class,
             MeasurementUnitSeeder::class,
             CategorySeeder::class,
-            ProductSeeder::class
+            ProductSeeder::class,
+            ProductVariationSeeder::class
         ]);
     }
 }
