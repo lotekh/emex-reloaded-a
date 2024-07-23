@@ -9,15 +9,11 @@ class CategoryController extends Controller
 {
     public function showCategory($slug, Request $request)
     {
-
-        // dd($request->all());
-
         $categories = Category::all();
 
         $category = Category::where('slug', $slug)->firstOrFail();
 
         $per_page = $request->input('per_page', 6);
-        // $current_page = $request->input('current_page_number', 1);
         $current_page = $request->input('page', 1);
 
         $products = $category->products()
@@ -29,7 +25,19 @@ class CategoryController extends Controller
 
         $numsPerPage = [6, 12, 24, 48];
 
-        return view('categories.view', compact('category', 'categories','products', 'total_results', 'total_pages', 'per_page', 'current_page', 'numsPerPage'));
+        return view('categories.view', compact('category', 'categories', 'products', 'total_results', 'total_pages', 'per_page', 'current_page', 'numsPerPage'));
+    }
+
+    public function handleSlug($slug, Request $request)
+    {
+        // Verifică dacă slug-ul aparține unei categorii
+        $category = Category::where('slug', $slug)->first();
+
+        if ($category) {
+            return $this->showCategory($slug, $request);
+        }
+
+        // Dacă slug-ul nu aparține unei categorii, returnează un 404 sau gestionează altfel
+        abort(404);
     }
 }
-

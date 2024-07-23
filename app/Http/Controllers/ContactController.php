@@ -35,8 +35,8 @@ class ContactController extends Controller
             'message' => $request->input('Contact.message'),
         ]);
 
-        // Redirecționare către pagina de mulțumire
-        // return redirect()->route('thank-you');
-        return redirect()->route('home');
+        // Redirect to thank-you page
+        return redirect()->route('thank-you');
+        // return redirect()->route('home');
     }
 }

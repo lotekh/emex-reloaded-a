@@ -14,13 +14,11 @@ Route::get('/footer', function () {
     return view('footer');
 });
 
-Route::get('/vopsele-lavabile-2', [ProductsController::class, 'index'])->name('vopsele-lavabile-22');
-
 Route::view('/test-form', 'test-form');
 Route::post('/side-contact', [ContactController::class, 'store'])->name('side-contact.store');
-
 Route::view('/thank-you', 'thank-you')->name('thank-you');
 
-Route::get('/{categorySlug}', [CategoryController::class, 'showCategory'])->name('category.show');
+// Ruta wildcard verificată prin controller
+Route::get('/{slug}', [CategoryController::class, 'handleSlug'])->name('handleSlug');
 
 
