@@ -23,35 +23,57 @@
         <div class="modal-container">
             <div class="relative header w-full row justify-between align-center" id="header-sidebar-contact">
                 <div></div>
-                <img class="logo-footer" width="201" height="72" src="storage/resources/new_design/general/logo-footer.png" alt="Logo Footer">
+                <img class="logo-footer" width="201" height="72" src="{{ asset('storage/resources/new_design/general/logo-footer.png') }}" alt="Logo Footer">
                 <button onclick="closeLightbox()" role="button" tabindex="0" class="close-btn" aria-label="Inchide">
-                    <img width="32" height="32" src="storage/resources/new_design/icons/close.svg" alt="close">
+                    <img width="32" height="32" src="{{ asset('storage/resources/new_design/icons/close.svg') }}" alt="close">
                 </button>
             </div>
             <div class="col align-center content">
                 <p class="gray-title"> $main_title </p>
                 <h2 id="contact_light_box_first_h5" class="mt-8">$secondary_title</h2>
-                <form id="formular-sidebar-contact" class="col w-full" method="POST" action="{{ $baseUrl }}/side-contact">
+
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                <form id="formular-sidebar-contact" class="col w-full" method="POST" action="{{ route('side-contact.store') }}">
                     @csrf
                     <div class="form-group w-full">
                         <label for="side-contact-name">Nume</label>
                         <input id="side-contact-name" required type="text" name="Contact[name]" class="w-full">
+                        @error('Contact.name')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group w-full">
                         <label for="side-contact-societate">Societate</label>
                         <input id="side-contact-societate" type="text" name="Contact[company]" class="w-full">
+                        @error('Contact.company')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group w-full">
                         <label for="side-contact-email">Email</label>
                         <input id="side-contact-email" type="email" required name="Contact[email]" class="w-full">
+                        @error('Contact.email')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group w-full">
                         <label for="side-contact-telefon">Telefon</label>
                         <input id="side-contact-telefon" type="tel" placeholder="+1 (555) 555-5555" required name="Contact[phone]" class="w-full">
+                        @error('Contact.phone')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group w-full">
                         <label for="side_contact_msg">Mesaj</label>
                         <textarea rows="4" name="Contact[message]" class="w-full" id="side_contact_msg" placeholder="Mentionati, in masura in care se poate, toate cerintele sau informatiile dorite, legate de solicitarea Dvs."></textarea>
+                        @error('Contact.message')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group">
@@ -64,6 +86,9 @@
                                 </div>
                                 <input type="text" id="captchaResult" name="captchaResult" required>
                                 <input type="hidden" name="captchaMdResult" value="{{ $mdResult }}">
+                                @error('captchaResult')
+                                    <div class="error">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -78,6 +103,9 @@
                             <a class="text-blue" href="{{ $baseUrl }}/confidentialitate-gdpr">politica de confidentialitate</a> si
                             <a class="text-blue" href="{{ $baseUrl }}/termeni-si-conditii">termeni si conditii.</a>
                         </span>
+                        @error('consent')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-validation" style="display: none;" data-validation-for="consent-checkbox">Conform reglementarilor in vigoare, trebuie sa fiti de acord cu Termeni si Conditii si Politica de Confidentialitate</div>
                     <div class="w-full flex justify-center">

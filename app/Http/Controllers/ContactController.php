@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
     public function store(Request $request)
     {
-        // Validare date formular
+        // Validate form
         $request->validate([
             'Contact.name' => 'required|string|max:255',
             'Contact.email' => 'required|email|max:255',
@@ -18,14 +19,22 @@ class ContactController extends Controller
             'captchaMdResult' => 'required',
         ]);
 
-        // Validare captcha
-        if(md5($request->captchaResult) !== $request->captchaMdResult) {
+        // Validate captcha
+        if (md5($request->captchaResult) !== $request->captchaMdResult) {
             return back()->withErrors(['captchaResult' => 'Captcha invalid.']);
         }
 
-        // Procesare date formular
-        // Exemplu: salvare în baza de date, trimitere email, etc.
-        
+        // Save the information in database
+        Contact::create([
+            'name' => $request->input('Contact.name'),
+            'email' => $request->input('Contact.email'),
+            'phone' => $request->input('Contact.phone'),
+            'company' => $request->input('Contact.company'),
+            'ip_address' => $request->ip(),
+            'page_url' => url()->previous(),
+            'message' => $request->input('Contact.message'),
+        ]);
+
         return redirect()->back()->with('success', 'Formularul a fost trimis cu succes!');
     }
 }

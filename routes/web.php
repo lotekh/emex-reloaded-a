@@ -8,24 +8,13 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/footer', function () {
     return view('footer');
 });
 
-// Route::get('/vopsele-lavabile-2', function () {
-//     return view('categories.vopsele-lavabile2');
-// });
-
 Route::get('/vopsele-lavabile-2', [ProductsController::class, 'index'])->name('vopsele-lavabile-22');
-
-
-// Route::get('/', function () {
-//     return view('homepage');
-// });
-
-Route::get('/', [HomeController::class, 'index'])->name('home');
-
 
 
 Route::get('/{categorySlug}', [CategoryController::class, 'showCategory'])->name('category.show');
