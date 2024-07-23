@@ -5,6 +5,8 @@
     $result = $no1 + $no2;
     $mdResult = md5($result);
     $base_url = url('/');
+    $isHomepage = request()->is('/');
+    $isCategoryPage = isset($category);
 @endphp
 
 @if (request()->route()->getName() != 'site.contact')
@@ -29,8 +31,25 @@
                 </button>
             </div>
             <div class="col align-center content">
-                <p class="gray-title"> $main_title </p>
-                <h2 id="contact_light_box_first_h5" class="mt-8">$secondary_title</h2>
+                {{-- <p class="gray-title"> $main_title </p>
+                <h2 id="contact_light_box_first_h5" class="mt-8">$secondary_title</h2> --}}
+
+                <p class="gray-title">
+                    @if ($isHomepage)
+                        Vopsele si Servicii “Emex”
+                    @else
+                        Solicitati informatii despre
+                    @endif
+                </p>
+                <h2 id="contact_light_box_first_h5" class="mt-8">
+                    @if ($isHomepage)
+                        {{-- empty --}}
+                    @elseif ($isCategoryPage)
+                        {{ $category->name }}
+                    @else
+                        {{-- fallback in case it is another type of page --}}
+                    @endif
+                </h2>
 
                 @if(session('success'))
                     <div class="alert alert-success">
