@@ -21,4 +21,6 @@ Route::view('/thank-you', 'thank-you')->name('thank-you');
 // Ruta wildcard verificată prin controller
 Route::get('/{slug}', [CategoryController::class, 'handleSlug'])->name('handleSlug');
 
+Route::get('/{slug}', [ProductsController::class, 'showProduct'])->name('product.show')->where('slug', '[A-Za-z0-9-_]+');
+
 
