@@ -18,9 +18,7 @@ Route::view('/test-form', 'test-form');
 Route::post('/side-contact', [ContactController::class, 'store'])->name('side-contact.store');
 Route::view('/thank-you', 'thank-you')->name('thank-you');
 
-// Ruta wildcard verificată prin controller
-Route::get('/{slug}', [CategoryController::class, 'handleSlug'])->name('handleSlug');
-
-Route::get('/{slug}', [ProductsController::class, 'showProduct'])->name('product.show')->where('slug', '[A-Za-z0-9-_]+');
+// Rute pentru slug-uri
+Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
 
 

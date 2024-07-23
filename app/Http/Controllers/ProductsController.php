@@ -9,41 +9,23 @@ class ProductsController extends Controller
 {
     public function showProduct($slug, Request $request)
     {
-        $categories = Category::all(); // Pentru a include toate categoriile
+        $product = Product::where('slug', $slug)->with('featuredImage', 'variations', 'reviews')->firstOrFail();
 
-        $product = Product::where('slug', $slug)->with('featuredImage')->firstOrFail();
+        $categories_products = $product->categories;
 
-        $initialPrice = $product->variations['initials']['price'];
-        $initialPackaging = $product->variations['initials']['packaging'];
-        $initialColor = $product->variations['initials']['color'];
-        $initialName = $product->variations['initials']['name'];
-        $initialPriceNoTva = $product->variations['initials']['price_no_tva'];
-        $initialIntaritor = $product->variations['initials']['intaritor'];
-        $initialEan = $product->variations['initials']['ean'];
+        $initialPrice = $product->variations->first()->price ?? 0;
+        $initialPackaging = $product->variations->first()->packaging ?? '';
+        $initialColor = $product->variations->first()->color ?? '';
+        $initialName = $product->variations->first()->name ?? '';
+        $initialPriceNoTva = $product->variations->first()->price_no_tva ?? 0;
+        $initialIntaritor = $product->variations->first()->intaritor ?? '';
+        $initialEan = $product->variations->first()->ean ?? '';
         $initial_q = 1;
 
-        $parsedFullData = $product->variations['parsedData'];
+        $parsedFullData = $product->variations;
 
-        $rating_sum = 0;
-        if (!empty($product->reviews)) {
-            $rating_sum = array_reduce($product->reviews, function ($carry, $item) {
-                return $carry + $item['rating'];
-            }, 0) / count($product->reviews);
-        }
+        $rating_sum = $product->reviews->avg('rating') ?? 0;
 
-        return view('products.view', compact(
-            'product', 
-            'categories',
-            'initialPrice',
-            'initialPackaging',
-            'initialColor',
-            'initialName',
-            'initialPriceNoTva',
-            'initialIntaritor',
-            'initialEan',
-            'initial_q',
-            'parsedFullData',
-            'rating_sum'
-        ));
+        return view('products.view', compact('product', 'categories_products', 'initialPrice', 'initialPackaging', 'initialColor', 'initialName', 'initialPriceNoTva', 'initialIntaritor', 'initialEan', 'initial_q', 'parsedFullData', 'rating_sum'));
     }
 }
