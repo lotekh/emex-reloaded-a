@@ -53,21 +53,25 @@
         @endif
       </div>
 
-      @php
-        // Verifică dacă există o imagine featured și construiește URL-ul corect
-        $featuredImageUrl = $product->featuredImage ? asset('storage/' . $product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
+      {{-- @php
+        $featuredImageUrl = $product->featuredImage ? Storage::url($product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
       @endphp
-      
+
+      <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
+          <img src="{{ $featuredImageUrl }}" alt="{{ $product->name }}" title="{{ $product->name }}" width="300" height="300">
+      </a> --}}
+
+      @php
+          // Construiește URL-ul corect pentru imagine folosind calea din baza de date
+          $featuredImageUrl = $product->featuredImage ? asset($product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
+      @endphp
+
       <!-- Afișarea imaginii în HTML -->
       <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
           <img src="{{ $featuredImageUrl }}" alt="{{ $product->name }}" title="{{ $product->name }}" width="300" height="300">
       </a>
-  
 
 
-      <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
-          <img src="{{ $featuredImageUrl }}" alt="{{ $product->name }}" title="{{ $product->name }}" width="300" height="300">
-      </a>
 
     </div>
 

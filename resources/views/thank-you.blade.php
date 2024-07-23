@@ -12,4 +12,6 @@
         <a href="https://emex.ro/confidentialitate-gdpr"><span class="text-blue"><em>Prelucrarea datelor </em></span></a> va fi efectuata doar in conformitate cu prevederile Regulamentului UE nr. 679/2016.
     </p>
 </div>
-@endsection
+@endsection 
+
+

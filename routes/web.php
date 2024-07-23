@@ -16,12 +16,11 @@ Route::get('/footer', function () {
 
 Route::get('/vopsele-lavabile-2', [ProductsController::class, 'index'])->name('vopsele-lavabile-22');
 
-
-Route::get('/{categorySlug}', [CategoryController::class, 'showCategory'])->name('category.show');
-
 Route::view('/test-form', 'test-form');
 Route::post('/side-contact', [ContactController::class, 'store'])->name('side-contact.store');
 
 Route::view('/thank-you', 'thank-you')->name('thank-you');
+
+Route::get('/{categorySlug}', [CategoryController::class, 'showCategory'])->name('category.show');
 
 
