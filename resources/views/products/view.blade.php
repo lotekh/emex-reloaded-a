@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="main-container product-page" id="product_container">
-    <h1 class="mobile-title">{{ $product->name }}</h1>
+    <h1 class="mobile-title">{!! $product->name !!}</h1>
     <div class="w-full product-info-grid">
         <div class="col">
             <div class="w-full h-full relative img-container">
