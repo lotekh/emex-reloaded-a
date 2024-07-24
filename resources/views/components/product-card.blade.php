@@ -128,7 +128,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const ambalareSelect = document.getElementById('ambalareSelect{{ $product->id }}');
-    console.log(ambalareSelect);
+    // console.log(ambalareSelect);
     const colorSelect = document.getElementById('colorSelect{{ $product->id }}');
     const priceDisplay = document.getElementById('price{{ $product->id }}');
     const priceInput = document.getElementById('priceInput{{ $product->id }}');

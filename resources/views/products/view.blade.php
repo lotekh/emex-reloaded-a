@@ -6,7 +6,17 @@
     <div class="w-full product-info-grid">
         <div class="col">
             <div class="w-full h-full relative img-container">
-                <img class="contain" src="asset('images/blog/blog-background.jpg')" alt="imagine" title="imagineprodus">
+                {{-- <img class="contain" src="asset('images/blog/blog-background.jpg')" alt="imagine" title="imagineprodus"> --}}
+
+                @php
+                    $featuredImageUrl = $product->featuredImage ? asset('storage/' .$product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
+                    // dd($product->featuredImage);
+                @endphp
+
+                {{-- <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
+                    <img src="{{ $featuredImageUrl }}" alt="{{ $product->name }}" title="{{ $product->name }}" width="300" height="300">
+                </a> --}}
+                <img class="contain" src="{{ $featuredImageUrl }}" alt="imagine" title="imagineprodus">
             </div>
         </div>
 
