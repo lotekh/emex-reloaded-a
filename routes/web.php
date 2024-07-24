@@ -21,4 +21,5 @@ Route::view('/thank-you', 'thank-you')->name('thank-you');
 // Rute pentru slug-uri
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
 
+Route::post('/get-variation', [ProductsController::class, 'getVariation'])->name('product.getVariation');
 

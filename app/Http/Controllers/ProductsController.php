@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductVariation;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -28,4 +29,28 @@ class ProductsController extends Controller
 
         return view('products.view', compact('product', 'categories_products', 'initialPrice', 'initialPackaging', 'initialColor', 'initialName', 'initialPriceNoTva', 'initialIntaritor', 'initialEan', 'initial_q', 'parsedFullData', 'rating_sum'));
     }
+
+    
+    public function getVariation(Request $request)
+    {
+        $product_id = $request->input('product_id');
+        $quantity = $request->input('quantity');
+        $color = $request->input('color');
+
+        $variation = ProductVariation::where('product_id', $product_id)
+                                    ->where('quantity', $quantity)
+                                    ->where('colour', $color)
+                                    ->first();
+
+        if ($variation) {
+            return response()->json([
+                'success' => true,
+                'variation' => $variation,
+            ]);
+        } else {
+            return response()->json(['success' => false, 'error' => 'Variation not found'], 404);
+        }
+    }
+
+
 }

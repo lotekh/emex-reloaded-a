@@ -1,7 +1,6 @@
-<!-- resources/views/components/product-card.blade.php -->
 @php
-  $averageRating = $product->reviews->avg('rating');
-  $reviewCount = $product->reviews->count();
+  $averageRating = $product->reviews->avg('rating') ?? 0;
+  $reviewCount = $product->reviews->count() ?? 0;
   $variations = $product->variations;
   $initialVariation = $variations->first();
   $baseUrl = url('/');
@@ -21,77 +20,65 @@
         @csrf
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         <button type="submit" aria-label="Adauga la favorite">
-          <img width="20" height="20" src="resources/new_design/icons/star.svg" title="review-star" alt="review-star">
+          <img width="20" height="20" src="{{ asset('resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
         </button>
       </form>
       <div class="absolute z-10 stoc-container">
         @if (!$product->is_inactive)
           <div class="in-stoc">
             <div class="flex align-center">
-              <img width="18" height="18" src="resources/new_design/icons/check-mark.svg" alt="checkmark-icon" title="checkmark-icon">
+              <img width="18" height="18" src="{{ asset('resources/new_design/icons/check-mark.svg') }}" alt="checkmark-icon" title="checkmark-icon">
             </div>
             <p>In stoc</p>
           </div>
         @else
           <div class="in-stoc not">
             <div class="flex align-center">
-              <img width="18" height="18" src="resources/new_design/icons/error-outline.svg" alt="error-icon" title="error-icon">
+              <img width="18" height="18" src="{{ asset('resources/new_design/icons/error-outline.svg') }}" alt="error-icon" title="error-icon">
             </div>
             <p>Indisponibil</p>
           </div>
         @endif
       </div>
 
-      {{-- @php
-        $featuredImageUrl = $product->featuredImage ? Storage::url($product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
-      @endphp
-
-      <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
-          <img src="{{ $featuredImageUrl }}" alt="{{ $product->name }}" title="{{ $product->name }}" width="300" height="300">
-      </a> --}}
-
       @php
-          // Construiește URL-ul corect pentru imagine folosind calea din baza de date
-          $featuredImageUrl = $product->featuredImage ? asset($product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
+        $featuredImageUrl = $product->featuredImage ? asset('storage/' .$product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
+        // dd($product->featuredImage);
       @endphp
 
-      <!-- Afișarea imaginii în HTML -->
       <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
-          <img src="{{ $featuredImageUrl }}" alt="{{ $product->name }}" title="{{ $product->name }}" width="300" height="300">
+        <img src="{{ $featuredImageUrl }}" alt="{{ $product->name }}" title="{{ $product->name }}" width="300" height="300">
       </a>
-
-
-
     </div>
 
     <div class="w-full row align-center mb-8 product-rating-pl">
       @for ($i = 0; $i < 5; $i++)
-        @if ($i + 1 <= $averageRating)
+        @if ($i < $averageRating)
           <div class="flex align-center">
-            <img src="resources/new_design/icons/gold-star.svg" title="review-star" alt="review-star" width="18" height="18">
+            <img src="{{ asset('resources/new_design/icons/gold-star.svg') }}" title="review-star" alt="review-star" width="18" height="18">
           </div>
         @else
           <div class="flex align-center">
-            <img src="resources/new_design/icons/dark-star.svg" title="review-star" alt="review-star" width="18" height="18">
+            <img src="{{ asset('resources/new_design/icons/dark-star.svg') }}" title="review-star" alt="review-star" width="18" height="18">
           </div>
         @endif
       @endfor
       <p class="ml-8 rating-text">
         <span class="font-700">{{ number_format($averageRating, 2, '.', '') }}</span>
         ({{ $reviewCount }})
-    </p>
+      </p>
     </div>
 
     <div class="w-full col justify-end">
       <div class="price row align-center product-price-pl">
         @if($initialVariation)
-                <p>
-                    <span>Pret:&nbsp;</span>
-                    <span class="value">{{ $initialVariation->price }}</span>
-                    <span class="value">Lei</span>
-                </p>
+          <p>
+            <span>Pret:&nbsp;</span>
+            <span class="value" id="price{{$product->id}}">{{ $initialVariation->price }}</span>
+            <span class="value">Lei</span>
+          </p>
         @else
-            <p>Pret indisponibil</p>
+          <p>Pret indisponibil</p>
         @endif
       </div>
 
@@ -99,17 +86,17 @@
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         <input type="hidden" name="submited" value="1">
         <input type="hidden" name="name" value="{{ $product->plain_name }}">
-        <input type="hidden" name="price" value="{{ $initialVariation->price }}">
-        <input type="hidden" name="price_no_tva" value="{{ $initialVariation->price_no_tva }}">
-        <input type="hidden" name="ean" value="{{ $initialVariation->ean }}">
-        <input type="hidden" name="addon_quantity" value="{{ $initialVariation->intaritor }}">
+        <input type="hidden" name="price" id="priceInput{{$product->id}}" value="{{ $initialVariation->price }}">
+        <input type="hidden" name="price_no_tva" id="priceNoTvaInput" value="{{ $initialVariation->price_no_tva }}">
+        <input type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
+        <input type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
         <input type="hidden" name="quantity" value="1">
         <div class="row no-wrap w-full gap-xs">
           <div class="relative row w-full">
-            <select aria-label="Ambalare" name="ambalare">
+            <select aria-label="Ambalare" name="ambalare" id="ambalareSelect{{$product->id}}">
               @foreach ($variations->pluck('quantity')->unique() as $value)
                 <option value="{{ $value }}" {{ $value == $initialVariation->quantity ? 'selected' : '' }}>
-                    {{ $value }}
+                  {{ $value }}
                 </option>
               @endforeach
             </select>
@@ -119,11 +106,11 @@
           </div>
 
           <div class="relative row w-full">
-            <select aria-label="Culoare" name="color">
+            <select aria-label="Culoare" name="color" id="colorSelect{{$product->id}}">
               @foreach ($variations->pluck('colour')->unique() as $value)
-                  <option value="{{ $value }}" {{ $value == $initialVariation->colour ? 'selected' : '' }}>
-                      {{ $value }}
-                  </option>
+                <option value="{{ $value }}" {{ $value == $initialVariation->colour ? 'selected' : '' }}>
+                  {{ $value }}
+                </option>
               @endforeach
             </select>
 
@@ -137,3 +124,48 @@
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const ambalareSelect = document.getElementById('ambalareSelect{{ $product->id }}');
+    console.log(ambalareSelect);
+    const colorSelect = document.getElementById('colorSelect{{ $product->id }}');
+    const priceDisplay = document.getElementById('price{{ $product->id }}');
+    const priceInput = document.getElementById('priceInput{{ $product->id }}');
+
+    function updateVariation() {
+        const productId = {{ $product->id }};
+        const selectedPackaging = ambalareSelect.value;
+        const selectedColor = colorSelect.value;
+
+        fetch('{{ route('product.getVariation') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                product_id: productId,
+                quantity: selectedPackaging,
+                color: selectedColor
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                priceDisplay.textContent = data.variation.price;
+                priceInput.value = data.variation.price;
+                // Update other fields if needed
+            } else {
+                console.error('Error:', data.error);
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
+    ambalareSelect.addEventListener('change', updateVariation);
+    colorSelect.addEventListener('change', updateVariation);
+});
+</script>
