@@ -1,22 +1,24 @@
 @extends('layout.layout')
 
 @section('content')
+@php
+    $averageRating = $product->reviews->avg('rating') ?? 0;
+    $reviewCount = $product->reviews->count() ?? 0;
+    $variations = $product->variations;
+    $initialVariation = $variations->first();
+    $baseUrl = url('/');
+@endphp
+
 <div class="main-container product-page" id="product_container">
-    <h1 class="mobile-title">{!! $product->name !!}</h1>
+    <h1 class="mobile-title mt-32">{!! $product->name !!}</h1>
     <div class="w-full product-info-grid">
         <div class="col">
-            <div class="w-full h-full relative img-container">
-                {{-- <img class="contain" src="asset('images/blog/blog-background.jpg')" alt="imagine" title="imagineprodus"> --}}
-
+            <div class="w-full h-full relative img-container" style="max-height:413.26px;">
                 @php
                     $featuredImageUrl = $product->featuredImage ? asset('storage/' .$product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
-                    // dd($product->featuredImage);
                 @endphp
 
-                {{-- <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
-                    <img src="{{ $featuredImageUrl }}" alt="{{ $product->name }}" title="{{ $product->name }}" width="300" height="300">
-                </a> --}}
-                <img class="contain" src="{{ $featuredImageUrl }}" alt="imagine" title="imagineprodus">
+                <img class="contain" src="{{ $featuredImageUrl }}" alt="imagine" title="imagineprodus"  style="max-height:413.26px;">
             </div>
         </div>
 
@@ -38,25 +40,14 @@
 
                         @if (!$product->is_inactive)
                             <div class="col">
-                                @if (!empty($initialPrice))
+                                @if (!empty($initialVariation->price))
                                     <div class="row items-baseline price-container">
                                         <p>
-                                            <span class="font-700 text-red price-num">{{ $initialPrice }}</span>
+                                            <span class="font-700 text-red price-num" id="price{{ $product->id }}">{{ $initialVariation->price }}</span>
                                             <span class="text-red">Lei&nbsp;/&nbsp;</span>
                                         </p>
-
-                                        @if ($initialIntaritor)
-                                            <p class="mb-4">Pachet</p>
-                                        @else
-                                            <p class="section-info" id="pret_value">Bidon {{ $initialPackaging }}</p>
-                                        @endif
+                                        <p class="section-info" id="pret_value">Bidon <span id="packaging{{ $product->id }}">{{ $initialVariation->quantity }}</span></p>
                                     </div>
-                                    @if ($initialIntaritor)
-                                        <div class="row items-baseline price-container">
-                                            <p class="section-info" id="pret_value">Vopsea {{ $initialPackaging }}</p>
-                                            <p class="section-info">{{ $initialIntaritor }}</p>
-                                        </div>
-                                    @endif
                                     <p class="section-info tva-label">Pret - inclusiv tva</p>
                                 @else
                                     <p class="section-info tva-label" id="pret_pre">Produs indisponibil</p>
@@ -84,7 +75,7 @@
 
                             <div class="row">
                                 @for ($i = 0; $i < 5; $i++)
-                                    @if ($i + 1 <= $rating_sum)
+                                    @if ($i < $averageRating)
                                         <div class="flex align-center">
                                             <img src="{{ asset('resources/new_design/icons/gold-star.svg') }}" width="18" height="18" title="review-star" alt="review-star">
                                         </div>
@@ -95,8 +86,8 @@
                                     @endif
                                 @endfor
                                 <p class="ml-8 font-sm">
-                                    <span class="font-700 font-sm">{{ number_format($rating_sum, 2) }}</span>
-                                    ({{ $product->reviews->count() }})
+                                    <span class="font-700 font-sm">{{ number_format($averageRating, 2) }}</span>
+                                    ({{ $reviewCount }})
                                 </p>
                             </div>
                         </div>
@@ -104,22 +95,22 @@
 
                     @if (!$product->is_inactive)
                         <div class="inputs-mt col gap-md">
-                            @if ($product->variations->pluck('color')->filter()->count())
+                            @if ($product->variations->pluck('colour')->filter()->count())
                                 <div class="form-group">
-                                    <label class="section-info" id="chose-color">Selecteaza culoare</label>
-                                    <select aria-labelledby="choose-color" class="w-full" name="color">
-                                        @foreach ($product->variations->pluck('color')->filter() as $value)
+                                    <label class="section-info" id="choose-color">Selecteaza culoare</label>
+                                    <select aria-labelledby="choose-color" class="w-full" name="color" id="colorSelect{{ $product->id }}">
+                                        @foreach ($product->variations->pluck('colour')->filter() as $value)
                                             <option value="{{ $value }}">{{ $value }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             @endif
 
-                            @if ($product->variations->pluck('packaging')->filter()->count())
+                            @if ($product->variations->pluck('quantity')->filter()->count())
                                 <div class="form-group">
                                     <label class="section-info" id="choose-type">Selecteaza ambalare</label>
-                                    <select aria-labelledby="choose-type" class="w-full" name="ambalare">
-                                        @foreach ($product->variations->pluck('packaging')->filter() as $value)
+                                    <select aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
+                                        @foreach ($product->variations->pluck('quantity')->filter()->unique() as $value)
                                             <option value="{{ $value }}">{{ $value }}</option>
                                         @endforeach
                                     </select>
@@ -128,7 +119,7 @@
 
                             <div class="form-group">
                                 <label id="choose-quantity" class="section-info">Selecteaza cantitate</label>
-                                <input class="w-full" aria-labelledby="choose-quantity" min="1" pattern="[0-9]+" type="number" name="quantity" value="{{ $initial_q }}" />
+                                <input class="w-full" aria-labelledby="choose-quantity" min="1" pattern="[0-9]+" type="number" name="quantity" value="1" />
                             </div>
                         </div>
                     @endif
@@ -138,12 +129,12 @@
                     <div class="w-full h-full">
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <input type="hidden" name="submited" value="1">
-                        <input type="hidden" name="name" value="{{ $initialName }}">
-                        <input type="hidden" name="price" value="{{ $initialPrice }}">
-                        <input type="hidden" name="price_no_tva" value="{{ $initialPriceNoTva }}">
-                        <input type="hidden" name="ean" value="{{ $initialEan }}">
-                        <input type="hidden" name="addon_quantity" value="{{ $initialIntaritor }}">
-                        <input type="submit" id="bord" class="{{ empty($initialPrice) || $product->is_inactive ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialPrice) || $product->is_inactive ? 'disabled' : '' }}>
+                        <input type="hidden" name="name" value="{{ $product->plain_name }}">
+                        <input type="hidden" name="price" id="priceInput{{ $product->id }}" value="{{ $initialVariation->price }}">
+                        <input type="hidden" name="price_no_tva" id="priceNoTvaInput" value="{{ $initialVariation->price_no_tva }}">
+                        <input type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
+                        <input type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
+                        <input type="submit" id="bord" class="{{ empty($initialVariation->price) || $product->is_inactive ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || $product->is_inactive ? 'disabled' : '' }}>
                     </div>
 
                     <a href="{{ url('/produse-adaugate') }}" title="Cos" class="flex h-full">
@@ -171,7 +162,7 @@
                     @if ($product->price_disclaimer)
                         {{ $product->price_disclaimer }}
                     @else
-                        Preturi pentru culorile standard, din lista. <em class="mp-ral">Culori RAL se produc doar pe comanda</em>, in max. 3 zile de la lansarea comenzii ferme. Pretul acestora va diferi, in functie de nuanta.
+                        Preturi pentru culorile standard, din lista. <em class="mp-ral">Alte nuante se produc doar pe comanda</em>, in max. 3 zile de la lansarea comenzii ferme. Pretul acestora va diferi, in functie de nuanta.
                     @endif
                 </p>
 
@@ -267,4 +258,47 @@
     </div>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const packagingSelect = document.getElementById('packagingSelect{{ $product->id }}');
+    const colorSelect = document.getElementById('colorSelect{{ $product->id }}');
+    const priceDisplay = document.getElementById('price{{ $product->id }}');
+    const priceInput = document.getElementById('priceInput{{ $product->id }}');
+
+    function updateVariation() {
+        const productId = {{ $product->id }};
+        const selectedPackaging = packagingSelect.value;
+        const selectedColor = colorSelect.value;
+
+        fetch('{{ route('product.getVariation') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                product_id: productId,
+                quantity: selectedPackaging,
+                color: selectedColor
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                priceDisplay.textContent = data.variation.price;
+                priceInput.value = data.variation.price;
+                // Update other fields if needed
+            } else {
+                console.error('Error:', data.error);
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
+    packagingSelect.addEventListener('change', updateVariation);
+    colorSelect.addEventListener('change', updateVariation);
+});
+</script>
 @endsection
