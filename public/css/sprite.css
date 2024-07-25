@@ -1,0 +1,345 @@
+.sprite-search, .sprite-heart, .sprite-cart, .sprite-pinterest, .sprite-facebook, .sprite-instagram, .sprite-youtube, .sprite-twitter, .sprite-blog, .sprite-linkedin, .sprite-info, .sprite-paletar, .sprite-calc, .sprite-paint, .sprite-brush, .sprite-file, .sprite-cogs, .sprite-email, .sprite-phone, .sprite-home, .sprite-location, .sprite-user, .sprite-pencil-square, .sprite-phone-square, .sprite-envelope, .sprite-envelope-sm, .sprite-building, .sprite-lightbulb, .sprite-google, .sprite-fb-big, .sprite-email-w, .sprite-phone-w, .sprite-search-w, .star-rating-counter, /*.sprite-exclamation,  .sprite-information, */ .sprite-wood, .sprite-category, .sprite-back, .sprite-cogs2, .sprite-pencil, .sprite-email-new, .sprite-arrow-up, .sprite-arrow-down, .sprite-cart-new, .sprite-phone-square-sm, .sprite-eye, .sprite-wishlist, .sprite-account, .sprite-exit, .sprite-remove-from-cart, /* .sprite-cards, */ .sprite-remove-from-wishlist {
+  background-image: url('./resources/images/sprite-icons.png');
+  display: inline-block;
+}
+.sprite-search,
+.sprite-heart,
+.sprite-cart,
+.sprite-pinterest,
+.sprite-facebook,
+.sprite-instagram,
+.sprite-youtube,
+.sprite-twitter,
+.sprite-blog,
+.sprite-linkedin,
+.sprite-cogs,
+.sprite-location,
+.sprite-wood {
+  width: 19px;
+  height: 19px;
+}
+.sprite-search {
+  background-position: 84px -2px;
+}
+.sprite-search:hover {
+  background-position: 84px -22px;
+}
+.sprite-heart {
+  background-position: 57px -2px;
+  width: 21px;
+}
+.sprite-heart:hover {
+  background-position: 57px -22px;
+}
+.sprite-cart {
+  background-position: 33px -2px;
+}
+.sprite-cart-new {
+  background-position: 120px 67px;
+  height: 25px;
+  width: 30px;
+}
+.sprite-remove-from-cart {
+  background-position: 110px 36px;
+  height: 26px;
+  width: 28px;
+}
+/* .sprite-cards {
+  background-position: 160px 39px;
+  height: 48px;
+  width: 33px;
+} */
+.sprite-eye {
+  background-position: 89px 68px;
+  width: 30px;
+  height: 24px;
+}
+.sprite-wishlist {
+  background-position: 58px 68px;
+  width: 29px;
+  height: 25px;
+}
+.sprite-remove-from-wishlist {
+  background-position: 65px 40px;
+  width: 34px;
+  height: 29px;
+}
+.sprite-account {
+  background-position: 217px 38px;
+  width: 34px;
+  height: 34px;
+}
+.sprite-exit {
+  background-position: 185px 33px;
+  height: 25px;
+  width: 25px;
+}
+.sprite-cart:hover {
+  background-position: 33px -22px;
+}
+.sprite-pinterest {
+  background-position: 198px -2px;
+}
+.sprite-facebook {
+  background-position: 217px -2px;
+}
+.sprite-instagram {
+  background-position: 177px -2px;
+}
+.sprite-youtube {
+  background-position: 137px -2px;
+}
+.sprite-twitter {
+  background-position: 158px -2px;
+}
+.sprite-blog {
+  background-position: 81px -2px;
+}
+.sprite-linkedin {
+  background-position: 116px -2px;
+}
+.sprite-cogs {
+  background-position: -160px -43px;
+  width: 22px;
+  height: 22px;
+}
+.sprite-info {
+  background-position: 29px 67px;
+  width: 24px;
+  height: 24px;
+}
+.sprite-home {
+  background-position: -146px -66px;
+  width: 15px;
+  height: 15px;
+}
+.sprite-paint {
+  background-position: -102px -68px;
+  width: 20px;
+  height: 20px;
+}
+.sprite-file {
+  background-position: -77px -42px;
+}
+.sprite-file:hover {
+  background-position: -77px -67px;
+}
+.sprite-calc {
+  background-position: -52px -42px;
+}
+.sprite-calc:hover {
+  background-position: -52px -67px;
+}
+.sprite-file,
+.sprite-calc {
+  height: 24px;
+  width: 22px;
+}
+.sprite-paletar {
+  background-position: 0px -42px;
+}
+.sprite-paletar:hover {
+  background-position: 0px -67px;
+}
+.sprite-brush {
+  background-position: -25px 209px;
+}
+.sprite-brush:hover {
+  background-position: -25px 234px;
+}
+.sprite-paletar,
+.sprite-brush,
+.sprite-pencil-square,
+.sprite-building {
+  height: 24px;
+  width: 24px;
+}
+.sprite-email {
+  background-position: 117px -44px;
+  height: 18px;
+  width: 23px;
+}
+.sprite-location {
+  background-position: 33px -122px;
+  height: 19px;
+  width: 14px;
+}
+.sprite-phone-w {
+  background-position: -32px -168px;
+  height: 15px;
+  width: 17px;
+}
+.sprite-email-w {
+  background-position: -7px -167px;
+  height: 15px;
+  width: 19px;
+}
+.sprite-phone {
+  background-position: 92px -42px;
+  height: 20px;
+  width: 20px;
+}
+.sprite-search-w {
+  background-position: -55px -168px;
+  width: 20px;
+  height: 20px;
+}
+.sprite-user {
+  background-position: -122px -94px;
+  width: 24px;
+  height: 24px;
+}
+.sprite-pencil-square {
+  background-position: -175px -93px;
+}
+.sprite-phone-square {
+  background-position: -148px -95px;
+  width: 25px;
+  height: 24px;
+}
+.sprite-phone-square-sm {
+  background-position: -135px -243px;
+  width: 18px;
+  height: 18px;
+}
+.sprite-envelope {
+  background-position: -100px -141px;
+  width: 25px;
+  height: 20px;
+}
+.sprite-envelope-sm {
+  background-position: -103px -125px;
+  width: 18px;
+  height: 15px;
+}
+.sprite-building {
+  background-position: -132px -133px;
+}
+.sprite-lightbulb {
+  background-position: -182px -44px;
+  width: 21px;
+  height: 21px;
+}
+.sprite-google {
+  background-position: -2px 157px;
+}
+.sprite-fb-big {
+  background-position: -50px 157px;
+}
+#breadcrumbs_search_icon:hover .sprite-search {
+  background-position: 84px -22px;
+}
+.sprite-linkedin:hover {
+  background-position: 116px -22px;
+}
+.sprite-blog:hover {
+  background-position: 81px -22px;
+}
+.sprite-pinterest:hover {
+  background-position: 198px -22px;
+}
+.sprite-facebook:hover {
+  background-position: 217px -22px;
+}
+.sprite-instagram:hover {
+  background-position: 177px -22px;
+}
+.sprite-youtube:hover {
+  background-position: 137px -22px;
+}
+.sprite-twitter:hover {
+  background-position: 158px -22px;
+}
+/* .star-rating-counter {
+  background-position: -116px -168px;
+  width: 34px;
+  height: 30px;
+  zoom: 50%;
+} */
+/* .sprite-exclamation {
+  background-position: 124px 187px;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+} */
+.sprite-category {
+  background-position: 171px 69px;
+  width: 24px;
+  height: 24px;
+}
+.sprite-back {
+  background-position: 147px 68px;
+  width: 24px;
+  height: 24px;
+}
+.sprite-cogs2 {
+  background-position: 148px 182px;
+  width: 24px;
+  height: 24px;
+  margin-top: -2px;
+  margin-right: 3px;
+}
+.sprite-pencil {
+  background-position: -174px 98px;
+  width: 26px;
+  height: 25px;
+  margin-top: -2px;
+  margin-right: 2px;
+}
+.sprite-email-new {
+  background-position: 213px 78px;
+  width: 41px;
+  height: 40px;
+  margin: 10px;
+}
+.sprite-arrow-up {
+  background-position: 68px 108px;
+  width: 18px;
+  height: 20px;
+}
+.sprite-arrow-down {
+  background-position: 68px 86px;
+  width: 18px;
+  height: 20px;
+}
+/* .sprite-information {
+  background-position: 201px -92px;
+} */
+.sprite-wood {
+  background-position: -182px -68px;
+}
+.sprite-apl {
+  background-image: url('./resources/images/sprite-icons.png');
+  display: inline-block;
+  background-position: 57px 211px;
+  width: 24px;
+  height: 24px;
+}
+.fa-bars::after,
+.fa-arrow-left::after,
+.fa-times {
+  font-style: normal;
+  position: relative;
+}
+.fa-bars::after {
+  content: '\2630';
+  top: -2px;
+}
+.fa-arrow-left::after {
+  content: '\2192';
+  top: -4px;
+}
+.fa-times {
+  top: -2px;
+  font-weight: bold;
+}
+@media (min-width: 1200px) {
+  .contact-icon {
+    margin-left: 5px;
+  }
+}
+#spr_apl {
+  position: relative;
+  top: -3px;
+  left: -3px;
+}
