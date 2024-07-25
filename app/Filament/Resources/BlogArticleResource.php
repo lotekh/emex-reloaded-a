@@ -4,18 +4,17 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\BlogArticleResource\Pages;
 use App\Filament\Resources\BlogArticleResource\RelationManagers;
-use App\Helpers\JSONLD;
-use App\Helpers\SeoForm;
 use App\Models\BlogArticle;
 use App\Models\Tag;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\PathGenerators\UserPathGenerator;
 use Filament\Forms;
-use Filament\Forms\Components\Tabs;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class BlogArticleResource extends Resource
 {
@@ -27,48 +26,36 @@ class BlogArticleResource extends Resource
     {
         return $form
             ->schema([
-                Tabs::make('Tabs')
+                Forms\Components\TextInput::make('title')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('slug')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\Select::make('tags')
                     ->columnSpanFull()
-                    ->tabs([
-                        Tabs\Tab::make('General Information')
-                            ->schema([
-                                Forms\Components\TextInput::make('title')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('slug')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\Select::make('tags')
-                                    ->relationship('tags', 'id')
-                                    ->columnSpanFull()
-                                    ->options(
-                                        Tag::query()
-                                            ->pluck('name', 'id')
-                                            ->toArray()
-                                    )
-                                    ->createOptionForm(function () {
-                                        return Tag::form();
-                                    })
-                                    ->createOptionUsing(function (array $data) {
-                                        $tag = Tag::create($data);
-                                        return $tag->name;
-                                    })
-                                    ->multiple()
-                                    ->required(),
-                                Forms\Components\RichEditor::make('body')
-                                    ->required()
-                                    ->columnSpanFull(),
-                                CuratorPicker::make('featured_image_id')
-                                    ->relationship('featuredImage', 'id')
-                                    ->pathGenerator(UserPathGenerator::class)
-                                    ->tenantAware(false)
-                                    ->preserveFilenames()
-                            ]),
-                        Tabs\Tab::make('SEO')
-                        ->schema(SeoForm::make()),
-                        Tabs\Tab::make('JSON-LD')
-                            ->schema(JSONLD::make())
-                        ]),
+                    ->options(
+                        Tag::query()
+                            ->pluck('name', 'id')
+                            ->toArray()
+                    )
+                    ->createOptionForm(function () {
+                        return Tag::form();
+                    })
+                    ->createOptionUsing(function (array $data) {
+                        $tag = Tag::create($data);
+                        return $tag->name;
+                    })
+                    ->multiple()
+                    ->required(),
+                Forms\Components\RichEditor::make('body')
+                    ->required()
+                    ->columnSpanFull(),
+                CuratorPicker::make('featured_image')
+                    ->relationship('featured_image', 'id')
+                    ->pathGenerator(UserPathGenerator::class)
+                    ->tenantAware(false)
+                    ->preserveFilenames()
             ]);
     }
 
@@ -78,7 +65,7 @@ class BlogArticleResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(isIndividual: true),
-                Tables\Columns\TextColumn::make('slug')
+                Tables\Columns\TextColumn::make('slug.name')
                     ->searchable(isIndividual: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

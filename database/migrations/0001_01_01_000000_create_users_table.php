@@ -48,14 +48,6 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
-
-        \App\Models\User::create([
-            'first_name' => 'Admin',
-            'last_name' => 'Admin',
-            'email' => 'grebenita@gmail.com',
-            'password' => bcrypt('secret'),
-            'role' => 'admin',
-        ]);
     }
 
     /**

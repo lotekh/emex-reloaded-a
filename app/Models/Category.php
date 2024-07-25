@@ -2,18 +2,15 @@
 
 namespace App\Models;
 
-use App\Traits\HasSeoImages;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Category extends Model
 {
-    use HasFactory, HasSeoImages;
+    use HasFactory;
 
     protected $fillable = [
-        'og_image_id',
-        'twitter_image_id',
         'name',
         'slug',
         'description',
@@ -23,8 +20,8 @@ class Category extends Model
     ];
 
     protected $casts = [
-        'seo' => 'json',
-        'jsonld' => 'json'
+        'seo' => 'object',
+        'jsonld' => 'object'
     ];
 
     public function products(): BelongsToMany

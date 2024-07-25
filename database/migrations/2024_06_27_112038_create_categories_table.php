@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('og_image_id')->nullable()->constrained('media');
-            $table->foreignId('twitter_image_id')->nullable()->constrained('media');
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->text('description')->nullable();

@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use App\Traits\HasSeoImages;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class BlogArticle extends Model
 {
-    use HasFactory, HasSeoImages;
+    use HasFactory;
 
     protected $fillable = [
-        'featured_image_id',
         'title',
         'slug',
         'body',
@@ -22,13 +22,13 @@ class BlogArticle extends Model
     ];
 
     protected $casts = [
-        'seo' => 'json',
-        'jsonld' => 'json'
+        'seo' => 'object',
+        'jsonld' => 'object'
     ];
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class, 'blog_articles_tags', 'blog_article_id', 'tag_id');
+        return $this->belongsToMany(Tag::class);
     }
 
     public function featuredImage(): BelongsTo

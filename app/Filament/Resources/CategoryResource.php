@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
-use App\Helpers\JSONLD;
 use App\Helpers\SeoForm;
 use App\Models\Category;
 use Filament\Forms;
@@ -48,7 +47,9 @@ class CategoryResource extends Resource
                         Tabs\Tab::make('SEO')
                             ->schema(SeoForm::make()),
                         Tabs\Tab::make('JSON-LD')
-                            ->schema(JSONLD::make()),
+                            ->schema([
+                                // ...
+                            ]),
                     ]),
             ]);
     }
@@ -61,8 +62,6 @@ class CategoryResource extends Resource
                     ->searchable(),
                 Tables\Columns\IconColumn::make('active')
                     ->boolean(),
-                Tables\Columns\ToggleColumn::make('active')
-                    ->label('Active'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

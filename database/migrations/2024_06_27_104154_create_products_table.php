@@ -13,11 +13,6 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('og_image_id')->nullable()->constrained('media');
-            $table->foreignId('consumption_og_image_id')->nullable()->constrained('media');
-            $table->foreignId('twitter_image_id')->nullable()->constrained('media');
-            $table->foreignId('consumption_twitter_image_id')->nullable()->constrained('media');
-            $table->foreignId('featured_image_id')->nullable()->constrained('media');
 
             $table->string('slug')->unique();
             $table->string('name');
@@ -27,7 +22,7 @@ return new class extends Migration
             $table->string('category_page_link_title')->nullable();
             $table->string('h2_contact_title')->nullable();
             $table->string('h3_contact_title')->nullable();
-            $table->mediumText('price_disclaimer')->nullable();
+            $table->string('price_disclaimer')->nullable();
 
             $table->text('category_page_description')->nullable();
             $table->text('description')->nullable();
@@ -44,10 +39,7 @@ return new class extends Migration
 
             $table->json('seo')->nullable();
             $table->json('jsonld')->nullable();
-            $table->string('consumption_slug')->nullable();
-            $table->string('application_slug')->nullable();
-            $table->json('consumption_seo')->nullable();
-            $table->json('consumption_jsonld')->nullable();
+            $table->json('consumption')->nullable();
 
             $table->date('available_since')->nullable();
             $table->timestamps();
