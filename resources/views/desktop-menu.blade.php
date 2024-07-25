@@ -9,43 +9,6 @@ use Illuminate\Support\Str;
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Header</title>
-    <!-- Include fișierele CSS din directorul specificat -->
-    <link rel="stylesheet" href="{{ asset('css/adrian.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/angajari.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/aplicare.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/blog.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/cartela-lavabile-culori.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/cartela-ral-culori.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/certificari.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/consum.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/despre.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/gallery.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/generic.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/my-account.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/new.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/order.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/plata.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/politica-de-calitate.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/politica-de-mediu.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/politica-de-securitate.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/product-card.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/product-page.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/produs.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/retur.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/root.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/search.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/servicii.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/solicita-cotatie.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/sprite.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/tabs.css') }}">
 </head>
 
 
