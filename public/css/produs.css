@@ -620,6 +620,9 @@ a:active {
   .more-information:after {
     display: none;
   }
+  img.contain {
+    max-height: 300px;
+  }
 }
 @media all and (max-width: 992px) {
   #prod_a_to_w,

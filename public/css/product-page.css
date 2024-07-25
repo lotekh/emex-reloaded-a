@@ -360,6 +360,12 @@
   }
 }
 
+/* @media screen and (max-width: 1400px) {
+  img.contain {
+    max-height: 300px;
+  }
+} */
+
 #click-exemplu-lightbox .lightbox-image {
   background: rgba(0, 0, 0, 0.8);
   width: 100%;

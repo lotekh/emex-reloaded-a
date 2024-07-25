@@ -27,7 +27,7 @@
                     $featuredImageUrl = $product->featuredImage ? asset('storage/' .$product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
                 @endphp
 
-                <img class="contain" src="{{ $featuredImageUrl }}" alt="imagine" title="imagineprodus"  style="max-height:413.26px;">
+                <img class="contain" src="{{ $featuredImageUrl }}" alt="imagine" title="imagineprodus">
             </div>
         </div>
 
@@ -59,7 +59,7 @@
                                             <span class="font-700 text-red price-num" id="price{{ $product->id }}">{{ $initialVariation->price }}</span>
                                             <span class="text-red">Lei&nbsp;/&nbsp;</span>
                                         </p>
-                                        <p class="section-info" id="pret_value">Bidon <span id="packaging{{ $product->id }}">{{ $initialVariation->quantity }}</span></p>
+                                        <p class="section-info" id="pret_value">Bidon <span id="packaging{{ $product->id }}">{{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}</span></p>
                                     </div>
                                     <p class="section-info tva-label">Pret - inclusiv tva</p>
                                 @else
