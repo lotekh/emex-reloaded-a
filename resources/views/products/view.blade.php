@@ -222,72 +222,38 @@
     </div>
 
     <div class="mt-16 mt-custom">
-        <div class="tabs">
+        {{-- <div class="tabs">
             <button class="tablink" onclick="openTab(event, 'Descriere')">Descriere</button>
             <button class="tablink" onclick="openTab(event, 'DetaliiUtilizare')">Detalii de utilizare</button>
             <button class="tablink" onclick="openTab(event, 'CaracteristiciTehnice')">Caracteristici Tehnice</button>
+        </div> --}}
+        <div class="tabs-selector-row">
+            <button type="submit" name="current_tab" value="0" role="tab" class="btn user-valid valid" option="0" aria-selected="true" tabindex="0" selected=""><span>Descriere</span></button>
+            <button type="submit" name="current_tab" value="1" role="tab" class="btn user-valid valid" option="1" aria-selected="false" tabindex="0"><span>Detalii de utilizare</span></button>
+            <button type="submit" name="current_tab" value="2" role="tab" class="btn" option="2" aria-selected="false" tabindex="0"><span>Caracteristici Tehnice</span></button>
         </div>
 
-        <div id="Descriere" class="tabcontent">
-            {{-- {!! $product->description !!} --}}
-            {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi autem quia eveniet deserunt minima reprehenderit assumenda sunt voluptatem quo cumque. --}}
-            <div class="descript_par">
-                <p>
-                    <span class="alineat_span"></span>
-                    <strong><em>Vopsea Lavabila de Exterior cu Cuartz “Emex QT”</em></strong> - produs profesional de dispersie, 
-                    <em class="green-mark">de generatie noua</em>, diluabil cu apa, de calitate excelenta, pe baza de polimeri acrilici de mare performanta, aditivi specializati si adaos de cuartz micronizat, cu rolul de a conferi o duritate deosebita produsului, pentru acoperiri de exterior. Are aspect mat, putere deosebita de acoperire, aderenta foarte buna la suport si, mai ales, o duritate avansata a peliculei finale.
-                    <br>
-                    <span class="alineat_span"></span>
-                    Respectarea instructiunilor de aplicare, specifice pentru aceasta vopsea lavabila de exterior, va asigura, o rezistenta maxima la factorii de mediu si, mai ales, la imbatranire, fara deteriorarea aspectului in timp.
-                    <br>
-                    <span class="alineat_span"></span>
-                    Caracteristica cea mai importanta si de interes, pentru aceasta 
-                    <em>vopsea lavabila profesionala de exterior</em>, este 
-                    <em class="green-mark">pelicula extrem de rezistenta, de o mare duritate, dar si cu durabilitate pe perioade foarte indelungate de timp</em>.
-                    <br>
-                    <span class="alineat_span"></span>
-                    Se fabrica in multiple nuante, 
-                    <a href="/cartela-culori-lavabile" title="Cartela paletar de culori">
-                        <em class="link_color1">conform paletarului de culori</em>
-                    </a>, (prezentat informativ), dar se poate nuanta si prin adaugarea de paste de colorare, produse sau recomandate de Romtehnochim.
-                </p>
+        <div class="tab-content-container">
+
+            <div id="Descriere" class="tab-content">
+                {{-- {!! $product->description !!} --}}
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi autem quia eveniet deserunt minima reprehenderit assumenda sunt voluptatem quo cumque.
+                
             </div>
-            
-            <p class="Caracteristici"><strong>Caracteristici principale:</strong></p>
-            
-            <div class="description_badge_image">
-                <img layout="responsive" width="180" height="180" src="/resources/images/general/Hi-tech-badge.png" alt="Vopsea lavabila exterior calitate profesionala" title="Vopsea lavabila exterior cu cuartz">
+
+            <div id="DetaliiUtilizare" class="tab-content">
+                {{-- {!! $product->usage_details !!} --}}
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error quia, perspiciatis veniam voluptates neque facere dolores aspernatur laborum dignissimos eaque.
             </div>
-            
-            <ul class="ul-feature">
-                <li>Aderenta mare la suporturi minerale;</li>
-                <li>Pelicula dura datorata adaosului de cuart;</li>
-                <li>Rezistenta superioara la uzura;</li>
-                <li>Rezistenta ridicata la umiditate;</li>
-                <li>Efect de "Lotus" pentru rezistenta la murdarire;</li>
-                <li>Proprietati de autocuratate;</li>
-                <li>Putere mare de acoperire;</li>
-                <li>Rezistenta la medii alcaline;</li>
-                <li>Rezistenta la radiatii UV;</li>
-                <li>Rezistenta la socuri mecanice si intemperii;</li>
-                <li>Nu se exfoliaza, nu se creteaza;</li>
-                <li>Previne aparitia eflorescentelor.</li>
-            </ul>
-            <br>
-            
-        </div>
 
-        <div id="DetaliiUtilizare" class="tabcontent">
-            {{-- {!! $product->usage_details !!} --}}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error quia, perspiciatis veniam voluptates neque facere dolores aspernatur laborum dignissimos eaque.
-        </div>
-
-        <div id="CaracteristiciTehnice" class="tabcontent">
-            {{-- {!! $product->technical_details !!} --}}
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat eius saepe aliquid, fuga possimus corrupti. Blanditiis, saepe recusandae. Tempora, facere!
+            <div id="CaracteristiciTehnice" class="tab-content">
+                {{-- {!! $product->technical_details !!} --}}
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat eius saepe aliquid, fuga possimus corrupti. Blanditiis, saepe recusandae. Tempora, facere!
+            </div>
         </div>
     </div>
 
+    {{-- Cautari similare --}}
     {{-- <div class="mt-16">
         <div class="cautari">Cautari similare</div>
         <div class="mt-8 grid grid-4 gap-xs">
