@@ -119,7 +119,7 @@
                                 </div>
                             @endif
 
-                            @if ($product->variations->pluck('quantity')->filter()->count())
+                            {{-- @if ($product->variations->pluck('quantity')->filter()->count())
                                 <div class="form-group">
                                     <label class="section-info" id="choose-type">Selecteaza ambalare</label>
                                     <select aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
@@ -128,7 +128,21 @@
                                         @endforeach
                                     </select>
                                 </div>
+                            @endif --}}
+
+                            @if ($product->variations->pluck('quantity')->filter()->count())
+                                <div class="form-group">
+                                    <label class="section-info" id="choose-type">Selecteaza ambalare</label>
+                                    <select aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
+                                        @foreach ($product->variations->unique('quantity') as $variation)
+                                            <option value="{{ $variation->quantity }}">
+                                                {{ $variation->quantity }} {{ $variation->measurementUnit->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             @endif
+
 
                             <div class="form-group">
                                 <label id="choose-quantity" class="section-info">Selecteaza cantitate</label>
