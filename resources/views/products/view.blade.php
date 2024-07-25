@@ -47,7 +47,7 @@
                             </div>
                         </div>
 
-                        @if (!$product->is_inactive)
+                        @if ($product->active)
                             <div class="col">
                                 @if (!empty($initialVariation->price))
                                     <div class="row items-baseline price-container">
@@ -65,7 +65,7 @@
                         @endif
 
                         <div class="col gap-md in-stoc-container mt-16">
-                            @if (!$product->is_inactive)
+                            @if ($product->active)
                                 <div class="in-stoc">
                                     <div class="flex align-center">
                                         <img src="{{ asset('resources/new_design/icons/check-mark.svg') }}" alt="checkmark-icon" title="checkmark-icon" width="24" height="24">
@@ -102,7 +102,7 @@
                         </div>
                     </div>
 
-                    @if (!$product->is_inactive)
+                    @if ($product->active)
                         <div class="inputs-mt col gap-md">
                             @if ($product->variations->pluck('colour')->filter()->count())
                                 <div class="form-group">
@@ -143,7 +143,9 @@
                         <input type="hidden" name="price_no_tva" id="priceNoTvaInput" value="{{ $initialVariation->price_no_tva }}">
                         <input type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
                         <input type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
-                        <input type="submit" id="bord" class="{{ empty($initialVariation->price) || $product->is_inactive ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || $product->is_inactive ? 'disabled' : '' }}>
+                        {{-- <input type="submit" id="bord" class="{{ empty($initialVariation->price) || $product->is_inactive ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || $product->is_inactive ? 'disabled' : '' }}> --}}
+                        <input type="submit" id="bord" class="{{ empty($initialVariation->price) || !$product->active ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || !$product->active ? 'disabled' : '' }}>
+
                     </div>
 
                     <a href="{{ url('/produse-adaugate') }}" title="Cos" class="flex h-full">

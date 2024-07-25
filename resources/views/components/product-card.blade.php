@@ -24,7 +24,7 @@
         </button>
       </form>
       <div class="absolute z-10 stoc-container">
-        @if (!$product->is_inactive)
+        @if ($product->active)
           <div class="in-stoc">
             <div class="flex align-center">
               <img width="18" height="18" src="{{ asset('resources/new_design/icons/check-mark.svg') }}" alt="checkmark-icon" title="checkmark-icon">
