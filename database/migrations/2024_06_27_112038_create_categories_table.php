@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('og_image_id')->nullable()->constrained('media');
             $table->foreignId('twitter_image_id')->nullable()->constrained('media');
             $table->string('name')->unique();
-            $table->string('slug')->unique();
+            $table->string('slug')->unique()->index();
             $table->text('description')->nullable();
             $table->boolean('active')->default(0);
             $table->json('seo')->nullable();
