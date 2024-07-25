@@ -222,11 +222,6 @@
     </div>
 
     <div class="mt-16 mt-custom">
-        {{-- <div class="tabs">
-            <button class="tablink" onclick="openTab(event, 'Descriere')">Descriere</button>
-            <button class="tablink" onclick="openTab(event, 'DetaliiUtilizare')">Detalii de utilizare</button>
-            <button class="tablink" onclick="openTab(event, 'CaracteristiciTehnice')">Caracteristici Tehnice</button>
-        </div> --}}
         <div class="tabs-selector-row">
             <button type="submit" name="current_tab" value="0" role="tab" class="btn user-valid valid" option="0" aria-selected="true" tabindex="0" selected=""><span>Descriere</span></button>
             <button type="submit" name="current_tab" value="1" role="tab" class="btn user-valid valid" option="1" aria-selected="false" tabindex="0"><span>Detalii de utilizare</span></button>
@@ -333,6 +328,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
     packagingSelect.addEventListener('change', updateVariation);
     colorSelect.addEventListener('change', updateVariation);
+
+    // Initial display setup
+    document.querySelector('.tab-content').style.display = 'block';
+    document.querySelector('.tab-content').classList.add('active');
+
+    // Tabs functionality
+    const tabs = document.querySelectorAll('.tabs-selector-row button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach((tab, index) => {
+        tab.addEventListener('click', function(event) {
+            // Remove active class from all tabs and contents
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(tc => {
+                tc.style.display = 'none';
+                tc.classList.remove('active');
+            });
+
+            // Add active class to the clicked tab and corresponding content
+            tab.classList.add('active');
+            tabContents[index].style.display = 'block';
+            tabContents[index].classList.add('active');
+        });
+    });
 });
 </script>
 @endsection
