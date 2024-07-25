@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('category_page_link_title')->nullable();
             $table->string('h2_contact_title')->nullable();
             $table->string('h3_contact_title')->nullable();
-            $table->string('price_disclaimer')->nullable();
+            $table->mediumText('price_disclaimer')->nullable();
 
             $table->text('category_page_description')->nullable();
             $table->text('description')->nullable();
