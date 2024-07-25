@@ -1753,3 +1753,8 @@ a:active {
 /* .tab-content {
   background-color: white;
 } */
+
+amp-img,
+amp-lightbox {
+  display: none;
+}

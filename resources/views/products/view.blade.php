@@ -252,19 +252,19 @@
         <div class="tab-content-container">
 
             <div id="Descriere" class="tab-content active">
-                {{-- {!! $product->description !!} --}}
-                Descriere
+                {!! $product->description !!}
+                {{-- Descriere --}}
                 
             </div>
 
             <div id="DetaliiUtilizare" class="tab-content">
-                {{-- {!! $product->usage_details !!} --}}
-                Detalii Utilizare
+                {!! $product->usage_details !!}
+                {{-- Detalii Utilizare --}}
             </div>
 
             <div id="CaracteristiciTehnice" class="tab-content">
-                {{-- {!! $product->technical_details !!} --}}
-                Caracteristici tehnice
+                {!! $product->technical_details !!}
+                {{-- Caracteristici tehnice --}}
             </div>
         </div>
     </div>
