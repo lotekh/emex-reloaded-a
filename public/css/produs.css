@@ -161,11 +161,11 @@ ul.filter-list li {
 }
 
 .expand .accordion-header span::before {
-  content: 'Mai multe';
+  content: "Mai multe";
 }
 
 .expand[expanded] .accordion-header span::before {
-  content: 'Mai putine';
+  content: "Mai putine";
 }
 
 #filters-form {
@@ -310,7 +310,7 @@ html {
 }
 .ul-feature,
 .ul-feature li {
-  list-style: url('resources/images/checklist-icon.png') none outside;
+  list-style: url("resources/images/checklist-icon.png") none outside;
   margin-left: 20px;
 }
 /* .hr-line {
@@ -419,7 +419,7 @@ a:active {
   color: #009;
 }
 .p_t_h1:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 50%;
   left: 25%;
@@ -488,7 +488,12 @@ a:active {
 }
 #pwgw {
   width: 100%;
+  gap: 16px;
   display: none;
+  -ms-grid-rows: (96px);
+  grid-template-rows: repeat(1, 96px);
+  -ms-grid-columns: (1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 @media screen and (min-width: 768px) {
@@ -519,7 +524,7 @@ a:active {
   text-indent: -10000px;
   width: 30px;
   height: 30px;
-  background-image: url('./resources/images/sprite.png');
+  background-image: url("./resources/images/sprite.png");
   display: inline-block;
   background-position: 261px 2px;
   cursor: pointer;
@@ -918,7 +923,7 @@ a:active {
   }
 }
 .arrow::after {
-  content: '\27A4';
+  content: "\27A4";
   color: #001d4d;
 }
 /* .icon-button-down {
@@ -1685,7 +1690,7 @@ a:active {
   margin-bottom: 10px;
 }
 .ospc:after {
-  content: '';
+  content: "";
   width: 0;
   height: 0;
   border-left: 50px solid transparent;
@@ -1725,4 +1730,19 @@ a:active {
   .excelent-img {
     margin-right: 10%;
   }
+}
+
+/* .product-page .min-row-height {
+  -ms-grid-rows: (96px);
+  grid-template-rows: repeat(1, 96px);
+}
+
+.grid-3 {
+  -ms-grid-columns: (1fr);
+  grid-template-columns: repeat(3, 1fr);
+} */
+
+#produs-logo {
+  width: 368px;
+  height: 68px;
 }

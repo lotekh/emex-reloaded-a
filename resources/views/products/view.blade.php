@@ -1,5 +1,14 @@
 @extends('layout.layout')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/produs.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/product-card.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/product-page.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tabs.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
+@endsection
+
 @section('content')
 @php
     $averageRating = $product->reviews->avg('rating') ?? 0;
@@ -218,46 +227,99 @@
         </div>
 
         <div id="Descriere" class="tabcontent">
-            {!! $product->descriere !!}
+            {{-- {!! $product->description !!} --}}
+            {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi autem quia eveniet deserunt minima reprehenderit assumenda sunt voluptatem quo cumque. --}}
+            <div class="descript_par">
+                <p>
+                    <span class="alineat_span"></span>
+                    <strong><em>Vopsea Lavabila de Exterior cu Cuartz “Emex QT”</em></strong> - produs profesional de dispersie, 
+                    <em class="green-mark">de generatie noua</em>, diluabil cu apa, de calitate excelenta, pe baza de polimeri acrilici de mare performanta, aditivi specializati si adaos de cuartz micronizat, cu rolul de a conferi o duritate deosebita produsului, pentru acoperiri de exterior. Are aspect mat, putere deosebita de acoperire, aderenta foarte buna la suport si, mai ales, o duritate avansata a peliculei finale.
+                    <br>
+                    <span class="alineat_span"></span>
+                    Respectarea instructiunilor de aplicare, specifice pentru aceasta vopsea lavabila de exterior, va asigura, o rezistenta maxima la factorii de mediu si, mai ales, la imbatranire, fara deteriorarea aspectului in timp.
+                    <br>
+                    <span class="alineat_span"></span>
+                    Caracteristica cea mai importanta si de interes, pentru aceasta 
+                    <em>vopsea lavabila profesionala de exterior</em>, este 
+                    <em class="green-mark">pelicula extrem de rezistenta, de o mare duritate, dar si cu durabilitate pe perioade foarte indelungate de timp</em>.
+                    <br>
+                    <span class="alineat_span"></span>
+                    Se fabrica in multiple nuante, 
+                    <a href="/cartela-culori-lavabile" title="Cartela paletar de culori">
+                        <em class="link_color1">conform paletarului de culori</em>
+                    </a>, (prezentat informativ), dar se poate nuanta si prin adaugarea de paste de colorare, produse sau recomandate de Romtehnochim.
+                </p>
+            </div>
+            
+            <p class="Caracteristici"><strong>Caracteristici principale:</strong></p>
+            
+            <div class="description_badge_image">
+                <img layout="responsive" width="180" height="180" src="/resources/images/general/Hi-tech-badge.png" alt="Vopsea lavabila exterior calitate profesionala" title="Vopsea lavabila exterior cu cuartz">
+            </div>
+            
+            <ul class="ul-feature">
+                <li>Aderenta mare la suporturi minerale;</li>
+                <li>Pelicula dura datorata adaosului de cuart;</li>
+                <li>Rezistenta superioara la uzura;</li>
+                <li>Rezistenta ridicata la umiditate;</li>
+                <li>Efect de "Lotus" pentru rezistenta la murdarire;</li>
+                <li>Proprietati de autocuratate;</li>
+                <li>Putere mare de acoperire;</li>
+                <li>Rezistenta la medii alcaline;</li>
+                <li>Rezistenta la radiatii UV;</li>
+                <li>Rezistenta la socuri mecanice si intemperii;</li>
+                <li>Nu se exfoliaza, nu se creteaza;</li>
+                <li>Previne aparitia eflorescentelor.</li>
+            </ul>
+            <br>
+            
         </div>
 
         <div id="DetaliiUtilizare" class="tabcontent">
-            {!! $product->detalii_utilizare !!}
+            {{-- {!! $product->usage_details !!} --}}
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error quia, perspiciatis veniam voluptates neque facere dolores aspernatur laborum dignissimos eaque.
         </div>
 
         <div id="CaracteristiciTehnice" class="tabcontent">
-            {!! $product->caracteristici_tehnice !!}
+            {{-- {!! $product->technical_details !!} --}}
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat eius saepe aliquid, fuga possimus corrupti. Blanditiis, saepe recusandae. Tempora, facere!
         </div>
     </div>
 
-    <div class="mt-16">
+    {{-- <div class="mt-16">
         <div class="cautari">Cautari similare</div>
         <div class="mt-8 grid grid-4 gap-xs">
             @if ($product->similar_products && $product->similar_products->count())
                 @foreach ($product->similar_products as $ind => $similar_product)
                     <div>
-                        @include('widgets.product_card', ['key' => $ind, 'product' => $similar_product])
+                        @include('components.product_card', ['key' => $ind, 'product' => $similar_product])
                     </div>
                 @endforeach
             @endif
         </div>
-    </div>
+    </div> --}}
 
     <div class="w-full grid grid-3 min-row-height gap-lg mt-16" id="pwgw">
         <div class="badge">
             <div class="relative w-full h-full">
-                <img width="363" height="68" src="{{ asset('resources/images/Fabricat-in-Romania.png') }}" alt="Produs fabricat in Romania" title="Produs de fabricatie romaneasca">
+                <div id="produs-logo">
+                    <img width="363" height="68" src="{{ asset('resources/images/Fabricat-in-Romania.png') }}" alt="Produs fabricat in Romania" title="Produs de fabricatie romaneasca">
+                </div>
             </div>
         </div>
         <div class="badge">
             <div class="relative w-full h-full">
-                <img width="363" height="68" src="{{ asset('resources/images/iso.png') }}" alt="Romtehnochim asigura garantia calitatii" title="Emex - produse certificate ISO">
+                <div id="produs-logo">
+                    <img width="363" height="68" src="{{ asset('resources/images/iso.png') }}" alt="Romtehnochim asigura garantia calitatii" title="Emex - produse certificate ISO">
+                </div>
             </div>
         </div>
         <div class="badge">
-            <a class="excelent-img col justify-center" href="https://excellent-sme-plus-romania.safesigned.com/romtehnochim-srl/" title="Certificat excelenta in afaceri">
-                <img width="363" height="68" src="{{ asset('resources/general/Romtehnochim-certificat-de-excelenta.png') }}" alt="Verificare certificat Coface Camera de Comert" title="Certificat excelenta in afaceri">
-            </a>
+            <div id="produs-logo">
+                <a class="excelent-img col justify-center" href="https://excellent-sme-plus-romania.safesigned.com/romtehnochim-srl/" title="Certificat excelenta in afaceri">
+                    <img width="363" height="68" src="{{ asset('resources/general/Romtehnochim-certificat-de-excelenta.png') }}" alt="Verificare certificat Coface Camera de Comert" title="Certificat excelenta in afaceri">
+                </a>
+            </div>
         </div>
     </div>
 </div>
