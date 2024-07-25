@@ -39,12 +39,16 @@
                             <h2 class="subtitle">{{ $product->sub_title }}</h2>
                             <div id="product_categories" class="row align-center">
                                 <p class="space-xl">Categorii: </p>
-                                @foreach ($categories_products as $category_product)
+                                @php
+                                    $uniqueCategories = $categories_products->unique('id');
+                                @endphp
+                                @foreach ($uniqueCategories as $category_product)
                                     <a class="font-sm" href="{{ url($category_product->slug) }}">
                                         {{ $category_product->name }}
                                     </a>
                                 @endforeach
                             </div>
+                            
                         </div>
 
                         @if ($product->active)
