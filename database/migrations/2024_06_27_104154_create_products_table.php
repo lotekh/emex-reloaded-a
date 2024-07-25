@@ -44,10 +44,12 @@ return new class extends Migration
 
             $table->json('seo')->nullable();
             $table->json('jsonld')->nullable();
-            $table->string('consumption_slug')->nullable();
-            $table->string('application_slug')->nullable();
+            $table->json('consumption')->nullable();
             $table->json('consumption_seo')->nullable();
             $table->json('consumption_jsonld')->nullable();
+
+            $table->string('consumption_slug')->nullable();
+            $table->string('application_slug')->nullable();
 
             $table->date('available_since')->nullable();
             $table->timestamps();
