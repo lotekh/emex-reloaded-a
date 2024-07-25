@@ -1,0 +1,86 @@
+form input,
+form textarea,
+form select {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: var(--white);
+  border: 1px solid var(--lightgrey);
+  color: var(--darkgrey);
+}
+
+form input[type='checkbox'] {
+  width: 16px;
+  height: 100%;
+  min-height: 16px;
+  background-color: var(--white);
+  border: 1px solid var(--grey);
+  border-radius: 4px;
+}
+
+form textarea {
+  resize: vertical;
+}
+
+form input::-webkit-input-placeholder,
+form textarea::-webkit-input-placeholder {
+  font-size: 14px;
+  color: var(--grey);
+}
+
+form input::-moz-placeholder,
+form textarea::-moz-placeholder {
+  font-size: 14px;
+  color: var(--grey);
+}
+
+form input:-ms-input-placeholder,
+form textarea:-ms-input-placeholder {
+  font-size: 14px;
+  color: var(--grey);
+}
+
+form input::-ms-input-placeholder,
+form textarea::-ms-input-placeholder {
+  font-size: 14px;
+  color: var(--grey);
+}
+
+form input::placeholder,
+form textarea::placeholder {
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: var(--grey);
+}
+
+form .form-group {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+form .form-group label {
+  font-size: 14px;
+  color: var(--darkgrey);
+  margin-bottom: 4px;
+  margin-left: 2px;
+}
+
+form .form-validation {
+  margin-top: 4px;
+  color: var(--red);
+  font-size: 12px;
+}
+
+form .disclaimer {
+  font-size: 14px;
+  color: var(--darkgrey);
+}
