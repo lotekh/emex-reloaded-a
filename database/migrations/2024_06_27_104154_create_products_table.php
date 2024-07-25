@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('og_image_id')->nullable()->constrained('media');
+            $table->foreignId('consumption_og_image_id')->nullable()->constrained('media');
+            $table->foreignId('twitter_image_id')->nullable()->constrained('media');
+            $table->foreignId('consumption_twitter_image_id')->nullable()->constrained('media');
+            $table->foreignId('featured_image_id')->nullable()->constrained('media');
 
             $table->string('slug')->unique();
             $table->string('name');
@@ -40,6 +45,8 @@ return new class extends Migration
             $table->json('seo')->nullable();
             $table->json('jsonld')->nullable();
             $table->json('consumption')->nullable();
+            $table->json('consumption_seo')->nullable();
+            $table->json('consumption_jsonld')->nullable();
 
             $table->date('available_since')->nullable();
             $table->timestamps();

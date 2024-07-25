@@ -4,14 +4,15 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Helpers\JSONLD;
+use App\Helpers\SeoForm;
 use App\Models\Product;
 use Filament\Forms;
+use Filament\Forms\Components\Tabs;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProductResource extends Resource
 {
@@ -23,45 +24,83 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('plain_name')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('sub_title')
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('category_page_description')
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('category_page_link_title')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('category_page_title')
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('usage_details')
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('technical_details')
-                    ->columnSpanFull(),
-                Forms\Components\Toggle::make('active')
-                    ->required(),
-                Forms\Components\Toggle::make('has_palette')
-                    ->required(),
-                Forms\Components\Toggle::make('has_instructions')
-                    ->required(),
-                Forms\Components\Toggle::make('has_calculus')
-                    ->required(),
-                Forms\Components\Toggle::make('has_technical_file')
-                    ->required(),
-                Forms\Components\Toggle::make('has_hardener')
-                    ->required(),
-                Forms\Components\TextInput::make('h2_contact_title')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('h3_contact_title')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('price_disclaimer')
-                    ->maxLength(255),
-                Forms\Components\DatePicker::make('available_since'),
-                Forms\Components\Toggle::make('is_package'),
+                Tabs::make('Tabs')
+                    ->columnSpanFull()
+                    ->tabs([
+                        Tabs\Tab::make('General Information')
+                            ->schema([
+                                Forms\Components\TextInput::make('name')
+                                    ->required()
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('slug')
+                                    ->required()
+                                    ->unique(ignoreRecord: true)
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('plain_name')
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('sub_title')
+                                    ->maxLength(255),
+                                Forms\Components\RichEditor::make('description')
+                                    ->columnSpanFull(),
+                                Forms\Components\RichEditor::make('usage_details')
+                                    ->columnSpanFull(),
+                                Forms\Components\RichEditor::make('technical_details')
+                                    ->columnSpanFull(),
+                                Forms\Components\Grid::make(3)
+                                    ->schema([
+                                        Forms\Components\Toggle::make('has_palette')
+                                            ->default(true),
+                                        Forms\Components\Toggle::make('has_instructions')
+                                            ->default(true),
+                                        Forms\Components\Toggle::make('has_calculus')
+                                            ->default(true),
+                                        Forms\Components\Toggle::make('has_technical_file')
+                                            ->default(true),
+                                        Forms\Components\Toggle::make('has_hardener')
+                                            ->default(true),
+                                        Forms\Components\Toggle::make('is_package'),
+                                    ]),
+                                Forms\Components\Toggle::make('active')
+                                    ->required()
+                                    ->columnSpan(1),
+                            ])
+                            ->columns(2),
+                        Tabs\Tab::make('Category')
+                            ->columns(2)
+                            ->schema([
+                                Forms\Components\TextInput::make('category_page_title')
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('category_page_link_title')
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('h2_contact_title')
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('h3_contact_title')
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('price_disclaimer')
+                                    ->columnSpanFull()
+                                    ->maxLength(255),
+                                Forms\Components\RichEditor::make('category_page_description')
+                                    ->columnSpanFull(),
+                            ]),
+                        Tabs\Tab::make('SEO')
+                            ->schema(SeoForm::make()),
+                        Tabs\Tab::make('JSON-LD')
+                            ->schema(JSONLD::make()),
+                        Tabs\Tab::make('Consumption')
+                            ->schema([
+                                        Forms\Components\TextInput::make('consumption.surface_name')
+                                            ->required(),
+                                        Forms\Components\TextInput::make('consumption.surface_types')
+                                            ->required(),
+                                        Forms\Components\TextInput::make('consumption.surface_type_name')
+                                            ->required(),
+                            ]),
+
+                        Tabs\Tab::make('Consumption SEO')
+                            ->schema(SeoForm::make(prefix: 'consumption_')),
+                        Tabs\Tab::make('Consumption JSON-LD')
+                            ->schema(JSONLD::make(prefix: 'consumption_')),
+                    ])
             ]);
     }
 
