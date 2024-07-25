@@ -86,16 +86,15 @@ class ProductResource extends Resource
                             ->schema(SeoForm::make()),
                         Tabs\Tab::make('JSON-LD')
                             ->schema(JSONLD::make()),
-                        Tabs\Tab::make('Consumption')
-                            ->schema([
-                                        Forms\Components\TextInput::make('consumption.surface_name')
-                                            ->required(),
-                                        Forms\Components\TextInput::make('consumption.surface_types')
-                                            ->required(),
-                                        Forms\Components\TextInput::make('consumption.surface_type_name')
-                                            ->required(),
-                            ]),
-
+                        // Tabs\Tab::make('Consumption')
+                        //     ->schema([
+                        //                 Forms\Components\TextInput::make('consumption.surface_name')
+                        //                     ->required(),
+                        //                 Forms\Components\TextInput::make('consumption.surface_types')
+                        //                     ->required(),
+                        //                 Forms\Components\TextInput::make('consumption.surface_type_name')
+                        //                     ->required(),
+                        //     ]),
                         Tabs\Tab::make('Consumption SEO')
                             ->schema(SeoForm::make(prefix: 'consumption_')),
                         Tabs\Tab::make('Consumption JSON-LD')
