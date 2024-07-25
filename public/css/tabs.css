@@ -32,11 +32,19 @@ amp-selector [option][selected] {
   background-color: var(--oceanblue);
 }
 
-.tabs-selector-row .btn[selected] {
+/* .tabs-selector-row .btn[selected] {
   background-color: var(--oceanblue);
 }
 
 .tabs-selector-row .btn[selected] span {
+  color: var(--white);
+} */
+
+.tabs-selector-row .btn.selected {
+  background-color: var(--oceanblue);
+}
+
+.tabs-selector-row .btn.selected span {
   color: var(--white);
 }
 
@@ -51,6 +59,7 @@ amp-selector [option][selected] {
   padding: 10px;
   background-color: var(--white);
   border-radius: 0 0 8px 8px;
+  display: none;
 }
 
 .tab-content-container .tab-content.active {
@@ -132,7 +141,7 @@ amp-selector [option][selected] {
 #al ul li:before,
 #ab ul li:before,
 #am ul li:before {
-  content: '*';
+  content: "*";
   color: #f13627;
   font-size: 25px;
   position: relative;
