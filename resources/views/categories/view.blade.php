@@ -1,6 +1,12 @@
 <!-- resources/views/categories/view.blade.php -->
 @extends('layout.layout')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/produs.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/product-card.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
+@endsection
+
 @section('content')
 <?php
 $base_url = url('/');
