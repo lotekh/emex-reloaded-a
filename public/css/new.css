@@ -558,11 +558,23 @@
   flex-direction: column;
   width: 100%;
   text-align: center;
-  background: url("/resources/images/Lacuri-si-vopsele-emex.jpg");
+  /* background: url("/resources/images/Lacuri-si-vopsele-emex.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
   margin-top: 0px;
   height: calc(100vw / 3.87);
+}
+
+@media screen and (min-width: 1024px) {
+  #homepage-header {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #homepage-header {
+    display: none;
+  }
 }
 
 #term_cond_header {
