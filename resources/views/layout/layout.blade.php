@@ -642,7 +642,9 @@
     @include('components.sidebar-contact', ['secondary_title' => 'vopsele'])
 
 
+    
 <script>
+
     function toggleSidebar() {
         var sidebar = document.getElementById('sidebar-left');
         if(sidebar.classList.contains('hidden')) {
@@ -666,10 +668,15 @@
 
     function closeModal(modalId) {
         document.getElementById(modalId).style.display = 'none';
+
+        // Hide the container when closing the modal
+        var authContainer = document.querySelector('.autentificare-1');
+        authContainer.style.opacity = '0';
+        authContainer.style.display = 'none';
     }
 
     function switchModal(currentModalId, targetModalId) {
-        closeModal(currentModalId);
+        document.getElementById(currentModalId).style.display = 'none';
         document.getElementById(targetModalId).style.display = 'flex';
     }
 
@@ -677,6 +684,7 @@
         var authContainer = document.querySelector('.autentificare-1');
         authContainer.style.opacity = '1';
         authContainer.style.display = 'inline-block';
+        document.getElementById('auth-lightbox').style.display = 'flex';
     });
 
 </script>
