@@ -94,9 +94,19 @@
                         <a href="{{ url('/contul-meu#facturare') }}" title="Facturare">
                             Facturare
                         </a>
-                        <a href="{{ url('/logout') }}" id="logoutButton" title="Iesire din cont">
+                        {{-- <a href="#" id="logoutButton" title="Iesire din cont">
+                            Iesire din cont
+                        </a> --}}
+                        <!-- Buton de logout -->
+                        <a href="#" id="butonlogout" title="Iesire din cont">
                             Iesire din cont
                         </a>
+
+                        <!-- Formular de logout invizibil -->
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
                     @else
                         <button id="auth_lightbox_trigger" class="auth" role="button" tabindex="0" aria-label="Autentificare">
                             Autentificare
@@ -642,7 +652,7 @@
     @include('components.sidebar-contact', ['secondary_title' => 'vopsele'])
 
 
-    
+
 <script>
 
     function toggleSidebar() {
@@ -686,6 +696,14 @@
         authContainer.style.display = 'inline-block';
         document.getElementById('auth-lightbox').style.display = 'flex';
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('butonlogout').addEventListener('click', function (event) {
+        event.preventDefault();
+        document.getElementById('logout-form').submit();
+    });
+});
+
 
 </script>
     
