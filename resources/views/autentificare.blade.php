@@ -1,3 +1,6 @@
+@extends('layout.layout')
+
+@section('content')
 <div id="auth-lightbox" class="w-full h-screen flex justify-center align-center modal">
     <div class="modal-container">
         <div class="relative header row justify-between align-center">
@@ -19,12 +22,12 @@
                 <div class="form-group w-full">
                     <label for="form-login-email">Adresa de email</label>
                     <input class="w-full" id="form-login-email" type="text" name="email" required>
-                    <p class="form-validation">Completează acest câmp.</p>
+                    {{-- <p class="form-validation">Completează acest câmp.</p> --}}
                 </div>
                 <div class="form-group w-full">
                     <label for="form-login-password">Parola</label>
                     <input class="w-full" id="form-login-password" type="password" name="password" required>
-                    <p class="form-validation">Completează acest câmp.</p>
+                    {{-- <p class="form-validation">Completează acest câmp.</p> --}}
                 </div>
                 <div class="w-full flex justify-center">
                     <button type="submit" class="w-fit btn rounded-lg px-16 mt-32">Autentifica-te</button>
@@ -56,27 +59,27 @@
                 <div class="form-group w-full">
                     <label for="form-register-last-name">Nume</label>
                     <input class="w-full" id="form-register-last-name" type="text" name="last_name" required>
-                    <p class="form-validation">Completează acest câmp.</p>
+                    {{-- <p class="form-validation">Completează acest câmp.</p> --}}
                 </div>
                 <div class="form-group w-full">
                     <label for="form-register-first-name">Prenume</label>
                     <input class="w-full" id="form-register-first-name" type="text" name="first_name" required>
-                    <p class="form-validation">Completează acest câmp.</p>
+                    {{-- <p class="form-validation">Completează acest câmp.</p> --}}
                 </div>
                 <div class="form-group w-full">
                     <label for="form-register-email">Adresa de email</label>
                     <input class="w-full" id="form-register-email" type="text" name="email" required>
-                    <p class="form-validation">Completează acest câmp.</p>
+                    {{-- <p class="form-validation">Completează acest câmp.</p> --}}
                 </div>
                 <div class="form-group w-full">
                     <label for="form-register-telefon">Telefon</label>
                     <input class="w-full" id="form-register-telefon" type="text" name="phone" required>
-                    <p class="form-validation">Completează acest câmp.</p>
+                    {{-- <p class="form-validation">Completează acest câmp.</p> --}}
                 </div>
                 <div class="form-group w-full">
                     <label for="form-register-password">Parola</label>
                     <input class="w-full" id="form-register-password" type="password" name="password" required>
-                    <p class="form-validation">Completează acest câmp.</p>
+                    {{-- <p class="form-validation">Completează acest câmp.</p> --}}
                 </div>
                 <div class="row align-center">
                     <input type="checkbox" class="hidden" name="terms" id="tc" required checked>
@@ -90,7 +93,7 @@
                         <a href="{{ url('/termeni-si-conditii') }}"><em class="link_color1">termeni si conditii</em>.</a>
                     </span>
                 </div>
-                <p class="form-validation">Bifează caseta dacă vrei să continui.</p>
+                {{-- <p class="form-validation">Bifează caseta dacă vrei să continui.</p> --}}
                 <div class="w-full flex justify-center">
                     <button type="submit" class="w-fit btn btn-blue rounded-lg px-16 mt-16">Creeaza Cont</button>
                 </div>
@@ -117,7 +120,7 @@
                 <div class="form-group w-full">
                     <label for="form-recover-password" class="form-label">E-mail</label>
                     <input class="w-full" id="form-recover-password" type="email" name="email" required>
-                    <p class="form-validation">Completează acest câmp.</p>
+                    {{-- <p class="form-validation">Completează acest câmp.</p> --}}
                 </div>
                 <button type="submit" class="w-fit btn btn-blue rounded-lg px-16 mt-64">Recupereaza Parola</button>
             </form>
@@ -135,3 +138,5 @@
         document.getElementById(targetModalId).style.display = 'flex';
     }
 </script>
+
+@endsection

@@ -31,8 +31,11 @@ Route::view('/test-form', 'test-form');
 Route::post('/side-contact', [ContactController::class, 'store'])->name('side-contact.store');
 Route::view('/thank-you', 'thank-you')->name('thank-you');
 
+Route::get('/autentificare', function () {
+    return view('autentificare');
+})->name('autentificare');
+
 // Rute pentru slug-uri
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
 
 Route::post('/get-variation', [ProductsController::class, 'getVariation'])->name('product.getVariation');
-
