@@ -570,7 +570,7 @@
                 </ul>
             </div>
             <div class="categorii" id="produse" onclick="toggleAccordion('produse')">
-                <header >Produse</header>
+                <header>Produse</header>
                 <ul class="dropdown-menu" id="produse-menu">
                     <li id="apmim_mob"><a href="{{ url('/produse') }}" title="toate produsele">Toate Produsele</a></li>
 

@@ -67,7 +67,7 @@ use Illuminate\Support\Str;
         </div>
     </li>
 
-    <li class="dropdown products-dropdown">
+    {{-- <li class="dropdown products-dropdown">
         <span class="dropdown-toggle menuitm" data-toggle="dropdown">
             Aplicare
             <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
@@ -87,6 +87,48 @@ use Illuminate\Support\Str;
                 <li class="blue-item"><a href="{{ url('/aplicare-vopsele-hidrosolubile') }}" title="Membrana Poliuteranica">Vopsele Hidrosolubile</a></li>
             </ul>
         </div>
+
+    </li> --}}
+
+    <li class="dropdown products-dropdown">
+        <span class="dropdown-toggle menuitm" data-toggle="dropdown">
+            Aplicare
+            <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
+        </span>
+        <div class="dropdown-menu">
+            <ul class="category-wrapper">
+                <div class="products-dropdown-categories">
+                    <a href="{{ url('/aplicare-vopsele-lavabile') }}" title="Aplicare vopsele lavabile">Vopsele Lavabile</a>
+                </div>
+                <div class="products-dropdown-categories blue-item">
+                    <a href="{{ url('/aplicare-email') }}" title="Aplicare email">Emailuri Decorative</a>
+                </div>
+                <div class="products-dropdown-categories">
+                    <a href="{{ url('/aplicare-lacuri-alchidice') }}" title="Aplicare lacuri alchidice">Lacuri Monocomponente</a>
+                </div>
+                <div class="products-dropdown-categories blue-item">
+                    <a href="{{ url('/aplicare-tencuiala-decorativa') }}" title="Tencuieli Decorative">Tencuieli Decorative</a>
+                </div>
+                <div class="products-dropdown-categories">
+                    <a href="{{ url('/aplicare-vopsele-grunduri-bicomponente') }}" title="Vopsele Bicomponente">Vopsele Bicomponente</a>
+                </div>
+                <div class="products-dropdown-categories blue-item">
+                    <a href="{{ url('/aplicare-vopsele-pardoseala') }}" title="Vopsele Pardoseala">Vopsele Pardoseala</a>
+                </div>
+                <div class="products-dropdown-categories">
+                    <a href="{{ url('/aplicare-vopsea-marcaj-rutier') }}" title="Vopsea Marcaj Rutier">Vopsea Marcaj Rutier</a>
+                </div>
+                <div class="products-dropdown-categories blue-item">
+                    <a href="{{ url('/aplicare-pardoseli-autonivelante-bicomponente') }}" title="Pardoseli Bicomponente">Pardoseli Bicomponente</a>
+                </div>
+                <div class="products-dropdown-categories">
+                    <a href="{{ url('/aplicare-membrana-hidroizolanta-poliuretanica') }}" title="Membrana Poliuteranica">Membrana Poliuteranica</a>
+                </div>
+                <div class="products-dropdown-categories blue-item">
+                    <a href="{{ url('/aplicare-vopsele-hidrosolubile') }}" title="Membrana Poliuteranica">Vopsele Hidrosolubile</a>
+                </div>
+            </ul>
+        </div>
     </li>
 
     <li class="dropdown products-dropdown">
@@ -96,10 +138,18 @@ use Illuminate\Support\Str;
         </span>
         <div class="dropdown-menu">
             <ul class="category-wrapper">
-                <li><a href="{{ url('/aplicare-covor-epoxidic-stb') }}" title="Pardoseli Cuartz Epoxi">Pardoseli Cuartz Epoxi</a></li>
-                <li class="blue-item"><a href="{{ url('/aplicare-pardoseala-epoxidica-autonivelanta') }}" title="Autonivelanta Epoxi">Autonivelanta Epoxi</a></li>
-                <li><a href="{{ url('/vopsire-epoxidica-pardoseli') }}" title="Vopsiri Epoxidice">Vopsiri Epoxidice</a></li>
-                <li class="blue-item"><a href="{{ url('/servicii') }}" title="Vopsiri Epoxidice">Servicii Generale</a></li>
+                <div class="products-dropdown-categories">
+                    <a href="{{ url('/aplicare-covor-epoxidic-stb') }}" title="Pardoseli Cuartz Epoxi">Pardoseli Cuartz Epoxi</a>
+                </div>
+                <div class="products-dropdown-categories blue-item">
+                    <a href="{{ url('/aplicare-pardoseala-epoxidica-autonivelanta') }}" title="Autonivelanta Epoxi">Autonivelanta Epoxi</a>
+                </div>
+                <div class="products-dropdown-categories">
+                    <a href="{{ url('/vopsire-epoxidica-pardoseli') }}" title="Vopsiri Epoxidice">Vopsiri Epoxidice</a>
+                </div>
+                <div class="products-dropdown-categories blue-item">
+                    <a href="{{ url('/servicii') }}" title="Vopsiri Epoxidice">Servicii Generale</a>
+                </div>
             </ul>
         </div>
     </li>
@@ -111,7 +161,13 @@ use Illuminate\Support\Str;
         </span>
         <div class="dropdown-menu">
             <ul class="category-wrapper">
-                {{-- de luat $categories din back-end --}}
+                @foreach ($categories as $ind => $category)
+                    <div class="products-dropdown-categories{{ $ind % 2 > 0 ? ' blue-item' : '' }}">
+                        <a href="{{ url($category->slug) }}">
+                            {{ $category->name }}
+                        </a>
+                    </div>
+                @endforeach
             </ul>
         </div>
     </li>
@@ -121,13 +177,35 @@ use Illuminate\Support\Str;
             Culori
             <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
         </span>
-        <ul class="dropdown-menu">
-            <div class="category-wrapper">
-                <li><a href="{{ url('/cartela-culori-ral-vopsele') }}" title="Cartela RAL - Emailuri">Cartela RAL - Emailuri</a></li>
-                <li class="blue-item"><a href="{{ url('/cartela-culori-lavabile') }}" title="Paletar Lavabile">Paletar Lavabile</a></li>
-            </div>
-        </ul>
+        <div class="dropdown-menu">
+            <ul class="category-wrapper">
+                <div class="products-dropdown-categories">
+                    <a href="{{ url('/cartela-culori-ral-vopsele') }}" title="Cartela RAL - Emailuri">Cartela RAL - Emailuri</a>
+                </div>
+                <div class="products-dropdown-categories blue-item">
+                    <a href="{{ url('/cartela-culori-lavabile') }}" title="Paletar Lavabile">Paletar Lavabile</a>
+                </div>
+            </ul>
+        </div>
     </li>
+
+    {{-- <li class="dropdown products-dropdown">
+        <span class="dropdown-toggle menuitm" data-toggle="dropdown">
+            Culori
+            <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
+        </span>
+        <div class="dropdown-menu">
+            <ul class="category-wrapper">
+                @foreach ($categories as $ind => $category)
+                    <div class="products-dropdown-categories{{ $ind % 2 > 0 ? ' blue-item' : '' }}">
+                        <a href="{{ url($category->slug) }}">
+                            {{ $category->name }}
+                        </a>
+                    </div>
+                @endforeach
+            </ul>
+        </div>
+    </li> --}}
 
     <li class="dropdown products-dropdown">
         <a href="{{ url('/blog') }}" title="Blog">
