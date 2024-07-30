@@ -88,6 +88,12 @@
                         <a href="{{ url('/wishlist') }}" title="Favorite">
                             Favorite
                         </a>
+                        {{-- <a href="{{ url('/contul-meu?page=') }}" title="Istoric">
+                            Istoric
+                        </a>
+                        <a href="{{ url('/contul-meu#facturare') }}" title="Facturare">
+                            Facturare
+                        </a> --}}
                         <a href="{{ url('/contul-meu?page=') }}" title="Istoric">
                             Istoric
                         </a>
@@ -635,8 +641,10 @@
                 @if (Auth::check())
                     <a href="{{ url('/contul-meu') }}" title="Setari cont">Setari cont</a>
                     <a href="{{ url('/wishlist') }}" title="Favorite">Favorite</a>
-                    <a href="{{ url('/contul-meu?page=istoric') }}" title="Istoric">Istoric</a>
-                    <a href="{{ url('/contul-meu#facturare') }}" title="Facturare">Facturare</a>
+                    {{-- <a href="{{ url('/contul-meu?page=istoric') }}" title="Istoric">Istoric</a>
+                    <a href="{{ url('/contul-meu#facturare') }}" title="Facturare">Facturare</a> --}}
+                    <a href="{{ url('/contul-meu') }}" title="Istoric">Istoric</a>
+                    <a href="{{ url('/contul-meu') }}" title="Facturare">Facturare</a>
                     <a href="{{ url('/logout') }}" title="Iesire">Iesire</a>
                 @else
                     <button id="auth_lightbox_trigger_mobile" class="btn btn-blue" onclick="toggleSidebar(), toggleAuthLightbox()" role="button" aria-label="Autentificare">

@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactPageController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -42,7 +43,17 @@ Route::get('/autentificare', function () {
     return view('autentificare');
 })->name('autentificare');
 
+Route::get('/contul-meu', [UserController::class, 'edit'])->name('user.edit');
+Route::post('/save-detalii-cont', [UserController::class, 'saveDetaliiCont']);
+Route::post('/save-facturare', [UserController::class, 'saveFacturare']);
+Route::post('/save-livrare', [UserController::class, 'saveLivrare']);
+Route::post('/save-schimba-parola', [UserController::class, 'saveSchimbaParola']);
+Route::get('/counties-by-country/{country}', [UserController::class, 'getCountiesByCountry']);
+
 // Rute pentru slug-uri
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
 
 Route::post('/get-variation', [ProductsController::class, 'getVariation'])->name('product.getVariation');
+
+
+
