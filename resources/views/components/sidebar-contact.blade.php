@@ -57,7 +57,7 @@
                     </div>
                 @endif
 
-                <form id="formular-sidebar-contact" class="col w-full" method="POST" action="{{ route('side-contact.store') }}">
+                <form id="formular-sidebar-contact" class="col w-full" method="POST" action="{{ route('contact.store') }}">
                     @csrf
                     <div class="form-group w-full">
                         <label for="side-contact-name">Nume</label>

@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactPageController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -28,7 +29,13 @@ require __DIR__.'/auth.php';
 // });
 
 Route::view('/test-form', 'test-form');
-Route::post('/side-contact', [ContactController::class, 'store'])->name('side-contact.store');
+Route::post('/side-contact', [ContactController::class, 'store'])->name('contact.store');
+
+// Route::get('/contact', [ContactPageController::class, 'show'])->name('contact.show');
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
 Route::view('/thank-you', 'thank-you')->name('thank-you');
 
 Route::get('/autentificare', function () {
