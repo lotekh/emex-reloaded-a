@@ -10,7 +10,7 @@
         <div id="schimb-parola" class="tab btn btn-blue" onclick="showTab('schimb-parola')">Schimb parola</div>
         <div id="istoric" class="tab btn btn-blue" onclick="showTab('istoric')">Istoric</div>
     </div>
-    <div id="tabs-content">
+    <div id="tabs-content-big">
         <!-- Detalii cont -->
         <div id="detalii-cont-content" class="tab-content">
             <form action="{{ url('/save-detalii-cont') }}" method="POST">
