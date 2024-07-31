@@ -9,6 +9,7 @@ use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactPageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CountyController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -49,6 +50,10 @@ Route::post('/save-facturare', [UserController::class, 'saveFacturare']);
 Route::post('/save-livrare', [UserController::class, 'saveLivrare']);
 Route::post('/save-schimba-parola', [UserController::class, 'saveSchimbaParola']);
 Route::get('/counties-by-country/{country}', [UserController::class, 'getCountiesByCountry']);
+
+Route::get('/get-counties-by-country/{country_id}', [CountyController::class, 'getCountiesByCountry']);
+
+
 
 // Rute pentru slug-uri
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');

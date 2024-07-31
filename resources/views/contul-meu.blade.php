@@ -81,9 +81,7 @@
                             <label>Judet</label>
                             <select class="w-full" name="person_county_id" id="person_county_id">
                                 <option value="">Alege judetul</option>
-                                @foreach ($counties as $county)
-                                    <option value="{{ $county->id }}" @if (($user->company_information->person_county_id ?? null) == $county->id) selected @endif>{{ $county->name }}</option>
-                                @endforeach
+                                <!-- Counties will be populated dynamically based on the selected country -->
                             </select>
                         </div>
                         <div class="form-group">
@@ -139,9 +137,7 @@
                             <label>Judet</label>
                             <select class="w-full" name="organization_county_id" id="organization_county_id">
                                 <option value="">Alege judetul</option>
-                                @foreach ($counties as $county)
-                                    <option value="{{ $county->id }}" @if (($user->company_information->organization_county_id ?? null) == $county->id) selected @endif>{{ $county->name }}</option>
-                                @endforeach
+                                <!-- Counties will be populated dynamically based on the selected country -->
                             </select>
                         </div>
                         <div class="form-group">
@@ -199,9 +195,7 @@
                         <label>Judet</label>
                         <select class="w-full" name="delivery_county_id" id="delivery_county_id">
                             <option value="">Alege judetul</option>
-                            @foreach ($counties as $county)
-                                <option value="{{ $county->id }}" @if (($user->delivery_information->delivery_county_id ?? null) == $county->id) selected @endif>{{ $county->name }}</option>
-                            @endforeach
+                            <!-- Counties will be populated dynamically based on the selected country -->
                         </select>
                     </div>
                     <div class="form-group">
@@ -346,7 +340,7 @@
         countrySelects.forEach(countrySelect => {
             countrySelect.addEventListener('change', function () {
                 const countySelect = document.getElementById(this.name.replace('country', 'county'));
-                fetch('/get-counties-by-country/' + this.value)
+                fetch(`/get-counties-by-country/${this.value}`)
                     .then(response => response.json())
                     .then(data => {
                         countySelect.innerHTML = '<option value="">Alege judetul</option>';
