@@ -1,5 +1,10 @@
 @extends('layout.layout')
 
+@section('css')
+    {{-- <link rel="stylesheet" href="{{ asset('css/my-account.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/tabs.css') }}">
+@endsection
+
 @section('content')
 <div class="main-container" id="contul_meu_row">
     <h2>Contul meu</h2>
