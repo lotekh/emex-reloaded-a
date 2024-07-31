@@ -8,13 +8,31 @@
 @section('content')
 <div class="main-container" id="contul_meu_row">
     <h2>Contul meu</h2>
-    <div class="tabs w-full grid grid-5 gap-lg" id="product_tabs">
+    {{-- <div class="tabs w-full grid grid-5 gap-lg" id="product_tabs">
         <div id="detalii-cont" class="tab btn btn-blue" onclick="showTab('detalii-cont')">Detalii cont</div>
         <div id="facturare" class="tab btn btn-blue" onclick="showTab('facturare')">Facturare</div>
         <div id="livrare" class="tab btn btn-blue" onclick="showTab('livrare')">Livrare</div>
         <div id="schimb-parola" class="tab btn btn-blue" onclick="showTab('schimb-parola')">Schimb parola</div>
         <div id="istoric" class="tab btn btn-blue" onclick="showTab('istoric')">Istoric</div>
+    </div> --}}
+    <div class="tabs w-full grid grid-5 gap-lg" id="product_tabs">
+        <div class="tab btn btn-blue active" id="detalii-cont" onclick="showTab('detalii-cont')">
+            <span>Detalii cont</span>
+        </div>
+        <div class="tab btn btn-blue" id="facturare" onclick="showTab('facturare')">
+            <span>Facturare</span>
+        </div>
+        <div class="tab btn btn-blue" id="livrare" onclick="showTab('livrare')">
+            <span>Livrare</span>
+        </div>
+        <div class="tab btn btn-blue" id="schimb-parola" onclick="showTab('schimb-parola')">
+            <span>Schimb parola</span>
+        </div>
+        <div class="tab btn btn-blue" id="istoric" onclick="showTab('istoric')">
+            <span>Istoric</span>
+        </div>
     </div>
+    
     <div id="tabs-content-big">
         <!-- Detalii cont -->
         <div id="detalii-cont-content" class="tab-content">
@@ -297,14 +315,40 @@
 </div>
 
 <script>
+    // function showTab(tabId) {
+    //     const tabs = document.querySelectorAll('.tab');
+    //     const contents = document.querySelectorAll('.tab-content');
+    //     tabs.forEach(tab => tab.classList.remove('active'));
+    //     contents.forEach(content => content.style.display = 'none');
+    //     document.getElementById(tabId).classList.add('active');
+    //     document.getElementById(tabId + '-content').style.display = 'block';
+    // }
+
     function showTab(tabId) {
-        const tabs = document.querySelectorAll('.tab');
-        const contents = document.querySelectorAll('.tab-content');
-        tabs.forEach(tab => tab.classList.remove('active'));
-        contents.forEach(content => content.style.display = 'none');
-        document.getElementById(tabId).classList.add('active');
+        // Ascunde toate tab-urile
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabContents.forEach(tabContent => {
+            tabContent.style.display = 'none';
+        });
+
+        // Elimină clasa activă de la toate butoanele
+        const tabs = document.querySelectorAll('.tabs .btn');
+        tabs.forEach(tab => {
+            tab.classList.remove('active');
+        });
+
+        // Afișează tab-ul selectat
         document.getElementById(tabId + '-content').style.display = 'block';
+
+        // Adaugă clasa activă la butonul selectat
+        document.getElementById(tabId).classList.add('active');
     }
+
+    // Afișează tab-ul implicit (Detalii cont) la încărcarea paginii
+    document.addEventListener('DOMContentLoaded', function () {
+        showTab('detalii-cont');
+    });
+
 
     function toggleDetails(id) {
         const details = document.getElementById('details-' + id);

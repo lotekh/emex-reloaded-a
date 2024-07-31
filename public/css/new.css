@@ -693,3 +693,10 @@
 #tabs-content-big {
   margin-top: 15px;
 }
+
+.tabs .btn.active {
+  background-color: var(--white);
+  border: 1px solid var(--blue);
+  outline: none;
+  color: var(--blue);
+}
