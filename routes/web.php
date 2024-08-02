@@ -54,6 +54,15 @@ Route::get('/counties-by-country/{country}', [UserController::class, 'getCountie
 Route::get('/get-counties-by-country/{country_id}', [CountyController::class, 'getCountiesByCountry']);
 
 
+Route::get('/angajari', function () {
+    return view('angajari');
+});
+
+Route::get('/solicita-cotatie', function () {
+    return view('solicita-cotatie');
+});
+
+
 
 // Rute pentru slug-uri
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
