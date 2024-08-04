@@ -237,7 +237,7 @@
 
 .dialog-bubble:before,
 .dialog-bubble:after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   width: 0;
@@ -248,4 +248,8 @@
 }
 .mark {
   background-color: #f4f3ae;
+}
+
+.hide-modal {
+  display: none !important;
 }

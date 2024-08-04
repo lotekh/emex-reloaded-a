@@ -4,17 +4,18 @@
 <div class="main-container" id="contul_meu_row">
     <h2>Contul meu</h2>
     <div class="tabs w-full grid grid-5 gap-lg" id="product_tabs">
-        <div id="detalii-cont" class="btn btn-blue" onclick="showTab('detalii-cont')">Detalii cont</div>
-        <div id="livrare" class="btn btn-blue" onclick="showTab('livrare')">Livrare</div>
-        <div id="istoric" class="btn btn-blue" onclick="showTab('istoric')">Istoric</div>
-        <div id="facturare" class="btn btn-blue" onclick="showTab('facturare')">Facturare</div>
-        <div id="schimb-parola" class="btn btn-blue" onclick="showTab('schimb-parola')">Schimb parola</div>
+        <div id="detalii-cont" class="tab btn btn-blue active" onclick="showTab('detalii-cont')">Detalii cont</div>
+        <div id="facturare" class="tab btn btn-blue" onclick="showTab('facturare')">Facturare</div>
+        <div id="livrare" class="tab btn btn-blue" onclick="showTab('livrare')">Livrare</div>
+        <div id="schimb-parola" class="tab btn btn-blue" onclick="showTab('schimb-parola')">Schimb parola</div>
+        <div id="istoric" class="tab btn btn-blue" onclick="showTab('istoric')">Istoric</div>
     </div>
-    <div class="content col-span-5">
+    <div id="tabs-content-big">
         <!-- Detalii cont -->
-        <div class="tab-content" id="detalii-cont-content">
-            <form method="POST" action="{{ route('user.update.details') }}">
+        <div id="detalii-cont-content" class="tab-content">
+            <form action="{{ url('/save-detalii-cont') }}" method="POST">
                 @csrf
+                <input type="hidden" name="user_id" value="{{ $user->id }}">
                 <div class="grid grid-2 gap-md">
                     <div class="form-group">
                         <label>Nume</label>
@@ -39,60 +40,21 @@
             </form>
         </div>
 
-        <!-- Livrare -->
-        <div class="tab-content" id="livrare-content" style="display: none;">
-            <form method="POST" action="{{ route('user.update.delivery') }}">
-                @csrf
-                <div class="form-group">
-                    <label>Tara</label>
-                    <select class="w-full" name="delivery_country_id" id="delivery_country_id" onchange="updateCounties('delivery')">
-                        <option value="">Alege tara</option>
-                        @foreach($countries as $country)
-                            <option value="{{ $country->id }}" @if (isset($user->delivery_information->country_id) && $user->delivery_information->country_id == $country->id) selected @endif>{{ $country->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Judet</label>
-                    <select class="w-full" name="delivery_county_id" id="delivery_county_id">
-                        <option value="">Alege judetul</option>
-                        @foreach($counties as $county)
-                            <option value="{{ $county->id }}" @if (isset($user->delivery_information->county_id) && $user->delivery_information->county_id == $county->id) selected @endif>{{ $county->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Localitate</label>
-                    <input class="w-full" type="text" name="delivery_locality" value="{{ $user->delivery_information->locality ?? '' }}">
-                </div>
-                <div class="form-group">
-                    <label>Adresa</label>
-                    <input class="w-full" type="text" name="delivery_address" value="{{ $user->delivery_information->address ?? '' }}">
-                </div>
-                <div class="w-full row justify-center mt-32">
-                    <button type="submit" class="btn btn-blue rounded-sm">Salveaza</button>
-                </div>
-            </form>
-        </div>
-
-        <!-- Istoric -->
-        <div class="tab-content" id="istoric-content" style="display: none;">
-            <!-- Adauga istoricul comenzilor aici -->
-        </div>
-
         <!-- Facturare -->
-        <div class="tab-content" id="facturare-content" style="display: none;">
-            <form method="POST" action="{{ route('user.update.billing') }}">
+        <div id="facturare-content" class="tab-content" style="display:none;">
+            <form class="col" action="{{ url('/save-facturare') }}" method="POST">
                 @csrf
-                <div class="form-group">
+                <input type="hidden" name="user_id" value="{{ $user->id }}">
+                <div class="w-full form-group">
                     <label>Metoda facturare:</label>
                     <select class="w-full" name="billing_type" id="billing-type">
                         <option value="" @if ($user->billing_type === null) selected @endif>Selecteaza metoda de facturare</option>
-                        <option value="0" @if ($user->billing_type === 0) selected @endif>Persoana fizica</option>
-                        <option value="1" @if ($user->billing_type === 1) selected @endif>Persoana juridica</option>
+                        <option id="person-billing-option" value="0" @if ($user->billing_type === 0) selected @endif>Persoana fizica</option>
+                        <option id="organization-billing-option" value="1" @if ($user->billing_type === 1) selected @endif>Persoana juridica</option>
                     </select>
                 </div>
-                <div class="col mt-16" id="person-billing" style="display: none;">
+                <!-- Facturare persoana fizica -->
+                <div class="col mt-16" id="person-billing" style="display:none;">
                     <div class="grid grid-2 gap-md">
                         <div class="form-group">
                             <label>Nume</label>
@@ -108,10 +70,10 @@
                         </div>
                         <div class="form-group">
                             <label>Tara</label>
-                            <select class="w-full" name="person_country_id" id="person_country_id" onchange="updateCounties('person')">
+                            <select class="w-full" name="person_country_id" id="person_country_id">
                                 <option value="">Alege tara</option>
-                                @foreach($countries as $country)
-                                    <option value="{{ $country->id }}" @if (isset($user->company_information->person_country_id) && $user->company_information->person_country_id == $country->id) selected @endif>{{ $country->name }}</option>
+                                @foreach ($countries as $country)
+                                    <option value="{{ $country->id }}" @if (($user->company_information->person_country_id ?? null) == $country->id) selected @endif>{{ $country->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -119,8 +81,8 @@
                             <label>Judet</label>
                             <select class="w-full" name="person_county_id" id="person_county_id">
                                 <option value="">Alege judetul</option>
-                                @foreach($counties as $county)
-                                    <option value="{{ $county->id }}" @if (isset($user->company_information->person_county_id) && $user->company_information->person_county_id == $county->id) selected @endif>{{ $county->name }}</option>
+                                @foreach ($counties as $county)
+                                    <option value="{{ $county->id }}" @if (($user->company_information->person_county_id ?? null) == $county->id) selected @endif>{{ $county->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -137,7 +99,8 @@
                         <button type="submit" class="btn btn-blue rounded-sm">Salveaza</button>
                     </div>
                 </div>
-                <div class="col mt-16" id="organization-billing" style="display: none;">
+                <!-- Facturare persoana juridica -->
+                <div class="col mt-16" id="organization-billing" style="display:none;">
                     <div class="grid grid-2 gap-md">
                         <div class="form-group">
                             <label>Nume societate</label>
@@ -165,10 +128,10 @@
                         </div>
                         <div class="form-group">
                             <label>Tara</label>
-                            <select class="w-full" name="organization_country_id" id="organization_country_id" onchange="updateCounties('organization')">
+                            <select class="w-full" name="organization_country_id" id="organization_country_id">
                                 <option value="">Alege tara</option>
-                                @foreach($countries as $country)
-                                    <option value="{{ $country->id }}" @if (isset($user->company_information->organization_country_id) && $user->company_information->organization_country_id == $country->id) selected @endif>{{ $country->name }}</option>
+                                @foreach ($countries as $country)
+                                    <option value="{{ $country->id }}" @if (($user->company_information->organization_country_id ?? null) == $country->id) selected @endif>{{ $country->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -176,8 +139,8 @@
                             <label>Judet</label>
                             <select class="w-full" name="organization_county_id" id="organization_county_id">
                                 <option value="">Alege judetul</option>
-                                @foreach($counties as $county)
-                                    <option value="{{ $county->id }}" @if (isset($user->company_information->organization_county_id) && $user->company_information->organization_county_id == $county->id) selected @endif>{{ $county->name }}</option>
+                                @foreach ($counties as $county)
+                                    <option value="{{ $county->id }}" @if (($user->company_information->organization_county_id ?? null) == $county->id) selected @endif>{{ $county->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -197,10 +160,70 @@
             </form>
         </div>
 
-        <!-- Schimb parola -->
-        <div class="tab-content" id="schimb-parola-content" style="display: none;">
-            <form method="POST" action="{{ route('user.update.password') }}">
+        <!-- Livrare -->
+        <div id="livrare-content" class="tab-content" style="display:none;">
+            <form class="col" action="{{ url('/save-livrare') }}" method="POST">
                 @csrf
+                <input type="hidden" name="user_id" value="{{ $user->id }}">
+                <h5>Persoana de contact</h5>
+                <div class="grid grid-4 gap-md">
+                    <div class="form-group">
+                        <label>Nume</label>
+                        <input class="w-full" type="text" name="delivery_last_name" value="{{ $user->delivery_information->delivery_last_name ?? '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Prenume</label>
+                        <input class="w-full" type="text" name="delivery_first_name" value="{{ $user->delivery_information->delivery_first_name ?? '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon</label>
+                        <input class="w-full" type="text" name="delivery_phone" value="{{ $user->delivery_information->delivery_phone ?? '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input class="w-full" type="text" name="delivery_email" value="{{ $user->delivery_information->delivery_email ?? '' }}">
+                    </div>
+                </div>
+                <h5 class="mt-32">Adresa de livrare</h5>
+                <div class="grid grid-3 gap-md">
+                    <div class="form-group">
+                        <label>Tara</label>
+                        <select class="w-full" name="delivery_country_id" id="delivery_country_id">
+                            <option value="">Alege tara</option>
+                            @foreach ($countries as $country)
+                                <option value="{{ $country->id }}" @if (($user->delivery_information->delivery_country_id ?? null) == $country->id) selected @endif>{{ $country->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Judet</label>
+                        <select class="w-full" name="delivery_county_id" id="delivery_county_id">
+                            <option value="">Alege judetul</option>
+                            @foreach ($counties as $county)
+                                <option value="{{ $county->id }}" @if (($user->delivery_information->delivery_county_id ?? null) == $county->id) selected @endif>{{ $county->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Localitate</label>
+                        <input type="text" class="w-full" name="delivery_locality" value="{{ $user->delivery_information->delivery_locality ?? '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Adresa</label>
+                        <input class="w-full" type="text" name="delivery_address" value="{{ $user->delivery_information->delivery_address ?? '' }}">
+                    </div>
+                </div>
+                <div class="w-full row justify-center mt-32">
+                    <button type="submit" class="btn btn-blue rounded-sm">Salveaza</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Schimb parola -->
+        <div id="schimb-parola-content" class="tab-content" style="display:none;">
+            <form class="col" action="{{ url('/save-schimba-parola') }}" method="POST">
+                @csrf
+                <input type="hidden" name="user_id" value="{{ $user->id }}">
                 <div class="grid grid-2 gap-md">
                     <div class="form-group">
                         <label>Parola Curenta</label>
@@ -216,74 +239,81 @@
                 </div>
             </form>
         </div>
+
+        <!-- Istoric -->
+        <div id="istoric-content" class="tab-content" style="display:none;">
+            <div class="tabs-content" id="tabsCM">
+                @php $visCount = 0; @endphp
+                @for ($i = 0; $i < 3; $i++)
+                    @php $visCount++; @endphp
+                    <div class="w-full p-8 order-history">
+                        <div class="sent_ordered_products">
+                            <div class="flex grid grid-6 w-full align-center p-8">
+                                <div class="col-span-2">
+                                    <h3 class="order-identifier">Comanda nr. EMEX-{{ sprintf('%05d', rand(8000, 9000)) }}</h3>
+                                </div>
+                                <div class="col-span-3">
+                                    <p>Plasata pe: {{ now()->subDays(rand(1, 365))->format('d-m-Y') }} | Total: <strong>{{ number_format(rand(100, 1000), 2) }} Lei</strong></p>
+                                </div>
+                                <div class="flex justify-end">
+                                    <button role="button" class="btn btn-blue rounded-sm" onclick="toggleDetails({{ $visCount }})">
+                                        detalii comanda
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="details-{{ $visCount }}" class="history_products_list hide">
+                                <table class="styled w-full">
+                                    <thead>
+                                        <tr>
+                                            <th>Nume produs</th>
+                                            <th>Cantitate</th>
+                                            <th>Ambalare</th>
+                                            <th>Mentiuni</th>
+                                            <th>Pret (RON)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for ($j = 0; $j < 3; $j++)
+                                            <tr>
+                                                <td>Produs {{ $j + 1 }}</td>
+                                                <td>{{ rand(1, 10) }}</td>
+                                                <td>{{ rand(1, 5) }} L</td>
+                                                <td>-</td>
+                                                <td>{{ number_format(rand(50, 200), 2) }}</td>
+                                            </tr>
+                                        @endfor
+                                    </tbody>
+                                </table>
+                                <div class="flex ml-8 mt-16 mb-16">
+                                    <button class="btn btn-blue-outline rounded-sm">Descarca proforma</button>
+                                    <button class="btn btn-blue-outline rounded-sm">Descarca factura finala</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
     function showTab(tabId) {
-        // Ascunde toate tab-urile
-        const tabContents = document.querySelectorAll('.tab-content');
-        tabContents.forEach(tabContent => {
-            tabContent.style.display = 'none';
-        });
-
-        // Elimină clasa activă de la toate butoanele
-        const tabs = document.querySelectorAll('.tabs .btn');
-        tabs.forEach(tab => {
-            tab.classList.remove('active');
-            tab.style.backgroundColor = '';
-            tab.style.border = '';
-        });
-
-        // Afișează tab-ul selectat
-        document.getElementById(tabId + '-content').style.display = 'block';
-
-        // Adaugă clasa activă la butonul selectat
+        const tabs = document.querySelectorAll('.tab');
+        const contents = document.querySelectorAll('.tab-content');
+        tabs.forEach(tab => tab.classList.remove('active'));
+        contents.forEach(content => content.style.display = 'none');
         document.getElementById(tabId).classList.add('active');
-        // Schimbă stilul pentru butonul activ
-        document.getElementById(tabId).style.backgroundColor = 'white';
-        document.getElementById(tabId).style.border = '1px solid var(--blue)';
+        document.getElementById(tabId + '-content').style.display = 'block';
     }
 
-    // Afișează tab-ul implicit (Detalii cont) la încărcarea paginii
+    function toggleDetails(id) {
+        const details = document.getElementById('details-' + id);
+        details.classList.toggle('hide');
+        details.classList.toggle('show');
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
-        showTab('detalii-cont');
-    });
-
-    function updateCounties(prefix) {
-        const countryId = document.getElementById(prefix + '_country_id').value;
-        const countySelect = document.getElementById(prefix + '_county_id');
-
-        // Golește dropdown-ul de județe
-        countySelect.innerHTML = '<option value="">Alege județul</option>';
-
-        if (countryId) {
-            fetch('/get-counties-by-country/' + countryId)
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(county => {
-                        const option = document.createElement('option');
-                        option.value = county.id;
-                        option.text = county.name;
-                        countySelect.add(option);
-                    });
-                })
-                .catch(error => console.error('Eroare:', error));
-        }
-    }
-
-    // Populează județele la încărcarea paginii
-    document.addEventListener('DOMContentLoaded', function() {
-        if (document.getElementById('delivery_country_id').value) {
-            updateCounties('delivery');
-        }
-        if (document.getElementById('person_country_id').value) {
-            updateCounties('person');
-        }
-        if (document.getElementById('organization_country_id').value) {
-            updateCounties('organization');
-        }
-
         const billingType = document.getElementById('billing-type');
         const personBilling = document.getElementById('person-billing');
         const organizationBilling = document.getElementById('organization-billing');
@@ -311,6 +341,21 @@
             personBilling.style.display = 'none';
             organizationBilling.style.display = 'none';
         }
+
+        const countrySelects = document.querySelectorAll('[name$="_country_id"]');
+        countrySelects.forEach(countrySelect => {
+            countrySelect.addEventListener('change', function () {
+                const countySelect = document.getElementById(this.name.replace('country', 'county'));
+                fetch('/get-counties-by-country/' + this.value)
+                    .then(response => response.json())
+                    .then(data => {
+                        countySelect.innerHTML = '<option value="">Alege judetul</option>';
+                        data.forEach(county => {
+                            countySelect.innerHTML += `<option value="${county.id}">${county.name}</option>`;
+                        });
+                    });
+            });
+        });
     });
 </script>
 @endsection

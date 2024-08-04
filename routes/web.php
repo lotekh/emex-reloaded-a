@@ -63,6 +63,11 @@ Route::get('/solicita-cotatie', function () {
 });
 
 
+use App\Http\Controllers\PaleteController;
+
+Route::get('/palete/ral', [PaleteController::class, 'ral'])->name('palete.ral');
+
+
 
 // Rute pentru slug-uri
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
