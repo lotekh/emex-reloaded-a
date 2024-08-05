@@ -32,8 +32,6 @@
         </div>
     </div>
 </div>
-
-{{-- <div class="modal hide-modal" id="promotie_modal"> --}}
     
 <div class="modal" id="promotie_modal_1">
     <div class="modal-dialog">
@@ -46,7 +44,7 @@
         </div>
         <div class="modal-content">
             <p class="text-center font-xl-ral">Pentru culori sau nuante folositi<br>doar cartele de culori standardizate,<br>printate pe suport fizic.</p>
-            <button type="button" onclick="closeModal()" class="close" aria-hidden="true" aria-label="Inchide" id="close_promotie_modal">Am inteles</button>
+            <button type="button" onclick="closeModalRal()" class="close" aria-hidden="true" aria-label="Inchide" id="close_promotie_modal">Am inteles</button>
         </div>
     </div>
 </div>
@@ -57,8 +55,9 @@
         document.getElementById('big-text').innerText = text;
     }
 
-    function closeModal() {
+    function closeModalRal() {
         document.getElementById('promotie_modal_1').classList.add('hide-modal');
+        // document.getElementById('promotie_modal_1').style.display = 'none';
     }
 
     // document.addEventListener('DOMContentLoaded', function() {
