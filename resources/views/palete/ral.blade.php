@@ -35,7 +35,7 @@
 
 {{-- <div class="modal hide-modal" id="promotie_modal"> --}}
     
-{{-- <div class="modal" id="promotie_modal_1">
+<div class="modal" id="promotie_modal_1">
     <div class="modal-dialog">
         <div class="modal-header">
             <div>
@@ -49,7 +49,7 @@
             <button type="button" onclick="closeModal()" class="close" aria-hidden="true" aria-label="Inchide" id="close_promotie_modal">Am inteles</button>
         </div>
     </div>
-</div> --}}
+</div>
 
 <script>
     function updateBigColor(color, text) {

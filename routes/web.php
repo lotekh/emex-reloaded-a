@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactPageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CountyController;
+use App\Http\Controllers\PaleteController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -62,10 +63,7 @@ Route::get('/solicita-cotatie', function () {
     return view('solicita-cotatie');
 });
 
-
-use App\Http\Controllers\PaleteController;
-
-Route::get('/palete/ral', [PaleteController::class, 'ral'])->name('palete.ral');
+Route::get('/cartela-culori-ral-vopsele', [PaleteController::class, 'ral'])->name('palete.ral');
 
 
 
