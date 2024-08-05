@@ -116,6 +116,12 @@
     </div>
 </div>
 
+<div class="main-container grid grid-3 gap-lg align-center mt-32" id="aspd">
+    <img width="201" height="185" src="{{ asset('resources/images/aplicare/Aplicare-lavabile-interior.jpg') }}" alt="Aspect zugraveli decorative lavabile" class="aplicare_image_sidebar justify-self-center">
+    <img width="201" height="185" src="{{ asset('resources/images/aplicare/Aspect-lavabila-interior.jpg') }}" alt="Aspect zugraveli decorative lavabile" class="aplicare_image_sidebar justify-self-center">
+    <img width="201" height="185" src="{{ asset('resources/images/aplicare/Design-zugraveli-lavabile.jpg') }}" alt="Aspect zugraveli decorative lavabile" class="aplicare_image_sidebar justify-self-center">
+</div>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
