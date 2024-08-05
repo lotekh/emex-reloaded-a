@@ -65,6 +65,11 @@ Route::get('/solicita-cotatie', function () {
 
 Route::get('/cartela-culori-ral-vopsele', [PaleteController::class, 'ral'])->name('palete.ral');
 
+use App\Http\Controllers\NewsletterController;
+
+Route::post('/newsletter', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+
+
 
 
 // Rute pentru slug-uri

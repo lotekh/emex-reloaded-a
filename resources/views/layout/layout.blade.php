@@ -460,14 +460,19 @@
                 <p>
                     Daca doriti sa aflati noutati despre noi sau produsele noastre puteti sa ne lasati adresa de mail. Atunci cand vom lansa un produs nou, sau vom desfasura un eveniment cu adevarat important, veti primi informatia.
                 </p>
-                <form id="newsletter_form" method="POST" class="w-full mt-16" action="{{ url('/newsletter') }}">
+                <form id="newsletter_form" method="POST" class="w-full mt-16" action="{{ route('newsletter.subscribe') }}">
                     @csrf
                     <input type="hidden" name="current_url" value="{{ request()->url() }}">
                     <input type="email" required class="w-full form-control" name="NewsletterEmails[email]" placeholder="Adauga email..." id="nfi">
                     <input type="submit" class="btn btn-blue w-full mt-8" id="nfs_btn" value="Aboneaza-te">
-                    <div id="subscribe-msg"></div>
+                    <div id="subscribe-msg">
+                        @if(session('success'))
+                            <p>{{ session('success') }}</p>
+                        @endif
+                    </div>
                 </form>
             </div>
+            
         </div>
     
         <div class="main-container">
