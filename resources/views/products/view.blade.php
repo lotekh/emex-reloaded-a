@@ -241,9 +241,6 @@
 
     <div class="mt-16 mt-custom">
         <div class="tabs-selector-row">
-            {{-- <button type="submit" name="current_tab" value="0" role="tab" class="btn user-valid valid selected" option="0" aria-selected="true" tabindex="0"><span>Descriere</span></button>
-            <button type="submit" name="current_tab" value="1" role="tab" class="btn user-valid valid" option="1" aria-selected="false" tabindex="0"><span>Detalii de utilizare</span></button>
-            <button type="submit" name="current_tab" value="2" role="tab" class="btn" option="2" aria-selected="false" tabindex="0"><span>Caracteristici Tehnice</span></button> --}}
             <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid selected" option="0" aria-selected="true" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
             <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid" option="1" aria-selected="false" tabindex="0" onclick="openTab(event, 'DetaliiUtilizare')"><span>Detalii de utilizare</span></button>
             <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid" option="2" aria-selected="false" tabindex="0" onclick="openTab(event, 'CaracteristiciTehnice')"><span>Caracteristici Tehnice</span></button>

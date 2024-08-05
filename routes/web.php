@@ -69,6 +69,9 @@ use App\Http\Controllers\NewsletterController;
 
 Route::post('/newsletter', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 
+Route::get('/aplicare-vopsele-lavabile', function () {
+    return view('aplicare.aplicare-vopsele-lavabile');
+});
 
 
 
