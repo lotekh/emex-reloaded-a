@@ -82,6 +82,24 @@ Route::get('/aplicare-lacuri-alchidice', function () {
 Route::get('/aplicare-tencuiala-decorativa', function () {
     return view('aplicare.aplicare-tencuiala-decorativa');
 });
+Route::get('/aplicare-vopsele-grunduri-bicomponente', function () {
+    return view('aplicare.aplicare-vopsele-grunduri-bicomponente');
+});
+Route::get('/aplicare-vopsele-pardoseala', function () {
+    return view('aplicare.aplicare-vopsele-pardoseala');
+});
+Route::get('/aplicare-vopsea-marcaj-rutier', function () {
+    return view('aplicare.aplicare-vopsea-marcaj-rutier');
+});
+Route::get('/aplicare-pardoseli-autonivelante-bicomponente', function () {
+    return view('aplicare.aplicare-pardoseli-autonivelante-bicomponente');
+});
+Route::get('/aplicare-membrana-hidroizolanta-poliuretanica', function () {
+    return view('aplicare.aplicare-membrana-hidroizolanta-poliuretanica');
+});
+Route::get('/aplicare-vopsele-hidrosolubile', function () {
+    return view('aplicare.aplicare-vopsele-hidrosolubile');
+});
 
 
 
