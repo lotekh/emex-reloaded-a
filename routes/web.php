@@ -73,6 +73,10 @@ Route::get('/aplicare-vopsele-lavabile', function () {
     return view('aplicare.aplicare-vopsele-lavabile');
 });
 
+Route::get('/aplicare-email', function () {
+    return view('aplicare.aplicare-email');
+});
+
 
 
 // Rute pentru slug-uri

@@ -13,7 +13,8 @@
 @section('content')
 
     <div class="aplicari relative w-full">
-        <div class="header_img_bg col justify-center align-center" style="background-image: url('@yield('header_image')');">
+        <div class="header_img_bg col justify-center align-center" style="background-image:url('@yield('header_image_source')');">
+            {{-- <h1 class="z-10" id="h1-aplicare-bg">{!! @yield('header_title') !!}</h1> --}}
             <h1 class="z-10" id="h1-aplicare-bg">@yield('header_title')</h1>
         </div>
     </div>
@@ -21,7 +22,7 @@
     <div class="main-container product-page mt-32" id="product_container">
         <div class="mt-16 mt-custom">
             <div class="tabs-selector-row">
-                @yield('tabs')
+                @yield('tab-buttons')
             </div>
 
             <div class="tab-content-container">
@@ -56,5 +57,6 @@
         };
     });
     </script>
-</body>
-</html>
+
+@endsection
+
