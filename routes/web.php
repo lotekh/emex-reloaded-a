@@ -77,6 +77,10 @@ Route::get('/aplicare-email', function () {
     return view('aplicare.aplicare-email');
 });
 
+Route::get('/aplicare-lacuri-alchidice', function () {
+    return view('aplicare.aplicare-lacuri-alchidice');
+});
+
 
 
 // Rute pentru slug-uri
