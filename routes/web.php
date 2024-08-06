@@ -11,6 +11,7 @@ use App\Http\Controllers\ContactPageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CountyController;
 use App\Http\Controllers\PaleteController;
+use App\Http\Controllers\NewsletterController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -41,6 +42,8 @@ Route::get('/contact', function () {
 
 Route::view('/thank-you', 'thank-you')->name('thank-you');
 
+Route::post('/newsletter', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+
 Route::get('/autentificare', function () {
     return view('autentificare');
 })->name('autentificare');
@@ -65,20 +68,19 @@ Route::get('/solicita-cotatie', function () {
 
 Route::get('/cartela-culori-ral-vopsele', [PaleteController::class, 'ral'])->name('palete.ral');
 
-use App\Http\Controllers\NewsletterController;
 
-Route::post('/newsletter', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 
 Route::get('/aplicare-vopsele-lavabile', function () {
     return view('aplicare.aplicare-vopsele-lavabile');
 });
-
 Route::get('/aplicare-email', function () {
     return view('aplicare.aplicare-email');
 });
-
 Route::get('/aplicare-lacuri-alchidice', function () {
     return view('aplicare.aplicare-lacuri-alchidice');
+});
+Route::get('/aplicare-tencuiala-decorativa', function () {
+    return view('aplicare.aplicare-tencuiala-decorativa');
 });
 
 

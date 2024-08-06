@@ -105,5 +105,9 @@ APLICARI LACURI DECORATIVE <br> MONOCOMPONENTE “EMEX”
 @endsection
 
 @section('images')
-    
+    <img width="201" height="185" src="{{ asset('resources/images/aplicare/Lacuri-de-mobila-si-parchet.jpg') }}" alt="Aspect zugraveli decorative lavabile" class="aplicare_image_sidebar justify-self-center">
+
+    <img width="201" height="185" src="{{ asset('resources/images/aplicare/Lac-de-lemn-si-lambriuri.jpg') }}" alt="Aspect zugraveli decorative lavabile" class="aplicare_image_sidebar justify-self-center">
+
+    <img width="201" height="185" src="{{ asset('resources/images/aplicare/Lac-pentru-ornamente-lemn.jpg') }}" alt="Aspect zugraveli decorative lavabile" class="aplicare_image_sidebar justify-self-center">
 @endsection
