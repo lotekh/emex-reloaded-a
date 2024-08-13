@@ -69,7 +69,7 @@ Route::get('/solicita-cotatie', function () {
 Route::get('/cartela-culori-ral-vopsele', [PaleteController::class, 'ral'])->name('palete.ral');
 
 
-
+// Routes for aplicare
 Route::get('/aplicare-vopsele-lavabile', function () {
     return view('aplicare.aplicare-vopsele-lavabile');
 });
@@ -102,8 +102,25 @@ Route::get('/aplicare-vopsele-hidrosolubile', function () {
 });
 
 
+// Routes for servicii
+Route::get('/aplicare-covor-epoxidic-stb', function () {
+    return view('servicii.aplicare-covor-epoxidic-stb');
+});
 
-// Rute pentru slug-uri
+Route::get('/aplicare-pardoseala-epoxidica-autonivelanta', function () {
+    return view('servicii.aplicare-pardoseala-epoxidica-autonivelanta');
+});
+
+Route::get('/vopsire-epoxidica-pardoseli', function () {
+    return view('servicii.vopsire-epoxidica-pardoseli');
+});
+
+Route::get('/servicii', function () {
+    return view('servicii.servicii');
+});
+
+
+// Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
 
 Route::post('/get-variation', [ProductsController::class, 'getVariation'])->name('product.getVariation');
