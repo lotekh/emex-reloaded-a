@@ -134,140 +134,141 @@ $baseUrl = url('/');
     </div>
 </div>
 
-{{-- <div class="sixth_top"></div>
+<div class="sixth_top"></div>
 <div class="main-container servicii mt-32" id="landing_sixth_row">
     <h2 class="text-center font-700">
         Pardoseli epoxidice “Emex Quartz” executate de Romtehnochim
     </h2>
     <div class="grid grid-4 gap-lg mt-32" id="landing_carousel_wrapper">
         <div>
-            @include('partials.lightbox', [
-                'id' => 'prod-lightbox1',
-                'class' => 'cover cursor-pointer',
-                'url' => $baseUrl . '/images/landing/stb/mici/Pardoseala-cuartz-epoxdica-depozit-legume.jpg',
-                'lightbox_src' => $baseUrl . '/images/landing/stb/mari/Pardoseala-stb-depozit-legume.jpg',
-                'alt' => 'Aplicare pardoseala epoxidica STB hala depozitare',
-                'title' => 'Aplicare pardoseala epoxidica STB hala depozitare',
-                'width' => '268',
-                'height' => '173',
-                'layout' => 'responsive',
-                'lightbox_width' => '600',
-                'lightbox_height' => '450',
-            ])
+            <x-lightbox 
+                id="prod-lightbox1"
+                class="cover cursor-pointer"
+                url="{{ asset('images/landing/stb/mici/Pardoseala-cuartz-epoxdica-depozit-legume.jpg') }}"
+                lightboxSrc="{{ asset('images/landing/stb/mari/Pardoseala-stb-depozit-legume.jpg') }}"
+                alt="Aplicare pardoseala epoxidica STB hala depozitare"
+                title="Aplicare pardoseala epoxidica STB hala depozitare"
+                width="268"
+                height="173"
+                layout="responsive"
+                lightboxWidth="600"
+                lightboxHeight="450"
+            />
         </div>
 
         <div>
-            @include('partials.lightbox', [
-                'id' => 'prod-lightbox2',
-                'class' => 'cover cursor-pointer',
-                'url' => $baseUrl . '/images/landing/stb/mici/Pardoseala-STB-epoxidic-scari-decorative.jpg',
-                'lightbox_src' => $baseUrl . '/images/landing/stb/mari/Pardoseala-STB-scari-decorative.jpg',
-                'alt' => 'Scari cu covor epoxidic cuartz STB',
-                'title' => 'Scari cu covor epoxidic cuartz STB',
-                'width' => '268',
-                'height' => '173',
-                'layout' => 'responsive',
-                'lightbox_width' => '600',
-                'lightbox_height' => '450',
-            ])
+            <x-lightbox 
+                id="prod-lightbox2"
+                class="cover cursor-pointer"
+                url="{{ asset('images/landing/stb/mici/Pardoseala-STB-epoxidic-scari-decorative.jpg') }}"
+                lightboxSrc="{{ asset('images/landing/stb/mari/Pardoseala-STB-scari-decorative.jpg') }}"
+                alt="Scari cu covor epoxidic cuartz STB"
+                title="Scari cu covor epoxidic cuartz STB"
+                width="268"
+                height="173"
+                layout="responsive"
+                lightboxWidth="600"
+                lightboxHeight="450"
+            />
         </div>
 
         <div>
-            @include('partials.lightbox', [
-                'id' => 'prod-lightbox4',
-                'class' => 'cover cursor-pointer',
-                'url' => $baseUrl . '/images/landing/stb/mici/Pardoseala-epoxidica-bucatarie.jpg',
-                'lightbox_src' => $baseUrl . '/images/landing/stb/mari/Pardoseala-epoxidica-stb-bucatarie.jpg',
-                'alt' => 'Pardoseala epoxidica sanitara in bucatarie',
-                'title' => 'Pardoseala epoxidica sanitara in bucatarie',
-                'width' => '268',
-                'height' => '173',
-                'layout' => 'responsive',
-                'lightbox_width' => '600',
-                'lightbox_height' => '450',
-            ])
+            <x-lightbox 
+                id="prod-lightbox4"
+                class="cover cursor-pointer"
+                url="{{ asset('images/landing/stb/mici/Pardoseala-epoxidica-bucatarie.jpg') }}"
+                lightboxSrc="{{ asset('images/landing/stb/mari/Pardoseala-epoxidica-stb-bucatarie.jpg') }}"
+                alt="Pardoseala epoxidica sanitara in bucatarie"
+                title="Pardoseala epoxidica sanitara in bucatarie"
+                width="268"
+                height="173"
+                layout="responsive"
+                lightboxWidth="600"
+                lightboxHeight="450"
+            />
         </div>
 
         <div>
-            @include('partials.lightbox', [
-                'id' => 'prod-lightbox5',
-                'class' => 'cover cursor-pointer',
-                'url' => $baseUrl . '/images/landing/stb/mici/Pardoseala-stb-decorativa-epoxidica.jpg',
-                'lightbox_src' => $baseUrl . '/images/landing/stb/mari/Covor-stb-decor.jpg',
-                'alt' => 'Covor epoxidic industrial',
-                'title' => 'Covor epoxidic industrial',
-                'width' => '268',
-                'height' => '173',
-                'layout' => 'responsive',
-                'lightbox_width' => '600',
-                'lightbox_height' => '450',
-            ])
+            <x-lightbox 
+                id="prod-lightbox5"
+                class="cover cursor-pointer"
+                url="{{ asset('images/landing/stb/mici/Pardoseala-stb-decorativa-epoxidica.jpg') }}"
+                lightboxSrc="{{ asset('images/landing/stb/mari/Covor-stb-decor.jpg') }}"
+                alt="Covor epoxidic industrial"
+                title="Covor epoxidic industrial"
+                width="268"
+                height="173"
+                layout="responsive"
+                lightboxWidth="600"
+                lightboxHeight="450"
+            />
         </div>
 
         <div>
-            @include('partials.lightbox', [
-                'id' => 'prod-lightbox6',
-                'class' => 'cover cursor-pointer',
-                'url' => $baseUrl . '/images/landing/stb/mici/Pardoseala-stb-epoxidica-hala-depozit.jpg',
-                'lightbox_src' => $baseUrl . '/images/landing/stb/mari/Pardoseala-STB-hala-depozitare.jpg',
-                'alt' => 'Covor de cuartz hala agricola depozitare',
-                'title' => 'Covor de cuartz hala agricola depozitare',
-                'width' => '268',
-                'height' => '173',
-                'layout' => 'responsive',
-                'lightbox_width' => '600',
-                'lightbox_height' => '450',
-            ])
+            <x-lightbox 
+                id="prod-lightbox6"
+                class="cover cursor-pointer"
+                url="{{ asset('images/landing/stb/mici/Pardoseala-stb-epoxidica-hala-depozit.jpg') }}"
+                lightboxSrc="{{ asset('images/landing/stb/mari/Pardoseala-STB-hala-depozitare.jpg') }}"
+                alt="Covor de cuartz hala agricola depozitare"
+                title="Covor de cuartz hala agricola depozitare"
+                width="268"
+                height="173"
+                layout="responsive"
+                lightboxWidth="600"
+                lightboxHeight="450"
+            />
         </div>
 
         <div>
-            @include('partials.lightbox', [
-                'id' => 'prod-lightbox7',
-                'class' => 'cover cursor-pointer',
-                'url' => $baseUrl . '/images/landing/stb/mici/Pardoseala-stb-cuartz-epoxidic.jpg',
-                'lightbox_src' => $baseUrl . '/images/landing/stb/mari/Pardoseala-stb-cuptor.jpg',
-                'alt' => 'Aplicare covor epoxidic hala cuptor industrial',
-                'title' => 'Aplicare covor epoxidic hala cuptor industrial',
-                'width' => '268',
-                'height' => '173',
-                'layout' => 'responsive',
-                'lightbox_width' => '600',
-                'lightbox_height' => '450',
-            ])
+            <x-lightbox 
+                id="prod-lightbox7"
+                class="cover cursor-pointer"
+                url="{{ asset('images/landing/stb/mici/Pardoseala-stb-cuartz-epoxidic.jpg') }}"
+                lightboxSrc="{{ asset('images/landing/stb/mari/Pardoseala-stb-cuptor.jpg') }}"
+                alt="Aplicare covor epoxidic hala cuptor industrial"
+                title="Aplicare covor epoxidic hala cuptor industrial"
+                width="268"
+                height="173"
+                layout="responsive"
+                lightboxWidth="600"
+                lightboxHeight="450"
+            />
         </div>
 
         <div>
-            @include('partials.lightbox', [
-                'id' => 'prod-lightbox8',
-                'class' => 'cover cursor-pointer',
-                'url' => $baseUrl . '/images/landing/stb/mici/Pardoseala-stb-cuartz-epoxidic-hala.jpg',
-                'lightbox_src' => $baseUrl . '/images/landing/stb/mari/Pardoseala-STB-hala-depozitare.jpg',
-                'alt' => 'Covor cuartz epoxidic hala depozitare',
-                'title' => 'Covor cuartz epoxidic hala depozitare',
-                'width' => '268',
-                'height' => '173',
-                'layout' => 'responsive',
-                'lightbox_width' => '600',
-                'lightbox_height' => '450',
-            ])
+            <x-lightbox 
+                id="prod-lightbox8"
+                class="cover cursor-pointer"
+                url="{{ asset('images/landing/stb/mici/Pardoseala-stb-cuartz-epoxidic-hala.jpg') }}"
+                lightboxSrc="{{ asset('images/landing/stb/mari/Pardoseala-STB-hala-depozitare.jpg') }}"
+                alt="Covor cuartz epoxidic hala depozitare"
+                title="Covor cuartz epoxidic hala depozitare"
+                width="268"
+                height="173"
+                layout="responsive"
+                lightboxWidth="600"
+                lightboxHeight="450"
+            />
         </div>
 
         <div>
-            @include('partials.lightbox', [
-                'id' => 'prod-lightbox10',
-                'class' => 'cover cursor-pointer',
-                'url' => $baseUrl . '/images/landing/stb/mici/Pardoseala-stb-epoxidica-fabrica-bauturi.jpg',
-                'lightbox_src' => $baseUrl . '/images/landing/stb/mari/Pardoseala-stb-fabrica-bauturi.jpg',
-                'alt' => 'Pardoseala epoxidica STB in fabrica de bauturi',
-                'title' => 'Pardoseala epoxidica STB in fabrica de bauturi',
-                'width' => '268',
-                'height' => '173',
-                'layout' => 'responsive',
-                'lightbox_width' => '600',
-                'lightbox_height' => '450',
-            ])
+            <x-lightbox 
+                id="prod-lightbox10"
+                class="cover cursor-pointer"
+                url="{{ asset('images/landing/stb/mici/Pardoseala-stb-epoxidica-fabrica-bauturi.jpg') }}"
+                lightboxSrc="{{ asset('images/landing/stb/mari/Pardoseala-stb-fabrica-bauturi.jpg') }}"
+                alt="Pardoseala epoxidica STB in fabrica de bauturi"
+                title="Pardoseala epoxidica STB in fabrica de bauturi"
+                width="268"
+                height="173"
+                layout="responsive"
+                lightboxWidth="600"
+                lightboxHeight="450"
+            />
         </div>
     </div>
-</div> --}}
+</div>
+
 
 @endsection
