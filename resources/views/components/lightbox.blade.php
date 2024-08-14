@@ -1,5 +1,6 @@
-<div class="{{ $class }} cursor-pointer">
+<div class="cursor-pointer">
     <img
+        class="{{ $class }}"
         @if(isset($width)) width="{{ $width }}" @endif
         @if(isset($height)) height="{{ $height }}" @endif
         @if(isset($alt)) alt="{{ $alt }}" @endif
@@ -9,16 +10,19 @@
     />
 </div>
 
-<div id="{{ $id }}" class="lightbox" style="display:none;">
-    <div class="lightbox-content">
-        <span class="close" onclick="document.getElementById('{{ $id }}').style.display='none'">&times;</span>
-        <img
-            @if(isset($lightboxWidth)) width="{{ $lightboxWidth }}" @endif
-            @if(isset($lightboxHeight)) height="{{ $lightboxHeight }}" @endif
-            @if(isset($alt)) alt="{{ $alt }}" @endif
-            @if(isset($title)) title="{{ $title }}" @endif
-            src="{{ $lightboxSrc }}"
-        />
+<div id="{{ $id }}" style="display:none;">
+    <div class="ligthbox_container" role="button" tabindex="0" onclick="document.getElementById('{{ $id }}').style.display='none'">
+        <div class="content-container">
+            <img
+                class="image"
+                @if(isset($lightboxWidth)) width="{{ $lightboxWidth }}" @endif
+                @if(isset($lightboxHeight)) height="{{ $lightboxHeight }}" @endif
+                @if(isset($alt)) alt="{{ $alt }}" @endif
+                @if(isset($title)) title="{{ $title }}" @endif
+                src="{{ $lightboxSrc }}"
+            />
+            <div class="close-button" style="background-image: url('{{ asset('resources/images/sprite.png') }}');" role="button" tabindex="0" onclick="document.getElementById('{{ $id }}').style.display='none'"></div>
+        </div>
     </div>
 </div>
 
