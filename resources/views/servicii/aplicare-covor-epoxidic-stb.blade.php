@@ -11,7 +11,7 @@ $baseUrl = url('/');
 
 @section('content')
 
-<div class="servicii relative w-full col justify-center align-center header" id="acesh">
+<div class="servicii relative w-full col justify-center align-center header" id="acesh" style="background-image: url('resources/images/pardoseala-cuartz-epoxidica-stb-cover.jpg');">
     <h1 class="z-10">
         Pardoseala Epoxidica Cuartz STB<br>“Emex Quartz”<br>
     </h1>
@@ -78,9 +78,15 @@ $baseUrl = url('/');
             </li>
         </ul>
     </div>
-    <div id="landing_video_wrapper">
+    {{-- <div id="landing_video_wrapper">
         <video controls width="250" height="168" class="responsive" poster="{{ $baseUrl }}/videos/Filmare-covor-epoxidic-cuartz-stb.jpg">
             <source src="{{ $baseUrl }}/videos/Pardoseala-covor-de-cuart-epoxidic.mp4" type="video/mp4">
+            Vopsire cu sisteme epoxidice pentru pardoseli industriale, hale, zone cu circulatie intensa, hypermarket-uri, etc.
+        </video>
+    </div> --}}
+    <div id="landing_video_wrapper">
+        <video controls width="250" height="168" class="responsive" poster="https://vopsele.xyz/videos/Filmare-covor-epoxidic-cuartz-stb.jpg">
+            <source src="https://vopsele.xyz/videos/Pardoseala-covor-de-cuart-epoxidic.mp4" type="video/mp4">
             Vopsire cu sisteme epoxidice pentru pardoseli industriale, hale, zone cu circulatie intensa, hypermarket-uri, etc.
         </video>
     </div>

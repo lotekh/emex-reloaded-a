@@ -107,14 +107,14 @@
   margin: 32px 0 0;
 }
 
-#landing_video_wrapper amp-video {
+#landing_video_wrapper video {
   width: 622px;
   height: 236px;
   padding: 0 16px;
 }
 
 @media screen and (min-width: 1024px) {
-  #landing_video_wrapper amp-video {
+  #landing_video_wrapper video {
     height: 418px;
   }
 }
