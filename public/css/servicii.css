@@ -192,9 +192,9 @@ em {
   background-image: url('resources/images/Pardoseala-autonivelanta-epoxidica-cover.jpg');
 }
 
-#servicii_header {
+/* #servicii_header {
   background-image: url('resources/images/Banner-general-Emex-vopsele.jpg');
-}
+} */
 
 .servicii #landing_carousel_wrapper > div {
   width: 100%;
