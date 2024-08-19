@@ -171,7 +171,7 @@
                             Vizualizeaza cosul
                         </div>
                     </a>
-                    <a href="{{ url('/add-to-wishlist?product_id=' . $product->id) }}" title="Adauga la favorite">
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('wishlist-form-{{ $product->id }}').submit();" title="Adauga la favorite">
                         <div class="flex align-center btn-blue-outline rounded-sm text-nowrap w-full gap-md justify-center h-full font-sm px-16 py-4">
                             <div class="addToWhislistSvgWrapper">
                                 @if ($product->isInWishlist)
@@ -183,6 +183,12 @@
                             <span>Adauga la favorite</span>
                         </div>
                     </a>
+                    
+                    <form id="wishlist-form-{{ $product->id }}" action="{{ route('wishlist.store') }}" method="POST" style="display: none;">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    </form>
+                    
                 </div>
             </div>
 

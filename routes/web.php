@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CountyController;
 use App\Http\Controllers\PaleteController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\WishlistController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -118,6 +119,10 @@ Route::get('/vopsire-epoxidica-pardoseli', function () {
 Route::get('/servicii', function () {
     return view('servicii.servicii');
 });
+
+
+// Routes for produse
+Route::post('/add-to-wishlist', [WishlistController::class, 'store'])->name('wishlist.store');
 
 
 // Routes for slugs
