@@ -60,26 +60,29 @@
                     </div>
                 @endif
                 <div class="flex">
-                    <div class="form-group">
-                        <label for="ambalare" class="section-info">Ambalare</label>
-                        @if(!empty($ambalareValues))
-                            <select id="ambalare" name="ambalare" class="mr-8">
-                                @foreach($ambalareValues as $value)
-                                    <option value="{{ $value }}" {{ $initialPackaging == $value ? 'selected' : '' }}>{{ $value }}</option>
+                    @if ($product->variations->pluck('quantity')->filter()->count())
+                        <div class="form-group">
+                            <label class="section-info" id="choose-type">Selecteaza ambalare</label>
+                            <select aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
+                                @foreach ($product->variations->unique('quantity') as $variation)
+                                    <option value="{{ $variation->quantity }}">
+                                        {{ $variation->quantity }} {{ $variation->measurementUnit->name }}
+                                    </option>
                                 @endforeach
                             </select>
-                        @endif
-                    </div>
-                    <div class="form-group mr-8">
-                        <label class="section-info" for="culoare">Culoare</label>
-                        @if(!empty($colorsValues))
-                            <select id="culoare" name="color">
-                                @foreach($colorsValues as $value)
-                                    <option value="{{ $value }}" {{ $initialColor == $value ? 'selected' : '' }}>{{ $value }}</option>
+                        </div>
+                    @endif
+                    
+                    @if ($product->variations->pluck('colour')->filter()->count())
+                        <div class="form-group">
+                            <label class="section-info" id="choose-color">Selecteaza culoare</label>
+                            <select aria-labelledby="choose-color" class="w-full" name="color" id="colorSelect{{ $product->id }}">
+                                @foreach ($product->variations->pluck('colour')->filter() as $value)
+                                    <option value="{{ $value }}">{{ $value }}</option>
                                 @endforeach
                             </select>
-                        @endif
-                    </div>
+                        </div>
+                    @endif
 
                     <div class="form-group quantity-form-group">
                         <label class="section-info">Cantitate</label>
