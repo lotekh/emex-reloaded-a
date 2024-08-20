@@ -19,39 +19,39 @@ class OrdersController extends Controller
             $ordered_products = $order->productVariations()->with('product')->get();
         }
 
-        return view('ordered-products', compact('ordered_products', 'order'));
+        return view('products.ordered-products', compact('ordered_products', 'order'));
     }
 
     public function addProduct(Request $request)
-    {
-        $user = Auth::user();
-        $productVariation = ProductVariation::findOrFail($request->input('product_variation_id'));
+{
+    $user = Auth::user();
+    $productVariation = ProductVariation::findOrFail($request->input('product_id'));
 
-        $order = Order::firstOrCreate(
-            ['user_id' => $user->id, 'is_paid' => false],
-            ['total' => 0]
-        );
+    $order = Order::firstOrCreate(
+        ['user_id' => $user->id, 'is_paid' => false],
+        ['total' => 0]
+    );
 
-        $existingOrderProduct = $order->productVariations()->where('product_variation_id', $productVariation->id)->first();
+    $existingOrderProduct = $order->productVariations()->where('product_variation_id', $productVariation->id)->first();
 
-        if ($existingOrderProduct) {
-            $existingOrderProduct->pivot->quantity += $request->input('quantity', 1);
-            $existingOrderProduct->pivot->total_price = $existingOrderProduct->pivot->quantity * $existingOrderProduct->pivot->price;
-            $existingOrderProduct->pivot->save();
-        } else {
-            $order->productVariations()->attach($productVariation->id, [
-                'quantity' => $request->input('quantity', 1),
-                'price' => $productVariation->price,
-                'price_no_vat' => $productVariation->price_no_vat,
-                'total_price' => $productVariation->price * $request->input('quantity', 1)
-            ]);
-        }
-
-        $order->total = $order->productVariations->sum('pivot.total_price');
-        $order->save();
-
-        return redirect()->route('orders.index');
+    if ($existingOrderProduct) {
+        $existingOrderProduct->pivot->quantity += $request->input('quantity', 1);
+        $existingOrderProduct->pivot->total_price = $existingOrderProduct->pivot->quantity * $existingOrderProduct->pivot->price;
+        $existingOrderProduct->pivot->save();
+    } else {
+        $order->productVariations()->attach($productVariation->id, [
+            'quantity' => $request->input('quantity', 1),
+            'price' => $productVariation->price,
+            'price_no_vat' => $productVariation->price_no_vat,
+            'total_price' => $productVariation->price * $request->input('quantity', 1)
+        ]);
     }
+
+    $order->total = $order->productVariations->sum('pivot.total_price');
+    $order->save();
+
+    return redirect()->route('orders.index');
+}
 
     public function removeProduct(Request $request)
     {

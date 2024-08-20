@@ -129,13 +129,21 @@ Route::post('/get-variation', [ProductsController::class, 'getVariation'])->name
 
 use App\Http\Controllers\OrdersController;
 
-Route::middleware('auth')->group(function () {
-    Route::get('/produse-adaugate', [OrdersController::class, 'index'])->name('orders.index');
-    Route::post('/adauga-produs', [OrdersController::class, 'addProduct'])->name('orders.addProduct');
-    Route::post('/sterge-produs', [OrdersController::class, 'removeProduct'])->name('orders.removeProduct');
-    Route::post('/goleste-cosul', [OrdersController::class, 'emptyCart'])->name('orders.empty');
-    Route::get('/finalizeaza-comanda', [OrdersController::class, 'checkout'])->name('orders.checkout');
-});
+// Ruta pentru afișarea coșului de cumpărături
+Route::get('/produse-adaugate', [OrdersController::class, 'index'])->name('orders.index');
+
+// Ruta pentru adăugarea unui produs în coș
+Route::get('/adauga-produs', [OrdersController::class, 'addProduct'])->name('orders.addProduct');
+
+// Ruta pentru ștergerea unui produs din coș
+Route::post('/sterge-produs', [OrdersController::class, 'removeProduct'])->name('orders.removeProduct');
+
+// Ruta pentru golirea coșului
+Route::post('/goleste-cosul', [OrdersController::class, 'emptyCart'])->name('orders.empty');
+
+// Ruta pentru finalizarea comenzii
+Route::get('/finalizeaza-comanda', [OrdersController::class, 'checkout'])->name('orders.checkout');
+
 
 
 // Routes for slugs

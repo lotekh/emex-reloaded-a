@@ -82,7 +82,7 @@
         @endif
       </div>
 
-      <form class="relative w-full col" method="GET" action="{{ url('/order-product') }}">
+      <form class="relative w-full col" method="GET" action="{{ url('/adauga-produs') }}">
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         <input type="hidden" name="submited" value="1">
         <input type="hidden" name="name" value="{{ $product->plain_name }}">
