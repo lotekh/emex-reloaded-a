@@ -130,12 +130,13 @@ Route::post('/get-variation', [ProductsController::class, 'getVariation'])->name
 use App\Http\Controllers\OrdersController;
 
 Route::middleware('auth')->group(function () {
-    Route::get('/cart', [OrdersController::class, 'index'])->name('orders.index');
-    Route::get('/checkout', [OrdersController::class, 'checkout'])->name('orders.checkout');
-    Route::post('/add-product-to-cart', [OrdersController::class, 'addProduct'])->name('orders.addProduct');
-    Route::post('/remove-product-from-cart', [OrdersController::class, 'removeProduct'])->name('orders.removeProduct');
-    Route::get('/empty-cart', [OrdersController::class, 'emptyCart'])->name('orders.emptyCart');
+    Route::get('/produse-adaugate', [OrdersController::class, 'index'])->name('orders.index');
+    Route::post('/adauga-produs', [OrdersController::class, 'addProduct'])->name('orders.addProduct');
+    Route::post('/sterge-produs', [OrdersController::class, 'removeProduct'])->name('orders.removeProduct');
+    Route::post('/goleste-cosul', [OrdersController::class, 'emptyCart'])->name('orders.empty');
+    Route::get('/finalizeaza-comanda', [OrdersController::class, 'checkout'])->name('orders.checkout');
 });
+
 
 // Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
