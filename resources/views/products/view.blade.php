@@ -185,7 +185,7 @@
                                     <img width="16" height="15" src="{{ asset('resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
                                 @endif
                             </div>
-                            <span>Adaugă la favorite2</span>
+                            <span>Adaugă la favorite</span>
                         </button>
                     </form>
                     

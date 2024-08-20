@@ -51,7 +51,7 @@
                 @if(!empty($initialPrice))
                     <div class="price row mb-16 flex align-center">
                         <p class="mr-4">Pret:</p>
-                        <p class="value">{{ $initialPrice }}</p>
+                        <p class="value" id="priceDisplay{{ $product->id }}">{{ $initialPrice }}</p>
                         <p class="value ml-4">Lei</p>
                     </div>
                 @else
@@ -61,8 +61,8 @@
                 @endif
                 <div class="flex">
                     @if ($product->variations->pluck('quantity')->filter()->count())
-                        <div class="form-group">
-                            <label class="section-info" id="choose-type">Selecteaza ambalare</label>
+                        <div class="form-group mr-8">
+                            <label class="section-info" id="choose-type">Ambalare</label>
                             <select aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
                                 @foreach ($product->variations->unique('quantity') as $variation)
                                     <option value="{{ $variation->quantity }}">
@@ -74,8 +74,8 @@
                     @endif
                     
                     @if ($product->variations->pluck('colour')->filter()->count())
-                        <div class="form-group">
-                            <label class="section-info" id="choose-color">Selecteaza culoare</label>
+                        <div class="form-group mr-8">
+                            <label class="section-info" id="choose-color">Culoare</label>
                             <select aria-labelledby="choose-color" class="w-full" name="color" id="colorSelect{{ $product->id }}">
                                 @foreach ($product->variations->pluck('colour')->filter() as $value)
                                     <option value="{{ $value }}">{{ $value }}</option>
