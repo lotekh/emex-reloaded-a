@@ -1,5 +1,10 @@
 @extends('layout.layout')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/product-card.css') }}">
+<link rel="stylesheet" href="{{ asset('css/cart.css') }}">
+@endsection
+
 @section('content')
 <div class="main-container mb-32" id="wishlist-page">
     <h1>Produse adaugate in wishlist</h1>

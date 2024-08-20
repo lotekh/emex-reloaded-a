@@ -11,12 +11,13 @@
 
     $featuredImageUrl = $product->featuredImage ? asset('storage/' . $product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
 
-    // $rating_sum = 0;
-    // if (!empty($product->reviews)) {
-    //     $rating_sum = array_reduce($product->reviews->toArray(), function($carry, $item) {
-    //         return $carry + $item['rating'];
-    //     }, 0) / count($product->reviews);
-    // }
+    // Calculate the average rating safely
+    $rating_sum = 0;
+    $reviewCount = $product->reviews->count();
+
+    if ($reviewCount > 0) {
+        $rating_sum = $product->reviews->sum('rating') / $reviewCount;
+    }
 @endphp
 
 <div class="relative w-full col">
@@ -24,7 +25,7 @@
         <div class="col flex-md">
             <div class="relative image-container z-0">
                 <a href="{{ url($product->slug) }}">
-                    <img src="{{ $featuredImageUrl }}" alt="imagine" title="imagineprodus">
+                    <img src="{{ $featuredImageUrl }}" alt="imagine" title="imagineprodus" style="height: 180px; max-width: 230px;">
                 </a>
             </div>
             <div class="col w-full justify-between form-container">
@@ -32,7 +33,7 @@
                     <h5 class="m-0 mt-16 mb-8">{{ $product->plain_name }}</h5>
                     @unless($hideRating)
                         <div class="flex rating mb-16 align-center">
-                            {{-- @for($i = 0; $i < 5; $i++)
+                            @for($i = 0; $i < 5; $i++)
                                 <div>
                                     @if($i + 1 <= $rating_sum)
                                         <img width="18" height="18" src="{{ asset('resources/new_design/icons/gold-star.svg') }}" title="review-star" alt="review-star">
@@ -42,8 +43,8 @@
                                 </div>
                             @endfor
                             <p class="ml-8 flex">
-                                <span class="font-700">{{ number_format($rating_sum, 1) }}</span> ({{ count($product->reviews) }})
-                            </p> --}}
+                                <span class="font-700">{{ number_format($rating_sum, 1) }}</span> ({{ $reviewCount }})
+                            </p>
                         </div>
                     @endunless
                 </div>
