@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Str;
 
 class Order extends Model
 {
@@ -38,6 +39,18 @@ class Order extends Model
         'delivery_information' => 'object',
         'company_information' => 'object',
     ];
+
+    // Setarea valorii implicite pentru GUID
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($order) {
+            if (empty($order->guid)) {
+                $order->guid = (string) Str::uuid(); // Generează un GUID unic
+            }
+        });
+    }
 
     public function productVariations(): BelongsToMany
     {
