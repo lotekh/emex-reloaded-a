@@ -310,7 +310,7 @@ html {
 }
 .ul-feature,
 .ul-feature li {
-  list-style: url("resources/images/checklist-icon.png") none outside;
+  /* list-style: url("resources/images/checklist-icon.png") none outside; */
   margin-left: 20px;
 }
 /* .hr-line {
@@ -619,6 +619,9 @@ a:active {
   }
   .more-information:after {
     display: none;
+  }
+  img.contain {
+    max-height: 300px;
   }
 }
 @media all and (max-width: 992px) {
@@ -1750,3 +1753,8 @@ a:active {
 /* .tab-content {
   background-color: white;
 } */
+
+amp-img,
+amp-lightbox {
+  display: none;
+}

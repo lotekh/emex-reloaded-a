@@ -11,7 +11,7 @@
 
 .aplicari h1::before {
   border-image-width: 8px;
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   padding: 8px;
@@ -42,7 +42,7 @@
 
 @media screen and (min-width: 1024px) {
   .aplicari h1 {
-    font-size: 42px;
+    font-size: 50px;
   }
 }
 
@@ -98,7 +98,7 @@
 #al ul li:before,
 #ab ul li:before,
 #am ul li:before {
-  content: '*';
+  content: "*";
   color: #f13627;
   font-size: 25px;
   position: relative;
@@ -307,7 +307,7 @@
 }
 
 /* headers */
-.header_img_bg {
+/* .header_img_bg {
   height: 500px;
   display: none;
   width: 100%;
@@ -320,7 +320,7 @@
   .header_img_bg {
     display: flex;
   }
-}
+} */
 
 .section-title {
   text-decoration: underline;
@@ -329,32 +329,32 @@
 }
 
 #mod_avl {
-  background-image: url('resources/images/aplicare/Aplicare-vopsele-lavabile.jpg');
+  background-image: url("resources/images/aplicare/Aplicare-vopsele-lavabile.jpg");
 }
 #mod_aed {
-  background-image: url('resources/images/aplicare/Aplicare-vopsea-decorativa.jpg');
+  background-image: url("resources/images/aplicare/Aplicare-vopsea-decorativa.jpg");
 }
 #mod_ala {
-  background-image: url('resources/images/aplicare/Aplicare-lacuri-lemn.jpg');
+  background-image: url("resources/images/aplicare/Aplicare-lacuri-lemn.jpg");
 }
 #mod_atd {
-  background-image: url('resources/images/aplicare/Aplicare-tencuiala-decorativa.jpg');
+  background-image: url("resources/images/aplicare/Aplicare-tencuiala-decorativa.jpg");
 }
 #mod_avg {
-  background-image: url('resources/images/aplicare/Vopsiri-epoxidice-poliuretanice.jpg');
+  background-image: url("resources/images/aplicare/Vopsiri-epoxidice-poliuretanice.jpg");
 }
 #mod_avp {
-  background-image: url('resources/images/aplicare/Vopsea-epoxidica-de-pardoselala.jpg');
+  background-image: url("resources/images/aplicare/Vopsea-epoxidica-de-pardoselala.jpg");
 }
 #mod_avm {
-  background-image: url('resources/images/aplicare/Aplicare-trafic-rutier.jpg');
+  background-image: url("resources/images/aplicare/Aplicare-trafic-rutier.jpg");
 }
 #mod_apa {
-  background-image: url('resources/images/aplicare/Pardoseala-Decorativa.jpg');
+  background-image: url("resources/images/aplicare/Pardoseala-Decorativa.jpg");
 }
 #mod_amh {
-  background-image: url('resources/images/aplicare/Protectie-intemperii.jpg');
+  background-image: url("resources/images/aplicare/Protectie-intemperii.jpg");
 }
 #mod_avh {
-  background-image: url('resources/images/aplicare/Aplicare-vopsele-hidrosolubile.jpg');
+  background-image: url("resources/images/aplicare/Aplicare-vopsele-hidrosolubile.jpg");
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\WishlistItem;
 use App\Traits\HasSeoImages;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -92,5 +93,17 @@ class Product extends Model
     public function consumptionSeoTwitterImage(): BelongsTo
     {
         return $this->belongsTo(Media::class, 'consumption_twitter_image_id', 'id');
+    }
+
+    
+    public function getIsInWishlistAttribute()
+    {
+        if (auth()->check()) {
+            return WishlistItem::where('user_id', auth()->id())
+                                ->where('product_id', $this->id)
+                                ->exists();
+        }
+
+        return false;
     }
 }

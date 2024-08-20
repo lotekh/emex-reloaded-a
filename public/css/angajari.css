@@ -11,7 +11,7 @@
 
 .angajari h1::before {
   border-image-width: 8px;
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   padding: 8px;
@@ -27,7 +27,8 @@
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 }
-.header_img_bg {
+
+#header_img_bg {
   height: 500px;
   display: none;
   width: 100%;
@@ -36,9 +37,9 @@
   background-size: cover;
 }
 
-#header_img_bg {
+/* #header_img_bg {
   background-image: url('resources/images/Angajari-Romtehnochim.jpg');
-}
+} */
 
 @media (min-width: 768px) {
   .header_img_bg {

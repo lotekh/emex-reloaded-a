@@ -88,15 +88,29 @@
                         <a href="{{ url('/wishlist') }}" title="Favorite">
                             Favorite
                         </a>
+                        {{-- <a href="{{ url('/contul-meu?page=') }}" title="Istoric">
+                            Istoric
+                        </a>
+                        <a href="{{ url('/contul-meu#facturare') }}" title="Facturare">
+                            Facturare
+                        </a> --}}
                         <a href="{{ url('/contul-meu?page=') }}" title="Istoric">
                             Istoric
                         </a>
                         <a href="{{ url('/contul-meu#facturare') }}" title="Facturare">
                             Facturare
                         </a>
-                        <a href="{{ url('/logout') }}" id="logoutButton" title="Iesire din cont">
-                            Iesire din cont
-                        </a>
+
+                       
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit">
+                                Iesire din cont
+                            </button>
+                        </form>
+
+
+                       
                     @else
                         <button id="auth_lightbox_trigger" class="auth" role="button" tabindex="0" aria-label="Autentificare">
                             Autentificare
@@ -173,6 +187,137 @@
 
 
     </header>
+
+    <div class="autentificare-1">
+        <div class="autentificare-2">
+            <div id="auth-lightbox" class="w-full h-screen flex justify-center align-center modal">
+                <div class="modal-container">
+                    <div class="relative header row justify-between align-center">
+                        <div></div>
+                        <img class="logo-footer" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
+                        <button onclick="closeModal('auth-lightbox')" role="button" tabindex="0" class="close-btn" aria-label="Inchide">
+                            <div class="flex align-center">
+                                <img src="{{ asset('resources/new_design/icons/close.svg') }}" alt="close" width="32" height="32">
+                            </div>
+                        </button>
+                    </div>
+                    <div class="header-buttons">
+                        <button class="header-button clickable" onclick="switchModal('auth-lightbox', 'register-lightbox')" role="button" aria-label="Creeaza cont" tabindex="0">Creeaza cont</button>
+                        <div class="header-button">Autentificare</div>
+                    </div>
+                    <div class="col align-center content">
+                        <form class="col w-full" method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="form-group w-full">
+                                <label for="form-login-email">Adresa de email</label>
+                                <input class="w-full" id="form-login-email" type="text" name="email" required>
+                                {{-- <p class="form-validation">Completează acest câmp.</p> --}}
+                            </div>
+                            <div class="form-group w-full">
+                                <label for="form-login-password">Parola</label>
+                                <input class="w-full" id="form-login-password" type="password" name="password" required>
+                                {{-- <p class="form-validation">Completează acest câmp.</p> --}}
+                            </div>
+                            <div class="w-full flex justify-center">
+                                <button type="submit" class="w-fit btn rounded-lg px-16 mt-32">Autentifica-te</button>
+                            </div>
+                            <button class="subtext mt-16 underline-hover" type="button" onclick="switchModal('auth-lightbox', 'recover-password-lightbox')" role="button" aria-label="Recupereaza Parola" tabindex="0">Parola uitata?</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="register-lightbox" class="w-full h-screen flex justify-center align-center modal">
+                <div class="modal-container">
+                    <div class="relative header row justify-between align-center">
+                        <div></div>
+                        <img class="logo-footer" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
+                        <button onclick="closeModal('register-lightbox')" role="button" tabindex="0" class="close-btn" aria-label="Inchide">
+                            <div class="flex align-center">
+                                <img src="{{ asset('resources/new_design/icons/close.svg') }}" alt="close" width="32" height="32">
+                            </div>
+                        </button>
+                    </div>
+                    <div class="header-buttons">
+                        <div class="header-button">Creeaza cont</div>
+                        <button class="header-button clickable" onclick="switchModal('register-lightbox', 'auth-lightbox')" role="button" aria-label="Autentificare" tabindex="0">Autentificare</button>
+                    </div>
+                    <div class="col align-center content">
+                        <form class="col w-full" method="POST" action="{{ route('register') }}">
+                            @csrf
+                            <div class="form-group w-full">
+                                <label for="form-register-last-name">Nume</label>
+                                <input class="w-full" id="form-register-last-name" type="text" name="last_name" required>
+                                {{-- <p class="form-validation">Completează acest câmp.</p> --}}
+                            </div>
+                            <div class="form-group w-full">
+                                <label for="form-register-first-name">Prenume</label>
+                                <input class="w-full" id="form-register-first-name" type="text" name="first_name" required>
+                                {{-- <p class="form-validation">Completează acest câmp.</p> --}}
+                            </div>
+                            <div class="form-group w-full">
+                                <label for="form-register-email">Adresa de email</label>
+                                <input class="w-full" id="form-register-email" type="text" name="email" required>
+                                {{-- <p class="form-validation">Completează acest câmp.</p> --}}
+                            </div>
+                            <div class="form-group w-full">
+                                <label for="form-register-telefon">Telefon</label>
+                                <input class="w-full" id="form-register-telefon" type="text" name="phone" required>
+                                {{-- <p class="form-validation">Completează acest câmp.</p> --}}
+                            </div>
+                            <div class="form-group w-full">
+                                <label for="form-register-password">Parola</label>
+                                <input class="w-full" id="form-register-password" type="password" name="password" required>
+                                {{-- <p class="form-validation">Completează acest câmp.</p> --}}
+                            </div>
+                            <div class="row align-center">
+                                <input type="checkbox" class="hidden" name="terms" id="tc" required checked>
+                                <label class="switch">
+                                    <input type="checkbox" name="gdpr" id="gdpr" required>
+                                    <i></i>
+                                </label>
+                                <span>
+                                    Sunt de acord cu
+                                    <a href="{{ url('/confidentialitate-gdpr') }}"><em class="link_color1">politica de confidentialitate</em></a> si
+                                    <a href="{{ url('/termeni-si-conditii') }}"><em class="link_color1">termeni si conditii</em>.</a>
+                                </span>
+                            </div>
+                            {{-- <p class="form-validation">Bifează caseta dacă vrei să continui.</p> --}}
+                            <div class="w-full flex justify-center">
+                                <button type="submit" class="w-fit btn btn-blue rounded-lg px-16 mt-16">Creeaza Cont</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="recover-password-lightbox" class="w-full h-screen flex justify-center align-center modal">
+                <div class="modal-container">
+                    <div class="relative header row justify-between align-center">
+                        <div></div>
+                        <img class="logo-footer" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
+                        <button onclick="closeModal('recover-password-lightbox')" role="button" tabindex="0" class="close-btn" aria-label="Recupereaza parola">
+                            <div class="flex align-center">
+                                <img src="{{ asset('resources/new_design/icons/close.svg') }}" alt="close" width="32" height="32">
+                            </div>
+                        </button>
+                    </div>
+                    <div class="col align-center content">
+                        <p>Recupereaza Parola</p>
+                        <form class="col align-center w-full" method="POST" action="{{ route('password.email') }}">
+                            @csrf
+                            <div class="form-group w-full">
+                                <label for="form-recover-password" class="form-label">E-mail</label>
+                                <input class="w-full" id="form-recover-password" type="email" name="email" required>
+                                {{-- <p class="form-validation">Completează acest câmp.</p> --}}
+                            </div>
+                            <button type="submit" class="w-fit btn btn-blue rounded-lg px-16 mt-64">Recupereaza Parola</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <div class="phone-icon" id="scrollToTopButton">
@@ -315,14 +460,19 @@
                 <p>
                     Daca doriti sa aflati noutati despre noi sau produsele noastre puteti sa ne lasati adresa de mail. Atunci cand vom lansa un produs nou, sau vom desfasura un eveniment cu adevarat important, veti primi informatia.
                 </p>
-                <form id="newsletter_form" method="POST" class="w-full mt-16" action="{{ url('/newsletter') }}">
+                <form id="newsletter_form" method="POST" class="w-full mt-16" action="{{ route('newsletter.subscribe') }}">
                     @csrf
                     <input type="hidden" name="current_url" value="{{ request()->url() }}">
                     <input type="email" required class="w-full form-control" name="NewsletterEmails[email]" placeholder="Adauga email..." id="nfi">
                     <input type="submit" class="btn btn-blue w-full mt-8" id="nfs_btn" value="Aboneaza-te">
-                    <div id="subscribe-msg"></div>
+                    <div id="subscribe-msg">
+                        @if(session('success'))
+                            <p>{{ session('success') }}</p>
+                        @endif
+                    </div>
                 </form>
             </div>
+            
         </div>
     
         <div class="main-container">
@@ -431,7 +581,7 @@
                 </ul>
             </div>
             <div class="categorii" id="produse" onclick="toggleAccordion('produse')">
-                <header >Produse</header>
+                <header>Produse</header>
                 <ul class="dropdown-menu" id="produse-menu">
                     <li id="apmim_mob"><a href="{{ url('/produse') }}" title="toate produsele">Toate Produsele</a></li>
 
@@ -496,8 +646,10 @@
                 @if (Auth::check())
                     <a href="{{ url('/contul-meu') }}" title="Setari cont">Setari cont</a>
                     <a href="{{ url('/wishlist') }}" title="Favorite">Favorite</a>
-                    <a href="{{ url('/contul-meu?page=istoric') }}" title="Istoric">Istoric</a>
-                    <a href="{{ url('/contul-meu#facturare') }}" title="Facturare">Facturare</a>
+                    {{-- <a href="{{ url('/contul-meu?page=istoric') }}" title="Istoric">Istoric</a>
+                    <a href="{{ url('/contul-meu#facturare') }}" title="Facturare">Facturare</a> --}}
+                    <a href="{{ url('/contul-meu') }}" title="Istoric">Istoric</a>
+                    <a href="{{ url('/contul-meu') }}" title="Facturare">Facturare</a>
                     <a href="{{ url('/logout') }}" title="Iesire">Iesire</a>
                 @else
                     <button id="auth_lightbox_trigger_mobile" class="btn btn-blue" onclick="toggleSidebar(), toggleAuthLightbox()" role="button" aria-label="Autentificare">
@@ -511,7 +663,9 @@
     @include('components.sidebar-contact', ['secondary_title' => 'vopsele'])
 
 
+
 <script>
+
     function toggleSidebar() {
         var sidebar = document.getElementById('sidebar-left');
         if(sidebar.classList.contains('hidden')) {
@@ -532,6 +686,29 @@
             menu.style.display = 'none';
         }
     }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+
+        // Hide the container when closing the modal
+        var authContainer = document.querySelector('.autentificare-1');
+        authContainer.style.opacity = '0';
+        authContainer.style.display = 'none';
+    }
+
+    function switchModal(currentModalId, targetModalId) {
+        document.getElementById(currentModalId).style.display = 'none';
+        document.getElementById(targetModalId).style.display = 'flex';
+    }
+
+    document.getElementById('auth_lightbox_trigger').addEventListener('click', function() {
+        var authContainer = document.querySelector('.autentificare-1');
+        authContainer.style.opacity = '1';
+        authContainer.style.display = 'inline-block';
+        document.getElementById('auth-lightbox').style.display = 'flex';
+    });
+
+
 
 </script>
     

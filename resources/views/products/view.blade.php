@@ -27,7 +27,7 @@
                     $featuredImageUrl = $product->featuredImage ? asset('storage/' .$product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
                 @endphp
 
-                <img class="contain" src="{{ $featuredImageUrl }}" alt="imagine" title="imagineprodus"  style="max-height:413.26px;">
+                <img class="contain" src="{{ $featuredImageUrl }}" alt="imagine" title="imagineprodus">
             </div>
         </div>
 
@@ -39,12 +39,16 @@
                             <h2 class="subtitle">{{ $product->sub_title }}</h2>
                             <div id="product_categories" class="row align-center">
                                 <p class="space-xl">Categorii: </p>
-                                @foreach ($categories_products as $category_product)
+                                @php
+                                    $uniqueCategories = $categories_products->unique('id');
+                                @endphp
+                                @foreach ($uniqueCategories as $category_product)
                                     <a class="font-sm" href="{{ url($category_product->slug) }}">
                                         {{ $category_product->name }}
                                     </a>
                                 @endforeach
                             </div>
+                            
                         </div>
 
                         @if ($product->active)
@@ -55,7 +59,7 @@
                                             <span class="font-700 text-red price-num" id="price{{ $product->id }}">{{ $initialVariation->price }}</span>
                                             <span class="text-red">Lei&nbsp;/&nbsp;</span>
                                         </p>
-                                        <p class="section-info" id="pret_value">Bidon <span id="packaging{{ $product->id }}">{{ $initialVariation->quantity }}</span></p>
+                                        <p class="section-info" id="pret_value">Bidon <span id="packaging{{ $product->id }}">{{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}</span></p>
                                     </div>
                                     <p class="section-info tva-label">Pret - inclusiv tva</p>
                                 @else
@@ -115,7 +119,7 @@
                                 </div>
                             @endif
 
-                            @if ($product->variations->pluck('quantity')->filter()->count())
+                            {{-- @if ($product->variations->pluck('quantity')->filter()->count())
                                 <div class="form-group">
                                     <label class="section-info" id="choose-type">Selecteaza ambalare</label>
                                     <select aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
@@ -124,7 +128,21 @@
                                         @endforeach
                                     </select>
                                 </div>
+                            @endif --}}
+
+                            @if ($product->variations->pluck('quantity')->filter()->count())
+                                <div class="form-group">
+                                    <label class="section-info" id="choose-type">Selecteaza ambalare</label>
+                                    <select aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
+                                        @foreach ($product->variations->unique('quantity') as $variation)
+                                            <option value="{{ $variation->quantity }}">
+                                                {{ $variation->quantity }} {{ $variation->measurementUnit->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             @endif
+
 
                             <div class="form-group">
                                 <label id="choose-quantity" class="section-info">Selecteaza cantitate</label>
@@ -153,7 +171,7 @@
                             Vizualizeaza cosul
                         </div>
                     </a>
-                    <a href="{{ url('/add-to-wishlist?product_id=' . $product->id) }}" title="Adauga la favorite">
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('wishlist-form-{{ $product->id }}').submit();" title="Adauga la favorite">
                         <div class="flex align-center btn-blue-outline rounded-sm text-nowrap w-full gap-md justify-center h-full font-sm px-16 py-4">
                             <div class="addToWhislistSvgWrapper">
                                 @if ($product->isInWishlist)
@@ -165,6 +183,12 @@
                             <span>Adauga la favorite</span>
                         </div>
                     </a>
+                    
+                    <form id="wishlist-form-{{ $product->id }}" action="{{ route('wishlist.store') }}" method="POST" style="display: none;">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    </form>
+                    
                 </div>
             </div>
 
@@ -222,33 +246,28 @@
     </div>
 
     <div class="mt-16 mt-custom">
-        {{-- <div class="tabs">
-            <button class="tablink" onclick="openTab(event, 'Descriere')">Descriere</button>
-            <button class="tablink" onclick="openTab(event, 'DetaliiUtilizare')">Detalii de utilizare</button>
-            <button class="tablink" onclick="openTab(event, 'CaracteristiciTehnice')">Caracteristici Tehnice</button>
-        </div> --}}
         <div class="tabs-selector-row">
-            <button type="submit" name="current_tab" value="0" role="tab" class="btn user-valid valid" option="0" aria-selected="true" tabindex="0" selected=""><span>Descriere</span></button>
-            <button type="submit" name="current_tab" value="1" role="tab" class="btn user-valid valid" option="1" aria-selected="false" tabindex="0"><span>Detalii de utilizare</span></button>
-            <button type="submit" name="current_tab" value="2" role="tab" class="btn" option="2" aria-selected="false" tabindex="0"><span>Caracteristici Tehnice</span></button>
+            <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid selected" option="0" aria-selected="true" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
+            <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid" option="1" aria-selected="false" tabindex="0" onclick="openTab(event, 'DetaliiUtilizare')"><span>Detalii de utilizare</span></button>
+            <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid" option="2" aria-selected="false" tabindex="0" onclick="openTab(event, 'CaracteristiciTehnice')"><span>Caracteristici Tehnice</span></button>
         </div>
 
         <div class="tab-content-container">
 
-            <div id="Descriere" class="tab-content">
-                {{-- {!! $product->description !!} --}}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi autem quia eveniet deserunt minima reprehenderit assumenda sunt voluptatem quo cumque.
+            <div id="Descriere" class="tab-content active">
+                {!! $product->description !!}
+                {{-- Descriere --}}
                 
             </div>
 
             <div id="DetaliiUtilizare" class="tab-content">
-                {{-- {!! $product->usage_details !!} --}}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error quia, perspiciatis veniam voluptates neque facere dolores aspernatur laborum dignissimos eaque.
+                {!! $product->usage_details !!}
+                {{-- Detalii Utilizare --}}
             </div>
 
             <div id="CaracteristiciTehnice" class="tab-content">
-                {{-- {!! $product->technical_details !!} --}}
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat eius saepe aliquid, fuga possimus corrupti. Blanditiis, saepe recusandae. Tempora, facere!
+                {!! $product->technical_details !!}
+                {{-- Caracteristici tehnice --}}
             </div>
         </div>
     </div>
@@ -333,6 +352,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
     packagingSelect.addEventListener('change', updateVariation);
     colorSelect.addEventListener('change', updateVariation);
+
+    // Funcția openTab trebuie definită în afara event listener-ului DOMContentLoaded
+    window.openTab = function(evt, tabName) {
+        // Declară toate variabilele
+        var i, tabcontent, tablinks;
+
+        // Ascunde tot conținutul taburilor
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+
+        // Elimină clasa 'selected' și aria-selected de la toate butoanele
+        tablinks = document.getElementsByClassName("btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("selected");
+            tablinks[i].setAttribute("aria-selected", "false");
+        }
+
+        // Afișează tab-ul curent și adaugă clasa 'active' și 'selected' la butonul selectat
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("selected");
+        evt.currentTarget.setAttribute("aria-selected", "true");
+    };
 });
+
 </script>
 @endsection
