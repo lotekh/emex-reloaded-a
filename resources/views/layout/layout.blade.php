@@ -150,7 +150,14 @@
                     
                     <a href="{{ url('/produse-adaugate') }}" title="cos">
                         @php
-                            $preorder_count = session('cart_list_products', collect())->count();
+                            // Obține utilizatorul curent autentificat
+                            $user = Auth::user();
+                    
+                            // Verifică dacă există o comandă (coș) activă pentru utilizatorul curent
+                            $activeOrder = $user ? $user->orders()->where('is_paid', false)->first() : null;
+                    
+                            // Obține numărul de produse din coșul activ sau setează la 0 dacă nu există un coș activ
+                            $preorder_count = $activeOrder ? $activeOrder->productVariations()->count() : 0;
                         @endphp
                         <div class="flex align-center">
                             <svg width="20" height="19" viewBox="0 0 15 14" fill="#1071FF" xmlns="http://www.w3.org/2000/svg">
@@ -162,6 +169,8 @@
                         </div>
                         <span class="label">Cos</span>
                     </a>
+                    
+
                 </div>
             </div>
         </div>
