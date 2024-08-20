@@ -32,26 +32,33 @@ class OrdersController extends Controller
         ['total' => 0]
     );
 
+    // Verificăm dacă produsul există deja în comandă
     $existingOrderProduct = $order->productVariations()->where('product_variation_id', $productVariation->id)->first();
 
     if ($existingOrderProduct) {
+        // Actualizăm cantitatea și prețul
         $existingOrderProduct->pivot->quantity += $request->input('quantity', 1);
-        $existingOrderProduct->pivot->total_price = $existingOrderProduct->pivot->quantity * $existingOrderProduct->pivot->price;
+        $existingOrderProduct->pivot->price = $productVariation->price;
+        $existingOrderProduct->pivot->price_no_vat = $productVariation->price_no_vat ?? 0; // Setăm la 0 dacă este NULL
         $existingOrderProduct->pivot->save();
     } else {
+        // Adăugăm noul produs în comandă
         $order->productVariations()->attach($productVariation->id, [
             'quantity' => $request->input('quantity', 1),
             'price' => $productVariation->price,
-            'price_no_vat' => $productVariation->price_no_vat,
-            'total_price' => $productVariation->price * $request->input('quantity', 1)
+            'price_no_vat' => $productVariation->price_no_vat ?? 0, // Setăm la 0 dacă este NULL
         ]);
     }
 
-    $order->total = $order->productVariations->sum('pivot.total_price');
+    // Recalculăm totalul comenzii
+    $order->total = $order->productVariations->sum(function ($product) {
+        return $product->pivot->quantity * $product->pivot->price;
+    });
     $order->save();
 
     return redirect()->route('orders.index');
 }
+
 
     public function removeProduct(Request $request)
     {
