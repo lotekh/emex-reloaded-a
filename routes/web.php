@@ -127,6 +127,16 @@ Route::get('/wishlist', [WishlistController::class, 'index'])->name('products.wi
 
 Route::post('/get-variation', [ProductsController::class, 'getVariation'])->name('product.getVariation');
 
+use App\Http\Controllers\OrdersController;
+
+Route::middleware('auth')->group(function () {
+    Route::get('/cart', [OrdersController::class, 'index'])->name('orders.index');
+    Route::get('/checkout', [OrdersController::class, 'checkout'])->name('orders.checkout');
+    Route::post('/add-product-to-cart', [OrdersController::class, 'addProduct'])->name('orders.addProduct');
+    Route::post('/remove-product-from-cart', [OrdersController::class, 'removeProduct'])->name('orders.removeProduct');
+    Route::get('/empty-cart', [OrdersController::class, 'emptyCart'])->name('orders.emptyCart');
+});
+
 // Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
 
