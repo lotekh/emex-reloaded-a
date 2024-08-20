@@ -123,12 +123,14 @@ Route::get('/servicii', function () {
 
 // Routes for produse
 Route::post('/add-to-wishlist', [WishlistController::class, 'store'])->name('wishlist.store');
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('products.wishlist');
 
+Route::post('/get-variation', [ProductsController::class, 'getVariation'])->name('product.getVariation');
 
 // Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
 
-Route::post('/get-variation', [ProductsController::class, 'getVariation'])->name('product.getVariation');
+
 
 
 

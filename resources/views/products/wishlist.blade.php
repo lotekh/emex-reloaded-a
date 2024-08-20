@@ -1,12 +1,4 @@
-@extends('layouts.app')
-
-@section('breadcrumbs')
-    <ul class="breadcrumb">
-        <li><a href="{{ url('/') }}">Acasa</a></li>
-        <li><a href="{{ url('/produse') }}">Produse</a></li>
-        <li class="active">Produse dorite</li>
-    </ul>
-@endsection
+@extends('layout.layout')
 
 @section('content')
 <div class="main-container mb-32" id="wishlist-page">
