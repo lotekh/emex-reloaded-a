@@ -31,7 +31,8 @@
             </div>
         </div>
 
-        <form method="GET" class="w-full col px-8 product-details-container" action="{{ url('/order-product') }}">
+        {{-- <form method="GET" class="w-full col px-8 product-details-container" action="{{ url('/order-product') }}"> --}}
+            <div class="w-full col px-8 product-details-container">
             <div class="col gap-xl">
                 <div class="top-container">
                     <div class="col justify-between">
@@ -171,8 +172,12 @@
                             Vizualizeaza cosul
                         </div>
                     </a>
-                    <a href="#" onclick="event.preventDefault(); document.getElementById('wishlist-form-{{ $product->id }}').submit();" title="Adauga la favorite">
-                        <div class="flex align-center btn-blue-outline rounded-sm text-nowrap w-full gap-md justify-center h-full font-sm px-16 py-4">
+                   
+                    <form id="add-to-wishlist-form-{{ $product->id }}" action="{{ route('wishlist.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        
+                        <button type="submit" class="flex align-center btn-blue-outline rounded-sm text-nowrap w-full gap-md justify-center h-full font-sm px-16 py-4">
                             <div class="addToWhislistSvgWrapper">
                                 @if ($product->isInWishlist)
                                     <img width="16" height="15" src="{{ asset('resources/new_design/icons/star-fill.svg') }}" title="review-star" alt="review-star">
@@ -180,14 +185,10 @@
                                     <img width="16" height="15" src="{{ asset('resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
                                 @endif
                             </div>
-                            <span>Adauga la favorite</span>
-                        </div>
-                    </a>
-                    
-                    <form id="wishlist-form-{{ $product->id }}" action="{{ route('wishlist.store') }}" method="POST" style="display: none;">
-                        @csrf
-                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <span>Adaugă la favorite</span>
+                        </button>
                     </form>
+                    
                     
                 </div>
             </div>
@@ -242,7 +243,8 @@
                     @endif
                 </div>
             </div>
-        </form>
+        </div>
+        {{-- </form> --}}
     </div>
 
     <div class="mt-16 mt-custom">

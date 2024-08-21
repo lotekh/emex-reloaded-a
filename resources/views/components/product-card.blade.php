@@ -82,7 +82,7 @@
         @endif
       </div>
 
-      <form class="relative w-full col" method="GET" action="{{ url('/order-product') }}">
+      <form class="relative w-full col" method="GET" action="{{ url('/adauga-produs') }}">
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         <input type="hidden" name="submited" value="1">
         <input type="hidden" name="name" value="{{ $product->plain_name }}">
@@ -91,15 +91,16 @@
         <input type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
         <input type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
         <input type="hidden" name="quantity" value="1">
+
+        {{-- <input type="hidden" name="product_variation_id" value="{{ $initialVariation->id }}">
+        <input type="hidden" name="quantity" value="1">
+        <input type="hidden" name="ambalare" value="{{ $initialVariation->quantity }}">
+        <input type="hidden" name="color" value="{{ $initialVariation->colour }}">
+        <input type="hidden" name="price" value="{{ $initialVariation->price }}">
+        <input type="hidden" name="price_no_tva" value="{{ $initialVariation->price_no_tva }}"> --}}
+        
         <div class="row no-wrap w-full gap-xs">
           <div class="relative row w-full">
-            {{-- <select aria-label="Ambalare" name="ambalare" id="ambalareSelect{{$product->id}}">
-              @foreach ($variations->pluck('quantity')->unique() as $value)
-                <option value="{{ $value }}" {{ $value == $initialVariation->quantity ? 'selected' : '' }}>
-                  {{ $value }}
-                </option>
-              @endforeach
-            </select> --}}
             <select aria-label="Ambalare" name="ambalare" id="ambalareSelect{{$product->id}}">
               @foreach ($product->variations->unique('quantity') as $variation)
                   <option value="{{ $variation->quantity }}" {{ $variation->quantity == $initialVariation->quantity ? 'selected' : '' }}>

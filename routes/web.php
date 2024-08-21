@@ -123,12 +123,37 @@ Route::get('/servicii', function () {
 
 // Routes for produse
 Route::post('/add-to-wishlist', [WishlistController::class, 'store'])->name('wishlist.store');
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('products.wishlist');
+
+Route::post('/get-variation', [ProductsController::class, 'getVariation'])->name('product.getVariation');
+
+use App\Http\Controllers\OrdersController;
+
+// Ruta pentru afișarea coșului de cumpărături
+Route::get('/produse-adaugate', [OrdersController::class, 'index'])->name('orders.index');
+
+// Ruta pentru adăugarea unui produs în coș
+Route::get('/adauga-produs', [OrdersController::class, 'addProduct'])->name('orders.addProduct');
+
+// Ruta pentru ștergerea unui produs din coș
+Route::post('/sterge-produs', [OrdersController::class, 'removeProduct'])->name('orders.removeProduct');
+
+// Ruta pentru golirea coșului
+Route::post('/goleste-cosul', [OrdersController::class, 'emptyCart'])->name('orders.empty');
+
+// Ruta pentru finalizarea comenzii
+// Route::get('/finalizeaza-comanda', [OrdersController::class, 'checkout'])->name('orders.checkout');
+
+
+// Checkout
+Route::get('/finalizeaza-comanda', [OrdersController::class, 'showCheckoutForm'])->name('checkout.form');
+Route::post('/finalizeaza-comanda', [OrdersController::class, 'processCheckout'])->name('checkout.process');
 
 
 // Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
 
-Route::post('/get-variation', [ProductsController::class, 'getVariation'])->name('product.getVariation');
+
 
 
 

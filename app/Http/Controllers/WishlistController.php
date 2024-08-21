@@ -2,26 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\WishlistItem;
 use Illuminate\Http\Request;
 
+
 class WishlistController extends Controller
 {
+
+    public function index()
+    {
+        // Obține utilizatorul autentificat
+        $user = Auth::user();
+        
+        // Obține produsele din wishlist pentru utilizatorul curent
+        $products = WishlistItem::where('user_id', $user->id)->with('product')->get()->pluck('product');
+        
+        // Returnează view-ul cu produsele din wishlist
+        return view('products.wishlist', compact('products'));
+    }
+
     public function store(Request $request)
     {
-        $user = auth()->user();
+        $userId = auth()->id(); // ID-ul utilizatorului curent
+        $productId = $request->input('product_id');
 
-        if (!$user) {
-            return redirect()->route('login'); // Redirecționare la login dacă utilizatorul nu este autentificat
+        // Verifică dacă produsul nu este deja în wishlist
+        $existingItem = WishlistItem::where('user_id', $userId)
+            ->where('product_id', $productId)
+            ->first();
+
+        if (!$existingItem) {
+            // Adaugă produsul în wishlist
+            WishlistItem::create([
+                'user_id' => $userId,
+                'product_id' => $productId,
+            ]);
         }
 
-        $wishlistItem = WishlistItem::firstOrCreate([
-            'user_id' => $user->id,
-            'product_id' => $request->product_id,
-        ]);
-
-        return back()->with('success', 'Produsul a fost adăugat la wishlist.');
+        return redirect()->back()->with('success', 'Produsul a fost adăugat la favorite.');
     }
 }
 
