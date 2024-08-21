@@ -1,5 +1,9 @@
 @extends('layout.layout')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/order.css') }}">
+@endsection
+
 @section('content')
 <div class="main-container" id="checkout-page">
     <form method="POST" action="{{ url('/save-checkout') }}" id="checkout_form">
@@ -32,42 +36,41 @@
                             </div>
                             <div class="form-group">
                                 <label>Prenume <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" name="company_information[person_first_name]" value="{{ $order->company_information['person_first_name'] ?? '' }}" required>
+                                <input class="form-control w-full" type="text" name="company_information[person_first_name]" value="{{ $order->company_information->person_first_name ?? '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Telefon <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="tel" name="company_information[person_phone]" value="{{ $order->company_information['person_phone'] ?? '' }}" required>
+                                <input class="form-control w-full" type="tel" name="company_information[person_phone]" value="{{ $order->company_information->person_phone ?? '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Email <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="email" name="company_information[person_email]" value="{{ $order->company_information['person_email'] ?? '' }}" required>
+                                <input class="form-control w-full" type="email" name="company_information[person_email]" value="{{ $order->company_information->person_email ?? '' }}" required>
                             </div>
                         </div>
                         <div class="grid grid-3 gap-lg">
                             <div class="form-group">
                                 <label>Tara <span class="text-red">*</span></label>
-                                <select class="form-control w-full" name="company_information[person_country_id]" id="person_country_id" required>
-                                    <option value="">Alege tara</option>
+                                <select class="form-control w-full" name="company_information[person_country_id]" required>
                                     @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}" {{ ($order->company_information['person_country_id'] ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
+                                        <option value="{{ $country->id }}" {{ ($order->company_information->person_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Judet <span class="text-red">*</span></label>
-                                <select class="form-control w-full" name="company_information[person_county_id]" id="person_county_id" required>
+                                <select class="form-control w-full" name="company_information[person_county_id]" required>
                                     @foreach ($counties as $county)
-                                        <option value="{{ $county->id }}" {{ ($order->company_information['person_county_id'] ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
+                                        <option value="{{ $county->id }}" {{ ($order->company_information->person_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Localitate <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" name="company_information[person_locality]" value="{{ $order->company_information['person_locality'] ?? '' }}" required>
+                                <input class="form-control w-full" type="text" name="company_information[person_locality]" value="{{ $order->company_information->person_locality ?? '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Adresa <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" name="company_information[person_address]" value="{{ $order->company_information['person_address'] ?? '' }}" required>
+                                <input class="form-control w-full" type="text" name="company_information[person_address]" value="{{ $order->company_information->person_address ?? '' }}" required>
                             </div>
                         </div>
                     </div>
@@ -76,66 +79,65 @@
                         <div class="grid grid-2 gap-lg">
                             <div class="form-group">
                                 <label>Nume societate <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" name="company_information[organization_name]" value="{{ $order->company_information['organization_name'] ?? '' }}" required>
+                                <input class="form-control w-full" type="text" name="company_information[organization_name]" value="{{ $order->company_information->organization_name ?? '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label>CUI <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" name="company_information[organization_cui]" value="{{ $order->company_information['organization_cui'] ?? '' }}" required>
+                                <input class="form-control w-full" type="text" name="company_information[organization_cui]" value="{{ $order->company_information->organization_cui ?? '' }}" required>
                             </div>
                         </div>
                         <div class="grid grid-3 gap-lg">
                             <div class="form-group">
                                 <label>Telefon <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="tel" name="company_information[organization_phone]" value="{{ $order->company_information['organization_phone'] ?? '' }}" required>
+                                <input class="form-control w-full" type="tel" name="company_information[organization_phone]" value="{{ $order->company_information->organization_phone ?? '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Email <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="email" name="company_information[organization_email]" value="{{ $order->company_information['organization_email'] ?? '' }}" required>
+                                <input class="form-control w-full" type="email" name="company_information[organization_email]" value="{{ $order->company_information->organization_email ?? '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Banca</label>
-                                <input class="form-control w-full" type="text" name="company_information[organization_bank]" value="{{ $order->company_information['organization_bank'] ?? '' }}">
+                                <input class="form-control w-full" type="text" name="company_information[organization_bank]" value="{{ $order->company_information->organization_bank ?? '' }}">
                             </div>
                             <div class="form-group">
                                 <label>IBAN</label>
-                                <input class="form-control w-full" type="text" name="company_information[organization_bank_account]" value="{{ $order->company_information['organization_bank_account'] ?? '' }}">
+                                <input class="form-control w-full" type="text" name="company_information[organization_bank_account]" value="{{ $order->company_information->organization_bank_account ?? '' }}">
                             </div>
                         </div>
                         <div class="grid grid-2 gap-lg">
                             <div class="form-group">
                                 <label>Nume persoana de contact</label>
-                                <input class="form-control w-full" type="text" name="company_information[contact_person_last_name]" value="{{ $order->company_information['contact_person_last_name'] ?? '' }}">
+                                <input class="form-control w-full" type="text" name="company_information[contact_person_last_name]" value="{{ $order->company_information->contact_person_last_name ?? '' }}">
                             </div>
                             <div class="form-group">
                                 <label>Prenume persoana de contact</label>
-                                <input class="form-control w-full" type="text" name="company_information[contact_person_first_name]" value="{{ $order->company_information['contact_person_first_name'] ?? '' }}">
+                                <input class="form-control w-full" type="text" name="company_information[contact_person_first_name]" value="{{ $order->company_information->contact_person_first_name ?? '' }}">
                             </div>
                         </div>
                         <div class="grid grid-3 gap-lg">
                             <div class="form-group">
                                 <label>Tara <span class="text-red">*</span></label>
-                                <select class="form-control w-full" name="company_information[organization_country_id]" id="organization_country_id" required>
-                                    <option value="">Alege tara</option>
+                                <select class="form-control w-full" name="company_information[organization_country_id]" required>
                                     @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}" {{ ($order->company_information['organization_country_id'] ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
+                                        <option value="{{ $country->id }}" {{ ($order->company_information->organization_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Judet <span class="text-red">*</span></label>
-                                <select class="form-control w-full" name="company_information[organization_county_id]" id="organization_county_id" required>
+                                <select class="form-control w-full" name="company_information[organization_county_id]" required>
                                     @foreach ($counties as $county)
-                                        <option value="{{ $county->id }}" {{ ($order->company_information['organization_county_id'] ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
+                                        <option value="{{ $county->id }}" {{ ($order->company_information->organization_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Localitate <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" name="company_information[organization_locality]" value="{{ $order->company_information['organization_locality'] ?? '' }}" required>
+                                <input class="form-control w-full" type="text" name="company_information[organization_locality]" value="{{ $order->company_information->organization_locality ?? '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Adresa <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" name="company_information[organization_address]" value="{{ $order->company_information['organization_address'] ?? '' }}" required>
+                                <input class="form-control w-full" type="text" name="company_information[organization_address]" value="{{ $order->company_information->organization_address ?? '' }}" required>
                             </div>
                         </div>
                     </div>
@@ -169,46 +171,45 @@
                         <div class="grid grid-4 gap-lg">
                             <div class="form-group">
                                 <label>Nume <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" name="delivery_information[delivery_last_name]" value="{{ $order->delivery_information['delivery_last_name'] ?? '' }}" required>
+                                <input class="form-control w-full" type="text" name="delivery_information[delivery_last_name]" value="{{ $order->delivery_information->delivery_last_name ?? '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Prenume <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" name="delivery_information[delivery_first_name]" value="{{ $order->delivery_information['delivery_first_name'] ?? '' }}" required>
+                                <input class="form-control w-full" type="text" name="delivery_information[delivery_first_name]" value="{{ $order->delivery_information->delivery_first_name ?? '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Telefon <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="tel" name="delivery_information[delivery_phone]" value="{{ $order->delivery_information['delivery_phone'] ?? '' }}" required>
+                                <input class="form-control w-full" type="tel" name="delivery_information[delivery_phone]" value="{{ $order->delivery_information->delivery_phone ?? '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Email <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="email" name="delivery_information[delivery_email]" value="{{ $order->delivery_information['delivery_email'] ?? '' }}" required>
+                                <input class="form-control w-full" type="email" name="delivery_information[delivery_email]" value="{{ $order->delivery_information->delivery_email ?? '' }}" required>
                             </div>
                         </div>
                         <div class="grid grid-3 gap-lg">
                             <div class="form-group">
                                 <label>Tara <span class="text-red">*</span></label>
-                                <select class="form-control w-full" name="delivery_information[delivery_country_id]" id="delivery_country_id" required>
-                                    <option value="">Alege tara</option>
+                                <select class="form-control w-full" name="delivery_information[delivery_country_id]" required>
                                     @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}" {{ ($order->delivery_information['delivery_country_id'] ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
+                                        <option value="{{ $country->id }}" {{ ($order->delivery_information->delivery_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Judet <span class="text-red">*</span></label>
-                                <select class="form-control w-full" name="delivery_information[delivery_county_id]" id="delivery_county_id" required>
+                                <select class="form-control w-full" name="delivery_information[delivery_county_id]" required>
                                     @foreach ($counties as $county)
-                                        <option value="{{ $county->id }}" {{ ($order->delivery_information['delivery_county_id'] ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
+                                        <option value="{{ $county->id }}" {{ ($order->delivery_information->delivery_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Localitate <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" name="delivery_information[delivery_locality]" value="{{ $order->delivery_information['delivery_locality'] ?? '' }}" required>
+                                <input class="form-control w-full" type="text" name="delivery_information[delivery_locality]" value="{{ $order->delivery_information->delivery_locality ?? '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Adresa <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" name="delivery_information[delivery_address]" value="{{ $order->delivery_information['delivery_address'] ?? '' }}" required>
+                                <input class="form-control w-full" type="text" name="delivery_information[delivery_address]" value="{{ $order->delivery_information->delivery_address ?? '' }}" required>
                             </div>
                         </div>
                     </div>
@@ -254,7 +255,7 @@
                     </div>
                 </div>
                 <div class="flex justify-end col flex-md align-center">
-                    <button type="button" class="btn btn-blue rounded-xl large-width" id="go-to-step-4">Finalizeaza comanda</button>
+                    <button type="submit" class="btn btn-blue rounded-xl large-width">Finalizeaza comanda</button>
                 </div>
             </div>
         </div>
@@ -262,74 +263,74 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Gestionarea trecerii între pași
-    document.getElementById('go-to-step-2').addEventListener('click', function () {
-        document.getElementById('step1').classList.remove('active');
-        document.getElementById('step2').classList.add('active');
-    });
+    // Script pentru gestionarea pașilor
+    document.addEventListener('DOMContentLoaded', function () {
+        const billingType = document.getElementById('billing-type');
+        const personBillingContainer = document.getElementById('person-billing-container');
+        const organizationBillingContainer = document.getElementById('organization-billing-container');
+        const deliveryType = document.querySelector('input[name="delivery_type"]');
 
-    document.getElementById('go-to-step-3').addEventListener('click', function () {
-        document.getElementById('step2').classList.remove('active');
-        document.getElementById('step3').classList.add('active');
-    });
+        const goToStep2Button = document.getElementById('go-to-step-2');
+        const goToStep3Button = document.getElementById('go-to-step-3');
 
-    document.getElementById('go-to-step-4').addEventListener('click', function () {
-        document.getElementById('checkout_form').submit();
-    });
+        // Evenimente pentru schimbarea tipului de facturare
+        document.getElementById('person-billing').addEventListener('click', function () {
+            billingType.value = 0;
+            personBillingContainer.classList.remove('hidden');
+            organizationBillingContainer.classList.add('hidden');
+        });
 
-    // Gestionarea selectării tipului de facturare
-    document.getElementById('organization-billing').addEventListener('click', function () {
-        this.dataset.checked = "true";
-        document.getElementById('person-billing').dataset.checked = "false";
-        document.getElementById('organization-billing-container').classList.remove('hidden');
-        document.getElementById('person-billing-container').classList.add('hidden');
-        document.querySelector('input[name="billing_type"]').value = 1;
-    });
+        document.getElementById('organization-billing').addEventListener('click', function () {
+            billingType.value = 1;
+            organizationBillingContainer.classList.remove('hidden');
+            personBillingContainer.classList.add('hidden');
+        });
 
-    document.getElementById('person-billing').addEventListener('click', function () {
-        this.dataset.checked = "true";
-        document.getElementById('organization-billing').dataset.checked = "false";
-        document.getElementById('person-billing-container').classList.remove('hidden');
-        document.getElementById('organization-billing-container').classList.add('hidden');
-        document.querySelector('input[name="billing_type"]').value = 0;
-    });
+        // Gestionarea trecerii între pași
+        goToStep2Button.addEventListener('click', function () {
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+        });
 
-    // Gestionarea selectării tipului de livrare
-    document.getElementById('curier').addEventListener('click', function () {
-        this.dataset.checked = "true";
-        document.getElementById('ridicare-personala').dataset.checked = "false";
-        document.getElementById('curier-container').classList.remove('hidden');
-        document.querySelector('input[name="delivery_type"]').value = 'curier';
-    });
+        goToStep3Button.addEventListener('click', function () {
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step3').classList.add('active');
+        });
 
-    document.getElementById('ridicare-personala').addEventListener('click', function () {
-        this.dataset.checked = "true";
-        document.getElementById('curier').dataset.checked = "false";
-        document.getElementById('curier-container').classList.add('hidden');
-        document.querySelector('input[name="delivery_type"]').value = 'ridicare-personala';
-    });
+        // Selectarea metodei de livrare
+        document.getElementById('curier').addEventListener('click', function () {
+            deliveryType.value = 'curier';
+            document.getElementById('curier-container').classList.remove('hidden');
+            document.getElementById('ridicare-personala-container').classList.add('hidden');
+        });
 
-    // Gestionarea selectării metodei de plată
-    const paymentMethods = document.querySelectorAll('.step#step3 .card button');
-    paymentMethods.forEach(function (button) {
-        button.addEventListener('click', function () {
-            paymentMethods.forEach(function (btn) {
-                btn.dataset.checked = "false";
-                btn.querySelector('img').classList.add('hidden');
+        document.getElementById('ridicare-personala').addEventListener('click', function () {
+            deliveryType.value = 'ridicare-personala';
+            document.getElementById('curier-container').classList.add('hidden');
+            document.getElementById('ridicare-personala-container').classList.remove('hidden');
+        });
+
+        // Selectarea metodei de plată
+        const paymentMethods = document.querySelectorAll('.card .checkbox');
+        paymentMethods.forEach(function (method) {
+            method.addEventListener('click', function () {
+                paymentMethods.forEach(function (el) {
+                    el.dataset.checked = 'false';
+                    el.querySelector('img').classList.add('hidden');
+                });
+                this.dataset.checked = 'true';
+                this.querySelector('img').classList.remove('hidden');
+                document.querySelector('input[name="payment_method"]').value = this.id;
             });
-            this.dataset.checked = "true";
-            this.querySelector('img').classList.remove('hidden');
-            document.querySelector('input[name="payment_method"]').value = this.id;
         });
     });
 
-    // Gestionarea selectării țării și județului (pentru facturare și livrare)
-    const countrySelects = document.querySelectorAll('select[id$="_country_id"]');
+    // Fetch judete by tara
+    const countrySelects = document.querySelectorAll('select[name*="country_id"]');
     countrySelects.forEach(countrySelect => {
         countrySelect.addEventListener('change', function () {
-            const countySelect = document.getElementById(this.id.replace('country', 'county'));
-            fetch('/get-counties-by-country/' + this.value)
+            const countySelect = document.querySelector(`select[name="${this.name.replace('country', 'county')}"]`);
+            fetch(`/get-counties-by-country/${this.value}`)
                 .then(response => response.json())
                 .then(data => {
                     countySelect.innerHTML = '<option value="">Alege judetul</option>';
@@ -339,6 +340,5 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
         });
     });
-});
 </script>
 @endsection

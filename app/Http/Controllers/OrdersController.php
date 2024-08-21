@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Country;
+use App\Models\County;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\ProductVariation;
@@ -120,6 +122,8 @@ class OrdersController extends Controller
     {
         $user = auth()->user();
         $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
+        $countries = Country::all();
+        $counties = County::all();
 
         if ($order) {
             // Preluăm informațiile de facturare și livrare din profilul utilizatorului
@@ -135,7 +139,7 @@ class OrdersController extends Controller
             $order->save();
         }
 
-        return view('products.finalizeaza-comanda', compact('user', 'order'));
+        return view('products.finalizeaza-comanda', compact('user', 'order', 'countries', 'counties'));
     }
 
 
