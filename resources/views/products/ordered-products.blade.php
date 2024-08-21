@@ -101,7 +101,7 @@
         <a class="row align-center" href="{{ url('/produse') }}">
           <button class="btn btn-blue rounded-xl medium-width">Continua cumparaturile</button>
         </a>
-        <a class="row align-center" href="{{ route('orders.checkout') }}">
+        <a class="row align-center" href="{{ route('checkout.form') }}">
           <button class="btn btn-blue rounded-xl medium-width">Finalizeaza comanda</button>
         </a>
       </div>

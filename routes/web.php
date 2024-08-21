@@ -142,8 +142,12 @@ Route::post('/sterge-produs', [OrdersController::class, 'removeProduct'])->name(
 Route::post('/goleste-cosul', [OrdersController::class, 'emptyCart'])->name('orders.empty');
 
 // Ruta pentru finalizarea comenzii
-Route::get('/finalizeaza-comanda', [OrdersController::class, 'checkout'])->name('orders.checkout');
+// Route::get('/finalizeaza-comanda', [OrdersController::class, 'checkout'])->name('orders.checkout');
 
+
+// Checkout
+Route::get('/finalizeaza-comanda', [OrdersController::class, 'showCheckoutForm'])->name('checkout.form');
+Route::post('/finalizeaza-comanda', [OrdersController::class, 'processCheckout'])->name('checkout.process');
 
 
 // Routes for slugs

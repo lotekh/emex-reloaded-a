@@ -115,4 +115,62 @@ class OrdersController extends Controller
 
         return redirect()->route('orders.index');
     }
+
+    public function showCheckoutForm(Request $request)
+    {
+        $user = auth()->user();
+        $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
+
+        if ($order) {
+            // Preluăm informațiile de facturare și livrare din profilul utilizatorului
+            $order->company_information = is_string($user->company_information) 
+                ? json_decode($user->company_information, true) 
+                : $user->company_information;
+
+            $order->delivery_information = is_string($user->delivery_information) 
+                ? json_decode($user->delivery_information, true) 
+                : $user->delivery_information;
+
+            // Salvăm aceste date în comanda curentă
+            $order->save();
+        }
+
+        return view('products.finalizeaza-comanda', compact('user', 'order'));
+    }
+
+
+    public function processCheckout(Request $request)
+    {
+        // Validăm datele introduse de utilizator
+        $this->validate($request, [
+            'billing_type' => 'required',
+            'delivery_type' => 'required',
+            'payment_method' => 'required',
+            'company_information' => 'required|array',
+            'delivery_information' => 'required|array',
+        ]);
+
+        // Preluăm utilizatorul și comanda curentă
+        $user = auth()->user();
+        $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
+
+        if ($order) {
+            // Actualizăm datele comenzii cu informațiile primite din formular
+            $order->update([
+                'billing_type' => $request->input('billing_type'),
+                'delivery_type' => $request->input('delivery_type'),
+                'payment_method' => $request->input('payment_method'),
+                'company_information' => json_encode($request->input('company_information')), 
+                'delivery_information' => json_encode($request->input('delivery_information')), 
+                'is_paid' => true,
+                'contact_information' => json_encode($request->only('contact_name', 'contact_phone', 'contact_email')), 
+            ]);
+
+            // Redirect la pagina de mulțumire
+            return redirect()->route('thank-you');
+        }
+
+        // Dacă nu există o comandă, redirect la pagina coșului
+        return redirect()->route('orders.index');
+    }
 }
