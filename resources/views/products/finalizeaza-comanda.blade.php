@@ -421,49 +421,48 @@
 <script>
     // Script pentru gestionarea pașilor
     document.addEventListener('DOMContentLoaded', function () {
-        const billingType = document.getElementById('billing-type');
-        const personBillingContainer = document.getElementById('person-billing-container');
-        const organizationBillingContainer = document.getElementById('organization-billing-container');
-        const deliveryType = document.querySelector('input[name="delivery_type"]');
+        const step1Container = document.getElementById('step1');
+        const step2Container = document.getElementById('step2');
+        const step3Container = document.getElementById('step3');
+        const step4Container = document.getElementById('step4');
 
         const goToStep2Button = document.getElementById('go-to-step-2');
         const goToStep3Button = document.getElementById('go-to-step-3');
+        const goToStep4Button = document.getElementById('go-to-step-4');
+        const backToStep1Button = document.getElementById('back-to-step-1');
+        const backToStep2Button = document.getElementById('back-to-step-2');
+        const backToStep3Button = document.getElementById('back-to-step-3');
 
-        // Evenimente pentru schimbarea tipului de facturare
-        document.getElementById('person-billing').addEventListener('click', function () {
-            billingType.value = 0;
-            personBillingContainer.classList.remove('hidden');
-            organizationBillingContainer.classList.add('hidden');
-        });
-
-        document.getElementById('organization-billing').addEventListener('click', function () {
-            billingType.value = 1;
-            organizationBillingContainer.classList.remove('hidden');
-            personBillingContainer.classList.add('hidden');
-        });
-
-        // Gestionarea trecerii între pași
+        // Evenimente pentru butoanele de trecere între pași
         goToStep2Button.addEventListener('click', function () {
-            document.getElementById('step1').classList.remove('active');
-            document.getElementById('step2').classList.add('active');
+            step1Container.classList.remove('active');
+            step2Container.classList.add('active');
         });
 
         goToStep3Button.addEventListener('click', function () {
-            document.getElementById('step2').classList.remove('active');
-            document.getElementById('step3').classList.add('active');
+            step2Container.classList.remove('active');
+            step3Container.classList.add('active');
         });
 
-        // Selectarea metodei de livrare
-        document.getElementById('curier').addEventListener('click', function () {
-            deliveryType.value = 'curier';
-            document.getElementById('curier-container').classList.remove('hidden');
-            document.getElementById('ridicare-personala-container').classList.add('hidden');
+        goToStep4Button.addEventListener('click', function () {
+            step3Container.classList.remove('active');
+            step4Container.classList.add('active');
         });
 
-        document.getElementById('ridicare-personala').addEventListener('click', function () {
-            deliveryType.value = 'ridicare-personala';
-            document.getElementById('curier-container').classList.add('hidden');
-            document.getElementById('ridicare-personala-container').classList.remove('hidden');
+        // Evenimente pentru butoanele de întoarcere între pași
+        backToStep1Button.addEventListener('click', function () {
+            step2Container.classList.remove('active');
+            step1Container.classList.add('active');
+        });
+
+        backToStep2Button.addEventListener('click', function () {
+            step3Container.classList.remove('active');
+            step2Container.classList.add('active');
+        });
+
+        backToStep3Button.addEventListener('click', function () {
+            step4Container.classList.remove('active');
+            step3Container.classList.add('active');
         });
 
         // Selectarea metodei de plată
@@ -479,23 +478,52 @@
                 document.querySelector('input[name="payment_method"]').value = this.id;
             });
         });
-    });
 
-    // Fetch judete by tara
-    const countrySelects = document.querySelectorAll('select[name*="country_id"]');
-    countrySelects.forEach(countrySelect => {
-        countrySelect.addEventListener('change', function () {
-            const countySelect = document.querySelector(`select[name="${this.name.replace('country', 'county')}"]`);
-            fetch(`/get-counties-by-country/${this.value}`)
-                .then(response => response.json())
-                .then(data => {
-                    countySelect.innerHTML = '<option value="">Alege judetul</option>';
-                    data.forEach(county => {
-                        countySelect.innerHTML += `<option value="${county.id}">${county.name}</option>`;
+        // Selectarea metodei de livrare
+        const deliveryType = document.querySelector('input[name="delivery_type"]');
+        document.getElementById('curier').addEventListener('click', function () {
+            deliveryType.value = 'curier';
+            document.getElementById('curier-container').classList.remove('hidden');
+            document.getElementById('ridicare-personala-container').classList.add('hidden');
+        });
+
+        document.getElementById('ridicare-personala').addEventListener('click', function () {
+            deliveryType.value = 'ridicare-personala';
+            document.getElementById('curier-container').classList.add('hidden');
+            document.getElementById('ridicare-personala-container').classList.remove('hidden');
+        });
+
+        // Gestionarea tipului de facturare
+        const billingType = document.querySelector('input[name="billing_type"]');
+        document.getElementById('person-billing').addEventListener('click', function () {
+            billingType.value = 0;
+            document.getElementById('person-billing-container').classList.remove('hidden');
+            document.getElementById('organization-billing-container').classList.add('hidden');
+        });
+
+        document.getElementById('organization-billing').addEventListener('click', function () {
+            billingType.value = 1;
+            document.getElementById('organization-billing-container').classList.remove('hidden');
+            document.getElementById('person-billing-container').classList.add('hidden');
+        });
+
+        // Fetch judete by tara
+        const countrySelects = document.querySelectorAll('select[name*="country_id"]');
+        countrySelects.forEach(countrySelect => {
+            countrySelect.addEventListener('change', function () {
+                const countySelect = document.querySelector(`select[name="${this.name.replace('country', 'county')}"]`);
+                fetch(`/get-counties-by-country/${this.value}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        countySelect.innerHTML = '<option value="">Alege judetul</option>';
+                        data.forEach(county => {
+                            countySelect.innerHTML += `<option value="${county.id}">${county.name}</option>`;
+                        });
                     });
-                });
+            });
         });
     });
 </script>
+
 
 @endsection
