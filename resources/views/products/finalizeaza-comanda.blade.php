@@ -275,81 +275,95 @@
                         <h5 class="m-0 mb-8">Facturare</h5>
                         <div id="summary_billing_type">
                             Tip facturare:
-                            <span></span>
+                            <span>{{ $order->billing_type == 1 ? 'Persoana Juridica' : 'Persoana Fizica' }}</span>
                         </div>
                         <div id="summary_billing_name">
                             Nume:
-                            <span></span>
+                            <span>
+                                {{ $order->billing_type == 1 ? $order->company_information->organization_name : $order->company_information->person_first_name . ' ' . $order->company_information->person_last_name }}
+                            </span>
                         </div>
                         <div id="summary_billing_phone">
                             Numar de telefon:
-                            <span></span>
+                            <span>
+                                @if($order->billing_type == 1)
+                                    {{ $order->company_information->organization_phone ?? 'N/A' }}
+                                @else
+                                    {{ $order->company_information->person_phone ?? 'N/A' }}
+                                @endif
+                            </span>
                         </div>
-                        <div id="summary_billing_email">
+                        {{-- <div id="summary_billing_email">
                             Email:
-                            <span></span>
-                        </div>
+                            <span>{{ $order->billing_type == 1 ? $order->company_information->organization_email : $order->company_information->person_email }}</span>
+                        </div> --}}
                         <div id="summary_billing_county_name">
                             Judet:
-                            <span></span>
+                            <span>{{ $order->billing_type == 1 ? $order->company_information->organization_county_id : $order->company_information->person_county_id }}</span>
                         </div>
                         <div id="summary_billing_city_name">
                             Localitate:
-                            <span></span>
+                            <span>{{ $order->billing_type == 1 ? $order->company_information->organization_locality : $order->company_information->person_locality }}</span>
                         </div>
                         <div id="summary_billing_address">
                             Adresa:
-                            <span></span>
+                            <span>{{ $order->billing_type == 1 ? $order->company_information->organization_address : $order->company_information->person_address }}</span>
                         </div>
-                        <div id="summary_billing_cui">
-                            CUI:
-                            <span></span>
-                        </div>
-                        <div id="summary_billing_bank">
-                            Banca:
-                            <span></span>
-                        </div>
-                        <div id="summary_billing_bank_account">
-                            IBAN:
-                            <span></span>
-                        </div>
+                        @if ($order->billing_type == 1)
+                            <div id="summary_billing_cui">
+                                CUI:
+                                <span>{{ $order->company_information->organization_cui }}</span>
+                            </div>
+                            <div id="summary_billing_bank">
+                                Banca:
+                                <span>{{ $order->company_information->organization_bank }}</span>
+                            </div>
+                            <div id="summary_billing_bank_account">
+                                IBAN:
+                                <span>{{ $order->company_information->organization_bank_account }}</span>
+                            </div>
+                        @endif
+                        
                     </div>
+
                     <div class="inputs">
                         <h5 class="m-0 mb-8">Livrare</h5>
                         <div id="summary_delivery_type">
                             Tip livrare:
-                            <span></span>
+                            <span>{{ $order->delivery_type == 'curier' ? 'Curier' : 'Ridicare personala' }}</span>
                         </div>
                         <div id="summary_delivery_name">
                             Nume:
-                            <span></span>
+                            <span>{{ $order->delivery_information->delivery_first_name . ' ' . $order->delivery_information->delivery_last_name }}</span>
                         </div>
                         <div id="summary_delivery_phone">
                             Numar de telefon:
-                            <span></span>
+                            <span>{{ $order->delivery_information->delivery_phone }}</span>
                         </div>
                         <div id="summary_delivery_email">
                             Email:
-                            <span></span>
+                            <span>{{ $order->delivery_information->delivery_email }}</span>
                         </div>
                         <div id="summary_delivery_county_name">
                             Judet:
-                            <span></span>
+                            <span>{{ $order->delivery_information->delivery_county_id }}</span>
                         </div>
                         <div id="summary_delivery_city_name">
                             Localitate:
-                            <span></span>
+                            <span>{{ $order->delivery_information->delivery_locality }}</span>
                         </div>
                         <div id="summary_delivery_address">
                             Adresa:
-                            <span></span>
+                            <span>{{ $order->delivery_information->delivery_address }}</span>
                         </div>
+                        
                     </div>
+
                     <div class="inputs">
                         <h5 class="m-0 mb-8">Plata</h5>
                         <div id="summary_payment_method">
                             Metoda de plata:
-                            <span></span>
+                            <span>{{ ucfirst(str_replace('-', ' ', $order->payment_method)) }}</span>
                         </div>
                     </div>
                 </div>
