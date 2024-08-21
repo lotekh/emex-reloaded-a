@@ -416,103 +416,86 @@
     </form>
 </div>
 
+
+
 <script>
-// JavaScript pentru gestionarea pașilor și precompletarea datelor
+    // Script pentru gestionarea pașilor
+    document.addEventListener('DOMContentLoaded', function () {
+        const billingType = document.getElementById('billing-type');
+        const personBillingContainer = document.getElementById('person-billing-container');
+        const organizationBillingContainer = document.getElementById('organization-billing-container');
+        const deliveryType = document.querySelector('input[name="delivery_type"]');
 
-document.addEventListener('DOMContentLoaded', function () {
-    const step1 = document.getElementById('step1');
-    const step2 = document.getElementById('step2');
-    const step3 = document.getElementById('step3');
-    const step4 = document.getElementById('step4');
+        const goToStep2Button = document.getElementById('go-to-step-2');
+        const goToStep3Button = document.getElementById('go-to-step-3');
 
-    const goToStep2 = document.getElementById('go-to-step-2');
-    const goToStep3 = document.getElementById('go-to-step-3');
-    const goToStep4 = document.getElementById('go-to-step-4');
-    
-    const backToStep1 = document.getElementById('back-to-step-1');
-    const backToStep2 = document.getElementById('back-to-step-2');
-    const backToStep3 = document.getElementById('back-to-step-3');
+        // Evenimente pentru schimbarea tipului de facturare
+        document.getElementById('person-billing').addEventListener('click', function () {
+            billingType.value = 0;
+            personBillingContainer.classList.remove('hidden');
+            organizationBillingContainer.classList.add('hidden');
+        });
 
-    // Trecere de la facturare la livrare
-    goToStep2.addEventListener('click', function () {
-        step1.classList.add('hidden');
-        step2.classList.remove('hidden');
-    });
+        document.getElementById('organization-billing').addEventListener('click', function () {
+            billingType.value = 1;
+            organizationBillingContainer.classList.remove('hidden');
+            personBillingContainer.classList.add('hidden');
+        });
 
-    // Trecere de la livrare la plata
-    goToStep3.addEventListener('click', function () {
-        step2.classList.add('hidden');
-        step3.classList.remove('hidden');
-    });
+        // Gestionarea trecerii între pași
+        goToStep2Button.addEventListener('click', function () {
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+        });
 
-    // Trecere de la plata la sumar comanda
-    goToStep4.addEventListener('click', function () {
-        step3.classList.add('hidden');
-        step4.classList.remove('hidden');
-    });
+        goToStep3Button.addEventListener('click', function () {
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step3').classList.add('active');
+        });
 
-    // Inapoi de la livrare la facturare
-    backToStep1.addEventListener('click', function () {
-        step2.classList.add('hidden');
-        step1.classList.remove('hidden');
-    });
+        // Selectarea metodei de livrare
+        document.getElementById('curier').addEventListener('click', function () {
+            deliveryType.value = 'curier';
+            document.getElementById('curier-container').classList.remove('hidden');
+            document.getElementById('ridicare-personala-container').classList.add('hidden');
+        });
 
-    // Inapoi de la plata la livrare
-    backToStep2.addEventListener('click', function () {
-        step3.classList.add('hidden');
-        step2.classList.remove('hidden');
-    });
+        document.getElementById('ridicare-personala').addEventListener('click', function () {
+            deliveryType.value = 'ridicare-personala';
+            document.getElementById('curier-container').classList.add('hidden');
+            document.getElementById('ridicare-personala-container').classList.remove('hidden');
+        });
 
-    // Inapoi de la sumar comanda la plata
-    backToStep3.addEventListener('click', function () {
-        step4.classList.add('hidden');
-        step3.classList.remove('hidden');
-    });
-
-    // Butoane de selecție pentru metodele de plată
-    document.querySelectorAll('.checkbox').forEach(checkbox => {
-        checkbox.addEventListener('click', function () {
-            document.querySelectorAll('.checkbox').forEach(box => box.dataset.checked = "false");
-            this.dataset.checked = "true";
-            document.getElementById('payment_method').value = this.id;
+        // Selectarea metodei de plată
+        const paymentMethods = document.querySelectorAll('.card .checkbox');
+        paymentMethods.forEach(function (method) {
+            method.addEventListener('click', function () {
+                paymentMethods.forEach(function (el) {
+                    el.dataset.checked = 'false';
+                    el.querySelector('img').classList.add('hidden');
+                });
+                this.dataset.checked = 'true';
+                this.querySelector('img').classList.remove('hidden');
+                document.querySelector('input[name="payment_method"]').value = this.id;
+            });
         });
     });
 
-    // Completați sumarul comenzii
-    goToStep4.addEventListener('click', function () {
-        // Completați datele de facturare
-        document.getElementById('summary_billing_type span').textContent = document.querySelector('input[name="billing_type"]').value == '0' ? 'Persoana fizica' : 'Persoana juridica';
-        document.getElementById('summary_billing_name span').textContent = document.querySelector('input[name="company_information[person_last_name]"]').value || document.querySelector('input[name="company_information[organization_name]"]').value;
-        document.getElementById('summary_billing_phone span').textContent = document.querySelector('input[name="company_information[person_phone]"]').value || document.querySelector('input[name="company_information[organization_phone]"]').value;
-        document.getElementById('summary_billing_email span').textContent = document.querySelector('input[name="company_information[person_email]"]').value || document.querySelector('input[name="company_information[organization_email]"]').value;
-        document.getElementById('summary_billing_county_name span').textContent = document.querySelector('select[name="company_information[person_county_id]"] option:checked').textContent || document.querySelector('select[name="company_information[organization_county_id]"] option:checked').textContent;
-        document.getElementById('summary_billing_city_name span').textContent = document.querySelector('input[name="company_information[person_locality]"]').value || document.querySelector('input[name="company_information[organization_locality]"]').value;
-        document.getElementById('summary_billing_address span').textContent = document.querySelector('input[name="company_information[person_address]"]').value || document.querySelector('input[name="company_information[organization_address]"]').value;
-        document.getElementById('summary_billing_cui span').textContent = document.querySelector('input[name="company_information[organization_cui]"]').value || '-';
-        document.getElementById('summary_billing_bank span').textContent = document.querySelector('input[name="company_information[organization_bank]"]').value || '-';
-        document.getElementById('summary_billing_bank_account span').textContent = document.querySelector('input[name="company_information[organization_bank_account]"]').value || '-';
-
-        // Completați datele de livrare
-        document.getElementById('summary_delivery_type span').textContent = document.querySelector('input[name="delivery_type"]').value == 'curier' ? 'Curier' : 'Ridicare personala';
-        document.getElementById('summary_delivery_name span').textContent = document.querySelector('input[name="delivery_information[delivery_last_name]"]').value + ' ' + document.querySelector('input[name="delivery_information[delivery_first_name]"]').value;
-        document.getElementById('summary_delivery_phone span').textContent = document.querySelector('input[name="delivery_information[delivery_phone]"]').value;
-        document.getElementById('summary_delivery_email span').textContent = document.querySelector('input[name="delivery_information[delivery_email]"]').value;
-        document.getElementById('summary_delivery_county_name span').textContent = document.querySelector('select[name="delivery_information[delivery_county_id]"] option:checked').textContent;
-        document.getElementById('summary_delivery_city_name span').textContent = document.querySelector('input[name="delivery_information[delivery_locality]"]').value;
-        document.getElementById('summary_delivery_address span').textContent = document.querySelector('input[name="delivery_information[delivery_address]"]').value;
-
-        // Completați metoda de plată
-        document.getElementById('summary_payment_method span').textContent = document.getElementById('payment_method').value;
+    // Fetch judete by tara
+    const countrySelects = document.querySelectorAll('select[name*="country_id"]');
+    countrySelects.forEach(countrySelect => {
+        countrySelect.addEventListener('change', function () {
+            const countySelect = document.querySelector(`select[name="${this.name.replace('country', 'county')}"]`);
+            fetch(`/get-counties-by-country/${this.value}`)
+                .then(response => response.json())
+                .then(data => {
+                    countySelect.innerHTML = '<option value="">Alege judetul</option>';
+                    data.forEach(county => {
+                        countySelect.innerHTML += `<option value="${county.id}">${county.name}</option>`;
+                    });
+                });
+        });
     });
-
-    // Validarea acordului de termeni și condiții
-    document.getElementById('agreement').addEventListener('change', function () {
-        if (this.checked) {
-            document.getElementById('finalize').classList.remove('btn-disabled');
-        } else {
-            document.getElementById('finalize').classList.add('btn-disabled');
-        }
-    });
-});
 </script>
+
 @endsection
