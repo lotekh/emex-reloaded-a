@@ -124,6 +124,9 @@ class OrdersController extends Controller
         $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
         $countries = Country::all();
         $counties = County::all();
+        // Fetch ordered products
+        $ordered_products = $order->productVariations()->with('product')->get();
+
 
         if ($order) {
             // Preluăm informațiile de facturare și livrare din profilul utilizatorului
@@ -139,7 +142,7 @@ class OrdersController extends Controller
             $order->save();
         }
 
-        return view('products.finalizeaza-comanda', compact('user', 'order', 'countries', 'counties'));
+        return view('products.finalizeaza-comanda', compact('user', 'order', 'countries', 'counties', 'ordered_products'));
     }
 
 
