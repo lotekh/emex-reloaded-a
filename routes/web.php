@@ -147,8 +147,8 @@ Route::post('/goleste-cosul', [OrdersController::class, 'emptyCart'])->name('ord
 
 // Checkout
 Route::get('/finalizeaza-comanda', [OrdersController::class, 'showCheckoutForm'])->name('checkout.form');
-Route::post('/finalizeaza-comanda', [OrdersController::class, 'processCheckout'])->name('checkout.process');
-
+// Route::post('/finalizeaza-comanda', [OrdersController::class, 'processCheckout'])->name('checkout.process');
+Route::post('/save-order', [OrdersController::class, 'processCheckout'])->name('checkout.process');
 
 // Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
