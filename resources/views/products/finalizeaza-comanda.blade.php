@@ -86,15 +86,16 @@
                         </div>
                         <input type="hidden" name="billing_type" value="{{ $order->billing_type }}">
                     </div>
-                    @if ($isGuest)
+                    {{-- @if ($isGuest)
                         <div class="guest-row">
                             Ai deja cont?
                             <button id="auth_lightbox_trigger" class="link" on="tap:auth-lightbox" role="button" tabindex="0" type="button">
                                 Autentificare
                             </button>
                         </div>
-                    @endif
+                    @endif --}}
 
+                    {{-- Persoana fizica --}}
                     <div id="person-billing-container" class="mt-32 {{ $order->billing_type == 0 ? '' : 'hidden' }}">
                         <div class="grid grid-4 gap-lg p-8">
                             <div class="form-group">
@@ -114,11 +115,18 @@
                                 <input class="form-control w-full" type="email" id="person_email" name="person_email" value="{{ $order->company_information->person_email ?? '' }}" required>
                             </div>
                         </div>
-                        <div class="grid grid-3 gap-lg p-8">
+                        <div class="grid grid-4 gap-lg">
+                            <div class="form-group">
+                                <label>Tara <span class="text-red">*</span></label>
+                                <select class="form-control w-full" name="company_information[person_country_id]" required>
+                                    @foreach ($countries as $country)
+                                        <option value="{{ $country->id }}" {{ ($order->company_information->person_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label>Judet <span class="text-red">*</span></label>
-                                <select class="form-control w-full" id="person_county_id" name="person_county_id">
-                                    <option value="">Alege judetul</option>
+                                <select class="form-control w-full" name="company_information[person_county_id]" id="person_county_id" required>
                                     @foreach ($counties as $county)
                                         <option value="{{ $county->id }}" {{ ($order->company_information->person_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
                                     @endforeach
@@ -126,15 +134,16 @@
                             </div>
                             <div class="form-group">
                                 <label>Localitate <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" name="company_information[person_locality]" value="{{ $order->company_information->person_locality ?? '' }}" required>
+                                <input class="form-control w-full" type="text" id="person_locality_id" name="company_information[person_locality]" value="{{ $order->company_information->person_locality ?? '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Adresa <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="person_address" name="person_address" value="{{ $order->company_information->person_address ?? '' }}" required>
+                                <input class="form-control w-full" type="text" id="person_address" name="company_information[person_address]" value="{{ $order->company_information->person_address ?? '' }}" required>
                             </div>
                         </div>
                     </div>
 
+                    {{-- {Persoana juridica} --}}
                     <div id="organization-billing-container" class="mt-32 {{ $order->billing_type == 1 ? '' : 'hidden' }}">
                         <div class="grid grid-2 gap-lg p-8">
                             <div class="form-group">
@@ -176,11 +185,18 @@
                                 <input class="form-control w-full" type="text" id="contact_person_first_name" name="contact_person_first_name" value="{{ $order->company_information->contact_person_first_name ?? '' }}">
                             </div>
                         </div>
-                        <div class="grid grid-3 gap-lg p-8">
+                        <div class="grid grid-4 gap-lg">
+                            <div class="form-group">
+                                <label>Tara <span class="text-red">*</span></label>
+                                <select class="form-control w-full" name="company_information[organization_country_id]" required>
+                                    @foreach ($countries as $country)
+                                        <option value="{{ $country->id }}" {{ ($order->company_information->organization_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label>Judet <span class="text-red">*</span></label>
-                                <select class="form-control w-full" id="organization_county_id" name="organization_county_id">
-                                    <option value="">Alege judetul</option>
+                                <select class="form-control w-full" id="organization_county_id" name="company_information[organization_county_id]" required>
                                     @foreach ($counties as $county)
                                         <option value="{{ $county->id }}" {{ ($order->company_information->organization_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
                                     @endforeach
@@ -188,11 +204,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Localitate <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" name="company_information[person_locality]" value="{{ $order->company_information->person_locality ?? '' }}" required>
+                                <input class="form-control w-full" type="text" id="organization_locality_id" name="company_information[organization_locality]" value="{{ $order->company_information->organization_locality ?? '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Adresa <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="organization_address" name="organization_address" value="{{ $order->company_information->organization_address ?? '' }}">
+                                <input class="form-control w-full" type="text" id="organization_address" name="company_information[organization_address]" value="{{ $order->company_information->organization_address ?? '' }}" required>
                             </div>
                         </div>
                     </div>
@@ -527,6 +543,9 @@
         </div>
     </form>
 </div>
+
+
+
 
 <script>
     var baseUrl = '{{ url('/') }}';
