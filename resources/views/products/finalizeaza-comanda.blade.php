@@ -70,6 +70,8 @@
                 </div>
             </div>
         </div>
+
+        {{-- STEP 1 --}}
         <div class="step-container mt-32">
             <div class="step active col" id="step1">
                 <div class="inputs mb-32">
@@ -218,6 +220,8 @@
                 </div>
             </div>
 
+
+            {{-- STEP 2 --}}
             <div class="step col" id="step2">
                 <div class="inputs mb-32">
                     <div class="flex justify-center w-full">
@@ -283,7 +287,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Localitate <span class="text-red">*</span></label>
-                                    <input class="form-control w-full" type="text" name="company_information[person_locality]" value="{{ $order->company_information->person_locality ?? '' }}" required>
+                                    <input class="form-control w-full" type="text" id="delivery_locality_id" name="company_information[person_locality]" value="{{ $order->company_information->person_locality ?? '' }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Adresa <span class="text-red">*</span></label>
@@ -301,6 +305,7 @@
                 </div>
             </div>
 
+            {{-- STEP 3 --}}
             <div class="step col" id="step3">
                 <div class="inputs mb-32">
                     <div class="flex justify-center align-center mb-16">
@@ -333,6 +338,7 @@
                 </div>
             </div>
 
+            {{-- STEP 4 --}}
             <div class="step col" id="step4">
                 <div class="inputs mb-32">
                     <div class="flex justify-center w-full wrap">
