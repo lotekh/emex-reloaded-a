@@ -121,6 +121,8 @@ class OrdersController extends Controller
     public function showCheckoutForm(Request $request)
     {
         $user = auth()->user();
+        // Determinăm dacă utilizatorul este oaspete (guest)
+        $isGuest = auth()->guest();
         $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
         $countries = Country::all();
         $counties = County::all();
@@ -142,7 +144,7 @@ class OrdersController extends Controller
             $order->save();
         }
 
-        return view('products.finalizeaza-comanda', compact('user', 'order', 'countries', 'counties', 'ordered_products'));
+        return view('products.finalizeaza-comanda', compact('user', 'order', 'countries', 'counties', 'ordered_products', 'isGuest'));
     }
 
 
