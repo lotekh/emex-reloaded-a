@@ -275,95 +275,81 @@
                         <h5 class="m-0 mb-8">Facturare</h5>
                         <div id="summary_billing_type">
                             Tip facturare:
-                            <span>{{ $order->billing_type == 1 ? 'Persoana Juridica' : 'Persoana Fizica' }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_billing_name">
                             Nume:
-                            <span>
-                                {{ $order->billing_type == 1 ? $order->company_information->organization_name : $order->company_information->person_first_name . ' ' . $order->company_information->person_last_name }}
-                            </span>
+                            <span></span>
                         </div>
                         <div id="summary_billing_phone">
                             Numar de telefon:
-                            <span>
-                                @if($order->billing_type == 1)
-                                    {{ $order->company_information->organization_phone ?? 'N/A' }}
-                                @else
-                                    {{ $order->company_information->person_phone ?? 'N/A' }}
-                                @endif
-                            </span>
+                            <span></span>
                         </div>
-                        {{-- <div id="summary_billing_email">
+                        <div id="summary_billing_email">
                             Email:
-                            <span>{{ $order->billing_type == 1 ? $order->company_information->organization_email : $order->company_information->person_email }}</span>
-                        </div> --}}
+                            <span></span>
+                        </div>
                         <div id="summary_billing_county_name">
                             Judet:
-                            <span>{{ $order->billing_type == 1 ? $order->company_information->organization_county_id : $order->company_information->person_county_id }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_billing_city_name">
                             Localitate:
-                            <span>{{ $order->billing_type == 1 ? $order->company_information->organization_locality : $order->company_information->person_locality }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_billing_address">
                             Adresa:
-                            <span>{{ $order->billing_type == 1 ? $order->company_information->organization_address : $order->company_information->person_address }}</span>
+                            <span></span>
                         </div>
-                        @if ($order->billing_type == 1)
-                            <div id="summary_billing_cui">
-                                CUI:
-                                <span>{{ $order->company_information->organization_cui }}</span>
-                            </div>
-                            <div id="summary_billing_bank">
-                                Banca:
-                                <span>{{ $order->company_information->organization_bank }}</span>
-                            </div>
-                            <div id="summary_billing_bank_account">
-                                IBAN:
-                                <span>{{ $order->company_information->organization_bank_account }}</span>
-                            </div>
-                        @endif
-                        
+                        <div id="summary_billing_cui">
+                            CUI:
+                            <span></span>
+                        </div>
+                        <div id="summary_billing_bank">
+                            Banca:
+                            <span></span>
+                        </div>
+                        <div id="summary_billing_bank_account">
+                            IBAN:
+                            <span></span>
+                        </div>
                     </div>
-
                     <div class="inputs">
                         <h5 class="m-0 mb-8">Livrare</h5>
                         <div id="summary_delivery_type">
                             Tip livrare:
-                            <span>{{ $order->delivery_type == 'curier' ? 'Curier' : 'Ridicare personala' }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_delivery_name">
                             Nume:
-                            <span>{{ $order->delivery_information->delivery_first_name . ' ' . $order->delivery_information->delivery_last_name }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_delivery_phone">
                             Numar de telefon:
-                            <span>{{ $order->delivery_information->delivery_phone }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_delivery_email">
                             Email:
-                            <span>{{ $order->delivery_information->delivery_email }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_delivery_county_name">
                             Judet:
-                            <span>{{ $order->delivery_information->delivery_county_id }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_delivery_city_name">
                             Localitate:
-                            <span>{{ $order->delivery_information->delivery_locality }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_delivery_address">
                             Adresa:
-                            <span>{{ $order->delivery_information->delivery_address }}</span>
+                            <span></span>
                         </div>
-                        
                     </div>
-
                     <div class="inputs">
                         <h5 class="m-0 mb-8">Plata</h5>
                         <div id="summary_payment_method">
                             Metoda de plata:
-                            <span>{{ ucfirst(str_replace('-', ' ', $order->payment_method)) }}</span>
+                            <span></span>
                         </div>
                     </div>
                 </div>
@@ -433,94 +419,7 @@
 
 
 <script>
-    // Script pentru gestionarea pașilor
     document.addEventListener('DOMContentLoaded', function () {
-        const step1Container = document.getElementById('step1');
-        const step2Container = document.getElementById('step2');
-        const step3Container = document.getElementById('step3');
-        const step4Container = document.getElementById('step4');
-
-        const goToStep2Button = document.getElementById('go-to-step-2');
-        const goToStep3Button = document.getElementById('go-to-step-3');
-        const goToStep4Button = document.getElementById('go-to-step-4');
-        const backToStep1Button = document.getElementById('back-to-step-1');
-        const backToStep2Button = document.getElementById('back-to-step-2');
-        const backToStep3Button = document.getElementById('back-to-step-3');
-
-        // Evenimente pentru butoanele de trecere între pași
-        goToStep2Button.addEventListener('click', function () {
-            step1Container.classList.remove('active');
-            step2Container.classList.add('active');
-        });
-
-        goToStep3Button.addEventListener('click', function () {
-            step2Container.classList.remove('active');
-            step3Container.classList.add('active');
-        });
-
-        goToStep4Button.addEventListener('click', function () {
-            step3Container.classList.remove('active');
-            step4Container.classList.add('active');
-        });
-
-        // Evenimente pentru butoanele de întoarcere între pași
-        backToStep1Button.addEventListener('click', function () {
-            step2Container.classList.remove('active');
-            step1Container.classList.add('active');
-        });
-
-        backToStep2Button.addEventListener('click', function () {
-            step3Container.classList.remove('active');
-            step2Container.classList.add('active');
-        });
-
-        backToStep3Button.addEventListener('click', function () {
-            step4Container.classList.remove('active');
-            step3Container.classList.add('active');
-        });
-
-        // Selectarea metodei de plată
-        const paymentMethods = document.querySelectorAll('.card .checkbox');
-        paymentMethods.forEach(function (method) {
-            method.addEventListener('click', function () {
-                paymentMethods.forEach(function (el) {
-                    el.dataset.checked = 'false';
-                    el.querySelector('img').classList.add('hidden');
-                });
-                this.dataset.checked = 'true';
-                this.querySelector('img').classList.remove('hidden');
-                document.querySelector('input[name="payment_method"]').value = this.id;
-            });
-        });
-
-        // Selectarea metodei de livrare
-        const deliveryType = document.querySelector('input[name="delivery_type"]');
-        document.getElementById('curier').addEventListener('click', function () {
-            deliveryType.value = 'curier';
-            document.getElementById('curier-container').classList.remove('hidden');
-            document.getElementById('ridicare-personala-container').classList.add('hidden');
-        });
-
-        document.getElementById('ridicare-personala').addEventListener('click', function () {
-            deliveryType.value = 'ridicare-personala';
-            document.getElementById('curier-container').classList.add('hidden');
-            document.getElementById('ridicare-personala-container').classList.remove('hidden');
-        });
-
-        // Gestionarea tipului de facturare
-        const billingType = document.querySelector('input[name="billing_type"]');
-        document.getElementById('person-billing').addEventListener('click', function () {
-            billingType.value = 0;
-            document.getElementById('person-billing-container').classList.remove('hidden');
-            document.getElementById('organization-billing-container').classList.add('hidden');
-        });
-
-        document.getElementById('organization-billing').addEventListener('click', function () {
-            billingType.value = 1;
-            document.getElementById('organization-billing-container').classList.remove('hidden');
-            document.getElementById('person-billing-container').classList.add('hidden');
-        });
-
         // Fetch judete by tara
         const countrySelects = document.querySelectorAll('select[name*="country_id"]');
         countrySelects.forEach(countrySelect => {
@@ -538,6 +437,14 @@
         });
     });
 </script>
+
+
+<script src="{{ asset('resources/scripts/order-scripts/step-1.js') }}"></script>
+<script src="{{ asset('resources/scripts/order-scripts/step-2.js') }}"></script>
+<script src="{{ asset('resources/scripts/order-scripts/step-3.js') }}"></script>
+<script src="{{ asset('resources/scripts/order-scripts/step-4.js') }}"></script>
+<script src="{{ asset('resources/scripts/order-scripts/step-5.js') }}"></script>
+
 
 
 @endsection
