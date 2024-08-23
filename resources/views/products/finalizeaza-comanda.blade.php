@@ -512,48 +512,50 @@
                         </thead>
                         <tbody>
                             @php
-                                $total_value = 0;
-                                $total_price = 0;
-                                $total_tva = 0;
-                            @endphp
-                            @foreach ($ordered_products as $ordered_product)
-                                @php
-                                    $price = $ordered_product->pivot->price;
-                                    $price_no_vat = $ordered_product->pivot->price_no_vat;
-                                    $quantity = $ordered_product->pivot->quantity;
-                                    $tva = ($price - $price_no_vat) * $quantity;
-                                    $value = $price_no_vat * $quantity;
+    $total_value = 0;
+    $total_price = 0;
+    $total_tva = 0;
+@endphp
 
-                                    $total_value += $value;
-                                    $total_tva += $tva;
-                                    $total_price += $price * $quantity;
-                                @endphp
-                                <tr>
-                                    <td class="ta_l comanda_product_title">{{ $ordered_product->product->name }}</td>
-                                    <td class="ta_c">{{ $quantity }}</td>
-                                    <td class="ta_r">{{ number_format($price_no_vat, 2, '.', '') }}</td>
-                                    <td class="ta_r">{{ number_format($value, 2, '.', '') }}</td>
-                                    <td class="ta_r">{{ number_format($tva, 2, '.', '') }}</td>
-                                </tr>
-                            @endforeach
-                            <tr>
-                                <td>Cost livrare</td>
-                                <td>1</td>
-                                <td id="transport_unitary">-</td>
-                                <td id="transport_value">-</td>
-                                <td id="transport_TVA">-</td>
-                            </tr>
-                            <tr>
-                                <td>Cost ramburs</td>
-                                <td>1</td>
-                                <td id="ramburs_unitary">-</td>
-                                <td id="ramburs_value">-</td>
-                                <td id="ramburs_TVA">-</td>
-                            </tr>
-                            <tr>
-                                <th colspan="3" class="align-right">Total general:</th>
-                                <th colspan="2" id="total_general">{{ number_format($total_price, 2, '.', '') }}</th>
-                            </tr>
+@foreach ($ordered_products as $ordered_product)
+    @php
+        $price = $ordered_product->pivot->price;
+        $price_no_vat = $ordered_product->pivot->price_no_vat;
+        $quantity = $ordered_product->pivot->quantity;
+        $tva = $price - $price_no_vat;
+        $value = $price_no_vat * $quantity;
+
+        $total_value += $value;
+        $total_tva += $tva * $quantity;
+        $total_price += $price * $quantity;
+    @endphp
+    <tr>
+        <td class="ta_l comanda_product_title">{!! $ordered_product->product->name !!}</td>
+        <td class="ta_c">{{ $quantity }}</td>
+        <td class="ta_r">{{ number_format($price_no_vat, 2, '.', '') }}</td>
+        <td class="ta_r">{{ number_format($value, 2, '.', '') }}</td>
+        <td class="ta_r">{{ number_format($tva * $quantity, 2, '.', '') }}</td>
+    </tr>
+@endforeach
+<tr>
+    <td>Cost livrare</td>
+    <td>1</td>
+    <td id="transport_unitary">-</td>
+    <td id="transport_value">-</td>
+    <td id="transport_TVA">-</td>
+</tr>
+<tr>
+    <td>Cost ramburs</td>
+    <td>1</td>
+    <td id="ramburs_unitary">-</td>
+    <td id="ramburs_value">-</td>
+    <td id="ramburs_TVA">-</td>
+</tr>
+<tr>
+    <th colspan="3" class="align-right">Total general:</th>
+    <th colspan="2" id="total_general">{{ number_format($total_price, 2, '.', '') }}</th>
+</tr>
+
                         </tbody>
                     </table>
                     <div class="flex justify-end align-center mb-16">

@@ -26,41 +26,44 @@ class OrdersController extends Controller
     }
 
     public function addProduct(Request $request)
-    {
-        $user = Auth::user();
-        $productVariation = ProductVariation::findOrFail($request->input('product_id'));
+{
+    $user = Auth::user();
+    $productVariation = ProductVariation::findOrFail($request->input('product_id'));
 
-        $order = Order::firstOrCreate(
-            ['user_id' => $user->id, 'is_paid' => false],
-            ['total' => 0]
-        );
+    $order = Order::firstOrCreate(
+        ['user_id' => $user->id, 'is_paid' => false],
+        ['total' => 0]
+    );
 
-        // Verificăm dacă produsul există deja în comandă
-        $existingOrderProduct = $order->productVariations()->where('product_variation_id', $productVariation->id)->first();
+    $price = $productVariation->price;
+    $price_no_vat = $price * 0.81; // Calculate price without VAT as 81% of the price
 
-        if ($existingOrderProduct) {
-            // Actualizăm cantitatea și prețul
-            $existingOrderProduct->pivot->quantity += $request->input('quantity', 1);
-            $existingOrderProduct->pivot->price = $productVariation->price;
-            $existingOrderProduct->pivot->price_no_vat = $productVariation->price_no_vat ?? 0; // Setăm la 0 dacă este NULL
-            $existingOrderProduct->pivot->save();
-        } else {
-            // Adăugăm noul produs în comandă
-            $order->productVariations()->attach($productVariation->id, [
-                'quantity' => $request->input('quantity', 1),
-                'price' => $productVariation->price,
-                'price_no_vat' => $productVariation->price_no_vat ?? 0, // Setăm la 0 dacă este NULL
-            ]);
-        }
+    // Check if the product already exists in the order
+    $existingOrderProduct = $order->productVariations()->where('product_variation_id', $productVariation->id)->first();
 
-        // Recalculăm totalul comenzii
-        $order->total = $order->productVariations->sum(function ($product) {
-            return $product->pivot->quantity * $product->pivot->price;
-        });
-        $order->save();
-
-        return redirect()->route('orders.index');
+    if ($existingOrderProduct) {
+        // Update the quantity and price
+        $existingOrderProduct->pivot->quantity += $request->input('quantity', 1);
+        $existingOrderProduct->pivot->price = $price;
+        $existingOrderProduct->pivot->price_no_vat = $price_no_vat; // Update price_no_vat with the calculated value
+        $existingOrderProduct->pivot->save();
+    } else {
+        // Add the new product to the order
+        $order->productVariations()->attach($productVariation->id, [
+            'quantity' => $request->input('quantity', 1),
+            'price' => $price,
+            'price_no_vat' => $price_no_vat, // Set price_no_vat with the calculated value
+        ]);
     }
+
+    // Recalculate the order total
+    $order->total = $order->productVariations->sum(function ($product) {
+        return $product->pivot->quantity * $product->pivot->price;
+    });
+    $order->save();
+
+    return redirect()->route('orders.index');
+}
 
 
     public function removeProduct(Request $request)
