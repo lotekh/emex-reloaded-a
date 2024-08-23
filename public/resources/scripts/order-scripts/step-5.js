@@ -212,6 +212,8 @@ var transportTVA = document.getElementById("transport_TVA");
 var transportUnitary = document.getElementById("transport_unitary");
 var totalGeneral = document.getElementById("total_general");
 var globalSelectedPayment = "card";
+console.log(baseUrl);
+console.log(county_id);
 
 function getTransportPrice(county_id) {
   var xmlhttp = new XMLHttpRequest();
