@@ -213,7 +213,7 @@ var transportUnitary = document.getElementById("transport_unitary");
 var totalGeneral = document.getElementById("total_general");
 var globalSelectedPayment = "card";
 console.log(baseUrl);
-console.log(county_id);
+// console.log(county_id);
 
 function getTransportPrice(county_id) {
   var xmlhttp = new XMLHttpRequest();
@@ -221,25 +221,24 @@ function getTransportPrice(county_id) {
     xmlhttp.onreadystatechange = function () {
       if (xmlhttp.readyState == XMLHttpRequest.DONE) {
         if (xmlhttp.status == 200) {
-          var price = xmlhttp.responseText;
-          price = JSON.parse(price);
+          var response = JSON.parse(xmlhttp.responseText);
 
-          var transportValuePrice = Number(price).toFixed(2);
-          var transportTVAPrice = Number(0.19 * price).toFixed(2);
+          var transportValuePrice = response.price;
+          var transportTVAPrice = response.tva;
+          var totalPriceWithTransport = response.total;
+
           transportValue.textContent = transportValuePrice;
           transportUnitary.textContent = transportValuePrice;
           transportTVA.textContent = transportTVAPrice;
 
           if (paymentType.value == "ramburs") {
-            calculateRamburs(price);
+            calculateRamburs(transportValuePrice);
           } else {
             rambursValueTd.textContent = "-";
             rambursUnitary.textContent = "-";
             rambursTvaTd.textContent = "-";
 
-            totalGeneral.textContent = Number(
-              parseFloat(totalPrice) + 1.19 * parseFloat(price)
-            ).toFixed(2);
+            totalGeneral.textContent = totalPriceWithTransport;
           }
         } else if (xmlhttp.status == 400) {
           alert("There was an error 400");

@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Response;
+// use Illuminate\Http\Response;
 use App\Models\Country;
 use App\Models\County;
 use App\Models\User;
@@ -91,6 +93,36 @@ class OrdersController extends Controller
         return redirect()->route('orders.index');
     }
     
+    public function getTransportPrice(Request $request)
+    {
+        // Obține ID-ul județului din cerere
+        $countyId = $request->query('county_id');
+
+        // logica pentru calcularea prețului transportului
+        $transportPrices = [
+            1 => 10.00, // Exemplu: preț pentru județul cu ID-ul 1
+            2 => 15.00, // Exemplu: preț pentru județul cu ID-ul 2
+            3 => 20.00, // Exemplu: preț pentru județul cu ID-ul 3
+        ];
+
+        // Setează prețul în funcție de județul selectat
+        $price = isset($transportPrices[$countyId]) ? $transportPrices[$countyId] : 25.00; 
+        // Preț default dacă ID-ul județului nu este găsit
+
+        // Calculează TVA-ul
+        $tva = $price * 0.19;
+
+        // Formatează prețul și TVA-ul pentru a avea două zecimale
+        $formattedPrice = number_format($price, 2, '.', '');
+        $formattedTva = number_format($tva, 2, '.', '');
+
+        // Returnează un array cu valorile calculului
+        return response()->json([
+            'price' => $formattedPrice,
+            'tva' => $formattedTva,
+            'total' => number_format($price + $tva, 2, '.', '')
+        ]);
+    }
 
 
     public function emptyCart()
@@ -153,18 +185,24 @@ class OrdersController extends Controller
 
     public function processCheckout(Request $request)
     {
+        // dd($request->all());
         // Validăm datele introduse de utilizator
-        $this->validate($request, [
+        $request->validate([
             'billing_type' => 'required',
             'delivery_type' => 'required',
             'payment_method' => 'required',
             'company_information' => 'required|array',
-            'delivery_information' => 'required|array',
+            // 'delivery_information' => 'required|array',
         ]);
 
         // Preluăm utilizatorul și comanda curentă
         $user = auth()->user();
-        $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
+        $order = Order::where('user_id', $user->id)
+                  ->where('id', $request->input('order_id'))
+                  ->where('is_paid', false)
+                  ->first();
+
+        // dd($order);
 
         if ($order) {
             // Actualizăm datele comenzii cu informațiile primite din formular
@@ -179,10 +217,10 @@ class OrdersController extends Controller
             ]);
 
             // Redirect la pagina de mulțumire
-            return redirect()->route('thank-you');
+            return redirect()->route('home');
         }
 
         // Dacă nu există o comandă, redirect la pagina coșului
-        return redirect()->route('orders.index');
+        return redirect()->route('aplicare.aplicare-vopsele-lavabile');
     }
 }

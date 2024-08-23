@@ -8,6 +8,7 @@
 <div class="main-container" id="order-page">
     <form method="POST" action="{{ url('/save-order') }}" id="order_form">
         @csrf
+        <input type="hidden" name="order_id" value="{{ $order->id }}">
         <input type="hidden" name="ordered_products_number" value="{{ $ordered_products->count() }}">
         @foreach ($ordered_products as $key => $value)
             <input type="hidden" name="product{{ $key }}_id" value="{{ $value->product_id }}">
