@@ -394,90 +394,88 @@
                         <h5 class="m-0 mb-8">Facturare</h5>
                         <div id="summary_billing_type">
                             Tip facturare:
-                            <span>{{ $order->billing_type == 1 ? 'Persoana Juridica' : 'Persoana Fizica' }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_billing_name">
                             Nume:
-                            <span>{{ $order->billing_type == 1 ? $order->company_information->organization_name : $order->company_information->person_last_name }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_billing_phone">
                             Numar de telefon:
-                            <span>
-                                {{-- {{ $order->billing_type == 1 ? $order->company_information->organization_phone : $order->company_information->person_phone }} --}}
-                            </span>
+                            <span></span>
                         </div>
                         <div id="summary_billing_email">
                             Email:
-                            <span>
-                                {{-- {{ $order->billing_type == 1 ? $order->company_information->organization_email : $order->company_information->person_email }} --}}
-                            </span>
+                            <span></span>
                         </div>
                         <div id="summary_billing_county_name">
                             Judet:
-                            <span>{{ $order->billing_type == 1 ? $order->company_information->organization_county_id : $order->company_information->person_county_id }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_billing_city_name">
                             Localitate:
-                            <span>
-                                {{-- {{ $order->billing_type == 1 ? $order->company_information->organization_locality_id : $order->company_information->person_locality_id }} --}}
-                            </span>
+                            <span></span>
                         </div>
                         <div id="summary_billing_address">
                             Adresa:
-                            <span>{{ $order->billing_type == 1 ? $order->company_information->organization_address : $order->company_information->person_address }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_billing_cui">
                             CUI:
-                            <span>{{ $order->company_information->organization_cui ?? 'N/A' }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_billing_bank">
                             Banca:
-                            <span>{{ $order->company_information->organization_bank ?? 'N/A' }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_billing_bank_account">
                             IBAN:
-                            <span>{{ $order->company_information->organization_bank_account ?? 'N/A' }}</span>
+                            <span></span>
                         </div>
                     </div>
                     <div class="inputs">
                         <h5 class="m-0 mb-8">Livrare</h5>
                         <div id="summary_delivery_type">
                             Tip livrare:
-                            <span>{{ $order->delivery_type == 'curier' ? 'Curier' : 'Ridicare personala' }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_delivery_name">
                             Nume:
-                            <span>{{ $order->delivery_information->delivery_last_name ?? 'N/A' }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_delivery_phone">
                             Numar de telefon:
-                            <span>{{ $order->delivery_information->delivery_phone ?? 'N/A' }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_delivery_email">
                             Email:
-                            <span>{{ $order->delivery_information->delivery_email ?? 'N/A' }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_delivery_county_name">
                             Judet:
-                            <span>{{ $order->delivery_information->delivery_county_id ?? 'N/A' }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_delivery_city_name">
                             Localitate:
-                            <span>{{ $order->delivery_information->delivery_locality_id ?? 'N/A' }}</span>
+                            <span></span>
                         </div>
                         <div id="summary_delivery_address">
                             Adresa:
-                            <span>{{ $order->delivery_information->delivery_address ?? 'N/A' }}</span>
+                            <span></span>
                         </div>
                     </div>
                     <div class="inputs">
                         <h5 class="m-0 mb-8">Plata</h5>
                         <div id="summary_payment_method">
                             Metoda de plata:
-                            <span>{{ $order->payment_method }}</span>
+                            <span></span>
                         </div>
                     </div>
                 </div>
+
+
+
+
                 <div class="inputs mb-32 scrollable-x">
                     <table class="mb-32">
                         <thead>
