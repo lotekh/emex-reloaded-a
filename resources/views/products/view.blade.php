@@ -326,36 +326,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const priceDisplay = document.getElementById('price{{ $product->id }}');
     const priceInput = document.getElementById('priceInput{{ $product->id }}');
 
+    // Preload all product variations into JavaScript
+    const variations = @json($product->variations);
+
     function updateVariation() {
-        const productId = {{ $product->id }};
         const selectedPackaging = packagingSelect.value;
         const selectedColor = colorSelect.value;
 
-        fetch('{{ route('product.getVariation') }}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({
-                product_id: productId,
-                quantity: selectedPackaging,
-                color: selectedColor
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                priceDisplay.textContent = data.variation.price;
-                priceInput.value = data.variation.price;
-                // Update other fields if needed
-            } else {
-                console.error('Error:', data.error);
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+        // Find the correct variation
+        const variation = variations.find(variation => 
+            variation.quantity == selectedPackaging && variation.colour == selectedColor
+        );
+
+        if (variation) {
+            priceDisplay.textContent = variation.price;
+            priceInput.value = variation.price;
+            // Update other fields if needed
+        } else {
+            console.error('No matching variation found.');
+        }
     }
 
     packagingSelect.addEventListener('change', updateVariation);
