@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <form method="GET" class="w-full col px-8 product-details-container" action="{{ url('/adauga-produs') }}">
+        {{-- <form method="GET" class="w-full col px-8 product-details-container" action="{{ url('/adauga-produs') }}"> --}}
             <div class="w-full col px-8 product-details-container">
             <div class="col gap-xl">
                 <div class="top-container">
@@ -155,6 +155,7 @@
 
                 <div class="col flex-md gap-xs w-full">
                     <div class="w-full h-full">
+                        <form method="GET" action="{{ url('/adauga-produs') }}">
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <input type="hidden" name="submited" value="1">
                         <input type="hidden" name="name" value="{{ $product->plain_name }}">
@@ -164,6 +165,7 @@
                         <input type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
                         {{-- <input type="submit" id="bord" class="{{ empty($initialVariation->price) || $product->is_inactive ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || $product->is_inactive ? 'disabled' : '' }}> --}}
                         <input type="submit" id="bord" class="{{ empty($initialVariation->price) || !$product->active ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || !$product->active ? 'disabled' : '' }}>
+                        </form>
 
                     </div>
 
@@ -244,7 +246,7 @@
                 </div>
             </div>
         </div>
-        </form>
+        {{-- </form> --}}
     </div>
 
     <div class="mt-16 mt-custom">

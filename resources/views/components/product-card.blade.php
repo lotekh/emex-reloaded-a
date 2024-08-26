@@ -19,6 +19,7 @@
       <form method="POST" class="addToWishlistBt absolute z-10" id="product_wish_list_form{{ $product->id }}" action="{{ url('/add-to-wishlist') }}">
         @csrf
         <input type="hidden" name="product_id" value="{{ $product->id }}">
+        {{-- Add to wishlist --}}
         <button type="submit" aria-label="Adauga la favorite">
           <img width="20" height="20" src="{{ asset('resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
         </button>
@@ -51,6 +52,7 @@
       </a>
     </div>
 
+    {{-- Ratings --}}
     <div class="w-full row align-center mb-8 product-rating-pl">
       @for ($i = 0; $i < 5; $i++)
         @if ($i < $averageRating)
