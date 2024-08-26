@@ -23,6 +23,24 @@ class WishlistController extends Controller
         return view('products.wishlist', compact('products'));
     }
 
+    public function remove(Request $request)
+    {
+        $userId = auth()->id(); // ID-ul utilizatorului curent
+        $productId = $request->query('product_id');
+
+        // Verifică dacă produsul este în wishlist
+        $existingItem = WishlistItem::where('user_id', $userId)
+            ->where('product_id', $productId)
+            ->first();
+
+        if ($existingItem) {
+            // Elimină produsul din wishlist
+            $existingItem->delete();
+        }
+
+        return redirect()->back()->with('success', 'Produsul a fost eliminat din favorite.');
+    }
+
     public function store(Request $request)
     {
         // dd(12);

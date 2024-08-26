@@ -83,7 +83,7 @@
       </div>
 
       <form class="relative w-full col" method="GET" action="{{ url('/adauga-produs') }}">
-        <input type="hidden" name="product_id" value="{{ $product->id }}">
+        <input type="hidden" name="product_variation_id" value="{{ $initialVariation->id }}">
         <input type="hidden" name="submited" value="1">
         <input type="hidden" name="name" value="{{ $product->plain_name }}">
         <input type="hidden" name="price" id="priceInput{{$product->id}}" value="{{ $initialVariation->price }}">
@@ -135,46 +135,34 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const ambalareSelect = document.getElementById('ambalareSelect{{ $product->id }}');
-    // console.log(ambalareSelect);
-    const colorSelect = document.getElementById('colorSelect{{ $product->id }}');
-    const priceDisplay = document.getElementById('price{{ $product->id }}');
-    const priceInput = document.getElementById('priceInput{{ $product->id }}');
-
-    function updateVariation() {
-        const productId = {{ $product->id }};
-        const selectedPackaging = ambalareSelect.value;
-        const selectedColor = colorSelect.value;
-
-        fetch('{{ route('product.getVariation') }}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({
-                product_id: productId,
-                quantity: selectedPackaging,
-                color: selectedColor
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                priceDisplay.textContent = data.variation.price;
-                priceInput.value = data.variation.price;
-                // Update other fields if needed
-            } else {
-                console.error('Error:', data.error);
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    }
-
-    ambalareSelect.addEventListener('change', updateVariation);
-    colorSelect.addEventListener('change', updateVariation);
-});
-</script>
+  document.addEventListener('DOMContentLoaded', function () {
+      const ambalareSelect = document.getElementById('ambalareSelect{{ $product->id }}');
+      const colorSelect = document.getElementById('colorSelect{{ $product->id }}');
+      const priceDisplay = document.getElementById('price{{ $product->id }}');
+      const priceInput = document.getElementById('priceInput{{ $product->id }}');
+  
+      // Preload all product variations into JavaScript
+      const variations = @json($variations);
+  
+      function updateVariation() {
+          const selectedPackaging = ambalareSelect.value;
+          const selectedColor = colorSelect.value;
+  
+          // Find the correct variation
+          const variation = variations.find(variation => 
+              variation.quantity == selectedPackaging && variation.colour == selectedColor
+          );
+  
+          if (variation) {
+              priceDisplay.textContent = variation.price;
+              priceInput.value = variation.price;
+              // Update other fields if needed
+          } else {
+              console.error('No matching variation found.');
+          }
+      }
+  
+      ambalareSelect.addEventListener('change', updateVariation);
+      colorSelect.addEventListener('change', updateVariation);
+  });
+  </script>

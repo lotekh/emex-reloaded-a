@@ -100,7 +100,10 @@
             </div>
             <div class="col justify-center">
                 <div class="col justify-end gap-md align-center p-16">
-                    <a href="{{ url('/remove-from-wishlist?product_id=' . $product->id) }}">
+                    {{-- <a href="{{ url('/remove-from-wishlist?product_id=' . $product->id) }}">
+                        <button type="button" class="btn btn-blue-outline rounded-xl">Scoate din wishlist</button>
+                    </a> --}}
+                    <a href="{{ route('wishlist.remove', ['product_id' => $product->id]) }}">
                         <button type="button" class="btn btn-blue-outline rounded-xl">Scoate din wishlist</button>
                     </a>
                     <a href="{{ url($product->slug) }}">
