@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        {{-- <form method="GET" class="w-full col px-8 product-details-container" action="{{ url('/order-product') }}"> --}}
+        <form method="GET" class="w-full col px-8 product-details-container" action="{{ url('/adauga-produs') }}">
             <div class="w-full col px-8 product-details-container">
             <div class="col gap-xl">
                 <div class="top-container">

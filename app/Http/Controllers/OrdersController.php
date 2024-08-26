@@ -98,6 +98,8 @@ class OrdersController extends Controller
         // Obține ID-ul județului din cerere
         $countyId = $request->query('county_id');
 
+        // dd($countyId);
+
         // logica pentru calcularea prețului transportului
         $transportPrices = [
             1 => 10.00, // Exemplu: preț pentru județul cu ID-ul 1

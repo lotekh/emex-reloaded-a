@@ -80,11 +80,11 @@
                         <div class="checkboxes-row">
                             <button type="button" class="checkbox flex justify-between" id="organization-billing" data-checked="false">
                                 <p class="title">Persoana Juridica</p>
-                                <img src="{{ asset('resources/icons/persoana-juridica.svg') }}">
+                                <img src="{{ asset('resources/new_design/icons/persoana-juridica.svg') }}">
                             </button>
                             <button type="button" class="checkbox flex justify-between" id="person-billing" data-checked="false">
                                 <p class="title">Persoana Fizica</p>
-                                <img src="{{ asset('resources/icons/persoana-fizica.svg') }}">
+                                <img src="{{ asset('resources/new_design/icons/persoana-fizica.svg') }}">
                             </button>
                         </div>
                         <input type="hidden" name="billing_type" value="{{ $order->billing_type }}">
@@ -230,18 +230,18 @@
                             <div class="title mb-8">
                                 Curier
                             </div>
-                            <img src="{{ asset('resources/icons/delivery.svg') }}" class="mb-8">
+                            <img src="{{ asset('resources/new_design/icons/delivery.svg') }}" class="mb-8">
                             <button type="button" class="checkbox p-0 flex justify-center align-center" id="curier" data-checked="false" aria-label="Curier">
-                                <img src="{{ asset('resources/icons/check.svg') }}" class="hidden">
+                                <img src="{{ asset('resources/new_design/icons/check.svg') }}" class="hidden">
                             </button>
                         </div>
                         <div class="card flex col align-center">
                             <div class="title mb-8">
                                 Ridicare personala
                             </div>
-                            <img src="{{ asset('resources/icons/location.svg') }}" class="mb-8">
+                            <img src="{{ asset('resources/new_design/icons/location.svg') }}" class="mb-8">
                             <button type="button" class="checkbox p-0 flex justify-center align-center" id="ridicare-personala" data-checked="false" aria-label="Ridicare personala">
-                                <img src="{{ asset('resources/icons/check.svg') }}" class="hidden">
+                                <img src="{{ asset('resources/new_design/icons/check.svg') }}" class="hidden">
                             </button>
                         </div>
                         <input type="hidden" name="delivery_type" value="{{ $order->delivery_type }}">
@@ -370,37 +370,37 @@
                     <div class="flex justify-center w-full wrap">
                         <div class="card flex col align-center">
                             <div class="title mb-8">Card</div>
-                            <img src="{{ asset('resources/icons/card.svg') }}" class="mb-8">
+                            <img src="{{ asset('resources/new_design/icons/card.svg') }}" class="mb-8">
                             <button type="button" class="checkbox p-0 flex justify-center align-center" id="card" data-checked="false" aria-label="Card">
-                                <img src="{{ asset('resources/icons/check.svg') }}" class="hidden">
+                                <img src="{{ asset('resources/new_design/icons/check.svg') }}" class="hidden">
                             </button>
                         </div>
                         <div class="card flex col align-center">
                             <div class="title mb-8">Transfer bancar</div>
-                            <img src="{{ asset('resources/icons/bank-transfer.svg') }}" class="mb-8">
+                            <img src="{{ asset('resources/new_design/icons/bank-transfer.svg') }}" class="mb-8">
                             <button type="button" class="checkbox p-0 flex justify-center align-center" id="transfer-bancar" data-checked="false" aria-label="Transfer bancar">
-                                <img src="{{ asset('resources/icons/check.svg') }}" class="hidden">
+                                <img src="{{ asset('resources/new_design/icons/check.svg') }}" class="hidden">
                             </button>
                         </div>
                         <div class="card flex col align-center">
                             <div class="title mb-8">Ordin de plata</div>
-                            <img src="{{ asset('resources/icons/payment-order.svg') }}" class="mb-8">
+                            <img src="{{ asset('resources/new_design/icons/payment-order.svg') }}" class="mb-8">
                             <button type="button" class="checkbox p-0 flex justify-center align-center" id="ordin-de-plata" data-checked="false" aria-label="Ordin de plata">
-                                <img src="{{ asset('resources/icons/check.svg') }}" class="hidden">
+                                <img src="{{ asset('resources/new_design/icons/check.svg') }}" class="hidden">
                             </button>
                         </div>
                         <div class="card flex col align-center" id="rambursCard">
                             <div class="title mb-8">Ramburs</div>
-                            <img src="{{ asset('resources/icons/delivery.svg') }}" class="mb-8">
+                            <img src="{{ asset('resources/new_design/icons/delivery.svg') }}" class="mb-8">
                             <button type="button" class="checkbox p-0 flex justify-center align-center" id="ramburs" data-checked="false" aria-label="Ramburs">
-                                <img src="{{ asset('resources/icons/check.svg') }}" class="hidden">
+                                <img src="{{ asset('resources/new_design/icons/check.svg') }}" class="hidden">
                             </button>
                         </div>
                         <div class="card flex col align-center" id="cashCard">
                             <div class="title mb-8">Cash</div>
-                            <img src="{{ asset('resources/icons/location.svg') }}" class="mb-8">
+                            <img src="{{ asset('resources/new_design/icons/location.svg') }}" class="mb-8">
                             <button type="button" class="checkbox p-0 flex justify-center align-center" id="cash" data-checked="false" aria-label="Cash">
-                                <img src="{{ asset('resources/icons/check.svg') }}" class="hidden">
+                                <img src="{{ asset('resources/new_design/icons/check.svg') }}" class="hidden">
                             </button>
                         </div>
                         <input type="hidden" name="payment_method" id="payment_method" value="{{ $order->payment_method }}">
