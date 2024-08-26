@@ -12,16 +12,20 @@ class WishlistController extends Controller
 {
 
     public function index()
-    {
-        // Obține utilizatorul autentificat
-        $user = Auth::user();
-        
-        // Obține produsele din wishlist pentru utilizatorul curent
-        $products = WishlistItem::where('user_id', $user->id)->with('product')->get()->pluck('product');
-        
-        // Returnează view-ul cu produsele din wishlist
-        return view('products.wishlist', compact('products'));
-    }
+{
+    // Obține utilizatorul autentificat
+    $user = Auth::user();
+    
+    // Obține produsele din wishlist pentru utilizatorul curent, inclusiv relațiile necesare
+    $products = WishlistItem::where('user_id', $user->id)
+        ->with(['product.variations', 'product.reviews']) // Încarcă și relațiile variations și reviews
+        ->get()
+        ->pluck('product');
+    
+    // Returnează view-ul cu produsele din wishlist
+    return view('products.wishlist', compact('products'));
+}
+
 
     public function remove(Request $request)
 {
