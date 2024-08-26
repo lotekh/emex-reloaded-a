@@ -16,7 +16,7 @@
 
   <div>
     <div class="relative image">
-      <form method="get" class="addToWishlistBt absolute z-10" id="product_wish_list_form{{ $product->id }}" action="{{ url('/add-to-wishlist') }}">
+      <form method="POST" class="addToWishlistBt absolute z-10" id="product_wish_list_form{{ $product->id }}" action="{{ url('/add-to-wishlist') }}">
         @csrf
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         <button type="submit" aria-label="Adauga la favorite">

@@ -244,7 +244,7 @@
                 </div>
             </div>
         </div>
-        {{-- </form> --}}
+        </form>
     </div>
 
     <div class="mt-16 mt-custom">

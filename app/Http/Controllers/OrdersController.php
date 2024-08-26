@@ -29,6 +29,7 @@ class OrdersController extends Controller
 
     public function addProduct(Request $request)
 {
+    // dd(1);
     $user = Auth::user();
     $productVariation = ProductVariation::findOrFail($request->input('product_id'));
 
@@ -64,7 +65,9 @@ class OrdersController extends Controller
     });
     $order->save();
 
-    return redirect()->route('orders.index');
+    // return redirect()->route('orders.index');
+    return redirect()->back();
+
 }
 
 

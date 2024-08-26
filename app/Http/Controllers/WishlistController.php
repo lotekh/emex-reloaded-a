@@ -25,6 +25,7 @@ class WishlistController extends Controller
 
     public function store(Request $request)
     {
+        // dd(12);
         $userId = auth()->id(); // ID-ul utilizatorului curent
         $productId = $request->input('product_id');
 
