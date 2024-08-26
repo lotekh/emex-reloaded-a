@@ -28,47 +28,45 @@ class OrdersController extends Controller
     }
 
     public function addProduct(Request $request)
-{
-    // dd(1);
-    $user = Auth::user();
-    $productVariation = ProductVariation::findOrFail($request->input('product_id'));
+    {
+        $user = Auth::user();
+        $productVariation = ProductVariation::findOrFail($request->input('product_variation_id'));
 
-    $order = Order::firstOrCreate(
-        ['user_id' => $user->id, 'is_paid' => false],
-        ['total' => 0]
-    );
+        $order = Order::firstOrCreate(
+            ['user_id' => $user->id, 'is_paid' => false],
+            ['total' => 0]
+        );
 
-    $price = $productVariation->price;
-    $price_no_vat = $price * 0.81; // Calculate price without VAT as 81% of the price
+        $price = $productVariation->price;
+        $price_no_vat = $price * 0.81; // Calculate price without VAT as 81% of the price
 
-    // Check if the product already exists in the order
-    $existingOrderProduct = $order->productVariations()->where('product_variation_id', $productVariation->id)->first();
+        // Check if the product already exists in the order
+        $existingOrderProduct = $order->productVariations()->where('product_variation_id', $productVariation->id)->first();
 
-    if ($existingOrderProduct) {
-        // Update the quantity and price
-        $existingOrderProduct->pivot->quantity += $request->input('quantity', 1);
-        $existingOrderProduct->pivot->price = $price;
-        $existingOrderProduct->pivot->price_no_vat = $price_no_vat; // Update price_no_vat with the calculated value
-        $existingOrderProduct->pivot->save();
-    } else {
-        // Add the new product to the order
-        $order->productVariations()->attach($productVariation->id, [
-            'quantity' => $request->input('quantity', 1),
-            'price' => $price,
-            'price_no_vat' => $price_no_vat, // Set price_no_vat with the calculated value
-        ]);
+        if ($existingOrderProduct) {
+            // Update the quantity and price
+            $existingOrderProduct->pivot->quantity += $request->input('quantity', 1);
+            $existingOrderProduct->pivot->price = $price;
+            $existingOrderProduct->pivot->price_no_vat = $price_no_vat; // Update price_no_vat with the calculated value
+            $existingOrderProduct->pivot->save();
+        } else {
+            // Add the new product to the order
+            $order->productVariations()->attach($productVariation->id, [
+                'quantity' => $request->input('quantity', 1),
+                'price' => $price,
+                'price_no_vat' => $price_no_vat, // Set price_no_vat with the calculated value
+            ]);
+        }
+
+        // Recalculate the order total
+        $order->total = $order->productVariations->sum(function ($product) {
+            return $product->pivot->quantity * $product->pivot->price;
+        });
+        $order->save();
+
+        return redirect()->back();
     }
 
-    // Recalculate the order total
-    $order->total = $order->productVariations->sum(function ($product) {
-        return $product->pivot->quantity * $product->pivot->price;
-    });
-    $order->save();
-
-    // return redirect()->route('orders.index');
-    return redirect()->back();
-
-}
 
 
     public function removeProduct(Request $request)
