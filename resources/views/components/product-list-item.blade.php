@@ -103,7 +103,7 @@
                     {{-- <a href="{{ url('/remove-from-wishlist?product_id=' . $product->id) }}">
                         <button type="button" class="btn btn-blue-outline rounded-xl">Scoate din wishlist</button>
                     </a> --}}
-                    <a href="{{ route('wishlist.remove', ['product_id' => $product->id]) }}">
+                    <a href="{{ route('wishlist.removee', ['product_id' => $product->id]) }}">
                         <button type="button" class="btn btn-blue-outline rounded-xl">Scoate din wishlist</button>
                     </a>
                     <a href="{{ url($product->slug) }}">

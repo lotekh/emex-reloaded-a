@@ -24,22 +24,23 @@ class WishlistController extends Controller
     }
 
     public function remove(Request $request)
-    {
-        $userId = auth()->id(); // ID-ul utilizatorului curent
-        $productId = $request->query('product_id');
+{
+    $userId = auth()->id(); // ID-ul utilizatorului curent
+    $productId = $request->input('product_id');
 
-        // Verifică dacă produsul este în wishlist
-        $existingItem = WishlistItem::where('user_id', $userId)
-            ->where('product_id', $productId)
-            ->first();
+    // Verifică dacă produsul este în wishlist
+    $existingItem = WishlistItem::where('user_id', $userId)
+        ->where('product_id', $productId)
+        ->first();
 
-        if ($existingItem) {
-            // Elimină produsul din wishlist
-            $existingItem->delete();
-        }
-
-        return redirect()->back()->with('success', 'Produsul a fost eliminat din favorite.');
+    if ($existingItem) {
+        // Elimină produsul din wishlist
+        $existingItem->delete();
     }
+
+    return redirect()->back()->with('success', 'Produsul a fost eliminat din favorite.');
+}
+
 
     public function store(Request $request)
     {

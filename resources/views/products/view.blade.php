@@ -175,10 +175,12 @@
                         </div>
                     </a>
                    
-                    <form id="add-to-wishlist-form-{{ $product->id }}" action="{{ route('wishlist.store') }}" method="POST">
+                    <form id="wishlist-form-{{ $product->id }}" action="{{ $product->isInWishlist ? route('wishlist.remove', ['product_id' => $product->id]) : route('wishlist.store') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        
+                        @if (!$product->isInWishlist)
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        @endif
+                    
                         <button type="submit" class="flex align-center btn-blue-outline rounded-sm text-nowrap w-full gap-md justify-center h-full font-sm px-16 py-4">
                             <div class="addToWhislistSvgWrapper">
                                 @if ($product->isInWishlist)
@@ -187,9 +189,11 @@
                                     <img width="16" height="15" src="{{ asset('resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
                                 @endif
                             </div>
-                            <span>Adaugă la favorite</span>
+                            <span>{{ $product->isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}</span>
                         </button>
                     </form>
+                    
+                    
                     
                     
                 </div>

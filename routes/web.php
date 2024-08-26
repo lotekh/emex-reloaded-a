@@ -124,7 +124,8 @@ Route::get('/servicii', function () {
 // Routes for produse
 Route::post('/add-to-wishlist', [WishlistController::class, 'store'])->name('wishlist.store');
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('products.wishlist');
-Route::get('/remove-from-wishlist', [WishlistController::class, 'remove'])->name('wishlist.remove');
+Route::post('/remove-from-wishlist', [WishlistController::class, 'remove'])->name('wishlist.remove');
+Route::get('/removee-from-wishlist', [WishlistController::class, 'remove'])->name('wishlist.removee');
 
 Route::post('/get-variation', [ProductsController::class, 'getVariation'])->name('product.getVariation');
 
