@@ -152,7 +152,7 @@ Route::get('/finalizeaza-comanda', [OrdersController::class, 'showCheckoutForm']
 // Route::post('/finalizeaza-comanda', [OrdersController::class, 'processCheckout'])->name('checkout.process');
 Route::post('/save-order', [OrdersController::class, 'processCheckout'])->name('checkout.process');
 // Ruta pentru obținerea prețului de transport pe baza ID-ului județului
-Route::get('/get-transport-price', [OrdersController::class, 'getTransportPrice']);
+Route::get('/get-transport-price', [OrdersController::class, 'getTransportPrice'])->name('get.transport.price');
 
 // Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');

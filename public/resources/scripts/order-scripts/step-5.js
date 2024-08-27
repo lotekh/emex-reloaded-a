@@ -212,7 +212,8 @@ var transportTVA = document.getElementById("transport_TVA");
 var transportUnitary = document.getElementById("transport_unitary");
 var totalGeneral = document.getElementById("total_general");
 var globalSelectedPayment = "card";
-console.log(baseUrl);
+var orderId = document.getElementById("orderr_id").value;
+console.log("Numarul Comenzii = " + orderId);
 // console.log(county_id);
 
 function getTransportPrice(county_id) {
@@ -247,9 +248,18 @@ function getTransportPrice(county_id) {
         }
       }
     };
+    // xmlhttp.open(
+    //   "GET",
+    //   baseUrl + "/get-transport-price?county_id=" + county_id,
+    //   true
+    // );
     xmlhttp.open(
       "GET",
-      baseUrl + "/get-transport-price?county_id=" + county_id,
+      baseUrl +
+        "/get-transport-price?county_id=" +
+        county_id +
+        "&order_id=" +
+        orderId,
       true
     );
     xmlhttp.send();

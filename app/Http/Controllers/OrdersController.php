@@ -96,23 +96,59 @@ class OrdersController extends Controller
     
     public function getTransportPrice(Request $request)
     {
-        // Obține ID-ul județului din cerere
         $countyId = $request->query('county_id');
+        $orderId = $request->query('order_id');  // Obține order_id din cerere
+        $user = auth()->user();
 
-        // dd($countyId);
+        if (!$user) {
+            return response()->json(['error' => 'User not authenticated'], 401);
+        }
 
-        // Bucuresti + imprejurimi, adica Bucuresti(id=1160) si Ilfov(id=1176)
+        // Obține comanda specifică utilizând user_id și order_id
+        $order = Order::where('user_id', $user->id)->where('id', $orderId)->where('is_paid', false)->first();
 
-        // logica pentru calcularea prețului transportului
-        $transportPrices = [
-            1 => 10.00, // Exemplu: preț pentru județul cu ID-ul 1
-            2 => 15.00, // Exemplu: preț pentru județul cu ID-ul 2
-            3 => 20.00, // Exemplu: preț pentru județul cu ID-ul 3
+        if (!$order) {
+            return response()->json(['error' => 'No active order found'], 404);
+        }
+
+        // Calculăm cantitatea totală din orders_product_variations
+        $totalQuantity = $order->productVariations->sum('pivot.quantity');
+
+        dd($totalQuantity);
+
+        // Define transport prices based on quantity and region
+        $transportPricesBucurestiIlfov = [
+            ['min' => 0, 'max' => 50, 'price' => 25],
+            ['min' => 51, 'max' => 100, 'price' => 75],
+            ['min' => 101, 'max' => 250, 'price' => 100],
         ];
 
-        // Setează prețul în funcție de județul selectat
-        $price = isset($transportPrices[$countyId]) ? $transportPrices[$countyId] : 25.00; 
-        // Preț default dacă ID-ul județului nu este găsit
+        $transportPricesInTara = [
+            ['min' => 1, 'max' => 10, 'price' => 25],
+            ['min' => 11, 'max' => 50, 'price' => 45],
+            ['min' => 51, 'max' => 100, 'price' => 75],
+            ['min' => 101, 'max' => 200, 'price' => 150],
+            ['min' => 201, 'max' => 250, 'price' => 175],
+        ];
+
+        // Determine the correct price based on county and quantity
+        $price = 0;
+
+        if (in_array($countyId, [1160, 1176])) { // Bucuresti + Ilfov
+            foreach ($transportPricesBucurestiIlfov as $range) {
+                if ($totalQuantity >= $range['min'] && $totalQuantity <= $range['max']) {
+                    $price = $range['price'];
+                    break;
+                }
+            }
+        } else { // Restul tarii
+            foreach ($transportPricesInTara as $range) {
+                if ($totalQuantity >= $range['min'] && $totalQuantity <= $range['max']) {
+                    $price = $range['price'];
+                    break;
+                }
+            }
+        }
 
         // Calculează TVA-ul
         $tva = $price * 0.19;
@@ -128,6 +164,7 @@ class OrdersController extends Controller
             'total' => number_format($price + $tva, 2, '.', '')
         ]);
     }
+
 
 
     public function emptyCart()
