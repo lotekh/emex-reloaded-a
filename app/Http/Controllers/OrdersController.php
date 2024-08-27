@@ -162,7 +162,12 @@ class OrdersController extends Controller
         // Formatează prețul și TVA-ul pentru a avea două zecimale
         $formattedPrice = number_format($price, 2, '.', '');
         $formattedTva = number_format($tva, 2, '.', '');
-
+        
+        $order->update([
+                'transport_price' => $formattedPrice,
+                'transport_price_no_tva' => $formattedPrice - $formattedTva,
+            ]);
+        
         // Returnează un array cu valorile calculului
         return response()->json([
             'price' => $formattedPrice,
@@ -233,7 +238,6 @@ class OrdersController extends Controller
 
     public function processCheckout(Request $request)
     {
-        // dd($request->all());
         // Validăm datele introduse de utilizator
         $request->validate([
             'billing_type' => 'required',
@@ -246,18 +250,38 @@ class OrdersController extends Controller
         // Preluăm utilizatorul și comanda curentă
         $user = auth()->user();
         $order = Order::where('user_id', $user->id)
-                  ->where('id', $request->input('order_id'))
-                  ->where('is_paid', false)
-                  ->first();
-
-        // dd($order);
+                    ->where('id', $request->input('order_id'))
+                    ->where('is_paid', false)
+                    ->first();
 
         if ($order) {
+            // Inițializăm variabile pentru a stoca ID-ul județului și alte informații
+            $personCountyId = null;
+            $companyCountyId = null;
+            $deliveryCountyId = null;
+
+            // Setăm valorile pentru persoană fizică sau juridică în funcție de billing_type
+            if ($request->input('billing_type') == 0) { // Persoană fizică
+                $personCountyId = $request->input('company_information.person_county_id');
+            } elseif ($request->input('billing_type') == 1) { // Persoană juridică
+                $companyCountyId = $request->input('company_information.organization_county_id');
+            }
+
+             // Verificăm dacă tipul de livrare este curier (0) și setăm deliveryCountyId
+            if ($request->input('delivery_type') == 0) { // Curier
+                $deliveryCountyId = $request->input('delivery_county_id');
+            }
+
+            $order->total_no_tva = $order->total * 0.81;
+
             // Actualizăm datele comenzii cu informațiile primite din formular
             $order->update([
                 'billing_type' => $request->input('billing_type'),
                 'delivery_type' => $request->input('delivery_type'),
                 'payment_method' => $request->input('payment_method'),
+                'person_county_id' => $personCountyId,
+                'company_county_id' => $companyCountyId,
+                'delivery_county_id' => $deliveryCountyId,
                 'company_information' => json_encode($request->input('company_information')), 
                 'delivery_information' => json_encode($request->input('delivery_information')), 
                 'is_paid' => true,
@@ -271,4 +295,5 @@ class OrdersController extends Controller
         // Dacă nu există o comandă, redirect la pagina coșului
         return redirect()->route('aplicare.aplicare-vopsele-lavabile');
     }
+
 }
