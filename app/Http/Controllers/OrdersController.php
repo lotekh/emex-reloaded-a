@@ -101,6 +101,8 @@ class OrdersController extends Controller
 
         // dd($countyId);
 
+        // Bucuresti + imprejurimi, adica Bucuresti(id=1160) si Ilfov(id=1176)
+
         // logica pentru calcularea prețului transportului
         $transportPrices = [
             1 => 10.00, // Exemplu: preț pentru județul cu ID-ul 1
