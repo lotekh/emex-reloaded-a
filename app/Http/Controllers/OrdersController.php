@@ -277,6 +277,32 @@ class OrdersController extends Controller
             $order->total = $order->total + $order->transport_price;
             $order->total_no_tva = $order->total * 0.81;
 
+
+             // Pregătim contact_information ca JSON
+            $contactInformation = null;
+            if ($request->input('delivery_type') == 0) { // Livrare prin curier
+                $contactInformation = json_encode([
+                    'email' => $request->input('delivery_email'),
+                    'phone' => $request->input('delivery_phone'),
+                ]);
+            }
+
+            $deliveryInformation = null;
+            if ($request->input('delivery_type') == 0) { // Livrare prin curier
+                $deliveryInformation = json_encode([
+                    'delivery_last_name' => $request->input('delivery_last_name'),
+                    'delivery_first_name' => $request->input('delivery_first_name'),
+                    'delivery_phone' => $request->input('delivery_phone'),
+                    'delivery_email' => $request->input('delivery_email'),
+                    'delivery_country_id' => $request->input('delivery_country_id'),
+                    'delivery_county_id' => $request->input('delivery_county_id'),
+                    'delivery_locality' => $request->input('delivery_locality'),
+                    'delivery_address' => $request->input('delivery_address'),
+                ]);
+            }
+
+
+
             // Actualizăm datele comenzii cu informațiile primite din formular
             $order->update([
                 'billing_type' => $request->input('billing_type'),
@@ -285,10 +311,10 @@ class OrdersController extends Controller
                 'person_county_id' => $personCountyId,
                 'company_county_id' => $companyCountyId,
                 'delivery_county_id' => $deliveryCountyId,
-                'company_information' => json_encode($request->input('company_information')), 
-                'delivery_information' => json_encode($request->input('delivery_information')), 
+                'company_information' => json_encode($request->input('company_information')),  
                 'is_paid' => true,
-                'contact_information' => json_encode($request->only('contact_name', 'contact_phone', 'contact_email')), 
+                'delivery_information' => $deliveryInformation,
+                'contact_information' => $contactInformation, 
             ]);
 
             // Redirect la pagina de mulțumire
