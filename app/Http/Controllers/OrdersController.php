@@ -97,24 +97,30 @@ class OrdersController extends Controller
     public function getTransportPrice(Request $request)
     {
         $countyId = $request->query('county_id');
-        $orderId = $request->query('order_id');  // Obține order_id din cerere
+        $orderId = $request->query('order_id');  
         $user = auth()->user();
 
         if (!$user) {
             return response()->json(['error' => 'User not authenticated'], 401);
         }
 
-        // Obține comanda specifică utilizând user_id și order_id
-        $order = Order::where('user_id', $user->id)->where('id', $orderId)->where('is_paid', false)->first();
+        // $order = Order::where('user_id', $user->id)->where('id', $orderId)->where('is_paid', false)->first();
+        $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
 
         if (!$order) {
             return response()->json(['error' => 'No active order found'], 404);
         }
 
-        // Calculăm cantitatea totală din orders_product_variations
-        $totalQuantity = $order->productVariations->sum('pivot.quantity');
+        $totalQuantity = 0;
 
-        dd($totalQuantity);
+        foreach ($order->productVariations as $productVariation) {
+            // Accesează cantitatea din `product_variations` prin relația definită
+            $totalQuantity += $productVariation->quantity; // `quantity` din `product_variations`
+        }
+
+        // $message = "Cantitate: " . $totalQuantity;
+
+        // dd($message);
 
         // Define transport prices based on quantity and region
         $transportPricesBucurestiIlfov = [
