@@ -272,6 +272,9 @@ class OrdersController extends Controller
                 $deliveryCountyId = $request->input('delivery_county_id');
             }
 
+            $order->transport_price_no_tva = $order->transport_price;
+            $order->transport_price = 1.19 * $order->transport_price_no_tva;
+            $order->total = $order->total + $order->transport_price;
             $order->total_no_tva = $order->total * 0.81;
 
             // Actualizăm datele comenzii cu informațiile primite din formular
