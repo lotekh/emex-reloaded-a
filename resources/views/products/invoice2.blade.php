@@ -12,35 +12,139 @@
 
 <style>
     @page {
-        margin: 0px;
-        margin-header: 0;
-        margin-footer: 0;
+     margin: 0px;
+     margin-header: 0; /* <any of the usual CSS values for margins> */
+	 margin-footer: 0; /* <any of the usual CSS values for margins> */
     }
-    .col-6 { width: 50%; padding: 0; }
-    .col-12 { width: 100%; margin: 0; padding: 0; }
-    .col-9 { width: 75%; }
-    .col-3 { width: 25%; }
-    .col-8 { width: 66.66%; }
-    .col-this-4 { max-width: 33.33%; }
-    .blue-table { background-color: #001d4d; padding-top: 10px; padding-bottom: 10px; color: white; }
-    .blue { background-color: #001d4d; color: white; }
-    table { border: 0; }
-    .column-headline { color: #001d4d; border-bottom: 1px solid #001d4d; }
-    .small-font { font-size: 12px; }
-    .company-data { margin-top: 30px; }
-    .company-name { text-transform: uppercase; font-size: 14px; margin: 5px 0; }
-    .margin-negative { position: absolute; top: 0; left: 0; }
-    .table-borders { border-top: 1px solid grey; border-bottom: 1px solid grey; text-align: center; padding: 5px; }
-    .table-borders-total { border-top: 1px solid grey; border-bottom: 1px solid grey; }
-    .paddings { padding: 10px 5px; }
-    .table-borders-none { border: 0; font-size: 16px; color: #001d4d; }
-    .table-borders-main { border-top: 1px solid grey; border-bottom: 0; }
-    .ta_r { text-align: right; }
-    .ta_l { text-align: left; }
-    .ta_c { text-align: center; }
-    .small-font p { margin: 0; }
-    .company-name p { margin: 0; }
-    #logo-img { margin-top: 15px; }
+
+    .col-6 {
+        width: 50%;
+        padding: 0;
+    }
+
+    .col-12 {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .col-9 {
+        width: 75%;
+    }
+
+    .col-3 {
+        width: 25%;
+    }
+    .col-8 {
+        width: 66.66%;
+    }
+    .col-this-4 {
+        max-width: 33.33%;
+    }
+
+    .blue-table {
+        background-color: #001d4d;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: white;
+    }
+
+    .blue {
+        background-color: #001d4d;
+        color: white;
+    }
+
+    table {
+        border: 0;
+    }
+
+    .column-headline {
+        color: #001d4d;
+        border-bottom: 1px solid #001d4d;
+    }
+
+    .small-font {
+        font-size: 12px
+    }
+
+    .company-data {
+        margin-top: 30px;
+    }
+
+    .company-name {
+        text-transform: uppercase;
+        font-size: 14px;
+        margin: 5px 0;
+    }
+
+    .margin-negative {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .table-borders {
+        border-top: 1px solid grey;
+        border-bottom: 1px solid grey;
+        border-left: 0;
+        border-right: 0;
+        text-align: center;
+        padding: 5px;
+    }
+
+    .table-borders-total {
+        border-top: 1px solid grey;
+        border-bottom: 1px solid grey;
+        border-left: 0;
+        border-right: 0;
+    }
+
+    .paddings {
+        padding: 10px 5px;
+    }
+
+    .table-borders-none {
+        border: 0;
+        font-size: 16px;
+        color: #001d4d;
+    }
+
+    .table-borders-main {
+        border-top: 1px solid grey;
+        border-bottom: 0;
+        border-left: 0;
+        border-right: 0;
+    }
+    p.id {
+        font-size: 14px;
+        font-weight: bold;
+        margin: 20px 0 30px;
+    }
+    .small-font p {
+        margin: 0;
+    }
+    .company-name p {
+        margin: 0;
+    }
+    .small-font {
+        padding: 0;
+        margin: 0;
+    }
+    #logo-img {
+        margin-top: 15px;
+    }
+
+    .ta_r{
+        text-align: right;
+    }
+
+    .ta_l{
+        text-align: left;
+    }
+
+    .ta_c{
+        text-align: center;
+    }
 </style>
 
 <table class="col-12" style="margin: 0 50px; padding: 0">
@@ -50,6 +154,11 @@
                 <tr>
                     <td>
                         <img id="logo-img" src="{{ asset('resources/new_design/general/logo.png') }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 40px">
+                
                     </td>
                 </tr>
             </table>
@@ -62,7 +171,7 @@
                 <tr class="col-12">
                     <td class="col-8" style="padding-bottom: 9px">
                         <h2>Proforma</h2>
-                        <p>Data emiterii: {{ $order['created_at'] }}</p>
+                        <p>Data emiterii: {{ \Carbon\Carbon::parse($order['created_at'])->format('d-m-Y') }}</p>
                     </td>
                     <td class="col-6" style="padding-bottom: 5px">
                         <p class="id">{{ 'RTCH-N-' . $order['identifier'] }}</p>
