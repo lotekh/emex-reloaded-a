@@ -313,7 +313,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Localitate <span class="text-red">*</span></label>
-                                    <input class="form-control w-full" type="text" id="delivery_locality_id" name="company_information[person_locality]" value="{{ $order->company_information->person_locality ?? '' }}" required>
+                                    <input class="form-control w-full" type="text" id="delivery_locality" name="delivery_locality" value="{{ $order->delivery_information->delivery_locality ?? '' }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Adresa <span class="text-red">*</span></label>
@@ -587,7 +587,7 @@
     var totalTva = '{{ number_format($total_tva, 2, '.', '') }}';
     var userPersonLocalityId = '{{ $order->company_information->person_locality_id ?? '' }}';
     var userOrganizationLocalityId = '{{ $order->company_information->organization_locality_id ?? '' }}';
-    var userDeliveryLocalityId = '{{ $order->delivery_information->delivery_locality_id ?? '' }}';
+    // var userDeliveryLocalityId = '{{ $order->delivery_information->delivery_locality ?? '' }}';
 </script>
 
 <!-- Step 1 -->

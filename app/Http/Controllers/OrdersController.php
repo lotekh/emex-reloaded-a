@@ -317,8 +317,6 @@ class OrdersController extends Controller
                 $deliveryInformation = json_encode($deliveryInformationArray);
             }
 
-
-
             // Actualizăm datele comenzii cu informațiile primite din formular
             $order->update([
                 'billing_type' => $request->input('billing_type'),

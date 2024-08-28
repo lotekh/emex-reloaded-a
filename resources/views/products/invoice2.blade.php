@@ -139,7 +139,7 @@
         <td class="col-6 small-font" style="vertical-align: top">
             @if ($order['billing_type'] == 0)
                 <p>Judet: {{ $countyName }}</p>
-                <p>Localitate: {{ $city }}</p>
+                <p>Localitate: {{ $deliveryInformation['delivery_locality'] ?? '' }}</p>
                 <p>Adresa: {{ $deliveryInformation['delivery_address'] ?? '' }}</p>
             @else
                 <p>CUI: {{ $order['organization_cui'] }}</p>
