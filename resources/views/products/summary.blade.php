@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-@php
+{{-- @php
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\URL;
 
@@ -30,11 +30,11 @@
     $order_no = 'RTCH-N-' . $order->identifier;
     $amount = number_format($order->total, 2, '.', '');
 
-    // if ($order->billing_type) {
-    //     $url = url('/secure-payment') . '?guid=' . $order->guid . '&firstName=' . $order->contact_person_first_name . '&lastName=' . $order->contact_person_last_name . '&companyName=' . $company_name . '&email=' . $order->organization_email . '&orderNo=' . $order_no . '&amount=' . $amount;
-    // } else {
-    //     $url = url('/secure-payment') . '?guid=' . $order->guid . '&firstName=' . $order->person_first_name . '&lastName=' . $order->person_last_name . '&email=' . $order->person_email . '&orderNo=' . $order_no . '&amount=' . $amount;
-    // }
+    if ($order->billing_type) {
+        $url = url('/secure-payment') . '?guid=' . $order->guid . '&firstName=' . $order->contact_person_first_name . '&lastName=' . $order->contact_person_last_name . '&companyName=' . $company_name . '&email=' . $order->organization_email . '&orderNo=' . $order_no . '&amount=' . $amount;
+    } else {
+        $url = url('/secure-payment') . '?guid=' . $order->guid . '&firstName=' . $order->person_first_name . '&lastName=' . $order->person_last_name . '&email=' . $order->person_email . '&orderNo=' . $order_no . '&amount=' . $amount;
+    }
 
     $conversion_value = 0;
     foreach ($orders_products as $product) {
@@ -43,7 +43,7 @@
         }
     }
     $conversion_value = number_format(round($conversion_value, 2), 2, '.', ',');
-@endphp
+@endphp --}}
 
 {{-- <script>
     window.dataLayer = window.dataLayer || [];

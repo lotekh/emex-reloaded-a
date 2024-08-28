@@ -56,6 +56,7 @@
 
     table {
         border: 0;
+        border-collapse: separate;
     }
 
     .column-headline {
@@ -208,6 +209,7 @@
                 <tr class="col-12">
                     <td class="col-6 column-headline">Furnizor</td>
                     <td class="col-6"></td>
+                    <td class="col-6"></td>
                 </tr>
             </table>
         </td>
@@ -216,6 +218,8 @@
                 <tr class="col-12">
                     <td class="col-6 column-headline">Client</td>
                     <td class="col-6"></td>
+                    <td class="col-6">
+                    </td>
                 </tr>
             </table>
         </td>
