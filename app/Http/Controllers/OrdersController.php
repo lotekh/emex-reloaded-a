@@ -359,9 +359,15 @@ class OrdersController extends Controller
             abort(403, 'Acces interzis.');
         }
 
-        $orders_products = $order->productVariations; // Obține produsele din comandă
-        $county = $order->delivery_information['delivery_county_id'] ?? ''; // Ia județul din informațiile de livrare
-        $city = $order->delivery_information['delivery_locality'] ?? ''; // Ia localitatea din informațiile de livrare
+        // $orders_products = $order->productVariations;
+        $orders_products = $order->productVariations()->withPivot('quantity', 'price', 'price_no_vat')->get();
+
+        if ($order->delivery_type == 0) {  //livrare prin curier
+            // $county = $order->deliveryCounty->name ;
+            $county = County::where('id', $order->delivery_county_id)->first();
+            $countyName = $county ? $county->name : 'Necunoscut';
+            $city = $order->delivery_information['delivery_locality'] ?? ''; // Ia localitatea din informațiile de livrare
+        }
 
         // Generează valoarea de conversie (conversion value)
         $conversion_value = 0;
@@ -377,7 +383,7 @@ class OrdersController extends Controller
         $valid_link = 1;
 
         // Returnează pagina de sumar comandă
-        return view('products.summary', compact('order', 'orders_products', 'county', 'city', 'valid_link', 'conversion_value'));
+        return view('products.summary', compact('order', 'orders_products', 'county', 'countyName', 'city', 'valid_link', 'conversion_value'));
     }
 
 

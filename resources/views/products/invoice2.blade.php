@@ -1,4 +1,4 @@
-@php
+{{-- @php
     $company_name = $order['billing_type'] ? $order['organization_name'] : $order['person_last_name'] . ' ' . $order['person_first_name'];
     $order_no = 'RTCH-N-' . $order['identifier'];
     $amount = number_format($order['total'], 2, '.', '');
@@ -8,10 +8,9 @@
     } else {
         $plata_url = url('/secure-payment') . '?guid=' . $order['guid'] . '&firstName=' . $order['person_first_name'] . '&lastName=' . $order['person_last_name'] . '&email=' . $order['person_email'] . '&orderNo=' . $order_no . '&amount=' . $amount;
     }
-@endphp
+@endphp --}}
 
 <style>
-    /* CSS-ul tău de stilizare */
     @page {
         margin: 0px;
         margin-header: 0;
@@ -118,12 +117,17 @@
         </td>
         <td class="col-6 company-name">
             @if ($order['billing_type'] == 0)
-                <p>{{ $order['person_first_name'] . ' ' . $order['person_last_name'] }}</p>
+                <p>{{ $order->user->first_name . ' ' . $order->user->last_name }}</p>
             @else
                 <p>{{ $order['organization_name'] }}</p>
             @endif
         </td>
     </tr>
+
+    @php
+    $deliveryInformation = json_decode($order->delivery_information, true);
+    @endphp
+
     <tr class="col-12 small-font">
         <td class="col-6 small-font">
             <p>CUI: RO4643777</p>
@@ -134,9 +138,9 @@
         </td>
         <td class="col-6 small-font" style="vertical-align: top">
             @if ($order['billing_type'] == 0)
-                <p>Judet: {{ $county }}</p>
+                <p>Judet: {{ $countyName }}</p>
                 <p>Localitate: {{ $city }}</p>
-                <p>Adresa: {{ $order['person_address'] }}</p>
+                <p>Adresa: {{ $deliveryInformation['delivery_address'] ?? '' }}</p>
             @else
                 <p>CUI: {{ $order['organization_cui'] }}</p>
                 <p>Adresa: {{ $order['organization_address'] . ', ' . $city . ', jud. ' . $county }}</p>
@@ -163,16 +167,43 @@
         <tr>
             <td style="padding: 10px 5px" class="ta_c table-borders">{{ $i }}</td>
             <td style="padding: 5px 20px 5px 8px;" class="ta_l table-borders">{{ $product['name'] }}</td>
-            <td style="padding: 10px 5px" class="ta_c table-borders">{{ $product['quantity'] }}</td>
-            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format(round($product['price_no_tva'], 2), 2, '.', ',') }}</td>
-            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format(round($product['price_no_tva'] * $product['quantity'], 2), 2, '.', ',') }}</td>
-            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format(round($product['price'] - $product['price_no_tva'], 2) * $product['quantity'], 2, '.', ',') }}</td>
+            <td style="padding: 10px 5px" class="ta_c table-borders">{{ $product->pivot->quantity }}</td>
+            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format(round($product->pivot->price_no_vat, 2), 2, '.', ',') }}</td>
+            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format(round($product->pivot->price_no_vat * $product->pivot->quantity, 2), 2, '.', ',') }}</td>
+            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format(round($product->pivot->price - $product->pivot->price_no_vat, 2) * $product->pivot->quantity, 2, '.', ',') }}</td>
         </tr>
     @endforeach
 
+    {{-- Transport --}}
+    
+    @if ($order->transport_price)
+        @php $i++; @endphp
+        <tr>
+            <td style="padding: 10px 5px" class="ta_c table-borders">{{ $i }}</td>
+            <td style="padding: 5px 20px 5px 8px;" class="ta_l table-borders">Transport</td>
+            <td style="padding: 10px 5px" class="ta_c table-borders">1</td>
+            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format(round($order->transport_price_no_tva, 2), 2, '.', ',') }}</td>
+            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format(round($order->transport_price_no_tva, 2), 2, '.', ',') }}</td>
+            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format(round($order->transport_price - $order->transport_price_no_tva, 2), 2, '.', ',') }}</td>
+        </tr>
+    @endif
+
+    {{-- Ramburs --}}
+    @if ($order->delivery_type == 0) 
+        @php $i++; @endphp
+        <tr>
+            <td style="padding: 10px 5px" class="ta_c table-borders">{{ $i }}</td>
+            <td style="padding: 5px 20px 5px 8px;" class="ta_l table-borders">Ramburs</td>
+            <td style="padding: 10px 5px" class="ta_c table-borders">1</td>
+            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format(round($deliveryInformation['ramburs_value'], 2), 2, '.', ',') }}</td>
+            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format(round($deliveryInformation['ramburs_value'], 2), 2, '.', ',') }}</td>
+            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format(round($deliveryInformation['ramburs_tva'], 2), 2, '.', ',') }}</td>
+        </tr>
+    @endif
+
     <tr>
         <td colspan="4" style="text-align: right; padding: 10px 5px; font-weight: bold" class="table-borders-total">Total</td>
-        <td style="text-align: center; padding: 10px 5px" class="table-borders-total">{{ number_format(round($order['total_no_tva'], 2), 2, '.', ',') }}</td>
+        <td style="text-align: center; padding: 10px 5px" class="table-borders-total">{{ number_format(round($order->total_no_tva, 2), 2, '.', ',') }}</td>
         <td style="text-align: center; padding: 10px 5px" class="table-borders-total">{{ number_format(round($order['total'] - $order['total_no_tva'], 2), 2, '.', ',') }}</td>
     </tr>
     <tr style="margin-bottom: 0">
