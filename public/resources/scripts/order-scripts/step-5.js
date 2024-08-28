@@ -213,7 +213,7 @@ var transportUnitary = document.getElementById("transport_unitary");
 var totalGeneral = document.getElementById("total_general");
 var globalSelectedPayment = "card";
 var orderId = document.getElementById("orderr_id").value;
-console.log("Numarul Comenzii = " + orderId);
+// console.log("Numarul Comenzii = " + orderId);
 // console.log(county_id);
 
 function getTransportPrice(county_id) {

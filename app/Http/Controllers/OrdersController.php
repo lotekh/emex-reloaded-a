@@ -118,10 +118,6 @@ class OrdersController extends Controller
             $totalQuantity += $productVariation->quantity; // `quantity` din `product_variations`
         }
 
-        // $message = "Cantitate: " . $totalQuantity;
-
-        // dd($message);
-
         // Define transport prices based on quantity and region
         $transportPricesBucurestiIlfov = [
             ['min' => 0, 'max' => 50, 'price' => 25],
@@ -272,6 +268,16 @@ class OrdersController extends Controller
                 $deliveryCountyId = $request->input('delivery_county_id');
             }
 
+            // Calculează costul de ramburs dacă tipul de livrare este curier
+            $rambursValue = 0;
+            $rambursTva = 0;
+            if ($request->input('delivery_type') == 0 && $request->input('payment_method') == 'ramburs') {
+                // valoarea de ramburs e 3 la suta din valoarea comenzii fara tva, adica 3 la suta din 100-19 = 81% din $order->total
+                $rambursValue = (($order->total * 81) / 100) * 3 / 100;
+                $rambursTva = ($rambursValue * 19) / 100;
+                $order->total += $rambursValue + $rambursTva; // Adăugăm costul rambursului la total
+            }
+
             $order->transport_price_no_tva = $order->transport_price;
             $order->transport_price = 1.19 * $order->transport_price_no_tva;
             $order->total = $order->total + $order->transport_price;
@@ -287,9 +293,10 @@ class OrdersController extends Controller
                 ]);
             }
 
+
             $deliveryInformation = null;
             if ($request->input('delivery_type') == 0) { // Livrare prin curier
-                $deliveryInformation = json_encode([
+                $deliveryInformationArray = [
                     'delivery_last_name' => $request->input('delivery_last_name'),
                     'delivery_first_name' => $request->input('delivery_first_name'),
                     'delivery_phone' => $request->input('delivery_phone'),
@@ -298,7 +305,17 @@ class OrdersController extends Controller
                     'delivery_county_id' => $request->input('delivery_county_id'),
                     'delivery_locality' => $request->input('delivery_locality'),
                     'delivery_address' => $request->input('delivery_address'),
-                ]);
+                ];
+
+                // Adăugăm costurile rambursului doar dacă metoda de plată este 'ramburs'
+                if ($request->input('payment_method') == 'ramburs') {
+                // Adăugăm costurile rambursului la delivery_information
+                $deliveryInformationArray['ramburs_value'] = number_format($rambursValue, 2, '.', '');
+                $deliveryInformationArray['ramburs_tva'] = number_format($rambursTva, 2, '.', '');
+                }
+
+                // Convertim în JSON
+                $deliveryInformation = json_encode($deliveryInformationArray);
             }
 
 
