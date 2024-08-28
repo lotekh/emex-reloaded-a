@@ -231,7 +231,6 @@ class OrdersController extends Controller
         return view('products.finalizeaza-comanda', compact('user', 'order', 'countries', 'counties', 'ordered_products', 'isGuest'));
     }
 
-
     public function processCheckout(Request $request)
     {
         // Validăm datele introduse de utilizator
@@ -334,12 +333,52 @@ class OrdersController extends Controller
                 'contact_information' => $contactInformation, 
             ]);
 
-            // Redirect la pagina de mulțumire
-            return redirect()->route('home');
+            // Redirecționăm utilizatorul la pagina de sumar comandă după ce comanda este procesată
+            return redirect()->route('order.summary', ['guid' => $order->guid]);
         }
 
-        // Dacă nu există o comandă, redirect la pagina coșului
-        return redirect()->route('aplicare.aplicare-vopsele-lavabile');
+        return redirect()->route('aplicare.vopsele.lavabile');
     }
+
+    public function showSummary(Request $request)
+    {
+        // Preia `guid` din query parameters
+        $guid = $request->query('guid');
+
+        // Găsește comanda pe baza `guid`
+        $order = Order::where('guid', $guid)->first();
+
+        // Verifică dacă comanda există și dacă utilizatorul este autentificat
+        if (!$order) {
+            return redirect()->route('home')->with('error', 'Comanda nu a fost găsită.');
+        }
+
+        // Verifică dacă utilizatorul are permisiunea de a vedea comanda
+        $user = Auth::user();
+        if ($user->id !== $order->user_id) {
+            abort(403, 'Acces interzis.');
+        }
+
+        $orders_products = $order->productVariations; // Obține produsele din comandă
+        $county = $order->delivery_information['delivery_county_id'] ?? ''; // Ia județul din informațiile de livrare
+        $city = $order->delivery_information['delivery_locality'] ?? ''; // Ia localitatea din informațiile de livrare
+
+        // Generează valoarea de conversie (conversion value)
+        $conversion_value = 0;
+        foreach ($orders_products as $product) {
+            if ($product->name !== 'Transport' && $product->name !== 'Cost Ramburs') {
+                $conversion_value += $product->pivot->price_no_tva * $product->pivot->quantity;
+            }
+        }
+
+        $conversion_value = number_format(round($conversion_value, 2), 2, '.', ',');
+
+        // Verifică dacă linkul este valid (poți modifica această logică în funcție de nevoile tale)
+        $valid_link = 1;
+
+        // Returnează pagina de sumar comandă
+        return view('products.summary', compact('order', 'orders_products', 'county', 'city', 'valid_link', 'conversion_value'));
+    }
+
 
 }

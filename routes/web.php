@@ -73,7 +73,8 @@ Route::get('/cartela-culori-ral-vopsele', [PaleteController::class, 'ral'])->nam
 // Routes for aplicare
 Route::get('/aplicare-vopsele-lavabile', function () {
     return view('aplicare.aplicare-vopsele-lavabile');
-});
+})->name('aplicare.vopsele.lavabile');
+
 Route::get('/aplicare-email', function () {
     return view('aplicare.aplicare-email');
 });
@@ -149,6 +150,7 @@ Route::post('/goleste-cosul', [OrdersController::class, 'emptyCart'])->name('ord
 
 // Checkout
 Route::get('/finalizeaza-comanda', [OrdersController::class, 'showCheckoutForm'])->name('checkout.form');
+Route::get('/sumar-comanda', [OrdersController::class, 'showSummary'])->name('order.summary');
 // Route::post('/finalizeaza-comanda', [OrdersController::class, 'processCheckout'])->name('checkout.process');
 Route::post('/save-order', [OrdersController::class, 'processCheckout'])->name('checkout.process');
 // Ruta pentru obținerea prețului de transport pe baza ID-ului județului
