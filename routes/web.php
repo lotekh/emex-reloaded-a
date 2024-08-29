@@ -13,6 +13,7 @@ use App\Http\Controllers\CountyController;
 use App\Http\Controllers\PaleteController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\ConsumptionController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -155,6 +156,10 @@ Route::get('/sumar-comanda', [OrdersController::class, 'showSummary'])->name('or
 Route::post('/save-order', [OrdersController::class, 'processCheckout'])->name('checkout.process');
 // Ruta pentru obținerea prețului de transport pe baza ID-ului județului
 Route::get('/get-transport-price', [OrdersController::class, 'getTransportPrice'])->name('get.transport.price');
+
+// Consum
+Route::get('/consum/{slug}', [ConsumptionController::class, 'show'])->name('consum.show');
+
 
 // Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
