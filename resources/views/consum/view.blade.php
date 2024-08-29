@@ -1,19 +1,26 @@
-@extends('layouts.app')
+@extends('layout.layout')
 
-@section('title', $product->name)
-
-@section('breadcrumbs')
+{{-- @section('breadcrumbs')
     <li><a href="/">Acasa</a></li>
     <li><a href="{{ url('/produse') }}">Produse</a></li>
     <li><a href="{{ url($category->slug) }}">{{ $category->name }}</a></li>
     <li><a href="{{ url('consum/' . $product->slug) }}">{{ ucwords($product->sub_title) }}</a></li>
     <li>Calcul consum</li>
+@endsection --}}
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/produs.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/consum.css') }}">
 @endsection
+
+@php
+$currentPage = 0;
+@endphp
 
 @section('content')
 <div class="main-container" id="consum-page">
     <div class="w-full flex justify-center mb-8">
-        <h2 class="text-center dark-blue">CALCULATOR CONSUM {{ $product->name }}</h2>
+        <h2 class="text-center dark-blue">CALCULATOR CONSUM {!! $product->name !!}</h2>
     </div>
 
     <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
@@ -23,15 +30,22 @@
     <div class="grid grid-3 consum-container">
         <div>
             <div class="consum-product-image mb-16">
-                <img class="product-img img-responsive bordered m-16" src="{{ $product->featuredImageUrl }}" alt="imagine produs" title="imag produs" width="300" height="300">
+                @php
+                    $featuredImageUrl = $product->featuredImage ? asset('storage/' .$product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
+                @endphp
+                <img class="product-img img-responsive bordered m-16" src="{{ $featuredImageUrl }}" alt="imagine produs" title="imag produs" width="300" height="300">
             </div>
 
             <div class="w-full" id="pwgw">
                 <div class="badge">
-                    <img src="{{ asset('resources/images/Fabricat-in-Romania.png') }}" alt="Produs fabricat in Romania" title="Produs de fabricatie romaneasca" />
+                    <div class="relative w-full h-full">
+                        <img src="{{ asset('resources/images/Fabricat-in-Romania.png') }}" alt="Produs fabricat in Romania" title="Produs de fabricatie romaneasca" />
+                    </div>
                 </div>
                 <div class="badge">
-                    <img src="{{ asset('resources/images/iso.png') }}" alt="Romtehnochim asigura garantia calitatii" title="Emex - produse certificate ISO" />
+                    <div class="relative w-full h-full">
+                        <img src="{{ asset('resources/images/iso.png') }}" alt="Romtehnochim asigura garantia calitatii" title="Emex - produse certificate ISO" />
+                    </div>
                 </div>
                 <div class="badge">
                     <a class="excelent-img col justify-center" href="https://excellent-sme-plus-romania.safesigned.com/romtehnochim-srl/" title="Certificat excelenta in afaceri">
@@ -48,6 +62,13 @@
         </div>
         
         <div>
+            <input type="hidden" id="base_url" value="{{ url('/') }}">
+            @if ($currentPage != 3)
+                <div class="steps clearfix mb-8">
+                    <img src="{{ url('resources/new_design/icons/consum.svg') }}" alt="consum">
+                </div>
+            @endif
+
             <div class="steps_content">
                 <form action="#" method="GET" id="consum_form">
                     <input type="hidden" name="calculate" value="1">
@@ -61,8 +82,12 @@
                             </div>
                             <select class="form-control mb-16" id="product_select" onchange="location = this.value;">
                                 @foreach ($category->products as $categoryProduct)
+                                @php
+                                // Înlocuiește toate aparițiile de <br> cu spațiu
+                                $productName = str_replace('<br>', ' ', $categoryProduct->category_page_title);
+                                @endphp
                                     <option value="{{ route('consum.show', $categoryProduct->slug) }}" {{ $product->id == $categoryProduct->id ? 'selected' : '' }}>
-                                        {{ $categoryProduct->name }}
+                                        {{ $productName }}
                                     </option>
                                 @endforeach
                             </select>
@@ -113,13 +138,13 @@
                         </div>
                     </div>
                 </form>
+            </div>
 
-                <!-- Step 4 -->
-                <div id="cr" class="{{ $currentPage == 3 ? 'flex' : 'hidden' }}">
-                    @if (!empty($result))
-                        {!! $result !!}
-                    @endif
-                </div>
+            <!-- Step 4 -->
+            <div id="cr" class="{{ $currentPage == 3 ? 'flex' : 'hidden' }}">
+                @if (!empty($result))
+                    {!! $result !!}
+                @endif
 
                 <div class="consum_content_step {{ $currentPage == 3 ? 'consum_content_step_active' : '' }}">
                     <p class="mt-16"><strong>Alege alt produs din gama:</strong></p>
@@ -139,7 +164,9 @@
                         </button>
                     </div>
                 </div>
+
             </div>
+            
 
             <div class="text-center pad">Calculul este informativ si se refera la consumuri obtinute in conditii experimentale. Pregatirea suportului influenteaza semnificativ aceste consumuri. Nu sunt luate in considerare eventuale pierderi tehnologice sau accidentale, din timpul aplicarii.</div>
             <div class="flex mt-16 mb-16 atentie-consum-container">
@@ -147,7 +174,9 @@
                 <span class="ml-8 red"><em class="green-mark">Cantitatea finala este conditionata si de ambalajul produsului. Nu se pot livra fractii</em>.</span>
             </div>
             <p>Pentru obtinerea unor rezultate optime consultati:<br>
-                <a class="dark-blue" href="{{ $product->getFisaTehnicaUrl() }}" title="{{ $product->sub_title }}"> Fisa Tehnica a produsului: {{ $product->sub_title }}
+                {{-- <a class="dark-blue" href="{{ $product->getFisaTehnicaUrl() }}" title="{{ $product->sub_title }}"> Fisa Tehnica a produsului: {{ $product->sub_title }}
+                </a> --}}
+                <a class="dark-blue" href="https://vopsele.xyz/consum-superlavabila-interior" title="{{ $product->sub_title }}"> Fisa Tehnica a produsului: {{ $product->sub_title }}
                 </a>
             </p>
             <p class="pull-right i-icon mt-16" id="consum_bottom" style="display: flex; align-items: center; flex-wrap: wrap">
@@ -157,7 +186,9 @@
         </div>
 
         <div class="link_color1">
-            {{ $product->consum_top }}... [<a href="https://emex.ro/{{ $product->slug }}">citeste mai mult</a>]
+            {!! $product->description !!}
+            <br>
+            ... [<a href="https://emex.ro/{{ $product->slug }}">citeste mai mult</a>]
         </div>
     </div>
 </div>
