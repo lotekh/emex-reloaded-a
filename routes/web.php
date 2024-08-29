@@ -13,7 +13,7 @@ use App\Http\Controllers\CountyController;
 use App\Http\Controllers\PaleteController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\ConsumptionController;
+use App\Http\Controllers\ConsumController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -158,7 +158,8 @@ Route::post('/save-order', [OrdersController::class, 'processCheckout'])->name('
 Route::get('/get-transport-price', [OrdersController::class, 'getTransportPrice'])->name('get.transport.price');
 
 // Consum
-Route::get('/consum/{slug}', [ConsumptionController::class, 'show'])->name('consum.show');
+Route::get('/consum/{category}', [ConsumController::class, 'index'])->name('consum.index');
+Route::get('/consum/show/{slug}', [ConsumController::class, 'show'])->name('consum.show');
 
 
 // Routes for slugs
