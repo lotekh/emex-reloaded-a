@@ -75,7 +75,7 @@ $currentPage = 0;
                     <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
 
                     <!-- Step 1 -->
-                    <div class="consum_content_step {{ $currentPage == 0 ? 'consum_content_step_active' : '' }}">
+                    <div class="consum_content_step">
                         <div class="consum_form_group">
                             <div class="flex w-full mt-8 mb-8">
                                 <label for='product_select' id="step1_title">Tip Produs*</label>
@@ -101,7 +101,7 @@ $currentPage = 0;
                     </div>
 
                     <!-- Step 2 -->
-                    <div class="consum_content_step {{ $currentPage == 1 ? 'consum_content_step_active' : '' }}">
+                    <div class="consum_content_step">
                         <div class="consum_form_group">
                             <div class="flex justify-center w-full mt-8 mb-8">
                                 <label for='surface_type'>Tip Suprafata*</label>
@@ -125,7 +125,7 @@ $currentPage = 0;
                     </div>
 
                     <!-- Step 3 -->
-                    <div class="consum_content_step {{ $currentPage == 2 ? 'consum_content_step_active' : '' }}">
+                    <div class="consum_content_step">
                         <div class="consum_form_group">
                             <div class="flex justify-end w-full mt-8 mb-8">
                                 <label for='surface'>Suprafata in mp*</label>
@@ -194,3 +194,32 @@ $currentPage = 0;
     </div>
 </div>
 @endsection
+
+
+<script>
+    let currentPage = {{ $currentPage }}; // Inițializează currentPage cu valoarea actuală din server
+
+    function showNextStep(nextPage) {
+        currentPage = nextPage;
+        updateStepVisibility();
+    }
+
+    function showPreviousStep(prevPage) {
+        currentPage = prevPage;
+        updateStepVisibility();
+    }
+
+    function updateStepVisibility() {
+        document.querySelectorAll('.consum_content_step').forEach((element, index) => {
+            if (index === currentPage) {
+                element.classList.add('consum_content_step_active');
+            } else {
+                element.classList.remove('consum_content_step_active');
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updateStepVisibility(); // Inițializează vizibilitatea pasului curent
+    });
+</script>
