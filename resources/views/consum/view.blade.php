@@ -133,7 +133,10 @@ $currentPage = 0;
                             <input type="text" id="surface" class="form-control mb-16" name="{{ $consumData['suprafata_name'] }}">
                         </div>
                         <div class="consum_wizard_back_next_div">
-                            <button type="submit" class="btn btn-blue rounded-sm mb-16">CALCULEAZA
+                            {{-- <button type="submit" class="btn btn-blue rounded-sm mb-16">CALCULEAZA
+                                <img src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
+                            </button> --}}
+                            <button type="button" class="btn btn-blue rounded-sm mb-16" onclick="showNextStep(3)">CALCULEAZA
                                 <img src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
                             </button>
                         </div>
@@ -142,19 +145,42 @@ $currentPage = 0;
             </div>
 
             <!-- Step 4 -->
-            <div id="cr" class="{{ $currentPage == 3 ? 'flex' : 'hidden' }}">
+            <div id="cr" class="consum_content_step hidden">
                 @if (!empty($result))
                     {!! $result !!}
+                @else
+                    <p>Nu există rezultate disponibile pentru această cerere.</p>
                 @endif
 
-                <div class="consum_content_step {{ $currentPage == 3 ? 'consum_content_step_active' : '' }}">
+                <div class="consum_content_step" id="cr2">
                     <p class="mt-16"><strong>Alege alt produs din gama:</strong></p>
+                    {{-- <div class="consum_form_group">
+                        <div class="flex w-full mt-8 mb-8">
+                            <label for='product_select' id="step1_title">Tip Produs*</label>
+                        </div>
+                        <select class="form-control mb-16" id="product_select" onchange="location = this.value;">
+                            @foreach ($category->products as $categoryProduct)
+                            @php
+                            // Înlocuiește toate aparițiile de <br> cu spațiu
+                            $productName = str_replace('<br>', ' ', $categoryProduct->category_page_title);
+                            @endphp
+                                <option value="{{ route('consum.show', ['consumption_slug' => $categoryProduct->consumption_slug]) }}" {{ $product->id == $categoryProduct->id ? 'selected' : '' }}>
+                                    {!! $productName !!}
+                                </option>
+                            @endforeach
+                        </select>
+                        
+                    </div> --}}
                     <div class="consum_form_group">
                         <label for='product_select-consum' class="mb-8">Tip Produs*</label>
                         <select class="form-control mb-16" id="product_select-consum" onchange="location = this.value;">
                             @foreach ($category->products as $categoryProduct)
-                                <option value="{{ route('consum.show', $categoryProduct->slug) }}" {{ $product->id == $categoryProduct->id ? 'selected' : '' }}>
-                                    {{ $categoryProduct->name }}
+                            @php
+                            // Înlocuiește toate aparițiile de <br> cu spațiu
+                            $productName = str_replace('<br>', ' ', $categoryProduct->category_page_title);
+                            @endphp
+                                <option value="{{ route('consum.show', ['consumption_slug' => $categoryProduct->consumption_slug]) }}" {{ $product->id == $categoryProduct->id ? 'selected' : '' }}>
+                                    {!! $productName !!}
                                 </option>
                             @endforeach
                         </select>
@@ -165,8 +191,8 @@ $currentPage = 0;
                         </button>
                     </div>
                 </div>
-
             </div>
+
             
 
             <div class="text-center pad">Calculul este informativ si se refera la consumuri obtinute in conditii experimentale. Pregatirea suportului influenteaza semnificativ aceste consumuri. Nu sunt luate in considerare eventuale pierderi tehnologice sau accidentale, din timpul aplicarii.</div>
@@ -193,11 +219,13 @@ $currentPage = 0;
         </div>
     </div>
 </div>
+
+</div>
 @endsection
 
 
 <script>
-    let currentPage = {{ $currentPage }}; // Inițializează currentPage cu valoarea actuală din server
+    let currentPage = 0; // Inițializează currentPage cu valoarea 0
 
     function showNextStep(nextPage) {
         currentPage = nextPage;
@@ -210,16 +238,26 @@ $currentPage = 0;
     }
 
     function updateStepVisibility() {
+        // Ascunde toate div-urile de pași
         document.querySelectorAll('.consum_content_step').forEach((element, index) => {
-            if (index === currentPage) {
-                element.classList.add('consum_content_step_active');
-            } else {
-                element.classList.remove('consum_content_step_active');
-            }
+            element.classList.remove('consum_content_step_active');
+            element.classList.add('hidden');
         });
+
+        // Arată doar div-ul cu id="cr" dacă currentPage este 3
+        if (currentPage === 3) {
+            document.getElementById('cr').classList.remove('hidden');
+            document.getElementById('cr').classList.add('consum_content_step_active');
+            document.getElementById('cr2').classList.add('consum_content_step_active');
+        } else {
+            // Altfel, arată doar pasul curent
+            document.querySelectorAll('.consum_content_step')[currentPage].classList.add('consum_content_step_active');
+            document.querySelectorAll('.consum_content_step')[currentPage].classList.remove('hidden');
+        }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
         updateStepVisibility(); // Inițializează vizibilitatea pasului curent
     });
+
 </script>
