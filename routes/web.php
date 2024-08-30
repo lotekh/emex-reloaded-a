@@ -159,7 +159,8 @@ Route::get('/get-transport-price', [OrdersController::class, 'getTransportPrice'
 
 // Consum
 Route::get('/consum/{category}', [ConsumController::class, 'index'])->name('consum.index');
-Route::get('/consum/show/{slug}', [ConsumController::class, 'show'])->name('consum.show');
+Route::get('/{consumption_slug}', [ConsumController::class, 'show'])->name('consum.show');
+
 
 
 // Routes for slugs
