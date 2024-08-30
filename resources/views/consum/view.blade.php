@@ -87,7 +87,8 @@ $currentPage = 0;
                                 $productName = str_replace('<br>', ' ', $categoryProduct->category_page_title);
                                 @endphp
                                     <option value="{{ route('consum.show', $categoryProduct->slug) }}" {{ $product->id == $categoryProduct->id ? 'selected' : '' }}>
-                                        {{ $productName }}
+                                        {{-- {{ $productName }} --}}
+                                        {!! $productName !!}
                                     </option>
                                 @endforeach
                             </select>

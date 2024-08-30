@@ -50,7 +50,7 @@ class ConsumController extends Controller
         $consumData = [
             'suprafata_type_name' => 'Tip Suprafață',
             'suprafata_name' => 'Suprafață',
-            'suprafata_types' => ['Metal', 'Lemn', 'Zidărie'], // Exemplu de date
+            'suprafata_types' => ['Rigips', 'Tencuiala', 'Zidărie'], // Exemplu de date
         ];
 
         return $consumData;
