@@ -6,6 +6,7 @@
 
 $tipsuprafata = $data['Tip_Suprafață'];
 $suprafata = $data['Suprafață'];
+$consum_vopsea = 0;
 // $tipvopsea = $data['TipProdus'];
 
 

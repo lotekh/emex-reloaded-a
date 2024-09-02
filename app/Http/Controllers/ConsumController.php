@@ -31,86 +31,75 @@ class ConsumController extends Controller
         return redirect()->back()->with('error', 'Nu există produse în această categorie.');
     }
     
-    public function show($consumption_slug)
+        public function show($consumption_slug)
     {
-        // dd($request->all());
-
         // Găsește produsul după consumption_slug
         $product = Product::where('consumption_slug', $consumption_slug)
             ->with('categories', 'featuredImage', 'variations', 'reviews')
             ->firstOrFail();
         
-        // dd($product);
-    
         // Obține categoria principală a produsului (dacă există)
         $category = $product->categories->first();
 
-        $result = null;
-    
         // Pregătește alte date necesare pentru pagina de consum
         $consumData = $this->getConsumDataForProduct($product);
-    
+
         // Verifică dacă currentPage este setat în sesiune; dacă nu, inițializează-l cu 0
         $currentPage = session('currentPage', 0);
 
-        // dd($product, $category, $result, $consumData, $currentPage);
-    
+        // Verifică dacă există datele necesare în sesiune sau cerere pentru a calcula consumul
+        $result = null;
+        if ($currentPage === 3 && session()->has('consum_calculation_data')) {
+            // Accesează datele pentru calcul din sesiune
+            $calculationData = session('consum_calculation_data');
+
+            // Calculează rezultatul folosind funcția calculateConsumption și datele preluate
+            $result = $this->calculateConsumption($calculationData);
+        }
+
         // Resetăm currentPage la 0 pentru fiecare nouă vizită la această pagină
         session(['currentPage' => 0]);
-    
+
         // Returnează vizualizarea pentru consum cu datele necesare
         return view('consum.view', [
             'product' => $product,
             'category' => $category,
             'consumData' => $consumData,
-            'currentPage' => $currentPage, 
+            'currentPage' => $currentPage,
             'result' => $result,
         ]);
     }
-    
-    
+
+        
+        
     public function store(Request $request)
     {
-        // Setează currentPage la 3 în sesiune
-        session(['currentPage' => 3]);
+        // Preia toate datele din cerere
+        $data = $request->all();
 
-        // Apelează metoda pentru a calcula consumul
-        $result = $this->calculateConsumption($request->all());
-
-        // dd($result);
+        // Stochează datele relevante în sesiune pentru a fi utilizate ulterior
+        session(['currentPage' => 3, 'consum_calculation_data' => $data]);
 
         // Redirecționează la aceeași pagină pentru a afișa rezultatele
-        return redirect()->route('consum.show', [
-            'consumption_slug' => $request->input('consumption_slug'),
-        ])->with('result', $result);
+        return redirect()->route('consum.show', ['consumption_slug' => $request->input('consumption_slug')]);
     }
 
-    private function calculateConsumption($data)
+
+    public function calculateConsumption($data)
     {
+        // Prelucrează datele și execută scriptul corespunzător
+        $product_id = $data['product_id'];
+        $product = Product::find($product_id);
+        $consum_data = $this->getConsumDataForProduct($product);
 
-        // dd($data);
-
-        // Curăță datele de input
-        $data = array_map('trim', $data);
-
-        // dd($data);
-
-        // Găsește produsul după ID
-        $product = Product::findOrFail($data['product_id']);
-        
-        // Creează numele scriptului pe baza slugului produsului
         $script_name = $product->consumption_slug . '.php';
         $script_path = app_path('Http/Controllers/consumuri_scripts/' . $script_name);
 
-        // dd($script_path);
-
         if (file_exists($script_path)) {
-
-            // dd(1);
             // Bufferizarea output-ului pentru a captura rezultatul
             ob_start();
 
-            // Include fișierul de script
+            // Include fișierul de script și execută-l
             include $script_path;
 
             // Capturează și returnează output-ul HTML generat de script
