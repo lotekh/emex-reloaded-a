@@ -12,9 +12,15 @@ class ConsumController extends Controller
     {
         // Găsește categoria după slug
         $category = Category::where('slug', $categorySlug)->firstOrFail();
+
+        // dd($category);
     
         // Obține primul produs din acea categorie
         $firstProduct = $category->products()->orderBy('order', 'asc')->first(); 
+
+        // dd($firstProduct);
+
+        // dd($firstProduct->consumption_slug);
     
         if ($firstProduct) {
             // Redirecționează către URL-ul consumului folosind `consumption_slug`
@@ -33,6 +39,8 @@ class ConsumController extends Controller
         $product = Product::where('consumption_slug', $consumption_slug)
             ->with('categories', 'featuredImage', 'variations', 'reviews')
             ->firstOrFail();
+        
+        // dd($product);
     
         // Obține categoria principală a produsului (dacă există)
         $category = $product->categories->first();
@@ -44,6 +52,8 @@ class ConsumController extends Controller
     
         // Verifică dacă currentPage este setat în sesiune; dacă nu, inițializează-l cu 0
         $currentPage = session('currentPage', 0);
+
+        // dd($product, $category, $result, $consumData, $currentPage);
     
         // Resetăm currentPage la 0 pentru fiecare nouă vizită la această pagină
         session(['currentPage' => 0]);

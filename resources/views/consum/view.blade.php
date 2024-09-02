@@ -89,9 +89,19 @@ $currentPage = 0;
                                 // Înlocuiește toate aparițiile de <br> cu spațiu
                                 $productName = str_replace('<br>', ' ', $categoryProduct->category_page_title);
                                 @endphp
+                                    @if(!empty($categoryProduct->consumption_slug))
                                     <option value="{{ route('consum.show', ['consumption_slug' => $categoryProduct->consumption_slug]) }}" {{ $product->id == $categoryProduct->id ? 'selected' : '' }}>
                                         {!! $productName !!}
                                     </option>
+                                    @else
+                                        <option disabled>
+                                            Product slug not available
+                                        </option>
+                                    @endif
+                            
+                                    {{-- <option value="{{ route('consum.show', ['consumption_slug' => $categoryProduct->consumption_slug]) }}" {{ $product->id == $categoryProduct->id ? 'selected' : '' }}>
+                                        {!! $productName !!}
+                                    </option> --}}
                                 @endforeach
                             </select>
                             
@@ -184,9 +194,19 @@ $currentPage = 0;
                             // Înlocuiește toate aparițiile de <br> cu spațiu
                             $productName = str_replace('<br>', ' ', $categoryProduct->category_page_title);
                             @endphp
+                                @if(!empty($categoryProduct->consumption_slug))
                                 <option value="{{ route('consum.show', ['consumption_slug' => $categoryProduct->consumption_slug]) }}" {{ $product->id == $categoryProduct->id ? 'selected' : '' }}>
                                     {!! $productName !!}
                                 </option>
+                                @else
+                                    <option disabled>
+                                        Product slug not available
+                                    </option>
+                                @endif
+                        
+                                {{-- <option value="{{ route('consum.show', ['consumption_slug' => $categoryProduct->consumption_slug]) }}" {{ $product->id == $categoryProduct->id ? 'selected' : '' }}>
+                                    {!! $productName !!}
+                                </option> --}}
                             @endforeach
                         </select>
                     </div>
