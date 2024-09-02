@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="{{ asset('css/consum.css') }}">
 @endsection
 
-@php
+{{-- @php
 $currentPage = 0;
-@endphp
+@endphp --}}
 
 @section('content')
 <div class="main-container" id="consum-page">
@@ -26,6 +26,7 @@ $currentPage = 0;
     <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
     <input type="hidden" name="suprafata_type_name" id="suprafata_type_name" value="{{ $consumData['suprafata_type_name'] }}">
     <input type="hidden" name="suprafata_name" id="suprafata_name" value="{{ $consumData['suprafata_name'] }}">
+    <input type="hidden" name="consumption_slug" id="consumption_slug" value="{{ $product->consumption_slug }}">
 
     <div class="grid grid-3 consum-container">
         <div>
@@ -70,9 +71,11 @@ $currentPage = 0;
             @endif
 
             <div class="steps_content">
-                <form action="#" method="GET" id="consum_form">
+                <form action="{{ route('consum.store') }}" method="POST" id="consum_form">
+                    @csrf
                     <input type="hidden" name="calculate" value="1">
                     <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
+                    <input type="hidden" name="consumption_slug" value="{{ $product->consumption_slug }}">
 
                     <!-- Step 1 -->
                     <div class="consum_content_step">
@@ -133,26 +136,28 @@ $currentPage = 0;
                             <input type="text" id="surface" class="form-control mb-16" name="{{ $consumData['suprafata_name'] }}">
                         </div>
                         <div class="consum_wizard_back_next_div">
-                            {{-- <button type="submit" class="btn btn-blue rounded-sm mb-16">CALCULEAZA
-                                <img src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
-                            </button> --}}
-                            <button type="button" class="btn btn-blue rounded-sm mb-16" onclick="showNextStep(3)">CALCULEAZA
+                            <button type="submit" class="btn btn-blue rounded-sm mb-16">CALCULEAZA
                                 <img src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
                             </button>
+                            {{-- <button type="button" class="btn btn-blue rounded-sm mb-16" onclick="showNextStep(3)">CALCULEAZA
+                                <img src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
+                            </button> --}}
                         </div>
                     </div>
                 </form>
             </div>
 
             <!-- Step 4 -->
-            <div id="cr" class="consum_content_step hidden">
+            {{-- <div id="cr" class="consum_content_step hidden"> --}}
+            <div id="cr" class="{{ $currentPage == 3 ? 'flex' : 'hidden' }}">
                 @if (!empty($result))
                     {!! $result !!}
                 @else
                     <p>Nu există rezultate disponibile pentru această cerere.</p>
                 @endif
 
-                <div class="consum_content_step" id="cr2">
+                {{-- <div class="consum_content_step" id="cr2"> --}}
+                <div class="consum_content_step {{ $currentPage == 3 ? 'consum_content_step_active' : '' }}">
                     <p class="mt-16"><strong>Alege alt produs din gama:</strong></p>
                     {{-- <div class="consum_form_group">
                         <div class="flex w-full mt-8 mb-8">
@@ -220,44 +225,38 @@ $currentPage = 0;
     </div>
 </div>
 
-</div>
 @endsection
 
 
 <script>
-    let currentPage = 0; // Inițializează currentPage cu valoarea 0
+   let currentPage = {{ $currentPage }}; // Inițializează currentPage cu valoarea din server
 
-    function showNextStep(nextPage) {
-        currentPage = nextPage;
-        updateStepVisibility();
-    }
+function showNextStep(nextPage) {
+    currentPage = nextPage;
+    updateStepVisibility();
+}
 
-    function showPreviousStep(prevPage) {
-        currentPage = prevPage;
-        updateStepVisibility();
-    }
+function showPreviousStep(prevPage) {
+    currentPage = prevPage;
+    updateStepVisibility();
+}
 
-    function updateStepVisibility() {
-        // Ascunde toate div-urile de pași
-        document.querySelectorAll('.consum_content_step').forEach((element, index) => {
-            element.classList.remove('consum_content_step_active');
-            element.classList.add('hidden');
-        });
-
-        // Arată doar div-ul cu id="cr" dacă currentPage este 3
-        if (currentPage === 3) {
-            document.getElementById('cr').classList.remove('hidden');
-            document.getElementById('cr').classList.add('consum_content_step_active');
-            document.getElementById('cr2').classList.add('consum_content_step_active');
+function updateStepVisibility() {
+    document.querySelectorAll('.consum_content_step').forEach((element, index) => {
+        if (index === currentPage) {
+            element.classList.add('consum_content_step_active');
+            if (currentPage === 3) {
+                document.getElementById('cr').classList.remove('hidden');
+                document.getElementById('cr').classList.add('consum_content_step_active');
+            }
         } else {
-            // Altfel, arată doar pasul curent
-            document.querySelectorAll('.consum_content_step')[currentPage].classList.add('consum_content_step_active');
-            document.querySelectorAll('.consum_content_step')[currentPage].classList.remove('hidden');
+            element.classList.remove('consum_content_step_active');
         }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        updateStepVisibility(); // Inițializează vizibilitatea pasului curent
     });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateStepVisibility(); // Inițializează vizibilitatea pasului curent
+});
 
 </script>

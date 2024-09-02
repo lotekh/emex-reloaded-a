@@ -25,25 +25,49 @@ class ConsumController extends Controller
         return redirect()->back()->with('error', 'Nu există produse în această categorie.');
     }
     
-        public function show($consumption_slug)
+    public function show($consumption_slug)
     {
+        // dd($request->all());
+
         // Găsește produsul după consumption_slug
         $product = Product::where('consumption_slug', $consumption_slug)
             ->with('categories', 'featuredImage', 'variations', 'reviews')
             ->firstOrFail();
-
+    
         // Obține categoria principală a produsului (dacă există)
         $category = $product->categories->first();
 
+        $result = null;
+    
         // Pregătește alte date necesare pentru pagina de consum
         $consumData = $this->getConsumDataForProduct($product);
-
+    
+        // Verifică dacă currentPage este setat în sesiune; dacă nu, inițializează-l cu 0
+        $currentPage = session('currentPage', 0);
+    
+        // Resetăm currentPage la 0 pentru fiecare nouă vizită la această pagină
+        session(['currentPage' => 0]);
+    
         // Returnează vizualizarea pentru consum cu datele necesare
         return view('consum.view', [
             'product' => $product,
             'category' => $category,
             'consumData' => $consumData,
+            'currentPage' => $currentPage, 
+            'result' => $result,
         ]);
+    }
+    
+    
+    public function store(Request $request)
+    {
+        // dd($request->all());
+
+        // Setează currentPage la 3 în sesiune
+        session(['currentPage' => 3]);
+
+        // Redirecționează la aceeași pagină pentru a afișa rezultatele
+        return redirect()->route('consum.show', ['consumption_slug' => $request->input('consumption_slug')]);
     }
 
 
