@@ -71,13 +71,54 @@ class ConsumController extends Controller
     
     public function store(Request $request)
     {
-        // dd($request->all());
-
         // Setează currentPage la 3 în sesiune
         session(['currentPage' => 3]);
 
+        // Apelează metoda pentru a calcula consumul
+        $result = $this->calculateConsumption($request->all());
+
+        // dd($result);
+
         // Redirecționează la aceeași pagină pentru a afișa rezultatele
-        return redirect()->route('consum.show', ['consumption_slug' => $request->input('consumption_slug')]);
+        return redirect()->route('consum.show', [
+            'consumption_slug' => $request->input('consumption_slug'),
+        ])->with('result', $result);
+    }
+
+    private function calculateConsumption($data)
+    {
+
+        // dd($data);
+
+        // Curăță datele de input
+        $data = array_map('trim', $data);
+
+        // dd($data);
+
+        // Găsește produsul după ID
+        $product = Product::findOrFail($data['product_id']);
+        
+        // Creează numele scriptului pe baza slugului produsului
+        $script_name = $product->consumption_slug . '.php';
+        $script_path = app_path('Http/Controllers/consumuri_scripts/' . $script_name);
+
+        // dd($script_path);
+
+        if (file_exists($script_path)) {
+
+            // dd(1);
+            // Bufferizarea output-ului pentru a captura rezultatul
+            ob_start();
+
+            // Include fișierul de script
+            include $script_path;
+
+            // Capturează și returnează output-ul HTML generat de script
+            $html_result = ob_get_clean();
+            return $html_result;
+        } else {
+            return '<p>Nu există un script disponibil pentru calculul acestui produs.</p>';
+        }
     }
 
 
@@ -87,7 +128,7 @@ class ConsumController extends Controller
         $consumData = [
             'suprafata_type_name' => 'Tip Suprafață',
             'suprafata_name' => 'Suprafață',
-            'suprafata_types' => ['Rigips', 'Tencuiala', 'Zidărie'], // Exemplu de date
+            'suprafata_types' => ['Rigips', 'Tencuiala driscuita', 'Zidarie'], // Exemplu de date
         ];
 
         return $consumData;
