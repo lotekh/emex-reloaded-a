@@ -68,7 +68,9 @@ Route::get('/solicita-cotatie', function () {
     return view('solicita-cotatie');
 });
 
+// Palete
 Route::get('/cartela-culori-ral-vopsele', [PaleteController::class, 'ral'])->name('palete.ral');
+Route::get('/cartela-culori-lavabile', [PaleteController::class, 'showLavabile'])->name('lavabile.colors');
 
 
 // Routes for aplicare
@@ -162,7 +164,6 @@ Route::get('/consum/{category}', [ConsumController::class, 'index'])->name('cons
 Route::get('/{consumption_slug}', [ConsumController::class, 'show'])->name('consum.show');
 Route::post('/consum/store', [ConsumController::class, 'store'])->name('consum.store');
 
-Route::get('/cartela-culori-ral-vopsele', [PaleteController::class, 'showLavabile'])->name('palete.lavabile');
 
 // Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');

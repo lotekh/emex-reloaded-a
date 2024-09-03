@@ -211,12 +211,34 @@ class PaleteController extends Controller
 
     public function showLavabile()
     {
-        // Preia culorile finale (trebuie să le definești, probabil provin dintr-o bază de date sau fișier)
-        $final_colors = [
-            // Ex: "A1" => [["value" => "0xf2e8f5", "name" => "a"]],
-            // Completează acest array cu datele relevante
-        ];
+        // Obține culorile finale din fișierul XML
+        $final_colors = $this->getLavabileColors();
 
+        // dd($final_colors);
+
+        // Returnează vizualizarea 'lavabile.blade.php' cu culorile procesate
         return view('palete.lavabile', compact('final_colors'));
+    }
+
+    private function getLavabileColors()
+    {
+        // Specificăm calea către fișierul XML din directorul public
+        $xmlPath = public_path('data/culori.xml');
+        
+        // Încărcăm fișierul XML
+        $xml = simplexml_load_file($xmlPath);
+        $finalColors = [];
+
+        // Procesăm fișierul XML și extragem culorile
+        foreach ($xml->CuloareFatada->ColorType as $colorType) {
+            $ind = 0;
+            foreach ($colorType->ColorName as $cName) {
+                $finalColors[(string)$colorType->attributes()->name][$ind]['name'] = (string)$cName->attributes()->nume;
+                $finalColors[(string)$colorType->attributes()->name][$ind]['value'] = (string)$cName->attributes()->valoare;
+                $ind++;
+            }
+        }
+
+        return $finalColors;
     }
 }
