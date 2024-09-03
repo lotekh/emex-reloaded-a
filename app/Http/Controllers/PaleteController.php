@@ -208,4 +208,15 @@ class PaleteController extends Controller
     // {
     //     return json_decode(file_get_contents(storage_path('app/ral_colors.json')), true);
     // }
+
+    public function showLavabile()
+    {
+        // Preia culorile finale (trebuie să le definești, probabil provin dintr-o bază de date sau fișier)
+        $final_colors = [
+            // Ex: "A1" => [["value" => "0xf2e8f5", "name" => "a"]],
+            // Completează acest array cu datele relevante
+        ];
+
+        return view('palete.lavabile', compact('final_colors'));
+    }
 }
