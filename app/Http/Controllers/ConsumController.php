@@ -49,6 +49,8 @@ class ConsumController extends Controller
 
             // Calculează rezultatul folosind funcția calculateConsumption și datele preluate
             $result = $this->calculateConsumption($calculationData);
+
+            // dd($result);
         }
 
         // Resetăm currentPage la 0 pentru fiecare nouă vizită la această pagină
@@ -82,6 +84,14 @@ class ConsumController extends Controller
         $product_id = $data['product_id'];
         $product = Product::find($product_id);
         $consum_data = $this->getConsumDataByProduct($product);
+
+         // Setează variabilele $_GET în funcție de datele din $data
+        $_GET['TipSuprafata'] = $data[$consum_data['suprafata_type_name']];
+        $_GET['Suprafata'] = $data[$consum_data['suprafata_name']];
+        $_GET['TipProdus'] = $consum_data['vopsea_type'];
+
+        // Verifică dacă $_GET are datele așteptate
+        // dd($_GET);
 
         $script_name = $product->consumption_slug . '.php';
         $script_path = app_path('Http/Controllers/consumuri_scripts/' . $script_name);

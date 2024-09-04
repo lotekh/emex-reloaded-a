@@ -1,16 +1,18 @@
 <?php
-// $tipsuprafata = $_GET[ 'TipSuprafata' ];
-// $suprafata = $_GET[ 'Suprafata' ];
-// $tipvopsea = $_GET[ 'TipProdus' ];
+$tipsuprafata = $_GET[ 'TipSuprafata' ];
+$suprafata = $_GET[ 'Suprafata' ];
+$tipvopsea = $_GET[ 'TipProdus' ];
+
+// dd($tipsuprafata, $suprafata, $tipvopsea);
 
 // $tipsuprafata = $data['Tip_Suprafață'];
 // $suprafata = $data['Suprafață'];
 // $tipvopsea = $data['TipProdus'];
 
-$tipsuprafata = 0;
-$suprafata = 1;
-$tipvopsea = 2;
-$consum_vopsea = 0;
+// $tipsuprafata = 0;
+// $suprafata = 1;
+// $tipvopsea = 2;
+// $consum_vopsea = 0;
 
 
 if ( $tipsuprafata == "Zidarie" ) {
