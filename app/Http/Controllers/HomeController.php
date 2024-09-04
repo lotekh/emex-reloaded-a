@@ -18,19 +18,23 @@ class HomeController extends Controller
     {
         // Verifică dacă slug-ul aparține unei categorii
         $category = Category::where('slug', $slug)->first();
-
         if ($category) {
             return app(CategoryController::class)->showCategory($slug, $request);
         }
 
         // Verifică dacă slug-ul aparține unui produs
         $product = Product::where('slug', $slug)->first();
-
         if ($product) {
             return app(ProductsController::class)->showProduct($slug, $request);
         }
 
-        // Dacă slug-ul nu aparține niciunei categorii sau produs, returnează un 404
+        // Verifică dacă slug-ul aparține unui consum
+        $consumptionSlugproduct = Product::where('consumption_slug', $slug)->first();
+        if ($consumptionSlugproduct) {
+            return app(ConsumController::class)->show($slug);
+        }
+
+        // Dacă slug-ul nu aparține niciunei categorii, produs sau consum, returnează un 404 sau o altă pagină
         abort(404);
     }
 }

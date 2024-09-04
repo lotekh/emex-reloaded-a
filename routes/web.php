@@ -159,16 +159,16 @@ Route::post('/save-order', [OrdersController::class, 'processCheckout'])->name('
 // Ruta pentru obținerea prețului de transport pe baza ID-ului județului
 Route::get('/get-transport-price', [OrdersController::class, 'getTransportPrice'])->name('get.transport.price');
 
-// Consum
-Route::get('/consum/{category}', [ConsumController::class, 'index'])->name('consum.index');
-Route::get('/{consumption_slug}', [ConsumController::class, 'show'])->name('consum.show');
-Route::post('/consum/store', [ConsumController::class, 'store'])->name('consum.store');
 
+// Route::get('/category/{slug}', [CategoryController::class, 'showCategory'])->name('category.show');
+// Route::get('/product/{slug}', [ProductsController::class, 'showProduct'])->name('product.show');
 
 // Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
 
-
-
+// Consum
+Route::get('/consum/{category}', [ConsumController::class, 'index'])->name('consum.index');
+Route::get('/{consumption_slug}', [ConsumController::class, 'show'])->name('consum.show');
+Route::post('/consum/store', [ConsumController::class, 'store'])->name('consum.store');
 
 
