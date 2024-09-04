@@ -25,7 +25,7 @@ class ConsumController extends Controller
         return redirect()->back()->with('error', 'Nu există produse în această categorie.');
     }
 
-    public function show($consumption_slug)
+    public function show($consumption_slug, Request $request)
     {
         // Găsește produsul după consumption_slug
         $product = Product::where('consumption_slug', $consumption_slug)
@@ -38,30 +38,30 @@ class ConsumController extends Controller
         // Pregătește alte date necesare pentru pagina de consum
         $consumData = $this->getConsumDataByProduct($product);
 
-        // Verifică dacă currentPage este setat în sesiune; dacă nu, inițializează-l cu 0
-        $currentPage = session('currentPage', 0);
-
         // Verifică dacă există datele necesare în sesiune sau cerere pentru a calcula consumul
         $result = null;
-        if ($currentPage === 3 && session()->has('consum_calculation_data')) {
-            // Accesează datele pentru calcul din sesiune
-            $calculationData = session('consum_calculation_data');
+        if ($request->input('currentPage') == 3) {
+             // Accesează datele pentru calcul din cerere
+            $calculationData = $request->all();
+            $calculationData = array_merge($calculationData, [
+                'product_id' => old('product_id'),
+                'TipSuprafata' => old('TipSuprafata'),
+                'Suprafata' => old('Suprafata'),
+            ]);
+            // dd($calculationData);
 
             // Calculează rezultatul folosind funcția calculateConsumption și datele preluate
             $result = $this->calculateConsumption($calculationData);
-
-            // dd($result);
         }
 
-        // Resetăm currentPage la 0 pentru fiecare nouă vizită la această pagină
-        session(['currentPage' => 0]);
+        // session(['currentPage' => 0]);
 
         // Returnează vizualizarea pentru consum cu datele necesare
         return view('consum.view', [
             'product' => $product,
             'category' => $category,
             'consumData' => $consumData,
-            'currentPage' => $currentPage,
+            'currentPage' => $request->input('currentPage', 0),
             'result' => $result,
         ]);
     }
@@ -70,12 +70,13 @@ class ConsumController extends Controller
     {
         // Preia toate datele din cerere
         $data = $request->all();
-
-        // Stochează datele relevante în sesiune pentru a fi utilizate ulterior
-        session(['currentPage' => 3, 'consum_calculation_data' => $data]);
-
-        // Redirecționează la aceeași pagină pentru a afișa rezultatele
-        return redirect()->route('consum.show', ['consumption_slug' => $request->input('consumption_slug')]);
+        // dd($data);
+        
+        // return redirect()->route('consum.show', ['consumption_slug' => $request->input('consumption_slug')]);
+        return redirect()->route('consum.show', [
+            'consumption_slug' => $request->input('consumption_slug'),
+            'currentPage' => 3,
+        ])->withInput($data);
     }
 
     public function calculateConsumption($data)

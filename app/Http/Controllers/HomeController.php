@@ -31,7 +31,8 @@ class HomeController extends Controller
         // Verifică dacă slug-ul aparține unui consum
         $consumptionSlugproduct = Product::where('consumption_slug', $slug)->first();
         if ($consumptionSlugproduct) {
-            return app(ConsumController::class)->show($slug);
+            return app(ConsumController::class)->show($slug, $request);
+            // return app(ConsumController::class)->show($slug);
         }
 
         // Dacă slug-ul nu aparține niciunei categorii, produs sau consum, returnează un 404 sau o altă pagină

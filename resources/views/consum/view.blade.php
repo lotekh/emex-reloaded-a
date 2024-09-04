@@ -23,10 +23,10 @@ $currentPage = 0;
         <h2 class="text-center dark-blue">CALCULATOR CONSUM {!! $product->name !!}</h2>
     </div>
 
-    <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
-    <input type="hidden" name="suprafata_type_name" id="suprafata_type_name" value="{{ $consumData['suprafata_type_name'] }}">
+    {{-- <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}"> --}}
+    {{-- <input type="hidden" name="suprafata_type_name" id="suprafata_type_name" value="{{ $consumData['suprafata_type_name'] }}">
     <input type="hidden" name="suprafata_name" id="suprafata_name" value="{{ $consumData['suprafata_name'] }}">
-    <input type="hidden" name="consumption_slug" id="consumption_slug" value="{{ $product->consumption_slug }}">
+    <input type="hidden" name="consumption_slug" id="consumption_slug" value="{{ $product->consumption_slug }}"> --}}
 
     <div class="grid grid-3 consum-container">
         <div>
