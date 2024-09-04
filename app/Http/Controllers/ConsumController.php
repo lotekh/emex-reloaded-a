@@ -13,25 +13,19 @@ class ConsumController extends Controller
         // Găsește categoria după slug
         $category = Category::where('slug', $categorySlug)->firstOrFail();
 
-        // dd($category);
-    
         // Obține primul produs din acea categorie
         $firstProduct = $category->products()->orderBy('order', 'asc')->first(); 
 
-        // dd($firstProduct);
-
-        // dd($firstProduct->consumption_slug);
-    
         if ($firstProduct) {
             // Redirecționează către URL-ul consumului folosind `consumption_slug`
             return redirect()->route('consum.show', ['consumption_slug' => $firstProduct->consumption_slug]);
         }
-    
+
         // Dacă nu există produse în acea categorie, arată un mesaj sau redirecționează
         return redirect()->back()->with('error', 'Nu există produse în această categorie.');
     }
-    
-        public function show($consumption_slug)
+
+    public function show($consumption_slug)
     {
         // Găsește produsul după consumption_slug
         $product = Product::where('consumption_slug', $consumption_slug)
@@ -42,7 +36,7 @@ class ConsumController extends Controller
         $category = $product->categories->first();
 
         // Pregătește alte date necesare pentru pagina de consum
-        $consumData = $this->getConsumDataForProduct($product);
+        $consumData = $this->getConsumDataByProduct($product);
 
         // Verifică dacă currentPage este setat în sesiune; dacă nu, inițializează-l cu 0
         $currentPage = session('currentPage', 0);
@@ -70,8 +64,6 @@ class ConsumController extends Controller
         ]);
     }
 
-        
-        
     public function store(Request $request)
     {
         // Preia toate datele din cerere
@@ -84,13 +76,12 @@ class ConsumController extends Controller
         return redirect()->route('consum.show', ['consumption_slug' => $request->input('consumption_slug')]);
     }
 
-
     public function calculateConsumption($data)
     {
         // Prelucrează datele și execută scriptul corespunzător
         $product_id = $data['product_id'];
         $product = Product::find($product_id);
-        $consum_data = $this->getConsumDataForProduct($product);
+        $consum_data = $this->getConsumDataByProduct($product);
 
         $script_name = $product->consumption_slug . '.php';
         $script_path = app_path('Http/Controllers/consumuri_scripts/' . $script_name);
@@ -110,16 +101,43 @@ class ConsumController extends Controller
         }
     }
 
-
-    private function getConsumDataForProduct($product)
+    private function getConsumDataByProduct($product)
     {
-        // Obține datele de consum pentru produs
-        $consumData = [
-            'suprafata_type_name' => 'Tip Suprafață',
-            'suprafata_name' => 'Suprafață',
-            'suprafata_types' => ['Rigips', 'Tencuiala driscuita', 'Zidarie'], // Exemplu de date
-        ];
+        // Specificăm calea către fișierul CSV din directorul public
+        $consumuri_csv = public_path('data/consumuri.csv');
+        $handler = fopen($consumuri_csv, "r");
+        $row = 0;
+        $consumuri = [];
+        while (($data = fgetcsv($handler, 1000, ",")) !== FALSE) {
+            if ($row > 0) {
+                $product_slug = str_replace('https://emex.ro/', '', $data[0]);
+                $product_slug = str_replace('.htm', '', $product_slug);
 
-        return $consumData;
+                $consumuri[$product_slug]['product_slug'] = $product_slug;
+                $consumuri[$product_slug]['current_url'] = $data[0];
+                $consumuri[$product_slug]['category'] = $data[1];
+                $consumuri[$product_slug]['vopsea_type'] = $data[2];
+                $consumuri[$product_slug]['suprafata_type'] = $data[3];
+
+                $tipuri_suprafata = explode(',', $data[3]);
+                $consumuri[$product_slug]['suprafata_types'] = $tipuri_suprafata;
+
+                $consumuri[$product_slug]['suprafata_type_name'] = $data[4];
+                $consumuri[$product_slug]['suprafata_name'] = $data[5];
+                $consumuri[$product_slug]['script_name'] = $data[6];
+            }
+
+            $row++;
+        }
+
+        fclose($handler);
+
+        if (empty($consumuri[$product->consumption_slug])) {
+            foreach ($consumuri as $consum) {
+                return $consum;
+            }
+        }
+
+        return $consumuri[$product->consumption_slug];
     }
 }

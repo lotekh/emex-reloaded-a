@@ -3,11 +3,14 @@
 // $suprafata = $_GET[ 'Suprafata' ];
 // $tipvopsea = $_GET[ 'TipProdus' ];
 
-
-$tipsuprafata = $data['Tip_Suprafață'];
-$suprafata = $data['Suprafață'];
-$consum_vopsea = 0;
+// $tipsuprafata = $data['Tip_Suprafață'];
+// $suprafata = $data['Suprafață'];
 // $tipvopsea = $data['TipProdus'];
+
+$tipsuprafata = 0;
+$suprafata = 1;
+$tipvopsea = 2;
+$consum_vopsea = 0;
 
 
 if ( $tipsuprafata == "Zidarie" ) {
