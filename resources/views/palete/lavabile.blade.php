@@ -11,13 +11,26 @@
     <div class="selector-row mt-16">
         @foreach ($final_colors as $k => $v)
             <a class="col" role="button" tabindex="0" onclick="selectTab({{ $loop->index }})">
-                <div class="tab-card text-white {{ $loop->first ? 'rounded-start-xs' : '' }} {{ $loop->last ? 'rounded-end-xs' : '' }}">
+                <div 
+                    class="fatade-{{ $k }}-tab tab-card text-white 
+                           {{ $loop->first ? 'rounded-start-xs' : '' }} 
+                           {{ $loop->last ? 'rounded-end-xs' : '' }}" 
+                    [class]="vopsele.currentTab != {{ $loop->index }} ? 
+                              'fatade-{{ $k }}-tab tab-card text-white 
+                               {{ $loop->first ? 'rounded-start-xs' : '' }} 
+                               {{ $loop->last ? 'rounded-end-xs' : '' }}' : 
+                              'fatade-{{ $k }}-tab active tab-card text-dark 
+                               {{ $loop->first ? 'rounded-start-xs' : '' }} 
+                               {{ $loop->last ? 'rounded-end-xs' : '' }}'">
                     {{ $k }}
                 </div>
-                <div id="underline-{{ $loop->index }}" class="hidden underline"></div>
+                <div [class]="vopsele.currentTab != {{ $loop->index }} ? 
+                               'hidden' : 
+                               'underline fatade-{{ $k }}-tab'"></div>
             </a>
         @endforeach
     </div>
+    
 
     <div class="parent-grid h-full mt-16">
         <div class="col">
@@ -48,14 +61,36 @@
 </div>
 
 <script>
+    // function selectTab(index) {
+    //     document.querySelectorAll('.culori-container').forEach((container, idx) => {
+    //         container.classList.toggle('hidden', idx !== index);
+    //     });
+    //     document.querySelectorAll('.underline').forEach((underline, idx) => {
+    //         underline.classList.toggle('hidden', idx !== index);
+    //     });
+    // }
+
     function selectTab(index) {
-        document.querySelectorAll('.culori-container').forEach((container, idx) => {
-            container.classList.toggle('hidden', idx !== index);
-        });
-        document.querySelectorAll('.underline').forEach((underline, idx) => {
-            underline.classList.toggle('hidden', idx !== index);
-        });
-    }
+    document.querySelectorAll('.underline').forEach(underline => {
+        underline.classList.add('hidden');
+    });
+
+    document.getElementById('underline-' + index).classList.remove('hidden');
+
+    // Schimbă clasa activă pentru tab-uri
+    document.querySelectorAll('.tab-card').forEach(tab => {
+        tab.classList.remove('active', 'text-dark');
+        tab.classList.add('text-white');
+    });
+
+    let activeTab = document.querySelectorAll('.tab-card')[index];
+    activeTab.classList.add('active', 'text-dark');
+    activeTab.classList.remove('text-white');
+
+    // Stochează starea curentă a tab-ului (optional)
+    // vopsele.currentTab = index;
+}
+
 
     function selectColor(value, text) {
         document.getElementById('big-color').className = 'w-full mt-16 h-full big-color ABC-' + value;
