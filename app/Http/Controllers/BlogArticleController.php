@@ -10,26 +10,26 @@ class BlogArticleController extends Controller
     // Afișare lista de articole
     public function index()
     {
-        // Obțin toate articolele din baza de date
-        $articles = BlogArticle::with('tags')->orderBy('created_at', 'desc')->paginate(10); // Paginare cu 10 articole per pagină
-        
-        // Articole recente și arhiva
-        $recentArticles = BlogArticle::orderBy('created_at', 'desc')->take(5)->get();
-        $archives = BlogArticle::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as articles_number')
-                                ->groupBy('year', 'month')
-                                ->orderBy('year', 'desc')
-                                ->orderBy('month', 'desc')
-                                ->get();
-        
-        $monthNames = ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'];
-
-        return view('blog.index', compact('articles', 'recentArticles', 'archives', 'monthNames'));
+        // Paginăm articolele
+        $blogArticles = BlogArticle::with(['tags', 'featuredImage'])->orderBy('created_at', 'desc')->paginate(10);
+    
+        // Pentru arhivă și filtrul de tag-uri (exemplu dacă le folosești)
+        $archive = null; // Sau logica ta pentru a popula arhiva
+        $tagFilter = null; // Sau logica ta pentru filtrarea pe taguri
+    
+        return view('blog.index', compact('blogArticles', 'archive', 'tagFilter'));
     }
 
     // Afișare articol specific
     public function show($id)
     {
-        $article = BlogArticle::with(['tags', 'featuredImage'])->findOrFail($id);
+        $model = BlogArticle::with(['tags', 'featuredImage'])->findOrFail($id);
+
+        // dd($model);
+        // dd($model->tags->first->name);
+
+        $tags = $model->tags();
+        // dd($tags);
 
         // Articole recente și arhiva
         $recentArticles = BlogArticle::orderBy('created_at', 'desc')->take(5)->get();
@@ -41,7 +41,7 @@ class BlogArticleController extends Controller
 
         $monthNames = ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'];
 
-        return view('blog.view', compact('article', 'recentArticles', 'archives', 'monthNames'));
+        return view('blog.view', compact('model', 'tags', 'recentArticles', 'archives', 'monthNames'));
     }
 
     // Căutare articole

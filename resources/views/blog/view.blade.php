@@ -1,5 +1,9 @@
 @extends('layout.layout')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/blog.css') }}">
+@endsection
+
 @section('content')
 <div class="hidden-xs">
     <div class="top_header_image_bg">
