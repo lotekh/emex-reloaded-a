@@ -60,41 +60,33 @@
     </div>
 </div>
 
+
 <script>
-    // function selectTab(index) {
-    //     document.querySelectorAll('.culori-container').forEach((container, idx) => {
-    //         container.classList.toggle('hidden', idx !== index);
-    //     });
-    //     document.querySelectorAll('.underline').forEach((underline, idx) => {
-    //         underline.classList.toggle('hidden', idx !== index);
-    //     });
-    // }
 
     function selectTab(index) {
-    document.querySelectorAll('.underline').forEach(underline => {
-        underline.classList.add('hidden');
-    });
+        document.querySelectorAll('.underline').forEach(underline => {
+            underline.classList.add('hidden');
+        });
 
-    document.getElementById('underline-' + index).classList.remove('hidden');
+        document.getElementById('underline-' + index).classList.remove('hidden');
 
-    // Schimbă clasa activă pentru tab-uri
-    document.querySelectorAll('.tab-card').forEach(tab => {
-        tab.classList.remove('active', 'text-dark');
-        tab.classList.add('text-white');
-    });
+        // Schimbă clasa activă pentru tab-uri
+        document.querySelectorAll('.tab-card').forEach(tab => {
+            tab.classList.remove('active', 'text-dark');
+            tab.classList.add('text-white');
+        });
 
-    let activeTab = document.querySelectorAll('.tab-card')[index];
-    activeTab.classList.add('active', 'text-dark');
-    activeTab.classList.remove('text-white');
+        let activeTab = document.querySelectorAll('.tab-card')[index];
+        activeTab.classList.add('active', 'text-dark');
+        activeTab.classList.remove('text-white');
+    }
 
-    // Stochează starea curentă a tab-ului (optional)
-    // vopsele.currentTab = index;
-}
-
-
+    
     function selectColor(value, text) {
         document.getElementById('big').className = 'w-full mt-16 h-full big-color ABC-' + value;
         document.getElementById('big-text').textContent = text;
     }
+
 </script>
+
 @endsection
