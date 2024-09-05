@@ -30,7 +30,7 @@ $currentPage = 0;
 
     <div class="grid grid-3 consum-container">
         <div>
-            <div class="consum-product-image mb-16">
+            <div class="consum-product-image mb-16" id="div_img_consum">
                 @php
                     $featuredImageUrl = $product->featuredImage ? asset('storage/' .$product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
                 @endphp
