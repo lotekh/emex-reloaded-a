@@ -217,7 +217,7 @@ class PaleteController extends Controller
         // dd($final_colors);
 
         // Returnează vizualizarea 'lavabile.blade.php' cu culorile procesate
-        return view('palete.lavabile', compact('final_colors'));
+        return view('palete.lavabile2', compact('final_colors'));
     }
 
     private function getLavabileColors()

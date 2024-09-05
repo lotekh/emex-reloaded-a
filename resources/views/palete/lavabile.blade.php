@@ -9,17 +9,17 @@
 <div class="main-container col culori">
     <h2 class="text-center font-400" id="rt">Vopsele Lavabile si Tencuieli - Paleta de culori</h2>
     <div class="selector-row mt-16">
+        @php $incrementing = 0 @endphp
         @foreach ($final_colors as $k => $v)
-            <a class="col" role="button" tabindex="0" onclick="selectTab({{ $loop->index }})">
-                <div 
-                    class="fatade-{{ $k }}-tab tab-card text-white 
-                           {{ $loop->first ? 'rounded-start-xs active text-dark' : '' }} 
-                           {{ $loop->last ? 'rounded-end-xs' : '' }}" 
-                    id="tab-{{ $loop->index }}">
+            <a class="col" data-toggle="tab" role="button" tabindex="0" onclick="setCurrentTab({{ $incrementing }});">
+                <div class="fatade-{{ $k }}-tab tab-card text-white {{ $incrementing == 0 ? 'rounded-start-xs' : '' }} {{ $incrementing == count($final_colors) - 1 ? 'rounded-end-xs' : '' }}"
+                    :class="currentTab != {{ $incrementing }} ? 'fatade-{{ $k }}-tab tab-card text-white {{ $incrementing == 0 ? 'rounded-start-xs' : '' }} {{ $incrementing == count($final_colors) - 1 ? 'rounded-end-xs' : '' }}' : 'fatade-{{ $k }}-tab active tab-card text-dark {{ $incrementing == 0 ? 'rounded-start-xs' : '' }} {{ $incrementing == count($final_colors) - 1 ? 'rounded-end-xs' : '' }}'">
                     {{ $k }}
                 </div>
-                <div id="underline-{{ $loop->index }}" class="underline fatade-{{ $k }}-tab {{ $loop->first ? '' : 'hidden' }}"></div>
+                <div class="{{ currentTab != {{ $incrementing }} ? 'hidden' : 'underline fatade-{{ $k }}-tab' }}">
+                </div>
             </a>
+            @php $incrementing++ @endphp
         @endforeach
     </div>
     
@@ -52,6 +52,10 @@
 </div>
 
 <script>
+    function setCurrentTab(index){
+        index = vopsele.currentTab;
+    }
+    
     function selectTab(index) {
         // Ascunde toate paletele de culori
         document.querySelectorAll('.culori-container').forEach(container => {
