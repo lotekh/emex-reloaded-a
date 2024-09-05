@@ -159,11 +159,14 @@ Route::post('/save-order', [OrdersController::class, 'processCheckout'])->name('
 // Ruta pentru obținerea prețului de transport pe baza ID-ului județului
 Route::get('/get-transport-price', [OrdersController::class, 'getTransportPrice'])->name('get.transport.price');
 
-use App\Http\Controllers\BlogController;
-
-Route::get('/blog/article/{id}', [BlogController::class, 'show'])->name('blog.show');
-Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
-Route::get('/search', [SearchController::class, 'search'])->name('search');
+// Blog
+use App\Http\Controllers\BlogArticleController;
+// Route::get('/blog/article/{id}', [BlogController::class, 'show'])->name('blog.show');
+// Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+// Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::get('/blog', [BlogArticleController::class, 'index'])->name('blog.index');
+Route::get('/blog/article/{id}', [BlogArticleController::class, 'show'])->name('blog.article.show');
+Route::get('/search', [BlogArticleController::class, 'search'])->name('blog.search');
 
 
 // Routes for slugs
