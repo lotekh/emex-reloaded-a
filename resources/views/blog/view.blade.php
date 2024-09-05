@@ -19,14 +19,14 @@
     <div class="article col-span-3">
         <h1>{{ $model->title }}</h1>
         <div class="flex mb-16 align-center">
-            @foreach ($tags as $tag)
+            @foreach ($model->tags as $tag)
                 <span class="tag mr-8">{{ $tag->name }}</span>
             @endforeach
             <span class="publish-date">publicat pe {{ \Carbon\Carbon::parse($model->created_at)->format('j.m.Y') }}</span>
         </div>
 
         <div class="flex col align-center">
-            <img style="width: 100%" src="{{ $model->getFeaturedImageUrl() }}" alt="{{ $model->title }}">
+            {{-- <img style="width: 100%" src="{{ $model->getFeaturedImageUrl() }}" alt="{{ $model->title }}"> --}}
             <div>
                 {!! $model->body !!}
             </div>
@@ -72,10 +72,10 @@
             @endforeach
         </div>
 
-        @if (count($tags))
+        @if (count($model->tags))
             <div class="flex col">
                 <h2 class="m-0 mb-8">Tags</h2>
-                @foreach ($tags as $tag)
+                @foreach ($model->tags as $tag)
                     <a href="{{ url('/blog', ['tag' => $tag->id]) }}">
                         <span class="tag mr-8">{{ $tag->name }}</span>
                     </a>

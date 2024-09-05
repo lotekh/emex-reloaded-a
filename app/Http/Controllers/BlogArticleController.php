@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\BlogArticle;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class BlogArticleController extends Controller
         // dd($model);
         // dd($model->tags->first->name);
 
-        $tags = $model->tags();
+        // $tags = $model->tags()->first();
         // dd($tags);
 
         // Articole recente și arhiva
@@ -41,7 +42,7 @@ class BlogArticleController extends Controller
 
         $monthNames = ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'];
 
-        return view('blog.view', compact('model', 'tags', 'recentArticles', 'archives', 'monthNames'));
+        return view('blog.view', compact('model', 'recentArticles', 'archives', 'monthNames'));
     }
 
     // Căutare articole
