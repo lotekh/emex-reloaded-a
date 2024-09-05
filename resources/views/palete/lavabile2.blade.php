@@ -12,7 +12,7 @@
         @php $incrementing = 0 @endphp
         @foreach ($final_colors as $k => $v)
             <a class="col" data-toggle="tab" role="button" tabindex="0" onclick="setCurrentTab({{ $incrementing }});">
-                <div id="lavabile-box-{{$incrementing}}-{{$k}}" class="fatade-{{ $k }}-tab tab-card text-white {{ $incrementing == 0 ? 'rounded-start-xs' : '' }} {{ $incrementing == count($final_colors) - 1 ? 'rounded-end-xs' : '' }}">
+                <div id="lavabile-box-{{$incrementing}}" class="fatade-{{ $k }}-tab tab-card text-white {{ $incrementing == 0 ? 'rounded-start-xs' : '' }} {{ $incrementing == count($final_colors) - 1 ? 'rounded-end-xs' : '' }}">
                     {{ $k }}
                 </div>
                 <div id="underline-{{$incrementing}}-{{$k}}">
@@ -28,8 +28,8 @@
 
     function setCurrentTab(index){
         currentTab = index;
-        // console.log(currentTab);
         updateUnderline();
+        updateLavabileBoxes();
     }
 
     function updateUnderline() {
@@ -49,8 +49,21 @@
         });
     }
 
+    function updateLavabileBoxes() {
+        document.querySelectorAll('[id^="lavabile-box-"]').forEach((box, boxIndex) => {
+            if (boxIndex === currentTab) {
+                box.classList.add('active', 'text-dark');
+                box.classList.remove('text-white');
+            } else {
+                box.classList.remove('active', 'text-dark');
+                box.classList.add('text-white');
+            }
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
-        updateUnderline(); // Initialize the state on page load
+        updateUnderline(); 
+        updateLavabileBoxes();
     });
 
 </script>
