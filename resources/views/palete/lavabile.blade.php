@@ -56,6 +56,29 @@
     </div>
 </div>
 
+<div class="modal" id="promotie_modal">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <div>
+                <img width="40" height="35" class="atentie-consum" src="{{ asset('resources/images/general/emex_warning.png') }}" alt="Atentie suprafete nerecomandate">
+            </div>
+            <p class="modal-title text-center">Atentie !</p>
+            <p class="text-center note mark">
+                Aceasta cartela are doar rol informativ
+            </p>
+        </div>
+        <div class="modal-content">
+            <p class="text-center font-xl-ral">
+                Pentru culori sau nuante folositi<br>doar cartele de culori standardizate,<br>printate pe suport fizic.
+            </p>
+
+            <button type="button" onclick="closeModalRal()" class="close" data-dismiss="modal" aria-hidden="true" id="close_promotie_modal" aria-label="Inchide">
+                Am inteles
+            </button>
+        </div>
+    </div>
+</div>
+
 <script>
     let currentTab = 0;
 
@@ -121,6 +144,11 @@
     function selectColor(value, text) {
         document.getElementById('big').className = 'w-full mt-16 h-full big-color ABC-' + value;
         document.getElementById('big-text').textContent = text;
+    }
+
+    function closeModalRal() {
+        document.getElementById('promotie_modal').classList.add('hide-modal');
+        // document.getElementById('promotie_modal').style.display = 'none';
     }
 
     document.addEventListener('DOMContentLoaded', () => {
