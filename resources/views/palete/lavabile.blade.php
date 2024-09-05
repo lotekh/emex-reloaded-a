@@ -6,29 +6,31 @@
 @endsection
 
 @section('content')
+
 <div class="main-container col culori">
+
     <h2 class="text-center font-400" id="rt">Vopsele Lavabile si Tencuieli - Paleta de culori</h2>
     <div class="selector-row mt-16">
         @php $incrementing = 0 @endphp
         @foreach ($final_colors as $k => $v)
             <a class="col" data-toggle="tab" role="button" tabindex="0" onclick="setCurrentTab({{ $incrementing }});">
-                <div class="fatade-{{ $k }}-tab tab-card text-white {{ $incrementing == 0 ? 'rounded-start-xs' : '' }} {{ $incrementing == count($final_colors) - 1 ? 'rounded-end-xs' : '' }}"
-                    :class="currentTab != {{ $incrementing }} ? 'fatade-{{ $k }}-tab tab-card text-white {{ $incrementing == 0 ? 'rounded-start-xs' : '' }} {{ $incrementing == count($final_colors) - 1 ? 'rounded-end-xs' : '' }}' : 'fatade-{{ $k }}-tab active tab-card text-dark {{ $incrementing == 0 ? 'rounded-start-xs' : '' }} {{ $incrementing == count($final_colors) - 1 ? 'rounded-end-xs' : '' }}'">
+                <div id="lavabile-box-{{$incrementing}}" class="fatade-{{ $k }}-tab tab-card text-white {{ $incrementing == 0 ? 'rounded-start-xs' : '' }} {{ $incrementing == count($final_colors) - 1 ? 'rounded-end-xs' : '' }}">
                     {{ $k }}
                 </div>
-                <div class="{{ currentTab != {{ $incrementing }} ? 'hidden' : 'underline fatade-{{ $k }}-tab' }}">
+                <div id="underline-{{$incrementing}}-{{$k}}">
                 </div>
             </a>
             @php $incrementing++ @endphp
         @endforeach
     </div>
-    
+
     <div class="parent-grid h-full mt-16">
+
         <div class="col">
             <p class="info-container">
-                Aceasta cartela are doar caracter orientativ. Datorita diferentelor de redare dintre monitoare pentru o culoare exacta este necesar sa consultati un paletar "Emex by Romtehnochim".
+                Aceasta cartela are doar caracter orientativ. Datorita diferentelor de redare dintre monitoare pentru o culoare exacta este necesar sa consultati un paletar
+                "Emex by Romtehnochim".
             </p>
-
             <div class="w-full mt-16 h-full big-color ABC-0xf2e8f5" id="big">
                 <div class="dialog-bubble">
                     Selectati o culoare pentru previzualizare.
@@ -36,9 +38,11 @@
             </div>
             <p id="big-text" class="text-center"> A1 - a </p>
         </div>
+
         <div class="height-contrain">
+            @php $incrementing = 0 @endphp
             @foreach ($final_colors as $k => $v)
-                <div id="colors-{{ $loop->index }}" class="culori-container {{ $loop->first ? '' : 'hidden' }}">
+                <div id="{{$k}}" class="culorilavabile-{{ $incrementing }}">
                     @foreach ($v as $color)
                         <div class="col align-center gap-xs">
                             <div role="button" class="color {{ 'ABC-' . $color['value'] }}" onclick="selectColor('{{ $color['value'] }}', '{{ $color['name'] }}')"></div>
@@ -46,54 +50,85 @@
                         </div>
                     @endforeach
                 </div>
+                @php $incrementing++ @endphp
             @endforeach
         </div>
     </div>
 </div>
 
 <script>
+    let currentTab = 0;
+
     function setCurrentTab(index){
-        index = vopsele.currentTab;
+        currentTab = index;
+        updateUnderline();
+        updateLavabileBoxes();
+        updateCuloriContainers()
     }
-    
-    function selectTab(index) {
-        // Ascunde toate paletele de culori
-        document.querySelectorAll('.culori-container').forEach(container => {
-            container.classList.add('hidden');
+
+    function updateUnderline() {
+        document.querySelectorAll('[id^="underline-"]').forEach((tab) => {
+            // Extrage index-ul și valoarea k din id-ul fiecărui tab
+            const idParts = tab.id.split('-');
+            const tabIndex = parseInt(idParts[1], 10); // indexul din id-ul div-ului
+            const tabK = idParts[2]; // valoarea $k din id-ul div-ului
+
+            if (tabIndex === currentTab) {
+                tab.classList.remove('hidden');
+                tab.classList.add('underline', `fatade-${tabK}-tab`);
+            } else {
+                tab.classList.add('hidden');
+                tab.classList.remove('underline', `fatade-${tabK}-tab`);
+            }
         });
+    }
 
-        // Afișează doar culorile din tab-ul selectat
-        document.getElementById('colors-' + index).classList.remove('hidden');
-
-        // Ascunde toate subliniaturile
-        document.querySelectorAll('.underline').forEach(underline => {
-            underline.classList.add('hidden');
+    function updateLavabileBoxes() {
+        document.querySelectorAll('[id^="lavabile-box-"]').forEach((box, boxIndex) => {
+            if (boxIndex === currentTab) {
+                box.classList.add('active', 'text-dark');
+                box.classList.remove('text-white');
+            } else {
+                box.classList.remove('active', 'text-dark');
+                box.classList.add('text-white');
+            }
         });
+    }
 
-        // Afișează subliniatura pentru tab-ul activ
-        document.getElementById('underline-' + index).classList.remove('hidden');
+    function updateCuloriContainers() {
+        document.querySelectorAll('[class*="culorilavabile-"]').forEach((element) => {
+            // Extragem valoarea lui $incrementing din clasa elementului
+            const classList = element.className.split(' ');
+            let incrementingValue = null;
 
-        // Schimbă clasa activă pentru tab-uri
-        document.querySelectorAll('.tab-card').forEach(tab => {
-            tab.classList.remove('active', 'text-dark');
-            tab.classList.add('text-white');
+            classList.forEach(cls => {
+                if (cls.startsWith('culorilavabile-')) {
+                    incrementingValue = parseInt(cls.split('-')[1], 10); // Extragem valoarea lui $incrementing
+                }
+            });
+
+            // Comparăm currentTab cu valoarea lui $incrementing
+            if (incrementingValue === currentTab) {
+                element.classList.add('culori-container');
+                element.classList.remove('hidden');
+            } else {
+                element.classList.add('hidden');
+                element.classList.remove('culori-container');
+            }
         });
-
-        let activeTab = document.getElementById('tab-' + index);
-        activeTab.classList.add('active', 'text-dark');
-        activeTab.classList.remove('text-white');
     }
 
     function selectColor(value, text) {
-        // Schimbă culoarea și textul de previzualizare
         document.getElementById('big').className = 'w-full mt-16 h-full big-color ABC-' + value;
         document.getElementById('big-text').textContent = text;
     }
 
-    // Inițializează tab-ul și culorile corespunzătoare la încărcarea paginii
-    document.addEventListener('DOMContentLoaded', function() {
-        selectTab(0); // Selectează primul tab la încărcarea paginii
+    document.addEventListener('DOMContentLoaded', () => {
+        updateUnderline(); 
+        updateLavabileBoxes();
+        updateCuloriContainers()
     });
+
 </script>
 
 @endsection
