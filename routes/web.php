@@ -159,9 +159,12 @@ Route::post('/save-order', [OrdersController::class, 'processCheckout'])->name('
 // Ruta pentru obținerea prețului de transport pe baza ID-ului județului
 Route::get('/get-transport-price', [OrdersController::class, 'getTransportPrice'])->name('get.transport.price');
 
+use App\Http\Controllers\BlogController;
 
-// Route::get('/category/{slug}', [CategoryController::class, 'showCategory'])->name('category.show');
-// Route::get('/product/{slug}', [ProductsController::class, 'showProduct'])->name('product.show');
+Route::get('/blog/article/{id}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/search', [SearchController::class, 'search'])->name('search');
+
 
 // Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
