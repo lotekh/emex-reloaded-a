@@ -55,6 +55,10 @@ class Product extends Model
         'consumption_jsonld' => 'json',
     ];
 
+    protected $with = [
+        'variations' 
+    ];
+
     public function variations(): HasMany
     {
         return $this->hasMany(ProductVariation::class);

@@ -63,6 +63,7 @@
                     <button type="submit" aria-label="Scade cantitatea">-</button>
                   </form>
                   {{ $ordered_product->pivot->quantity }}
+                  {{-- 1 --}}
                   <form method="POST" action="{{ route('orders.addProduct') }}">
                     @csrf
                     <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">

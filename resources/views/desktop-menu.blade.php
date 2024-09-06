@@ -163,7 +163,7 @@ use Illuminate\Support\Str;
             <ul class="category-wrapper">
                 @foreach ($categories as $ind => $category)
                     <div class="products-dropdown-categories{{ $ind % 2 > 0 ? ' blue-item' : '' }}">
-                        <a href="{{ url($category->slug) }}">
+                        <a href="{{ route('consum.index', ['category' => $category->slug]) }}">
                             {{ $category->name }}
                         </a>
                     </div>
@@ -171,6 +171,8 @@ use Illuminate\Support\Str;
             </ul>
         </div>
     </li>
+    
+    
 
     <li class="dropdown products-dropdown">
         <span class="dropdown-toggle menuitm" data-toggle="dropdown">

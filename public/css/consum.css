@@ -144,3 +144,9 @@
   grid-template-rows: repeat(3, 1fr);
   gap: 16px;
 }
+
+#div_img_consum {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

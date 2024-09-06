@@ -31,152 +31,157 @@
             </div>
         </div>
 
-        {{-- <form method="GET" class="w-full col px-8 product-details-container" action="{{ url('/order-product') }}"> --}}
+        {{-- <form method="GET" class="w-full col px-8 product-details-container" action="{{ url('/adauga-produs') }}"> --}}
+        
             <div class="w-full col px-8 product-details-container">
             <div class="col gap-xl">
-                <div class="top-container">
-                    <div class="col justify-between">
-                        <div>
-                            <h2 class="subtitle">{{ $product->sub_title }}</h2>
-                            <div id="product_categories" class="row align-center">
-                                <p class="space-xl">Categorii: </p>
-                                @php
-                                    $uniqueCategories = $categories_products->unique('id');
-                                @endphp
-                                @foreach ($uniqueCategories as $category_product)
-                                    <a class="font-sm" href="{{ url($category_product->slug) }}">
-                                        {{ $category_product->name }}
-                                    </a>
-                                @endforeach
+                <form method="GET" action="{{ url('/adauga-produs') }}">
+                    <div class="top-container">
+                        <div class="col justify-between">
+                            <div>
+                                <h2 class="subtitle">{{ $product->sub_title }}</h2>
+                                <div id="product_categories" class="row align-center">
+                                    <p class="space-xl">Categorii: </p>
+                                    @php
+                                        $uniqueCategories = $categories_products->unique('id');
+                                    @endphp
+                                    @foreach ($uniqueCategories as $category_product)
+                                        <a class="font-sm" href="{{ url($category_product->slug) }}">
+                                            {{ $category_product->name }}
+                                        </a>
+                                    @endforeach
+                                </div>
+                                
                             </div>
-                            
+
+                            @if ($product->active)
+                                <div class="col">
+                                    @if (!empty($initialVariation->price))
+                                        <div class="row items-baseline price-container">
+                                            <p>
+                                                <span class="font-700 text-red price-num" id="price{{ $product->id }}">{{ $initialVariation->price }}</span>
+                                                <span class="text-red">Lei&nbsp;/&nbsp;</span>
+                                            </p>
+                                            <p class="section-info" id="pret_value">Bidon <span id="packaging{{ $product->id }}">{{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}</span></p>
+                                        </div>
+                                        <p class="section-info tva-label">Pret - inclusiv tva</p>
+                                    @else
+                                        <p class="section-info tva-label" id="pret_pre">Produs indisponibil</p>
+                                    @endif
+                                </div>
+                            @endif
+
+                            <div class="col gap-md in-stoc-container mt-16">
+                                @if ($product->active)
+                                    <div class="in-stoc">
+                                        <div class="flex align-center">
+                                            <img src="{{ asset('resources/new_design/icons/check-mark.svg') }}" alt="checkmark-icon" title="checkmark-icon" width="24" height="24">
+                                        </div>
+                                        <p>In stoc</p>
+                                    </div>
+                                @else
+                                    <div class="in-stoc not">
+                                        <div class="flex align-center">
+                                            <img src="{{ asset('resources/new_design/icons/error-outline.svg') }}" alt="error-icon" title="error-icon" width="24" height="24">
+                                        </div>
+                                        <p>Indisponibil</p>
+                                        Disponibil din data {{ $product->disponibil_din_data }}
+                                    </div>
+                                @endif
+
+                                <div class="row">
+                                    @for ($i = 0; $i < 5; $i++)
+                                        @if ($i < $averageRating)
+                                            <div class="flex align-center">
+                                                <img src="{{ asset('resources/new_design/icons/gold-star.svg') }}" width="18" height="18" title="review-star" alt="review-star">
+                                            </div>
+                                        @else
+                                            <div class="flex align-center">
+                                                <img src="{{ asset('resources/new_design/icons/dark-star.svg') }}" width="18" height="18" title="review-star" alt="review-star">
+                                            </div>
+                                        @endif
+                                    @endfor
+                                    <p class="ml-8 font-sm">
+                                        <span class="font-700 font-sm">{{ number_format($averageRating, 2) }}</span>
+                                        ({{ $reviewCount }})
+                                    </p>
+                                </div>
+                            </div>
                         </div>
 
                         @if ($product->active)
-                            <div class="col">
-                                @if (!empty($initialVariation->price))
-                                    <div class="row items-baseline price-container">
-                                        <p>
-                                            <span class="font-700 text-red price-num" id="price{{ $product->id }}">{{ $initialVariation->price }}</span>
-                                            <span class="text-red">Lei&nbsp;/&nbsp;</span>
-                                        </p>
-                                        <p class="section-info" id="pret_value">Bidon <span id="packaging{{ $product->id }}">{{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}</span></p>
+                            <div class="inputs-mt col gap-md">
+                                @if ($product->variations->pluck('colour')->filter()->count())
+                                    <div class="form-group">
+                                        <label class="section-info" id="choose-color">Selecteaza culoare</label>
+                                        <select aria-labelledby="choose-color" class="w-full" name="color" id="colorSelect{{ $product->id }}">
+                                            @foreach ($product->variations->pluck('colour')->filter() as $value)
+                                                <option value="{{ $value }}">{{ $value }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    <p class="section-info tva-label">Pret - inclusiv tva</p>
-                                @else
-                                    <p class="section-info tva-label" id="pret_pre">Produs indisponibil</p>
                                 @endif
+
+                                {{-- @if ($product->variations->pluck('quantity')->filter()->count())
+                                    <div class="form-group">
+                                        <label class="section-info" id="choose-type">Selecteaza ambalare</label>
+                                        <select aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
+                                            @foreach ($product->variations->pluck('quantity')->filter()->unique() as $value)
+                                                <option value="{{ $value }}">{{ $value }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @endif --}}
+
+                                @if ($product->variations->pluck('quantity')->filter()->count())
+                                    <div class="form-group">
+                                        <label class="section-info" id="choose-type">Selecteaza ambalare</label>
+                                        <select aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
+                                            @foreach ($product->variations->unique('quantity') as $variation)
+                                                <option value="{{ $variation->quantity }}">
+                                                    {{ $variation->quantity }} {{ $variation->measurementUnit->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @endif
+
+
+                                <div class="form-group">
+                                    <label id="choose-quantity" class="section-info">Selecteaza cantitate</label>
+                                    <input class="w-full" aria-labelledby="choose-quantity" min="1" pattern="[0-9]+" type="number" name="quantity" value="1" />
+                                </div>
                             </div>
                         @endif
-
-                        <div class="col gap-md in-stoc-container mt-16">
-                            @if ($product->active)
-                                <div class="in-stoc">
-                                    <div class="flex align-center">
-                                        <img src="{{ asset('resources/new_design/icons/check-mark.svg') }}" alt="checkmark-icon" title="checkmark-icon" width="24" height="24">
-                                    </div>
-                                    <p>In stoc</p>
-                                </div>
-                            @else
-                                <div class="in-stoc not">
-                                    <div class="flex align-center">
-                                        <img src="{{ asset('resources/new_design/icons/error-outline.svg') }}" alt="error-icon" title="error-icon" width="24" height="24">
-                                    </div>
-                                    <p>Indisponibil</p>
-                                    Disponibil din data {{ $product->disponibil_din_data }}
-                                </div>
-                            @endif
-
-                            <div class="row">
-                                @for ($i = 0; $i < 5; $i++)
-                                    @if ($i < $averageRating)
-                                        <div class="flex align-center">
-                                            <img src="{{ asset('resources/new_design/icons/gold-star.svg') }}" width="18" height="18" title="review-star" alt="review-star">
-                                        </div>
-                                    @else
-                                        <div class="flex align-center">
-                                            <img src="{{ asset('resources/new_design/icons/dark-star.svg') }}" width="18" height="18" title="review-star" alt="review-star">
-                                        </div>
-                                    @endif
-                                @endfor
-                                <p class="ml-8 font-sm">
-                                    <span class="font-700 font-sm">{{ number_format($averageRating, 2) }}</span>
-                                    ({{ $reviewCount }})
-                                </p>
-                            </div>
-                        </div>
                     </div>
-
-                    @if ($product->active)
-                        <div class="inputs-mt col gap-md">
-                            @if ($product->variations->pluck('colour')->filter()->count())
-                                <div class="form-group">
-                                    <label class="section-info" id="choose-color">Selecteaza culoare</label>
-                                    <select aria-labelledby="choose-color" class="w-full" name="color" id="colorSelect{{ $product->id }}">
-                                        @foreach ($product->variations->pluck('colour')->filter() as $value)
-                                            <option value="{{ $value }}">{{ $value }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            @endif
-
-                            {{-- @if ($product->variations->pluck('quantity')->filter()->count())
-                                <div class="form-group">
-                                    <label class="section-info" id="choose-type">Selecteaza ambalare</label>
-                                    <select aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
-                                        @foreach ($product->variations->pluck('quantity')->filter()->unique() as $value)
-                                            <option value="{{ $value }}">{{ $value }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            @endif --}}
-
-                            @if ($product->variations->pluck('quantity')->filter()->count())
-                                <div class="form-group">
-                                    <label class="section-info" id="choose-type">Selecteaza ambalare</label>
-                                    <select aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
-                                        @foreach ($product->variations->unique('quantity') as $variation)
-                                            <option value="{{ $variation->quantity }}">
-                                                {{ $variation->quantity }} {{ $variation->measurementUnit->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            @endif
-
-
-                            <div class="form-group">
-                                <label id="choose-quantity" class="section-info">Selecteaza cantitate</label>
-                                <input class="w-full" aria-labelledby="choose-quantity" min="1" pattern="[0-9]+" type="number" name="quantity" value="1" />
-                            </div>
-                        </div>
-                    @endif
-                </div>
+                </form>
 
                 <div class="col flex-md gap-xs w-full">
                     <div class="w-full h-full">
-                        <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        <input type="hidden" name="submited" value="1">
-                        <input type="hidden" name="name" value="{{ $product->plain_name }}">
-                        <input type="hidden" name="price" id="priceInput{{ $product->id }}" value="{{ $initialVariation->price }}">
-                        <input type="hidden" name="price_no_tva" id="priceNoTvaInput" value="{{ $initialVariation->price_no_tva }}">
-                        <input type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
-                        <input type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
-                        {{-- <input type="submit" id="bord" class="{{ empty($initialVariation->price) || $product->is_inactive ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || $product->is_inactive ? 'disabled' : '' }}> --}}
-                        <input type="submit" id="bord" class="{{ empty($initialVariation->price) || !$product->active ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || !$product->active ? 'disabled' : '' }}>
-
+                        <form method="GET" action="{{ url('/adauga-produs') }}">
+                            <input type="hidden" name="product_variation_id" id="variationInput{{$product->id}}" value="{{ $initialVariation->id }}">
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="submited" value="1">
+                            <input type="hidden" name="name" value="{{ $product->plain_name }}">
+                            <input type="hidden" name="price" id="priceInput{{ $product->id }}" value="{{ $initialVariation->price }}">
+                            <input type="hidden" name="price_no_tva" id="priceNoTvaInput" value="{{ $initialVariation->price_no_tva }}">
+                            <input type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
+                            <input type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
+                            {{-- <input type="submit" id="bord" class="{{ empty($initialVariation->price) || $product->is_inactive ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || $product->is_inactive ? 'disabled' : '' }}> --}}
+                            <input type="submit" id="bord" class="{{ empty($initialVariation->price) || !$product->active ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || !$product->active ? 'disabled' : '' }}>
+                        </form>
                     </div>
-
                     <a href="{{ url('/produse-adaugate') }}" title="Cos" class="flex h-full">
                         <div class="btn-blue-outline rounded-sm text-nowrap w-full h-full flex justify-center align-center font-sm px-16 py-8 line-height-1">
                             Vizualizeaza cosul
                         </div>
                     </a>
-                   
-                    <form id="add-to-wishlist-form-{{ $product->id }}" action="{{ route('wishlist.store') }}" method="POST">
+                    <form id="wishlist-form-{{ $product->id }}" action="{{ $product->isInWishlist ? route('wishlist.remove', ['product_id' => $product->id]) : route('wishlist.store') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        
+                        @if (!$product->isInWishlist)
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        @endif
+                    
                         <button type="submit" class="flex align-center btn-blue-outline rounded-sm text-nowrap w-full gap-md justify-center h-full font-sm px-16 py-4">
                             <div class="addToWhislistSvgWrapper">
                                 @if ($product->isInWishlist)
@@ -185,9 +190,11 @@
                                     <img width="16" height="15" src="{{ asset('resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
                                 @endif
                             </div>
-                            <span>Adaugă la favorite</span>
+                            <span>{{ $product->isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}</span>
                         </button>
                     </form>
+                    
+                    
                     
                     
                 </div>
@@ -319,37 +326,27 @@ document.addEventListener('DOMContentLoaded', function () {
     const colorSelect = document.getElementById('colorSelect{{ $product->id }}');
     const priceDisplay = document.getElementById('price{{ $product->id }}');
     const priceInput = document.getElementById('priceInput{{ $product->id }}');
+    const variationInput = document.getElementById('variationInput{{ $product->id }}');
+
+    // Preload all product variations into JavaScript
+    const variations = @json($product->variations);
 
     function updateVariation() {
-        const productId = {{ $product->id }};
         const selectedPackaging = packagingSelect.value;
         const selectedColor = colorSelect.value;
 
-        fetch('{{ route('product.getVariation') }}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({
-                product_id: productId,
-                quantity: selectedPackaging,
-                color: selectedColor
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                priceDisplay.textContent = data.variation.price;
-                priceInput.value = data.variation.price;
-                // Update other fields if needed
-            } else {
-                console.error('Error:', data.error);
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+        // Find the correct variation
+        const variation = variations.find(variation => 
+            variation.quantity == selectedPackaging && variation.colour == selectedColor
+        );
+
+        if (variation) {
+            priceDisplay.textContent = variation.price;
+            priceInput.value = variation.price;
+            variationInput.value = variation.id;
+        } else {
+            console.error('No matching variation found.');
+        }
     }
 
     packagingSelect.addEventListener('change', updateVariation);
