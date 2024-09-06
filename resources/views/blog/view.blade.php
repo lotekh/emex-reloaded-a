@@ -38,7 +38,7 @@
             <h2 class="m-0 mb-8">Cautare</h2>
             <form class="relative flex align-center w-full justify-end" method="GET" action="{{ url('/search') }}">
                 <div class="flex align-center">
-                    <img width="18" height="18" src="{{ asset('resources/new_design/icons/search.svg') }}" alt="search-icon" title="search-icon">
+                    <img id="search-icon" width="18" height="18" src="{{ asset('resources/new_design/icons/search.svg') }}" alt="search-icon" title="search-icon">
                 </div>
                 <input id="search-input-desktop" type="text" name="zoom_query" class="form-control w-full" placeholder="Cautare...">
             </form>
