@@ -22,12 +22,12 @@
     <h1 class="mobile-title mt-32">{!! $product->name !!}</h1>
     <div class="w-full product-info-grid">
         <div class="col">
-            <div class="w-full h-full relative img-container" style="max-height:413.26px;">
+            <div class="w-full h-full relative img-container" style="max-height:400px;">
                 @php
                     $featuredImageUrl = $product->featuredImage ? asset('storage/' .$product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
                 @endphp
 
-                <img class="contain" src="{{ $featuredImageUrl }}" alt="imagine" title="imagineprodus">
+                <img style="max-height:400px;" class="contain" src="{{ $featuredImageUrl }}" alt="imagine" title="imagineprodus">
             </div>
         </div>
 
