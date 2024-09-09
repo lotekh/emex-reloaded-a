@@ -14,6 +14,8 @@ use App\Http\Controllers\PaleteController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ConsumController;
+use App\Http\Controllers\BlogArticleController;
+use App\Http\Controllers\OrdersController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -30,14 +32,9 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-// Route::get('/footer', function () {
-//     return view('footer');
-// });
-
 Route::view('/test-form', 'test-form');
 Route::post('/side-contact', [ContactController::class, 'store'])->name('contact.store');
 
-// Route::get('/contact', [ContactPageController::class, 'show'])->name('contact.show');
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
@@ -130,11 +127,11 @@ Route::post('/add-to-wishlist', [WishlistController::class, 'store'])->name('wis
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('products.wishlist');
 Route::post('/remove-from-wishlist', [WishlistController::class, 'remove'])->name('wishlist.remove');
 Route::get('/removee-from-wishlist', [WishlistController::class, 'remove'])->name('wishlist.removee');
-
 Route::post('/get-variation', [ProductsController::class, 'getVariation'])->name('product.getVariation');
+Route::get('/produse', [ProductsController::class, 'index'])->name('products.index');
 
-use App\Http\Controllers\OrdersController;
 
+// Routes for orders
 // Ruta pentru afișarea coșului de cumpărături
 Route::get('/produse-adaugate', [OrdersController::class, 'index'])->name('orders.index');
 
@@ -147,23 +144,17 @@ Route::post('/sterge-produs', [OrdersController::class, 'removeProduct'])->name(
 // Ruta pentru golirea coșului
 Route::post('/goleste-cosul', [OrdersController::class, 'emptyCart'])->name('orders.empty');
 
-// Ruta pentru finalizarea comenzii
-// Route::get('/finalizeaza-comanda', [OrdersController::class, 'checkout'])->name('orders.checkout');
 
 
-// Checkout
+
+// Routes for checkout
 Route::get('/finalizeaza-comanda', [OrdersController::class, 'showCheckoutForm'])->name('checkout.form');
 Route::get('/sumar-comanda', [OrdersController::class, 'showSummary'])->name('order.summary');
-// Route::post('/finalizeaza-comanda', [OrdersController::class, 'processCheckout'])->name('checkout.process');
 Route::post('/save-order', [OrdersController::class, 'processCheckout'])->name('checkout.process');
 // Ruta pentru obținerea prețului de transport pe baza ID-ului județului
 Route::get('/get-transport-price', [OrdersController::class, 'getTransportPrice'])->name('get.transport.price');
 
 // Blog
-use App\Http\Controllers\BlogArticleController;
-// Route::get('/blog/article/{id}', [BlogController::class, 'show'])->name('blog.show');
-// Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
-// Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/blog', [BlogArticleController::class, 'index'])->name('blog.index');
 Route::get('/blog/article/{id}', [BlogArticleController::class, 'show'])->name('blog.article.show');
 Route::get('/search', [BlogArticleController::class, 'search'])->name('blog.search');

@@ -8,6 +8,27 @@ use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
+
+    public function index(Request $request)
+    {
+        $perPage = $request->get('per_page', 9);
+        $currentPage = $request->get('current_page_number', 1);
+
+        // Collect filters from the request, except pagination parameters
+        $filters = $request->except(['per_page', 'current_page_number']);
+        $filtersString = '?' . http_build_query($filters);
+        // dd($filtersString);
+
+        // Query the products, applying pagination
+        $products = Product::where('active', 1) // Assuming you only want to show active products
+            ->paginate($perPage, ['*'], 'page', $currentPage);
+
+        $totalResults = $products->total();
+        $totalPages = $products->lastPage();
+
+        return view('products.produse', compact('products', 'totalResults', 'totalPages', 'perPage', 'currentPage', 'filtersString', 'filters'));
+    }
+
     public function showProduct($slug, Request $request)
     {
         $product = Product::where('slug', $slug)->with('featuredImage', 'variations', 'reviews')->firstOrFail();
