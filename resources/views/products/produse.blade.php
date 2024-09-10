@@ -50,7 +50,7 @@
 
         <div class="all-products">
             <h1 class="m-0 mb-16">Produse Emex</h1>
-            <p class="mb-32">Produsele Emex sunt caracterizate prin aderenta foarte mare la suport...</p>
+            <p class="mb-32">Produsele Emex sunt caracterizate prin aderenta foarte mare la suport, acoperire foarte buna, la un singur strat pentru o corecta pregatire a suprafetei, rezistenta mare la intemperii si luciu persistent. Este recomandata pentru elementele supraterane, si se regaseste printre cele mai des utilizate vopsele pentru lemn sau metal.</p>
             <div class="flex col flex-lg mb-32 justify-between align-center">
                 <p class="m-0 mb-16"><strong>{{ $totalResults }}</strong> produse gasite</p>
                 <div class="flex align-center">

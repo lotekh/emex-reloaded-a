@@ -122,16 +122,6 @@
                                     </div>
                                 @endif
 
-                                {{-- @if ($product->variations->pluck('quantity')->filter()->count())
-                                    <div class="form-group">
-                                        <label class="section-info" id="choose-type">Selecteaza ambalare</label>
-                                        <select aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
-                                            @foreach ($product->variations->pluck('quantity')->filter()->unique() as $value)
-                                                <option value="{{ $value }}">{{ $value }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                @endif --}}
 
                                 @if ($product->variations->pluck('quantity')->filter()->count())
                                     <div class="form-group">
@@ -147,10 +137,26 @@
                                 @endif
 
 
-                                <div class="form-group">
-                                    <label id="choose-quantity" class="section-info">Selecteaza cantitate</label>
-                                    <input class="w-full" aria-labelledby="choose-quantity" min="1" pattern="[0-9]+" type="number" name="quantity" value="1" />
-                                </div>
+                                <form method="GET" action="{{ url('/adauga-produs') }}">
+                                    <input type="hidden" name="product_variation_id" id="variationInput{{$product->id}}" value="{{ $initialVariation->id }}">
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input type="hidden" name="submited" value="1">
+                                    <input type="hidden" name="name" value="{{ $product->plain_name }}">
+                                    <input type="hidden" name="price" id="priceInput{{ $product->id }}" value="{{ $initialVariation->price }}">
+                                    <input type="hidden" name="price_no_tva" id="priceNoTvaInput" value="{{ $initialVariation->price_no_tva }}">
+                                    <input type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
+                                    <input type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
+                                    
+                                    <!-- Adăugare câmp pentru quantity -->
+                                    <div class="form-group">
+                                        <label id="choose-quantity" class="section-info">Selecteaza cantitate</label>
+                                        <input class="w-full" aria-labelledby="choose-quantity" min="1" pattern="[0-9]+" type="number" name="quantity" value="1" />
+                                    </div>
+                                    
+                                    <input type="submit" id="bord" class="{{ empty($initialVariation->price) || !$product->active ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || !$product->active ? 'disabled' : '' }}>
+                                </form>
+                                
+                                
                             </div>
                         @endif
                     </div>
@@ -158,7 +164,7 @@
 
                 <div class="col flex-md gap-xs w-full">
                     <div class="w-full h-full">
-                        <form method="GET" action="{{ url('/adauga-produs') }}">
+                        {{-- <form method="GET" action="{{ url('/adauga-produs') }}">
                             <input type="hidden" name="product_variation_id" id="variationInput{{$product->id}}" value="{{ $initialVariation->id }}">
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <input type="hidden" name="submited" value="1">
@@ -167,9 +173,8 @@
                             <input type="hidden" name="price_no_tva" id="priceNoTvaInput" value="{{ $initialVariation->price_no_tva }}">
                             <input type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
                             <input type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
-                            {{-- <input type="submit" id="bord" class="{{ empty($initialVariation->price) || $product->is_inactive ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || $product->is_inactive ? 'disabled' : '' }}> --}}
                             <input type="submit" id="bord" class="{{ empty($initialVariation->price) || !$product->active ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || !$product->active ? 'disabled' : '' }}>
-                        </form>
+                        </form> --}}
                     </div>
                     <a href="{{ url('/produse-adaugate') }}" title="Cos" class="flex h-full">
                         <div class="btn-blue-outline rounded-sm text-nowrap w-full h-full flex justify-center align-center font-sm px-16 py-8 line-height-1">
