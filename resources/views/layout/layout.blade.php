@@ -186,7 +186,11 @@
         <!-- third layer -->
         <div class="main-container row justify-between align-center desktop-header">
             <div class="breadcrumbs-container">
-                @include('breadcrumbs')
+                <div class="breadcrumbs_wrapper ">
+                    <div class="breadcrumbs pull-left">
+                        @yield('breadcrumbs')
+                    </div>
+                </div>                
             </div>
             <div id="navigation_wrapper">
                 <div id="navigation">
@@ -198,8 +202,12 @@
         <!-- mobile -->
         @include('mobile-menu')
 
-        <div class="breadcrumbs-mobile-container">
-            @include('breadcrumbs')
+        <div id="breadcrumbsContainerMobile" class="breadcrumbs-container">
+            <div class="breadcrumbs_wrapper ">
+                <div class="breadcrumbs pull-left">
+                    @yield('breadcrumbs')
+                </div>
+            </div>                
         </div>
 
 

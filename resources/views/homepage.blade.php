@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 @endsection
 
+@section('breadcrumbs')
+<ul class="flex gap-xs"><li class="font-xs ellipsis"><a href="/">Acasa</a></li></ul>
+@endsection
+
 
 @section('content')
 

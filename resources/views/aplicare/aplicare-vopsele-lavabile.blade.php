@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="{{ asset('css/aplicare.css') }}">
 @endsection
 
+@section('breadcrumbs')
+
+@endsection
+
 @section('content')
 
 <div class="aplicari relative w-full">
