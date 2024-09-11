@@ -43,6 +43,12 @@ class OrdersController extends Controller
         // Check if the product already exists in the order
         $existingOrderProduct = $order->productVariations()->where('product_variation_id', $productVariation->id)->first();
 
+        // dd($request->all());
+
+        // $requestedQuantity = $request->input('quantity'); 
+        // dd($requestedQuantity);
+
+
         if ($existingOrderProduct) {
             // Update the quantity and price
             $existingOrderProduct->pivot->quantity += $request->input('quantity', 1);
