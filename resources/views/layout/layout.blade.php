@@ -20,6 +20,10 @@
     {{-- @vite('resources/css/app.css') --}}
 </head>
 
+@php
+    use App\Models\Order;
+@endphp
+
 
 <body class="m-0" id="main_body">
 
@@ -151,11 +155,15 @@
                     <a href="{{ url('/produse-adaugate') }}" title="cos">
                         @php
                             // Obține utilizatorul curent autentificat
-                            $user = Auth::user();
-                    
-                            // Verifică dacă există o comandă (coș) activă pentru utilizatorul curent
-                            $activeOrder = $user ? $user->orders()->where('is_paid', false)->first() : null;
-                    
+                             $user = Auth::user();
+
+                            // Verifică dacă există o comandă (coș) activă pentru utilizatorul curent sau pentru utilizatorul neautentificat
+                            if ($user) {
+                                $activeOrder = $user->orders()->where('is_paid', false)->first();
+                            } else {
+                                $activeOrder = Order::where('user_id', null)->where('is_paid', false)->first();
+                            }
+
                             // Obține numărul de produse din coșul activ sau setează la 0 dacă nu există un coș activ
                             $preorder_count = $activeOrder ? $activeOrder->productVariations()->count() : 0;
                         @endphp
