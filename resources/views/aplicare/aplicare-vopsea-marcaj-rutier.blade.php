@@ -5,6 +5,10 @@
 APLICARE VOPSELE MARCAJ <br> RUTIER “EMEX ROUTE”
 @endsection
 
+@section('breadcrumbs')
+<ul class="flex gap-xs"><li class="font-xs"><a href="/produse">Toate Produsele</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="/vopsele-trafic-pardoseala">Vopsele pardoseli si trafic</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Aplicare Vopsea Marcaj</li></ul>
+@endsection
+
 @section('tab-buttons')
     <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid selected" option="0" aria-selected="true" tabindex="0" onclick="openTab(event, 'PregatireProdus')"><span>Pregatire Produs</span></button>
     <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid" option="1" aria-selected="false" tabindex="0" onclick="openTab(event, 'PregatireSuport')"><span>Pregatire Suport</span></button>
