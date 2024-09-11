@@ -54,24 +54,29 @@
                   <h3 class="normal-weight">{{ $product->plain_name }}</h3>
                 </a>
               </td>
+
               <td>
                 <div class="quantity-selector flex">
-                  <form method="POST" action="{{ route('orders.addProduct') }}">
+
+                  <form method="POST" action="{{ route('orders.updateQuantity') }}">
                     @csrf
                     <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
                     <input type="hidden" name="quantity" value="-1">
                     <button type="submit" aria-label="Scade cantitatea">-</button>
                   </form>
+
                   {{ $ordered_product->pivot->quantity }}
-                  {{-- 1 --}}
-                  <form method="POST" action="{{ route('orders.addProduct') }}">
+
+                  <form method="POST" action="{{ route('orders.updateQuantity') }}">
                     @csrf
                     <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
                     <input type="hidden" name="quantity" value="1">
                     <button type="submit" aria-label="Creste cantitatea">+</button>
                   </form>
+
                 </div>
               </td>
+
               <td>{{ $ordered_product->quantity }}</td>
               <td>{{ $ordered_product->colour }}</td>
               <td class="price">{{ number_format($ordered_product->pivot->price, 2) }} Lei</td>

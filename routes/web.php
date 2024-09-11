@@ -138,6 +138,9 @@ Route::get('/produse-adaugate', [OrdersController::class, 'index'])->name('order
 // Ruta pentru adăugarea unui produs în coș
 Route::get('/adauga-produs', [OrdersController::class, 'addProduct'])->name('orders.addProduct');
 
+// Ruta pentru actualizarea cantitatii(pagina pentru cos)
+Route::post('/actualizeaza-cantitatea', [OrdersController::class, 'updateQuantity'])->name('orders.updateQuantity');
+
 // Ruta pentru ștergerea unui produs din coș
 Route::post('/sterge-produs', [OrdersController::class, 'removeProduct'])->name('orders.removeProduct');
 
