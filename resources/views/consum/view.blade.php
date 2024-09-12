@@ -8,6 +8,10 @@
     <li>Calcul consum</li>
 @endsection --}}
 
+@section('breadcrumbs')
+
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/produs.css') }}">
     <link rel="stylesheet" href="{{ asset('css/consum.css') }}">
