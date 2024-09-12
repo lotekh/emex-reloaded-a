@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="{{ asset('css/culori.css') }}">
 @endsection
 
+@section('breadcrumbs')
+<ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="/produse">Toate Produsele</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Cartela Paletar de Culori RAL Vopsele</li></ul>
+@endsection
+
 @section('content')
 <div class="main-container col culori">
     <h2 class="text-center font-400" id="rt">Vopsele si Emailuri - Cartela RAL</h2>

@@ -20,6 +20,10 @@
     {{-- @vite('resources/css/app.css') --}}
 </head>
 
+@php
+    use App\Models\Order;
+@endphp
+
 
 <body class="m-0" id="main_body">
 
@@ -151,11 +155,15 @@
                     <a href="{{ url('/produse-adaugate') }}" title="cos">
                         @php
                             // Obține utilizatorul curent autentificat
-                            $user = Auth::user();
-                    
-                            // Verifică dacă există o comandă (coș) activă pentru utilizatorul curent
-                            $activeOrder = $user ? $user->orders()->where('is_paid', false)->first() : null;
-                    
+                             $user = Auth::user();
+
+                            // Verifică dacă există o comandă (coș) activă pentru utilizatorul curent sau pentru utilizatorul neautentificat
+                            if ($user) {
+                                $activeOrder = $user->orders()->where('is_paid', false)->first();
+                            } else {
+                                $activeOrder = Order::where('user_id', null)->where('is_paid', false)->first();
+                            }
+
                             // Obține numărul de produse din coșul activ sau setează la 0 dacă nu există un coș activ
                             $preorder_count = $activeOrder ? $activeOrder->productVariations()->count() : 0;
                         @endphp
@@ -178,7 +186,11 @@
         <!-- third layer -->
         <div class="main-container row justify-between align-center desktop-header">
             <div class="breadcrumbs-container">
-                @include('breadcrumbs')
+                <div class="breadcrumbs_wrapper ">
+                    <div class="breadcrumbs pull-left">
+                        @yield('breadcrumbs')
+                    </div>
+                </div>                
             </div>
             <div id="navigation_wrapper">
                 <div id="navigation">
@@ -190,8 +202,12 @@
         <!-- mobile -->
         @include('mobile-menu')
 
-        <div class="breadcrumbs-mobile-container">
-            @include('breadcrumbs')
+        <div id="breadcrumbsContainerMobile" class="breadcrumbs-container">
+            <div class="breadcrumbs_wrapper ">
+                <div class="breadcrumbs pull-left">
+                    @yield('breadcrumbs')
+                </div>
+            </div>                
         </div>
 
 

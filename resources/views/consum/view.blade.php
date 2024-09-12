@@ -8,6 +8,10 @@
     <li>Calcul consum</li>
 @endsection --}}
 
+@section('breadcrumbs')
+<ul class="flex gap-xs"><li class="font-xs"><a href="{{ url($category->slug) }}">{{ $category->name }}</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="{{ url($product->slug) }}">{{ ucwords($product->sub_title) }}</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Calcul consum</li></ul>
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/produs.css') }}">
     <link rel="stylesheet" href="{{ asset('css/consum.css') }}">

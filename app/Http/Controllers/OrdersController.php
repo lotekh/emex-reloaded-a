@@ -16,7 +16,12 @@ class OrdersController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
+
+        if ($user) {
+            $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
+        } else {
+            $order = Order::where('user_id', null)->where('is_paid', false)->first();
+        }
 
         if (!$order) {
             $ordered_products = [];
@@ -27,13 +32,15 @@ class OrdersController extends Controller
         return view('products.ordered-products', compact('ordered_products', 'order'));
     }
 
+
     public function addProduct(Request $request)
     {
         $user = Auth::user();
+        $userId = $user ? $user->id : null;
         $productVariation = ProductVariation::findOrFail($request->input('product_variation_id'));
 
         $order = Order::firstOrCreate(
-            ['user_id' => $user->id, 'is_paid' => false],
+            ['user_id' => $userId, 'is_paid' => false],
             ['total' => 0]
         );
 
@@ -42,6 +49,7 @@ class OrdersController extends Controller
 
         // Check if the product already exists in the order
         $existingOrderProduct = $order->productVariations()->where('product_variation_id', $productVariation->id)->first();
+
 
         if ($existingOrderProduct) {
             // Update the quantity and price
@@ -63,6 +71,43 @@ class OrdersController extends Controller
             return $product->pivot->quantity * $product->pivot->price;
         });
         $order->save();
+
+        return redirect()->back();
+    }
+    
+
+        public function updateQuantity(Request $request)
+    {
+        $user = Auth::user();
+        $userId = $user ? $user->id : null;
+        $productVariation = ProductVariation::findOrFail($request->input('product_variation_id'));
+
+        $order = Order::where('user_id', $userId)->where('is_paid', false)->first();
+
+        if ($order) {
+            $existingOrderProduct = $order->productVariations()->where('product_variation_id', $productVariation->id)->first();
+
+            if ($existingOrderProduct) {
+                // Actualizează cantitatea
+                $newQuantity = $existingOrderProduct->pivot->quantity + $request->input('quantity', 1);
+                if ($newQuantity <= 0) {
+                    // Dacă noua cantitate este 0 sau mai mică, șterge produsul din coș
+                    $order->productVariations()->detach($productVariation->id);
+                } else {
+                    // Altfel, actualizează cantitatea și prețul
+                    $existingOrderProduct->pivot->quantity = $newQuantity;
+                    $existingOrderProduct->pivot->price = $productVariation->price;
+                    $existingOrderProduct->pivot->price_no_vat = $productVariation->price * 0.81;
+                    $existingOrderProduct->pivot->save();
+                }
+
+                // Recalculează totalul comenzii
+                $order->total = $order->productVariations->sum(function ($product) {
+                    return $product->pivot->quantity * $product->pivot->price;
+                });
+                $order->save();
+            }
+        }
 
         return redirect()->back();
     }

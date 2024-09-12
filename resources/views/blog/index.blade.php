@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="{{ asset('css/blog.css') }}">
 @endsection
 
+@section('breadcrumbs')
+<ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Blog</li></ul>
+@endsection
+
 @section('content')
 
 <div id="content">

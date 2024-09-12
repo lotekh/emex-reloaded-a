@@ -569,11 +569,17 @@
   #homepage-header {
     display: block;
   }
+  #breadcrumbsContainerMobile {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1024px) {
   #homepage-header {
     display: none;
+  }
+  #breadcrumbsContainerMobile {
+    display: block;
   }
 }
 

@@ -5,6 +5,10 @@
 <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 @endsection
 
+@section('breadcrumbs')
+<ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="/produse">Produse</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis"><a href="#">Produse dorite</a></li></ul>
+@endsection
+
 @section('content')
 <div class="main-container mb-32" id="wishlist-page">
     <h1>Produse adaugate in wishlist</h1>
