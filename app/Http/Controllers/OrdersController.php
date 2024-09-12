@@ -119,7 +119,11 @@ class OrdersController extends Controller
         // dd('Method accessed');
 
         $user = Auth::user();
-        $order = $user->orders()->where('is_paid', false)->first();
+        if ($user) {
+            $order = $user->orders()->where('is_paid', false)->first();
+        } else {
+            $order = Order::where('user_id', null)->where('is_paid', false)->first();
+        }
         
         if ($order) {
             $orderProduct = $order->productVariations()->wherePivot('id', $request->input('order_product_id'))->firstOrFail();
@@ -222,7 +226,14 @@ class OrdersController extends Controller
     public function emptyCart()
     {
         $user = Auth::user();
-        $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
+
+        if ($user) {
+            // Dacă utilizatorul este autentificat, căutăm comanda lui
+            $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
+        } else {
+            // Dacă utilizatorul nu este autentificat, căutăm comanda fără user_id
+            $order = Order::where('user_id', null)->where('is_paid', false)->first();
+        }
 
         if ($order) {
             $order->productVariations()->detach();
@@ -252,14 +263,22 @@ class OrdersController extends Controller
         $user = auth()->user();
         // Determinăm dacă utilizatorul este oaspete (guest)
         $isGuest = auth()->guest();
-        $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
+
+        if ($user) {
+            // Dacă utilizatorul este autentificat, căutăm comanda lui
+            $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
+        } else {
+            // Dacă utilizatorul nu este autentificat, căutăm comanda fără user_id
+            $order = Order::where('user_id', null)->where('is_paid', false)->first();
+        }
+        
         $countries = Country::all();
         $counties = County::all();
         // Fetch ordered products
         $ordered_products = $order->productVariations()->with('product')->get();
 
 
-        if ($order) {
+        if ($order && $user) {
             // Preluăm informațiile de facturare și livrare din profilul utilizatorului
             $order->company_information = is_string($user->company_information) 
                 ? json_decode($user->company_information, true) 
