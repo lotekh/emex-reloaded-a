@@ -37,9 +37,11 @@
 
         {{-- <form method="GET" class="w-full col px-8 product-details-container" action="{{ url('/adauga-produs') }}"> --}}
         
+        
             <div class="w-full col px-8 product-details-container">
-            <div class="col gap-xl">
                 <form method="GET" action="{{ url('/adauga-produs') }}">
+            <div class="col gap-xl">
+                {{-- <form id="form_adauga_produs" method="GET" action="{{ url('/adauga-produs') }}"> --}}
                     <div class="top-container">
                         <div class="col justify-between">
                             <div>
@@ -141,7 +143,7 @@
                                 @endif
 
 
-                                <form method="GET" action="{{ url('/adauga-produs') }}">
+                                
                                     <input type="hidden" name="product_variation_id" id="variationInput{{$product->id}}" value="{{ $initialVariation->id }}">
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <input type="hidden" name="submited" value="1">
@@ -156,9 +158,11 @@
                                         <label id="choose-quantity" class="section-info">Selecteaza cantitate</label>
                                         <input class="w-full" aria-labelledby="choose-quantity" min="1" pattern="[0-9]+" type="number" name="quantity" value="1" />
                                     </div>
+
                                     
-                                    <input type="submit" id="bord" class="{{ empty($initialVariation->price) || !$product->active ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || !$product->active ? 'disabled' : '' }}>
-                                </form>
+                                    
+                                    
+                                
                                 
                                 
                             </div>
@@ -168,17 +172,7 @@
 
                 <div class="col flex-md gap-xs w-full">
                     <div class="w-full h-full">
-                        {{-- <form method="GET" action="{{ url('/adauga-produs') }}">
-                            <input type="hidden" name="product_variation_id" id="variationInput{{$product->id}}" value="{{ $initialVariation->id }}">
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <input type="hidden" name="submited" value="1">
-                            <input type="hidden" name="name" value="{{ $product->plain_name }}">
-                            <input type="hidden" name="price" id="priceInput{{ $product->id }}" value="{{ $initialVariation->price }}">
-                            <input type="hidden" name="price_no_tva" id="priceNoTvaInput" value="{{ $initialVariation->price_no_tva }}">
-                            <input type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
-                            <input type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
-                            <input type="submit" id="bord" class="{{ empty($initialVariation->price) || !$product->active ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || !$product->active ? 'disabled' : '' }}>
-                        </form> --}}
+                        <input type="submit" id="adauga_produs_submit" class="{{ empty($initialVariation->price) || !$product->active ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || !$product->active ? 'disabled' : '' }}>
                     </div>
                     <a href="{{ url('/produse-adaugate') }}" title="Cos" class="flex h-full">
                         <div class="btn-blue-outline rounded-sm text-nowrap w-full h-full flex justify-center align-center font-sm px-16 py-8 line-height-1">
@@ -208,6 +202,7 @@
                     
                 </div>
             </div>
+            </form>
 
             <div class="col">
                 <p class="text-center mt-16">
