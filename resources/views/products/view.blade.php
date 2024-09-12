@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
 @endsection
 
+@section('breadcrumbs')
+<ul class="flex gap-xs"><li class="font-xs"><a href="/produse">Produse</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="{{$categories_products->unique('id')->first()->slug}}">{{$categories_products->unique('id')->first()->name}}</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">{{ ucwords($product->sub_title) }}</li></ul>
+@endsection
+
 @section('content')
 @php
     $averageRating = $product->reviews->avg('rating') ?? 0;
