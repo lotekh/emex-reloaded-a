@@ -1,15 +1,3 @@
-{{-- @php
-    $company_name = $order['billing_type'] ? $order['organization_name'] : $order['person_last_name'] . ' ' . $order['person_first_name'];
-    $order_no = 'RTCH-N-' . $order['identifier'];
-    $amount = number_format($order['total'], 2, '.', '');
-
-    if ($order['billing_type']) {
-        $plata_url = url('/secure-payment') . '?guid=' . $order['guid'] . '&firstName=' . $order['contact_person_first_name'] . '&lastName=' . $order['contact_person_last_name'] . '&companyName=' . $company_name . '&email=' . $order['organization_email'] . '&orderNo=' . $order_no . '&amount=' . $amount;
-    } else {
-        $plata_url = url('/secure-payment') . '?guid=' . $order['guid'] . '&firstName=' . $order['person_first_name'] . '&lastName=' . $order['person_last_name'] . '&email=' . $order['person_email'] . '&orderNo=' . $order_no . '&amount=' . $amount;
-    }
-@endphp --}}
-
 <style>
     @page {
      margin: 0px;
@@ -230,7 +218,11 @@
         </td>
         <td class="col-6 company-name">
             @if ($order['billing_type'] == 0)
-                <p>{{ $order->user->first_name . ' ' . $order->user->last_name }}</p>
+                @if ($order->user)
+                    <p>{{ $order->user->first_name . ' ' . $order->user->last_name }}</p>
+                @else
+                    <p>Informații client nelogat</p>
+                @endif
             @else
                 <p>{{ $order['organization_name'] }}</p>
             @endif
@@ -326,7 +318,7 @@
     <tr style="margin: 0">
         <td colspan="6" style="text-align: right; padding: 10px 5px" class="table-borders-none">
             @if($order['payment_method'] != 'ramburs')
-            <a href="{{ $plata_url }}">
+            <a href="{{ url('/') }}">
                 <img src="{{ asset('resources/images/Buton-Plata-Online.png') }}">
             </a>
             @endif

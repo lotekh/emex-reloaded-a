@@ -87,7 +87,7 @@
                             <button id="descarca_proforma" class="btn btn-blue rounded-sm">Exporta ca PDF</button>
                         </a>
                         @if ($order->payment_method != 'ramburs')
-                            <a href="{{ $url }}">
+                            <a href="{{ url('/') }}">
                                 <button id="pay_now_btn" class="btn btn-blue rounded-sm" style="background-color: #19AE0C">PLATESTE ACUM</button>
                             </a>
                         @endif

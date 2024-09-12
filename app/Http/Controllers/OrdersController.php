@@ -149,12 +149,12 @@ class OrdersController extends Controller
         $orderId = $request->query('order_id');  
         $user = auth()->user();
 
-        if (!$user) {
-            return response()->json(['error' => 'User not authenticated'], 401);
+        // Obține comanda activă fie pentru utilizatorul logat, fie pentru utilizatorul nelogat
+        if ($user) {
+            $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
+        } else {
+            $order = Order::where('user_id', null)->where('is_paid', false)->first();
         }
-
-        // $order = Order::where('user_id', $user->id)->where('id', $orderId)->where('is_paid', false)->first();
-        $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
 
         if (!$order) {
             return response()->json(['error' => 'No active order found'], 404);
@@ -308,10 +308,18 @@ class OrdersController extends Controller
 
         // Preluăm utilizatorul și comanda curentă
         $user = auth()->user();
-        $order = Order::where('user_id', $user->id)
-                    ->where('id', $request->input('order_id'))
-                    ->where('is_paid', false)
-                    ->first();
+
+        if ($user) {
+            $order = Order::where('user_id', $user->id)
+                        ->where('id', $request->input('order_id'))
+                        ->where('is_paid', false)
+                        ->first();
+        } else {
+            $order = Order::where('user_id', null)
+                        ->where('id', $request->input('order_id'))
+                        ->where('is_paid', false)
+                        ->first();
+        }
 
         if ($order) {
             // Inițializăm variabile pentru a stoca ID-ul județului și alte informații
@@ -416,13 +424,15 @@ class OrdersController extends Controller
         }
 
         // Verifică dacă utilizatorul are permisiunea de a vedea comanda
-        $user = Auth::user();
-        if ($user->id !== $order->user_id) {
-            abort(403, 'Acces interzis.');
-        }
+        // if ($order->user_id !== null && (!$user || $user->id !== $order->user_id)) {
+        //     abort(403, 'Acces interzis.');
+        // }
 
-        // $orders_products = $order->productVariations;
         $orders_products = $order->productVariations()->withPivot('quantity', 'price', 'price_no_vat')->get();
+
+        $county = 0;
+        $countyName = 0;
+        $city = 0;
 
         if ($order->delivery_type == 0) {  //livrare prin curier
             // $county = $order->deliveryCounty->name ;
