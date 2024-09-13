@@ -126,7 +126,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Telefon <span class="text-red">*</span></label>
-                                <input class="form-control w-full" inputmode="numeric" type="tel" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}" placeholder="Ex: 0721-123-456" id="person_phone" name="person_phone" value="{{ $order->company_information->person_phone ?? '' }}" required>
+                                <input class="form-control w-full" inputmode="numeric" type="tel" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" id="person_phone" name="person_phone" value="{{ $order->company_information->person_phone ?? '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Email <span class="text-red">*</span></label>
@@ -176,7 +176,7 @@
                         <div class="grid grid-2 gap-lg p-8">
                             <div class="form-group">
                                 <label>Telefon <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="organization_phone" name="organization_phone" value="{{ $order->company_information->organization_phone ?? '' }}">
+                                <input class="form-control w-full" type="tel" id="organization_phone" name="organization_phone" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" value="{{ $order->company_information->organization_phone ?? '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Email <span class="text-red">*</span></label>
@@ -284,7 +284,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Telefon <span class="text-red">*</span></label>
-                                    <input class="form-control w-full" type="text" id="delivery_phone" name="delivery_phone" value="{{ $order->delivery_information->delivery_phone ?? '' }}">
+                                    <input class="form-control w-full" type="tel" id="delivery_phone" name="delivery_phone" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" value="{{ $order->delivery_information->delivery_phone ?? '' }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Email <span class="text-red">*</span></label>
