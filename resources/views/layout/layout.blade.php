@@ -149,7 +149,7 @@
                             </svg>
                         </div>
                         <div class="circle flex justify-center align-center">
-                            {{ $wishlist_products_count }}
+                            {{ app('App\Http\Controllers\WishlistController')->getWishlistCount() }}
                         </div>
                         <span class="label">Favorite</span>
                     </a>

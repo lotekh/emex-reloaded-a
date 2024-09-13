@@ -127,6 +127,24 @@ class WishlistController extends Controller
         }
     }
 
+        public function getWishlistCount()
+    {
+        $user = auth()->user();
+        $wishlistCount = 0;
+
+        if ($user) {
+            // Dacă utilizatorul este logat, numără produsele din wishlist-ul din baza de date
+            $wishlistCount = WishlistItem::where('user_id', $user->id)->count();
+        } else {
+            // Dacă utilizatorul nu este logat, numără produsele din wishlist-ul din sesiune
+            $wishlist = session()->get('wishlist', []);
+            $wishlistCount = count($wishlist);
+        }
+
+        return $wishlistCount;
+    }
+
+
 
 }
 

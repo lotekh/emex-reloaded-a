@@ -103,6 +103,16 @@
                         </div>
                     @endif --}}
 
+                    @if ($isGuest)
+                        <div class="guest-row">
+                            Ai deja cont?
+                            <button id="auth_lightbox_trigger2" class="link" role="button" tabindex="0" aria-label="Autentificare">
+                                Autentificare
+                            </button>
+                        </div>
+                    @endif
+
+
                     {{-- Persoana fizica --}}
                     <div id="person-billing-container" class="mt-32 {{ optional(auth()->user())->billing_type == 0 ? '' : 'hidden' }}">
                         <div class="grid grid-4 gap-lg p-8">
@@ -631,6 +641,13 @@
                     });
             });
         });
+    });
+
+    document.getElementById('auth_lightbox_trigger2').addEventListener('click', function() {
+        var authContainer = document.querySelector('.autentificare-1');
+        authContainer.style.opacity = '1';
+        authContainer.style.display = 'inline-block';
+        document.getElementById('auth-lightbox').style.display = 'flex';
     });
 </script>
 
