@@ -6,67 +6,128 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\WishlistItem;
 use Illuminate\Http\Request;
+use App\Models\Product;
+
 
 
 class WishlistController extends Controller
 {
 
     public function index()
-{
-    // Obține utilizatorul autentificat
-    $user = Auth::user();
-    
-    // Obține produsele din wishlist pentru utilizatorul curent, inclusiv relațiile necesare
-    $products = WishlistItem::where('user_id', $user->id)
-        ->with(['product.variations', 'product.reviews']) // Încarcă și relațiile variations și reviews
-        ->get()
-        ->pluck('product');
-    
-    // Returnează view-ul cu produsele din wishlist
-    return view('products.wishlist', compact('products'));
-}
+    {
+        $user = Auth::user();
+        $products = collect();
+
+        if ($user) {
+            // Obține produsele din wishlist din baza de date pentru utilizatorul logat
+            $products = WishlistItem::where('user_id', $user->id)
+                ->with(['product.variations', 'product.reviews']) // Încarcă și relațiile variations și reviews
+                ->get()
+                ->pluck('product');
+        } else {
+            // Obține produsele din wishlist din sesiune pentru utilizatorul nelogat
+            $wishlist = session()->get('wishlist', []);
+            if (!empty($wishlist)) {
+                $products = Product::whereIn('id', $wishlist)
+                    ->with(['variations', 'reviews'])
+                    ->get();
+            }
+        }
+
+        return view('products.wishlist', compact('products'));
+    }
+
 
 
     public function remove(Request $request)
-{
-    $userId = auth()->id(); // ID-ul utilizatorului curent
-    $productId = $request->input('product_id');
+    {
+        $user = auth()->user();
+        $productId = $request->input('product_id');
 
-    // Verifică dacă produsul este în wishlist
-    $existingItem = WishlistItem::where('user_id', $userId)
-        ->where('product_id', $productId)
-        ->first();
+        if ($user) {
+            $existingItem = WishlistItem::where('user_id', $user->id)
+                ->where('product_id', $productId)
+                ->first();
 
-    if ($existingItem) {
-        // Elimină produsul din wishlist
-        $existingItem->delete();
+            if ($existingItem) {
+                $existingItem->delete();
+            }
+        } else {
+            $wishlist = session()->get('wishlist', []);
+            if (($key = array_search($productId, $wishlist)) !== false) {
+                unset($wishlist[$key]);
+                session()->put('wishlist', $wishlist);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Produsul a fost eliminat din favorite.');
     }
 
-    return redirect()->back()->with('success', 'Produsul a fost eliminat din favorite.');
-}
 
 
     public function store(Request $request)
     {
-        // dd(12);
-        $userId = auth()->id(); // ID-ul utilizatorului curent
+        $user = auth()->user();
         $productId = $request->input('product_id');
 
-        // Verifică dacă produsul nu este deja în wishlist
-        $existingItem = WishlistItem::where('user_id', $userId)
-            ->where('product_id', $productId)
-            ->first();
+        if ($user) {
+            $userId = $user->id;
 
-        if (!$existingItem) {
-            // Adaugă produsul în wishlist
-            WishlistItem::create([
-                'user_id' => $userId,
-                'product_id' => $productId,
-            ]);
+            // Verifică dacă produsul nu este deja în wishlist
+            $existingItem = WishlistItem::where('user_id', $userId)
+                ->where('product_id', $productId)
+                ->first();
+
+            if (!$existingItem) {
+                // Adaugă produsul în wishlist
+                WishlistItem::create([
+                    'user_id' => $userId,
+                    'product_id' => $productId,
+                ]);
+            }
+        } else {
+            // Dacă utilizatorul nu este autentificat, salvează în sesiune
+            $wishlist = session()->get('wishlist', []);
+
+            if (!in_array($productId, $wishlist)) {
+                $wishlist[] = $productId;
+                session()->put('wishlist', $wishlist);
+            }
         }
 
         return redirect()->back()->with('success', 'Produsul a fost adăugat la favorite.');
     }
+
+    public function moveSessionWishlistToDatabase()
+    {
+        $user = auth()->user();
+        if (!$user) {
+            return;
+        }
+
+        $wishlist = session()->get('wishlist', []);
+        if (!empty($wishlist)) {
+            foreach ($wishlist as $productId) {
+                // Verifică dacă produsul nu este deja în wishlist-ul din baza de date
+                $existingItem = WishlistItem::where('user_id', $user->id)
+                    ->where('product_id', $productId)
+                    ->first();
+
+                if (!$existingItem) {
+                    // Adaugă produsul în wishlist
+                    WishlistItem::create([
+                        'user_id' => $user->id,
+                        'product_id' => $productId,
+                    ]);
+                }
+            }
+
+            // Golește wishlist-ul din sesiune
+            session()->forget('wishlist');
+        }
+    }
+
+
 }
 
 
