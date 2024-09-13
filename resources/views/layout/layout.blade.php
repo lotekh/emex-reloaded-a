@@ -105,13 +105,15 @@
                             Facturare
                         </a>
 
-                       
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+
+                        <a href="{{ route('logout') }}" id="logoutButton" title="Iesire din cont"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                         Iesire din cont
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
-                            <button type="submit">
-                                Iesire din cont
-                            </button>
                         </form>
+                     
 
 
                        

@@ -706,3 +706,18 @@
   outline: none;
   color: var(--blue);
 }
+
+#logoutButton {
+  padding: 8px;
+  /* color: var(--grey); */
+  color: var(--grey) !important;
+  text-align: center;
+  padding: 8px;
+  font-size: 1em;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
