@@ -68,9 +68,9 @@
 
 <div class="main-container">
     <div class="container" style="display: flex; flex-direction: column; align-items: center">
-        @if ($order->payment_method == 'card')
+        {{-- @if ($order->payment_method == 'card')
             <div class="counter-container">Vei fi redirecționat intr-o noua pagina catre portalul de plata in <span id="redirect_counter">5</span> secunde.</div>
-        @endif
+        @endif --}}
         @if ($valid_link == 1)
             <div class="flex justify-center w-full">
                 <div style="width: 900px" class="flex col align-start">
@@ -87,7 +87,7 @@
                             <button id="descarca_proforma" class="btn btn-blue rounded-sm">Exporta ca PDF</button>
                         </a>
                         @if ($order->payment_method != 'ramburs')
-                            <a href="{{ $url }}">
+                            <a href="{{ url('/') }}">
                                 <button id="pay_now_btn" class="btn btn-blue rounded-sm" style="background-color: #19AE0C">PLATESTE ACUM</button>
                             </a>
                         @endif

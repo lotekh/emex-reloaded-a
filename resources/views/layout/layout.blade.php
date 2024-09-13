@@ -105,13 +105,15 @@
                             Facturare
                         </a>
 
-                       
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+
+                        <a href="{{ route('logout') }}" id="logoutButton" title="Iesire din cont"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                         Iesire din cont
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
-                            <button type="submit">
-                                Iesire din cont
-                            </button>
                         </form>
+                     
 
 
                        
@@ -147,7 +149,7 @@
                             </svg>
                         </div>
                         <div class="circle flex justify-center align-center">
-                            {{ $wishlist_products_count }}
+                            {{ app('App\Http\Controllers\WishlistController')->getWishlistCount() }}
                         </div>
                         <span class="label">Favorite</span>
                     </a>
@@ -202,7 +204,7 @@
         <!-- mobile -->
         @include('mobile-menu')
 
-        <div id="breadcrumbsContainerMobile" class="breadcrumbs-container">
+        <div id="breadcrumbsContainerMobile" class="breadcrumbs-mobile-container">
             <div class="breadcrumbs_wrapper ">
                 <div class="breadcrumbs pull-left">
                     @yield('breadcrumbs')
@@ -610,9 +612,15 @@
                 <ul class="dropdown-menu" id="produse-menu">
                     <li id="apmim_mob"><a href="{{ url('/produse') }}" title="toate produsele">Toate Produsele</a></li>
 
-                    {{-- de obtinut $categories si iterat prin ele --}}
-                    <a href="{{ url('/') }}" title=" categoria 1"> categoria 1 </a>
-                    <a href="{{ url('/') }}" title=" categoria 1"> categoria 2 </a>
+                    @foreach ($categories as $ind => $category)
+                    <div>
+                        <li>
+                            <a href="{{ url($category->slug) }}">
+                                {{ $category->name }}
+                            </a>
+                        </li>
+                    </div>
+                    @endforeach
 
                 </ul>
             </div>
@@ -635,9 +643,15 @@
                 <header>Consum</header>
                 <ul class="dropdown-menu" id="consum-menu">
 
-                    {{-- de obtinut $categories si iterat prin ele --}}
-                    <li><a href="{{ url('/') }}" title=" categoria 1"> categoria 1 </a></li>
-                    <li><a href="{{ url('/') }}" title=" categoria 1"> categoria 2 </a></li>
+                    @foreach ($categories as $ind => $category)
+                    <div>
+                        <li>
+                            <a href="{{ route('consum.index', ['category' => $category->slug]) }}">
+                                {{ $category->name }}
+                            </a>
+                        </li>
+                    </div>
+                @endforeach
                     
                 </ul>
             </div>
@@ -671,8 +685,6 @@
                 @if (Auth::check())
                     <a href="{{ url('/contul-meu') }}" title="Setari cont">Setari cont</a>
                     <a href="{{ url('/wishlist') }}" title="Favorite">Favorite</a>
-                    {{-- <a href="{{ url('/contul-meu?page=istoric') }}" title="Istoric">Istoric</a>
-                    <a href="{{ url('/contul-meu#facturare') }}" title="Facturare">Facturare</a> --}}
                     <a href="{{ url('/contul-meu') }}" title="Istoric">Istoric</a>
                     <a href="{{ url('/contul-meu') }}" title="Facturare">Facturare</a>
                     <a href="{{ url('/logout') }}" title="Iesire">Iesire</a>

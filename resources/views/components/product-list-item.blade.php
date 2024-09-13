@@ -20,6 +20,7 @@
     }
 @endphp
 
+<form method="GET" action="{{ url('/adauga-produs') }}">
 <div class="relative w-full col">
     <div class="product-list-item mb-16 col w-full">
         <div class="col flex-md">
@@ -115,3 +116,4 @@
         </div>
     </div>
 </div>
+</form>

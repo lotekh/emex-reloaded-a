@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="{{ asset('css/order.css') }}">
 @endsection
 
+@section('breadcrumbs')
+<ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="/produse">Produse</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis"><a href="#">Produse adaugate</a></li></ul>
+@endsection
+
 @section('content')
 <div class="main-container" id="order-page">
     <form method="POST" action="{{ url('/save-order') }}" id="order_form">
@@ -78,17 +82,18 @@
                 <div class="inputs mb-32">
                     <div class="flex justify-center w-full">
                         <div class="checkboxes-row">
-                            <button type="button" class="checkbox flex justify-between" id="organization-billing" data-checked="false">
+                            <button type="button" class="checkbox flex justify-between" id="organization-billing" data-checked="{{ optional(auth()->user())->billing_type == 1 ? 'true' : 'false' }}">
                                 <p class="title">Persoana Juridica</p>
                                 <img src="{{ asset('resources/new_design/icons/persoana-juridica.svg') }}">
                             </button>
-                            <button type="button" class="checkbox flex justify-between" id="person-billing" data-checked="false">
+                            <button type="button" class="checkbox flex justify-between" id="person-billing" data-checked="{{ optional(auth()->user())->billing_type == 0 ? 'true' : 'false' }}">
                                 <p class="title">Persoana Fizica</p>
                                 <img src="{{ asset('resources/new_design/icons/persoana-fizica.svg') }}">
                             </button>
                         </div>
                         <input type="hidden" name="billing_type" value="{{ $order->billing_type }}">
                     </div>
+
                     {{-- @if ($isGuest)
                         <div class="guest-row">
                             Ai deja cont?
@@ -98,8 +103,18 @@
                         </div>
                     @endif --}}
 
+                    @if ($isGuest)
+                        <div class="guest-row">
+                            Ai deja cont?
+                            <button id="auth_lightbox_trigger2" class="link" role="button" tabindex="0" aria-label="Autentificare">
+                                Autentificare
+                            </button>
+                        </div>
+                    @endif
+
+
                     {{-- Persoana fizica --}}
-                    <div id="person-billing-container" class="mt-32 {{ $order->billing_type == 0 ? '' : 'hidden' }}">
+                    <div id="person-billing-container" class="mt-32 {{ optional(auth()->user())->billing_type == 0 ? '' : 'hidden' }}">
                         <div class="grid grid-4 gap-lg p-8">
                             <div class="form-group">
                                 <label>Nume <span class="text-red">*</span></label>
@@ -111,7 +126,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Telefon <span class="text-red">*</span></label>
-                                <input class="form-control w-full" inputmode="numeric" type="tel" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}" placeholder="Ex: 0721-123-456" id="person_phone" name="person_phone" value="{{ $order->company_information->person_phone ?? '' }}" required>
+                                <input class="form-control w-full" inputmode="numeric" type="tel" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" id="person_phone" name="person_phone" value="{{ $order->company_information->person_phone ?? '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Email <span class="text-red">*</span></label>
@@ -147,7 +162,7 @@
                     </div>
 
                     {{-- {Persoana juridica} --}}
-                    <div id="organization-billing-container" class="mt-32 {{ $order->billing_type == 1 ? '' : 'hidden' }}">
+                    <div id="organization-billing-container" class="mt-32 {{ optional(auth()->user())->billing_type == 1 ? '' : 'hidden' }}">
                         <div class="grid grid-2 gap-lg p-8">
                             <div class="form-group">
                                 <label>Nume societate <span class="text-red">*</span></label>
@@ -161,7 +176,7 @@
                         <div class="grid grid-2 gap-lg p-8">
                             <div class="form-group">
                                 <label>Telefon <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="organization_phone" name="organization_phone" value="{{ $order->company_information->organization_phone ?? '' }}">
+                                <input class="form-control w-full" type="tel" id="organization_phone" name="organization_phone" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" value="{{ $order->company_information->organization_phone ?? '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Email <span class="text-red">*</span></label>
@@ -269,7 +284,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Telefon <span class="text-red">*</span></label>
-                                    <input class="form-control w-full" type="text" id="delivery_phone" name="delivery_phone" value="{{ $order->delivery_information->delivery_phone ?? '' }}">
+                                    <input class="form-control w-full" type="tel" id="delivery_phone" name="delivery_phone" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" value="{{ $order->delivery_information->delivery_phone ?? '' }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Email <span class="text-red">*</span></label>
@@ -626,6 +641,13 @@
                     });
             });
         });
+    });
+
+    document.getElementById('auth_lightbox_trigger2').addEventListener('click', function() {
+        var authContainer = document.querySelector('.autentificare-1');
+        authContainer.style.opacity = '1';
+        authContainer.style.display = 'inline-block';
+        document.getElementById('auth-lightbox').style.display = 'flex';
     });
 </script>
 

@@ -119,7 +119,11 @@ class OrdersController extends Controller
         // dd('Method accessed');
 
         $user = Auth::user();
-        $order = $user->orders()->where('is_paid', false)->first();
+        if ($user) {
+            $order = $user->orders()->where('is_paid', false)->first();
+        } else {
+            $order = Order::where('user_id', null)->where('is_paid', false)->first();
+        }
         
         if ($order) {
             $orderProduct = $order->productVariations()->wherePivot('id', $request->input('order_product_id'))->firstOrFail();
@@ -145,12 +149,12 @@ class OrdersController extends Controller
         $orderId = $request->query('order_id');  
         $user = auth()->user();
 
-        if (!$user) {
-            return response()->json(['error' => 'User not authenticated'], 401);
+        // Obține comanda activă fie pentru utilizatorul logat, fie pentru utilizatorul nelogat
+        if ($user) {
+            $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
+        } else {
+            $order = Order::where('user_id', null)->where('is_paid', false)->first();
         }
-
-        // $order = Order::where('user_id', $user->id)->where('id', $orderId)->where('is_paid', false)->first();
-        $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
 
         if (!$order) {
             return response()->json(['error' => 'No active order found'], 404);
@@ -222,7 +226,14 @@ class OrdersController extends Controller
     public function emptyCart()
     {
         $user = Auth::user();
-        $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
+
+        if ($user) {
+            // Dacă utilizatorul este autentificat, căutăm comanda lui
+            $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
+        } else {
+            // Dacă utilizatorul nu este autentificat, căutăm comanda fără user_id
+            $order = Order::where('user_id', null)->where('is_paid', false)->first();
+        }
 
         if ($order) {
             $order->productVariations()->detach();
@@ -252,14 +263,22 @@ class OrdersController extends Controller
         $user = auth()->user();
         // Determinăm dacă utilizatorul este oaspete (guest)
         $isGuest = auth()->guest();
-        $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
+
+        if ($user) {
+            // Dacă utilizatorul este autentificat, căutăm comanda lui
+            $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
+        } else {
+            // Dacă utilizatorul nu este autentificat, căutăm comanda fără user_id
+            $order = Order::where('user_id', null)->where('is_paid', false)->first();
+        }
+        
         $countries = Country::all();
         $counties = County::all();
         // Fetch ordered products
         $ordered_products = $order->productVariations()->with('product')->get();
 
 
-        if ($order) {
+        if ($order && $user) {
             // Preluăm informațiile de facturare și livrare din profilul utilizatorului
             $order->company_information = is_string($user->company_information) 
                 ? json_decode($user->company_information, true) 
@@ -289,10 +308,18 @@ class OrdersController extends Controller
 
         // Preluăm utilizatorul și comanda curentă
         $user = auth()->user();
-        $order = Order::where('user_id', $user->id)
-                    ->where('id', $request->input('order_id'))
-                    ->where('is_paid', false)
-                    ->first();
+
+        if ($user) {
+            $order = Order::where('user_id', $user->id)
+                        ->where('id', $request->input('order_id'))
+                        ->where('is_paid', false)
+                        ->first();
+        } else {
+            $order = Order::where('user_id', null)
+                        ->where('id', $request->input('order_id'))
+                        ->where('is_paid', false)
+                        ->first();
+        }
 
         if ($order) {
             // Inițializăm variabile pentru a stoca ID-ul județului și alte informații
@@ -397,13 +424,15 @@ class OrdersController extends Controller
         }
 
         // Verifică dacă utilizatorul are permisiunea de a vedea comanda
-        $user = Auth::user();
-        if ($user->id !== $order->user_id) {
-            abort(403, 'Acces interzis.');
-        }
+        // if ($order->user_id !== null && (!$user || $user->id !== $order->user_id)) {
+        //     abort(403, 'Acces interzis.');
+        // }
 
-        // $orders_products = $order->productVariations;
         $orders_products = $order->productVariations()->withPivot('quantity', 'price', 'price_no_vat')->get();
+
+        $county = 0;
+        $countyName = 0;
+        $city = 0;
 
         if ($order->delivery_type == 0) {  //livrare prin curier
             // $county = $order->deliveryCounty->name ;
