@@ -67,29 +67,6 @@ use Illuminate\Support\Str;
         </div>
     </li>
 
-    {{-- <li class="dropdown products-dropdown">
-        <span class="dropdown-toggle menuitm" data-toggle="dropdown">
-            Aplicare
-            <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
-        </span>
-        
-        <div class="dropdown-menu">
-            <ul class="category-wrapper">
-                <li><a href="{{ url('/aplicare-vopsele-lavabile') }}" title="Aplicare vopsele lavabile">Vopsele Lavabile</a></li>
-                <li class="blue-item"><a href="{{ url('/aplicare-email') }}" title="Aplicare email">Emailuri Decorative</a></li>
-                <li><a href="{{ url('/aplicare-lacuri-alchidice') }}" title="Aplicare lacuri alchidice">Lacuri Monocomponente</a></li>
-                <li class="blue-item"><a href="{{ url('/aplicare-tencuiala-decorativa') }}" title="Tencuieli Decorative">Tencuieli Decorative</a></li>
-                <li><a href="{{ url('/aplicare-vopsele-grunduri-bicomponente') }}" title="Vopsele Bicomponente">Vopsele Bicomponente</a></li>
-                <li class="blue-item"><a href="{{ url('/aplicare-vopsele-pardoseala') }}" title="Vopsele Pardoseala">Vopsele Pardoseala</a></li>
-                <li><a href="{{ url('/aplicare-vopsea-marcaj-rutier') }}" title="Vopsea Marcaj Rutier">Vopsea Marcaj Rutier</a></li>
-                <li class="blue-item"><a href="{{ url('/aplicare-pardoseli-autonivelante-bicomponente') }}" title="Pardoseli Bicomponente">Pardoseli Bicomponente</a></li>
-                <li><a href="{{ url('/aplicare-membrana-hidroizolanta-poliuretanica') }}" title="Membrana Poliuteranica">Membrana Poliuteranica</a></li>
-                <li class="blue-item"><a href="{{ url('/aplicare-vopsele-hidrosolubile') }}" title="Membrana Poliuteranica">Vopsele Hidrosolubile</a></li>
-            </ul>
-        </div>
-
-    </li> --}}
-
     <li class="dropdown products-dropdown">
         <span class="dropdown-toggle menuitm" data-toggle="dropdown">
             Aplicare
@@ -191,23 +168,6 @@ use Illuminate\Support\Str;
         </div>
     </li>
 
-    {{-- <li class="dropdown products-dropdown">
-        <span class="dropdown-toggle menuitm" data-toggle="dropdown">
-            Culori
-            <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
-        </span>
-        <div class="dropdown-menu">
-            <ul class="category-wrapper">
-                @foreach ($categories as $ind => $category)
-                    <div class="products-dropdown-categories{{ $ind % 2 > 0 ? ' blue-item' : '' }}">
-                        <a href="{{ url($category->slug) }}">
-                            {{ $category->name }}
-                        </a>
-                    </div>
-                @endforeach
-            </ul>
-        </div>
-    </li> --}}
 
     <li class="dropdown products-dropdown">
         <a href="{{ url('/blog') }}" title="Blog">
