@@ -82,17 +82,18 @@
                 <div class="inputs mb-32">
                     <div class="flex justify-center w-full">
                         <div class="checkboxes-row">
-                            <button type="button" class="checkbox flex justify-between" id="organization-billing" data-checked="false">
+                            <button type="button" class="checkbox flex justify-between" id="organization-billing" data-checked="{{ optional(auth()->user())->billing_type == 1 ? 'true' : 'false' }}">
                                 <p class="title">Persoana Juridica</p>
                                 <img src="{{ asset('resources/new_design/icons/persoana-juridica.svg') }}">
                             </button>
-                            <button type="button" class="checkbox flex justify-between" id="person-billing" data-checked="false">
+                            <button type="button" class="checkbox flex justify-between" id="person-billing" data-checked="{{ optional(auth()->user())->billing_type == 0 ? 'true' : 'false' }}">
                                 <p class="title">Persoana Fizica</p>
                                 <img src="{{ asset('resources/new_design/icons/persoana-fizica.svg') }}">
                             </button>
                         </div>
                         <input type="hidden" name="billing_type" value="{{ $order->billing_type }}">
                     </div>
+
                     {{-- @if ($isGuest)
                         <div class="guest-row">
                             Ai deja cont?
@@ -103,7 +104,7 @@
                     @endif --}}
 
                     {{-- Persoana fizica --}}
-                    <div id="person-billing-container" class="mt-32 {{ $order->billing_type == 0 ? '' : 'hidden' }}">
+                    <div id="person-billing-container" class="mt-32 {{ optional(auth()->user())->billing_type == 0 ? '' : 'hidden' }}">
                         <div class="grid grid-4 gap-lg p-8">
                             <div class="form-group">
                                 <label>Nume <span class="text-red">*</span></label>
@@ -151,7 +152,7 @@
                     </div>
 
                     {{-- {Persoana juridica} --}}
-                    <div id="organization-billing-container" class="mt-32 {{ $order->billing_type == 1 ? '' : 'hidden' }}">
+                    <div id="organization-billing-container" class="mt-32 {{ optional(auth()->user())->billing_type == 1 ? '' : 'hidden' }}">
                         <div class="grid grid-2 gap-lg p-8">
                             <div class="form-group">
                                 <label>Nume societate <span class="text-red">*</span></label>

@@ -68,9 +68,9 @@
 
 <div class="main-container">
     <div class="container" style="display: flex; flex-direction: column; align-items: center">
-        @if ($order->payment_method == 'card')
+        {{-- @if ($order->payment_method == 'card')
             <div class="counter-container">Vei fi redirecționat intr-o noua pagina catre portalul de plata in <span id="redirect_counter">5</span> secunde.</div>
-        @endif
+        @endif --}}
         @if ($valid_link == 1)
             <div class="flex justify-center w-full">
                 <div style="width: 900px" class="flex col align-start">

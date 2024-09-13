@@ -294,7 +294,7 @@
     @endif
 
     {{-- Ramburs --}}
-    @if ($order->delivery_type == 0) 
+    @if ($order->delivery_type == 0 && $order->payment_method == "ramburs") 
         @php $i++; @endphp
         <tr>
             <td style="padding: 10px 5px" class="ta_c table-borders">{{ $i }}</td>
