@@ -104,7 +104,10 @@ function populateSummary() {
 
     // summaryBillingCity.innerHTML = personLocalityId.options[personLocalityId.selectedIndex].text;
     // var personLocalityId = document.getElementById("person_locality_id");
+    // console.log("Valoarea pentru personLocalityId: ", personLocalityId.value);
     summaryBillingCity.innerHTML = personLocalityId.value;
+    // summaryBillingCity.innerHTML = personLocalityId.value;
+
     summaryBillingAddress.innerHTML = personAddress.value;
     summaryBillingCUIContainer.style.display = "none";
     summaryBillingBankContainer.style.display = "none";
@@ -169,8 +172,9 @@ function populateSummary() {
         summaryDeliveryEmail.innerHTML = personEmail.value;
         summaryDeliveryCounty.innerHTML =
           personCountyId.options[personCountyId.selectedIndex].text;
-        summaryDeliveryCity.innerHTML =
-          personLocalityId.options[personLocalityId.selectedIndex].text;
+        // summaryDeliveryCity.innerHTML =
+        //   personLocalityId.options[personLocalityId.selectedIndex].text;
+        summaryDeliveryCity.innerHTML = personLocalityId.value;
         summaryDeliveryAddress.innerHTML = personAddress.value;
 
         getTransportPrice(personCountyId.value);
@@ -180,10 +184,12 @@ function populateSummary() {
         summaryDeliveryEmail.innerHTML = organizationEmail.value;
         summaryDeliveryCounty.innerHTML =
           organizationCountyId.options[organizationCountyId.selectedIndex].text;
-        summaryDeliveryCity.innerHTML =
-          organizationLocalityId.options[
-            organizationLocalityId.selectedIndex
-          ].text;
+        // summaryDeliveryCity.innerHTML =
+        //   organizationLocalityId.options[
+        //     organizationLocalityId.selectedIndex
+        //   ].text;
+        console.log(organizationLocalityId.value);
+        summaryDeliveryCity.innerHTML = organizationLocalityId.value;
         summaryDeliveryAddress.innerHTML = organizationAddress.value;
 
         getTransportPrice(organizationCountyId.value);
@@ -271,7 +277,7 @@ var rambursUnitary = document.getElementById("ramburs_unitary");
 var rambursTvaTd = document.getElementById("ramburs_TVA");
 
 function calculateRamburs(transportPrice = 0) {
-  console.log(totalValue);
+  // console.log(totalValue);
   if (!isNaN(totalValue)) {
     rambursValue = (totalValue * 3) / 100;
     rambursValue = rambursValue.toFixed(2);
