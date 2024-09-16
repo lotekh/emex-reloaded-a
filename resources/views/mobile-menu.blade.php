@@ -1,3 +1,7 @@
+@php
+    use App\Models\Order;
+@endphp
+
 <div class="w-full mobile-header">
     <div class="main-container row justify-between align-center gap-md">
         <button role="menu" title="open-menu" aria-label="Meniu" onclick="toggleSidebar()">
@@ -21,7 +25,10 @@
                 </div>
                 <div class="circle">
                     <span>
-                        0 {{-- {{ $wishlist_products_count }} --}}
+                        @php
+                            $wishlist_products_count = Auth::check() ? App\Models\WishlistItem::where('user_id', Auth::id())->count() : 0;
+                        @endphp
+                        {{ app('App\Http\Controllers\WishlistController')->getWishlistCount() }}
                     </span>
                 </div>
             </a>
@@ -31,7 +38,21 @@
                 </div>
                 <div class="circle">
                     <span>
-                        0 {{-- {{ $preorder_count }} --}}
+                        @php
+                            // Obține utilizatorul curent autentificat
+                             $user = Auth::user();
+
+                            // Verifică dacă există o comandă (coș) activă pentru utilizatorul curent sau pentru utilizatorul neautentificat
+                            if ($user) {
+                                $activeOrder = $user->orders()->where('is_paid', false)->first();
+                            } else {
+                                $activeOrder = Order::where('user_id', null)->where('is_paid', false)->first();
+                            }
+
+                            // Obține numărul de produse din coșul activ sau setează la 0 dacă nu există un coș activ
+                            $preorder_count = $activeOrder ? $activeOrder->productVariations()->count() : 0;
+                        @endphp
+                        {{ $preorder_count }}
                     </span>
                 </div>
             </a>
