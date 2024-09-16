@@ -311,7 +311,7 @@
                             <div class="grid grid-4 gap-lg p-8">
                                 <div class="form-group">
                                     <label>Tara <span class="text-red">*</span></label>
-                                    <select class="form-control w-full" name="company_information[delivery_country_id]" required>
+                                    <select class="form-control w-full" name="delivery_information[delivery_country_id]" required>
                                         @foreach ($countries as $country)
                                             <option value="{{ $country->id }}" {{ ($order->delivery_information->delivery_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
                                         @endforeach
@@ -319,7 +319,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Judet <span class="text-red">*</span></label>
-                                    <select class="form-control w-full" id="delivery_county_id" name="company_information[delivery_county_id]" required>
+                                    <select class="form-control w-full" id="delivery_county_id" name="delivery_information[delivery_county_id]" required>
                                         <option value="">Alege judetul</option>
                                         @foreach ($counties as $county)
                                             <option value="{{ $county->id }}" {{ ($order->delivery_information->delivery_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>

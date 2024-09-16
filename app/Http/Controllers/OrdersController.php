@@ -359,9 +359,10 @@ class OrdersController extends Controller
             $companyCountyId = $companyInformationArray['organization_county_id'];
         }
 
+        // 'person_county_id' => $request->input('company_information.person_county_id'),
          // Verificăm dacă tipul de livrare este curier (0) și setăm deliveryCountyId
         if ($request->input('delivery_type') == 0) { // Curier
-            $deliveryCountyId = $request->input('delivery_county_id');
+            $deliveryCountyId = $request->input('delivery_information.delivery_county_id');
         }
 
         // Calculează costul de ramburs dacă tipul de livrare este curier
@@ -395,8 +396,8 @@ class OrdersController extends Controller
                 'delivery_first_name' => $request->input('delivery_first_name'),
                 'delivery_phone' => $request->input('delivery_phone'),
                 'delivery_email' => $request->input('delivery_email'),
-                'delivery_country_id' => $request->input('delivery_country_id'),
-                'delivery_county_id' => $request->input('delivery_county_id'),
+                'delivery_country_id' => $request->input('delivery_information.delivery_country_id'),
+                'delivery_county_id' => $request->input('delivery_information.delivery_county_id'),
                 'delivery_locality' => $request->input('delivery_locality'),
                 'delivery_address' => $request->input('delivery_address'),
             ];
