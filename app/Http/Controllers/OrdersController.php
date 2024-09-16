@@ -496,6 +496,23 @@ class OrdersController extends Controller
             $city = $order->delivery_information['delivery_locality'] ?? ''; // Ia localitatea din informațiile de livrare
         }
 
+        $billingCountyId = null;
+        $billingCountyName = 'Necunoscut';
+
+        // Obține ID-ul județului în funcție de billing_type
+        if ($order->billing_type == 0) {  // Persoană fizică
+            $billingCountyId = json_decode($order->company_information, true)['person_county_id'] ?? null;
+        } elseif ($order->billing_type == 1) {  // Persoană juridică
+            $billingCountyId = json_decode($order->company_information, true)['organization_county_id'] ?? null;
+        }
+
+        // Dacă avem un ID de județ, obținem numele județului
+        if ($billingCountyId) {
+            $billingCounty = County::where('id', $billingCountyId)->first();
+            $billingCountyName = $billingCounty ? $billingCounty->name : 'Necunoscut';
+        }
+
+
         // Generează valoarea de conversie (conversion value)
         $conversion_value = 0;
         foreach ($orders_products as $product) {
@@ -510,7 +527,7 @@ class OrdersController extends Controller
         $valid_link = 1;
 
         // Returnează pagina de sumar comandă
-        return view('products.summary', compact('order', 'orders_products', 'county', 'countyName', 'city', 'valid_link', 'conversion_value'));
+        return view('products.summary', compact('order', 'orders_products','billingCountyName', 'county', 'countyName', 'city', 'valid_link', 'conversion_value'));
     }
 
 

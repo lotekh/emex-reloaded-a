@@ -217,15 +217,24 @@
             <p>Romtehnochim srl</p>
         </td>
         <td class="col-6 company-name">
-            @if ($order['billing_type'] == 0)
-                @if ($order->user)
-                    <p>{{ $order->user->first_name . ' ' . $order->user->last_name }}</p>
+            @php
+            $companyInformation = json_decode($order->company_information, true);
+            @endphp
+
+            @if ($order['billing_type'] == 0)  {{-- Persoană fizică --}}
+                @if ($companyInformation && isset($companyInformation['person_last_name']) && isset($companyInformation['person_first_name']))
+                    <p>{{ $companyInformation['person_first_name'] . ' ' . $companyInformation['person_last_name'] }}</p>
                 @else
                     <p>Informații client nelogat</p>
                 @endif
-            @else
-                <p>{{ $order['organization_name'] }}</p>
+            @elseif ($order['billing_type'] == 1)  {{-- Persoană juridică --}}
+                @if ($companyInformation && isset($companyInformation['organization_name']))
+                    <p>{{ $companyInformation['organization_name'] }}</p>
+                @else
+                    <p>Informații client nelogat</p>
+                @endif
             @endif
+
         </td>
     </tr>
 
@@ -243,14 +252,14 @@
         </td>
         <td class="col-6 small-font" style="vertical-align: top">
             @if ($order['billing_type'] == 0)
-                <p>Judet: {{ $countyName }}</p>
+                <p>Judet: {{ $billingCountyName }}</p>
                 <p>Localitate: {{ $deliveryInformation['delivery_locality'] ?? '' }}</p>
                 <p>Adresa: {{ $deliveryInformation['delivery_address'] ?? '' }}</p>
             @else
-                <p>CUI: {{ $order['organization_cui'] }}</p>
-                <p>Adresa: {{ $order['organization_address'] . ', ' . $city . ', jud. ' . $county }}</p>
-                <p>IBAN: {{ strtoupper($order['organization_bank_account']) }}</p>
-                <p>Banca: {{ $order['organization_bank'] }}</p>
+            <p>CUI: {{ $companyInformation['organization_cui'] }}</p>
+            <p>Adresa: {{ $companyInformation['organization_address'] . ', ' . $companyInformation['organization_locality'] . ', jud. ' . $billingCountyName }}</p>
+            <p>IBAN: {{ strtoupper($companyInformation['organization_bank_account']) }}</p>
+            <p>Banca: {{ $companyInformation['organization_bank'] }}</p>
             @endif
         </td>
     </tr>
