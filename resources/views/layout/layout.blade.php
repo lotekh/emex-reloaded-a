@@ -687,7 +687,14 @@
                     <a href="{{ url('/wishlist') }}" title="Favorite">Favorite</a>
                     <a href="{{ url('/contul-meu') }}" title="Istoric">Istoric</a>
                     <a href="{{ url('/contul-meu') }}" title="Facturare">Facturare</a>
-                    <a href="{{ url('/logout') }}" title="Iesire">Iesire</a>
+                    {{-- <a href="{{ url('/logout') }}" title="Iesire">Iesire</a> --}}
+                    <a href="{{ route('logout') }}" id="logoutButtonMobile" title="Iesire"
+                        onclick="event.preventDefault(); document.getElementById('logout-form-mobil').submit();">
+                         Iesire din cont
+                    </a>
+                    <form id="logout-form-mobil" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 @else
                     <button id="auth_lightbox_trigger_mobile" class="btn btn-blue" onclick="toggleSidebar(), toggleAuthLightbox()" role="button" aria-label="Autentificare">
                         Autentificare
