@@ -319,7 +319,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Judet <span class="text-red">*</span></label>
-                                    <select class="form-control w-full" id="delivery_county_id" name="delivery_county_id">
+                                    <select class="form-control w-full" id="delivery_county_id" name="company_information[delivery_county_id]" required>
                                         <option value="">Alege judetul</option>
                                         @foreach ($counties as $county)
                                             <option value="{{ $county->id }}" {{ ($order->delivery_information->delivery_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
