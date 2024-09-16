@@ -178,7 +178,7 @@
                         <div class="grid grid-2 gap-lg p-8">
                             <div class="form-group">
                                 <label>Telefon <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="tel" id="organization_phone" name="organization_phone" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" value="{{ $order->company_information->organization_phone ?? '' }}" required>
+                                <input class="form-control w-full" type="tel" id="organization_phone" name="organization_phone" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" value="{{ $order->company_information->organization_phone ?? '' }}">
                             </div>
                             <div class="form-group">
                                 <label>Email <span class="text-red">*</span></label>
@@ -224,11 +224,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Localitate <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="organization_locality_id" name="company_information[organization_locality]" value="{{ $order->company_information->organization_locality ?? '' }}" required>
+                                <input class="form-control w-full" type="text" id="organization_locality_id" name="company_information[organization_locality]" value="{{ $order->company_information->organization_locality ?? '' }}" >
                             </div>
                             <div class="form-group">
                                 <label>Adresa <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="organization_address" name="company_information[organization_address]" value="{{ $order->company_information->organization_address ?? '' }}" required>
+                                <input class="form-control w-full" type="text" id="organization_address" name="company_information[organization_address]" value="{{ $order->company_information->organization_address ?? '' }}" >
                             </div>
                         </div>
                     </div>
