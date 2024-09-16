@@ -48,6 +48,7 @@ var organizationContactPersonFirstName = document.getElementById(
 );
 
 var billingType = document.getElementsByName("billing_type")[0];
+console.log(billingType.value);
 
 var goToStep2 = document.getElementById("go-to-step-2");
 
@@ -136,6 +137,7 @@ function changeBillingType() {
       goToStep2.classList.add("btn-disabled");
     }
   }
+  console.log(billingType.value);
 }
 
 function validateAndProceedToStep2() {

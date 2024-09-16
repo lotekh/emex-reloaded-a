@@ -91,7 +91,9 @@
                                 <img src="{{ asset('resources/new_design/icons/persoana-fizica.svg') }}">
                             </button>
                         </div>
-                        <input type="hidden" name="billing_type" value="{{ $order->billing_type }}">
+                        {{-- <input type="hidden" name="billing_type" value="{{ $order->billing_type }}"> --}}
+                        <input type="hidden" name="billing_type" value="{{ auth()->check() ? optional(auth()->user())->billing_type : 0 }}">
+
                     </div>
 
                     {{-- @if ($isGuest)
@@ -232,7 +234,7 @@
                     </div>
                 </div>
                 <div class="flex justify-end col flex-md align-center">
-                    <button type="button" class="btn btn-blue rounded-xl large-width btn-disabled" id="go-to-step-2">Continua la livrare</button>
+                    <button type="button" class="btn btn-blue rounded-xl large-width" id="go-to-step-2">Continua la livrare</button>
                 </div>
             </div>
 
