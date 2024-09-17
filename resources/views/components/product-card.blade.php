@@ -86,14 +86,6 @@
       </div>
 
       <form class="relative w-full col" method="GET" action="{{ url('/adauga-produs') }}">
-        {{-- <input type="hidden" name="product_variation_id" value="{{ $initialVariation->id }}">
-        <input type="hidden" name="submited" value="1">
-        <input type="hidden" name="name" value="{{ $product->plain_name }}">
-        <input type="hidden" name="price" id="priceInput{{$product->id}}" value="{{ $initialVariation->price }}">
-        <input type="hidden" name="price_no_tva" id="priceNoTvaInput" value="{{ $initialVariation->price_no_tva }}">
-        <input type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
-        <input type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
-        <input type="hidden" name="quantity" value="1"> --}}
 
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         <input type="hidden" name="product_variation_id" id="variationInput{{$product->id}}" value="{{ $initialVariation->id }}">
