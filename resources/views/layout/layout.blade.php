@@ -664,7 +664,7 @@
                     <li><a href="{{ url('/servicii') }}" title="Servicii Generale">Servicii Generale</a></li>
                 </ul>
             </div>
-            <div class="categorii" id="culori" onclick="toggleAccordion('servicii')">
+            <div class="categorii" id="culori" onclick="toggleAccordion('culori')">
                 <header>Culori</header>
                 <ul class="dropdown-menu" id="culori-menu">
                     <li><a href="{{ url('/cartela-culori-ral-vopsele') }}" title="Cartela RAL">Cartela RAL - Emailuri</a></li>
