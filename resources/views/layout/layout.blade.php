@@ -713,15 +713,41 @@
 
 <script>
 
+    // function toggleSidebar() {
+    //     var sidebar = document.getElementById('sidebar-left');
+    //     if(sidebar.classList.contains('hidden')) {
+    //         sidebar.classList.remove('hidden');
+    //     }
+    //     else {
+    //         sidebar.classList.add('hidden');
+    //     }
+    // }
+
     function toggleSidebar() {
         var sidebar = document.getElementById('sidebar-left');
-        if(sidebar.classList.contains('hidden')) {
+        if (sidebar.classList.contains('hidden')) {
             sidebar.classList.remove('hidden');
-        }
-        else {
+            // Adaugă un event listener pentru a ascunde sidebar-ul când se face click în afara lui, dar cu un mic delay
+            setTimeout(function() {
+                document.addEventListener('click', handleClickOutsideSidebar);
+            }, 100); // Adăugăm un delay mic de 100ms
+        } else {
             sidebar.classList.add('hidden');
+            document.removeEventListener('click', handleClickOutsideSidebar);
         }
     }
+
+    function handleClickOutsideSidebar(event) {
+        var sidebar = document.getElementById('sidebar-left');
+        if (!sidebar.contains(event.target) && event.target.id !== 'toggleSidebarButton') {
+            // Dacă click-ul a avut loc în afara sidebar-ului, îl ascundem
+            sidebar.classList.add('hidden');
+            // Eliminăm event listener-ul, deoarece nu mai este necesar
+            document.removeEventListener('click', handleClickOutsideSidebar);
+        }
+    }
+
+
 
     function toggleAccordion(id) {
         var menu = document.getElementById(id + '-menu');
