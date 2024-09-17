@@ -144,6 +144,23 @@ class WishlistController extends Controller
         return $wishlistCount;
     }
 
+    public function isInWishlist($productId)
+    {
+        $user = Auth::user();
+
+        if ($user) {
+            // Verifică în baza de date
+            return WishlistItem::where('user_id', $user->id)
+                                ->where('product_id', $productId)
+                                ->exists();
+        } else {
+            // Verifică în sesiune
+            $wishlist = session()->get('wishlist', []);
+            return in_array($productId, $wishlist);
+        }
+    }
+
+
 
 
 }

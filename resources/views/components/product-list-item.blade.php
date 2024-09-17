@@ -90,6 +90,8 @@
                         <input class="w-full pr-8" type="number" min="0" pattern="[0-9]+" name="quantity" value="{{ $initial_q }}" />
                     </div>
                 </div>
+
+                <input type="hidden" name="product_variation_id" id="variationInput{{ $product->id }}" value="{{ $initialVariation->id }}">
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                 <input type="hidden" name="submited" value="1">
                 <input type="hidden" name="name" value="{{ $initialName }}">
