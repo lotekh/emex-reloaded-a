@@ -16,7 +16,18 @@ var personLastName = document.getElementById("person_last_name");
 var personFirstName = document.getElementById("person_first_name");
 var personPhone = document.getElementById("person_phone");
 var personCountyId = document.getElementById("person_county_id");
+// var personLocalityId = document.getElementById("person_locality_id");
 var personLocalityId = document.getElementById("person_locality_id");
+// console.log("personLocalityId:", personLocalityId); // Verifică dacă elementul este definit corect
+
+// if (personLocalityId) {
+//   console.log("personLocalityId.value:", personLocalityId.value); // Verifică valoarea câmpului
+// } else {
+//   console.error(
+//     "Elementul personLocalityId nu este definit sau nu a fost găsit în DOM."
+//   );
+// }
+
 var personAddress = document.getElementById("person_address");
 var personEmail = document.getElementById("person_email");
 
@@ -37,6 +48,7 @@ var organizationContactPersonFirstName = document.getElementById(
 );
 
 var billingType = document.getElementsByName("billing_type")[0];
+console.log(billingType.value);
 
 var goToStep2 = document.getElementById("go-to-step-2");
 
@@ -125,6 +137,7 @@ function changeBillingType() {
       goToStep2.classList.add("btn-disabled");
     }
   }
+  console.log(billingType.value);
 }
 
 function validateAndProceedToStep2() {

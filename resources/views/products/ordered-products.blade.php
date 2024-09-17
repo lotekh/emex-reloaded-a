@@ -11,13 +11,26 @@
       Cos ({{ count($ordered_products) }} produs{{ count($ordered_products) == 1 ? '' : 'e' }})
     </h1>
     @if(!empty($ordered_products))
-      <form method="POST" action="{{ route('orders.empty') }}">
+      {{-- <form method="POST" action="{{ route('orders.empty') }}">
         @csrf
         <button class="flex align-center grey-button" type="submit">
           <img width="18" height="18" src="{{ asset('resources/new_design/icons/bin-grey.svg') }}">
           <span class="ml-8">Sterge tot</span>
         </button>
-      </form>
+      </form> --}}
+      <form method="POST" action="{{ route('orders.empty') }}" style="display: none;">
+        @csrf
+        <button id="delete-all" class="flex align-center grey-button" type="submit">
+            <img width="18" height="18" src="{{ asset('resources/new_design/icons/bin-grey.svg') }}">
+            <span class="ml-8">Sterge tot</span>
+        </button>
+    </form>
+    
+    <button class="flex align-center grey-button" onclick="document.getElementById('delete-all').click();">
+        <img width="18" height="18" src="{{ asset('resources/new_design/icons/bin-grey.svg') }}">
+        <span class="ml-8">Sterge tot</span>
+    </button>
+    
     @endif
   </div>
 

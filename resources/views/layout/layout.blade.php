@@ -687,9 +687,19 @@
                     <a href="{{ url('/wishlist') }}" title="Favorite">Favorite</a>
                     <a href="{{ url('/contul-meu') }}" title="Istoric">Istoric</a>
                     <a href="{{ url('/contul-meu') }}" title="Facturare">Facturare</a>
-                    <a href="{{ url('/logout') }}" title="Iesire">Iesire</a>
+                    {{-- <a href="{{ url('/logout') }}" title="Iesire">Iesire</a> --}}
+                    <a href="{{ route('logout') }}" id="logoutButtonMobile" title="Iesire"
+                        onclick="event.preventDefault(); document.getElementById('logout-form-mobil').submit();">
+                         Iesire din cont
+                    </a>
+                    <form id="logout-form-mobil" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 @else
-                    <button id="auth_lightbox_trigger_mobile" class="btn btn-blue" onclick="toggleSidebar(), toggleAuthLightbox()" role="button" aria-label="Autentificare">
+                    {{-- <button id="auth_lightbox_trigger_mobile" class="btn btn-blue" role="button" aria-label="Autentificare">
+                        Autentificare
+                    </button> --}}
+                    <button id="auth_lightbox_trigger_mobile" class="btn btn-blue" onclick="toggleSidebar()" role="button" aria-label="Autentificare">
                         Autentificare
                     </button>
                 @endif
@@ -739,6 +749,13 @@
     }
 
     document.getElementById('auth_lightbox_trigger').addEventListener('click', function() {
+        var authContainer = document.querySelector('.autentificare-1');
+        authContainer.style.opacity = '1';
+        authContainer.style.display = 'inline-block';
+        document.getElementById('auth-lightbox').style.display = 'flex';
+    });
+
+    document.getElementById('auth_lightbox_trigger_mobile').addEventListener('click', function() {
         var authContainer = document.querySelector('.autentificare-1');
         authContainer.style.opacity = '1';
         authContainer.style.display = 'inline-block';

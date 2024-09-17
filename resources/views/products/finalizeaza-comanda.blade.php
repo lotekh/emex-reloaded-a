@@ -91,7 +91,9 @@
                                 <img src="{{ asset('resources/new_design/icons/persoana-fizica.svg') }}">
                             </button>
                         </div>
-                        <input type="hidden" name="billing_type" value="{{ $order->billing_type }}">
+                        {{-- <input type="hidden" name="billing_type" value="{{ $order->billing_type }}"> --}}
+                        <input type="hidden" name="billing_type" value="{{ auth()->check() ? optional(auth()->user())->billing_type : 0 }}">
+
                     </div>
 
                     {{-- @if ($isGuest)
@@ -176,7 +178,7 @@
                         <div class="grid grid-2 gap-lg p-8">
                             <div class="form-group">
                                 <label>Telefon <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="tel" id="organization_phone" name="organization_phone" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" value="{{ $order->company_information->organization_phone ?? '' }}" required>
+                                <input class="form-control w-full" type="tel" id="organization_phone" name="organization_phone" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" value="{{ $order->company_information->organization_phone ?? '' }}">
                             </div>
                             <div class="form-group">
                                 <label>Email <span class="text-red">*</span></label>
@@ -222,17 +224,17 @@
                             </div>
                             <div class="form-group">
                                 <label>Localitate <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="organization_locality_id" name="company_information[organization_locality]" value="{{ $order->company_information->organization_locality ?? '' }}" required>
+                                <input class="form-control w-full" type="text" id="organization_locality_id" name="company_information[organization_locality]" value="{{ $order->company_information->organization_locality ?? '' }}" >
                             </div>
                             <div class="form-group">
                                 <label>Adresa <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="organization_address" name="company_information[organization_address]" value="{{ $order->company_information->organization_address ?? '' }}" required>
+                                <input class="form-control w-full" type="text" id="organization_address" name="company_information[organization_address]" value="{{ $order->company_information->organization_address ?? '' }}" >
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="flex justify-end col flex-md align-center">
-                    <button type="button" class="btn btn-blue rounded-xl large-width btn-disabled" id="go-to-step-2">Continua la livrare</button>
+                    <button type="button" class="btn btn-blue rounded-xl large-width" id="go-to-step-2">Continua la livrare</button>
                 </div>
             </div>
 
@@ -311,7 +313,7 @@
                             <div class="grid grid-4 gap-lg p-8">
                                 <div class="form-group">
                                     <label>Tara <span class="text-red">*</span></label>
-                                    <select class="form-control w-full" name="company_information[delivery_country_id]" required>
+                                    <select class="form-control w-full" name="delivery_information[delivery_country_id]" required>
                                         @foreach ($countries as $country)
                                             <option value="{{ $country->id }}" {{ ($order->delivery_information->delivery_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
                                         @endforeach
@@ -319,7 +321,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Judet <span class="text-red">*</span></label>
-                                    <select class="form-control w-full" id="delivery_county_id" name="delivery_county_id">
+                                    <select class="form-control w-full" id="delivery_county_id" name="delivery_information[delivery_county_id]" required>
                                         <option value="">Alege judetul</option>
                                         @foreach ($counties as $county)
                                             <option value="{{ $county->id }}" {{ ($order->delivery_information->delivery_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
