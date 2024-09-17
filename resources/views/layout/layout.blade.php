@@ -357,7 +357,7 @@
         <img width="50" height="50" src="{{ asset('resources/images/Mail-mobile.png') }}" alt="Email Emex">
     </div>
 
-    <div class="m-0">
+    <div class="m-0" id="content_wrapper">
         @yield('content')
     </div>
 
@@ -707,41 +707,48 @@
         </nav>
     </div>
 
+    <div id="mobile-sidebar-open-backdrop" class="hidden"></div>
+
     @include('components.sidebar-contact', ['secondary_title' => 'vopsele'])
 
 
 
 <script>
 
-    // function toggleSidebar() {
-    //     var sidebar = document.getElementById('sidebar-left');
-    //     if(sidebar.classList.contains('hidden')) {
-    //         sidebar.classList.remove('hidden');
-    //     }
-    //     else {
-    //         sidebar.classList.add('hidden');
-    //     }
-    // }
-
     function toggleSidebar() {
         var sidebar = document.getElementById('sidebar-left');
+        var bodyBackdrop = document.getElementById('mobile-sidebar-open-backdrop');
+        var body = document.getElementsByTagName('body')[0];
+        var content_wrapper = document.getElementById('content_wrapper');
         if (sidebar.classList.contains('hidden')) {
             sidebar.classList.remove('hidden');
+            bodyBackdrop.classList.remove('hidden');
+            body.classList.add('overflow-y-hidden');
+            content_wrapper.classList.add('overflow-y-hidden');
             // Adaugă un event listener pentru a ascunde sidebar-ul când se face click în afara lui, dar cu un mic delay
             setTimeout(function() {
                 document.addEventListener('click', handleClickOutsideSidebar);
             }, 100); // Adăugăm un delay mic de 100ms
         } else {
             sidebar.classList.add('hidden');
+            bodyBackdrop.classList.add('hidden');
+            body.classList.remove('overflow-y-hidden');
+            content_wrapper.classList.remove('overflow-y-hidden');
             document.removeEventListener('click', handleClickOutsideSidebar);
         }
     }
 
     function handleClickOutsideSidebar(event) {
         var sidebar = document.getElementById('sidebar-left');
+        var bodyBackdrop = document.getElementById('mobile-sidebar-open-backdrop');
+        var body = document.getElementsByTagName('body')[0];
+        var content_wrapper = document.getElementById('content_wrapper');
         if (!sidebar.contains(event.target) && event.target.id !== 'toggleSidebarButton') {
             // Dacă click-ul a avut loc în afara sidebar-ului, îl ascundem
             sidebar.classList.add('hidden');
+            bodyBackdrop.classList.add('hidden');
+            body.classList.remove('overflow-y-hidden');
+            content_wrapper.classList.remove('overflow-y-hidden');
             // Eliminăm event listener-ul, deoarece nu mai este necesar
             document.removeEventListener('click', handleClickOutsideSidebar);
         }
