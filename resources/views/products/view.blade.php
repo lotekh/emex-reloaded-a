@@ -293,18 +293,19 @@
     </div>
 
     {{-- Cautari similare --}}
-    {{-- <div class="mt-16">
+    <div class="mt-16"> 
         <div class="cautari">Cautari similare</div>
         <div class="mt-8 grid grid-4 gap-xs">
-            @if ($product->similar_products && $product->similar_products->count())
-                @foreach ($product->similar_products as $ind => $similar_product)
+            {{-- Am hardcodat sa vina primele 4 produse din Products la cautari similare --}}
+            @if ($firstFourProducts && $firstFourProducts->count())
+                @foreach ($firstFourProducts as $ind => $similar_product)
                     <div>
-                        @include('components.product_card', ['key' => $ind, 'product' => $similar_product])
+                        @include('components.product-card', ['key' => $ind, 'product' => $similar_product])
                     </div>
                 @endforeach
-            @endif
+            @endif          
         </div>
-    </div> --}}
+    </div> 
 
     <div class="w-full grid grid-3 min-row-height gap-lg mt-16" id="pwgw">
         <div class="badge">

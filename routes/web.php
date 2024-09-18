@@ -163,6 +163,24 @@ Route::get('/blog/article/{id}', [BlogArticleController::class, 'show'])->name('
 Route::get('/search', [BlogArticleController::class, 'search'])->name('blog.search');
 
 
+// Cine suntem
+Route::get('/despre-noi', function () {
+    return view('cine_suntem.despre-noi');
+})->name('despre_noi');
+Route::get('/politica-de-calitate', function () {
+    return view('cine_suntem.politica-de-calitate');
+})->name('politica_de_calitate');
+Route::get('/politica-de-mediu', function () {
+    return view('cine_suntem.politica-de-mediu');
+})->name('politica_de_mediu');
+Route::get('/politica-sanatate-securitate', function () {
+    return view('cine_suntem.politica-sanatate-securitate');
+})->name('politica_sanatate_securitate');
+Route::get('/certificari-iso', function () {
+    return view('cine_suntem.certificari-iso');
+})->name('certificari-iso');
+
+
 // Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
 
