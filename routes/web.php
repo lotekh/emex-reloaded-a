@@ -167,6 +167,9 @@ Route::get('/search', [BlogArticleController::class, 'search'])->name('blog.sear
 Route::get('/despre-noi', function () {
     return view('cine_suntem.despre-noi');
 })->name('despre_noi');
+Route::get('/politica-de-calitate', function () {
+    return view('cine_suntem.politica-de-calitate');
+})->name('politica_de_calitate');
 
 
 // Routes for slugs
