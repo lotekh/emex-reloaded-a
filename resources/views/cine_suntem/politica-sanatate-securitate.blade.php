@@ -23,44 +23,154 @@
 <div class="main-container product-page mt-32" id="product_container">
     <div class="mt-16 mt-custom">
         <div class="tabs-selector-row">
-            {{-- @yield('tab-buttons') --}}
-            <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid selected" option="0" aria-selected="true" tabindex="0" onclick="openTab(event, 'PregatireProdus')"><span>Pregatire Produs</span></button>
-            <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid" option="1" aria-selected="false" tabindex="0" onclick="openTab(event, 'PregatireMetal')"><span>Pregatire Metal</span></button>
-            <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid" option="2" aria-selected="false" tabindex="0" onclick="openTab(event, 'PregatireLemn')"><span>Pregatire Lemn</span></button>
-            <button type="button" name="current_tab" value="3" role="tab" class="btn user-valid valid" option="3" aria-selected="false" tabindex="0" onclick="openTab(event, 'PregatireBeton')"><span>Pregatire Beton</span></button>
+            <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid selected" option="0" aria-selected="true" tabindex="0" onclick="openTab(event, 'Pagina1')"><span>Pagina 1</span></button>
+            <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid" option="1" aria-selected="false" tabindex="0" onclick="openTab(event, 'Pagina2')"><span>Pagina 2</span></button>
+            <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid" option="2" aria-selected="false" tabindex="0" onclick="openTab(event, 'Pagina3')"><span>Pagina 3</span></button>
+            <button type="button" name="current_tab" value="3" role="tab" class="btn user-valid valid" option="3" aria-selected="false" tabindex="0" onclick="openTab(event, 'Pagina4')"><span>Pagina 4</span></button>
         </div>
 
         <div class="tab-content-container">
-            {{-- @yield('tab_contents') --}}
-            <div id="PregatireProdus" class="tab-content active">
-                <h2 class="aplicare_tab_content_title aplicare_c_red"> Lacuri si Vopsele Decorative “Emex”: Pregatire</h2>
-                    <div class="aplicare_title_separator aplicare_separator_red"></div>
-                    <div class="descript_par"><p><span class="alineat_span"></span>In aceasta categorie se regasesc toate vopselele alchidice grase, vopsele si lacuri alchidice uretanizate, vopsele si lacuri pe baza de rasini alchidice medii si slabe, lacuri de uz general pentru lemn, alte produse similare dar si conexe.</p><p><span class="alineat_span"></span>Instructiunile prezentate in aceste pagini au doar caracter orientativ. Pentru instructiuni detaliate cititi Fisa Tehnica a fiecarui produs ce urmeaza a fi aplicat, sau solicitati producatorului instructiuni specifice de aplicare, pentru fiecare produs in parte.</p><p><span class="alineat_span"></span>Pregatirea, atat a produsului cat si a suprafetelor, reprezinta o etapa indispensabila pentru realizarea unor performante maxime in aplicarea vopselelor de orice tip. Astfel:</p><ul><li>Produsul se conditioneaza la temperatura ambianta timp de 24 ore inaintea aplicarii. </li><li>Inainte de deschiderea ambalajului se indeparteaza praful sau alte urme de murdarie. </li><li>Se omogenizeaza produsul in ambalajul original,folosind un amestecator mecanic, in vederea redispersarii eventualului sediment. </li><li>Inainte de utilizare este necesara filtrarea produsului.</li><li>In functie de modul de aplicare se face reglarea vascozitatii, prin adaugarea de <a href="/diluant-alchidic" title="Diluant pentru vopsele alchidice" class="link_color1"><em>Diluant Alchidic “Emex”</em></a>, <a href="/diluant-vopsele-utilaje" title="Diluant pentru vopsele tip auto" class="link_color1"><em>Diluant auto “Emex”</em></a>, sau alt diluant in functie de recomandarea producatorului. </li><li>Este interzisa amestecarea cu orice alte produse, chiar compatibile, fara acordul producatorului. </li></ul><div class="aplicare_titlu mt-40 aplicare_tab_content_title aplicare_c_red">Conditii de aplicare</div><div class="aplicare_title_separator aplicare_separator_red"></div><ul><li>Temperatura optima de aplicare a produsului: 5 - 30°C.</li><li>Umiditatea relativa a mediului max. 65%.</li><li>Temperatura suportului: 5 - 40°C., dar obligatoriu cu min 3°C peste temperatura punctului de roua, temperatura la care apare riscul condensarii umiditatii pe suport, fapt care diminueaza caracteristicile finale de pelicula. </li><li>Umiditatea relativa a mediului max. 65%.</li><li>Produsele nu se vor aplica pe timp de ceata, ploaie, ninsoare, vant, in prezenta prafului, sau cand exista pelicula de apa sau gheata pe suprafata – suport. </li><li>Nu se recomanda utilizarea sau depozitarea la temperaturi de sub 5°C.</li><li>Aplicarea la temperaturi negative este de asemeni nerecomandata, pentru ca rezultatele obtinute se pot situa sub limitele de calitate acceptabile. </li><li>Nu se vor aplica nici la temperaturi mai mari de 35°C in aer, datorita faptului ca peste aceasta temperatura pot aparea fenomene de uscare fortata, care, si in acest caz va diminua calitatea finala a peliculei. </li></ul><p><span class="alineat_span"></span><em>Pentru obtinerea de rezultate optime este obligatorie consultarea <strong>Fisei Tehnice</strong> a produsului.</em></p></div>
-            </div>
-        
-            <div id="PregatireMetal" class="tab-content">
-                <h2 class="aplicare_tab_content_title">Pregatirea pentru vopsire a suprafetelor din metal</h2><div class="aplicare_title_separator aplicare_c_orange"></div><div class="descript_par"><p><span class="alineat_span"></span>Pregatirea generala, pentru vopsire, a suprafetelor din metal, comporta doua modalitati:</p><p><span class="alineat_span"></span><strong>1. <span class="subs-attn">pregatirea primara</span></strong>, aplicabila in special suprafetelor noi, care consta in:</p><ul><li>Indepartarea murdariei, a urmelor de noroi, praf, grasimi sau alti contaminanti. </li><li>Degresarea suprafetei – este recomandat sa se efectueze cu solutii alcaline, care au o eficienta mai mare, dar poate fi facuta si cu solvent sau decapant, desi aceasta metoda este mai scumpa si prezinta un grad mai mare de expunere, atat in efectuare, cat si pentru sanatate. </li><li>Pregatirea sudurilor si marginilor sudate, prin indepartarea zgurii si stropilor, etc. </li><li>Indeparatea sarurilor solubile, care de regula se face cu apa sub presiune, si </li></ul><p><span class="alineat_span"></span><strong>2. <span class="subs-attn">pregatirea secundara</span></strong>, ce are in vedere indepartarea urmelor de vopsea veche, a ruginii sau tunderului si crearea de puncte de ancora pentru asigurarea unei aderente ridicate a vopselei la suport, si se realizeaza prin:</p><ul><li>Sablare la gradul Sa 2 ½ (conform ISO 8501/1-88) sau 2 (conform STAS 10166/1-77) urmata de desprafuire si degresare. </li><li>Indepartarea urmelor de rugina acolo unde exista, prin folosirea <a href="/solutie-anti-rugina" title="Solutie inlaturare rugina “Emex”" class="link_color1"><em>Solutiei impotriva ruginii “Emex Rust Stop”</em></a> (urmata de spalare cu apa din abundenta), si indepartarea straturilor de vopsea veche prin folosirea <a href="/decapant-ecologic-vopsele" title="Solutie pentru decaparea vopselelor vechi" class="link_color1"><em>Pastei decapante “Emex PC ECO”</em></a>, daca aceste urme nu provin de la vopsele bicomponente, caz in care nu este eficienta decat sablarea, sau asperizarea cu perii mecanice. </li><li>Curatarea cu flacara, aplicabila in cazul protectiilor anterioare foarte vechi, urmata obligatoriu de asperizare, desprafuire si spalare. </li><li>In mod obligatoriu, straturile degradate de vopsea veche vor fi indepartate in totalitate. Cele in buna stare, vor fi doar slefuite pentru asperizare, caz in care se va testa compatibilitatea vopselei. </li></ul><p><span class="alineat_span"></span>Se va avea in vedere intotdeauna aplicarea de <a href="/grund-anticoroziv-emex" title="Grund pentru metal impotriva ruginii" class="link_color1"><em>Grund Alchidic Anticoroziv “Emex”</em></a>, sau a altui grund anticoroziv, compatibil cu vopseaua aplicata ca strat final, atat pentru protejarea suprafetei metalice impotriva coroziunii, cat si pentru marirea aderentei stratului urmator.</p>
-                </div>
-            </div>
-        
-            <div id="PregatireLemn" class="tab-content">
-                <div class="col" id="tab_technical_chars">
-                    <h2 class="aplicare_tab_content_title aplicare_c_green">Pregatirea pentru vopsire a suprafetelor din lemn</h2><div class="aplicare_title_separator aplicare_separator_green"></div><div class="descript_par"><p><span class="alineat_span"></span>Pregatirea pentru vopsire a suprafetelor din lemn trebuie facuta cu mare atentie. Suprafata trebuie sa fie perfect uscata si curata inainte de aplicarea vopselei, fara urme de praf sau contaminanti.</p><p><span class="alineat_span"></span>Alegerea unui sistem corect de vopsire va prelungi cu mult durata de viata a suprafetei din lemn vopsite, asigurand totodata si un aspect placut, decorativ.</p><p><span class="alineat_span"></span>Pentru obtinerea unor performante optime, vor trebui urmate unele operatiuni obligatorii, dintre care enumeram:</p><ul><li>Suprafetele se curata pentru indepartarea murdariei, picaturilor de rasina si eventualelor urme de grasime imbibate in fibre. </li><li>Se are in vedere ca umiditatea lemnului trebuie sa fie de max. 12% la foioase si 14% la conifere. </li><li>Daca exista protectii anterioare in stare buna, se degreseaza cu solvent, se slefuieste suprafata inca umeda, cu hartie abraziva, se usuca si se desprafuieste. </li><li>Peliculele vechi, deteriorate, sau cu aderenta scazuta, se indeparteaza in totalitate prin folosirea <a href="/decapant-ecologic-vopsele" title="Solutie decapanta pentru curatare vopsele vechi" class="link_color1"><em>Pastei Decapante “Emex PC ECO”</em></a>. In cazul in care aceste pelicule provin de la vopsele bicomponente, singura posibilitate de inlaturare este slefuirea cu discuri sau perii mecanice. </li><li>Inlaturarea peliculelor vechi se mai poate face prin ardere.</li><li>Oricare dintre operatiunile de inlaturare a vopselei vechi va fi urmata de slefuire. </li><li>Suportul se slefuieste cu hartie abraziva de granulatie 180 - 220 (atat la lemn nou cat si la suprafete mai vechi) in lungul fibrelor si se desprafuieste prin suflare cu aer comprimat. </li><li>Inainte de aplicarea grundului este insa recomandata aplicarea unui inhibitor de mucegai, sau folosirea de substante protectoare contra bacteriilor. </li><li>Avand in vedere ca lemnul prezinta o suprafata in general poroasa, se va lua in considerare aplicarea unui grund de imbibare, de egalizare, sau <a href="/grund-binale" title="Grund de imbibare anticarie pentru lemn" class="link_color1"><em>Grund de Binale “Emex”</em></a>. </li><li>Inainte de a aplica vopseaua, este necesar sa se aplice fie grundul pentru lemn recomandat, fie o amorsa facuta din vopseaua propriu-zisa, diluata cca. 30% cu diluantul aferent acesteia (in cazul de fata <a href="/diluant-alchidic" title="Diluant pentu lacuri si vopsele alchidice" class="link_color1"><em>Diluant Alchidic “Emex”</em></a>). </li><li>Lacurile se aplica in general in 3 straturi, pentru obtinerea unui luciu, aspect si etalare deosebite, mai ales in cazul <a href="/lac-parchet" title="Lac slefuibil pentru parchet si mobila" class="link_color1"><em>Lacului Pentru parchet si Mobila “Emex”</em></a>, care are si o duritate foarte buna, dar necesita si slefuire intre straturi. </li></ul><p><span class="alineat_span"></span>Este total contraindicata folosirea uleiului de in pentru impregnarea lemnului care, pe de o parte se degradeaza foarte repede in timp, iar pe de alta parte creeaza un mediu propice pentru aparitia si dezvoltarea bacteriilor.</p><p><span class="alineat_span"></span>Nu se vor aplica vopsele, grunduri sau lacuri pe lemn ud in profunzime, sau neuscat in limitele admise.</p></div>
-                </div>
-            </div>
-        
-            <div id="PregatireBeton" class="tab-content">
-                <div class="col" id="tab_technical_chars2">
-                    <h2 class="aplicare_tab_content_title aplicare_c_blue">Pregatirea pentru Vopsire a Suprafetelor din Beton</h2><div class="aplicare_title_separator aplicare_separator_blue"></div><div class="descript_par"><p><span class="alineat_span"></span>Aplicarea produsului pe suprafata-suport din beton, zidarie, tencuieli var-ciment, tencuieli si gleturi de var sau ipsos, tencuieli noi sau vechi pe baza de lianti, placi de gips-carton, conglomerate minerale absorbante de orice tip, zugraveli vechi de natura organica sau minerala, uscate, compacte si absorbante, etc., se face numai dupa pregatirea corespunzatoare a acesteia, deoarece aceasta etapa are o influenta hotaratoare asupra calitatii si durabilitatii acoperirii. Astfel:</p><ul><li><strong>Betonul sau mortarele noi (inclusiv reparatiile) necesita minim 28 zile pentru intarire si uscare inaintea aplicarii; nerespectarea acestei conditii afecteaza rezistenta produsului in timp si determina exfolieri sau basicari</strong></li><li>Suprafetele tencuite se verifica prin ciocanire inainte de aplicarea produsului; daca se dovedesc necorespunzatoare (suna a gol) se indeparteaza complet tencuiala, pana la zidarie si se refac cu un mortar de aceeasi clasa cu cel initial. </li><li>Se remediaza fisurile si alte imperfectiuni inainte de aplicarea produsului. </li><li>Daca exista protectii anterioare in stare buna, se degreseaza cu solvent, se slefuieste suprafata cu hartie abraziva, se usuca si se desprafuieste. </li><li>Peliculele anterioare deteriorate, in curs de exfoliere sau fara o buna aderenta se indeparteaza complet prin folosirea <a href="/decapant-ecologic-vopsele" title="Solutie decapanta pentru curatare vopsele vechi" class="link_color1"><em>Pastei Decapante “Emex PC ECO”</em></a>. </li><li>Inlaturarea peliculelor vechi se mai poate face prin slefuire cu perii mecanice ori discuri diamantate, sau prin ardere. </li><li>Oricare dintre operatiunile de inlaturare a vopselei vechi va fi urmata de slefuire. </li><li>Zonele atacate de mucegai se curata si se impregneaza cu solutii special destinate acestui scop. </li><li>Suprafetele ce urmeaza a se acoperi cu vopsea, se curata de impuritati sau grasimi, se asperizeaza, praful rezultat indepartandu-se cu perii cu par moale sau prin suflare cu aer comprimat. </li><li>Suprafetele trebuie sa fie netede, plane, uscate.</li><li>Inainte de a aplica vopseaua, este indicat sa se aplice o amorsa facuta din vopseaua propriu-zisa, diluata cca. 30% cu diluantul aferent acesteia (in cazul de fata <a href="/diluant-alchidic" title="Diluant pentu lacuri si vopsele alchidice" class="link_color1"><em>Diluant Alchidic “Emex”</em></a>). </li></ul><p><span class="alineat_span"></span>Incluziunile metalice vor fi acoperite in mod obligatoriu cu <a href="/grund-anticoroziv-emex" title="Grund de protectie contra ruginii" class="link_color1"><em>Grund Alchidic Anticoroziv “Emex”</em></a>, sau cu orice alt grund anticoroziv compatibil cu vopseaua aplicata, si recomandat de producator.</p></div>
+            <div id="Pagina1" class="tab-content active">
+                <h2 class="text-blue">1. POLITICA</h2>
                     <p>
-                        <span>
-                            <img width="40" height="35" class="atentie-consum" src="{{ asset('resources/images/general/Atentie-mic.png') }}" alt="Atentie suprafete nerecomandate">
-                        </span>
-                        Sistemele alchidice <strong>NU</strong> sunt recomandate pentru suprafetele zincate, care se vor vopsi numai cu <strong>vopsele industriale</strong>, recomandate de producator, de regula bicomponente, pentru a realiza o durata mare de viata.                
+                        <span class="alineat_span"></span>“ROMTEHNOCHIM” S.R.L. este hotarata sa
+                        asigure un mediu de lucru sigur tuturor angajatilor sai. Implementarea
+                        politicilor noastre ne permite sa oferim servicii sigure clientilor nostri.
+                        Cautam, de asemenea, sa garantam securitatea vizitatorilor, furnizorilor si
+                        publicului ce pot fi afectati de activitatea noastra. Politica noastra este
+                        de a aloca resurse adecvate pentru a promova si mentine bunele practici in
+                        toate aspectele referitoare la securitatea muncii.
                     </p>
-                </div>
+                    <p>
+                        <span class="alineat_span"></span>“ROMTEHNOCHIM” S.R.L. ia in considerare
+                        toate reglementarile relevante in domeniu sanatatii si securitatii in munca
+                        si actioneaza in directia respectarii acestora. Managementul companiei este
+                        responsabil pentru a lua masuri in ceea ce priveste:
+                    </p>
+                    <ul>
+                        <li>Asigurarea si intretinerea echipamentelor de lucru astfel incat
+                            folosirea lor sa fie sigura si lipsita de riscuri;
+                        </li>
+                        <li>Asigurarea sigurantei si minimizarea riscurilor in folosirea,
+                            manipularea, depozitarea substantelor chimice intrebuintate pentru
+                            realizarea produselor organizatiei;
+                        </li>
+                        <li>Furnizarea de suficiente informatii, instructiuni, instruire si
+                            supervizare, astfel incat sa se asigure securitatea muncii pentru toti
+                            angajatii;
+                        </li>
+                        <li>Asigurarea si mentinerea de locuri de munca lipsite de pericol;</li>
+                        <li>Asigurarea si mentinerea de cai de evacuare sigure;</li>
+                        <li>Asigurarea si mentinerea de facilitati corespunzatoare;</li>
+                    </ul>
+                    <p>
+                        <span class="alineat_span"></span>“ROMTEHNOCHIM” S.R.L. va face toate
+                        demersurile necesare pentru a preveni orice incident care s-ar putea solda
+                        cu raniri, imbolnaviri si pentru imbunatatirea continua a managementului si
+                        performantei Sistemului de Management Integrat (SMI)
+                    </p>    
+                    <h2 class="text-blue"> 2. DOMENIUL DE APLICARE</h2>
+                    <p>
+                        <span class="alineat_span"></span>In sensul celor declarate mai sus, “ROMTEHNOCHIM” S.R.L. a implementat sistemul de management al sanatatii si
+                        securitatii in munca conform standardului actualizat ISO 45001:2018, aplicabil pentru toate activitatile si in toate compartimentele firmei.
+                    </p>
+            </div>
+            
+            <div id="Pagina2" class="tab-content">
+                <h2 class="text-orange">3. RESPONSABILITATILE MANAGEMENTULUI</h2>
+                    <p>
+                        <span class="alineat_span"></span>Actionariatul firmei “ROMTEHNOCHIM” S.R.L. este responsabil pentru sanatatea si securitatea in munca (SSM) a
+                        angajatilor si isi exercita aceste responsabilitati prin intermediul Directorului General. Acesta are in ultima instanta 
+                        responsabilitatea performantei companiei in domeniul sanatatii si securitatii in munca.
+                        “ROMTEHNOCHIM” S.R.L. este convinsa ca SSM este un aspect vital al managementului organizatiei, cu o importanta cel putin egala cu 
+                        a altor atributii manageriale.
+                    </p>
+                    <p>
+                        <span class="alineat_span"></span>Organizatia se asteapta ca toti managerii si persoanele de conducere sa isi asume sarcinile legate de securitatea
+                        muncii ca parte integranta a responsabilitatilor lor, in asa fel incat sa previna accidentele si imbolnavirile. Fiecare persoana de conducere va fi
+                        responsabila in fata functiei superioare directe si in final in fata Directorului General pentru indeplinirea cerintelor SSM.
+                    </p>
+                    <p>
+                        <span class="alineat_span"></span>Performanta privind SSM a tuturor celor cu responsabilitati in domeniu va fi atent si constant monitorizata si evaluata
+                        in cadrul sesiunilor de evaluare a performantei. Detalii privind sarcinile si responsabilitatile fiecarui manager/personal cu functie de raspundere in
+                        domeniul SSM sunt cuprinse in Sistemul de Management Integrat.
+                    </p>
+
+                    <h2 class="text-orange">4. RESPONSABILITATILE ANGAJATILOR</h2>    
+                    <p>
+                        <span class="alineat_span"></span>“ROMTEHNOCHIM” S.R.L. asteapta de la toti angajatii sai sa coopereze cu managementul in vederea respectarii cerintelor
+                        legale si a celor referitoare la SSM specificate in cadrul Sistemului de Management Integrat.
+                    </p>
+                    <p>
+                        <span class="alineat_span"></span>Angajatilor le este reamintit faptul ca trebuie sa anunte imediat conditiile nesigure conducatorilor locurilor de munca, si nu trebuie sa intreprinda actiuni riscante, care ar putea pune in pericol sanatatea si siguranta lor sau a altor persoane. Orice incalcare deliberata a Politicii de Sanatate si Securitate a Muncii sau a regulilor aferente va conduce la actiuni disciplinare. Fiecare angajat trebuie sa primeasca o copie a fisei postului pentru care este angajat, in care sunt precizate responsabilitatile sale pe linie de SSM.
+                    </p>
+                    <p><span class="alineat_span"></span>Angajatii au obligatia de a-si indeplini obiectivele SSM corespunzatoare postului/functiei indeplinite.</p>    
+                    <h2 class="text-orange">5. INSTRUIRE</h2>
+                    <p>
+                        <span class="alineat_span"></span>“ROMTEHNOCHIM” S.R.L. ofera instruire in domeniul SSM pentru a se asigura ca toti angajatii au competenta necesara
+                        pentru a-si asigura activitatea fara riscuri pentru propria persoana sau terti. Aceasta instruire este oferita la angajare si pe toata perioada
+                        angajarii.
+                    </p>
+            </div>
+        
+            <div id="Pagina3" class="tab-content">
+                <h2 class="text-green">6. RESURSE PRIVIND SANATATEA SI SECURITATEA</h2>  
+                    <p>
+                        <span class="alineat_span"></span>Indatorirea de baza a Reprezentantului Managementului pentru SSM consta in sprijinul acordat companiei pentru indeplinirea obiectivelor SMI. Reprezentantul Managementului pentru SSM are un rol definit si deplina autoritate de a se asigura ca SMI 
+                        este stabilit, implementat si mentinut corespunzator cu standardul ISO 45001:2018, si de a asigura raportarea performantei sistemului catre managementul de varf.
+                    </p>
+                    <p><span class="alineat_span"></span>Rapoartele asupra functionarii SSM sunt utilizate ca baza pentru imbunatatirea SMI.</p>
+                    <h2 class="text-green">7. CONSULTAREA</h2>
+                    <p>
+                        <span class="alineat_span"></span>Politica noastra de SSM cere implicarea activa a tuturor angajatilor. Asiguram consultarea eficienta, comunicare si cooperare in 
+                        interiorul organizatiei privind problemele de SSM. In acest mod dorim sa cream o cultura pozitiva care asigura implicarea tuturor 
+                        angajatilor la cele mai bune practici in domeniu.
+                    </p>
+                    <h2 class="text-green">8. CONTROLUL RISCURILOR</h2>
+                    <p>
+                        <span class="alineat_span"></span>Un program permanent de identificare si evaluare a riscurilor genereaza masuri care asigura sanatatea si siguranta angajatilor 
+                        si a tuturor persoanelor afectate de activitatea organizatiei noastre. Masurile includ actiuni de natura tehnica, procedurala, 
+                        comportamentala, si sunt reflectate in SMI si in procesele suport. Efectuam inspectii periodice si audituri in scopul evaluarii 
+                        eficacitatii masurilor de control asupra riscurilor.
+                    </p>
+                    <h2 class="text-green">9. MANAGEMENTUL ACCIDENTELOR</h2>
+                    <p>
+                        <span class="alineat_span"></span>Directorul General sau persoanele delegate de Directorul General sunt responsabili de investigarea si raportarea evenimentelor si 
+                        cauzelor tuturor accidentelor care se soldeaza cu raniri, daune materiale sau alte prejudicii, fiind asistati de Reprezentantul
+                        Managementului pentru SSM.
+                    </p>
+                    <p>
+                        <span class="alineat_span"></span>In eventualitatea unui accident de munca, procedurile de raportare ale “ROMTEHNOCHIM” S.R.L. trebuie urmate intocmai, inclusiv 
+                        anuntarea conducerii companiei. Raportul organizatiei trebuie sa fie completat pentru orice incident referitor la SSM.
+                    </p>
+                    <p><span class="alineat_span"></span>In eventualitatea unui accident rutier, trebuie indeplinite toate cerintele procedurii de raportare a accidentului. </p>
+                    <p>
+                        <span class="alineat_span"></span>In anumite situatii, autoritatile legale locale trebuie anuntate, Directorul General fiind responsabil cu conformarea fata de cerintele legale.
+                    </p>
+            </div>
+        
+            <div id="Pagina4" class="tab-content">
+                <h2 class="text-blue">10. CONTROLUL SI REVIZUIREA POLITICII</h2>     
+                    <p>
+                        <span class="alineat_span"></span>Copii ale prezentului document vor fi puse
+                        la dispozitia tuturor angajatilor si afisate in toate locatiile companiei.
+                        In plus, continutul acestui document va fi adus la cunostinta tuturor
+                        contractorilor, clientilor si vizitatorilor, precum si oricarei alte parti
+                        interesate.
+                    </p>
+                    <p>
+                        <span class="alineat_span"></span>SMI va fi analizat si revizuit periodic in
+                        functie de orice modificari legislative in domeniu si/necesitatile
+                        organizatiei.
+                    </p>
+                    <p>
+                        <span class="alineat_span"></span>Orice schimbare intervenita va fi aprobata
+                        de Directorul General si va fi adusa la cunostinta tuturor persoanelor
+                        interesate.
+                    </p>
             </div>
         </div>
+
     </div>
 </div>
 
