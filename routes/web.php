@@ -163,6 +163,12 @@ Route::get('/blog/article/{id}', [BlogArticleController::class, 'show'])->name('
 Route::get('/search', [BlogArticleController::class, 'search'])->name('blog.search');
 
 
+// Cine suntem
+Route::get('/despre-noi', function () {
+    return view('cine_suntem.despre-noi');
+})->name('despre_noi');
+
+
 // Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
 
