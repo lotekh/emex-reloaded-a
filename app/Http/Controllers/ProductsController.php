@@ -48,7 +48,9 @@ class ProductsController extends Controller
 
         $rating_sum = $product->reviews->avg('rating') ?? 0;
 
-        return view('products.view', compact('product', 'categories_products', 'initialPrice', 'initialPackaging', 'initialColor', 'initialName', 'initialPriceNoTva', 'initialIntaritor', 'initialEan', 'initial_q', 'parsedFullData', 'rating_sum'));
+        $firstFourProducts = Product::take(4)->get();
+
+        return view('products.view', compact('product', 'firstFourProducts','categories_products', 'initialPrice', 'initialPackaging', 'initialColor', 'initialName', 'initialPriceNoTva', 'initialIntaritor', 'initialEan', 'initial_q', 'parsedFullData', 'rating_sum'));
     }
 
     
