@@ -170,6 +170,9 @@ Route::get('/despre-noi', function () {
 Route::get('/politica-de-calitate', function () {
     return view('cine_suntem.politica-de-calitate');
 })->name('politica_de_calitate');
+Route::get('/politica-de-mediu', function () {
+    return view('cine_suntem.politica-de-mediu');
+})->name('politica_de_mediu');
 
 
 // Routes for slugs
