@@ -181,6 +181,16 @@ Route::get('/certificari-iso', function () {
 })->name('certificari-iso');
 
 
+// Blades from footer
+Route::get('/politica-de-retur', function () {
+    return view('footer.politica-de-retur');
+})->name('politica.retur');
+Route::get('/faq', function () {
+    return view('footer.faq');
+})->name('intrebari.frecvente');
+
+
+
 // Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
 
