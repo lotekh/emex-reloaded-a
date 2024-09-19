@@ -185,6 +185,9 @@ Route::get('/certificari-iso', function () {
 Route::get('/politica-de-retur', function () {
     return view('footer.politica-de-retur');
 })->name('politica.retur');
+Route::get('/faq', function () {
+    return view('footer.faq');
+})->name('intrebari.frecvente');
 
 
 
