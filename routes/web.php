@@ -188,6 +188,13 @@ Route::get('/politica-de-retur', function () {
 Route::get('/faq', function () {
     return view('footer.faq');
 })->name('intrebari.frecvente');
+Route::get('/termeni-si-conditii', function () {
+    return view('footer.termeni-si-conditii');
+})->name('termeni_si_conditii');
+Route::get('/confidentialitate-gdpr', function () {
+    return view('footer.confidentialitate-gdpr');
+})->name('confidentialitate_gdpr');
+
 
 
 
