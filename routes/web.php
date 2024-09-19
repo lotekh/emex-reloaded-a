@@ -191,6 +191,10 @@ Route::get('/faq', function () {
 Route::get('/termeni-si-conditii', function () {
     return view('footer.termeni-si-conditii');
 })->name('termeni_si_conditii');
+Route::get('/confidentialitate-gdpr', function () {
+    return view('footer.confidentialitate-gdpr');
+})->name('confidentialitate_gdpr');
+
 
 
 

@@ -11,14 +11,6 @@
 
 @section('content')
 
-{{-- <div class="politica relative w-full">
-    <div class="header_img_bg col justify-center align-center" id="header_img_bg" style="background-image: url('{{ asset('resources/images/securitate-in-munca.jpg') }}'); height: 500px;">
-        <h1 class="text-center" id="politica_de_securitate_header">
-            POLITICA DE SANATATE SI SECURITATE IN MUNCA A<br>ROMTEHNOCHIM
-        </h1>
-    </div>
-</div> --}}
-
 <div class="hidden-xs">
     <div class="header_img_bg" id="term_cond_header" style="background-image: url('{{ asset('resources/images/Termeni-si-conditii.jpg') }}');">
         <div class="hibc">
