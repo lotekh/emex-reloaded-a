@@ -248,16 +248,16 @@
         <div id="istoric-content" class="tab-content" style="display:none;">
             <div class="tabs-content" id="tabsCM">
                 @php $visCount = 0; @endphp
-                @for ($i = 0; $i < 3; $i++)
+                @foreach ($orders as $order)
                     @php $visCount++; @endphp
                     <div class="w-full p-8 order-history">
                         <div class="sent_ordered_products">
                             <div class="flex grid grid-6 w-full align-center p-8">
                                 <div class="col-span-2">
-                                    <h3 class="order-identifier">Comanda nr. EMEX-{{ sprintf('%05d', rand(8000, 9000)) }}</h3>
+                                    <h3 class="order-identifier">Comanda nr. EMEX-{{ sprintf('%05d', $order->id) }}</h3>
                                 </div>
                                 <div class="col-span-3">
-                                    <p>Plasata pe: {{ now()->subDays(rand(1, 365))->format('d-m-Y') }} | Total: <strong>{{ number_format(rand(100, 1000), 2) }} Lei</strong></p>
+                                    <p>Plasata pe: {{ $order->created_at->format('d-m-Y') }} | Total: <strong>{{ number_format($order->total, 2) }} Lei</strong></p>
                                 </div>
                                 <div class="flex justify-end">
                                     <button role="button" class="btn btn-blue rounded-sm" onclick="toggleDetails({{ $visCount }})">
@@ -277,15 +277,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @for ($j = 0; $j < 3; $j++)
+                                        @foreach ($order->productVariations as $productVariation)
                                             <tr>
-                                                <td>Produs {{ $j + 1 }}</td>
-                                                <td>{{ rand(1, 10) }}</td>
-                                                <td>{{ rand(1, 5) }} L</td>
-                                                <td>-</td>
-                                                <td>{{ number_format(rand(50, 200), 2) }}</td>
+                                                <td>{{ $productVariation->product->name }}</td>
+                                                <td>{{ $productVariation->pivot->quantity }}</td>
+                                                <td>{{ $productVariation->product->measurement_unit->name ?? '-' }} L</td>
+                                                <td>{{ $productVariation->pivot->mentions ?? '-' }}</td>
+                                                <td>{{ number_format($productVariation->pivot->price, 2) }}</td>
                                             </tr>
-                                        @endfor
+                                        @endforeach
                                     </tbody>
                                 </table>
                                 <div class="flex ml-8 mt-16 mb-16">
@@ -295,8 +295,9 @@
                             </div>
                         </div>
                     </div>
-                @endfor
+                @endforeach
             </div>
+            
         </div>
     </div>
 </div>
