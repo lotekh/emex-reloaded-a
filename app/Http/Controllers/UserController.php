@@ -17,7 +17,10 @@ class UserController extends Controller
         $countries = Country::all();
         $counties = County::all();
 
-        return view('contul-meu', compact('user', 'countries', 'counties'));
+        // Preluăm comenzile utilizatorului împreună cu produsele din comenzi
+        $orders = $user->orders()->with('productVariations.product')->get();
+
+        return view('contul-meu', compact('user', 'countries', 'counties', 'orders'));
     }
 
     public function saveDetaliiCont(Request $request)
