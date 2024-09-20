@@ -292,7 +292,7 @@
                                 </table>
                                 <div class="flex ml-8 mt-16 mb-16">
                                     <button class="btn btn-blue-outline rounded-sm">Descarca proforma</button>
-                                    <button class="btn btn-blue-outline rounded-sm">Descarca factura finala</button>
+                                    {{-- <button class="btn btn-blue-outline rounded-sm">Descarca factura finala</button> --}}
                                 </div>
                             </div>
                         </div>
