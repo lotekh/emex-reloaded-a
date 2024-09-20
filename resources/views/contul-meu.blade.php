@@ -279,9 +279,11 @@
                                     <tbody>
                                         @foreach ($order->productVariations as $productVariation)
                                             <tr>
-                                                <td>{{ $productVariation->product->name }}</td>
+                                                <td>{{ $productVariation->product->plain_name }}</td>
                                                 <td>{{ $productVariation->pivot->quantity }}</td>
-                                                <td>{{ $productVariation->product->measurement_unit->name ?? '-' }} L</td>
+                    
+                                                <td>{{ $productVariation->quantity }} {{ $productVariation->measurementUnit->name ?? '-' }}</td>
+
                                                 <td>{{ $productVariation->pivot->mentions ?? '-' }}</td>
                                                 <td>{{ number_format($productVariation->pivot->price, 2) }}</td>
                                             </tr>
