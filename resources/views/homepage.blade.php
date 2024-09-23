@@ -1,8 +1,14 @@
 @extends('layout.layout')
 
-
+<?php
+// dd('test');
+?>
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
+@endsection
+
+@section('breadcrumbs')
+<ul class="flex gap-xs"><li class="font-xs ellipsis"><a href="/">Acasa</a></li></ul>
 @endsection
 
 

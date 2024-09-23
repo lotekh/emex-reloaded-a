@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
 @endsection
 
+@section('breadcrumbs')
+<ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="/produse">Produse</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis"><a href="#"></a>{{ $category->name }}</li></ul>
+@endsection
+
 @section('content')
 <?php
 $base_url = url('/');
@@ -83,6 +87,7 @@ $base_url = url('/');
         </div>
     </div>
     
+    {{-- THE PRODUCTS --}}
     <div class="my-32 grid grid-3 gap-xl" id="clw">
         @foreach ($products as $ind => $product)
             @if (!empty($product))

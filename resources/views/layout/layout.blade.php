@@ -20,6 +20,10 @@
     {{-- @vite('resources/css/app.css') --}}
 </head>
 
+@php
+    use App\Models\Order;
+@endphp
+
 
 <body class="m-0" id="main_body">
 
@@ -101,13 +105,15 @@
                             Facturare
                         </a>
 
-                       
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+
+                        <a href="{{ route('logout') }}" id="logoutButton" title="Iesire din cont"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                         Iesire din cont
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
-                            <button type="submit">
-                                Iesire din cont
-                            </button>
                         </form>
+                     
 
 
                        
@@ -135,8 +141,7 @@
                 <div class="row align-center gap-md" id="favorites-cart">
                     <a href="{{ url('/wishlist') }}" title="produse favorite">
                         @php
-                            // $wishlist_products_count = Auth::check() ? App\Models\Wishlist::where('user_id', Auth::id())->count() : session('wish_list_products', collect())->count();
-                            $wishlist_products_count = 0;
+                            $wishlist_products_count = Auth::check() ? App\Models\WishlistItem::where('user_id', Auth::id())->count() : 0;
                         @endphp
                         <div class="flex align-center">
                             <svg width="20" height="19" viewBox="0 0 14 13" fill="#1071FF" xmlns="http://www.w3.org/2000/svg">
@@ -144,13 +149,25 @@
                             </svg>
                         </div>
                         <div class="circle flex justify-center align-center">
-                            {{ $wishlist_products_count }}
+                            {{ app('App\Http\Controllers\WishlistController')->getWishlistCount() }}
                         </div>
                         <span class="label">Favorite</span>
                     </a>
+                    
                     <a href="{{ url('/produse-adaugate') }}" title="cos">
                         @php
-                            $preorder_count = session('cart_list_products', collect())->count();
+                            // Obține utilizatorul curent autentificat
+                             $user = Auth::user();
+
+                            // Verifică dacă există o comandă (coș) activă pentru utilizatorul curent sau pentru utilizatorul neautentificat
+                            if ($user) {
+                                $activeOrder = $user->orders()->where('is_paid', false)->first();
+                            } else {
+                                $activeOrder = Order::where('user_id', null)->where('is_paid', false)->first();
+                            }
+
+                            // Obține numărul de produse din coșul activ sau setează la 0 dacă nu există un coș activ
+                            $preorder_count = $activeOrder ? $activeOrder->productVariations()->count() : 0;
                         @endphp
                         <div class="flex align-center">
                             <svg width="20" height="19" viewBox="0 0 15 14" fill="#1071FF" xmlns="http://www.w3.org/2000/svg">
@@ -162,6 +179,8 @@
                         </div>
                         <span class="label">Cos</span>
                     </a>
+                    
+
                 </div>
             </div>
         </div>
@@ -169,7 +188,11 @@
         <!-- third layer -->
         <div class="main-container row justify-between align-center desktop-header">
             <div class="breadcrumbs-container">
-                @include('breadcrumbs')
+                <div class="breadcrumbs_wrapper ">
+                    <div class="breadcrumbs pull-left">
+                        @yield('breadcrumbs')
+                    </div>
+                </div>                
             </div>
             <div id="navigation_wrapper">
                 <div id="navigation">
@@ -181,8 +204,12 @@
         <!-- mobile -->
         @include('mobile-menu')
 
-        <div class="breadcrumbs-mobile-container">
-            @include('breadcrumbs')
+        <div id="breadcrumbsContainerMobile" class="breadcrumbs-mobile-container">
+            <div class="breadcrumbs_wrapper ">
+                <div class="breadcrumbs pull-left">
+                    @yield('breadcrumbs')
+                </div>
+            </div>                
         </div>
 
 
@@ -330,7 +357,7 @@
         <img width="50" height="50" src="{{ asset('resources/images/Mail-mobile.png') }}" alt="Email Emex">
     </div>
 
-    <div class="m-0">
+    <div class="m-0" id="content_wrapper">
         @yield('content')
     </div>
 
@@ -585,9 +612,15 @@
                 <ul class="dropdown-menu" id="produse-menu">
                     <li id="apmim_mob"><a href="{{ url('/produse') }}" title="toate produsele">Toate Produsele</a></li>
 
-                    {{-- de obtinut $categories si iterat prin ele --}}
-                    <a href="{{ url('/') }}" title=" categoria 1"> categoria 1 </a>
-                    <a href="{{ url('/') }}" title=" categoria 1"> categoria 2 </a>
+                    @foreach ($categories as $ind => $category)
+                    <div>
+                        <li>
+                            <a href="{{ url($category->slug) }}">
+                                {{ $category->name }}
+                            </a>
+                        </li>
+                    </div>
+                    @endforeach
 
                 </ul>
             </div>
@@ -610,9 +643,15 @@
                 <header>Consum</header>
                 <ul class="dropdown-menu" id="consum-menu">
 
-                    {{-- de obtinut $categories si iterat prin ele --}}
-                    <li><a href="{{ url('/') }}" title=" categoria 1"> categoria 1 </a></li>
-                    <li><a href="{{ url('/') }}" title=" categoria 1"> categoria 2 </a></li>
+                    @foreach ($categories as $ind => $category)
+                    <div>
+                        <li>
+                            <a href="{{ route('consum.index', ['category' => $category->slug]) }}">
+                                {{ $category->name }}
+                            </a>
+                        </li>
+                    </div>
+                @endforeach
                     
                 </ul>
             </div>
@@ -625,7 +664,7 @@
                     <li><a href="{{ url('/servicii') }}" title="Servicii Generale">Servicii Generale</a></li>
                 </ul>
             </div>
-            <div class="categorii" id="culori" onclick="toggleAccordion('servicii')">
+            <div class="categorii" id="culori" onclick="toggleAccordion('culori')">
                 <header>Culori</header>
                 <ul class="dropdown-menu" id="culori-menu">
                     <li><a href="{{ url('/cartela-culori-ral-vopsele') }}" title="Cartela RAL">Cartela RAL - Emailuri</a></li>
@@ -646,19 +685,29 @@
                 @if (Auth::check())
                     <a href="{{ url('/contul-meu') }}" title="Setari cont">Setari cont</a>
                     <a href="{{ url('/wishlist') }}" title="Favorite">Favorite</a>
-                    {{-- <a href="{{ url('/contul-meu?page=istoric') }}" title="Istoric">Istoric</a>
-                    <a href="{{ url('/contul-meu#facturare') }}" title="Facturare">Facturare</a> --}}
                     <a href="{{ url('/contul-meu') }}" title="Istoric">Istoric</a>
                     <a href="{{ url('/contul-meu') }}" title="Facturare">Facturare</a>
-                    <a href="{{ url('/logout') }}" title="Iesire">Iesire</a>
+                    {{-- <a href="{{ url('/logout') }}" title="Iesire">Iesire</a> --}}
+                    <a href="{{ route('logout') }}" id="logoutButtonMobile" title="Iesire"
+                        onclick="event.preventDefault(); document.getElementById('logout-form-mobil').submit();">
+                         Iesire din cont
+                    </a>
+                    <form id="logout-form-mobil" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 @else
-                    <button id="auth_lightbox_trigger_mobile" class="btn btn-blue" onclick="toggleSidebar(), toggleAuthLightbox()" role="button" aria-label="Autentificare">
+                    {{-- <button id="auth_lightbox_trigger_mobile" class="btn btn-blue" role="button" aria-label="Autentificare">
+                        Autentificare
+                    </button> --}}
+                    <button id="auth_lightbox_trigger_mobile" class="btn btn-blue" onclick="toggleSidebar()" role="button" aria-label="Autentificare">
                         Autentificare
                     </button>
                 @endif
             </div>
         </nav>
     </div>
+
+    <div id="mobile-sidebar-open-backdrop" class="hidden"></div>
 
     @include('components.sidebar-contact', ['secondary_title' => 'vopsele'])
 
@@ -668,13 +717,44 @@
 
     function toggleSidebar() {
         var sidebar = document.getElementById('sidebar-left');
-        if(sidebar.classList.contains('hidden')) {
+        var bodyBackdrop = document.getElementById('mobile-sidebar-open-backdrop');
+        var body = document.getElementsByTagName('body')[0];
+        var content_wrapper = document.getElementById('content_wrapper');
+        if (sidebar.classList.contains('hidden')) {
             sidebar.classList.remove('hidden');
-        }
-        else {
+            bodyBackdrop.classList.remove('hidden');
+            body.classList.add('overflow-y-hidden');
+            content_wrapper.classList.add('overflow-y-hidden');
+            // Adaugă un event listener pentru a ascunde sidebar-ul când se face click în afara lui, dar cu un mic delay
+            setTimeout(function() {
+                document.addEventListener('click', handleClickOutsideSidebar);
+            }, 100); // Adăugăm un delay mic de 100ms
+        } else {
             sidebar.classList.add('hidden');
+            bodyBackdrop.classList.add('hidden');
+            body.classList.remove('overflow-y-hidden');
+            content_wrapper.classList.remove('overflow-y-hidden');
+            document.removeEventListener('click', handleClickOutsideSidebar);
         }
     }
+
+    function handleClickOutsideSidebar(event) {
+        var sidebar = document.getElementById('sidebar-left');
+        var bodyBackdrop = document.getElementById('mobile-sidebar-open-backdrop');
+        var body = document.getElementsByTagName('body')[0];
+        var content_wrapper = document.getElementById('content_wrapper');
+        if (!sidebar.contains(event.target) && event.target.id !== 'toggleSidebarButton') {
+            // Dacă click-ul a avut loc în afara sidebar-ului, îl ascundem
+            sidebar.classList.add('hidden');
+            bodyBackdrop.classList.add('hidden');
+            body.classList.remove('overflow-y-hidden');
+            content_wrapper.classList.remove('overflow-y-hidden');
+            // Eliminăm event listener-ul, deoarece nu mai este necesar
+            document.removeEventListener('click', handleClickOutsideSidebar);
+        }
+    }
+
+
 
     function toggleAccordion(id) {
         var menu = document.getElementById(id + '-menu');
@@ -702,6 +782,13 @@
     }
 
     document.getElementById('auth_lightbox_trigger').addEventListener('click', function() {
+        var authContainer = document.querySelector('.autentificare-1');
+        authContainer.style.opacity = '1';
+        authContainer.style.display = 'inline-block';
+        document.getElementById('auth-lightbox').style.display = 'flex';
+    });
+
+    document.getElementById('auth_lightbox_trigger_mobile').addEventListener('click', function() {
         var authContainer = document.querySelector('.autentificare-1');
         authContainer.style.opacity = '1';
         authContainer.style.display = 'inline-block';

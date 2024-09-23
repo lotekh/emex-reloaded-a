@@ -1,0 +1,94 @@
+@extends('layout.layout')
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/certificari.css') }}">
+@endsection
+
+@section('breadcrumbs')
+<ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="/despre-noi">Despre noi</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Politica de Securitate</li></ul>
+@endsection
+
+
+@section('content')
+
+<div class="certificari relative w-full">
+    <div class="header_img_bg col justify-center align-center" id="header_img_bg" style="background-image: url('{{ asset('resources/images/Certificari-ISO-Romtehnochim.jpg') }}'); height: 500px;">
+        <h1 class="text-center" id="certificari_iso_header">
+            CERTIFICARI ISO DE CALITATE ALE <br> ROMTEHNOCHIM
+        </h1>
+    </div>
+</div>
+
+<div class="main-container">
+    <h2 class="text-center">CERTIFICARI DE CALITATE ALE PRODUSELOR “EMEX”</h2>
+
+    <div>
+        <div class="slider-container">
+            <button class="prev" onclick="prevSlide()">❮</button>
+            <div class="relative cover certificate">
+                <div id="iso_certificates_slider_wrapper" class="certificates-slider">
+                    <div class="certificate-slide">
+                        <img src="https://emex.ro/images/general/ISO-18001.png" width="246" height="348" alt="ISO 9001:2015" class="responsive-img">
+                        <div class="text-center mt-16">
+                            <label class="cert_first">ISO 9001:2015</label>
+                        </div>
+                    </div>
+                    <div class="certificate-slide">
+                        <img src="https://emex.ro/images/general/ISO-18001.png" width="246" height="348" alt="ISO 14001:2015" class="responsive-img">
+                        <div class="text-center mt-16">
+                            <label class="cert_sec">ISO 14001:2015</label>
+                        </div>
+                    </div>
+                    <div class="certificate-slide">
+                        <img src="https://emex.ro/images/general/ISO-18001.png" width="246" height="348" alt="ISO 45001:2018" class="responsive-img">
+                        <div class="text-center mt-16">
+                            <label class="cert_third">ISO 45001:2018</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="next" onclick="nextSlide()">❯</button>
+        </div>
+    </div>
+
+
+</div>
+@endsection
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.certificate-slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            const sliderWrapper = document.getElementById('iso_certificates_slider_wrapper');
+            if (index >= totalSlides) {
+                currentIndex = 0;
+            } else if (index < 0) {
+                currentIndex = totalSlides - 1;
+            } else {
+                currentIndex = index;
+            }
+            sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        function nextSlide() {
+            showSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentIndex - 1);
+        }
+
+        // Attach the functions to buttons
+        document.querySelector('.next').addEventListener('click', nextSlide);
+        document.querySelector('.prev').addEventListener('click', prevSlide);
+
+        // Auto-slide functionality (Optional) -> Slide every 3 seconds
+        // setInterval(() => {
+        //     nextSlide();
+        // }, 3000); 
+    });
+</script>

@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="{{ asset('css/aplicare.css') }}">
 @endsection
 
+@section('breadcrumbs')
+<ul class="flex gap-xs"><li class="font-xs"><a href="/produse">Toate Produsele</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="/vopsele-lavabile">Vopsele Lavabile</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Aplicare Vopsele Lavabile</li></ul>
+@endsection
+
 @section('content')
 
 <div class="aplicari relative w-full">

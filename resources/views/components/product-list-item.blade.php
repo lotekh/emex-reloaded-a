@@ -1,32 +1,32 @@
 @php
-    $initialPrice = $product->variations['initials']['price'];
-    $initialPackaging = $product->variations['initials']['packaging'];
-    $initialColor = $product->variations['initials']['color'];
-    $initialName = $product->variations['initials']['name'];
-    $initialPriceNoTva = $product->variations['initials']['price_no_tva'];
-    $initialIntaritor = $product->variations['initials']['intaritor'];
-    $initialEan = $product->variations['initials']['ean'];
+    $initialVariation = $product->variations->first();
+    $initialPrice = $initialVariation->price ?? null;
+    $initialPackaging = $initialVariation->quantity ?? null;
+    $initialColor = $initialVariation->colour ?? null;
+    $initialName = $initialVariation->name ?? null;
+    $initialPriceNoTva = $initialVariation->price_no_tva ?? null;
+    $initialIntaritor = $initialVariation->addon_text ?? null;
+    $initialEan = $initialVariation->ean ?? null;
     $initial_q = 1;
 
-    $parsedFullData = $product->variations['parsedData'];
+    $featuredImageUrl = $product->featuredImage ? asset('storage/' . $product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
 
-    $ambalareValues = $product->variations['cantitati'] ?? [];
-    $colorsValues = $product->variations['colors'] ?? [];
-
+    // Calculate the average rating safely
     $rating_sum = 0;
-    if (!empty($product->reviews)) {
-        $rating_sum = array_reduce($product->reviews, function($carry, $item) {
-            return $carry + $item['rating'];
-        }, 0) / count($product->reviews);
+    $reviewCount = $product->reviews->count();
+
+    if ($reviewCount > 0) {
+        $rating_sum = $product->reviews->sum('rating') / $reviewCount;
     }
 @endphp
 
-<form class="relative w-full col" method="GET" action="{{ url('/order-product') }}">
+<form method="GET" action="{{ url('/adauga-produs') }}">
+<div class="relative w-full col">
     <div class="product-list-item mb-16 col w-full">
         <div class="col flex-md">
             <div class="relative image-container z-0">
                 <a href="{{ url($product->slug) }}">
-                    <img src="{{ $product->getCategoryWebpUrl() }}" alt="{{ $product->getImageAlt('category') }}" title="{{ $product->getImageTitle('category') }}">
+                    <img src="{{ $featuredImageUrl }}" alt="imagine" title="imagineprodus" style="height: 180px; max-width: 230px;">
                 </a>
             </div>
             <div class="col w-full justify-between form-container">
@@ -44,7 +44,7 @@
                                 </div>
                             @endfor
                             <p class="ml-8 flex">
-                                <span class="font-700">{{ number_format($rating_sum, 1) }}</span> ({{ count($product->reviews) }})
+                                <span class="font-700">{{ number_format($rating_sum, 1) }}</span> ({{ $reviewCount }})
                             </p>
                         </div>
                     @endunless
@@ -52,7 +52,7 @@
                 @if(!empty($initialPrice))
                     <div class="price row mb-16 flex align-center">
                         <p class="mr-4">Pret:</p>
-                        <p class="value">{{ $initialPrice }}</p>
+                        <p class="value" id="priceDisplay{{ $product->id }}">{{ $initialPrice }}</p>
                         <p class="value ml-4">Lei</p>
                     </div>
                 @else
@@ -61,32 +61,37 @@
                     </div>
                 @endif
                 <div class="flex">
-                    <div class="form-group">
-                        <label for="ambalare" class="section-info">Ambalare</label>
-                        @if(!empty($ambalareValues))
-                            <select id="ambalare" name="ambalare" class="mr-8">
-                                @foreach($ambalareValues as $value)
-                                    <option value="{{ $value }}" {{ $initialPackaging == $value ? 'selected' : '' }}>{{ $value }}</option>
+                    @if ($product->variations->pluck('quantity')->filter()->count())
+                        <div class="form-group mr-8">
+                            <label class="section-info" id="choose-type">Ambalare</label>
+                            <select aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
+                                @foreach ($product->variations->unique('quantity') as $variation)
+                                    <option value="{{ $variation->quantity }}">
+                                        {{ $variation->quantity }} {{ $variation->measurementUnit->name }}
+                                    </option>
                                 @endforeach
                             </select>
-                        @endif
-                    </div>
-                    <div class="form-group mr-8">
-                        <label class="section-info" for="culoare">Culoare</label>
-                        @if(!empty($colorsValues))
-                            <select id="culoare" name="color">
-                                @foreach($colorsValues as $value)
-                                    <option value="{{ $value }}" {{ $initialColor == $value ? 'selected' : '' }}>{{ $value }}</option>
+                        </div>
+                    @endif
+                    
+                    @if ($product->variations->pluck('colour')->filter()->count())
+                        <div class="form-group mr-8">
+                            <label class="section-info" id="choose-color">Culoare</label>
+                            <select aria-labelledby="choose-color" class="w-full" name="color" id="colorSelect{{ $product->id }}">
+                                @foreach ($product->variations->pluck('colour')->filter() as $value)
+                                    <option value="{{ $value }}">{{ $value }}</option>
                                 @endforeach
                             </select>
-                        @endif
-                    </div>
+                        </div>
+                    @endif
 
                     <div class="form-group quantity-form-group">
                         <label class="section-info">Cantitate</label>
                         <input class="w-full pr-8" type="number" min="0" pattern="[0-9]+" name="quantity" value="{{ $initial_q }}" />
                     </div>
                 </div>
+
+                <input type="hidden" name="product_variation_id" id="variationInput{{ $product->id }}" value="{{ $initialVariation->id }}">
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                 <input type="hidden" name="submited" value="1">
                 <input type="hidden" name="name" value="{{ $initialName }}">
@@ -98,7 +103,10 @@
             </div>
             <div class="col justify-center">
                 <div class="col justify-end gap-md align-center p-16">
-                    <a href="{{ url('/remove-from-wishlist?product_id=' . $product->id) }}">
+                    {{-- <a href="{{ url('/remove-from-wishlist?product_id=' . $product->id) }}">
+                        <button type="button" class="btn btn-blue-outline rounded-xl">Scoate din wishlist</button>
+                    </a> --}}
+                    <a href="{{ route('wishlist.removee', ['product_id' => $product->id]) }}">
                         <button type="button" class="btn btn-blue-outline rounded-xl">Scoate din wishlist</button>
                     </a>
                     <a href="{{ url($product->slug) }}">
@@ -109,4 +117,5 @@
             </div>
         </div>
     </div>
+</div>
 </form>

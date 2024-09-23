@@ -31,6 +31,7 @@ class RegisteredUserController extends Controller
 
     public function store(UserRegisterRequest $request): RedirectResponse
     {
+        // dd(1);
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
@@ -39,6 +40,8 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'role' => 'user',
         ]);
+
+        // dd($user);
 
         event(new Registered($user));
 

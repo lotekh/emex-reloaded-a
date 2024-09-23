@@ -16,13 +16,29 @@
 
   <div>
     <div class="relative image">
-      <form method="get" class="addToWishlistBt absolute z-10" id="product_wish_list_form{{ $product->id }}" action="{{ url('/add-to-wishlist') }}">
+      {{-- <form method="POST" class="addToWishlistBt absolute z-10" id="product_wish_list_form{{ $product->id }}" action="{{ $product->isInWishlist ? url('/remove-from-wishlist') : url('/add-to-wishlist') }}">
         @csrf
         <input type="hidden" name="product_id" value="{{ $product->id }}">
-        <button type="submit" aria-label="Adauga la favorite">
-          <img width="20" height="20" src="{{ asset('resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
+        
+        <button type="submit" aria-label="{{ $product->isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
+            <img width="20" height="20" src="{{ $product->isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
         </button>
+    </form> --}}
+
+      @php
+        $isInWishlist = app('App\Http\Controllers\WishlistController')->isInWishlist($product->id);
+      @endphp
+
+      <form method="POST" class="addToWishlistBt absolute z-10" id="product_wish_list_form{{ $product->id }}" action="{{ $isInWishlist ? url('/remove-from-wishlist') : url('/add-to-wishlist') }}">
+          @csrf
+          <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+          <button type="submit" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
+              <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
+          </button>
       </form>
+
+    
       <div class="absolute z-10 stoc-container">
         @if ($product->active)
           <div class="in-stoc">
@@ -51,6 +67,7 @@
       </a>
     </div>
 
+    {{-- Ratings --}}
     <div class="w-full row align-center mb-8 product-rating-pl">
       @for ($i = 0; $i < 5; $i++)
         @if ($i < $averageRating)
@@ -82,24 +99,25 @@
         @endif
       </div>
 
-      <form class="relative w-full col" method="GET" action="{{ url('/order-product') }}">
+      <form class="relative w-full col" method="GET" action="{{ url('/adauga-produs') }}">
+
         <input type="hidden" name="product_id" value="{{ $product->id }}">
-        <input type="hidden" name="submited" value="1">
-        <input type="hidden" name="name" value="{{ $product->plain_name }}">
+        <input type="hidden" name="product_variation_id" id="variationInput{{$product->id}}" value="{{ $initialVariation->id }}">
         <input type="hidden" name="price" id="priceInput{{$product->id}}" value="{{ $initialVariation->price }}">
-        <input type="hidden" name="price_no_tva" id="priceNoTvaInput" value="{{ $initialVariation->price_no_tva }}">
-        <input type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
-        <input type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
+        <input type="hidden" name="price_no_tva" id="priceNoTvaInput{{$product->id}}" value="{{ $initialVariation->price_no_tva }}">
+        <input type="hidden" name="ean" id="eanInput{{$product->id}}" value="{{ $initialVariation->ean }}">
+        <input type="hidden" name="addon_quantity" id="addonQuantityInput{{$product->id}}" value="{{ $initialVariation->intaritor }}">
         <input type="hidden" name="quantity" value="1">
+
+        {{-- <input type="hidden" name="product_variation_id" value="{{ $initialVariation->id }}">
+        <input type="hidden" name="quantity" value="1">
+        <input type="hidden" name="ambalare" value="{{ $initialVariation->quantity }}">
+        <input type="hidden" name="color" value="{{ $initialVariation->colour }}">
+        <input type="hidden" name="price" value="{{ $initialVariation->price }}">
+        <input type="hidden" name="price_no_tva" value="{{ $initialVariation->price_no_tva }}"> --}}
+        
         <div class="row no-wrap w-full gap-xs">
           <div class="relative row w-full">
-            {{-- <select aria-label="Ambalare" name="ambalare" id="ambalareSelect{{$product->id}}">
-              @foreach ($variations->pluck('quantity')->unique() as $value)
-                <option value="{{ $value }}" {{ $value == $initialVariation->quantity ? 'selected' : '' }}>
-                  {{ $value }}
-                </option>
-              @endforeach
-            </select> --}}
             <select aria-label="Ambalare" name="ambalare" id="ambalareSelect{{$product->id}}">
               @foreach ($product->variations->unique('quantity') as $variation)
                   <option value="{{ $variation->quantity }}" {{ $variation->quantity == $initialVariation->quantity ? 'selected' : '' }}>
@@ -134,46 +152,35 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const ambalareSelect = document.getElementById('ambalareSelect{{ $product->id }}');
-    // console.log(ambalareSelect);
-    const colorSelect = document.getElementById('colorSelect{{ $product->id }}');
-    const priceDisplay = document.getElementById('price{{ $product->id }}');
-    const priceInput = document.getElementById('priceInput{{ $product->id }}');
-
-    function updateVariation() {
-        const productId = {{ $product->id }};
-        const selectedPackaging = ambalareSelect.value;
-        const selectedColor = colorSelect.value;
-
-        fetch('{{ route('product.getVariation') }}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({
-                product_id: productId,
-                quantity: selectedPackaging,
-                color: selectedColor
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                priceDisplay.textContent = data.variation.price;
-                priceInput.value = data.variation.price;
-                // Update other fields if needed
-            } else {
-                console.error('Error:', data.error);
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    }
-
-    ambalareSelect.addEventListener('change', updateVariation);
-    colorSelect.addEventListener('change', updateVariation);
-});
+  document.addEventListener('DOMContentLoaded', function () {
+      const ambalareSelect = document.getElementById('ambalareSelect{{ $product->id }}');
+      const colorSelect = document.getElementById('colorSelect{{ $product->id }}');
+      const priceDisplay = document.getElementById('price{{ $product->id }}');
+      const priceInput = document.getElementById('priceInput{{ $product->id }}');
+      const variationInput = document.getElementById('variationInput{{ $product->id }}');
+  
+      // Preload all product variations into JavaScript
+      const variations = @json($variations);
+  
+      function updateVariation() {
+          const selectedPackaging = ambalareSelect.value;
+          const selectedColor = colorSelect.value;
+  
+          // Find the correct variation
+          const variation = variations.find(variation => 
+              variation.quantity == selectedPackaging && variation.colour == selectedColor
+          );
+  
+          if (variation) {
+              priceDisplay.textContent = variation.price;
+              priceInput.value = variation.price;
+              variationInput.value = variation.id; // Set variation ID
+          } else {
+              console.error('No matching variation found.');
+          }
+      }
+  
+      ambalareSelect.addEventListener('change', updateVariation);
+      colorSelect.addEventListener('change', updateVariation);
+  });
 </script>
