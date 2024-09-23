@@ -12,16 +12,16 @@ class CategoryFilter extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'category_filter_id'];
 
     public function children(): HasMany
     {
-        return $this->hasMany(CategoryFilter::class);
+        return $this->hasMany(CategoryFilter::class, 'category_filter_id', 'id');
     }
 
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(CategoryFilter::class);
+        return $this->belongsTo(CategoryFilter::class, 'id', 'category_filter_id');
     }
 
     public function products(): BelongsToMany
