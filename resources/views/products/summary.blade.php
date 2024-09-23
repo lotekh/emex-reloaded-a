@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
 @endsection
 
+@section('breadcrumbs')
+<ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="/produse">Produse</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis"><a href="#">Factura</a></li></ul>
+@endsection
+
 @section('content')
 {{-- @php
     use Illuminate\Support\Facades\Auth;
