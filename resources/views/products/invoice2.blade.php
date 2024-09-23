@@ -240,6 +240,7 @@
 
     @php
     $deliveryInformation = json_decode($order->delivery_information, true);
+    $billingInformation = json_decode($order->company_information, true);
     @endphp
 
     <tr class="col-12 small-font">
@@ -253,8 +254,8 @@
         <td class="col-6 small-font" style="vertical-align: top">
             @if ($order['billing_type'] == 0)
                 <p>Judet: {{ $billingCountyName }}</p>
-                <p>Localitate: {{ $deliveryInformation['delivery_locality'] ?? '' }}</p>
-                <p>Adresa: {{ $deliveryInformation['delivery_address'] ?? '' }}</p>
+                <p>Localitate: {{ $billingInformation['person_locality'] ?? '' }}</p>
+                <p>Adresa: {{ $billingInformation['person_address'] ?? '' }}</p>
             @else
             <p>CUI: {{ $companyInformation['organization_cui'] }}</p>
             <p>Adresa: {{ $companyInformation['organization_address'] . ', ' . $companyInformation['organization_locality'] . ', jud. ' . $billingCountyName }}</p>
