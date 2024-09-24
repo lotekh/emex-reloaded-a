@@ -39,6 +39,7 @@ class RegisteredUserController extends Controller
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
             'role' => 'user',
+            'billing_type' => 0,
         ]);
 
         // dd($user);
