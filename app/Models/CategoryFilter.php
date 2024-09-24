@@ -24,8 +24,14 @@ class CategoryFilter extends Model
         return $this->belongsTo(CategoryFilter::class, 'id', 'category_filter_id');
     }
 
+    // public function products(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Product::class);
+    // }
+
     public function products(): BelongsToMany
-    {
-        return $this->belongsToMany(Product::class);
-    }
+{
+    return $this->belongsToMany(Product::class, 'category_filters_products', 'category_filter_id', 'product_id');
+}
+
 }

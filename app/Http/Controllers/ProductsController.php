@@ -5,29 +5,76 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use Illuminate\Http\Request;
+use App\Models\CategoryFilter;
+
 
 class ProductsController extends Controller
 {
 
+    // public function index(Request $request)
+    // {
+    //     $perPage = $request->get('per_page', 9);
+    //     $currentPage = $request->get('current_page_number', 1);
+
+    //     // Collect filters from the request, except pagination parameters
+    //     $filters = $request->except(['per_page', 'current_page_number']);
+    //     $filtersString = '?' . http_build_query($filters);
+
+    //     // Query the products, applying pagination
+    //     $products = Product::where('active', 1) // Assuming you only want to show active products
+    //         ->paginate($perPage, ['*'], 'page', $currentPage);
+
+    //     $totalResults = $products->total();
+    //     $totalPages = $products->lastPage();
+
+    //     return view('products.produse', compact('products', 'totalResults', 'totalPages', 'perPage', 'currentPage', 'filtersString', 'filters'));
+    // }
+
     public function index(Request $request)
-    {
-        $perPage = $request->get('per_page', 9);
-        $currentPage = $request->get('current_page_number', 1);
+{
+    // Set pagination values from request (with defaults)
+    $perPage = $request->get('per_page', 9);
+    $currentPage = $request->get('current_page_number', 1);
 
-        // Collect filters from the request, except pagination parameters
-        $filters = $request->except(['per_page', 'current_page_number']);
-        $filtersString = '?' . http_build_query($filters);
-        // dd($filtersString);
+    // Collect filters from the request, excluding pagination parameters
+    $selectedFilters = $request->except(['per_page', 'current_page_number']);
 
-        // Query the products, applying pagination
-        $products = Product::where('active', 1) // Assuming you only want to show active products
-            ->paginate($perPage, ['*'], 'page', $currentPage);
+    // Build filter string for URL generation
+    $filtersString = '?' . http_build_query($selectedFilters);
 
-        $totalResults = $products->total();
-        $totalPages = $products->lastPage();
+    // Retrieve the filters with their subcategories
+    $filters = CategoryFilter::with('children')->get();
 
-        return view('products.produse', compact('products', 'totalResults', 'totalPages', 'perPage', 'currentPage', 'filtersString', 'filters'));
+    // Start query for products
+    $productsQuery = Product::where('active', 1); // Only active products
+
+    // Apply filters to the product query, if any are selected
+    if ($selectedFilters) {
+        $productsQuery->whereHas('categoryfilters', function($query) use ($selectedFilters) {
+            foreach ($selectedFilters as $filterKey => $filterValue) {
+                if (strpos($filterKey, 'category') !== false && $filterValue === 'on') {
+                    // Extract filter ID from key (e.g., 'category3' -> 3)
+                    $filterId = str_replace('category', '', $filterKey);
+                    // Apply the filter to the query
+                    $query->where('category_filters.id', $filterId);
+                }
+            }
+        });
     }
+
+    // Paginate the filtered products
+    $products = $productsQuery->paginate($perPage, ['*'], 'page', $currentPage);
+
+    // Get total results and total pages for pagination
+    $totalResults = $products->total();
+    $totalPages = $products->lastPage();
+
+    // Return the view with products, filters, and pagination data
+    return view('products.produse', compact('products', 'totalResults', 'totalPages', 'perPage', 'currentPage', 'filtersString', 'filters'));
+}
+
+
+
 
     public function showProduct($slug, Request $request)
     {
