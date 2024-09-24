@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\ProductVariation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class OrdersController extends Controller
 {
@@ -454,6 +455,16 @@ class OrdersController extends Controller
             'delivery_information' => $deliveryInformation,
             'contact_information' => $contactInformation, 
         ]);
+
+        // Generate PDF after updating the order
+        $pdf = PDF::loadView('products.invoice2', compact('order', 'orders_products', 'billingCountyName'));
+
+        // Create a filename for the proforma
+        $fileName = 'proforma_RTCH-N-' . $order->identifier . '.pdf';
+
+        // Store the generated PDF to a storage location (e.g., local storage or S3)
+        Storage::put('public/proformas/' . $fileName, $pdf->output());
+
 
         // Redirecționăm utilizatorul la pagina de sumar comandă după ce comanda este procesată
         return redirect()->route('order.summary', ['guid' => $order->guid]);
