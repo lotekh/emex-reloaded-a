@@ -319,6 +319,9 @@
 
         // Actualizează hash-ul în URL
         window.location.hash = tabId;
+
+        // Mută pagina în sus
+        window.scrollTo(0, 0); 
     }
 
     function toggleDetails(id) {
