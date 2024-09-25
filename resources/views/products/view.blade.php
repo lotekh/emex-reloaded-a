@@ -233,7 +233,7 @@
                     @endif
                     @if ($product->has_calculus == 1)
                         {{-- <a class="icon" href="{{ url($product->consum_link) }}"> --}}
-                        <a class="icon" href="{{$baseUrl}}">
+                        <a class="icon" href="{{ url($product->consumption_slug) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.66 23.98" fill="#1071ff" width="20" height="20">
                                 <path d="M15.83 3.6H3.82V6h12.01V3.6ZM3.82 8.39h2.4v2.4h-2.4v-2.4Zm2.4 4.8h-2.4v2.4h2.4v-2.4Zm-2.4 4.8h2.4v2.4h-2.4v-2.4Zm7.2-9.59h-2.4v2.4h2.4V8.4Zm-2.4 4.8h2.4v2.4h-2.4v-2.4Zm2.4 4.8h-2.4v2.4h2.4V18Zm2.4-9.59h2.4v2.4h-2.4v-2.4Zm2.4 4.8h-2.4v7.19h2.4v-7.19Z"></path>
                                 <path d="M0 2.18C0 .97.97 0 2.19 0h15.29c1.2 0 2.19.97 2.19 2.18V21.8c0 1.2-.97 2.18-2.19 2.18H2.19C.99 23.98 0 23.01 0 21.8V2.18Zm2.19 0h15.29V21.8H2.19V2.18Z" fill-rule="evenodd"></path>
