@@ -232,7 +232,6 @@
                         </a>
                     @endif
                     @if ($product->has_calculus == 1)
-                        {{-- <a class="icon" href="{{ url($product->consum_link) }}"> --}}
                         <a class="icon" href="{{ url($product->consumption_slug) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.66 23.98" fill="#1071ff" width="20" height="20">
                                 <path d="M15.83 3.6H3.82V6h12.01V3.6ZM3.82 8.39h2.4v2.4h-2.4v-2.4Zm2.4 4.8h-2.4v2.4h2.4v-2.4Zm-2.4 4.8h2.4v2.4h-2.4v-2.4Zm7.2-9.59h-2.4v2.4h2.4V8.4Zm-2.4 4.8h2.4v2.4h-2.4v-2.4Zm2.4 4.8h-2.4v2.4h2.4V18Zm2.4-9.59h2.4v2.4h-2.4v-2.4Zm2.4 4.8h-2.4v7.19h2.4v-7.19Z"></path>
@@ -243,8 +242,7 @@
                     @endif
                     @if ($product->has_instructions == 1)
                         {{-- <a class="icon" href="{{ $product->getAplicareUrl() }}"> --}}
-                        {{-- <a class="icon" href="{{$baseUrl}}"> --}}
-                        <a class="icon" href="{{ $product->getPaletaCuloriUrl() }}">                           
+                        <a class="icon" href="{{ url($product->application_slug) }}">                       
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.92 23.97" fill="#1071ff" width="20" height="20">
                                 <path d="M14.4 23.97H0V0h19.92v18.43l-5.52 5.54ZM2.04 21.92H12V15.9h6V1.93H2.04v2.05H18v1.93H2.04v16.02Zm12-3.97v3.61l3.6-3.61h-3.6Zm-5.04 0H4.08V15.9h5.04v2.05H9Zm7.08-3.97h-12v-2.05h12v2.05Zm-2.04-3.97H4.08V7.96h9.96v2.05Z"></path>
                             </svg>
@@ -252,8 +250,7 @@
                         </a>
                     @endif
                     @if ($product->has_palette == 1)
-                        {{-- <a class="icon" href="{{ $product->getPaletaCuloriUrl() }}"> --}}
-                        <a class="icon" href="{{$baseUrl}}">
+                        <a class="icon" href="{{ $product->getPaletaCuloriUrl() }}">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.9 23.9" fill="#1071ff" width="20" height="20">
                                 <path d="M8.41 14.15H.2c-.13-.72-.2-1.45-.2-2.2 0-1.82.41-3.54 1.14-5.08l7.28 7.28ZM18.73 2.1l-5.76 5.76h10.22c-.86-2.35-2.43-4.36-4.46-5.76Zm4.97 7.65h-8.21l7.28 7.28c.73-1.54 1.14-3.26 1.14-5.08 0-.75-.07-1.48-.2-2.2ZM2.1 5.17l5.76 5.76V.72C5.51 1.58 3.5 3.15 2.1 5.18Zm4.77 17.59c1.54.73 3.26 1.14 5.08 1.14.75 0 1.48-.07 2.2-.2v-8.21l-7.28 7.28Zm9.17-9.8v10.22c2.35-.86 4.36-2.43 5.76-4.46l-5.76-5.76ZM.72 16.04c.86 2.35 2.43 4.36 4.46 5.76l5.76-5.76H.72ZM11.95 0c-.75 0-1.48.07-2.2.2v8.21l7.28-7.28C15.44.39 13.71 0 11.95 0Z"></path>
                             </svg>
