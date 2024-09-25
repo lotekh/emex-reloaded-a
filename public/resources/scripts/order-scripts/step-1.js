@@ -137,7 +137,7 @@ function changeBillingType() {
       goToStep2.classList.add("btn-disabled");
     }
   }
-  console.log(billingType.value);
+  // console.log(billingType.value);
 }
 
 function validateAndProceedToStep2() {

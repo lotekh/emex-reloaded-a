@@ -5,29 +5,54 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use Illuminate\Http\Request;
+use App\Models\CategoryFilter;
+
 
 class ProductsController extends Controller
 {
 
     public function index(Request $request)
-    {
-        $perPage = $request->get('per_page', 9);
-        $currentPage = $request->get('current_page_number', 1);
+{
+    $perPage = $request->get('per_page', 9);
+    $currentPage = $request->get('current_page_number', 1);
+    $filters = $request->except(['per_page', 'current_page_number']);
+    $filtersString = '?' . http_build_query($filters);
 
-        // Collect filters from the request, except pagination parameters
-        $filters = $request->except(['per_page', 'current_page_number']);
-        $filtersString = '?' . http_build_query($filters);
-        // dd($filtersString);
+    // Interogare pentru produse active
+    $productsQuery = Product::where('active', 1);
 
-        // Query the products, applying pagination
-        $products = Product::where('active', 1) // Assuming you only want to show active products
-            ->paginate($perPage, ['*'], 'page', $currentPage);
+    // Preluarea tuturor filtrelor
+    $filtersSelected = [];
 
-        $totalResults = $products->total();
-        $totalPages = $products->lastPage();
-
-        return view('products.produse', compact('products', 'totalResults', 'totalPages', 'perPage', 'currentPage', 'filtersString', 'filters'));
+    foreach ($filters as $key => $value) {
+        // Verificăm dacă filtrul este un checkbox (de exemplu "category2" => "on")
+        if (strpos($key, 'category') === 0 && $value === 'on') {
+            $filterId = str_replace('category', '', $key);
+            $filtersSelected[] = $filterId;
+        }
     }
+
+    // Dacă avem filtre selectate, aplicăm filtrarea cu OR pentru filtre din aceeași categorie
+    if (!empty($filtersSelected)) {
+        $productsQuery->whereHas('categoryfilters', function ($query) use ($filtersSelected) {
+            $query->whereIn('category_filters.id', $filtersSelected);
+        });
+    }
+
+    // Paginarea și colectarea produselor
+    $products = $productsQuery->paginate($perPage, ['*'], 'page', $currentPage);
+    $totalResults = $products->total();
+    $totalPages = $products->lastPage();
+
+    // Preluăm filtrele pentru a le afișa pe pagină
+    $filters = CategoryFilter::with('children')->get();
+
+    return view('products.produse', compact('products', 'totalResults', 'totalPages', 'perPage', 'currentPage', 'filtersString', 'filters'));
+}
+
+
+
+
 
     public function showProduct($slug, Request $request)
     {

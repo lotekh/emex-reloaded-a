@@ -69,10 +69,16 @@ class Product extends Model
         return $this->belongsToMany(Category::class, 'categories_products', 'product_id', 'category_id');
     }
 
+    // public function categoryfilters(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(CategoryFilter::class);
+    // }
+
     public function categoryfilters(): BelongsToMany
-    {
-        return $this->belongsToMany(CategoryFilter::class);
-    }
+{
+    return $this->belongsToMany(CategoryFilter::class, 'category_filters_products', 'product_id', 'category_filter_id');
+}
+
 
     public function reviews(): HasMany
     {

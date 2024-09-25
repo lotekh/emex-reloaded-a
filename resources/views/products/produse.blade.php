@@ -14,7 +14,7 @@
 <div class="main-container" id="all-products-page">
     <div class="grid grid-4 mt-32 gap-lg">
         <div class="filters mb-16">
-            <form method="GET" action="{{ route('products.index') }}">
+            {{-- <form method="GET" action="{{ route('products.index') }}">
                 <div class="flex w-full col">
                     <h4 class="m-0 mb-8">Filtre</h4>
                     <div class="flex gap-md">
@@ -49,7 +49,46 @@
                         @endforeach
                     </div>
                 @endif
+            </form> --}}
+            <form method="GET" action="{{ route('products.index') }}">
+                <div class="flex w-full col">
+                    <h4 class="m-0 mb-8">Filtre</h4>
+                    <div class="flex gap-md">
+                        <a href="{{ url('/produse') }}">
+                            <button class="btn btn-blue-outline rounded-sm" type="button">
+                                Sterge filtre
+                            </button>
+                        </a>
+                        <button class="btn btn-blue rounded-sm" type="submit">
+                            Aplica filtre
+                        </button>
+                    </div>
+                </div>
+            
+                <input type="hidden" name="per_page" value="{{ $perPage }}">
+            
+                @if(count($filters))
+                    <div class="accordion-menu mb-32">
+                        @foreach ($filters as $filterCategory)
+                            <div class="accordion-item">
+                                <h4 class="accordion-header">{{ $filterCategory->name }}</h4>
+                                <ul class="filter-list">
+                                    @foreach ($filterCategory->children as $subFilter)
+                                        <div>
+                                            <label class="custom-checkbox">
+                                                <p class="filter">{{ $subFilter->name }}</p>
+                                                <input type="checkbox" name="category{{ $subFilter->id }}" {{ request()->has('category'.$subFilter->id) ? 'checked' : '' }}>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
             </form>
+            
         </div>
 
         <div class="all-products">

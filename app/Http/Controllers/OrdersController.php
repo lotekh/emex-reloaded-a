@@ -10,6 +10,8 @@ use App\Models\Order;
 use App\Models\ProductVariation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
+use Illuminate\Support\Facades\Storage;
 
 class OrdersController extends Controller
 {
@@ -454,6 +456,36 @@ class OrdersController extends Controller
             'delivery_information' => $deliveryInformation,
             'contact_information' => $contactInformation, 
         ]);
+
+         // Obținem produsele din comandă și alte informații necesare
+         $orders_products = $order->productVariations()->withPivot('quantity', 'price', 'price_no_vat')->get();
+         $billingCountyId = null;
+         $billingCountyName = 'Necunoscut';
+
+        // Obține ID-ul județului în funcție de billing_type
+        if ($order->billing_type == 0) {  // Persoană fizică
+            $billingCountyId = json_decode($order->company_information, true)['person_county_id'] ?? null;
+        } elseif ($order->billing_type == 1) {  // Persoană juridică
+            $billingCountyId = json_decode($order->company_information, true)['organization_county_id'] ?? null;
+        }
+
+        // Dacă avem un ID de județ, obținem numele județului
+        if ($billingCountyId) {
+            $billingCounty = County::where('id', $billingCountyId)->first();
+            $billingCountyName = $billingCounty ? $billingCounty->name : 'Necunoscut';
+        }
+         // Generăm PDF-ul după ce comanda este procesată
+         $pdf = PDF::loadView('products.invoice2', [
+             'order' => $order,
+             'orders_products' => $orders_products,
+             'billingCountyName' => $billingCountyName
+         ]);
+ 
+          // Numele fișierului PDF
+        $fileName = 'proforma_RTCH-N-' . $order->identifier . '.pdf';
+
+        // Salvăm PDF-ul în directorul 'public/proformas'
+        Storage::put('public/proformas/' . $fileName, $pdf->output());
 
         // Redirecționăm utilizatorul la pagina de sumar comandă după ce comanda este procesată
         return redirect()->route('order.summary', ['guid' => $order->guid]);
