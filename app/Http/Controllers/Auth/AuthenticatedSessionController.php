@@ -46,6 +46,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect(url()->previous());
+         // Verifică dacă ruta anterioară este '/contul-meu'
+        if ($request->headers->get('referer') && str_contains($request->headers->get('referer'), '/contul-meu')) {
+            return redirect('/'); // Dacă este, redirecționează la pagina principală
+        }
+        return redirect(url()->previous()); // În alte cazuri, redirecționează la pagina anterioară
     }
 }
