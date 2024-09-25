@@ -372,6 +372,12 @@
         if (hash) {
             showTab(hash);  // apelăm funcția showTab pentru tab-ul corespunzător hash-ului
         }
+
+        // Adăugăm un event listener pentru schimbarea hash-ului (navigarea între secțiuni)
+        window.addEventListener('hashchange', function() {
+            const newHash = window.location.hash.substring(1);
+            showTab(newHash);  // apelăm din nou funcția showTab atunci când hash-ul se schimbă
+        });
     });
 </script>
 @endsection
