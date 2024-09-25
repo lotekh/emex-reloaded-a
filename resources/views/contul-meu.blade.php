@@ -367,6 +367,11 @@
                     });
             });
         });
+
+        const hash = window.location.hash.substring(1);  // eliminăm caracterul '#'
+        if (hash) {
+            showTab(hash);  // apelăm funcția showTab pentru tab-ul corespunzător hash-ului
+        }
     });
 </script>
 @endsection
