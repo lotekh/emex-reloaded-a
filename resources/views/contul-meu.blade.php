@@ -316,6 +316,9 @@
         contents.forEach(content => content.style.display = 'none');
         document.getElementById(tabId).classList.add('active');
         document.getElementById(tabId + '-content').style.display = 'block';
+
+        // Actualizează hash-ul în URL
+        window.location.hash = tabId;
     }
 
     function toggleDetails(id) {
