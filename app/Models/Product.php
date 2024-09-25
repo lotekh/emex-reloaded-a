@@ -20,6 +20,7 @@ class Product extends Model
         'twitter_image_id',
         'consumption_twitter_image_id',
         'featured_image_id',
+        'technical_file_id',
         'slug',
         'name',
         'plain_name',

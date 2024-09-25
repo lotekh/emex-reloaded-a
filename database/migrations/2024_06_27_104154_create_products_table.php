@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('twitter_image_id')->nullable()->constrained('media');
             $table->foreignId('consumption_twitter_image_id')->nullable()->constrained('media');
             $table->foreignId('featured_image_id')->nullable()->constrained('media');
-
+            $table->foreignId('technical_file_id')->nullable()->constrained('media');
             $table->string('slug')->unique()->index();
             $table->string('name');
             $table->string('plain_name')->nullable();

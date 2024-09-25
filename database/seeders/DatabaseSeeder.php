@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             MeasurementUnitSeeder::class,
             CategorySeeder::class,
             ProductSeeder::class,
-            ProductVariationSeeder::class
+            ProductVariationSeeder::class,
+            CategoryFiltersSeeder::class,
         ]);
     }
 }
