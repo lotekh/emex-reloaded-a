@@ -243,7 +243,8 @@
                     @endif
                     @if ($product->has_instructions == 1)
                         {{-- <a class="icon" href="{{ $product->getAplicareUrl() }}"> --}}
-                        <a class="icon" href="{{$baseUrl}}">
+                        {{-- <a class="icon" href="{{$baseUrl}}"> --}}
+                        <a class="icon" href="{{ $product->getPaletaCuloriUrl() }}">                           
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.92 23.97" fill="#1071ff" width="20" height="20">
                                 <path d="M14.4 23.97H0V0h19.92v18.43l-5.52 5.54ZM2.04 21.92H12V15.9h6V1.93H2.04v2.05H18v1.93H2.04v16.02Zm12-3.97v3.61l3.6-3.61h-3.6Zm-5.04 0H4.08V15.9h5.04v2.05H9Zm7.08-3.97h-12v-2.05h12v2.05Zm-2.04-3.97H4.08V7.96h9.96v2.05Z"></path>
                             </svg>
