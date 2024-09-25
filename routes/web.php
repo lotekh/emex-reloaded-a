@@ -181,7 +181,7 @@ Route::get('/certificari-iso', function () {
 })->name('certificari-iso');
 
 
-// Blades from footer
+// Blades for footer
 Route::get('/politica-de-retur', function () {
     return view('footer.politica-de-retur');
 })->name('politica.retur');
@@ -194,6 +194,10 @@ Route::get('/termeni-si-conditii', function () {
 Route::get('/confidentialitate-gdpr', function () {
     return view('footer.confidentialitate-gdpr');
 })->name('confidentialitate_gdpr');
+Route::get('/sitemap.htm', function () {
+    return view('footer.sitemap');
+})->name('sitemap');
+
 
 
 
