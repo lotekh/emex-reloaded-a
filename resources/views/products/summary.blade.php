@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
 @endsection
 
+@section('breadcrumbs')
+<ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="/produse">Produse</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis"><a href="#">Factura</a></li></ul>
+@endsection
+
 @section('content')
 {{-- @php
     use Illuminate\Support\Facades\Auth;
@@ -83,9 +87,11 @@
                             <span class="value">{{ number_format($order->total, 2, '.', ',') }}</span>
                             <span class="currency"> Lei</span>
                         </div>
-                        <a href="{{ url('site/download-initial-bill', ['identifier' => $order->identifier]) }}">
-                            <button id="descarca_proforma" class="btn btn-blue rounded-sm">Exporta ca PDF</button>
+                        
+                        <a href="{{ url('storage/proformas/proforma_RTCH-N-' . $order->identifier . '.pdf') }}" target="_blank">
+                            <button id="descarca_proforma" class="btn btn-blue rounded-sm">Descarcă Proforma</button>
                         </a>
+                        
                         @if ($order->payment_method != 'ramburs')
                             <a href="{{ url('/') }}">
                                 <button id="pay_now_btn" class="btn btn-blue rounded-sm" style="background-color: #19AE0C">PLATESTE ACUM</button>
