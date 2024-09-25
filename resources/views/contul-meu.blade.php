@@ -321,7 +321,16 @@
         window.location.hash = tabId;
 
         // Mută pagina în sus
-        window.scrollTo(0, 0); 
+        // setTimeout(function() {
+        //     window.scrollTo(0, 0); 
+        // }, 1);
+        setTimeout(function() {
+            window.scroll({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'  
+            });
+        }, 250);  
     }
 
     function toggleDetails(id) {
