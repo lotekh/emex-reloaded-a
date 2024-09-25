@@ -62,12 +62,14 @@ class ProductSeeder extends Seeder
 
             //TO DO image, technical file
             $mainImageUrl = self::constructMainImageUrl($product);
+            $technicalFileUrl = self::constructTechnicalFileUrl($product);
 
-            self::uploadImage($mainImageUrl, $dbProduct, 'featured_image_id');
-            self::uploadImage($product['seo_og_image'], $dbProduct, 'og_image_id');
-            self::uploadImage($product['consum_seo_og_image'], $dbProduct, 'consumption_og_image_id');
-            self::uploadImage($product['seo_twitter_image'], $dbProduct, 'twitter_image_id');
-            self::uploadImage($product['consum_seo_twitter_image'], $dbProduct, 'consumption_twitter_image_id');
+            self::uploadFile($mainImageUrl, $dbProduct, 'featured_image_id');
+            self::uploadFile($product['seo_og_image'], $dbProduct, 'og_image_id');
+            self::uploadFile($product['consum_seo_og_image'], $dbProduct, 'consumption_og_image_id');
+            self::uploadFile($product['seo_twitter_image'], $dbProduct, 'twitter_image_id');
+            self::uploadFile($product['consum_seo_twitter_image'], $dbProduct, 'consumption_twitter_image_id');
+            self::uploadFile($technicalFileUrl, $dbProduct, 'technical_file_id', '.pdf');
         }
     }
 
@@ -91,14 +93,14 @@ class ProductSeeder extends Seeder
         return json_encode($seo);
     }
 
-    public static function uploadImage($seoOgImage, $dbProduct, $column) {
+    public static function uploadFile($seoOgImage, $dbProduct, $column, $extension = 'jpg') {
         if($seoOgImage) {
             try {
                 $imageContent = file_get_contents($seoOgImage);
                 if($imageContent) {
                     $maxId = Media::max('id');
                     $newId = $maxId + 1;
-                    $image = '/media/' . $newId . '/' . $dbProduct->id . '.jpg';
+                    $image = '/media/' . $newId . '/' . $dbProduct->id . $extension;
                     Storage::disk('public')->put($image, $imageContent);
     
                     Media::create([
@@ -106,7 +108,7 @@ class ProductSeeder extends Seeder
                         'directory' => 'media/' . $newId,
                         'visibility' => 'public',
                         'name' => $dbProduct->id,
-                        'path' => 'media/' . $newId . '/' . $dbProduct->id . '.jpg',
+                        'path' => 'media/' . $newId . '/' . $dbProduct->id . $extension,
                         'height' => 628,
                         'width' => 1200,
                         'type' => 'image/jpg',
@@ -127,5 +129,11 @@ class ProductSeeder extends Seeder
         $site = 'https://vopsele.xyz/images/';
         
         return $site . $product['image_path'] . '/' . $product['image_file_name'];
+    }
+
+    public static function constructTechnicalFileUrl($product) {
+        $site = 'https://vopsele.xyz/';
+
+        return $site . $product['fisa_tehnica'];
     }
 }
