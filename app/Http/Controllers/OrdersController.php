@@ -378,6 +378,7 @@ class OrdersController extends Controller
             $order->total_no_tva = $order->total * 0.81;
 
             $deliveryInformation = null;
+            $deliveryInformationArray = null;
             // Copierea datelor de facturare în datele de livrare, dacă opțiunea este bifată
             if ($request->input('delivery_data_same_as_billing')) {
                 if ($request->input('billing_type') == 0) { // Persoană fizică
@@ -419,7 +420,9 @@ class OrdersController extends Controller
                 }
             }
 
-            $deliveryCountyId = $deliveryInformationArray['delivery_county_id'];
+            if ($deliveryInformationArray){
+                $deliveryCountyId = $deliveryInformationArray['delivery_county_id'];
+            }
 
             if ($request->input('delivery_type') == 0) { // Livrare prin curier
                 
