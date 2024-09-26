@@ -88,9 +88,15 @@
                             <span class="currency"> Lei</span>
                         </div>
                         
-                        <a href="{{ url('storage/proformas/proforma_RTCH-N-' . $order->identifier . '.pdf') }}" target="_blank">
+                        @php
+                            $proformaPath = $order->proforma ? $order->proforma->path : null;
+                            $proformaUrl = asset('storage/' . $proformaPath);
+                        @endphp
+                        <a href="{{$proformaUrl}}" target="_blank">
                             <button id="descarca_proforma" class="btn btn-blue rounded-sm">Descarcă Proforma</button>
                         </a>
+                        
+                        
                         
                         @if ($order->payment_method != 'ramburs')
                             <a href="{{ url('/') }}">
