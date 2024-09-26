@@ -514,11 +514,17 @@
                             <th>TVA</th>
                         </thead>
                         <tbody>
-                            @php
+
+@php
     $total_value = 0;
     $total_price = 0;
     $total_tva = 0;
 @endphp
+
+{{-- @php
+    dump($ordered_products);
+@endphp --}}
+
 
 @foreach ($ordered_products as $ordered_product)
     @php
@@ -556,7 +562,8 @@
 </tr>
 <tr>
     <th colspan="3" class="align-right">Total general:</th>
-    <th colspan="2" id="total_general">{{ number_format($total_price, 2, '.', '') }}</th>
+    {{-- <th colspan="2" id="total_general">{{ number_format($total_price, 2, '.', '') }}</th> --}}
+    <th colspan="2" id="total_general"></th>
 </tr>
 
                         </tbody>

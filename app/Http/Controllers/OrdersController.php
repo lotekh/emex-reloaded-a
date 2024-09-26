@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PDF;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Schema;
 use App\Models\Media;
 
 class OrdersController extends Controller
@@ -119,8 +120,6 @@ class OrdersController extends Controller
 
     public function removeProduct(Request $request)
     {
-        // dd('Method accessed');
-
         $user = Auth::user();
         if ($user) {
             $order = $user->orders()->where('is_paid', false)->first();
@@ -361,40 +360,7 @@ class OrdersController extends Controller
                 $companyCountyId = $companyInformationArray['organization_county_id'];
             }
 
-            // Copierea datelor de facturare în datele de livrare, dacă opțiunea este bifată
-            if ($request->input('delivery_data_same_as_billing')) {
-                if ($request->input('billing_type') == 0) { // Persoană fizică
-                    $request->merge([
-                        'delivery_last_name' => $request->input('person_last_name'),
-                        'delivery_first_name' => $request->input('person_first_name'),
-                        'delivery_phone' => $request->input('person_phone'),
-                        'delivery_email' => $request->input('person_email'),
-                        'delivery_country_id' => $request->input('company_information.person_country_id'),
-                        'delivery_county_id' => $personCountyId,
-                        'delivery_locality' => $request->input('company_information.person_locality'),
-                        'delivery_address' => $request->input('company_information.person_address'),
-                    ]);
-                } elseif ($request->input('billing_type') == 1) { // Persoană juridică
-                    $request->merge([
-                        'delivery_last_name' => $request->input('contact_person_last_name'),
-                        'delivery_first_name' => $request->input('contact_person_first_name'),
-                        'delivery_phone' => $request->input('organization_phone'),
-                        'delivery_email' => $request->input('organization_email'),
-                        'delivery_country_id' => $request->input('company_information.organization_country_id'),
-                        'delivery_county_id' => $companyCountyId,
-                        'delivery_locality' => $request->input('company_information.organization_locality'),
-                        'delivery_address' => $request->input('company_information.organization_address'),
-                    ]);
-                }
-
-                // Actualizează variabila deliveryCountyId cu cea corectă
-                $deliveryCountyId = $request->input('delivery_county_id');
-            } else {
-                // Dacă nu sunt aceleași, folosește valoarea din inputurile de livrare
-                if ($request->input('delivery_type') == 0) { // Curier
-                    $deliveryCountyId = $request->input('delivery_county_id');
-                }
-            }
+           
 
             // Calculează costul de ramburs dacă tipul de livrare este curier
             $rambursValue = 0;
@@ -411,29 +377,52 @@ class OrdersController extends Controller
             $order->total = $order->total + $order->transport_price;
             $order->total_no_tva = $order->total * 0.81;
 
-            // Pregătim contact_information ca JSON
-            $contactInformation = null;
-            if ($request->input('delivery_type') == 0) { // Livrare prin curier
-                $contactInformation = json_encode([
-                    'email' => $request->input('delivery_email'),
-                    'phone' => $request->input('delivery_phone'),
-                ]);
+            $deliveryInformation = null;
+            // Copierea datelor de facturare în datele de livrare, dacă opțiunea este bifată
+            if ($request->input('delivery_data_same_as_billing')) {
+                if ($request->input('billing_type') == 0) { // Persoană fizică
+                    $deliveryInformationArray = [
+                        'delivery_last_name' => $request->input('person_last_name'),
+                        'delivery_first_name' => $request->input('person_first_name'),
+                        'delivery_phone' => $request->input('person_phone'),
+                        'delivery_email' => $request->input('person_email'),
+                        'delivery_country_id' => $request->input('company_information.person_country_id'),
+                        'delivery_county_id' => $personCountyId,
+                        'delivery_locality' => $request->input('company_information.person_locality'),
+                        'delivery_address' => $request->input('company_information.person_address'),
+                    ];
+                } elseif ($request->input('billing_type') == 1) { // Persoană juridică
+                    $deliveryInformationArray = [
+                        'delivery_last_name' => $request->input('contact_person_last_name'),
+                        'delivery_first_name' => $request->input('contact_person_first_name'),
+                        'delivery_phone' => $request->input('organization_phone'),
+                        'delivery_email' => $request->input('organization_email'),
+                        'delivery_country_id' => $request->input('company_information.organization_country_id'),
+                        'delivery_county_id' => $companyCountyId,
+                        'delivery_locality' => $request->input('company_information.organization_locality'),
+                        'delivery_address' => $request->input('company_information.organization_address'),
+                    ];
+                }
+            } else {
+                // Dacă datele de livrare nu sunt aceleași cu cele de facturare, folosește valoarea din inputurile de livrare
+                if ($request->input('delivery_type') == 0) { // Curier
+                    $deliveryInformationArray = [
+                        'delivery_last_name' => $request->input('delivery_last_name'),
+                        'delivery_first_name' => $request->input('delivery_first_name'),
+                        'delivery_phone' => $request->input('delivery_phone'),
+                        'delivery_email' => $request->input('delivery_email'),
+                        'delivery_country_id' => $request->input('delivery_information.delivery_country_id'),
+                        'delivery_county_id' => $request->input('delivery_information.delivery_county_id'),
+                        'delivery_locality' => $request->input('delivery_locality'),
+                        'delivery_address' => $request->input('delivery_address'),
+                    ];
+                }
             }
 
-            // Construim delivery_information dacă este cazul
-            $deliveryInformation = null;
-            if ($request->input('delivery_type') == 0) { // Livrare prin curier
-                $deliveryInformationArray = [
-                    'delivery_last_name' => $request->input('delivery_last_name'),
-                    'delivery_first_name' => $request->input('delivery_first_name'),
-                    'delivery_phone' => $request->input('delivery_phone'),
-                    'delivery_email' => $request->input('delivery_email'),
-                    'delivery_country_id' => $request->input('delivery_country_id'),
-                    'delivery_county_id' => $request->input('delivery_county_id'),
-                    'delivery_locality' => $request->input('delivery_locality'),
-                    'delivery_address' => $request->input('delivery_address'),
-                ];
+            $deliveryCountyId = $deliveryInformationArray['delivery_county_id'];
 
+            if ($request->input('delivery_type') == 0) { // Livrare prin curier
+                
                 // Adăugăm costurile rambursului doar dacă metoda de plată este 'ramburs'
                 if ($request->input('payment_method') == 'ramburs') {
                     $deliveryInformationArray['ramburs_value'] = number_format($rambursValue, 2, '.', '');
@@ -442,6 +431,15 @@ class OrdersController extends Controller
 
                 // Convertim în JSON
                 $deliveryInformation = json_encode($deliveryInformationArray);
+            }
+
+            // Pregătim contact_information ca JSON
+            $contactInformation = null;
+            if ($request->input('delivery_type') == 0) { // Livrare prin curier
+                $contactInformation = json_encode([
+                    'email' => $deliveryInformationArray['delivery_email'],
+                    'phone' => $deliveryInformationArray['delivery_phone'],
+                ]);
             }
 
             // Actualizăm datele comenzii cu informațiile primite din formular
@@ -477,30 +475,44 @@ class OrdersController extends Controller
             }
 
 
-            
+            // Generăm PDF-ul proformei
             $pdf = PDF::loadView('products.invoice2', [
                 'order' => $order,
                 'orders_products' => $orders_products,
                 'billingCountyName' => $billingCountyName
             ]);
 
-            $fileName = 'proforma_RTCH-N-' . $order->identifier . '.pdf';
-            $filePath = 'media/proformas/' . $fileName;
+            try {
+                // Obținem id-ul maxim din tabela media
+                $maxId = Media::max('id');
+                $newId = $maxId + 1;
 
-            Storage::disk('public')->put($filePath, $pdf->output());
+                // Numele fișierului PDF și calea unde va fi salvat
+                $fileName = 'proforma_RTCH-N-' . $order->identifier . '.pdf';
+                $filePath = 'media/' . $newId . '/' . $fileName;
 
-            $media = Media::create([
-                'disk' => 'public',
-                'directory' => 'media/proformas',
-                'visibility' => 'public',
-                'name' => $fileName,
-                'path' => $filePath,
-                'type' => 'application/pdf',
-                'ext' => 'pdf',
-            ]);
+                // Salvăm PDF-ul în sistemul de fișiere (public/media/newId/)
+                Storage::disk('public')->put($filePath, $pdf->output());
 
-            $order->proforma_id = $media->id;
-            $order->save();
+                // Salvăm informațiile fișierului în tabela media
+                $media = Media::create([
+                    'disk' => 'public',
+                    'directory' => 'media/' . $newId,
+                    'visibility' => 'public',
+                    'name' => $fileName,
+                    'path' => 'media/' . $newId . '/' . $fileName,
+                    'type' => 'application/pdf',
+                    'ext' => 'pdf',
+                ]);
+
+                // Asociem fișierul PDF cu comanda
+                $order->proforma_id = $media->id;
+                $order->save();
+            }
+            catch (\Exception $e) {
+                echo $e->getMessage();
+            }
+
 
             // Redirecționăm utilizatorul la pagina de sumar comandă după ce comanda este procesată
             return redirect()->route('order.summary', ['guid' => $order->guid]);

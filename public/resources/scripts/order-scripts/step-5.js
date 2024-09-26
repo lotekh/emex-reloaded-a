@@ -155,6 +155,10 @@ function populateSummary() {
     transportValue.textContent = "-";
     transportUnitary.textContent = "-";
     transportTVA.textContent = "-";
+    // Calculăm doar totalul produselor pentru ridicare personală
+    totalGeneral.textContent = Number(
+      parseFloat(totalPrice) // total produse
+    ).toFixed(2);
   } else {
     summaryDeliveryNameContainer.style.display = "block";
     summaryDeliveryPhoneContainer.style.display = "block";
@@ -245,7 +249,12 @@ function getTransportPrice(county_id) {
             rambursUnitary.textContent = "-";
             rambursTvaTd.textContent = "-";
 
-            totalGeneral.textContent = totalPriceWithTransport;
+            // totalGeneral.textContent = totalPriceWithTransport;
+            // Adaugă transportul la totalul produselor
+            totalGeneral.textContent = Number(
+              parseFloat(totalPrice) + // total produse
+                1.19 * parseFloat(transportValuePrice) // total transport cu TVA
+            ).toFixed(2);
           }
         } else if (xmlhttp.status == 400) {
           alert("There was an error 400");
