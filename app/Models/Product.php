@@ -70,6 +70,24 @@ class Product extends Model
         return $this->belongsToMany(Category::class, 'categories_products', 'product_id', 'category_id');
     }
 
+    public function getPaletaCuloriUrl()
+    {
+        $productCategory = $this->categories()->first();  
+
+        if (!$productCategory) {
+            return url('/cartela-culori-ral-vopsele'); 
+        }
+
+        switch ($productCategory->category_id) {
+            case 1:
+            case 3:
+                return url('/cartela-culori-lavabile');
+            default:
+                return url('/cartela-culori-ral-vopsele');
+        }
+    }
+
+
     // public function categoryfilters(): BelongsToMany
     // {
     //     return $this->belongsToMany(CategoryFilter::class);
@@ -95,6 +113,12 @@ class Product extends Model
     {
         return $this->belongsTo(Media::class, 'featured_image_id', 'id');
     }
+
+    public function technicalFile(): BelongsTo 
+    {
+        return $this->belongsTo(Media::class, 'technical_file_id', 'id');
+    }
+
 
     public function consumptionSeoOgImage(): BelongsTo
     {

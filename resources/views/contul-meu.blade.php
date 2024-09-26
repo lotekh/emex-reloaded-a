@@ -290,14 +290,25 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+
                                 <div class="flex ml-8 mt-16 mb-16">
-                                    {{-- <button class="btn btn-blue-outline rounded-sm">Descarca proforma</button> --}}
-                                    <a href="{{ url('storage/proformas/proforma_RTCH-N-' . $order->identifier . '.pdf') }}" target="_blank">
+                                    @php
+                                    $proformaPath = $order->proforma ? $order->proforma->path : null;
+                                    // $proformaUrl = asset('storage/' . $proformaPath);
+                                    $proformaUrl = $proformaPath && file_exists(storage_path('app/public/' . $proformaPath)) ? asset('storage/' . $proformaPath) : null;
+                                    @endphp
+                                    {{-- <a href="{{$proformaUrl}}" target="_blank">
                                         <button class="btn btn-blue-outline rounded-sm">Descarcă proforma</button>
-                                    </a>
-                                
-                                    {{-- <button class="btn btn-blue-outline rounded-sm">Descarca factura finala</button> --}}
+                                    </a> --}}
+                                    @if ($proformaUrl)
+                                        <a href="{{ $proformaUrl }}" target="_blank">
+                                            <button class="btn btn-blue-outline rounded-sm">Descarcă proforma</button>
+                                        </a>
+                                    @else
+                                        <p class="text-gray-500">Proforma indisponibilă</p>
+                                    @endif
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -316,6 +327,21 @@
         contents.forEach(content => content.style.display = 'none');
         document.getElementById(tabId).classList.add('active');
         document.getElementById(tabId + '-content').style.display = 'block';
+
+        // Actualizează hash-ul în URL
+        window.location.hash = tabId;
+
+        // Mută pagina în sus
+        // setTimeout(function() {
+        //     window.scrollTo(0, 0); 
+        // }, 1);
+        setTimeout(function() {
+            window.scroll({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'  
+            });
+        }, 250);  
     }
 
     function toggleDetails(id) {
@@ -366,6 +392,17 @@
                         });
                     });
             });
+        });
+
+        const hash = window.location.hash.substring(1);  // eliminăm caracterul '#'
+        if (hash) {
+            showTab(hash);  // apelăm funcția showTab pentru tab-ul corespunzător hash-ului
+        }
+
+        // Adăugăm un event listener pentru schimbarea hash-ului (navigarea între secțiuni)
+        window.addEventListener('hashchange', function() {
+            const newHash = window.location.hash.substring(1);
+            showTab(newHash);  // apelăm din nou funcția showTab atunci când hash-ul se schimbă
         });
     });
 </script>

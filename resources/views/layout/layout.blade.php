@@ -92,18 +92,9 @@
                         <a href="{{ url('/wishlist') }}" title="Favorite">
                             Favorite
                         </a>
-                        {{-- <a href="{{ url('/contul-meu?page=') }}" title="Istoric">
-                            Istoric
-                        </a>
-                        <a href="{{ url('/contul-meu#facturare') }}" title="Facturare">
-                            Facturare
-                        </a> --}}
-                        <a href="{{ url('/contul-meu?page=') }}" title="Istoric">
-                            Istoric
-                        </a>
-                        <a href="{{ url('/contul-meu#facturare') }}" title="Facturare">
-                            Facturare
-                        </a>
+                        <a href="{{ url('/contul-meu') }}#istoric" title="Istoric">Istoric</a>
+                        <a href="{{ url('/contul-meu') }}#facturare" title="Facturare">Facturare</a>
+
 
 
                         <a href="{{ route('logout') }}" id="logoutButton" title="Iesire din cont"

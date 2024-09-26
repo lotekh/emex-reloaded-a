@@ -16,6 +16,9 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ConsumController;
 use App\Http\Controllers\BlogArticleController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Middleware\AuthenticatedOnly;
+
+require __DIR__.'/auth.php';
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -23,13 +26,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+// Route::middleware('auth')->group(function () {
+Route::middleware([AuthenticatedOnly::class])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/contul-meu', [UserController::class, 'edit'])->name('user.edit');
 });
 
-require __DIR__.'/auth.php';
+
 
 
 Route::view('/test-form', 'test-form');
@@ -47,7 +52,7 @@ Route::get('/autentificare', function () {
     return view('autentificare');
 })->name('autentificare');
 
-Route::get('/contul-meu', [UserController::class, 'edit'])->name('user.edit');
+
 Route::post('/save-detalii-cont', [UserController::class, 'saveDetaliiCont']);
 Route::post('/save-facturare', [UserController::class, 'saveFacturare']);
 Route::post('/save-livrare', [UserController::class, 'saveLivrare']);
@@ -181,7 +186,7 @@ Route::get('/certificari-iso', function () {
 })->name('certificari-iso');
 
 
-// Blades from footer
+// Blades for footer
 Route::get('/politica-de-retur', function () {
     return view('footer.politica-de-retur');
 })->name('politica.retur');
@@ -194,6 +199,10 @@ Route::get('/termeni-si-conditii', function () {
 Route::get('/confidentialitate-gdpr', function () {
     return view('footer.confidentialitate-gdpr');
 })->name('confidentialitate_gdpr');
+Route::get('/sitemap.htm', function () {
+    return view('footer.sitemap');
+})->name('sitemap');
+
 
 
 

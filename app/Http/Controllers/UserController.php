@@ -8,6 +8,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use PDF;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Media;
 
 class UserController extends Controller
 {

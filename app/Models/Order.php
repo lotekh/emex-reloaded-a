@@ -118,4 +118,10 @@ class Order extends Model
     {
         return $this->hasOne(County::class, 'id', 'company_county_id');
     }
+
+    public function proforma(): BelongsTo
+    {
+        return $this->belongsTo(Media::class, 'proforma_id', 'id');
+    }
+
 }

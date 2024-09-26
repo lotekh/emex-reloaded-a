@@ -11,6 +11,50 @@ use App\Models\CategoryFilter;
 class ProductsController extends Controller
 {
 
+    // public function index(Request $request)
+    // {
+    //     $perPage = $request->get('per_page', 9);
+    //     $currentPage = $request->get('current_page_number', 1);
+    //     $filters = $request->except(['per_page', 'current_page_number']);
+    //     $filtersString = '?' . http_build_query($filters);
+
+    //     // Interogare pentru produse active
+    //     $productsQuery = Product::where('active', 1);
+
+    //     // Preluarea tuturor filtrelor
+    //     $filtersSelected = [];
+
+    //     foreach ($filters as $key => $value) {
+    //         // Verificăm dacă filtrul este un checkbox (de exemplu "category2" => "on")
+    //         if (strpos($key, 'category') === 0 && $value === 'on') {
+    //             $filterId = str_replace('category', '', $key);
+    //             $filtersSelected[] = $filterId;
+    //         }
+    //     }
+
+    //     // Dacă avem filtre selectate, aplicăm filtrarea cu OR pentru filtre din aceeași categorie
+    //     if (!empty($filtersSelected)) {
+    //         $productsQuery->whereHas('categoryfilters', function ($query) use ($filtersSelected) {
+    //             $query->whereIn('category_filters.id', $filtersSelected);
+    //         });
+    //     }
+
+    //     // Paginarea și colectarea produselor
+    //     $products = $productsQuery->paginate($perPage, ['*'], 'page', $currentPage);
+    //     $totalResults = $products->total();
+    //     $totalPages = $products->lastPage();
+
+    //     // Preluăm filtrele pentru a le afișa pe pagină
+    //     // $filters = CategoryFilter::with('children')->get();
+    //     $filters = CategoryFilter::with('children')
+    //     ->whereNull('category_filter_id') // Doar filtrele părinte
+    //     ->get();
+
+
+    //     return view('products.produse', compact('products', 'totalResults', 'totalPages', 'perPage', 'currentPage', 'filtersString', 'filters'));
+    // }
+
+
     public function index(Request $request)
 {
     $perPage = $request->get('per_page', 9);
@@ -21,7 +65,7 @@ class ProductsController extends Controller
     // Interogare pentru produse active
     $productsQuery = Product::where('active', 1);
 
-    // Preluarea tuturor filtrelor
+    // Preluăm filtrele din request
     $filtersSelected = [];
 
     foreach ($filters as $key => $value) {
@@ -32,10 +76,16 @@ class ProductsController extends Controller
         }
     }
 
-    // Dacă avem filtre selectate, aplicăm filtrarea cu OR pentru filtre din aceeași categorie
-    if (!empty($filtersSelected)) {
-        $productsQuery->whereHas('categoryfilters', function ($query) use ($filtersSelected) {
-            $query->whereIn('category_filters.id', $filtersSelected);
+    // Grupăm filtrele selectate după categoria lor părinte
+    $filtersGrouped = CategoryFilter::whereIn('id', $filtersSelected)
+        ->get()
+        ->groupBy('category_filter_id');
+
+    // Aplicăm filtrele la query
+    foreach ($filtersGrouped as $parentCategoryId => $filterGroup) {
+        $productsQuery->whereHas('categoryfilters', function ($query) use ($filterGroup) {
+            $filterIds = $filterGroup->pluck('id');
+            $query->whereIn('category_filters.id', $filterIds);
         });
     }
 
@@ -45,12 +95,10 @@ class ProductsController extends Controller
     $totalPages = $products->lastPage();
 
     // Preluăm filtrele pentru a le afișa pe pagină
-    $filters = CategoryFilter::with('children')->get();
+    $filters = CategoryFilter::with('children')->whereNull('category_filter_id')->get();
 
     return view('products.produse', compact('products', 'totalResults', 'totalPages', 'perPage', 'currentPage', 'filtersString', 'filters'));
 }
-
-
 
 
 
