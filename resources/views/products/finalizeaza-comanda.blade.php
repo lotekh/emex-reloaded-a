@@ -135,10 +135,12 @@
                                 <input class="form-control w-full" type="email" id="person_email" name="person_email" value="{{ $order->company_information->person_email ?? '' }}">
                             </div>
                         </div>
+
                         <div class="grid grid-4 gap-lg">
                             <div class="form-group">
                                 <label>Tara <span class="text-red">*</span></label>
                                 <select class="form-control w-full" name="company_information[person_country_id]">
+                                    <option value="">Selectează țara</option> 
                                     @foreach ($countries as $country)
                                         <option value="{{ $country->id }}" {{ ($order->company_information->person_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
                                     @endforeach
@@ -147,11 +149,13 @@
                             <div class="form-group">
                                 <label>Judet <span class="text-red">*</span></label>
                                 <select class="form-control w-full" name="company_information[person_county_id]" id="person_county_id">
+                                    <option value="">Selectează județul</option> 
                                     @foreach ($counties as $county)
                                         <option value="{{ $county->id }}" {{ ($order->company_information->person_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
+                            
                             <div class="form-group">
                                 <label>Localitate <span class="text-red">*</span></label>
                                 <input class="form-control w-full" type="text" id="person_locality_id" name="company_information[person_locality]" value="{{ $order->company_information->person_locality ?? '' }}" >
@@ -206,9 +210,11 @@
                             </div>
                         </div>
                         <div class="grid grid-4 gap-lg">
+
                             <div class="form-group">
                                 <label>Tara <span class="text-red">*</span></label>
                                 <select class="form-control w-full" name="company_information[organization_country_id]">
+                                    <option value="">Selectează țara</option> 
                                     @foreach ($countries as $country)
                                         <option value="{{ $country->id }}" {{ ($order->company_information->organization_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
                                     @endforeach
@@ -217,11 +223,13 @@
                             <div class="form-group">
                                 <label>Judet <span class="text-red">*</span></label>
                                 <select class="form-control w-full" id="organization_county_id" name="company_information[organization_county_id]">
+                                    <option value="">Selectează județul</option> 
                                     @foreach ($counties as $county)
                                         <option value="{{ $county->id }}" {{ ($order->company_information->organization_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
+                            
                             <div class="form-group">
                                 <label>Localitate <span class="text-red">*</span></label>
                                 <input class="form-control w-full" type="text" id="organization_locality_id" name="company_information[organization_locality]" value="{{ $order->company_information->organization_locality ?? '' }}" >
