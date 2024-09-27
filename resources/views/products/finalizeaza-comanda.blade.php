@@ -622,28 +622,55 @@
 <!-- Step 5 -->
 <script src="{{ asset('resources/scripts/order-scripts/step-5.js') }}"></script>
 
-<!-- Bring cities dynamically -->
-{{-- <script src="{{ asset('resources/scripts/order-scripts/bring-cities.js') }}"></script> --}}
 
-{{-- Get Counties --}}
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Fetch judete by tara
-        const countrySelects = document.querySelectorAll('select[name*="country_id"]');
-        countrySelects.forEach(countrySelect => {
-            countrySelect.addEventListener('change', function () {
-                const countySelect = document.querySelector(`select[name="${this.name.replace('country', 'county')}"]`);
+    // Fetch judete by tara
+    const countrySelects = document.querySelectorAll('select[name*="country_id"]');
+    
+    countrySelects.forEach(countrySelect => {
+        const countySelect = document.querySelector(`select[name="${countrySelect.name.replace('country', 'county')}"]`);
+        
+        // Verifică dacă există deja o valoare selectată pentru țară și județ
+        const selectedCountry = countrySelect.value;
+        const selectedCounty = countySelect.value;
+
+        if (selectedCountry) {
+            // Dacă există o țară selectată, încarcă județele corespunzătoare
+            fetch(`/get-counties-by-country/${selectedCountry}`)
+                .then(response => response.json())
+                .then(data => {
+                    countySelect.innerHTML = '<option value="">Selectează judetul</option>';
+                    data.forEach(county => {
+                        countySelect.innerHTML += `<option value="${county.id}" ${county.id == selectedCounty ? 'selected' : ''}>${county.name}</option>`;
+                    });
+                });
+        } else {
+            // Initializează dropdown-ul de județ cu "Selectează județul" dacă nu există o țară selectată
+            countySelect.innerHTML = '<option value="">Selectează județul</option>';
+        }
+
+        countrySelect.addEventListener('change', function () {
+            if (this.value === "") {
+                // Dacă se selectează "Selectează țara", resetează dropdown-ul de județ
+                countySelect.innerHTML = '<option value="">Selectează județul</option>';
+            } else {
+                // Dacă o țară validă este selectată, încarcă județele corespunzătoare
                 fetch(`/get-counties-by-country/${this.value}`)
                     .then(response => response.json())
                     .then(data => {
-                        countySelect.innerHTML = '<option value="">Alege judetul</option>';
+                        countySelect.innerHTML = '<option value="">Selectează județul</option>';
                         data.forEach(county => {
                             countySelect.innerHTML += `<option value="${county.id}">${county.name}</option>`;
                         });
                     });
-            });
+            }
         });
     });
+});
+
+
+
 
     document.getElementById('auth_lightbox_trigger2').addEventListener('click', function() {
         var authContainer = document.querySelector('.autentificare-1');
