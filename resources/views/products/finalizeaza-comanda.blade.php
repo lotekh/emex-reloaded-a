@@ -136,10 +136,10 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-4 gap-lg">
+                        <div class="grid grid-4 gap-lg p-8">
                             <div class="form-group">
                                 <label>Tara <span class="text-red">*</span></label>
-                                <select class="form-control w-full" name="company_information[person_country_id]">
+                                <select class="form-control w-full height-43px" name="company_information[person_country_id]">
                                     <option value="">Selectează țara</option> 
                                     @foreach ($countries as $country)
                                         <option value="{{ $country->id }}" {{ ($order->company_information->person_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
@@ -148,7 +148,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Judet <span class="text-red">*</span></label>
-                                <select class="form-control w-full" name="company_information[person_county_id]" id="person_county_id">
+                                <select class="form-control w-full height-43px" name="company_information[person_county_id]" id="person_county_id">
                                     <option value="">Selectează județul</option> 
                                     @foreach ($counties as $county)
                                         <option value="{{ $county->id }}" {{ ($order->company_information->person_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
@@ -209,11 +209,11 @@
                                 <input class="form-control w-full" type="text" id="contact_person_first_name" name="contact_person_first_name" value="{{ $order->company_information->contact_person_first_name ?? '' }}">
                             </div>
                         </div>
-                        <div class="grid grid-4 gap-lg">
+                        <div class="grid grid-4 gap-lg p-8">
 
                             <div class="form-group">
                                 <label>Tara <span class="text-red">*</span></label>
-                                <select class="form-control w-full" name="company_information[organization_country_id]">
+                                <select class="form-control w-full height-43px" name="company_information[organization_country_id]">
                                     <option value="">Selectează țara</option> 
                                     @foreach ($countries as $country)
                                         <option value="{{ $country->id }}" {{ ($order->company_information->organization_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
@@ -222,7 +222,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Judet <span class="text-red">*</span></label>
-                                <select class="form-control w-full" id="organization_county_id" name="company_information[organization_county_id]">
+                                <select class="form-control w-full height-43px" id="organization_county_id" name="company_information[organization_county_id]">
                                     <option value="">Selectează județul</option> 
                                     @foreach ($counties as $county)
                                         <option value="{{ $county->id }}" {{ ($order->company_information->organization_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
@@ -307,7 +307,7 @@
 
                                 <div class="form-group">
                                     <label>Tara <span class="text-red">*</span></label>
-                                    <select class="form-control w-full" name="delivery_information[delivery_country_id]">
+                                    <select class="form-control w-full height-43px" name="delivery_information[delivery_country_id]">
                                         <option value="">Selectează țara</option> 
                                         @foreach ($countries as $country)
                                             <option value="{{ $country->id }}" {{ ($order->delivery_information->delivery_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
@@ -316,7 +316,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Judet <span class="text-red">*</span></label>
-                                    <select class="form-control w-full" id="delivery_county_id" name="delivery_information[delivery_county_id]">
+                                    <select class="form-control w-full height-43px" id="delivery_county_id" name="delivery_information[delivery_county_id]">
                                         <option value="">Alege judetul</option>
                                         @foreach ($counties as $county)
                                             <option value="{{ $county->id }}" {{ ($order->delivery_information->delivery_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
