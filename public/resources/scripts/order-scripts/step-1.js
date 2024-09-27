@@ -48,7 +48,6 @@ var organizationContactPersonFirstName = document.getElementById(
 );
 
 var billingType = document.getElementsByName("billing_type")[0];
-console.log(billingType.value);
 
 var goToStep2 = document.getElementById("go-to-step-2");
 
