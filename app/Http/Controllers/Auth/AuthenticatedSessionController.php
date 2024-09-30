@@ -32,6 +32,8 @@ class AuthenticatedSessionController extends Controller
           // Mută produsele din wishlist din sesiune în baza de date
         app(WishlistController::class)->moveSessionWishlistToDatabase();
 
+        session()->flash('success', 'Te-ai autentificat cu succes!');
+
         return redirect()->intended(url()->previous());
     }
 
@@ -50,6 +52,9 @@ class AuthenticatedSessionController extends Controller
         if ($request->headers->get('referer') && str_contains($request->headers->get('referer'), '/contul-meu')) {
             return redirect('/'); // Dacă este, redirecționează la pagina principală
         }
+
+        session()->flash('success', 'Te-ai delogat cu succes!');
+
         return redirect(url()->previous()); // În alte cazuri, redirecționează la pagina anterioară
     }
 }

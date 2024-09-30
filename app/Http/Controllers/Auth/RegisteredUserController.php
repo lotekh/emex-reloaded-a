@@ -48,6 +48,8 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        session()->flash('success', 'Te-ai inregistrat cu succes!');
+
         // return redirect()->intended('/');
         return redirect(route('home'));
     }
