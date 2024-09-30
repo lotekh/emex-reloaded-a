@@ -23,6 +23,8 @@ class TransferCartOnLogout
         if ($order) {
             // Setați user_id-ul la null pentru comanda curentă
             $order->user_id = null;
+            $order->company_information = null;
+            $order->delivery_information = null;
             $order->save();
         }
     }
