@@ -205,7 +205,9 @@ Route::get('/sitemap.htm', function () {
 
 
 
-
+Route::get('/cookies', function () {
+    return view('others.cookies');
+})->name('cookies');
 
 // Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
