@@ -14,6 +14,8 @@
         @csrf
         <input type="hidden" id="orderr_id" name="order_id" value="{{ $order->id }}">
         <input type="hidden" name="ordered_products_number" value="{{ $ordered_products->count() }}">
+        <input type="hidden" name="guid" value="{{ $order->guid }}">
+        <input type="hidden" name="identifier" value="{{ $order->identifier }}">
         @foreach ($ordered_products as $key => $value)
             <input type="hidden" name="product{{ $key }}_id" value="{{ $value->product_id }}">
             <input type="hidden" name="product{{ $key }}_quantity" value="{{ $value->pivot->quantity }}">
