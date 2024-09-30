@@ -62,37 +62,22 @@
                     <div class="form-group w-full">
                         <label for="side-contact-name">Nume</label>
                         <input id="side-contact-name" required type="text" name="Contact[name]" class="w-full">
-                        @error('Contact.name')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
                     </div>
                     <div class="form-group w-full">
                         <label for="side-contact-societate">Societate</label>
-                        <input id="side-contact-societate" type="text" name="Contact[company]" class="w-full">
-                        @error('Contact.company')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
+                        <input id="side-contact-societate" type="text" required name="Contact[company]" class="w-full">
                     </div>
                     <div class="form-group w-full">
                         <label for="side-contact-email">Email</label>
                         <input id="side-contact-email" type="email" required name="Contact[email]" class="w-full">
-                        @error('Contact.email')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
                     </div>
                     <div class="form-group w-full">
                         <label for="side-contact-telefon">Telefon</label>
                         <input id="side-contact-telefon" type="tel" placeholder="+1 (555) 555-5555" required name="Contact[phone]" class="w-full">
-                        @error('Contact.phone')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
                     </div>
                     <div class="form-group w-full">
                         <label for="side_contact_msg">Mesaj</label>
-                        <textarea rows="4" name="Contact[message]" class="w-full" id="side_contact_msg" placeholder="Mentionati, in masura in care se poate, toate cerintele sau informatiile dorite, legate de solicitarea Dvs."></textarea>
-                        @error('Contact.message')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
+                        <textarea rows="4" name="Contact[message]" required class="w-full" id="side_contact_msg" placeholder="Mentionati, in masura in care se poate, toate cerintele sau informatiile dorite, legate de solicitarea Dvs."></textarea>
                     </div>
 
                     <div class="form-group">
@@ -105,28 +90,24 @@
                                 </div>
                                 <input type="text" id="captchaResult" name="captchaResult" required>
                                 <input type="hidden" name="captchaMdResult" value="{{ $mdResult }}">
-                                @error('captchaResult')
-                                    <div class="error">{{ $message }}</div>
-                                @enderror
                             </div>
                         </div>
                     </div>
 
                     <div class="row align-center">
                         <label class="switch">
-                            <input type="checkbox" name="consent" id="consent-checkbox" required>
+                            <input type="checkbox" name="consent" id="consent-checkbox" tabindex="0">
                             <i></i>
                         </label>
                         <span class="disclaimer">
                             Sunt de acord cu
-                            <a class="text-blue" href="{{ $baseUrl }}/confidentialitate-gdpr">politica de confidentialitate</a> si
-                            <a class="text-blue" href="{{ $baseUrl }}/termeni-si-conditii">termeni si conditii.</a>
-                        </span>
-                        @error('consent')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
+                            <a class="text-blue" href="{{ $baseUrl }}/confidentialitate-gdpr" target="_blank" rel="noopener noreferrer">politica de confidentialitate</a> si
+                            <a class="text-blue" href="{{ $baseUrl }}/termeni-si-conditii" target="_blank" rel="noopener noreferrer">termeni si conditii.</a>
+                        </span>                        
                     </div>
+                    
                     <div class="form-validation" style="display: none;" data-validation-for="consent-checkbox">Conform reglementarilor in vigoare, trebuie sa fiti de acord cu Termeni si Conditii si Politica de Confidentialitate</div>
+
                     <div class="w-full flex justify-center">
                         <input type="submit" class="w-fit btn btn-blue rounded-lg px-16 mt-16" value="Trimite" id="contact_lighbox_submit_btn">
                     </div>
@@ -146,15 +127,28 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        const form = document.getElementById('formular-sidebar-contact');
-        if (form) {
-            form.addEventListener('submit', function (event) {
-                const consentCheckbox = document.getElementById('consent-checkbox');
-                if (!consentCheckbox.checked) {
-                    event.preventDefault();
-                    document.querySelector('.form-validation').style.display = 'block';
-                }
-            });
-        }
-    });
+    const form = document.getElementById('formular-sidebar-contact');
+    const consentCheckbox = document.getElementById('consent-checkbox');
+    const validationMessage = document.querySelector('.form-validation');
+
+    // Elimină atributul 'required' de la checkbox și lasă validarea manuală
+    consentCheckbox.removeAttribute('required');
+
+    if (form) {
+        form.addEventListener('submit', function (event) {
+            // Verificăm dacă checkbox-ul este bifat
+            if (!consentCheckbox.checked) {
+                event.preventDefault(); // Oprește trimiterea formularului
+                validationMessage.style.display = 'block'; // Afișează mesajul de eroare
+                consentCheckbox.focus();  // Forțează checkbox-ul să devină activ
+                console.log('Checkbox-ul nu este bifat');
+            } else {
+                validationMessage.style.display = 'none'; // Ascunde mesajul dacă este bifat
+                console.log('Checkbox-ul este bifat, trimite formularul');
+            }
+        });
+    }
+});
+
+
 </script>
