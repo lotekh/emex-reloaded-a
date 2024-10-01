@@ -111,6 +111,9 @@ Route::get('/aplicare-vopsele-hidrosolubile', function () {
 Route::get('/aplicari-vopsele-pardoseli', function () {
     return view('aplicare.aplicari-vopsele-pardoseli');
 });
+Route::get('/aplicare-pardoseli-epoxidice', function () {
+    return view('aplicare.aplicare-pardoseli-epoxidice');
+});
 
 
 
