@@ -288,6 +288,25 @@ Route::get('/sitemap-mobile.xml', function () {
 });
 
 
+Route::get('/doc/ISO-9001.pdf', function () {
+    $path = public_path('docs/ISO-9001.pdf'); 
+    return Response::file($path, [
+        'Content-Type' => 'application/pdf'
+    ]);
+});
+Route::get('/doc/ISO-18001.pdf', function () {
+    $path = public_path('docs/ISO-18001.pdf'); 
+    return Response::file($path, [
+        'Content-Type' => 'application/pdf'
+    ]);
+});
+Route::get('/doc/ISO-14001.pdf', function () {
+    $path = public_path('docs/ISO-14001.pdf'); 
+    return Response::file($path, [
+        'Content-Type' => 'application/pdf'
+    ]);
+});
+
 
 Route::get('/cookies', function () {
     return view('others.cookies');
