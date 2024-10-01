@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('person_county_id')->nullable()->constrained('counties');
             $table->foreignId('organization_county_id')->nullable()->constrained('counties');
 
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('role', 12)->default('user');

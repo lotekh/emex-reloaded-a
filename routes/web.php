@@ -108,6 +108,11 @@ Route::get('/aplicare-membrana-hidroizolanta-poliuretanica', function () {
 Route::get('/aplicare-vopsele-hidrosolubile', function () {
     return view('aplicare.aplicare-vopsele-hidrosolubile');
 });
+Route::get('/aplicari-vopsele-pardoseli', function () {
+    return view('aplicare.aplicari-vopsele-pardoseli');
+});
+
+
 
 
 // Routes for servicii
