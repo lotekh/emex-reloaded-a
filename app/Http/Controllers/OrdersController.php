@@ -178,8 +178,6 @@ class OrdersController extends Controller
         $formattedPrice = number_format($price, 2, '.', '');
         $formattedTva = number_format($tva, 2, '.', '');
 
-        $formattedPrice = $totalQuantity;
-
         // Returnează un array cu valorile calculului
         return response()->json([
             'price' => $formattedPrice,
