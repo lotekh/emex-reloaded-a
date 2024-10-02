@@ -19,24 +19,32 @@ class OrdersController extends Controller
 {
     public function index()
     {
-        // Preluăm produsele din sesiune
         $cart = session()->get('cart', []);
         
+        $ordered_products = [];
+
+        // Dacă există produse în sesiune, preia detaliile despre produse
         if (!empty($cart)) {
             $productVariationIds = array_column($cart, 'product_variation_id');
+            
+            // Preia produsele corespunzătoare din baza de date
             $ordered_products = ProductVariation::whereIn('id', $productVariationIds)->with('product')->get();
-        } else {
-            $ordered_products = [];
+            
+            foreach ($ordered_products as $product) {
+                foreach ($cart as $cartItem) {
+                    if ($cartItem['product_variation_id'] == $product->id) {
+                        // ordered_quantity is the quantity from session(how many products were ordered)
+                        $product->ordered_quantity = $cartItem['quantity']; 
+                        $product->price = $cartItem['price'];  
+                        $product->price_no_vat = $cartItem['price_no_vat']; 
+                    }
+                }
+            }
         }
 
-        // Preluăm detaliile produselor din baza de date folosind ID-urile din sesiune
-        if (!empty($cart)) {
-            $productVariationIds = array_keys($cart);
-            $ordered_products = ProductVariation::whereIn('id', $productVariationIds)->with('product')->get();
-        }
-
-        return view('products.ordered-products', compact('ordered_products', 'cart'));
+        return view('products.ordered-products', compact('ordered_products'));
     }
+
 
 
 
