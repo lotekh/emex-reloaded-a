@@ -116,18 +116,25 @@ class OrdersController extends Controller
         $countyId = $request->query('county_id');
         
         // Verificăm dacă există produse în sesiune
-        $cartProducts = session()->get('cart', []);
+        $cart = session()->get('cart', []);
 
-        if (empty($cartProducts)) {
+        if (empty($cart)) {
             return response()->json(['error' => 'Nu există produse în coș.'], 404);
         }
+
+        $productVariationIds = array_column($cart, 'product_variation_id');
+        // $ordered_products = ProductVariation::whereIn('id', $productVariationIds)->get();
+        $ordered_products = ProductVariation::whereIn('id', $productVariationIds)->with('product')->get();
 
         $totalQuantity = 0;
 
         // Calculăm cantitatea totală a produselor din sesiune
-        foreach ($cartProducts as $product) {
-            // Adaugăm la cantitatea totală
-            $totalQuantity += $product['quantity'];
+        foreach ($ordered_products as $product) {
+            foreach ($cart as $cartItem) {
+                if ($cartItem['product_variation_id'] == $product->id) {
+                    $totalQuantity += $cartItem['quantity'] * $product->quantity;
+                }
+            }
         }
 
         // Definim prețurile de transport pe baza cantității și regiunii
@@ -170,6 +177,8 @@ class OrdersController extends Controller
         // Formatează prețul și TVA-ul pentru a avea două zecimale
         $formattedPrice = number_format($price, 2, '.', '');
         $formattedTva = number_format($tva, 2, '.', '');
+
+        $formattedPrice = $totalQuantity;
 
         // Returnează un array cu valorile calculului
         return response()->json([

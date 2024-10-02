@@ -548,7 +548,7 @@
                             @php
                                 $price = $ordered_product['price'] ?? 0;
                                 $price_no_vat = $ordered_product['price_no_vat'] ?? 0;
-                                $quantity = $ordered_product['quantity'] ?? 0;
+                                $quantity = $ordered_product['ordered_quantity'] ?? 0;
                                 $tva = $price - $price_no_vat;
                                 $value = $price_no_vat * $quantity;
 
