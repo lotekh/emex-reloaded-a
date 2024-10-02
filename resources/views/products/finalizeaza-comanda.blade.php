@@ -12,11 +12,11 @@
 <div class="main-container" id="order-page">
     <form method="POST" action="{{ url('/save-order') }}" id="order_form">
         @csrf
-        <input type="hidden" id="orderr_id" name="order_id" value="{{ $order->id }}">
-        <input type="hidden" name="ordered_products_number" value="{{ $ordered_products->count() }}">
+         <input type="hidden" id="orderr_id" name="order_id" value="{{ $order_id }}">
+        {{-- <input type="hidden" name="ordered_products_number" value="{{ $ordered_products->count() }}">
         <input type="hidden" name="guid" value="{{ $order->guid }}">
-        <input type="hidden" name="identifier" value="{{ $order->identifier }}">
-        @foreach ($ordered_products as $key => $value)
+        <input type="hidden" name="identifier" value="{{ $order->identifier }}"> --}}
+        {{-- @foreach ($ordered_products as $key => $value)
             <input type="hidden" name="product{{ $key }}_id" value="{{ $value->product_id }}">
             <input type="hidden" name="product{{ $key }}_quantity" value="{{ $value->pivot->quantity }}">
             <input type="hidden" name="product{{ $key }}_price" value="{{ $value->pivot->price }}">
@@ -25,7 +25,17 @@
             <input type="hidden" name="product{{ $key }}_color" value="{{ $value->product->color }}">
             <input type="hidden" name="product{{ $key }}_packaging" value="{{ $value->product->ambalare }}">
             <input type="hidden" name="product{{ $key }}_addon_quantity" value="{{ $value->pivot->addon_quantity }}">
+        @endforeach --}}
+        @foreach ($ordered_products as $key => $value)
+            <input type="hidden" name="product{{ $key }}_id" value="{{ $value->product_id }}">
+            <input type="hidden" name="product{{ $key }}_quantity" value="{{ $value->ordered_quantity }}"> <!-- updated -->
+            <input type="hidden" name="product{{ $key }}_price" value="{{ $value->price }}"> <!-- updated -->
+            <input type="hidden" name="product{{ $key }}_price_no_tva" value="{{ $value->price_no_vat }}"> <!-- updated -->
+            <input type="hidden" name="product{{ $key }}_name" value="{{ $value->product->name }}">
+            <input type="hidden" name="product{{ $key }}_color" value="{{ $value->product->color }}">
+            <input type="hidden" name="product{{ $key }}_packaging" value="{{ $value->product->ambalare }}">
         @endforeach
+
 
         <div class="flex justify-center mt-32">
             <div class="steps flex align-center">
@@ -271,7 +281,7 @@
                                 <img src="{{ asset('resources/new_design/icons/check.svg') }}" class="hidden">
                             </button>
                         </div>
-                        <input type="hidden" name="delivery_type" value="{{ $order->delivery_type }}">
+                        <input type="hidden" name="delivery_type" value="{{ $order['delivery_type'] ?? '' }}">
                     </div>
                     <div id="curier-container" class="hidden mt-32">
                         <div class="flex justify-center align-center mb-16">
@@ -418,7 +428,7 @@
                                 <img src="{{ asset('resources/new_design/icons/check.svg') }}" class="hidden">
                             </button>
                         </div>
-                        <input type="hidden" name="payment_method" id="payment_method" value="{{ $order->payment_method }}">
+                        <input type="hidden" name="payment_method" id="payment_method" value="{{ $order['payment_method'] ?? '' }}">
                     </div>
                 </div>
                 <div class="flex justify-end col flex-md align-center gap-md">
@@ -534,26 +544,27 @@
                                 $total_tva = 0;
                             @endphp
 
-                            @foreach ($ordered_products as $ordered_product)
-                                @php
-                                    $price = $ordered_product->pivot->price;
-                                    $price_no_vat = $ordered_product->pivot->price_no_vat;
-                                    $quantity = $ordered_product->pivot->quantity;
-                                    $tva = $price - $price_no_vat;
-                                    $value = $price_no_vat * $quantity;
+                            @foreach ($ordered_products as $key => $ordered_product)
+                            @php
+                                $price = $ordered_product['price'] ?? 0;
+                                $price_no_vat = $ordered_product['price_no_vat'] ?? 0;
+                                $quantity = $ordered_product['quantity'] ?? 0;
+                                $tva = $price - $price_no_vat;
+                                $value = $price_no_vat * $quantity;
 
-                                    $total_value += $value;
-                                    $total_tva += $tva * $quantity;
-                                    $total_price += $price * $quantity;
-                                @endphp
-                                <tr>
-                                    <td class="ta_l comanda_product_title">{!! $ordered_product->product->name !!}</td>
-                                    <td class="ta_c">{{ $quantity }}</td>
-                                    <td class="ta_r">{{ number_format($price_no_vat, 2, '.', '') }}</td>
-                                    <td class="ta_r">{{ number_format($value, 2, '.', '') }}</td>
-                                    <td class="ta_r">{{ number_format($tva * $quantity, 2, '.', '') }}</td>
-                                </tr>
+                                $total_value += $value;
+                                $total_tva += $tva * $quantity;
+                                $total_price += $price * $quantity;
+                            @endphp
+                            <tr>
+                                <td class="ta_l comanda_product_title">{{ $ordered_product['product']['name'] ?? '' }}</td>
+                                <td class="ta_c">{{ $quantity }}</td>
+                                <td class="ta_r">{{ number_format($price_no_vat, 2, '.', '') }}</td>
+                                <td class="ta_r">{{ number_format($value, 2, '.', '') }}</td>
+                                <td class="ta_r">{{ number_format($tva * $quantity, 2, '.', '') }}</td>
+                            </tr>
                             @endforeach
+
 
                             <tr>
                                 {{-- <td>Cost livrare</td> --}}

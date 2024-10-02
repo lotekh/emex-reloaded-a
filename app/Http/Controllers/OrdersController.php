@@ -14,6 +14,8 @@ use PDF;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Media;
+use Illuminate\Support\Str;
+
 
 class OrdersController extends Controller
 {
@@ -114,7 +116,7 @@ class OrdersController extends Controller
         $countyId = $request->query('county_id');
         
         // Verificăm dacă există produse în sesiune
-        $cartProducts = session()->get('cart_list_products', []);
+        $cartProducts = session()->get('cart', []);
 
         if (empty($cartProducts)) {
             return response()->json(['error' => 'Nu există produse în coș.'], 404);
@@ -203,39 +205,77 @@ class OrdersController extends Controller
     }
 
     public function showCheckoutForm(Request $request)
-    {
-        $user = auth()->user();
-        // Determinăm dacă utilizatorul este oaspete (guest)
-        $isGuest = auth()->guest();
-    
-        // Obținem produsele din sesiune
-        $cart = session()->get('cart', []);
-    
-        // Dacă nu există produse în coș, redirecționăm utilizatorul la pagina coșului
-        if (empty($cart)) {
-            return redirect()->route('orders.index')->with('error', 'Coșul de cumpărături este gol.');
-        }
-    
-        // Preluăm detaliile produselor din baza de date
-        $productVariationIds = array_keys($cart);
+{
+    $user = auth()->user();
+    $isGuest = auth()->guest();
+
+    $cart = session()->get('cart', []);
+    $ordered_products = [];
+
+    if (empty($cart)) {
+        return redirect()->route('orders.index')->with('error', 'Coșul de cumpărături este gol.');
+    }
+
+    if (!empty($cart)) {
+        $productVariationIds = array_column($cart, 'product_variation_id');
         $ordered_products = ProductVariation::whereIn('id', $productVariationIds)->with('product')->get();
     
-        // Dacă utilizatorul este autentificat, preluăm informațiile de facturare și livrare din profilul utilizatorului
-        if ($user) {
-            $company_information = is_string($user->company_information) ? json_decode($user->company_information, true) : $user->company_information;
-            $delivery_information = is_string($user->delivery_information) ? json_decode($user->delivery_information, true) : $user->delivery_information;
-        } else {
-            $company_information = null;
-            $delivery_information = null;
+        foreach ($ordered_products as $product) {
+            foreach ($cart as $cartItem) {
+                if ($cartItem['product_variation_id'] == $product->id) {
+                    $product->ordered_quantity = $cartItem['quantity'];
+                    $product->price = $cartItem['price'];
+                    $product->price_no_vat = $cartItem['price_no_vat'];
+                }
+            }
         }
-    
-        // Preluăm listele de țări și județe pentru dropdown-uri
-        $countries = Country::all();
-        $counties = County::all();
-    
-        return view('products.finalizeaza-comanda', compact('user', 'cart', 'ordered_products', 'countries', 'counties', 'isGuest', 'company_information', 'delivery_information'));
     }
+
+    // Verificăm dacă există deja un 'order_id' în sesiune
+    $order_id = session()->get('order_id', null);
     
+    // Dacă nu există, generăm unul nou și îl salvăm în sesiune
+    if (!$order_id) {
+        $order_id = Str::uuid(); // Poți folosi un UUID sau alt mecanism pentru generare
+        session()->put('order_id', $order_id);
+    }
+
+    // Inițializăm sau preluăm datele din sesiune pentru comanda curentă
+    $order = session()->get('order', [
+        'guid' => \Illuminate\Support\Str::uuid(),
+        'identifier' => strtoupper(\Illuminate\Support\Str::random(10)),
+        'total' => array_sum(array_map(function ($item) {
+            return $item['quantity'] * $item['price'];
+        }, $cart)),
+        'billing_type' => null,
+        'delivery_type' => null,
+        'payment_method' => null,
+        'company_information' => $user ? $user->company_information : null,
+        'delivery_information' => $user ? $user->delivery_information : null
+    ]);
+
+    // Actualizăm datele de facturare și livrare dacă utilizatorul este autentificat
+    if ($user) {
+        $order['company_information'] = is_string($user->company_information)
+            ? json_decode($user->company_information, true)
+            : $user->company_information;
+
+        $order['delivery_information'] = is_string($user->delivery_information)
+            ? json_decode($user->delivery_information, true)
+            : $user->delivery_information;
+    }
+
+    // Salvăm comanda în sesiune
+    session()->put('order', $order);
+
+    // Preluăm listele de țări și județe
+    $countries = Country::all();
+    $counties = County::all();
+
+    return view('products.finalizeaza-comanda', compact('user', 'order', 'countries', 'counties', 'ordered_products', 'isGuest', 'order_id'));
+}
+
+
 
     public function processCheckout(Request $request)
     {
