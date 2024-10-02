@@ -21,7 +21,13 @@ class OrdersController extends Controller
     {
         // Preluăm produsele din sesiune
         $cart = session()->get('cart', []);
-        $ordered_products = [];
+        
+        if (!empty($cart)) {
+            $productVariationIds = array_column($cart, 'product_variation_id');
+            $ordered_products = ProductVariation::whereIn('id', $productVariationIds)->with('product')->get();
+        } else {
+            $ordered_products = [];
+        }
 
         // Preluăm detaliile produselor din baza de date folosind ID-urile din sesiune
         if (!empty($cart)) {
@@ -98,28 +104,23 @@ class OrdersController extends Controller
     public function getTransportPrice(Request $request)
     {
         $countyId = $request->query('county_id');
-        $orderId = $request->query('order_id');  
-        $user = auth()->user();
+        
+        // Verificăm dacă există produse în sesiune
+        $cartProducts = session()->get('cart_list_products', []);
 
-        // Obține comanda activă fie pentru utilizatorul logat, fie pentru utilizatorul nelogat
-        if ($user) {
-            $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
-        } else {
-            $order = Order::where('user_id', null)->where('is_paid', false)->first();
-        }
-
-        if (!$order) {
-            return response()->json(['error' => 'No active order found'], 404);
+        if (empty($cartProducts)) {
+            return response()->json(['error' => 'Nu există produse în coș.'], 404);
         }
 
         $totalQuantity = 0;
 
-        foreach ($order->productVariations as $productVariation) {
-            // Accesează cantitatea din `product_variations` prin relația definită
-            $totalQuantity += $productVariation->quantity; // `quantity` din `product_variations`
+        // Calculăm cantitatea totală a produselor din sesiune
+        foreach ($cartProducts as $product) {
+            // Adaugăm la cantitatea totală
+            $totalQuantity += $product['quantity'];
         }
 
-        // Define transport prices based on quantity and region
+        // Definim prețurile de transport pe baza cantității și regiunii
         $transportPricesBucurestiIlfov = [
             ['min' => 0, 'max' => 50, 'price' => 25],
             ['min' => 51, 'max' => 100, 'price' => 75],
@@ -134,7 +135,7 @@ class OrdersController extends Controller
             ['min' => 201, 'max' => 250, 'price' => 175],
         ];
 
-        // Determine the correct price based on county and quantity
+        // Determinăm prețul corect pe baza județului și cantității
         $price = 0;
 
         if (in_array($countyId, [1160, 1176])) { // Bucuresti + Ilfov
@@ -159,12 +160,7 @@ class OrdersController extends Controller
         // Formatează prețul și TVA-ul pentru a avea două zecimale
         $formattedPrice = number_format($price, 2, '.', '');
         $formattedTva = number_format($tva, 2, '.', '');
-        
-        $order->update([
-                'transport_price' => $formattedPrice,
-                'transport_price_no_tva' => $formattedPrice - $formattedTva,
-            ]);
-        
+
         // Returnează un array cu valorile calculului
         return response()->json([
             'price' => $formattedPrice,
