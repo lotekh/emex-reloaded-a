@@ -558,7 +558,7 @@ class OrdersController extends Controller
         session()->forget('cart');
         session()->forget('order');
 
-        return redirect()->route('/');
+        return redirect()->route('/despre-noi');
     }
 
 
@@ -567,21 +567,15 @@ class OrdersController extends Controller
 
     public function showSummary(Request $request)
     {
-        // Preia `guid` din query parameters
-        $guid = $request->query('guid');
+        $guid = $request->route('guid');
 
         // Găsește comanda pe baza `guid`
         $order = Order::where('guid', $guid)->first();
 
         // Verifică dacă comanda există și dacă utilizatorul este autentificat
         if (!$order) {
-            return redirect()->route('home')->with('error', 'Comanda nu a fost găsită.');
+            return redirect()->route('blog.index')->with('error', 'Comanda nu a fost găsită.');
         }
-
-        // Verifică dacă utilizatorul are permisiunea de a vedea comanda
-        // if ($order->user_id !== null && (!$user || $user->id !== $order->user_id)) {
-        //     abort(403, 'Acces interzis.');
-        // }
 
         $orders_products = $order->productVariations()->withPivot('quantity', 'price', 'price_no_vat')->get();
 

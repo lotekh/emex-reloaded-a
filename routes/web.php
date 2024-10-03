@@ -166,7 +166,7 @@ Route::post('/goleste-cosul', [OrdersController::class, 'emptyCart'])->name('ord
 
 // Routes for checkout
 Route::get('/finalizeaza-comanda', [OrdersController::class, 'showCheckoutForm'])->name('checkout.form');
-Route::get('/sumar-comanda', [OrdersController::class, 'showSummary'])->name('order.summary');
+Route::get('/sumar-comanda/{guid}', [OrdersController::class, 'showSummary'])->name('order.summary');
 Route::post('/save-order', [OrdersController::class, 'processCheckout'])->name('checkout.process');
 // Ruta pentru obținerea prețului de transport pe baza ID-ului județului
 Route::get('/get-transport-price', [OrdersController::class, 'getTransportPrice'])->name('get.transport.price');
