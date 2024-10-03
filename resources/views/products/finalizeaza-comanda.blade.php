@@ -409,19 +409,19 @@
                             <div class="grid grid-4 gap-lg p-8">
                                 <div class="form-group">
                                     <label>Nume <span class="text-red">*</span></label>
-                                    <input class="form-control w-full" type="text" id="delivery_last_name" name="delivery_last_name" value="{{ $deliveryLastName }}">
+                                    <input class="form-control w-full" type="text" id="delivery_last_name" name="delivery_last_name" value="{{ $deliveryLastName ?? ''  }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Prenume <span class="text-red">*</span></label>
-                                    <input class="form-control w-full" type="text" id="delivery_first_name" name="delivery_first_name" value="{{ $deliveryFirstName }}">
+                                    <input class="form-control w-full" type="text" id="delivery_first_name" name="delivery_first_name" value="{{ $deliveryFirstName ?? ''  }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Telefon <span class="text-red">*</span></label>
-                                    <input class="form-control w-full" type="tel" id="delivery_phone" name="delivery_phone" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" value="{{ $deliveryPhone }}">
+                                    <input class="form-control w-full" type="tel" id="delivery_phone" name="delivery_phone" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" value="{{ $deliveryPhone ?? ''  }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Email <span class="text-red">*</span></label>
-                                    <input class="form-control w-full" type="text" id="delivery_email" name="delivery_email" value="{{ $deliveryEmail }}">
+                                    <input class="form-control w-full" type="text" id="delivery_email" name="delivery_email" value="{{ $deliveryEmail ?? ''  }}">
                                 </div>
                             </div>
                         
@@ -429,29 +429,34 @@
                                 <div class="form-group">
                                     <label>Tara <span class="text-red">*</span></label>
                                     <select class="form-control w-full height-43px" name="delivery_information[delivery_country_id]">
-                                        <option value="">Selectează țara</option>
+                                        <option value="">Selectează țara</option> 
                                         @foreach ($countries as $country)
-                                            <option value="{{ $country->id }}" {{ $deliveryCountryId == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
+                                            <option value="{{ $country->id }}" {{ ($deliveryInfo->delivery_country_id ?? '') == $country->id ? 'selected' : '' }}>
+                                                {{ $country->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Judet <span class="text-red">*</span></label>
                                     <select class="form-control w-full height-43px" id="delivery_county_id" name="delivery_information[delivery_county_id]">
-                                        <option value="">Alege judetul</option>
+                                        <option value="">Alege județul</option> 
                                         @foreach ($counties as $county)
-                                            <option value="{{ $county->id }}" {{ $deliveryCountyId == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
+                                            <option value="{{ $county->id }}" {{ ($deliveryInfo->delivery_county_id ?? '') == $county->id ? 'selected' : '' }}>
+                                                {{ $county->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
+                                
                         
                                 <div class="form-group">
                                     <label>Localitate <span class="text-red">*</span></label>
-                                    <input class="form-control w-full" type="text" id="delivery_locality" name="delivery_locality" value="{{ $deliveryLocality }}">
+                                    <input class="form-control w-full" type="text" id="delivery_locality" name="delivery_locality" value="{{ $deliveryLocality ?? ''  }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Adresa <span class="text-red">*</span></label>
-                                    <input class="form-control w-full" type="text" id="delivery_address" name="delivery_address" value="{{ $deliveryAddress }}">
+                                    <input class="form-control w-full" type="text" id="delivery_address" name="delivery_address" value="{{ $deliveryAddress ?? ''  }}">
                                 </div>
                             </div>
                         </div>
