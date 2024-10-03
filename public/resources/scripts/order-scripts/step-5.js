@@ -67,20 +67,46 @@ var summaryDeliveryAddressContainer = document.getElementById(
 
 var summaryPaymentType = document.getElementById("summary_payment_method");
 
+// Initializăm elementele necesare
+var orderForm = document.getElementById("order_form");
 var agreement = document.getElementById("agreement");
 var finalize = document.getElementById("finalize");
 var backToStep4 = document.getElementById("back-to-step-4");
 
+// Ascultă evenimentul de click pe butonul de "agreement"
 agreement.addEventListener("click", agree);
 backToStep4.addEventListener("click", returnToStep4);
 
-function agree() {
-  if (this.checked) {
-    if (finalize.classList.contains("btn-disabled")) {
-      finalize.classList.remove("btn-disabled");
+// La încărcarea paginii, setăm starea inițială a butonului finalize
+document.addEventListener("DOMContentLoaded", function () {
+  // Inițializează starea butonului în funcție de starea checkbox-ului
+  initializeFinalizeButton();
+
+  // Prevenim submit-ul dacă butonul este dezactivat
+  orderForm.addEventListener("submit", function (e) {
+    if (finalize.disabled) {
+      e.preventDefault(); // Blochează trimiterea formularului
+    } else {
     }
+  });
+});
+
+function initializeFinalizeButton() {
+  toggleFinalizeButton(agreement.checked);
+}
+
+function agree() {
+  toggleFinalizeButton(agreement.checked);
+}
+
+// Funcția care activează/dezactivează butonul în funcție de starea checkbox-ului
+function toggleFinalizeButton(isChecked) {
+  if (isChecked) {
+    finalize.classList.remove("btn-disabled");
+    finalize.disabled = false; // Permite click-ul pe buton
   } else {
     finalize.classList.add("btn-disabled");
+    finalize.disabled = true; // Blochează click-ul pe buton
   }
 }
 

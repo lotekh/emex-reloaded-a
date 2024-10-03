@@ -11,13 +11,6 @@
       Cos ({{ count($ordered_products) }} produs{{ count($ordered_products) == 1 ? '' : 'e' }})
     </h1>
     @if(!empty($ordered_products))
-      {{-- <form method="POST" action="{{ route('orders.empty') }}">
-        @csrf
-        <button class="flex align-center grey-button" type="submit">
-          <img width="18" height="18" src="{{ asset('resources/new_design/icons/bin-grey.svg') }}">
-          <span class="ml-8">Sterge tot</span>
-        </button>
-      </form> --}}
       <form method="POST" action="{{ route('orders.empty') }}" style="display: none;">
         @csrf
         <button id="delete-all" class="flex align-center grey-button" type="submit">
@@ -55,60 +48,40 @@
           </tr>
         </thead>
         <tbody>
+          
           @php $totalPrice = 0; @endphp
           @foreach ($ordered_products as $ordered_product)
-            @php
-              $product = $ordered_product->product;
-              $totalIndividualPrice = floatval($ordered_product->pivot->price) * intval($ordered_product->pivot->quantity);
-              $totalPrice += $totalIndividualPrice;
-            @endphp
-            <tr>
-              <td>
-                <a href="{{ url($product->slug) }}" class="flex align-center">
-                  <div>
-                    <img layout="fixed" width="90px" height="90px" src="{{ $product->featuredImage ? asset('storage/' . $product->featuredImage->path) : asset('/images/default-placeholder.png') }}" alt="{{ strip_tags($product->name) }}">
-                  </div>
-                  <h3 class="normal-weight">{{ $product->plain_name }}</h3>
-                </a>
-              </td>
-
-              <td>
-                <div class="quantity-selector flex">
-
-                  <form method="POST" action="{{ route('orders.updateQuantity') }}">
-                    @csrf
-                    <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
-                    <input type="hidden" name="quantity" value="-1">
-                    <button type="submit" aria-label="Scade cantitatea">-</button>
-                  </form>
-
-                  {{ $ordered_product->pivot->quantity }}
-
-                  <form method="POST" action="{{ route('orders.updateQuantity') }}">
-                    @csrf
-                    <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
-                    <input type="hidden" name="quantity" value="1">
-                    <button type="submit" aria-label="Creste cantitatea">+</button>
-                  </form>
-
-                </div>
-              </td>
-
-              <td>{{ $ordered_product->quantity }}</td>
-              <td>{{ $ordered_product->colour }}</td>
-              <td class="price">{{ number_format($ordered_product->pivot->price, 2) }} Lei</td>
-              <td class="price">
-                <div class="flex justify-between">
-                  <p class="price">{{ number_format($totalIndividualPrice, 2) }} Lei</p>
-                  <form method="POST" action="{{ route('orders.removeProduct') }}">
-                    @csrf
-                    <input type="hidden" name="order_product_id" value="{{ $ordered_product->pivot->id }}">
-                    <button aria-label="Sterge produsul"><img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="18" height="18"></button>
-                  </form>
-                </div>
-              </td>
-            </tr>
+              @php
+                  // Folosim cantitatea comandată din sesiune, nu cea din stoc
+                  $totalIndividualPrice = floatval($ordered_product->price) * intval($ordered_product->ordered_quantity);
+                  $totalPrice += $totalIndividualPrice;
+              @endphp
+              <tr>
+                  <td>
+                      <a href="{{ url($ordered_product->product->slug) }}" class="flex align-center">
+                          <div>
+                              <img layout="fixed" width="90px" height="90px" src="{{ $ordered_product->product->featuredImage ? asset('storage/' . $ordered_product->product->featuredImage->path) : asset('/images/default-placeholder.png') }}" alt="{{ strip_tags($ordered_product->product->name) }}">
+                          </div>
+                          <h3 class="normal-weight">{{ $ordered_product->product->plain_name }}</h3>
+                      </a>
+                  </td>
+                  <td>{{ $ordered_product->ordered_quantity }}</td>
+                  <td>{{ $ordered_product->quantity }}</td>
+                  <td>{{ $ordered_product->colour }}</td>
+                  <td class="price">{{ number_format($ordered_product->price, 2) }} Lei</td>
+                  <td class="price">
+                      <div class="flex justify-between">
+                          <p class="price">{{ number_format($totalIndividualPrice, 2) }} Lei</p>
+                          <form method="POST" action="{{ route('orders.removeProduct') }}">
+                              @csrf
+                              <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
+                              <button aria-label="Sterge produsul"><img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="18" height="18"></button>
+                          </form>
+                      </div>
+                  </td>
+              </tr>
           @endforeach
+
         </tbody>
       </table>
     </div>

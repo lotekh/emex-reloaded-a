@@ -12,9 +12,11 @@
 <div class="main-container" id="order-page">
     <form method="POST" action="{{ url('/save-order') }}" id="order_form">
         @csrf
-        <input type="hidden" id="orderr_id" name="order_id" value="{{ $order->id }}">
-        <input type="hidden" name="ordered_products_number" value="{{ $ordered_products->count() }}">
-        @foreach ($ordered_products as $key => $value)
+         <input type="hidden" id="orderr_id" name="order_id" value="{{ $order_id }}">
+        {{-- <input type="hidden" name="ordered_products_number" value="{{ $ordered_products->count() }}">
+        <input type="hidden" name="guid" value="{{ $order->guid }}">
+        <input type="hidden" name="identifier" value="{{ $order->identifier }}"> --}}
+        {{-- @foreach ($ordered_products as $key => $value)
             <input type="hidden" name="product{{ $key }}_id" value="{{ $value->product_id }}">
             <input type="hidden" name="product{{ $key }}_quantity" value="{{ $value->pivot->quantity }}">
             <input type="hidden" name="product{{ $key }}_price" value="{{ $value->pivot->price }}">
@@ -23,7 +25,17 @@
             <input type="hidden" name="product{{ $key }}_color" value="{{ $value->product->color }}">
             <input type="hidden" name="product{{ $key }}_packaging" value="{{ $value->product->ambalare }}">
             <input type="hidden" name="product{{ $key }}_addon_quantity" value="{{ $value->pivot->addon_quantity }}">
+        @endforeach --}}
+        @foreach ($ordered_products as $key => $value)
+            <input type="hidden" name="product{{ $key }}_id" value="{{ $value->product_id }}">
+            <input type="hidden" name="product{{ $key }}_quantity" value="{{ $value->ordered_quantity }}"> <!-- updated -->
+            <input type="hidden" name="product{{ $key }}_price" value="{{ $value->price }}"> <!-- updated -->
+            <input type="hidden" name="product{{ $key }}_price_no_tva" value="{{ $value->price_no_vat }}"> <!-- updated -->
+            <input type="hidden" name="product{{ $key }}_name" value="{{ $value->product->name }}">
+            <input type="hidden" name="product{{ $key }}_color" value="{{ $value->product->color }}">
+            <input type="hidden" name="product{{ $key }}_packaging" value="{{ $value->product->ambalare }}">
         @endforeach
+
 
         <div class="flex justify-center mt-32">
             <div class="steps flex align-center">
@@ -135,10 +147,12 @@
                                 <input class="form-control w-full" type="email" id="person_email" name="person_email" value="{{ $order->company_information->person_email ?? '' }}">
                             </div>
                         </div>
-                        <div class="grid grid-4 gap-lg">
+
+                        <div class="grid grid-4 gap-lg p-8">
                             <div class="form-group">
                                 <label>Tara <span class="text-red">*</span></label>
-                                <select class="form-control w-full" name="company_information[person_country_id]">
+                                <select class="form-control w-full height-43px" name="company_information[person_country_id]">
+                                    <option value="">Selectează țara</option> 
                                     @foreach ($countries as $country)
                                         <option value="{{ $country->id }}" {{ ($order->company_information->person_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
                                     @endforeach
@@ -146,12 +160,14 @@
                             </div>
                             <div class="form-group">
                                 <label>Judet <span class="text-red">*</span></label>
-                                <select class="form-control w-full" name="company_information[person_county_id]" id="person_county_id">
+                                <select class="form-control w-full height-43px" name="company_information[person_county_id]" id="person_county_id">
+                                    <option value="">Selectează județul</option> 
                                     @foreach ($counties as $county)
                                         <option value="{{ $county->id }}" {{ ($order->company_information->person_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
+                            
                             <div class="form-group">
                                 <label>Localitate <span class="text-red">*</span></label>
                                 <input class="form-control w-full" type="text" id="person_locality_id" name="company_information[person_locality]" value="{{ $order->company_information->person_locality ?? '' }}" >
@@ -205,10 +221,12 @@
                                 <input class="form-control w-full" type="text" id="contact_person_first_name" name="contact_person_first_name" value="{{ $order->company_information->contact_person_first_name ?? '' }}">
                             </div>
                         </div>
-                        <div class="grid grid-4 gap-lg">
+                        <div class="grid grid-4 gap-lg p-8">
+
                             <div class="form-group">
                                 <label>Tara <span class="text-red">*</span></label>
-                                <select class="form-control w-full" name="company_information[organization_country_id]">
+                                <select class="form-control w-full height-43px" name="company_information[organization_country_id]">
+                                    <option value="">Selectează țara</option> 
                                     @foreach ($countries as $country)
                                         <option value="{{ $country->id }}" {{ ($order->company_information->organization_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
                                     @endforeach
@@ -216,12 +234,14 @@
                             </div>
                             <div class="form-group">
                                 <label>Judet <span class="text-red">*</span></label>
-                                <select class="form-control w-full" id="organization_county_id" name="company_information[organization_county_id]">
+                                <select class="form-control w-full height-43px" id="organization_county_id" name="company_information[organization_county_id]">
+                                    <option value="">Selectează județul</option> 
                                     @foreach ($counties as $county)
                                         <option value="{{ $county->id }}" {{ ($order->company_information->organization_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
+                            
                             <div class="form-group">
                                 <label>Localitate <span class="text-red">*</span></label>
                                 <input class="form-control w-full" type="text" id="organization_locality_id" name="company_information[organization_locality]" value="{{ $order->company_information->organization_locality ?? '' }}" >
@@ -261,7 +281,7 @@
                                 <img src="{{ asset('resources/new_design/icons/check.svg') }}" class="hidden">
                             </button>
                         </div>
-                        <input type="hidden" name="delivery_type" value="{{ $order->delivery_type }}">
+                        <input type="hidden" name="delivery_type" value="{{ $order['delivery_type'] ?? '' }}">
                     </div>
                     <div id="curier-container" class="hidden mt-32">
                         <div class="flex justify-center align-center mb-16">
@@ -296,9 +316,11 @@
 
                            
                             <div class="grid grid-4 gap-lg p-8">
+
                                 <div class="form-group">
                                     <label>Tara <span class="text-red">*</span></label>
-                                    <select class="form-control w-full" name="delivery_information[delivery_country_id]">
+                                    <select class="form-control w-full height-43px" name="delivery_information[delivery_country_id]">
+                                        <option value="">Selectează țara</option> 
                                         @foreach ($countries as $country)
                                             <option value="{{ $country->id }}" {{ ($order->delivery_information->delivery_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
                                         @endforeach
@@ -306,13 +328,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Judet <span class="text-red">*</span></label>
-                                    <select class="form-control w-full" id="delivery_county_id" name="delivery_information[delivery_county_id]">
+                                    <select class="form-control w-full height-43px" id="delivery_county_id" name="delivery_information[delivery_county_id]">
                                         <option value="">Alege judetul</option>
                                         @foreach ($counties as $county)
                                             <option value="{{ $county->id }}" {{ ($order->delivery_information->delivery_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+
                                 <div class="form-group">
                                     <label>Localitate <span class="text-red">*</span></label>
                                     <input class="form-control w-full" type="text" id="delivery_locality" name="delivery_locality" value="{{ $order->delivery_information->delivery_locality ?? '' }}" >
@@ -405,7 +428,7 @@
                                 <img src="{{ asset('resources/new_design/icons/check.svg') }}" class="hidden">
                             </button>
                         </div>
-                        <input type="hidden" name="payment_method" id="payment_method" value="{{ $order->payment_method }}">
+                        <input type="hidden" name="payment_method" id="payment_method" value="{{ $order['payment_method'] ?? '' }}">
                     </div>
                 </div>
                 <div class="flex justify-end col flex-md align-center gap-md">
@@ -513,58 +536,81 @@
                             <th>Valoare</th>
                             <th>TVA</th>
                         </thead>
+
                         <tbody>
+                            @php
+                                $total_value = 0;
+                                $total_price = 0;
+                                $total_tva = 0;
+                            @endphp
 
-@php
-    $total_value = 0;
-    $total_price = 0;
-    $total_tva = 0;
-@endphp
+                            @foreach ($ordered_products as $key => $ordered_product)
+                            @php
+                                $price = $ordered_product['price'] ?? 0;
+                                $price_no_vat = $ordered_product['price_no_vat'] ?? 0;
+                                $quantity = $ordered_product['ordered_quantity'] ?? 0;
+                                $tva = $price - $price_no_vat;
+                                $value = $price_no_vat * $quantity;
 
-{{-- @php
-    dump($ordered_products);
-@endphp --}}
+                                $total_value += $value;
+                                $total_tva += $tva * $quantity;
+                                $total_price += $price * $quantity;
+                            @endphp
+                            <tr>
+                                <td class="ta_l comanda_product_title">{{ $ordered_product['product']['name'] ?? '' }}</td>
+                                <td class="ta_c">{{ $quantity }}</td>
+                                <td class="ta_r">{{ number_format($price_no_vat, 2, '.', '') }}</td>
+                                <td class="ta_r">{{ number_format($value, 2, '.', '') }}</td>
+                                <td class="ta_r">{{ number_format($tva * $quantity, 2, '.', '') }}</td>
+                            </tr>
+                            @endforeach
 
 
-@foreach ($ordered_products as $ordered_product)
-    @php
-        $price = $ordered_product->pivot->price;
-        $price_no_vat = $ordered_product->pivot->price_no_vat;
-        $quantity = $ordered_product->pivot->quantity;
-        $tva = $price - $price_no_vat;
-        $value = $price_no_vat * $quantity;
-
-        $total_value += $value;
-        $total_tva += $tva * $quantity;
-        $total_price += $price * $quantity;
-    @endphp
-    <tr>
-        <td class="ta_l comanda_product_title">{!! $ordered_product->product->name !!}</td>
-        <td class="ta_c">{{ $quantity }}</td>
-        <td class="ta_r">{{ number_format($price_no_vat, 2, '.', '') }}</td>
-        <td class="ta_r">{{ number_format($value, 2, '.', '') }}</td>
-        <td class="ta_r">{{ number_format($tva * $quantity, 2, '.', '') }}</td>
-    </tr>
-@endforeach
-<tr>
-    <td>Cost livrare</td>
-    <td>1</td>
-    <td id="transport_unitary">-</td>
-    <td id="transport_value">-</td>
-    <td id="transport_TVA">-</td>
-</tr>
-<tr>
-    <td>Cost ramburs</td>
-    <td>1</td>
-    <td id="ramburs_unitary">-</td>
-    <td id="ramburs_value">-</td>
-    <td id="ramburs_TVA">-</td>
-</tr>
-<tr>
-    <th colspan="3" class="align-right">Total general:</th>
-    {{-- <th colspan="2" id="total_general">{{ number_format($total_price, 2, '.', '') }}</th> --}}
-    <th colspan="2" id="total_general"></th>
-</tr>
+                            <tr>
+                                {{-- <td>Cost livrare</td> --}}
+                                <td>
+                                    <div class="flex align-center">
+                                        Cost livrare
+                                        <div class="tooltip ml-8">
+                                            <img src="{{ asset('resources/new_design/icons/info.svg') }}">
+                                            <span class="tooltip_text tooltip_text_top trans_tooltip" id="tooltip_order_body">
+                                                <div class="ot_title">
+                                                    <b>Romtehnochim sustine parte din costurile de transport. Astfel, acestea sunt:</b>
+                                                </div>
+                                                <div class="ot_subtitle">Bucuresti + Imprejurimi</div>
+                                                <ul class="ott_ul">
+                                                    <li>&lt; 50 Kg: 25 Ron</li>
+                                                    <li>50 - 100 Kg: 75 Ron</li>
+                                                    <li>100 - 250 Kg: 100 Ron</li>
+                                                </ul>
+                                                <div class="ot_subtitle"><b>In tara</b></div>
+                                                <ul class="ott_ul">
+                                                    <li>1 - 10 Kg: 25 Ron</li>
+                                                    <li>11 - 50 Kg: 45 Ron</li>
+                                                    <li>51 - 100 Kg: 75 Ron</li>
+                                                    <li>101 - 200 Kg: 150 Ron</li>
+                                                    <li>200 - 250 Kg: 175 Ron</li>
+                                                </ul>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>1</td>
+                                <td id="transport_unitary">-</td>
+                                <td id="transport_value">-</td>
+                                <td id="transport_TVA">-</td>
+                            </tr>
+                            <tr>
+                                <td>Cost ramburs</td>
+                                <td>1</td>
+                                <td id="ramburs_unitary">-</td>
+                                <td id="ramburs_value">-</td>
+                                <td id="ramburs_TVA">-</td>
+                            </tr>
+                            <tr>
+                                <th colspan="3" class="align-right">Total general:</th>
+                                <th colspan="2" id="total_general"></th>
+                            </tr>
 
                         </tbody>
                     </table>
@@ -614,25 +660,49 @@
 <!-- Step 5 -->
 <script src="{{ asset('resources/scripts/order-scripts/step-5.js') }}"></script>
 
-<!-- Bring cities dynamically -->
-{{-- <script src="{{ asset('resources/scripts/order-scripts/bring-cities.js') }}"></script> --}}
 
-{{-- Get Counties --}}
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Fetch judete by tara
         const countrySelects = document.querySelectorAll('select[name*="country_id"]');
+        
         countrySelects.forEach(countrySelect => {
-            countrySelect.addEventListener('change', function () {
-                const countySelect = document.querySelector(`select[name="${this.name.replace('country', 'county')}"]`);
-                fetch(`/get-counties-by-country/${this.value}`)
+            const countySelect = document.querySelector(`select[name="${countrySelect.name.replace('country', 'county')}"]`);
+            
+            // Verifică dacă există deja o valoare selectată pentru țară și județ
+            const selectedCountry = countrySelect.value;
+            const selectedCounty = countySelect.value;
+
+            if (selectedCountry) {
+                // Dacă există o țară selectată, încarcă județele corespunzătoare
+                fetch(`/get-counties-by-country/${selectedCountry}`)
                     .then(response => response.json())
                     .then(data => {
-                        countySelect.innerHTML = '<option value="">Alege judetul</option>';
+                        countySelect.innerHTML = '<option value="">Selectează judetul</option>';
                         data.forEach(county => {
-                            countySelect.innerHTML += `<option value="${county.id}">${county.name}</option>`;
+                            countySelect.innerHTML += `<option value="${county.id}" ${county.id == selectedCounty ? 'selected' : ''}>${county.name}</option>`;
                         });
                     });
+            } else {
+                // Initializează dropdown-ul de județ cu "Selectează județul" dacă nu există o țară selectată
+                countySelect.innerHTML = '<option value="">Selectează județul</option>';
+            }
+
+            countrySelect.addEventListener('change', function () {
+                if (this.value === "") {
+                    // Dacă se selectează "Selectează țara", resetează dropdown-ul de județ
+                    countySelect.innerHTML = '<option value="">Selectează județul</option>';
+                } else {
+                    // Dacă o țară validă este selectată, încarcă județele corespunzătoare
+                    fetch(`/get-counties-by-country/${this.value}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            countySelect.innerHTML = '<option value="">Selectează județul</option>';
+                            data.forEach(county => {
+                                countySelect.innerHTML += `<option value="${county.id}">${county.name}</option>`;
+                            });
+                        });
+                }
             });
         });
     });
