@@ -37,6 +37,5 @@ class ContactController extends Controller
 
         // Redirect to thank-you page
         return redirect()->route('thank-you');
-        // return redirect()->route('home');
     }
 }

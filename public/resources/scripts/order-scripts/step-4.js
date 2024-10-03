@@ -11,8 +11,8 @@ var ordinDePlata = document.getElementById("ordin-de-plata");
 var transferBancar = document.getElementById("transfer-bancar");
 var ramburs = document.getElementById("ramburs");
 var rambursCard = document.getElementById("rambursCard");
-var cash = document.getElementById('cash');
-var cashCard = document.getElementById('cashCard');
+var cash = document.getElementById("cash");
+var cashCard = document.getElementById("cashCard");
 
 curierCheck.addEventListener("click", function () {
   rambursCard.style.display = "flex";
@@ -80,14 +80,13 @@ function changePaymentType(resetPayment = false) {
 
       paymentType.value = "ramburs";
     } else if (this.id == "cash") {
-        console.log(this.id);
-        this.dataset.checked = true;
-        card.dataset.checked = false;
-        transferBancar.dataset.checked = false;
-        ordinDePlata.dataset.checked = false;
-        ramburs.dataset.checked = false;
+      this.dataset.checked = true;
+      card.dataset.checked = false;
+      transferBancar.dataset.checked = false;
+      ordinDePlata.dataset.checked = false;
+      ramburs.dataset.checked = false;
 
-        paymentType.value = "cash";
+      paymentType.value = "cash";
     }
 
     if (goToStep5.classList.contains("btn-disabled")) {

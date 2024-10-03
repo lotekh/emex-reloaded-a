@@ -21,7 +21,7 @@ class WishlistController extends Controller
         if ($user) {
             // Obține produsele din wishlist din baza de date pentru utilizatorul logat
             $products = WishlistItem::where('user_id', $user->id)
-                ->with(['product.variations', 'product.reviews']) // Încarcă și relațiile variations și reviews
+                ->with(['product.variations', 'product.reviews']) 
                 ->get()
                 ->pluck('product');
         } else {

@@ -269,6 +269,8 @@
   padding-bottom: 80px;
 }
 .aplicari_img_thumbnail {
+  width: 386px !important;
+  height: 297px;
   width: calc(100% - 30px);
   padding: 15px;
   margin-bottom: 20px;

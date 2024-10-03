@@ -48,9 +48,69 @@ var organizationContactPersonFirstName = document.getElementById(
 );
 
 var billingType = document.getElementsByName("billing_type")[0];
-console.log(billingType.value);
 
 var goToStep2 = document.getElementById("go-to-step-2");
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Apelează funcția de inițializare când pagina este gata
+  initializeBillingType();
+});
+
+function initializeBillingType() {
+  if (billingType.value == 1) {
+    // Persoana juridica
+    organizationBillingCheck.dataset.checked = true;
+    personBillingCheck.dataset.checked = false;
+    personBillingContainer.classList.add("hidden");
+    organizationBillingContainer.classList.remove("hidden");
+
+    personLastName.required = false;
+    personFirstName.required = false;
+    personPhone.required = false;
+    personCountyId.required = false;
+    personLocalityId.required = false;
+    personAddress.required = false;
+    personEmail.required = false;
+
+    organizationName.required = true;
+    organizationCUI.required = true;
+    organizationCountyId.required = true;
+    organizationLocalityId.required = true;
+    organizationAddress.required = true;
+    organizationPhone.required = true;
+    organizationEmail.required = true;
+    organizationContactPersonFirstName.required = true;
+    organizationContactPersonLastName.required = true;
+
+    billingType.value = 1;
+  } else {
+    // Persoana fizica or guest
+    organizationBillingCheck.dataset.checked = false;
+    personBillingCheck.dataset.checked = true;
+    organizationBillingContainer.classList.add("hidden");
+    personBillingContainer.classList.remove("hidden");
+
+    personLastName.required = true;
+    personFirstName.required = true;
+    personPhone.required = true;
+    personCountyId.required = true;
+    personLocalityId.required = true;
+    personAddress.required = true;
+    personEmail.required = true;
+
+    organizationName.required = false;
+    organizationCUI.required = false;
+    organizationCountyId.required = false;
+    organizationLocalityId.required = false;
+    organizationAddress.required = false;
+    organizationPhone.required = false;
+    organizationEmail.required = false;
+    organizationContactPersonFirstName.required = false;
+    organizationContactPersonLastName.required = false;
+
+    billingType.value = 0;
+  }
+}
 
 organizationBillingCheck.addEventListener("click", changeBillingType);
 personBillingCheck.addEventListener("click", changeBillingType);
