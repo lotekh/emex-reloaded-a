@@ -217,6 +217,14 @@ class OrdersController extends Controller
         return redirect()->route('orders.index');
     }
 
+    public function getCartProductVariationCount()
+    {
+        $cart = session()->get('cart', []);
+        $productVariationCount = count($cart);
+        return $productVariationCount;
+    }
+
+
     public function showCheckoutForm(Request $request)
     {
         $user = auth()->user();
