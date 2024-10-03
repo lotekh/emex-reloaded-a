@@ -178,6 +178,12 @@ class OrdersController extends Controller
         $formattedPrice = number_format($price, 2, '.', '');
         $formattedTva = number_format($tva, 2, '.', '');
 
+        $order = session()->get('order', []);
+        $order['transport_price'] = $formattedPrice;
+        $order['transport_price_no_tva'] = number_format($formattedPrice - $formattedTva, 2, '.', '');
+        session()->put('order', $order);
+
+
         // Returnează un array cu valorile calculului
         return response()->json([
             'price' => $formattedPrice,
@@ -212,75 +218,75 @@ class OrdersController extends Controller
     }
 
     public function showCheckoutForm(Request $request)
-{
-    $user = auth()->user();
-    $isGuest = auth()->guest();
+    {
+        $user = auth()->user();
+        $isGuest = auth()->guest();
 
-    $cart = session()->get('cart', []);
-    $ordered_products = [];
+        $cart = session()->get('cart', []);
+        $ordered_products = [];
 
-    if (empty($cart)) {
-        return redirect()->route('orders.index')->with('error', 'Coșul de cumpărături este gol.');
-    }
+        if (empty($cart)) {
+            return redirect()->route('orders.index')->with('error', 'Coșul de cumpărături este gol.');
+        }
 
-    if (!empty($cart)) {
-        $productVariationIds = array_column($cart, 'product_variation_id');
-        $ordered_products = ProductVariation::whereIn('id', $productVariationIds)->with('product')->get();
-    
-        foreach ($ordered_products as $product) {
-            foreach ($cart as $cartItem) {
-                if ($cartItem['product_variation_id'] == $product->id) {
-                    $product->ordered_quantity = $cartItem['quantity'];
-                    $product->price = $cartItem['price'];
-                    $product->price_no_vat = $cartItem['price_no_vat'];
+        if (!empty($cart)) {
+            $productVariationIds = array_column($cart, 'product_variation_id');
+            $ordered_products = ProductVariation::whereIn('id', $productVariationIds)->with('product')->get();
+        
+            foreach ($ordered_products as $product) {
+                foreach ($cart as $cartItem) {
+                    if ($cartItem['product_variation_id'] == $product->id) {
+                        $product->ordered_quantity = $cartItem['quantity'];
+                        $product->price = $cartItem['price'];
+                        $product->price_no_vat = $cartItem['price_no_vat'];
+                    }
                 }
             }
         }
+
+        // Verificăm dacă există deja un 'order_id' în sesiune
+        $order_id = session()->get('order_id', null);
+        
+        // Dacă nu există, generăm unul nou și îl salvăm în sesiune
+        if (!$order_id) {
+            $order_id = Str::uuid(); // Poți folosi un UUID sau alt mecanism pentru generare
+            session()->put('order_id', $order_id);
+        }
+
+        // Inițializăm sau preluăm datele din sesiune pentru comanda curentă
+        $order = session()->get('order', [
+            'guid' => \Illuminate\Support\Str::uuid(),
+            'identifier' => strtoupper(\Illuminate\Support\Str::random(10)),
+            'total' => array_sum(array_map(function ($item) {
+                return $item['quantity'] * $item['price'];
+            }, $cart)),
+            'billing_type' => null,
+            'delivery_type' => null,
+            'payment_method' => null,
+            'company_information' => $user ? $user->company_information : null,
+            'delivery_information' => $user ? $user->delivery_information : null
+        ]);
+
+        // Actualizăm datele de facturare și livrare dacă utilizatorul este autentificat
+        if ($user) {
+            $order['company_information'] = is_string($user->company_information)
+                ? json_decode($user->company_information, true)
+                : $user->company_information;
+
+            $order['delivery_information'] = is_string($user->delivery_information)
+                ? json_decode($user->delivery_information, true)
+                : $user->delivery_information;
+        }
+
+        // Salvăm comanda în sesiune
+        session()->put('order', $order);
+
+        // Preluăm listele de țări și județe
+        $countries = Country::all();
+        $counties = County::all();
+
+        return view('products.finalizeaza-comanda', compact('user', 'order', 'countries', 'counties', 'ordered_products', 'isGuest', 'order_id'));
     }
-
-    // Verificăm dacă există deja un 'order_id' în sesiune
-    $order_id = session()->get('order_id', null);
-    
-    // Dacă nu există, generăm unul nou și îl salvăm în sesiune
-    if (!$order_id) {
-        $order_id = Str::uuid(); // Poți folosi un UUID sau alt mecanism pentru generare
-        session()->put('order_id', $order_id);
-    }
-
-    // Inițializăm sau preluăm datele din sesiune pentru comanda curentă
-    $order = session()->get('order', [
-        'guid' => \Illuminate\Support\Str::uuid(),
-        'identifier' => strtoupper(\Illuminate\Support\Str::random(10)),
-        'total' => array_sum(array_map(function ($item) {
-            return $item['quantity'] * $item['price'];
-        }, $cart)),
-        'billing_type' => null,
-        'delivery_type' => null,
-        'payment_method' => null,
-        'company_information' => $user ? $user->company_information : null,
-        'delivery_information' => $user ? $user->delivery_information : null
-    ]);
-
-    // Actualizăm datele de facturare și livrare dacă utilizatorul este autentificat
-    if ($user) {
-        $order['company_information'] = is_string($user->company_information)
-            ? json_decode($user->company_information, true)
-            : $user->company_information;
-
-        $order['delivery_information'] = is_string($user->delivery_information)
-            ? json_decode($user->delivery_information, true)
-            : $user->delivery_information;
-    }
-
-    // Salvăm comanda în sesiune
-    session()->put('order', $order);
-
-    // Preluăm listele de țări și județe
-    $countries = Country::all();
-    $counties = County::all();
-
-    return view('products.finalizeaza-comanda', compact('user', 'order', 'countries', 'counties', 'ordered_products', 'isGuest', 'order_id'));
-}
 
 
 
@@ -295,42 +301,264 @@ class OrdersController extends Controller
 
         // Preluăm utilizatorul și coșul din sesiune
         $user = auth()->user();
+        $userId = $user ? $user->id : null;
         $cart = session()->get('cart', []);
-
-        if (empty($cart)) {
-            return redirect()->route('orders.index')->with('error', 'Nu există produse în coș.');
+        $order = session()->get('order', null);
+    
+        if (!$order) {
+            return redirect()->route('orders.index')->with('error', 'Comanda nu a fost găsită.');
         }
+    
+        // Creăm comanda în baza de date doar dacă nu există deja
+        // $dbOrder = Order::where('guid', $order['guid'])->first();
+        // if (!$dbOrder) {
+        //     $dbOrder = new Order();
+        //     $dbOrder->guid = $order['guid'];
+        //     $dbOrder->identifier = $order['identifier'];
+        // }
 
-        // Creăm comanda în baza de date
-        $order = new Order();
-        if ($user) {
-            $order->user_id = $user->id;
-        }
-        $order->billing_type = $request->input('billing_type');
-        $order->delivery_type = $request->input('delivery_type');
-        $order->payment_method = $request->input('payment_method');
-        $order->total = 0; // Vom calcula totalul mai jos
-        $order->save();
 
-        // Mutăm produsele din sesiune în baza de date
-        foreach ($cart as $productVariationId => $details) {
-            $order->productVariations()->attach($productVariationId, [
-                'quantity' => $details['quantity'],
-                'price' => $details['price'],
-                'price_no_vat' => $details['price_no_vat'],
+        $dbOrder = Order::firstOrCreate(
+            ['guid' => $order['guid']],
+            [
+                'user_id' => $userId,
+                'identifier' => $order['identifier'],
+                'billing_type' => $request->input('billing_type'),
+                'delivery_type' => $request->input('delivery_type'),
+                'payment_method' => $request->input('payment_method'),
+                'total' => 0, 
+                'is_paid' => false
+            ]
+        );
+
+        // $dbOrder->billing_type = $request->input('billing_type');
+        // $dbOrder->delivery_type = $request->input('delivery_type');
+        // $dbOrder->payment_method = $request->input('payment_method');
+
+        $total = 0;
+        foreach ($cart as $cartItem) {
+            $dbOrder->productVariations()->attach($cartItem['product_variation_id'], [
+                'quantity' => $cartItem['quantity'],
+                'price' => $cartItem['price'],
+                'price_no_vat' => $cartItem['price_no_vat'],
             ]);
 
-            // Actualizăm totalul comenzii
-            $order->total += $details['quantity'] * $details['price'];
+            // Calculăm totalul
+            $total += $cartItem['quantity'] * $cartItem['price'];
         }
+        $dbOrder->total = $total;
+        $dbOrder->is_paid = false;
 
-        // Salvăm totalul comenzii
-        $order->save();
+
+        if ($dbOrder) {
+            // Preluăm transport_price și transport_price_no_tva din sesiune
+            if (isset($order['transport_price']) && isset($order['transport_price_no_tva'])) {
+                $dbOrder->transport_price = $order['transport_price'];
+                $dbOrder->transport_price_no_tva = $order['transport_price_no_tva'];
+            }
+
+            $personCountyId = null;
+            $companyCountyId = null;
+            $deliveryCountyId = null;
+
+            // Setăm valorile pentru persoană fizică sau juridică în funcție de billing_type
+            if ($request->input('billing_type') == 0) { // Persoană fizică
+                $companyInformationArray = [
+                    'person_last_name' => $request->input('person_last_name'),
+                    'person_first_name' => $request->input('person_first_name'),
+                    'person_phone' => $request->input('person_phone'),
+                    'person_email' => $request->input('person_email'),
+                    'person_country_id' => $request->input('company_information.person_country_id'),
+                    'person_county_id' => $request->input('company_information.person_county_id'),
+                    'person_locality' => $request->input('company_information.person_locality'),
+                    'person_address' => $request->input('company_information.person_address'),
+                ];
+                $personCountyId = $companyInformationArray['person_county_id'];
+            } elseif ($request->input('billing_type') == 1) { // Persoană juridică
+                $companyInformationArray = [
+                    'organization_name' => $request->input('organization_name'),
+                    'organization_cui' => $request->input('organization_cui'),
+                    'organization_phone' => $request->input('organization_phone'),
+                    'organization_email' => $request->input('organization_email'),
+                    'organization_bank' => $request->input('organization_bank'),
+                    'organization_bank_account' => $request->input('organization_bank_account'),
+                    'contact_person_last_name' => $request->input('contact_person_last_name'),
+                    'contact_person_first_name' => $request->input('contact_person_first_name'),
+                    'organization_country_id' => $request->input('company_information.organization_country_id'),
+                    'organization_county_id' => $request->input('company_information.organization_county_id'),
+                    'organization_locality' => $request->input('company_information.organization_locality'),
+                    'organization_address' => $request->input('company_information.organization_address'),
+                ];
+                $companyCountyId = $companyInformationArray['organization_county_id'];
+            }
+
+           
+
+            // Calculează costul de ramburs dacă tipul de livrare este curier
+            $rambursValue = 0;
+            $rambursTva = 0;
+            if ($request->input('delivery_type') == 0 && $request->input('payment_method') == 'ramburs') {
+                // valoarea de ramburs e 3 la suta din valoarea comenzii fara tva, adica 3 la suta din 100-19 = 81% din $dbOrder->total
+                $rambursValue = (($dbOrder->total * 81) / 100) * 3 / 100;
+                $rambursTva = ($rambursValue * 19) / 100;
+                $dbOrder->total += $rambursValue + $rambursTva; // Adăugăm costul rambursului la total
+            }
+
+            $dbOrder->transport_price_no_tva = $dbOrder->transport_price;
+            $dbOrder->transport_price = 1.19 * $dbOrder->transport_price_no_tva;
+            $dbOrder->total = $dbOrder->total + $dbOrder->transport_price;
+            $dbOrder->total_no_tva = $dbOrder->total * 0.81;
+
+            $deliveryInformation = null;
+            $deliveryInformationArray = null;
+            // Copierea datelor de facturare în datele de livrare, dacă opțiunea este bifată
+            if ($request->input('delivery_data_same_as_billing')) {
+                if ($request->input('billing_type') == 0) { // Persoană fizică
+                    $deliveryInformationArray = [
+                        'delivery_last_name' => $request->input('person_last_name'),
+                        'delivery_first_name' => $request->input('person_first_name'),
+                        'delivery_phone' => $request->input('person_phone'),
+                        'delivery_email' => $request->input('person_email'),
+                        'delivery_country_id' => $request->input('company_information.person_country_id'),
+                        'delivery_county_id' => $personCountyId,
+                        'delivery_locality' => $request->input('company_information.person_locality'),
+                        'delivery_address' => $request->input('company_information.person_address'),
+                    ];
+                } elseif ($request->input('billing_type') == 1) { // Persoană juridică
+                    $deliveryInformationArray = [
+                        'delivery_last_name' => $request->input('contact_person_last_name'),
+                        'delivery_first_name' => $request->input('contact_person_first_name'),
+                        'delivery_phone' => $request->input('organization_phone'),
+                        'delivery_email' => $request->input('organization_email'),
+                        'delivery_country_id' => $request->input('company_information.organization_country_id'),
+                        'delivery_county_id' => $companyCountyId,
+                        'delivery_locality' => $request->input('company_information.organization_locality'),
+                        'delivery_address' => $request->input('company_information.organization_address'),
+                    ];
+                }
+            } else {
+                // Dacă datele de livrare nu sunt aceleași cu cele de facturare, folosește valoarea din inputurile de livrare
+                if ($request->input('delivery_type') == 0) { // Curier
+                    $deliveryInformationArray = [
+                        'delivery_last_name' => $request->input('delivery_last_name'),
+                        'delivery_first_name' => $request->input('delivery_first_name'),
+                        'delivery_phone' => $request->input('delivery_phone'),
+                        'delivery_email' => $request->input('delivery_email'),
+                        'delivery_country_id' => $request->input('delivery_information.delivery_country_id'),
+                        'delivery_county_id' => $request->input('delivery_information.delivery_county_id'),
+                        'delivery_locality' => $request->input('delivery_locality'),
+                        'delivery_address' => $request->input('delivery_address'),
+                    ];
+                }
+            }
+
+            if ($deliveryInformationArray){
+                $deliveryCountyId = $deliveryInformationArray['delivery_county_id'];
+            }
+
+            if ($request->input('delivery_type') == 0) { // Livrare prin curier
+                
+                // Adăugăm costurile rambursului doar dacă metoda de plată este 'ramburs'
+                if ($request->input('payment_method') == 'ramburs') {
+                    $deliveryInformationArray['ramburs_value'] = number_format($rambursValue, 2, '.', '');
+                    $deliveryInformationArray['ramburs_tva'] = number_format($rambursTva, 2, '.', '');
+                }
+
+                // Convertim în JSON
+                $deliveryInformation = json_encode($deliveryInformationArray);
+            }
+
+            // Pregătim contact_information ca JSON
+            $contactInformation = null;
+            if ($request->input('delivery_type') == 0) { // Livrare prin curier
+                $contactInformation = json_encode([
+                    'email' => $deliveryInformationArray['delivery_email'],
+                    'phone' => $deliveryInformationArray['delivery_phone'],
+                ]);
+            }
+
+            // Actualizăm datele comenzii cu informațiile primite din formular
+            $dbOrder->update([
+                'billing_type' => $request->input('billing_type'),
+                'delivery_type' => $request->input('delivery_type'),
+                'payment_method' => $request->input('payment_method'),
+                'person_county_id' => $personCountyId,
+                'company_county_id' => $companyCountyId,
+                'delivery_county_id' => $deliveryCountyId,
+                'company_information' => json_encode($companyInformationArray),  
+                'is_paid' => true,
+                'delivery_information' => $deliveryInformation,
+                'contact_information' => $contactInformation, 
+            ]);
+
+            // Obținem produsele din comandă și alte informații necesare
+            $orders_products = $dbOrder->productVariations()->withPivot('quantity', 'price', 'price_no_vat')->get();
+            $billingCountyId = null;
+            $billingCountyName = 'Necunoscut';
+
+            // Obține ID-ul județului în funcție de billing_type
+            if ($dbOrder->billing_type == 0) {  // Persoană fizică
+                $billingCountyId = json_decode($dbOrder->company_information, true)['person_county_id'] ?? null;
+            } elseif ($dbOrder->billing_type == 1) {  // Persoană juridică
+                $billingCountyId = json_decode($dbOrder->company_information, true)['organization_county_id'] ?? null;
+            }
+
+            // Dacă avem un ID de județ, obținem numele județului
+            if ($billingCountyId) {
+                $billingCounty = County::where('id', $billingCountyId)->first();
+                $billingCountyName = $billingCounty ? $billingCounty->name : 'Necunoscut';
+            }
+
+
+            // Generăm PDF-ul proformei
+            $pdf = PDF::loadView('products.invoice2', [
+                'order' => $dbOrder,
+                'orders_products' => $orders_products,
+                'billingCountyName' => $billingCountyName
+            ]);
+
+            try {
+                // Obținem id-ul maxim din tabela media
+                $maxId = Media::max('id');
+                $newId = $maxId + 1;
+
+                // Numele fișierului PDF și calea unde va fi salvat
+                $fileName = 'proforma_RTCH-N-' . $dbOrder->identifier . '.pdf';
+                $filePath = 'media/' . $newId . '/' . $fileName;
+
+                // Salvăm PDF-ul în sistemul de fișiere (public/media/newId/)
+                Storage::disk('public')->put($filePath, $pdf->output());
+
+                // Salvăm informațiile fișierului în tabela media
+                $media = Media::create([
+                    'disk' => 'public',
+                    'directory' => 'media/' . $newId,
+                    'visibility' => 'public',
+                    'name' => $fileName,
+                    'path' => 'media/' . $newId . '/' . $fileName,
+                    'type' => 'application/pdf',
+                    'ext' => 'pdf',
+                ]);
+
+                // Asociem fișierul PDF cu comanda
+                $dbOrder->proforma_id = $media->id;
+                $dbOrder->save();
+                session()->forget('cart');
+                session()->forget('order');
+            }
+            catch (\Exception $e) {
+                echo $e->getMessage();
+            }
+
+            // Redirecționăm utilizatorul la pagina de sumar comandă după ce comanda este procesată
+            return redirect()->route('order.summary', ['guid' => $dbOrder->guid])->with('success', 'Comanda a fost plasată cu succes.');
+        }
 
         // Golește coșul din sesiune
         session()->forget('cart');
+        session()->forget('order');
 
-        return redirect()->route('thank-you')->with('success', 'Comanda a fost plasată cu succes.');
+        return redirect()->route('/');
     }
 
 
