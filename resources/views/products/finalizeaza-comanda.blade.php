@@ -126,25 +126,56 @@
                         </div>
                     @endif
 
+                    @if (!$isGuest)
+                        @php
+                            $companyInfo = auth()->user() && is_string(auth()->user()->company_information) 
+                                ? json_decode(auth()->user()->company_information) 
+                                : auth()->user()->company_information;
+
+                            $personLastName = optional($companyInfo)->person_last_name;
+                            $personFirstName = optional($companyInfo)->person_first_name;
+                            $personPhone = optional($companyInfo)->person_phone;
+                            $personEmail = optional($companyInfo)->person_email;
+                            $personCountryId = optional($companyInfo)->person_country_id;
+                            $personCountyId = optional($companyInfo)->person_county_id;
+                            $personLocality = optional($companyInfo)->person_locality;
+                            $personAddress = optional($companyInfo)->person_address;
+
+                            $organizationName = optional($companyInfo)->organization_name;
+                            $organizationCui = optional($companyInfo)->organization_cui;
+                            $organizationPhone = optional($companyInfo)->organization_phone;
+                            $organizationEmail = optional($companyInfo)->organization_email;
+                            $organizationBank = optional($companyInfo)->organization_bank;
+                            $organizationBankAccount = optional($companyInfo)->organization_bank_account;
+                            $organizationContactLastName = optional($companyInfo)->contact_person_last_name;
+                            $organizationContactFirstName = optional($companyInfo)->contact_person_first_name;
+                            $organizationCountryId = optional($companyInfo)->organization_country_id;
+                            $organizationCountyId = optional($companyInfo)->organization_county_id;
+                            $organizationLocality = optional($companyInfo)->organization_locality;
+                            $organizationAddress = optional($companyInfo)->organization_address;
+                        @endphp
+                    @endif
+
+
 
                     {{-- Persoana fizica --}}
                     <div id="person-billing-container" class="mt-32 {{ optional(auth()->user())->billing_type == 0 ? '' : 'hidden' }}">
                         <div class="grid grid-4 gap-lg p-8">
                             <div class="form-group">
                                 <label>Nume <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="person_last_name" name="person_last_name" value="{{ $order->company_information->person_last_name ?? '' }}">
+                                <input class="form-control w-full" type="text" id="person_last_name" name="person_last_name" value="{{$personLastName ?? ''}}">
                             </div>
                             <div class="form-group">
                                 <label>Prenume <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="person_first_name" name="person_first_name" value="{{ $order->company_information->person_first_name ?? '' }}">
+                                <input class="form-control w-full" type="text" id="person_first_name" name="person_first_name" value="{{ $personFirstName ?? ''}}">
                             </div>
                             <div class="form-group">
                                 <label>Telefon <span class="text-red">*</span></label>
-                                <input class="form-control w-full" inputmode="numeric" type="tel" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" id="person_phone" name="person_phone" value="{{ $order->company_information->person_phone ?? '' }}">
+                                <input class="form-control w-full" inputmode="numeric" type="tel" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" id="person_phone" name="person_phone" value="{{ $personPhone ?? ''}}">
                             </div>
                             <div class="form-group">
                                 <label>Email <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="email" id="person_email" name="person_email" value="{{ $order->company_information->person_email ?? '' }}">
+                                <input class="form-control w-full" type="email" id="person_email" name="person_email" value="{{ $personEmail ?? ''}}">
                             </div>
                         </div>
 
@@ -154,7 +185,9 @@
                                 <select class="form-control w-full height-43px" name="company_information[person_country_id]">
                                     <option value="">Selectează țara</option> 
                                     @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}" {{ ($order->company_information->person_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
+                                        <option value="{{ $country->id }}" {{ ($companyInfo->person_country_id ?? '') == $country->id ? 'selected' : '' }}>
+                                            {{ $country->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -163,18 +196,21 @@
                                 <select class="form-control w-full height-43px" name="company_information[person_county_id]" id="person_county_id">
                                     <option value="">Selectează județul</option> 
                                     @foreach ($counties as $county)
-                                        <option value="{{ $county->id }}" {{ ($order->company_information->person_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
+                                        <option value="{{ $county->id }}" {{ ($companyInfo->person_county_id ?? '') == $county->id ? 'selected' : '' }}>
+                                            {{ $county->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
                             
+                            
                             <div class="form-group">
                                 <label>Localitate <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="person_locality_id" name="company_information[person_locality]" value="{{ $order->company_information->person_locality ?? '' }}" >
+                                <input class="form-control w-full" type="text" id="person_locality_id" name="company_information[person_locality]" value="{{ $personLocality ?? '' }}" >
                             </div>
                             <div class="form-group">
                                 <label>Adresa <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="person_address" name="company_information[person_address]" value="{{ $order->company_information->person_address ?? '' }}">
+                                <input class="form-control w-full" type="text" id="person_address" name="company_information[person_address]" value="{{ $personAddress ?? '' }}">
                             </div>
                         </div>
                     </div>
@@ -184,41 +220,41 @@
                         <div class="grid grid-2 gap-lg p-8">
                             <div class="form-group">
                                 <label>Nume societate <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="organization_name" name="organization_name" value="{{ $order->company_information->organization_name ?? '' }}">
+                                <input class="form-control w-full" type="text" id="organization_name" name="organization_name" value="{{ $organizationName ?? '' }}">
                             </div>
                             <div class="form-group">
                                 <label>CUI <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="organization_cui" name="organization_cui" value="{{ $order->company_information->organization_cui ?? '' }}">
+                                <input class="form-control w-full" type="text" id="organization_cui" name="organization_cui" value="{{ $organizationCui ?? ''}}">
                             </div>
                         </div>
                         <div class="grid grid-2 gap-lg p-8">
                             <div class="form-group">
                                 <label>Telefon <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="tel" id="organization_phone" name="organization_phone" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" value="{{ $order->company_information->organization_phone ?? '' }}">
+                                <input class="form-control w-full" type="tel" id="organization_phone" name="organization_phone" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" value="{{ $organizationPhone ?? ''}}">
                             </div>
                             <div class="form-group">
                                 <label>Email <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="organization_email" name="organization_email" value="{{ $order->company_information->organization_email ?? '' }}">
+                                <input class="form-control w-full" type="text" id="organization_email" name="organization_email" value="{{ $organizationEmail ?? ''}}">
                             </div>
                         </div>
                         <div class="grid grid-2 gap-lg p-8">
                             <div class="form-group">
                                 <label>Banca</label>
-                                <input class="form-control w-full" type="text" id="organization_bank" name="organization_bank" value="{{ $order->company_information->organization_bank ?? '' }}">
+                                <input class="form-control w-full" type="text" id="organization_bank" name="organization_bank" value="{{ $organizationBank ?? ''}}">
                             </div>
                             <div class="form-group">
                                 <label>IBAN</label>
-                                <input class="form-control w-full" type="text" id="organization_bank_account" name="organization_bank_account" value="{{ $order->company_information->organization_bank_account ?? '' }}">
+                                <input class="form-control w-full" type="text" id="organization_bank_account" name="organization_bank_account" value="{{ $organizationBankAccount ?? ''}}">
                             </div>
                         </div>
                         <div class="grid grid-2 gap-lg p-8">
                             <div class="form-group">
                                 <label>Nume persoana de contact</label>
-                                <input class="form-control w-full" type="text" id="contact_person_last_name" name="contact_person_last_name" value="{{ $order->company_information->contact_person_last_name ?? '' }}">
+                                <input class="form-control w-full" type="text" id="contact_person_last_name" name="contact_person_last_name" value="{{ $organizationContactLastName ?? ''}}">
                             </div>
                             <div class="form-group">
                                 <label>Prenume persoana de contact</label>
-                                <input class="form-control w-full" type="text" id="contact_person_first_name" name="contact_person_first_name" value="{{ $order->company_information->contact_person_first_name ?? '' }}">
+                                <input class="form-control w-full" type="text" id="contact_person_first_name" name="contact_person_first_name" value="{{ $organizationContactFirstName ?? ''}}">
                             </div>
                         </div>
                         <div class="grid grid-4 gap-lg p-8">
@@ -228,7 +264,9 @@
                                 <select class="form-control w-full height-43px" name="company_information[organization_country_id]">
                                     <option value="">Selectează țara</option> 
                                     @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}" {{ ($order->company_information->organization_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
+                                        <option value="{{ $country->id }}" {{ ($companyInfo->organization_country_id ?? '') == $country->id ? 'selected' : '' }}>
+                                            {{ $country->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -237,18 +275,21 @@
                                 <select class="form-control w-full height-43px" id="organization_county_id" name="company_information[organization_county_id]">
                                     <option value="">Selectează județul</option> 
                                     @foreach ($counties as $county)
-                                        <option value="{{ $county->id }}" {{ ($order->company_information->organization_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
+                                        <option value="{{ $county->id }}" {{ ($companyInfo->organization_county_id ?? '') == $county->id ? 'selected' : '' }}>
+                                            {{ $county->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
                             
+                            
                             <div class="form-group">
                                 <label>Localitate <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="organization_locality_id" name="company_information[organization_locality]" value="{{ $order->company_information->organization_locality ?? '' }}" >
+                                <input class="form-control w-full" type="text" id="organization_locality_id" name="company_information[organization_locality]" value="{{ $organizationLocality ?? ''}}" >
                             </div>
                             <div class="form-group">
                                 <label>Adresa <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="organization_address" name="company_information[organization_address]" value="{{ $order->company_information->organization_address ?? '' }}" >
+                                <input class="form-control w-full" type="text" id="organization_address" name="company_information[organization_address]" value="{{ $organizationAddress ?? ''}}" >
                             </div>
                         </div>
                     </div>
@@ -294,7 +335,25 @@
                             </p>
                         </div>
 
-                        <div id="delivery-inputs">
+
+
+                        @if (!$isGuest)
+                            @php
+                                $deliveryInfo = auth()->user() && is_string(auth()->user()->delivery_information) ? json_decode(auth()->user()->delivery_information): auth()->user()->delivery_information;
+
+                                $deliveryLastName = optional($deliveryInfo)->delivery_last_name;
+                                $deliveryFirstName = optional($deliveryInfo)->delivery_first_name;
+                                $deliveryPhone = optional($deliveryInfo)->delivery_phone;
+                                $deliveryEmail = optional($deliveryInfo)->delivery_email;
+                                $deliveryCountryId = optional($deliveryInfo)->delivery_country_id;
+                                $deliveryCountyId = optional($deliveryInfo)->delivery_county_id;
+                                $deliveryLocality = optional($deliveryInfo)->delivery_locality;
+                                $deliveryAddress = optional($deliveryInfo)->delivery_address;
+                            @endphp
+                        @endif
+
+
+                        {{-- <div id="delivery-inputs">
                             <div class="grid grid-4 gap-lg p-8">
                                 <div class="form-group">
                                     <label>Nume <span class="text-red">*</span></label>
@@ -345,7 +404,58 @@
                                     <input class="form-control w-full" type="text" id="delivery_address" name="delivery_address" value="{{ $order->delivery_information->delivery_address ?? '' }}">
                                 </div>
                             </div>
+                        </div> --}}
+                        <div id="delivery-inputs">
+                            <div class="grid grid-4 gap-lg p-8">
+                                <div class="form-group">
+                                    <label>Nume <span class="text-red">*</span></label>
+                                    <input class="form-control w-full" type="text" id="delivery_last_name" name="delivery_last_name" value="{{ $deliveryLastName }}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Prenume <span class="text-red">*</span></label>
+                                    <input class="form-control w-full" type="text" id="delivery_first_name" name="delivery_first_name" value="{{ $deliveryFirstName }}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Telefon <span class="text-red">*</span></label>
+                                    <input class="form-control w-full" type="tel" id="delivery_phone" name="delivery_phone" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" value="{{ $deliveryPhone }}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email <span class="text-red">*</span></label>
+                                    <input class="form-control w-full" type="text" id="delivery_email" name="delivery_email" value="{{ $deliveryEmail }}">
+                                </div>
+                            </div>
+                        
+                            <div class="grid grid-4 gap-lg p-8">
+                                <div class="form-group">
+                                    <label>Tara <span class="text-red">*</span></label>
+                                    <select class="form-control w-full height-43px" name="delivery_information[delivery_country_id]">
+                                        <option value="">Selectează țara</option>
+                                        @foreach ($countries as $country)
+                                            <option value="{{ $country->id }}" {{ $deliveryCountryId == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Judet <span class="text-red">*</span></label>
+                                    <select class="form-control w-full height-43px" id="delivery_county_id" name="delivery_information[delivery_county_id]">
+                                        <option value="">Alege judetul</option>
+                                        @foreach ($counties as $county)
+                                            <option value="{{ $county->id }}" {{ $deliveryCountyId == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                        
+                                <div class="form-group">
+                                    <label>Localitate <span class="text-red">*</span></label>
+                                    <input class="form-control w-full" type="text" id="delivery_locality" name="delivery_locality" value="{{ $deliveryLocality }}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Adresa <span class="text-red">*</span></label>
+                                    <input class="form-control w-full" type="text" id="delivery_address" name="delivery_address" value="{{ $deliveryAddress }}">
+                                </div>
+                            </div>
                         </div>
+                        
                     </div>
                 </div>
                 <div class="flex justify-end col flex-md align-center gap-md">
