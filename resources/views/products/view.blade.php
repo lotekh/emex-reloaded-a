@@ -68,14 +68,30 @@
                                                 <span class="font-700 text-red price-num" id="price{{ $product->id }}">{{ $initialVariation->price }}</span>
                                                 <span class="text-red">Lei&nbsp;/&nbsp;</span>
                                             </p>
-                                            <p class="section-info" id="pret_value">Bidon <span id="packaging{{ $product->id }}">{{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}</span></p>
+                                            
+                                            @if ($product->has_hardener)
+                                                <p class="mb-4">Pachet</p>
+                                            @else
+                                                <p class="section-info" id="pret_value">Bidon <span id="packaging{{ $product->id }}">{{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}</span></p>
+                                            @endif
                                         </div>
+
+                                        @if ($product->has_hardener)
+                                            <div class="row items-baseline price-container">
+                                                <p class="section-info" id="pret_value">
+                                                    Vopsea {{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}
+                                                </p>
+                                                <p class="section-info">+ Bid. 0.90 Kg Intaritor</p>
+                                            </div>
+                                        @endif
+
                                         <p class="section-info tva-label">Pret - inclusiv tva</p>
                                     @else
                                         <p class="section-info tva-label" id="pret_pre">Produs indisponibil</p>
                                     @endif
                                 </div>
                             @endif
+
 
                             <div class="col gap-md in-stoc-container mt-16">
                                 @if ($product->active)

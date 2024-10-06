@@ -11,6 +11,7 @@ use App\Http\Controllers\ContactPageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CountyController;
 use App\Http\Controllers\PaleteController;
+use App\Http\Controllers\CookieController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ConsumController;
@@ -311,6 +312,11 @@ Route::get('/doc/ISO-14001.pdf', function () {
 Route::get('/cookies', function () {
     return view('others.cookies');
 })->name('cookies');
+
+
+Route::post('/accept-cookies', [CookieController::class, 'acceptCookies'])->name('accept.cookies');
+
+
 
 // Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');

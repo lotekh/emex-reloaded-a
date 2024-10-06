@@ -40,9 +40,9 @@
         <thead>
           <tr>
             <th>Nume produs</th>
-            <th>Cantitate</th>
-            <th>Ambalare</th>
-            <th>Culoare</th>
+            <th class="text-center">Cantitate</th>
+            <th class="text-center">Ambalare</th>
+            <th class="text-center">Culoare</th>
             <th>Pret unitar (TVA inclus)</th>
             <th>Cost (TVA inclus)</th>
           </tr>
@@ -65,9 +65,9 @@
                           <h3 class="normal-weight">{{ $ordered_product->product->plain_name }}</h3>
                       </a>
                   </td>
-                  <td>{{ $ordered_product->ordered_quantity }}</td>
-                  <td>{{ $ordered_product->quantity }}</td>
-                  <td>{{ $ordered_product->colour }}</td>
+                  <td class="text-center">{{ $ordered_product->ordered_quantity }}</td>
+                  <td class="text-center">{{ $ordered_product->quantity }} {{$ordered_product->measurementUnit->name}}</td>
+                  <td class="text-center">{{ $ordered_product->colour }}</td>
                   <td class="price">{{ number_format($ordered_product->price, 2) }} Lei</td>
                   <td class="price">
                       <div class="flex justify-between">
