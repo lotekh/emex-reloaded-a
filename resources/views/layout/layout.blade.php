@@ -7,6 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="icon" type="image/x-icon" href="{{ asset('resources/emex-favicon.ico') }}">
+
+
     <link rel="stylesheet" href="{{ asset('css/adrian.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
@@ -461,6 +464,15 @@
                                 </li>
                             @endforeach
                         </ul>
+                    </div>
+                </div>
+
+                <div class="col col-certifications">
+                    <div class="certification-item">
+                    <img src="{{ asset('resources/general/Romtehnochim-certificat-de-excelenta.png') }}" alt="Certificat Excelenta" class="certification-image">
+                    </div>
+                    <div class="certification-item">
+                    <img src="{{ asset('resources/general/Romtehnochim-firma-de-incredere.png') }}" alt="Certificat Firma de Incredere" class="certification-image">
                     </div>
                 </div>
             </div>
