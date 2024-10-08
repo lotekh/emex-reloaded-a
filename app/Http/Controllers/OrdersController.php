@@ -551,18 +551,20 @@ class OrdersController extends Controller
                 // Asociem fișierul PDF cu comanda
                 $dbOrder->proforma_id = $media->id;
                 $dbOrder->save();
-                session()->forget('cart');
-                session()->forget('order');
+                // session()->forget('cart');
+                // session()->forget('order');
             }
             catch (\Exception $e) {
                 echo $e->getMessage();
             }
 
+            session()->forget('cart');
+            session()->forget('order');
+
             // Redirecționăm utilizatorul la pagina de sumar comandă după ce comanda este procesată
             return redirect()->route('order.summary', ['guid' => $dbOrder->guid])->with('success', 'Comanda a fost plasată cu succes.');
         }
 
-        // Golește coșul din sesiune
         session()->forget('cart');
         session()->forget('order');
 

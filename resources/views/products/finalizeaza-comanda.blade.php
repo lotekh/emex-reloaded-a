@@ -672,7 +672,7 @@
                                 $total_price += $price * $quantity;
                             @endphp
                             <tr>
-                                <td class="ta_l comanda_product_title">{{ $ordered_product['product']['name'] ?? '' }}</td>
+                                <td class="ta_l comanda_product_title">{{ $ordered_product['name'] ?? '' }}</td>
                                 <td class="ta_c">{{ $quantity }}</td>
                                 <td class="ta_r">{{ number_format($price_no_vat, 2, '.', '') }}</td>
                                 <td class="ta_r">{{ number_format($value, 2, '.', '') }}</td>
