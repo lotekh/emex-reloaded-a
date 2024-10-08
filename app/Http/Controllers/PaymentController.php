@@ -59,11 +59,9 @@ class PaymentController extends Controller
 
     // dd($dataAll);
 
-    // Obținem produsele comandate (logica specifică a proiectului tău)
     $orderedProducts = $this->getOrderedProducts($order);
 
-    // Redirecționăm către pagina securizată de plată
-    return view('products.secure-payment', ['dataAll' => $dataAll, 'ordered_products' => $orderedProducts, 'order' => $order]);
+    return view('products.secure-payment', ['dataAll' => $dataAll, 'ordered_products' => $orderedProducts, 'order' => $order, 'email' => $email, 'firstName' => $firstName, 'lastName' => $lastName]);
 }
 
 

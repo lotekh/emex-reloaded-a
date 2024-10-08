@@ -34,63 +34,70 @@
                     <p class="text-center mb-32">Plata se poate face doar în baza facturii proforma emise de Romtehnochim, prin pagina securizată a băncii procesatoare.</p>
                     <form method="GET" action="{{ url()->current() }}" class="flex col align-center w-full">
                         @csrf
-                        <input type="hidden" name="guid" value="{{ request('guid') }}">
-                        
+                        <input type="hidden" name="guid" value="{{ $order->guid }}">
+            
                         <div class="flex gap-md w-full">
                             <div class="form-group mb-16">
                                 <label for="last_name">Nume<span class="star">*</span></label>
-                                <input type="text" name="last_name" class="form-control @error('last_name') red_input @enderror" value="{{ old('last_name', request('last_name')) }}" required>
+                                <input type="text" name="last_name" class="form-control @error('last_name') red_input @enderror" 
+                                    value="{{ old('last_name', $lastName) }}" required>
                                 @error('last_name')
                                     <p class="error_message">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="form-group mb-16">
                                 <label for="first_name">Prenume<span class="star">*</span></label>
-                                <input type="text" name="first_name" class="form-control @error('first_name') red_input @enderror" value="{{ old('first_name', request('first_name')) }}" required>
+                                <input type="text" name="first_name" class="form-control @error('first_name') red_input @enderror" 
+                                    value="{{ old('first_name', $firstName) }}" required>
                                 @error('first_name')
                                     <p class="error_message">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
-
-                        @if ($order->billingType == 1)
+            
+                        @if ($order->billing_type == 1)
                         <div class="form-group mb-16">
                             <label for="company_name">Firmă</label>
-                            <input type="text" name="company_name" class="form-control @error('company_name') red_input @enderror" value="{{ old('company_name', request('company_name')) }}">
+                            <input type="text" name="company_name" class="form-control @error('company_name') red_input @enderror" 
+                                value="{{ old('company_name', $order->company_information['organization_name'] ?? '') }}">
                             @error('company_name')
                                 <p class="error_message">{{ $message }}</p>
                             @enderror
                         </div>
                         @endif
-
+            
                         <div class="form-group mb-16">
                             <label for="EMAIL">Email-ul dvs<span class="star">*</span></label>
-                            <input type="email" name="EMAIL" class="form-control @error('email') red_input @enderror" value="{{ old('email', request('EMAIL')) }}" required>
+                            <input type="email" name="EMAIL" class="form-control @error('email') red_input @enderror" 
+                                value="{{ old('email', $email) }}" required>
                             @error('email')
                                 <p class="error_message">{{ $message }}</p>
                             @enderror
                         </div>
-
+            
                         <div class="form-group mb-16">
                             <label for="ORDER">Nr Factură<span class="star">*</span></label>
-                            <input type="text" name="ORDER" class="form-control @error('orderNo') red_input @enderror" value="{{ old('orderNo', request('ORDER')) }}" required>
+                            <input type="text" name="ORDER" class="form-control @error('orderNo') red_input @enderror" 
+                                value="{{ old('orderNo', $order->identifier) }}" required>
                             @error('orderNo')
                                 <p class="error_message">{{ $message }}</p>
                             @enderror
                         </div>
-
+            
                         <div class="form-group mb-16">
                             <label for="AMOUNT">Suma<span class="star">*</span></label>
-                            <input type="text" name="AMOUNT" class="form-control @error('amount') red_input @enderror" value="{{ old('amount', request('AMOUNT')) }}" readonly required>
+                            <input type="text" name="AMOUNT" class="form-control @error('amount') red_input @enderror" 
+                                value="{{ old('amount', number_format($order->total, 2)) }}" readonly required>
                             @error('amount')
                                 <p class="error_message">{{ $message }}</p>
                             @enderror
                         </div>
-
+            
                         <input type="submit" class="btn btn-blue mb-16 w-fit" value="Plătește">
                     </form>
                 </div>
             </div>
+            
 
             <div class="flex col section p-16 align-center col-span-3">
                 <h2 class="m-0 mb-8 mt-32">Sumar comandă</h2>
