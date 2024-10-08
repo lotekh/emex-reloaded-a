@@ -81,6 +81,23 @@
   #cart h5 {
     font-size: 18px;
   }
+  .img-container {
+    max-height: 500px;
+  }
+
+  .featured-image-1 {
+    max-height: 500px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .img-container {
+    max-height: 300px;
+  }
+
+  .featured-image-1 {
+    max-height: 300px;
+  }
 }
 
 .quantity-selector {

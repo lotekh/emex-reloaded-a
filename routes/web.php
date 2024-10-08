@@ -11,11 +11,13 @@ use App\Http\Controllers\ContactPageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CountyController;
 use App\Http\Controllers\PaleteController;
+use App\Http\Controllers\CookieController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ConsumController;
 use App\Http\Controllers\BlogArticleController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Middleware\AuthenticatedOnly;
 use Illuminate\Support\Facades\Response;
 
@@ -146,30 +148,23 @@ Route::get('/produse', [ProductsController::class, 'index'])->name('products.ind
 
 
 // Routes for orders
-// Ruta pentru afișarea coșului de cumpărături
 Route::get('/produse-adaugate', [OrdersController::class, 'index'])->name('orders.index');
-
-// Ruta pentru adăugarea unui produs în coș
 Route::get('/adauga-produs', [OrdersController::class, 'addProduct'])->name('orders.addProduct');
-
-// Ruta pentru actualizarea cantitatii(pagina pentru cos)
 Route::post('/actualizeaza-cantitatea', [OrdersController::class, 'updateQuantity'])->name('orders.updateQuantity');
-
-// Ruta pentru ștergerea unui produs din coș
 Route::post('/sterge-produs', [OrdersController::class, 'removeProduct'])->name('orders.removeProduct');
-
-// Ruta pentru golirea coșului
 Route::post('/goleste-cosul', [OrdersController::class, 'emptyCart'])->name('orders.empty');
-
-
-
 
 // Routes for checkout
 Route::get('/finalizeaza-comanda', [OrdersController::class, 'showCheckoutForm'])->name('checkout.form');
-Route::get('/sumar-comanda', [OrdersController::class, 'showSummary'])->name('order.summary');
+Route::get('/sumar-comanda/{guid}', [OrdersController::class, 'showSummary'])->name('order.summary');
 Route::post('/save-order', [OrdersController::class, 'processCheckout'])->name('checkout.process');
 // Ruta pentru obținerea prețului de transport pe baza ID-ului județului
 Route::get('/get-transport-price', [OrdersController::class, 'getTransportPrice'])->name('get.transport.price');
+
+Route::get('/secure-payment', [PaymentController::class, 'securePayment'])->name('secure-payment');
+
+
+
 
 // Blog
 Route::get('/blog', [BlogArticleController::class, 'index'])->name('blog.index');
@@ -311,6 +306,11 @@ Route::get('/doc/ISO-14001.pdf', function () {
 Route::get('/cookies', function () {
     return view('others.cookies');
 })->name('cookies');
+
+
+Route::post('/accept-cookies', [CookieController::class, 'acceptCookies'])->name('accept.cookies');
+
+
 
 // Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');

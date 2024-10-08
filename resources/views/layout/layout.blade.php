@@ -7,6 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="icon" type="image/x-icon" href="{{ asset('resources/emex-favicon.ico') }}">
+
+
     <link rel="stylesheet" href="{{ asset('css/adrian.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
@@ -146,28 +149,20 @@
                     </a>
                     
                     <a href="{{ url('/produse-adaugate') }}" title="cos">
-                        @php
-                            // Obține utilizatorul curent autentificat
-                             $user = Auth::user();
-
-                            // Verifică dacă există o comandă (coș) activă pentru utilizatorul curent sau pentru utilizatorul neautentificat
-                            if ($user) {
-                                $activeOrder = $user->orders()->where('is_paid', false)->first();
-                            } else {
-                                $activeOrder = Order::where('user_id', null)->where('is_paid', false)->first();
-                            }
-
-                            // Obține numărul de produse din coșul activ sau setează la 0 dacă nu există un coș activ
-                            $preorder_count = $activeOrder ? $activeOrder->productVariations()->count() : 0;
-                        @endphp
                         <div class="flex align-center">
                             <svg width="20" height="19" viewBox="0 0 15 14" fill="#1071FF" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10.3665 7.66659C10.8665 7.66659 11.3065 7.39325 11.5332 6.97992L13.9198 2.65325C14.1665 2.21325 13.8465 1.66659 13.3398 1.66659H3.47317L2.8465 0.333252H0.666504V1.66659H1.99984L4.39984 6.72659L3.49984 8.35325C3.01317 9.24659 3.65317 10.3333 4.6665 10.3333H12.6665V8.99992H4.6665L5.39984 7.66659H10.3665ZM4.1065 2.99992H12.2065L10.3665 6.33325H5.6865L4.1065 2.99992ZM4.6665 10.9999C3.93317 10.9999 3.33984 11.5999 3.33984 12.3333C3.33984 13.0666 3.93317 13.6666 4.6665 13.6666C5.39984 13.6666 5.99984 13.0666 5.99984 12.3333C5.99984 11.5999 5.39984 10.9999 4.6665 10.9999ZM11.3332 10.9999C10.5998 10.9999 10.0065 11.5999 10.0065 12.3333C10.0065 13.0666 10.5998 13.6666 11.3332 13.6666C12.0665 13.6666 12.6665 13.0666 12.6665 12.3333C12.6665 11.5999 12.0665 10.9999 11.3332 10.9999Z" />
                             </svg>
                         </div>
+                        @php
+                            use App\Http\Controllers\OrdersController;
+                            $preorder_count = (new OrdersController())->getCartProductVariationCount();
+                        @endphp
+
                         <div class="circle flex justify-center align-center">
                             {{ $preorder_count }}
                         </div>
+
                         <span class="label">Cos</span>
                     </a>
                     
@@ -471,6 +466,15 @@
                         </ul>
                     </div>
                 </div>
+
+                <div class="col col-certifications">
+                    <div class="certification-item certification-item-1">
+                    <img src="{{ asset('resources/general/Romtehnochim-certificat-de-excelenta.png') }}" alt="Certificat Excelenta" class="certification-image">
+                    </div>
+                    <div class="certification-item certification-item-2">
+                    <img src="{{ asset('resources/general/Romtehnochim-firma-de-incredere.png') }}" alt="Certificat Firma de Incredere" class="certification-image">
+                    </div>
+                </div>
             </div>
     
             <div class="newsletter-section">
@@ -494,8 +498,25 @@
         </div>
     
         <div class="main-container">
-            <p id="tags_h4">taguri</p>
-            {{-- de adus taguri din backend --}}
+            <p id="tags_h4">
+                <?php
+                    $tags = [];
+                    $currentUrl = trim(request()->path(), '/');
+                    $currentUrl = explode('/', $currentUrl);
+                    $currentUrl = end($currentUrl);
+
+                    $filePath = public_path('tags/tags.csv');
+
+                    if (file_exists($filePath) && ($handle = fopen($filePath, 'r')) !== false) {
+                        while (($data = fgetcsv($handle, 1000, ",")) !== false) {
+                            $tags[$data[0]] = $data[1];
+                        }
+                        fclose($handle);
+                    }
+
+                    echo !empty($tags[$currentUrl]) ? $tags[$currentUrl] : '';
+                ?>
+            </p>
         </div>
     
         <div class="bottom-section main-container" id="ftr">
@@ -588,6 +609,28 @@
         </div>
     </div>
     @endif
+
+    @if (!Cookie::get('cookies_accepted'))
+        <div id="cookie_notifier" class="cookie-notifier">
+            <div class="main-container">
+                <form class="row align-center justify-between wrap gap-md" id="cookieForm" method="POST" action="{{ route('accept.cookies') }}">
+                    @csrf
+                    <p class="text-white">
+                        Cookie-urile ne ajuta sa va oferim servicii mai bune. Prin folosirea site-ului, acceptati folosirea acestora. &nbsp;
+                    </p>
+                    <div class="cookie-btn-container">
+                        <a href="{{ url('/cookies') }}" title="Politica de folosire a cookies" class="info">
+                            Detalii
+                        </a>
+                        <!-- Butonul "Ok" va declanșa funcția JavaScript -->
+                        <button type="button" class="cookie-btn" aria-label="Ok" onclick="acceptCookies()">Ok</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    @endif
+
+
 
     
 
@@ -759,6 +802,33 @@
             document.removeEventListener('click', handleClickOutsideSidebar);
         }
     }
+
+
+    function acceptCookies() {
+        console.log('Accept Cookies button clicked');
+        const form = document.getElementById('cookieForm');
+        const formData = new FormData(form); // Obținem datele din formular (inclusiv CSRF token)
+
+        fetch(form.action, {
+            method: 'POST',
+            body: formData, // Trimitem datele formularului
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest' // Setați antetul pentru cereri AJAX
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Ascundem div-ul după ce cookie-ul este setat
+                document.getElementById('cookie_notifier').style.display = 'none';
+            }
+        })
+        .catch(error => {
+            console.error('Eroare la acceptarea cookie-urilor:', error);
+        });
+    }
+
+
 
 
 
