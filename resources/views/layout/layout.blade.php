@@ -498,8 +498,25 @@
         </div>
     
         <div class="main-container">
-            <p id="tags_h4">taguri</p>
-            {{-- de adus taguri din backend --}}
+            <p id="tags_h4">
+                <?php
+                    $tags = [];
+                    $currentUrl = trim(request()->path(), '/');
+                    $currentUrl = explode('/', $currentUrl);
+                    $currentUrl = end($currentUrl);
+
+                    $filePath = public_path('tags/tags.csv');
+
+                    if (file_exists($filePath) && ($handle = fopen($filePath, 'r')) !== false) {
+                        while (($data = fgetcsv($handle, 1000, ",")) !== false) {
+                            $tags[$data[0]] = $data[1];
+                        }
+                        fclose($handle);
+                    }
+
+                    echo !empty($tags[$currentUrl]) ? $tags[$currentUrl] : '';
+                ?>
+            </p>
         </div>
     
         <div class="bottom-section main-container" id="ftr">
