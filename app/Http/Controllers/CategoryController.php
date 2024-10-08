@@ -17,7 +17,10 @@ class CategoryController extends Controller
 
         $products = $category->products()
                              ->with('variations', 'reviews')
+                             ->orderBy('categories_products.order')
                              ->paginate($per_page, ['*'], 'page', $current_page);
+
+        // dd($products);
 
         $total_results = $products->total();
         $total_pages = $products->lastPage();
