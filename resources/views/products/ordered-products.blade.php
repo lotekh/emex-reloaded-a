@@ -62,7 +62,8 @@
                           <div>
                               <img layout="fixed" width="90px" height="90px" src="{{ $ordered_product->product->featuredImage ? asset('storage/' . $ordered_product->product->featuredImage->path) : asset('/images/default-placeholder.png') }}" alt="{{ strip_tags($ordered_product->product->name) }}">
                           </div>
-                          <h3 class="normal-weight">{{ $ordered_product->product->plain_name }}</h3>
+                          {{-- Get the product name until the first '-' sign --}}
+                          <h3 class="normal-weight">{{ \Illuminate\Support\Str::before($ordered_product->name, ' -') }}</h3>
                       </a>
                   </td>
                   <td class="text-center">{{ $ordered_product->ordered_quantity }}</td>

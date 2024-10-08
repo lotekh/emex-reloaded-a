@@ -748,7 +748,7 @@
   height: 43px;
 }
 
-.col-certifications {
+/* .col-certifications {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -765,11 +765,23 @@
   max-height: 100px;
   width: auto;
   display: block;
-  margin: 0 auto; /* Centers the image within the container */
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 1024px) {
   .certification-image {
-    max-height: 80px; /* Smaller images on smaller screens */
+    max-height: 80px;
   }
+} */
+
+.col-certifications {
+  max-width: 100%;
+}
+
+.certification-item {
+  float: left;
+  width: 30%;
+  margin-right: 10%;
+  max-width: 18%;
+  margin-top: 3%;
 }
