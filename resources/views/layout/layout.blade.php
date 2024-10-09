@@ -469,7 +469,7 @@
 
                 <div class="col col-certifications">
                     <div class="certification-item certification-item-1">
-                    <img src="{{ asset('resources/general/Romtehnochim-certificat-de-excelenta.png') }}" alt="Certificat Excelenta" class="certification-image">
+                    <img src="{{ asset('resources/images/general/Romtehnochim-certificat-de-excelenta.png') }}" alt="Certificat Excelenta" class="certification-image">
                     </div>
                     <div class="certification-item certification-item-2">
                     <img src="{{ asset('resources/general/Romtehnochim-firma-de-incredere.png') }}" alt="Certificat Firma de Incredere" class="certification-image">
