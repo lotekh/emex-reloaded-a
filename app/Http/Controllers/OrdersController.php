@@ -82,14 +82,18 @@ class OrdersController extends Controller
     public function updateQuantity(Request $request)
     {
         $productVariationId = $request->input('product_variation_id');
-        $quantity = $request->input('quantity', 1);
+        $quantity = $request->input('quantity', 1);  // Implicit cantitatea e 1
 
+        // Preluăm coșul din sesiune
         $cart = session()->get('cart', []);
 
+        // Verificăm dacă produsul există în coș
         if (isset($cart[$productVariationId])) {
-            $cart[$productVariationId]['quantity'] = max(1, $quantity); 
+            // Setăm cantitatea la minim 1
+            $cart[$productVariationId]['quantity'] = max(1, $quantity);
         }
 
+        // Actualizăm coșul în sesiune
         session()->put('cart', $cart);
 
         return redirect()->back()->with('success', 'Cantitatea a fost actualizată.');

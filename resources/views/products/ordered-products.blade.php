@@ -70,7 +70,29 @@
                           <h3 class="normal-weight">{{ \Illuminate\Support\Str::before($ordered_product->name, ' -') }}</h3>
                       </a>
                   </td>
-                  <td class="text-center">{{ $ordered_product->ordered_quantity }}</td>
+
+                  <td class="text-center">
+                    <div class="quantity-selector flex">
+                      {{-- Lower the quantity by 1 --}}
+                      <form method="POST" action="{{ route('orders.updateQuantity') }}">
+                        @csrf
+                        <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
+                        <input type="hidden" name="quantity" value="{{ max(1, $ordered_product->ordered_quantity - 1) }}">
+                        <button type="submit" aria-label="Scade cantitatea">-</button>
+                      </form>
+                      {{-- <input type="text" value="{{ $ordered_product->ordered_quantity }}" readonly> --}}
+                      {{ $ordered_product->ordered_quantity }}
+                      {{-- Up the quantity by 1 --}}
+                      <form method="POST" action="{{ route('orders.updateQuantity') }}">
+                        @csrf
+                        <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
+                        <input type="hidden" name="quantity" value="{{ $ordered_product->ordered_quantity + 1 }}">
+                        <button type="submit" aria-label="Creste cantitatea">+</button>
+                      </form>
+                    </div>
+                  </td>
+                  
+                  
                   <td class="text-center">{{ $ordered_product->quantity }} {{$ordered_product->measurementUnit->name}}</td>
                   <td class="text-center">{{ $ordered_product->colour }}</td>
                   <td class="price">{{ number_format($ordered_product->price, 2) }} Lei</td>
