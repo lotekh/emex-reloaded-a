@@ -72,7 +72,7 @@
                   </td>
 
                   <td class="text-center">
-                    <div class="quantity-selector flex">
+                    <div class="quantity-selector flex text-center">
                       {{-- Lower the quantity by 1 --}}
                       <form method="POST" action="{{ route('orders.updateQuantity') }}">
                         @csrf
@@ -80,8 +80,8 @@
                         <input type="hidden" name="quantity" value="{{ max(1, $ordered_product->ordered_quantity - 1) }}">
                         <button type="submit" aria-label="Scade cantitatea">-</button>
                       </form>
-                      {{-- <input type="text" value="{{ $ordered_product->ordered_quantity }}" readonly> --}}
-                      {{ $ordered_product->ordered_quantity }}
+                      <span type="text">{{ $ordered_product->ordered_quantity }}</span>
+                      {{-- {{ $ordered_product->ordered_quantity }} --}}
                       {{-- Up the quantity by 1 --}}
                       <form method="POST" action="{{ route('orders.updateQuantity') }}">
                         @csrf
@@ -153,7 +153,7 @@
             <div class="col">
               <div class="flex align-center mt-16">
                 <span class="bold mr-8">Cantitate: </span>
-                <div class="quantity-selector flex">
+                <div class="quantity-selector quantity-selector-mobile flex">
                   {{-- Scade cantitatea --}}
                   <form method="POST" action="{{ route('orders.updateQuantity') }}">
                     @csrf

@@ -807,3 +807,19 @@
     font-size: 18px;
   }
 }
+
+.quantity-selector {
+  background-color: var(--white);
+  border: 1px solid var(--lightgrey);
+  border-radius: 8px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 14px;
+  padding: 4px 8px 6px;
+  margin: 0 auto;
+}
+
+.quantity-selector-mobile {
+  margin: 0 !important;
+}
