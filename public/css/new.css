@@ -776,14 +776,29 @@
 
 .col-certifications {
   max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
 }
 
-.certification-item {
+/* .certification-item {
   float: left;
   width: 30%;
   margin-right: 10%;
   max-width: 18%;
   margin-top: 3%;
+} */
+
+.certification-item-1 {
+  width: 183px;
+  height: 66px;
+  margin-top: 5px;
+}
+
+.certification-item-2 {
+  width: 73px;
+  height: 74px;
+  margin-left: 130px;
 }
 
 @media screen and (max-width: 1024px) {
