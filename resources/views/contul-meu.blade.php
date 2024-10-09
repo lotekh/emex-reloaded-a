@@ -178,19 +178,19 @@
                 <div class="grid grid-4 gap-md">
                     <div class="form-group">
                         <label>Nume</label>
-                        <input class="w-full" type="text" name="delivery_last_name" value="{{ $user->delivery_information->delivery_last_name ?? '' }}">
+                        <input class="w-full" type="text" name="delivery_last_name" value="{{ $deliveryInformation['delivery_last_name'] ?? '' }}">
                     </div>
                     <div class="form-group">
                         <label>Prenume</label>
-                        <input class="w-full" type="text" name="delivery_first_name" value="{{ $user->delivery_information->delivery_first_name ?? '' }}">
+                        <input class="w-full" type="text" name="delivery_first_name" value="{{ $deliveryInformation['delivery_first_name'] ?? '' }}">
                     </div>
                     <div class="form-group">
                         <label>Telefon</label>
-                        <input class="w-full" type="text" name="delivery_phone" value="{{ $user->delivery_information->delivery_phone ?? '' }}">
+                        <input class="w-full" type="text" name="delivery_phone" value="{{ $deliveryInformation['delivery_phone'] ?? '' }}">
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input class="w-full" type="text" name="delivery_email" value="{{ $user->delivery_information->delivery_email ?? '' }}">
+                        <input class="w-full" type="text" name="delivery_email" value="{{ $deliveryInformation['delivery_email'] ?? '' }}">
                     </div>
                 </div>
                 <h5 class="mt-32">Adresa de livrare</h5>
@@ -200,7 +200,7 @@
                         <select class="w-full" name="delivery_country_id" id="delivery_country_id">
                             <option value="">Alege tara</option>
                             @foreach ($countries as $country)
-                                <option value="{{ $country->id }}" @if (($user->delivery_information->delivery_country_id ?? null) == $country->id) selected @endif>{{ $country->name }}</option>
+                                <option value="{{ $country->id }}" @if (($deliveryInformation['delivery_country_id'] ?? null) == $country->id) selected @endif>{{ $country->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -209,17 +209,17 @@
                         <select class="w-full" name="delivery_county_id" id="delivery_county_id">
                             <option value="">Alege judetul</option>
                             @foreach ($counties as $county)
-                                <option value="{{ $county->id }}" @if (($user->delivery_information->delivery_county_id ?? null) == $county->id) selected @endif>{{ $county->name }}</option>
+                                <option value="{{ $county->id }}" @if (($deliveryInformation['delivery_county_id'] ?? null) == $county->id) selected @endif>{{ $county->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Localitate</label>
-                        <input type="text" class="w-full" name="delivery_locality" value="{{ $user->delivery_information->delivery_locality ?? '' }}">
+                        <input type="text" class="w-full" name="delivery_locality" value="{{ $deliveryInformation['delivery_locality'] ?? '' }}">
                     </div>
                     <div class="form-group">
                         <label>Adresa</label>
-                        <input class="w-full" type="text" name="delivery_address" value="{{ $user->delivery_information->delivery_address ?? '' }}">
+                        <input class="w-full" type="text" name="delivery_address" value="{{ $deliveryInformation['delivery_address'] ?? '' }}">
                     </div>
                 </div>
                 <div class="w-full row justify-center mt-32">
