@@ -158,7 +158,7 @@
                   <form method="POST" action="{{ route('orders.updateQuantity') }}">
                     @csrf
                     <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
-                    <input type="hidden" name="quantity" value="-1">
+                    <input type="hidden" name="quantity" value="{{ max(1, $ordered_product->ordered_quantity - 1) }}">
                     <button type="submit" aria-label="Scade cantitatea">-</button>
                   </form>
                   {{ $ordered_product->ordered_quantity }}
@@ -166,11 +166,12 @@
                   <form method="POST" action="{{ route('orders.updateQuantity') }}">
                     @csrf
                     <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
-                    <input type="hidden" name="quantity" value="1">
+                    <input type="hidden" name="quantity" value="{{ $ordered_product->ordered_quantity + 1 }}">
                     <button type="submit" aria-label="Creste cantitatea">+</button>
                   </form>
                 </div>
               </div>
+              
     
               <p class="mt-8"><span class="bold">Ambalare: </span>{{ $ordered_product->quantity }} {{ $ordered_product->measurementUnit->name }}
                 @if ($ordered_product->addon_quantity)
