@@ -38,7 +38,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $data = $request->except(['_token', 'user_id']);
-        $user->company_information = $data;
+        $user->company_information = json_encode($data);
         $user->billing_type = $request->billing_type;
         $user->save();
 
@@ -49,7 +49,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $data = $request->except(['_token', 'user_id']);
-        $user->delivery_information = $data;
+        $user->delivery_information = json_encode($data);
         $user->save();
 
         return redirect()->back()->with('success', 'Informatii livrare actualizate cu succes.');

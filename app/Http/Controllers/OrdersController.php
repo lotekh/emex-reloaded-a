@@ -503,6 +503,64 @@ class OrdersController extends Controller
                 'contact_information' => $contactInformation, 
             ]);
 
+            
+            // $companyInformationUser = json_decode($user->company_information, true) ?? [];
+            // $deliveryInformationUser = json_decode($user->delivery_information, true) ?? null;
+            // Dacă e deja stdClass, transformăm în array
+            $companyInformationUser = is_array($user->company_information) 
+            ? $user->company_information 
+            : (array) $user->company_information;
+
+            $deliveryInformationUser = is_array($user->delivery_information) 
+            ? $user->delivery_information 
+            : (array) $user->delivery_information;
+
+            $companyInformation = $companyInformationArray;
+
+            if ($request->input('billing_type') == 0) { // Persoană fizică
+                $companyInformationUser['person_last_name'] = $companyInformation['person_last_name'] ?? null;
+                $companyInformationUser['person_first_name'] = $companyInformation['person_first_name'] ?? null;
+                $companyInformationUser['person_phone'] = $companyInformation['person_phone'] ?? null;
+                $companyInformationUser['person_email'] = $companyInformation['person_email'] ?? null;
+                $companyInformationUser['person_country_id'] = $companyInformation['person_country_id'] ?? null;
+                $companyInformationUser['person_county_id'] = $companyInformation['person_county_id'] ?? null;
+                $companyInformationUser['person_locality'] = $companyInformation['person_locality'] ?? null;
+                $companyInformationUser['person_address'] = $companyInformation['person_address'] ?? null;
+            } elseif ($request->input('billing_type') == 1) { // Persoană juridică
+                $companyInformationUser['organization_name'] = $companyInformation['organization_name'] ?? null;
+                $companyInformationUser['organization_cui'] = $companyInformation['organization_cui'] ?? null;
+                $companyInformationUser['organization_phone'] = $companyInformation['organization_phone'] ?? null;
+                $companyInformationUser['organization_email'] = $companyInformation['organization_email'] ?? null;
+                $companyInformationUser['organization_bank'] = $companyInformation['organization_bank'] ?? null;
+                $companyInformationUser['organization_bank_account'] = $companyInformation['organization_bank_account'] ?? null;
+                $companyInformationUser['contact_person_last_name'] = $companyInformation['contact_person_last_name'] ?? null;
+                $companyInformationUser['contact_person_first_name'] = $companyInformation['contact_person_first_name'] ?? null;
+                $companyInformationUser['organization_country_id'] = $companyInformation['organization_country_id'] ?? null;
+                $companyInformationUser['organization_county_id'] = $companyInformation['organization_county_id'] ?? null;
+                $companyInformationUser['organization_locality'] = $companyInformation['organization_locality'] ?? null;
+                $companyInformationUser['organization_address'] = $companyInformation['organization_address'] ?? null;
+            }
+
+            // Actualizarea datelor de livrare doar dacă există
+            if ($deliveryInformationUser !== null) {
+                $deliveryInformationUser['delivery_last_name'] = $deliveryInformationArray['delivery_last_name'] ?? null;
+                $deliveryInformationUser['delivery_first_name'] = $deliveryInformationArray['delivery_first_name'] ?? null;
+                $deliveryInformationUser['delivery_phone'] = $deliveryInformationArray['delivery_phone'] ?? null;
+                $deliveryInformationUser['delivery_email'] = $deliveryInformationArray['delivery_email'] ?? null;
+                $deliveryInformationUser['delivery_country_id'] = $deliveryInformationArray['delivery_country_id'] ?? null;
+                $deliveryInformationUser['delivery_county_id'] = $deliveryInformationArray['delivery_county_id'] ?? null;
+                $deliveryInformationUser['delivery_locality'] = $deliveryInformationArray['delivery_locality'] ?? null;
+                $deliveryInformationUser['delivery_address'] = $deliveryInformationArray['delivery_address'] ?? null;
+            }
+
+            // Actualizăm utilizatorul doar cu noile date
+            $user->update([
+                'company_information' => json_encode($companyInformationUser),
+                'delivery_information' => $deliveryInformationUser !== null ? json_encode($deliveryInformationUser) : $user->delivery_information,
+                'billing_type' => $request->input('billing_type'),
+            ]);
+
+
             // Obținem produsele din comandă și alte informații necesare
             $orders_products = $dbOrder->productVariations()->withPivot('quantity', 'price', 'price_no_vat')->get();
             $billingCountyId = null;

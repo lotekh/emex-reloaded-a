@@ -44,6 +44,11 @@
             </form>
         </div>
 
+        @php
+            $companyInformation = is_string($user->company_information) ? json_decode($user->company_information, true) : $user->company_information;
+            $deliveryInformation = is_string($user->delivery_information) ? json_decode($user->delivery_information, true) : $user->delivery_information;
+        @endphp
+
         <!-- Facturare -->
         <div id="facturare-content" class="tab-content" style="display:none;">
             <form class="col" action="{{ url('/save-facturare') }}" method="POST">
@@ -62,22 +67,22 @@
                     <div class="grid grid-2 gap-md">
                         <div class="form-group">
                             <label>Nume</label>
-                            <input class="w-full" type="text" name="person_last_name" value="{{ $user->company_information->person_last_name ?? '' }}">
+                            <input class="w-full" type="text" name="person_last_name" value="{{ $companyInformation['person_last_name']  ?? '' }}">
                         </div>
                         <div class="form-group">
                             <label>Prenume</label>
-                            <input class="w-full" type="text" name="person_first_name" value="{{ $user->company_information->person_first_name ?? '' }}">
+                            <input class="w-full" type="text" name="person_first_name" value="{{ $companyInformation['person_first_name'] ?? '' }}">
                         </div>
                         <div class="form-group">
                             <label>Telefon</label>
-                            <input class="w-full" type="text" name="person_phone" value="{{ $user->company_information->person_phone ?? '' }}">
+                            <input class="w-full" type="text" name="person_phone" value="{{ $companyInformation['person_phone'] ?? '' }}">
                         </div>
                         <div class="form-group">
                             <label>Tara</label>
                             <select class="w-full" name="person_country_id" id="person_country_id">
                                 <option value="">Alege tara</option>
                                 @foreach ($countries as $country)
-                                    <option value="{{ $country->id }}" @if (($user->company_information->person_country_id ?? null) == $country->id) selected @endif>{{ $country->name }}</option>
+                                    <option value="{{ $country->id }}" @if (($companyInformation['person_country_id'] ?? null) == $country->id) selected @endif>{{ $country->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -86,17 +91,17 @@
                             <select class="w-full" name="person_county_id" id="person_county_id">
                                 <option value="">Alege judetul</option>
                                 @foreach ($counties as $county)
-                                    <option value="{{ $county->id }}" @if (($user->company_information->person_county_id ?? null) == $county->id) selected @endif>{{ $county->name }}</option>
+                                    <option value="{{ $county->id }}" @if (($companyInformation['person_county_id'] ?? null) == $county->id) selected @endif>{{ $county->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Localitate</label>
-                            <input class="w-full" type="text" name="person_locality" value="{{ $user->company_information->person_locality ?? '' }}">
+                            <input class="w-full" type="text" name="person_locality" value="{{ $companyInformation['person_locality'] ?? '' }}">
                         </div>
                         <div class="form-group">
                             <label>Adresa</label>
-                            <input class="w-full" type="text" name="person_address" value="{{ $user->company_information->person_address ?? '' }}">
+                            <input class="w-full" type="text" name="person_address" value="{{ $companyInformation['person_address'] ?? '' }}">
                         </div>
                     </div>
                     <div class="w-full row justify-center mt-32">
@@ -108,27 +113,27 @@
                     <div class="grid grid-2 gap-md">
                         <div class="form-group">
                             <label>Nume societate</label>
-                            <input class="w-full" type="text" name="organization_name" value="{{ $user->company_information->organization_name ?? '' }}">
+                            <input class="w-full" type="text" name="organization_name" value="{{ $companyInformation['organization_name'] ?? '' }}">
                         </div>
                         <div class="form-group">
                             <label>CUI</label>
-                            <input class="w-full" type="text" name="organization_cui" value="{{ $user->company_information->organization_cui ?? '' }}">
+                            <input class="w-full" type="text" name="organization_cui" value="{{ $companyInformation['organization_cui'] ?? '' }}">
                         </div>
                         <div class="form-group">
                             <label>Banca</label>
-                            <input class="w-full" type="text" name="organization_bank" value="{{ $user->company_information->organization_bank ?? '' }}">
+                            <input class="w-full" type="text" name="organization_bank" value="{{ $companyInformation['organization_bank'] ?? '' }}">
                         </div>
                         <div class="form-group">
                             <label>IBAN</label>
-                            <input class="w-full" type="text" name="organization_bank_account" value="{{ $user->company_information->organization_bank_account ?? '' }}">
+                            <input class="w-full" type="text" name="organization_bank_account" value="{{ $companyInformation['organization_bank_account'] ?? '' }}">
                         </div>
                         <div class="form-group">
                             <label>Nume persoana de contact</label>
-                            <input class="w-full" type="text" name="contact_person_last_name" value="{{ $user->company_information->contact_person_last_name ?? '' }}">
+                            <input class="w-full" type="text" name="contact_person_last_name" value="{{ $companyInformation['contact_person_last_name'] ?? '' }}">
                         </div>
                         <div class="form-group">
                             <label>Prenume persoana de contact</label>
-                            <input class="w-full" type="text" name="contact_person_first_name" value="{{ $user->company_information->contact_person_first_name ?? '' }}">
+                            <input class="w-full" type="text" name="contact_person_first_name" value="{{ $companyInformation['contact_person_first_name'] ?? '' }}">
                         </div>
                         <div class="form-group">
                             <label>Tara</label>
@@ -150,11 +155,11 @@
                         </div>
                         <div class="form-group">
                             <label>Localitate</label>
-                            <input class="w-full" type="text" name="organization_locality" value="{{ $user->company_information->organization_locality ?? '' }}">
+                            <input class="w-full" type="text" name="organization_locality" value="{{ $companyInformation['organization_locality'] ?? '' }}">
                         </div>
                         <div class="form-group">
                             <label>Adresa</label>
-                            <input class="w-full" type="text" name="organization_address" value="{{ $user->company_information->organization_address ?? '' }}">
+                            <input class="w-full" type="text" name="organization_address" value="{{ $companyInformation['organization_bank_address'] ?? '' }}">
                         </div>
                     </div>
                     <div class="w-full row justify-center mt-32">
