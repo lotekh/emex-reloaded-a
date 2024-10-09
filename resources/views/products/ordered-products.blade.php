@@ -1,5 +1,9 @@
 @extends('layout.layout')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/product-card.css') }}">
+@endsection
+
 @section('breadcrumbs')
 <ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="/produse">Produse</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis"><a href="#">Produse adaugate</a></li></ul>
 @endsection
@@ -86,6 +90,90 @@
         </tbody>
       </table>
     </div>
+
+    <div class="mobile-cart">
+      @php $totalPrice = 0; @endphp
+      @foreach ($ordered_products as $ordered_product)
+        @php
+          // Calcularea prețului individual și adăugarea la total
+          $totalIndividualPrice = floatval($ordered_product->price) * intval($ordered_product->ordered_quantity);
+          $totalPrice += $totalIndividualPrice;
+          $addon_quantity = '';
+    
+          // Procesarea addon_quantity
+          if ($ordered_product->addon_quantity) {
+            $str = $ordered_product->addon_quantity;
+            $str = substr($str, strpos($str, 'Bid.') + 4);
+            $addon_quantity = number_format((float) filter_var($str, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION), 2, '.', '');
+          }
+        @endphp
+    
+        <div class="product-card relative col justify-between h-full mb-16">
+          <div class="w-full">
+            <div class="relative image-container z-0 mb-16">
+              <a href="{{ url($ordered_product->product->slug) }}">
+                {{-- <img src="{{ $ordered_product->product->featuredImage ? asset('storage/' . $ordered_product->product->featuredImage->path) : asset('/images/default-placeholder.png') }}" 
+                     alt="{{ strip_tags($ordered_product->product->name) }}" 
+                     title="{{ strip_tags($ordered_product->product->name) }}" 
+                     width="90" height="90"> --}}
+              </a>
+            </div>
+            <div class="px-8">
+              <p class="title text-center">{{ \Illuminate\Support\Str::before($ordered_product->name, ' -') }} 
+                @if ($ordered_product->addon_quantity) 
+                  + Intaritor 
+                @endif
+              </p>
+            </div>
+          </div>
+          
+          <div class="w-full flex justify-between px-8">
+            <div class="col">
+              <div class="flex align-center mt-16">
+                <span class="bold mr-8">Cantitate: </span>
+                <div class="quantity-selector flex">
+                  {{-- Scade cantitatea --}}
+                  <form method="POST" action="{{ route('orders.updateQuantity') }}">
+                    @csrf
+                    <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
+                    <input type="hidden" name="quantity" value="-1">
+                    <button type="submit" aria-label="Scade cantitatea">-</button>
+                  </form>
+                  {{ $ordered_product->ordered_quantity }}
+                  {{-- Creste cantitatea --}}
+                  <form method="POST" action="{{ route('orders.updateQuantity') }}">
+                    @csrf
+                    <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="submit" aria-label="Creste cantitatea">+</button>
+                  </form>
+                </div>
+              </div>
+    
+              <p class="mt-8"><span class="bold">Ambalare: </span>{{ $ordered_product->quantity }} {{ $ordered_product->measurementUnit->name }}
+                @if ($ordered_product->addon_quantity)
+                  + {{ $addon_quantity }} Kg
+                @endif
+              </p>
+              <p class="mt-8"><span class="bold">Culoare: </span>{{ $ordered_product->colour }}</p>
+              <p class="mt-8"><span class="bold">Pret unitar: </span>{{ number_format($ordered_product->price, 2) }} Lei (TVA inclus)</p>
+              <p class="mb-8 mt-8"><span class="bold">Cost: </span>{{ number_format($totalIndividualPrice, 2) }} Lei (TVA inclus)</p>
+            </div>
+    
+            <div class="p-16 flex align-end">
+              <form method="POST" action="{{ route('orders.removeProduct') }}">
+                @csrf
+                <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
+                <button class="delete" aria-label="Sterge produsul">
+                  <img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="18" height="18" alt="Sterge produsul">
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      @endforeach
+    </div>
+    
 
     <div class="grid grid-5 mt-8">
       <div class="col-span-4">
