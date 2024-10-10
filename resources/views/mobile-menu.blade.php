@@ -39,18 +39,8 @@
                 <div class="circle">
                     <span>
                         @php
-                            // Obține utilizatorul curent autentificat
-                             $user = Auth::user();
-
-                            // Verifică dacă există o comandă (coș) activă pentru utilizatorul curent sau pentru utilizatorul neautentificat
-                            if ($user) {
-                                $activeOrder = $user->orders()->where('is_paid', false)->first();
-                            } else {
-                                $activeOrder = Order::where('user_id', null)->where('is_paid', false)->first();
-                            }
-
-                            // Obține numărul de produse din coșul activ sau setează la 0 dacă nu există un coș activ
-                            $preorder_count = $activeOrder ? $activeOrder->productVariations()->count() : 0;
+                            use App\Http\Controllers\OrdersController;
+                            $preorder_count = (new OrdersController())->getCartProductVariationCount();
                         @endphp
                         {{ $preorder_count }}
                     </span>

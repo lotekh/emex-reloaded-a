@@ -392,84 +392,87 @@
                     </div>
                 </div>
             </div>
-            <div class="grid grid-3">
-                <!-- links -->
-                <div class="col">
-                    <p class="title">Linkuri utile</p>
-                    <div class="link-section">
-                        <div class="section">
-                            <ul>
-                                <li>
-                                    <a href="{{ url('/') }}" rel="noopener noreferrer">Acasa</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/servicii') }}" rel="noopener noreferrer">Servicii</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/blog') }}" rel="noopener noreferrer">Blog</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/solicita-cotatie') }}" rel="noopener noreferrer">Solicita Cotatie</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/angajari') }}" rel="noopener noreferrer"><strong><em>- Angajari -</em></strong></a>
-                                </li>
-                            </ul>
+            
+            <div>
+                <div class="grid grid-3">
+                    <!-- links -->
+                    <div class="col">
+                        <p class="title">Linkuri utile</p>
+                        <div class="link-section">
+                            <div class="section">
+                                <ul>
+                                    <li>
+                                        <a href="{{ url('/') }}" rel="noopener noreferrer">Acasa</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/servicii') }}" rel="noopener noreferrer">Servicii</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/blog') }}" rel="noopener noreferrer">Blog</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/solicita-cotatie') }}" rel="noopener noreferrer">Solicita Cotatie</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/angajari') }}" rel="noopener noreferrer"><strong><em>- Angajari -</em></strong></a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-    
-                <div class="col">
-                    <p class="title">Cine suntem</p>
-                    <div class="link-section">
-                        <div class="section">
-                            <ul>
-                                <li>
-                                    <a href="{{ url('/despre-noi') }}" rel="noopener noreferrer">Despre noi</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/politica-de-calitate') }}" rel="noopener noreferrer">Politica de calitate</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/politica-de-mediu') }}" rel="noopener noreferrer">Politica de mediu</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/politica-sanatate-securitate') }}" rel="noopener noreferrer">Politica de securitate</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/certificari-iso') }}" rel="noopener noreferrer">Certificari ISO</a>
-                                </li>
-                                <li>
-                                    <a href="{{ asset('catalog-emex.pdf') }}" rel="noopener noreferrer">Catalog "EMEX"</a>
-                                </li>
-                            </ul>
+        
+                    <div class="col">
+                        <p class="title">Cine suntem</p>
+                        <div class="link-section">
+                            <div class="section">
+                                <ul>
+                                    <li>
+                                        <a href="{{ url('/despre-noi') }}" rel="noopener noreferrer">Despre noi</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/politica-de-calitate') }}" rel="noopener noreferrer">Politica de calitate</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/politica-de-mediu') }}" rel="noopener noreferrer">Politica de mediu</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/politica-sanatate-securitate') }}" rel="noopener noreferrer">Politica de securitate</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/certificari-iso') }}" rel="noopener noreferrer">Certificari ISO</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ asset('catalog-emex.pdf') }}" rel="noopener noreferrer">Catalog "EMEX"</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-    
-                <!-- stiri -->
-                <div class="col">
-                    <div class="footer_news_area">
-                        <h3 class="title">Stiri recente</h3>
-                        @php
-                        $blogArticles = \App\Models\BlogArticle::latest()->limit(3)->get();
-                        @endphp
-                        <ul class="col">
-                            @foreach ($blogArticles as $blogArticle)
-                                <li>
-                                    <div class="news_row mb-16">
-                                        <h4 class="news-title"><a href="{{ url('/blog/article', ['id' => $blogArticle->id]) }}">{{ $blogArticle->title }}</a></h4>
-                                        <p>{{ $blogArticle->created_at->format('j.m.Y') }}</p>
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
+        
+                    <!-- stiri -->
+                    <div class="col">
+                        <div class="footer_news_area">
+                            <h3 class="title">Stiri recente</h3>
+                            @php
+                            $blogArticles = \App\Models\BlogArticle::latest()->limit(3)->get();
+                            @endphp
+                            <ul class="col">
+                                @foreach ($blogArticles as $blogArticle)
+                                    <li>
+                                        <div class="news_row mb-16">
+                                            <h4 class="news-title"><a href="{{ url('/blog/article', ['id' => $blogArticle->id]) }}">{{ $blogArticle->title }}</a></h4>
+                                            <p>{{ $blogArticle->created_at->format('j.m.Y') }}</p>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col col-certifications">
                     <div class="certification-item certification-item-1">
-                    <img src="{{ asset('resources/general/Romtehnochim-certificat-de-excelenta.png') }}" alt="Certificat Excelenta" class="certification-image">
+                    <img src="{{ asset('resources/images/general/Romtehnochim-certificat-de-excelenta.png') }}" alt="Certificat Excelenta" class="certification-image">
                     </div>
                     <div class="certification-item certification-item-2">
                     <img src="{{ asset('resources/general/Romtehnochim-firma-de-incredere.png') }}" alt="Certificat Firma de Incredere" class="certification-image">
