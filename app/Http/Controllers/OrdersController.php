@@ -569,7 +569,7 @@ class OrdersController extends Controller
             }
 
             // Generate the PDF for proforma
-            $pdf = PDF::loadView('products.invoice2', [
+            $pdf = PDF::loadView('products.invoice-pdf', [
                 'order' => $dbOrder,
                 'orders_products' => $orders_products,
                 'billingCountyName' => $billingCountyName
