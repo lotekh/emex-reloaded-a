@@ -59,7 +59,7 @@
                         <div class="form-group mb-16">
                             <label for="company_name">Firmă</label>
                             <input type="text" name="company_name" class="form-control @error('company_name') red_input @enderror" 
-                                value="{{ old('company_name', $order->company_information['organization_name'] ?? '') }}">
+                                value="{{ old('company_name', json_decode($order->company_information, true)['organization_name'] ?? '') }}">
                             @error('company_name')
                                 <p class="error_message">{{ $message }}</p>
                             @enderror
