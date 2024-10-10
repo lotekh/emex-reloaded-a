@@ -494,13 +494,15 @@ class OrdersController extends Controller
             ]);
 
             if (Auth::check()){
-                $companyInformationUser = $user->company_information 
-                ? json_decode($user->company_information, true) 
-                : [];
+                // Check if `company_information` is a string. If it's a JSON string, decode it, otherwise convert stdClass to array
+                $companyInformationUser = is_string($user->company_information)
+                    ? json_decode($user->company_information, true) 
+                    : (array) $user->company_information;
 
-                $deliveryInformationUser = $user->delivery_information 
-                ? json_decode($user->delivery_information, true) 
-                : [];
+                // Check if `delivery_information` is a string. If it's a JSON string, decode it, otherwise convert stdClass to array
+                $deliveryInformationUser = is_string($user->delivery_information)
+                    ? json_decode($user->delivery_information, true)
+                    : (array) $user->delivery_information;
 
                 $companyInformation = $companyInformationArray;
 
