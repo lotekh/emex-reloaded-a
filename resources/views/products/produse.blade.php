@@ -13,7 +13,7 @@
 @section('content')
 <div class="main-container" id="all-products-page">
     <div class="grid grid-4 mt-32 gap-lg">
-        <div class="filters mb-16">
+        <div class="filters mb-16" id="filters-div">
             <div id="accordion-menu-desktop" class="col">
                 <form method="GET" action="{{ route('products.index') }}">
                     <div class="flex w-full col">

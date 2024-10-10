@@ -102,7 +102,7 @@
             <div class="flex col section p-16 align-center col-span-3">
                 <h2 class="m-0 mb-8 mt-32">Sumar comandă</h2>
                 <div class="w-full scrollable-x">
-                    <table class="mb-8 styled desktop-cart w-full">
+                    <table class="mb-8 styled desktop-cart w-full" id="cart-secure-payment">
                         <thead>
                             <tr>
                                 <th>Nume produs</th>
@@ -121,7 +121,7 @@
                                     @endphp
 
                                     <a href="{{ url($ordered_product->product->slug) }}" class="flex align-center">
-                                        <img src="{{ $imageUrl }}" width="90" height="90" alt="{{ $ordered_product->product->name }}">
+                                        <img src="{{ $imageUrl }}" width="90" height="90" alt="{{ $ordered_product->product->name }}" id="image-cart-secure-payment">
                                         <h3 class="normal-weight ml-8">{{ $ordered_product->name }}</h3>
                                     </a>
                                 </td>
