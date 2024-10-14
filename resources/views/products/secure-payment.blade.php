@@ -11,7 +11,7 @@
 
 @section('content')
 <div class="main-container flex col align-center payment">
-    @if (isset($dataAll) && ($dataAll==0))
+    @if (isset($dataAll))
         <h3 class="redirect">Vă rugăm să așteptați. Sunteți redirecționat către pagina securizată de plată ...</h3>
         <form action="https://secure.euplatesc.ro/tdsprocess/tranzactd.php" method="post" id="payment">
             @foreach ($dataAll as $key => $value)

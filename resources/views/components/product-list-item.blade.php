@@ -112,7 +112,7 @@
                     <a href="{{ url($product->slug) }}">
                         <button type="button" class="btn btn-blue-outline rounded-xl" aria-label="Vezi produs">Vezi produsul</button>
                     </a>
-                    <input type="submit" class="btn btn-blue rounded-xl {{ empty($initialPrice) || $product->is_inactive ? 'btn-disabled' : '' }}" value="Adauga in cos" {{ empty($initialPrice) || $product->is_inactive ? 'disabled' : '' }}>
+                    <input type="submit" class="btn btn-blue rounded-xl {{ empty($initialPrice) || $product->is_inactive ? 'btn-disabled' : '' }}" style="font-size:13px;" value="Adauga in cos" {{ empty($initialPrice) || $product->is_inactive ? 'disabled' : '' }}>
                 </div>
             </div>
         </div>
