@@ -109,6 +109,9 @@
         font-weight: bold;
         margin: 20px 0 30px;
     }
+    .id {
+        line-height: 1.2;
+    }
     .small-font p {
         margin: 0;
     }
@@ -154,7 +157,7 @@
                 </tr>
             </table>
         </td>
-        <td class="col-6" style="margin-right: 35px;">
+        <td class="col-6" style="margin-right: 200px; padding-right:30px;">
             <table class="col-12">
                 <tr>
                     <td style="padding: 5px"></td>
@@ -165,14 +168,17 @@
                         <p>Data emiterii: {{ \Carbon\Carbon::parse($order['created_at'])->format('d-m-Y') }}</p>
                     </td>
                     <td class="col-6" style="padding-bottom: 5px">
-                        <p class="id">{{ 'RTCH-N-' . $order['identifier'] }}</p>
+                        <p class="id">
+                            <span>RTCH-N-</span><br>
+                            <span>{{ $order['identifier'] }}</span>
+                        </p>
                         <p>Cota TVA: 19%</p>
                     </td>
                 </tr>
             </table>
-            <table style="width: 95%;">
-                <tr class="col-12">
-                    <td class="col-12">
+            <table style="width: 300px;">
+                <tr class="col-12" style="width: 300px;">
+                    <td class="col-12" style="width: 300px;">
                         <table class="col-12">
                             <tr class="col-12">
                                 <td class="blue-table col-12">
@@ -245,7 +251,7 @@
     $billingInformation = json_decode($order->company_information, true);
     @endphp
 
-    <tr class="col-12 small-font">
+    <tr class="col-12 small-font" style="width: 85vw;">
         <td class="col-6 small-font">
             <p>CUI: RO4643777</p>
             <p>Nr Reg Com: J40/21214/1993</p>
