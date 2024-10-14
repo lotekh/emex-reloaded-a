@@ -24,7 +24,7 @@
 <div class="relative w-full col">
     <div class="product-list-item mb-16 col w-full">
         <div class="col flex-md">
-            <div class="relative image-container z-0">
+            <div class="relative image-container z-0" style="text-align: center;">
                 <a href="{{ url($product->slug) }}">
                     <img src="{{ $featuredImageUrl }}" alt="imagine" title="imagineprodus" style="height: 180px; max-width: 230px;">
                 </a>
