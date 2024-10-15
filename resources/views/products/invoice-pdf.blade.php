@@ -109,9 +109,6 @@
         font-weight: bold;
         margin: 20px 0 30px;
     }
-    .id {
-        line-height: 1.2;
-    }
     .small-font p {
         margin: 0;
     }
@@ -139,15 +136,13 @@
     }
 </style>
 
-<meta charset="UTF-8">
-
 <table class="col-12" style="margin: 0 50px; padding: 0">
     <tr class="col-12" style="padding: 0">
         <td class="col-6">
             <table>
                 <tr>
                     <td>
-                        <img id="logo-img" src="{{ public_path('resources/new_design/general/logo.png') }}" alt="Logo">
+                        <img id="logo-img" src="{{ public_path('resources/new_design/general/logo.png') }}">
                     </td>
                 </tr>
                 <tr>
@@ -157,7 +152,7 @@
                 </tr>
             </table>
         </td>
-        <td class="col-6" style="margin-right: 200px; padding-right:30px;">
+        <td class="col-6">
             <table class="col-12">
                 <tr>
                     <td style="padding: 5px"></td>
@@ -168,17 +163,14 @@
                         <p>Data emiterii: {{ \Carbon\Carbon::parse($order['created_at'])->format('d-m-Y') }}</p>
                     </td>
                     <td class="col-6" style="padding-bottom: 5px">
-                        <p class="id">
-                            <span>RTCH-N-</span><br>
-                            <span>{{ $order['identifier'] }}</span>
-                        </p>
+                        <p class="id">{{ 'RTCH-N-' . $order['identifier'] }}</p>
                         <p>Cota TVA: 19%</p>
                     </td>
                 </tr>
             </table>
-            <table style="width: 300px;">
-                <tr class="col-12" style="width: 300px;">
-                    <td class="col-12" style="width: 300px;">
+            <table style="width: 95%;">
+                <tr class="col-12">
+                    <td class="col-12">
                         <table class="col-12">
                             <tr class="col-12">
                                 <td class="blue-table col-12">
@@ -251,7 +243,7 @@
     $billingInformation = json_decode($order->company_information, true);
     @endphp
 
-    <tr class="col-12 small-font" style="width: 85vw;">
+    <tr class="col-12 small-font">
         <td class="col-6 small-font">
             <p>CUI: RO4643777</p>
             <p>Nr Reg Com: J40/21214/1993</p>
