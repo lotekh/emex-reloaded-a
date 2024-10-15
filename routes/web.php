@@ -154,6 +154,7 @@ Route::get('/adauga-produs', [OrdersController::class, 'addProduct'])->name('ord
 Route::post('/actualizeaza-cantitatea', [OrdersController::class, 'updateQuantity'])->name('orders.updateQuantity');
 Route::post('/sterge-produs', [OrdersController::class, 'removeProduct'])->name('orders.removeProduct');
 Route::post('/goleste-cosul', [OrdersController::class, 'emptyCart'])->name('orders.empty');
+Route::get('/invoice/{orderId}', [OrdersController::class, 'showInvoicePage'])->name('invoice.page');
 
 // Routes for checkout
 Route::get('/finalizeaza-comanda', [OrdersController::class, 'showCheckoutForm'])->name('checkout.form');
