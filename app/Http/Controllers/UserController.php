@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Hash;
 use PDF;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Media;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+
 
 class UserController extends Controller
 {
@@ -26,6 +29,13 @@ class UserController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if ($user) {
+            Mail::raw('Salut, ' . $user->email, function ($message) use ($user) {
+                $message->to($user->email)
+                        ->subject('Resetare parolă');
+            });
+
+            Log::info('Parola a fost resetata si trimisa catre: ' . $user->email);
+
             return redirect()->back()->with('success', 'Parola a fost resetata cu succes si trimisa pe email.');
         } else {
             return redirect()->back()->withErrors(['email' => 'Ne pare rau, dar acest email nu a fost gasit.']);
