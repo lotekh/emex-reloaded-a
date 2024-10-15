@@ -31,7 +31,6 @@ class RegisteredUserController extends Controller
 
     public function store(UserRegisterRequest $request): RedirectResponse
     {
-        // dd(1);
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
@@ -42,15 +41,12 @@ class RegisteredUserController extends Controller
             'billing_type' => 0,
         ]);
 
-        // dd($user);
-
         event(new Registered($user));
 
         Auth::login($user);
 
         session()->flash('success', 'Te-ai inregistrat cu succes!');
 
-        // return redirect()->intended('/');
         return redirect(route('home'));
     }
 }
