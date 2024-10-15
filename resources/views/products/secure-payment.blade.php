@@ -11,7 +11,7 @@
 
 @section('content')
 <div class="main-container flex col align-center payment">
-    @if (isset($dataAll) && ($dataAll==0))
+    @if (isset($dataAll))
         <h3 class="redirect">Vă rugăm să așteptați. Sunteți redirecționat către pagina securizată de plată ...</h3>
         <form action="https://secure.euplatesc.ro/tdsprocess/tranzactd.php" method="post" id="payment">
             @foreach ($dataAll as $key => $value)
@@ -102,7 +102,7 @@
             <div class="flex col section p-16 align-center col-span-3">
                 <h2 class="m-0 mb-8 mt-32">Sumar comandă</h2>
                 <div class="w-full scrollable-x">
-                    <table class="mb-8 styled desktop-cart w-full">
+                    <table class="mb-8 styled desktop-cart w-full" id="cart-secure-payment">
                         <thead>
                             <tr>
                                 <th>Nume produs</th>
@@ -121,7 +121,7 @@
                                     @endphp
 
                                     <a href="{{ url($ordered_product->product->slug) }}" class="flex align-center">
-                                        <img src="{{ $imageUrl }}" width="90" height="90" alt="{{ $ordered_product->product->name }}">
+                                        <img src="{{ $imageUrl }}" width="90" height="90" alt="{{ $ordered_product->product->name }}" id="image-cart-secure-payment">
                                         <h3 class="normal-weight ml-8">{{ $ordered_product->name }}</h3>
                                     </a>
                                 </td>

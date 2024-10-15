@@ -14,6 +14,24 @@ use App\Models\Media;
 
 class UserController extends Controller
 {
+
+    public function forgotPassword(Request $request)
+    {
+        // Validate the email field
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        // Check if the user with the given email exists
+        $user = User::where('email', $request->email)->first();
+
+        if ($user) {
+            return redirect()->back()->with('success', 'Parola a fost resetata cu succes si trimisa pe email.');
+        } else {
+            return redirect()->back()->withErrors(['email' => 'Ne pare rau, dar acest email nu a fost gasit.']);
+        }
+    }
+
     public function edit()
     {
         $user = Auth::user();

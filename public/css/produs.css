@@ -1775,3 +1775,9 @@ amp-img,
 amp-lightbox {
   display: none;
 }
+
+@media screen and (max-width: 640px) {
+  #filters-div {
+    display: none;
+  }
+}

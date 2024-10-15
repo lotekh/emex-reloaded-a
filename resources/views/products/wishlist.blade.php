@@ -35,7 +35,7 @@
             const packagingSelect{{ $product->id }} = document.getElementById('packagingSelect{{ $product->id }}');
             const colorSelect{{ $product->id }} = document.getElementById('colorSelect{{ $product->id }}');
             const priceDisplay{{ $product->id }} = document.getElementById('priceDisplay{{ $product->id }}');
-            const priceInput{{ $product->id }} = document.getElementById('priceInput{{ $product->id }}');
+            const variationInput{{ $product->id }} = document.getElementById('variationInput{{ $product->id }}');
     
             // Încarcă toate variațiile pentru acest produs
             const variations{{ $product->id }} = @json($product->variations);
@@ -43,6 +43,9 @@
             function updateVariation{{ $product->id }}() {
                 const selectedPackaging = packagingSelect{{ $product->id }}.value;
                 const selectedColor = colorSelect{{ $product->id }}.value;
+
+                console.log('Selected Packaging:', selectedPackaging);
+                console.log('Selected Color:', selectedColor);
     
                 // Găsește variația corectă pe baza ambalării și culorii selectate
                 const variation = variations{{ $product->id }}.find(variation => 
@@ -51,9 +54,10 @@
     
                 if (variation) {
                     // Actualizează prețul afișat și valoarea inputului hidden
+                    console.log('Matching Variation:', variation);
                     priceDisplay{{ $product->id }}.textContent = variation.price;
-                    priceInput{{ $product->id }}.value = variation.price;
-                    // Poți actualiza și alte câmpuri dacă este necesar
+                    variationInput{{ $product->id }}.value = variation.id;
+                    console.log('Product Variation ID (input hidden):', variationInput{{ $product->id }}.value);
                 } else {
                     console.error('Nicio variație potrivită nu a fost găsită.');
                 }
