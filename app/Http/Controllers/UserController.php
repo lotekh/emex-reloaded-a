@@ -29,15 +29,24 @@ class UserController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if ($user) {
-            Mail::raw('Salut, ' . $user->email, function ($message) use ($user) {
+            $emailContent = 'Salut, ' . $user->email;
+
+            Mail::raw($emailContent, function ($message) use ($user) {
                 $message->to($user->email)
-                        ->subject('Resetare parolă');
+                    ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME')) 
+                    ->subject('Resetare parolă');
             });
 
-            Log::info('Parola a fost resetata si trimisa catre: ' . $user->email);
+            Log::info('E-mail trimis pentru resetare parolă:', [
+                'email' => $user->email,
+                'mesaj' => $emailContent,
+            ]);
 
             return redirect()->back()->with('success', 'Parola a fost resetata cu succes si trimisa pe email.');
         } else {
+            Log::warning('E-mailul pentru resetare parolă nu a fost găsit:', [
+                'email' => $request->email,
+            ]);
             return redirect()->back()->withErrors(['email' => 'Ne pare rau, dar acest email nu a fost gasit.']);
         }
     }
