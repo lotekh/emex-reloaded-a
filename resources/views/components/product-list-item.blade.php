@@ -24,7 +24,7 @@
 <div class="relative w-full col">
     <div class="product-list-item mb-16 col w-full">
         <div class="col flex-md">
-            <div class="relative image-container z-0">
+            <div class="relative image-container z-0" style="text-align: center;">
                 <a href="{{ url($product->slug) }}">
                     <img src="{{ $featuredImageUrl }}" alt="imagine" title="imagineprodus" style="height: 180px; max-width: 230px;">
                 </a>
@@ -112,7 +112,7 @@
                     <a href="{{ url($product->slug) }}">
                         <button type="button" class="btn btn-blue-outline rounded-xl" aria-label="Vezi produs">Vezi produsul</button>
                     </a>
-                    <input type="submit" class="btn btn-blue rounded-xl {{ empty($initialPrice) || $product->is_inactive ? 'btn-disabled' : '' }}" value="Adauga in cos" {{ empty($initialPrice) || $product->is_inactive ? 'disabled' : '' }}>
+                    <input type="submit" class="btn btn-blue rounded-xl {{ empty($initialPrice) || $product->is_inactive ? 'btn-disabled' : '' }}" style="font-size:13px;" value="Adauga in cos" {{ empty($initialPrice) || $product->is_inactive ? 'disabled' : '' }}>
                 </div>
             </div>
         </div>
