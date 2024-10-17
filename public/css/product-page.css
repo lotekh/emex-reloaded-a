@@ -427,3 +427,23 @@
   background-position: 261px 2px;
   cursor: pointer;
 }
+
+/* div[on*="tap:amp-lightbox"] {
+  display: none;
+}
+
+.cursor-pointer[on*="amp-lightbox"] {
+  display: none;
+} */
+
+/* div.cursor-pointer:has(amp-lightbox) {
+  display: none !important;
+} */
+
+#Descriere .cursor-pointer {
+  display: none;
+}
+
+amp-lightbox {
+  display: none;
+}

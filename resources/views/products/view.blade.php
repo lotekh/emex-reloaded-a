@@ -230,7 +230,7 @@
             <div class="col">
                 <p class="text-center mt-16">
                     @if ($product->price_disclaimer)
-                        {{ $product->price_disclaimer }}
+                        {!! $product->price_disclaimer !!}
                     @else
                         Preturi pentru culorile standard, din lista. <em class="mp-ral">Alte nuante se produc doar pe comanda</em>, in max. 3 zile de la lansarea comenzii ferme. Pretul acestora va diferi, in functie de nuanta.
                     @endif
@@ -293,7 +293,11 @@
         <div class="tab-content-container">
 
             <div id="Descriere" class="tab-content active">
-                {!! $product->description !!}
+                @php
+                    $description = str_replace(['<amp-img', '</amp-img>'], ['<img', '</img>'], 
+                                                $product->description);
+                @endphp 
+                {!! $description !!}
                 {{-- Descriere --}}
                 
             </div>

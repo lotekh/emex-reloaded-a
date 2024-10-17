@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Hash;
 use PDF;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Media;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+
 
 class UserController extends Controller
 {
@@ -26,10 +29,44 @@ class UserController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if ($user) {
+            $newPassword = $this->generateNewPassword();
+            $user->password = Hash::make($newPassword);
+            $user->save();
+
+            $emailContent = "Salut, " . $user->email . "\nNoua ta parola este: " . $newPassword;
+
+            Mail::raw($emailContent, function ($message) use ($user) {
+                $message->to($user->email)
+                    ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME')) 
+                    ->subject('Resetare parola');
+            });
+
+            Log::info('E-mail trimis pentru resetare parola:', [
+                'email' => $user->email,
+                'mesaj' => $emailContent,
+                'parola' => $newPassword,
+            ]);
+
             return redirect()->back()->with('success', 'Parola a fost resetata cu succes si trimisa pe email.');
         } else {
+            Log::warning('E-mailul pentru resetare parola nu a fost găsit:', [
+                'email' => $request->email,
+            ]);
             return redirect()->back()->withErrors(['email' => 'Ne pare rau, dar acest email nu a fost gasit.']);
         }
+    }
+
+    public function generateNewPassword()
+    {
+        $characters = '0123456789abcdef';
+        $randomString = '';
+
+        for ($i = 0; $i < 8; $i++) {
+            $index = rand(0, strlen($characters) - 1);
+            $randomString .= $characters[$index];
+        }
+
+        return $randomString;
     }
 
     public function edit()
