@@ -427,3 +427,8 @@
   background-position: 261px 2px;
   cursor: pointer;
 }
+
+.cursor-pointer,
+amp-lightbox {
+  display: none;
+}
