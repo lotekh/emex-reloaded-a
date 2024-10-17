@@ -22,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Schema::defaultStringLength(255);
+
         // Share categories with all views
         if(Schema::hasTable('categories')) {
             View::share('categories', Category::all());
