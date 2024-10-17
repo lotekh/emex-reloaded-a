@@ -632,15 +632,16 @@ class OrdersController extends Controller
             }
 
 
-            $email = $request->input('company_information.person_email') ?? $request->input('organization_email');
+            $email = $dbOrder->billing_type == 0 
+            ? json_decode($dbOrder->company_information, true)['person_email'] 
+            : json_decode($dbOrder->company_information, true)['organization_email'];
 
             // Send an email with info about the order
             try {
-                $orders_products = $dbOrder->productVariations()->withPivot('quantity', 'price', 'price_no_vat')->get();
-                $billingCountyName = $billingCountyName ?? 'Necunoscut';
-                $email = $request->input('company_information.person_email') ?? $request->input('organization_email');
-    
-                // Crearea conținutului emailului
+                // $orders_products = $dbOrder->productVariations()->withPivot('quantity', 'price', 'price_no_vat')->get();
+                // $billingCountyName = $billingCountyName ?? 'Necunoscut';
+                
+                // Create the email content
                 $emailContent = "S-au comandat urmatoarele produse:\n\n";
                 foreach ($orders_products as $product) {
                     $emailContent .= "Produs: " . $product->name . " - " . $product->quantity . " \n";
@@ -652,12 +653,18 @@ class OrdersController extends Controller
                 $emailContent .= "Total inclusiv TVA: " . number_format($dbOrder->total, 2) . "\n";
                 $emailContent .= "Detalii facturare:\n";
                 $emailContent .= "Tip: " . ($dbOrder->billing_type == 0 ? 'Persoana fizica' : 'Persoana juridica') . "\n";
-                $emailContent .= "Nume: " . ($dbOrder->billing_type == 0 ? $dbOrder->company_information['person_first_name'] . ' ' . $dbOrder->company_information['person_last_name'] : $dbOrder->company_information['organization_name']) . "\n";
-                $emailContent .= "Numar de telefon: " . $dbOrder->company_information['person_phone'] . "\n";
+                $emailContent .= "Nume: " . ($dbOrder->billing_type == 0 
+                    ? json_decode($dbOrder->company_information, true)['person_first_name'] . ' ' . json_decode($dbOrder->company_information, true)['person_last_name'] 
+                    : json_decode($dbOrder->company_information, true)['organization_name']) . "\n";
+                $emailContent .= "Numar de telefon: " . json_decode($dbOrder->company_information, true)['person_phone'] . "\n";
                 $emailContent .= "Adresa de email: " . $email . "\n";
                 $emailContent .= "Judet: " . $billingCountyName . "\n";
-                $emailContent .= "Localitate: " . ($dbOrder->billing_type == 0 ? $dbOrder->company_information['person_locality'] : $dbOrder->company_information['organization_locality']) . "\n";
-                $emailContent .= "Adresa: " . ($dbOrder->billing_type == 0 ? $dbOrder->company_information['person_address'] : $dbOrder->company_information['organization_address']) . "\n\n";
+                $emailContent .= "Localitate: " . ($dbOrder->billing_type == 0 
+                    ? json_decode($dbOrder->company_information, true)['person_locality'] 
+                    : json_decode($dbOrder->company_information, true)['organization_locality']) . "\n";
+                $emailContent .= "Adresa: " . ($dbOrder->billing_type == 0 
+                    ? json_decode($dbOrder->company_information, true)['person_address'] 
+                    : json_decode($dbOrder->company_information, true)['organization_address']) . "\n\n";
                 $emailContent .= "Detalii livrare:\n";
                 $emailContent .= "Tip: Ridicare personala\n";
                 $emailContent .= "Detalii plata:\n";
@@ -667,7 +674,7 @@ class OrdersController extends Controller
                 Mail::raw($emailContent, function ($message) use ($email, $dbOrder, $filePath) {
                     $message->to($email)
                         ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
-                        ->subject('Comanda ta a fost plasată')
+                        ->subject('Romtehnochim: Comanda Receptionata')
                         ->attach(Storage::disk('public')->path($filePath)); 
                 });
     
