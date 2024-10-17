@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Schema;
 use App\Models\Media;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 
 class OrdersController extends Controller
@@ -630,6 +631,57 @@ class OrdersController extends Controller
                 echo $e->getMessage();
             }
 
+
+            $email = $request->input('company_information.person_email') ?? $request->input('organization_email');
+
+            // Send an email with info about the order
+            try {
+                $orders_products = $dbOrder->productVariations()->withPivot('quantity', 'price', 'price_no_vat')->get();
+                $billingCountyName = $billingCountyName ?? 'Necunoscut';
+                $email = $request->input('company_information.person_email') ?? $request->input('organization_email');
+    
+                // Crearea conținutului emailului
+                $emailContent = "S-au comandat urmatoarele produse:\n\n";
+                foreach ($orders_products as $product) {
+                    $emailContent .= "Produs: " . $product->name . " - " . $product->quantity . " \n";
+                    $emailContent .= "Culoare: " . ($product->color ?? 'Alb') . "\n";
+                    $emailContent .= "Cantitate: " . $product->pivot->quantity . "\n";
+                    $emailContent .= "Pret cu TVA: " . number_format($product->pivot->price, 2) . "\n\n";
+                }
+    
+                $emailContent .= "Total inclusiv TVA: " . number_format($dbOrder->total, 2) . "\n";
+                $emailContent .= "Detalii facturare:\n";
+                $emailContent .= "Tip: " . ($dbOrder->billing_type == 0 ? 'Persoana fizica' : 'Persoana juridica') . "\n";
+                $emailContent .= "Nume: " . ($dbOrder->billing_type == 0 ? $dbOrder->company_information['person_first_name'] . ' ' . $dbOrder->company_information['person_last_name'] : $dbOrder->company_information['organization_name']) . "\n";
+                $emailContent .= "Numar de telefon: " . $dbOrder->company_information['person_phone'] . "\n";
+                $emailContent .= "Adresa de email: " . $email . "\n";
+                $emailContent .= "Judet: " . $billingCountyName . "\n";
+                $emailContent .= "Localitate: " . ($dbOrder->billing_type == 0 ? $dbOrder->company_information['person_locality'] : $dbOrder->company_information['organization_locality']) . "\n";
+                $emailContent .= "Adresa: " . ($dbOrder->billing_type == 0 ? $dbOrder->company_information['person_address'] : $dbOrder->company_information['organization_address']) . "\n\n";
+                $emailContent .= "Detalii livrare:\n";
+                $emailContent .= "Tip: Ridicare personala\n";
+                $emailContent .= "Detalii plata:\n";
+                $emailContent .= "Tip: ordin de plata\n";
+    
+                // Send the email with the proforma as attachment
+                Mail::raw($emailContent, function ($message) use ($email, $dbOrder, $filePath) {
+                    $message->to($email)
+                        ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
+                        ->subject('Comanda ta a fost plasată')
+                        ->attach(Storage::disk('public')->path($filePath)); 
+                });
+    
+                Log::info('Email trimis cu succes:', [
+                    'email' => $email,
+                    'order_id' => $dbOrder->id,
+                ]);
+            } catch (\Exception $e) {
+                Log::error('A apărut o eroare la trimiterea emailului:', [
+                    'message' => $e->getMessage(),
+                    'trace' => $e->getTraceAsString()
+                ]);
+            }
+
             session()->forget('cart');
             session()->forget('order');
 
@@ -643,37 +695,35 @@ class OrdersController extends Controller
         return redirect()->route('/despre-noi');
     }
 
-    public function showInvoicePage(Request $request, $orderId)
-{
-    // Obține detaliile comenzii din baza de date
-    $dbOrder = Order::with('productVariations')->findOrFail($orderId);
-    $orders_products = $dbOrder->productVariations()->withPivot('quantity', 'price', 'price_no_vat')->get();
-    
-    $billingCountyName = 'Necunoscut';
-    $billingCountyId = null;
 
-    // Setează numele județului pentru persoana fizică sau juridică
-    if ($dbOrder->billing_type == 0) {  // Persoană fizică
-        $billingCountyId = json_decode($dbOrder->company_information, true)['person_county_id'] ?? null;
-    } elseif ($dbOrder->billing_type == 1) {  // Persoană juridică
-        $billingCountyId = json_decode($dbOrder->company_information, true)['organization_county_id'] ?? null;
+        public function showInvoicePage(Request $request, $orderId)
+    {
+        // Obține detaliile comenzii din baza de date
+        $dbOrder = Order::with('productVariations')->findOrFail($orderId);
+        $orders_products = $dbOrder->productVariations()->withPivot('quantity', 'price', 'price_no_vat')->get();
+        
+        $billingCountyName = 'Necunoscut';
+        $billingCountyId = null;
+
+        // Setează numele județului pentru persoana fizică sau juridică
+        if ($dbOrder->billing_type == 0) {  // Persoană fizică
+            $billingCountyId = json_decode($dbOrder->company_information, true)['person_county_id'] ?? null;
+        } elseif ($dbOrder->billing_type == 1) {  // Persoană juridică
+            $billingCountyId = json_decode($dbOrder->company_information, true)['organization_county_id'] ?? null;
+        }
+
+        if ($billingCountyId) {
+            $billingCounty = County::where('id', $billingCountyId)->first();
+            $billingCountyName = $billingCounty ? $billingCounty->name : 'Necunoscut';
+        }
+
+        // Returnează pagina cu factura
+        return view('products.invoice-pdf-22', [
+            'order' => $dbOrder,
+            'orders_products' => $orders_products,
+            'billingCountyName' => $billingCountyName
+        ]);
     }
-
-    if ($billingCountyId) {
-        $billingCounty = County::where('id', $billingCountyId)->first();
-        $billingCountyName = $billingCounty ? $billingCounty->name : 'Necunoscut';
-    }
-
-    // Returnează pagina cu factura
-    return view('products.invoice-pdf-22', [
-        'order' => $dbOrder,
-        'orders_products' => $orders_products,
-        'billingCountyName' => $billingCountyName
-    ]);
-}
-
-
-    
 
 
     public function showSummary(Request $request)
