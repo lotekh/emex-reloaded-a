@@ -293,7 +293,11 @@
         <div class="tab-content-container">
 
             <div id="Descriere" class="tab-content active">
-                {!! $product->description !!}
+                @php
+                    $description = str_replace(['<amp-img', '</amp-img>'], ['<img', '</img>'], 
+                                                $product->description);
+                @endphp 
+                {!! $description !!}
                 {{-- Descriere --}}
                 
             </div>
