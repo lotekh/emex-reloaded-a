@@ -21,11 +21,11 @@
             <img width="18" height="18" src="{{ asset('resources/new_design/icons/bin-grey.svg') }}">
             <span class="ml-8">Sterge tot</span>
         </button>
-    </form>
+      </form>
     
     <button class="flex align-center grey-button" onclick="document.getElementById('delete-all').click();">
         <img width="18" height="18" src="{{ asset('resources/new_design/icons/bin-grey.svg') }}">
-        <span class="ml-8">Sterge tot</span>
+        <span class="ml-8" style="font-size: 16px;">Sterge tot</span>
     </button>
     
     @endif

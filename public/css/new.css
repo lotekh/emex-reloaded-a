@@ -840,3 +840,9 @@
 .quantity-selector-mobile {
   margin: 0 !important;
 }
+
+#cart .price {
+  font-size: 20px;
+  color: var(--blue);
+  font-weight: 600;
+}
