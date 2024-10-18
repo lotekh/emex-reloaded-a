@@ -143,7 +143,7 @@
                                 </g>
                             </switch>
                         </svg>
-                        <textarea class="w-full" id="contact_page_mesaj" placeholder="Mesaj..." name="Contact[message]" rows="10"></textarea>
+                        <textarea class="w-full" id="contact_page_mesaj" placeholder="Mesaj..." name="Contact[message]" rows="10" aria-required="true" required></textarea>
                     </div>
                 </div>
 
