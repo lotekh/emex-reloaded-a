@@ -64,7 +64,7 @@
                 @csrf
                 <div class="grid grid-2 gap-md" id="row_inputs_contact_form">
                     <div class="form-group">
-                        <label for="contact_page_nume">Nume</label>
+                        <label for="contact_page_nume">Nume<span class="text-red">*</label>
                         <div class="flex row w-full gap-md align-center">
                             <!-- Icon -->
                             <svg viewBox="0 0 24 24" width="24" height="24">
@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="contact_page_email">E-mail</label>
+                        <label for="contact_page_email">E-mail<span class="text-red">*</label>
                         <div class="flex row w-full gap-md align-center">
                             <!-- Icon -->
                             <svg viewBox="0 0 24 24" width="24" height="24">
@@ -90,7 +90,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="contact_page_telefon">Telefon</label>
+                        <label for="contact_page_telefon">Telefon<span class="text-red">*</label>
                         <div class="flex row w-full gap-md align-center">
                             <!-- Icon -->
                             <svg viewBox="0 0 24 24" width="24" height="24">
@@ -119,7 +119,7 @@
                 </div>
 
                 <div class="form-group mt-16">
-                    <label for="contact_page_mesaj">Mesaj</label>
+                    <label for="contact_page_mesaj">Mesaj<span class="text-red">*</label>
                     <div class="flex row w-full gap-md">
                         <!-- Icon -->
                         <svg viewbox="0 0 24 24" width="24" height="24" fill="#1976d3">
