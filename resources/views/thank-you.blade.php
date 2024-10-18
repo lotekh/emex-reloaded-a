@@ -1,5 +1,9 @@
 @extends('layout.layout')
 
+@section('breadcrumbs')
+<ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Thank you</li></ul>
+@endsection
+
 @section('content')
 <div class="main-container">
     <h2 class="text-center mt-32"> VA MULTUMIM, <br> MESAJUL A FOST TRIMIS CU SUCCES ! </h2>
