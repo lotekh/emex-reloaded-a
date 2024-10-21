@@ -874,3 +874,11 @@
 .show {
   display: block;
 }
+
+.order-history:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.order-history:nth-child(odd) {
+  background-color: #e6effb;
+}

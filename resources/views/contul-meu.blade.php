@@ -353,6 +353,13 @@
         const details = document.getElementById('details-' + id);
         details.classList.toggle('hide');
         details.classList.toggle('show');
+
+        const button = details.closest('.sent_ordered_products').querySelector('button');
+            if (details.classList.contains('show')) {
+            button.textContent = 'ascunde detalii';
+        } else {
+            button.textContent = 'detalii comanda';
+        }
     }
 
     document.addEventListener('DOMContentLoaded', function () {
