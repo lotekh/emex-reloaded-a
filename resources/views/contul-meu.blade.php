@@ -351,111 +351,95 @@
         details.classList.toggle('show');
     }
 
-        document.addEventListener('DOMContentLoaded', function () {
-        const billingType = document.getElementById('billing-type');
-        const personBilling = document.getElementById('person-billing');
-        const organizationBilling = document.getElementById('organization-billing');
-        
-        billingType.addEventListener('change', function () {
-            if (this.value == '0') {
-                personBilling.style.display = 'flex';
-                organizationBilling.style.display = 'none';
-            } else if (this.value == '1') {
-                personBilling.style.display = 'none';
-                organizationBilling.style.display = 'flex';
-            } else {
-                personBilling.style.display = 'none';
-                organizationBilling.style.display = 'none';
-            }
-        });
-
-        if (billingType.value == '0') {
+    document.addEventListener('DOMContentLoaded', function () {
+    const billingType = document.getElementById('billing-type');
+    const personBilling = document.getElementById('person-billing');
+    const organizationBilling = document.getElementById('organization-billing');
+    
+    billingType.addEventListener('change', function () {
+        if (this.value == '0') {
             personBilling.style.display = 'flex';
             organizationBilling.style.display = 'none';
-        } else if (billingType.value == '1') {
+        } else if (this.value == '1') {
             personBilling.style.display = 'none';
             organizationBilling.style.display = 'flex';
         } else {
             personBilling.style.display = 'none';
             organizationBilling.style.display = 'none';
         }
+    });
 
-        const countrySelects = document.querySelectorAll('[name$="_country_id"]');
-        countrySelects.forEach(countrySelect => {
-            countrySelect.addEventListener('change', function () {
-                const countySelect = document.getElementById(this.name.replace('country', 'county'));
-                
-                // Resetăm lista de județe și adăugăm opțiunea "Alege judetul"
-                countySelect.innerHTML = '<option value="">Alege judetul</option>';
-                
-                // Dacă nu este selectată nicio țară, ne oprim aici
-                if (!this.value) {
-                    return;
-                }
+    if (billingType.value == '0') {
+        personBilling.style.display = 'flex';
+        organizationBilling.style.display = 'none';
+    } else if (billingType.value == '1') {
+        personBilling.style.display = 'none';
+        organizationBilling.style.display = 'flex';
+    } else {
+        personBilling.style.display = 'none';
+        organizationBilling.style.display = 'none';
+    }
 
-                // Dacă este selectată o țară, încărcăm județele corespunzătoare
-                fetch('/get-counties-by-country/' + this.value)
-                    .then(response => response.json())
-                    .then(data => {
-                        // Verificăm dacă au fost primite județe și le adăugăm
-                        if (data.length > 0) {
-                            data.forEach(county => {
-                                countySelect.innerHTML += `<option value="${county.id}">${county.name}</option>`;
-                            });
-                        } else {
-                            // Dacă nu sunt județe disponibile pentru țara selectată, adăugăm un mesaj
-                            countySelect.innerHTML = '<option value="">Nu există județe disponibile</option>';
-                        }
+    const countrySelects = document.querySelectorAll('[name$="_country_id"]');
+    countrySelects.forEach(countrySelect => {
+        const countySelect = document.getElementById(countrySelect.name.replace('country', 'county'));
+        const selectedCountyId = countySelect.getAttribute('data-selected-county');
 
-                        // Preselectăm județul deja selectat dacă există
-                        const selectedCountyId = countySelect.getAttribute('data-selected-county');
-                        if (selectedCountyId) {
-                            countySelect.value = selectedCountyId;
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Eroare la încărcarea județelor:', error);
-                        countySelect.innerHTML = '<option value="">Eroare la încărcarea județelor</option>';
-                    });
+        // Funcție pentru a preselecta județul din datele existente
+        function preselectCounty(countyData) {
+            countySelect.innerHTML = '<option value="">Alege judetul</option>';
+            countyData.forEach(county => {
+                countySelect.innerHTML += `<option value="${county.id}">${county.name}</option>`;
             });
 
-            // Aici verificăm dacă există o țară deja selectată la încărcarea paginii
-            if (countrySelect.value) {
-                const countySelect = document.getElementById(countrySelect.name.replace('country', 'county'));
-                countySelect.innerHTML = '<option value="">Alege judetul</option>'; // Resetăm la început
-
-                fetch('/get-counties-by-country/' + countrySelect.value)
-                    .then(response => response.json())
-                    .then(data => {
-                        countySelect.innerHTML = '<option value="">Alege judetul</option>'; // Adăugăm opțiunea inițială
-                        data.forEach(county => {
-                            countySelect.innerHTML += `<option value="${county.id}">${county.name}</option>`;
-                        });
-
-                        // Preselectăm județul deja selectat dacă există
-                        const selectedCountyId = countySelect.getAttribute('data-selected-county');
-                        if (selectedCountyId) {
-                            countySelect.value = selectedCountyId;
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Eroare la încărcarea județelor:', error);
-                        countySelect.innerHTML = '<option value="">Eroare la încărcarea județelor</option>';
-                    });
+            if (selectedCountyId) {
+                countySelect.value = selectedCountyId;
             }
-        });
-
-        const hash = window.location.hash.substring(1);  // eliminăm caracterul '#'
-        if (hash) {
-            showTab(hash);  // apelăm funcția showTab pentru tab-ul corespunzător hash-ului
         }
 
-        // Adăugăm un event listener pentru schimbarea hash-ului (navigarea între secțiuni)
-        window.addEventListener('hashchange', function() {
-            const newHash = window.location.hash.substring(1);
-            showTab(newHash);  // apelăm din nou funcția showTab atunci când hash-ul se schimbă
+        // Funcție pentru a încărca județele în funcție de țară
+        function loadCounties(countryId) {
+            fetch('/get-counties-by-country/' + countryId)
+                .then(response => response.json())
+                .then(data => {
+                    preselectCounty(data);
+                })
+                .catch(error => {
+                    console.error('Eroare la încărcarea județelor:', error);
+                    countySelect.innerHTML = '<option value="">Eroare la încărcarea județelor</option>';
+                });
+        }
+
+        // Eveniment la schimbarea țării
+        countrySelect.addEventListener('change', function () {
+            if (!this.value) {
+                countySelect.innerHTML = '<option value="">Alege judetul</option>';
+                return;
+            }
+
+            countySelect.innerHTML = '<option value="">Alege judetul</option>';
+
+            loadCounties(this.value);
         });
+
+        // Dacă există o țară selectată la încărcarea paginii, încărcăm județele
+        if (countrySelect.value) {
+            loadCounties(countrySelect.value);
+        }
     });
+
+    const hash = window.location.hash.substring(1);  // eliminăm caracterul '#'
+    if (hash) {
+        showTab(hash);  // Apelăm funcția showTab pentru tab-ul corespunzător hash-ului
+    }
+
+    // Adăugăm un event listener pentru schimbarea hash-ului (navigarea între secțiuni)
+    window.addEventListener('hashchange', function() {
+        const newHash = window.location.hash.substring(1);
+        showTab(newHash);  // Apelăm din nou funcția showTab atunci când hash-ul se schimbă
+    });
+});
+
 
 
 
