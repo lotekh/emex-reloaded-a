@@ -328,7 +328,24 @@
     <tr style="margin: 0">
         <td colspan="6" style="text-align: right; padding: 10px 5px" class="table-borders-none">
             @if($order['payment_method'] != 'ramburs')
-            <a href="{{ url('/') }}">
+            {{-- <a href="{{ route('secure-payment', [
+                                'guid' => $order->guid,
+                                'firstName' => $order->contact_person_first_name,
+                                'lastName' => $order->contact_person_last_name,
+                                'email' => $order->organization_email,
+                                'orderNo' => $order->identifier,
+                                'amount' => $order->total
+                            ]) }}">
+                                <button id="pay_now_btn" class="btn btn-blue rounded-sm" style="background-color: #19AE0C">PLATESTE ACUM</button>
+                            </a> --}}
+            <a href="{{ route('secure-payment', [
+                                'guid' => $order->guid,
+                                'firstName' => $order->contact_person_first_name,
+                                'lastName' => $order->contact_person_last_name,
+                                'email' => $order->organization_email,
+                                'orderNo' => $order->identifier,
+                                'amount' => $order->total
+                            ]) }}">
                 <img src="{{ asset('resources/images/Buton-Plata-Online.png') }}">
             </a>
             @endif
