@@ -866,3 +866,11 @@
   color: var(--blue);
   font-weight: 600;
 }
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
