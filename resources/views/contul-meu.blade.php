@@ -20,6 +20,7 @@
             <form action="{{ url('/save-detalii-cont') }}" method="POST">
                 @csrf
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
+                <input type="hidden" name="active_tab" id="active_tab_detalii_cont">
                 <div class="grid grid-2 gap-md">
                     <div class="form-group">
                         <label>Nume</label>
@@ -54,6 +55,7 @@
             <form class="col" action="{{ url('/save-facturare') }}" method="POST">
                 @csrf
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
+                <input type="hidden" name="active_tab" id="active_tab_facturare">
                 <div class="w-full form-group">
                     <label>Metoda facturare:</label>
                     <select class="w-full" name="billing_type" id="billing-type">
@@ -174,6 +176,7 @@
             <form class="col" action="{{ url('/save-livrare') }}" method="POST">
                 @csrf
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
+                <input type="hidden" name="active_tab" id="active_tab_livrare">
                 <h5>Persoana de contact</h5>
                 <div class="grid grid-4 gap-md">
                     <div class="form-group">
@@ -233,6 +236,7 @@
             <form class="col" action="{{ url('/save-schimba-parola') }}" method="POST">
                 @csrf
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
+                <input type="hidden" name="active_tab" id="active_tab_schimb_parola">
                 <div class="grid grid-2 gap-md">
                     <div class="form-group">
                         <label>Parola Curenta</label>
@@ -352,6 +356,28 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
+        const forms = document.querySelectorAll('form');
+
+        forms.forEach(form => {
+            form.addEventListener('submit', function () {
+                // Obține hash-ul curent din URL
+                const activeTab = window.location.hash.substring(1);
+
+                // Dacă nu există un hash activ, selectăm implicit tab-ul "detalii-cont"
+                const tabToSend = activeTab ? activeTab : 'detalii-cont';
+
+                // Găsește input-ul hidden corect în funcție de formularul pe care îl trimiți
+                const activeTabInput = form.querySelector('input[name="active_tab"]');
+                
+                if (activeTabInput) {
+                    activeTabInput.value = tabToSend;
+                }
+
+                // Actualizăm URL-ul cu hash-ul
+                window.location.hash = tabToSend;
+            });
+        });
+
     const billingType = document.getElementById('billing-type');
     const personBilling = document.getElementById('person-billing');
     const organizationBilling = document.getElementById('organization-billing');
@@ -385,7 +411,6 @@
         const countySelect = document.getElementById(countrySelect.name.replace('country', 'county'));
         const selectedCountyId = countySelect.getAttribute('data-selected-county');
 
-        // Funcție pentru a preselecta județul din datele existente
         function preselectCounty(countyData) {
             countySelect.innerHTML = '<option value="">Alege judetul</option>';
             countyData.forEach(county => {
@@ -397,7 +422,6 @@
             }
         }
 
-        // Funcție pentru a încărca județele în funcție de țară
         function loadCounties(countryId) {
             fetch('/get-counties-by-country/' + countryId)
                 .then(response => response.json())
@@ -410,35 +434,31 @@
                 });
         }
 
-        // Eveniment la schimbarea țării
         countrySelect.addEventListener('change', function () {
             if (!this.value) {
                 countySelect.innerHTML = '<option value="">Alege judetul</option>';
                 return;
             }
 
-            countySelect.innerHTML = '<option value="">Alege judetul</option>';
-
             loadCounties(this.value);
         });
 
-        // Dacă există o țară selectată la încărcarea paginii, încărcăm județele
         if (countrySelect.value) {
             loadCounties(countrySelect.value);
         }
     });
 
-    const hash = window.location.hash.substring(1);  // eliminăm caracterul '#'
+    const hash = window.location.hash.substring(1);  
     if (hash) {
-        showTab(hash);  // Apelăm funcția showTab pentru tab-ul corespunzător hash-ului
+        showTab(hash);  
     }
 
-    // Adăugăm un event listener pentru schimbarea hash-ului (navigarea între secțiuni)
     window.addEventListener('hashchange', function() {
         const newHash = window.location.hash.substring(1);
-        showTab(newHash);  // Apelăm din nou funcția showTab atunci când hash-ul se schimbă
+        showTab(newHash);  
     });
 });
+
 
 
 

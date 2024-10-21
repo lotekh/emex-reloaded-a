@@ -869,19 +869,19 @@
         document.getElementById(targetModalId).style.display = 'flex';
     }
 
-    document.getElementById('auth_lightbox_trigger').addEventListener('click', function() {
-        var authContainer = document.querySelector('.autentificare-1');
-        authContainer.style.opacity = '1';
-        authContainer.style.display = 'inline-block';
-        document.getElementById('auth-lightbox').style.display = 'flex';
-    });
+    // document.getElementById('auth_lightbox_trigger').addEventListener('click', function() {
+    //     var authContainer = document.querySelector('.autentificare-1');
+    //     authContainer.style.opacity = '1';
+    //     authContainer.style.display = 'inline-block';
+    //     document.getElementById('auth-lightbox').style.display = 'flex';
+    // });
 
-    document.getElementById('auth_lightbox_trigger_mobile').addEventListener('click', function() {
-        var authContainer = document.querySelector('.autentificare-1');
-        authContainer.style.opacity = '1';
-        authContainer.style.display = 'inline-block';
-        document.getElementById('auth-lightbox').style.display = 'flex';
-    });
+    // document.getElementById('auth_lightbox_trigger_mobile').addEventListener('click', function() {
+    //     var authContainer = document.querySelector('.autentificare-1');
+    //     authContainer.style.opacity = '1';
+    //     authContainer.style.display = 'inline-block';
+    //     document.getElementById('auth-lightbox').style.display = 'flex';
+    // });
 
     function closeFlashMessage(button) {
         // Închide mesajul flash
