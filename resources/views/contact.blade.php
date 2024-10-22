@@ -64,7 +64,7 @@
                 @csrf
                 <div class="grid grid-2 gap-md" id="row_inputs_contact_form">
                     <div class="form-group">
-                        <label for="contact_page_nume">Nume</label>
+                        <label for="contact_page_nume">Nume<span class="text-red">*</span></label>
                         <div class="flex row w-full gap-md align-center">
                             <!-- Icon -->
                             <svg viewBox="0 0 24 24" width="24" height="24">
@@ -72,13 +72,10 @@
                                 <path fill="#1976d3" d="M21.6 19.9c0 1.1-.4 2-1.1 2.6-.7.6-1.7 1-2.9 1H6.4c-1.2 0-2.2-.3-2.9-1-.8-.7-1.1-1.5-1.1-2.6v-1.2c0-.4.1-.9.2-1.3.1-.5.2-.9.4-1.3.1-.4.4-.8.6-1.2.3-.4.6-.8.9-1.1.4-.3.8-.6 1.3-.7.5-.2 1.1-.3 1.7-.3.2 0 .5.1.9.3l.9.6c.3.2.7.3 1.2.5.4.1.9.2 1.3.2h.1c.5 0 1-.1 1.5-.2s.9-.3 1.2-.5c.4-.2.7-.4.9-.6.4-.3.7-.3.9-.3.6 0 1.2.1 1.7.3s.9.4 1.3.7c.3.3.6.7.9 1.1.2.4.5.8.6 1.2s.3.9.4 1.3c.1.5.2.9.2 1.3.1.3.1.8.1 1.2z" />
                             </svg>
                             <input type="text" class="w-full" placeholder="Nume..." name="Contact[name]" aria-required="true" required id="contact_page_nume">
-                            @error('Contact.name')
-                                <div class="error">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="contact_page_email">E-mail</label>
+                        <label for="contact_page_email">E-mail<span class="text-red">*</span></label>
                         <div class="flex row w-full gap-md align-center">
                             <!-- Icon -->
                             <svg viewBox="0 0 24 24" width="24" height="24">
@@ -90,13 +87,10 @@
                                 </switch>
                             </svg>
                             <input type="text" class="w-full" placeholder="Email..." name="Contact[email]" aria-required="true" required id="contact_page_email">
-                            @error('Contact.email')
-                                <div class="error">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="contact_page_telefon">Telefon</label>
+                        <label for="contact_page_telefon">Telefon<span class="text-red">*</span></label>
                         <div class="flex row w-full gap-md align-center">
                             <!-- Icon -->
                             <svg viewBox="0 0 24 24" width="24" height="24">
@@ -109,9 +103,6 @@
                                 </switch>
                             </svg>
                             <input type="tel" class="w-full" placeholder="+1 (555) 555-5555" name="Contact[phone]" aria-required="true" required id="contact_page_telefon">
-                            @error('Contact.phone')
-                                <div class="error">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
                     <div class="form-group">
@@ -123,15 +114,12 @@
                                 <path d="M1.8.4c-.1 0-.2.1-.2.3v22.2H.7c-.1 0-.2.1-.2.3s.1.3.2.3h22.6c.1 0 .2-.1.2-.3s-.1-.3-.2-.3h-.9V.8c0-.2-.1-.3-.2-.3H1.8zm11.1 0h-1.8M8.5 22.8H2v-1.5h6.5v1.5zm6.8.1h-3v-4.5c0-.2-.1-.3-.2-.3s-.2.1-.2.3v4.5h-3v-7.3h3v.8c0 .2.1.3.2.3s.2-.1.2-.3v-.8h3v7.3zm6.8-2.1h-2.5c-.1 0-.2.1-.2.3s.1.3.2.3h2.5v1.5h-6.5v-1.5h4.5c.1 0 .2-.1.2-.3s-.1-.3-.2-.3h-4.5v-5.5c0-.2-.1-.3-.2-.3H8.6c-.1 0-.2.1-.2.3v5.6H1.9V.9H22l.1 19.9z" />
                             </svg>
                             <input type="text" class="w-full" placeholder="Societate..." name="Contact[company]" id="contact_page_societate">
-                            @error('Contact.company')
-                                <div class="error">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group mt-16">
-                    <label for="contact_page_mesaj">Mesaj</label>
+                    <label for="contact_page_mesaj">Mesaj<span class="text-red">*</span></label>
                     <div class="flex row w-full gap-md">
                         <!-- Icon -->
                         <svg viewbox="0 0 24 24" width="24" height="24" fill="#1976d3">
@@ -155,10 +143,7 @@
                                 </g>
                             </switch>
                         </svg>
-                        <textarea class="w-full" id="contact_page_mesaj" placeholder="Mesaj..." name="Contact[message]" rows="10"></textarea>
-                        @error('Contact.message')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
+                        <textarea class="w-full" id="contact_page_mesaj" placeholder="Mesaj..." name="Contact[message]" rows="10" aria-required="true" required></textarea>
                     </div>
                 </div>
 
@@ -170,9 +155,6 @@
                         </label>
                     </div>
                     <div class="form-validation" visible-when-invalid="valueMissing" validation-for="consent-checkbox">Conform reglementarilor in vigoare, trebuie sa fiti de acord cu Termeni si Conditii si Politica de Confidentialitate</div>
-                    @error('consent')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
                 </div>
 
                 @php
@@ -191,9 +173,6 @@
                             </div>
                             <input type="text" id="captchaResult" name="captchaResult" required>
                             <input type="hidden" name="captchaMdResult" value="{{ $mdResult }}">
-                            @error('captchaResult')
-                                <div class="error">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
                 </div>

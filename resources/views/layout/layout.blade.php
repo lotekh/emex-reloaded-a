@@ -222,14 +222,12 @@
                         <form class="col w-full" method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group w-full">
-                                <label for="form-login-email">Adresa de email</label>
+                                <label for="form-login-email">Adresa de email<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-login-email" type="text" name="email" required>
-                                {{-- <p class="form-validation">Completează acest câmp.</p> --}}
                             </div>
                             <div class="form-group w-full">
-                                <label for="form-login-password">Parola</label>
+                                <label for="form-login-password">Parola<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-login-password" type="password" name="password" required>
-                                {{-- <p class="form-validation">Completează acest câmp.</p> --}}
                             </div>
                             <div class="w-full flex justify-center">
                                 <button type="submit" class="w-fit btn rounded-lg px-16 mt-32">Autentifica-te</button>
@@ -259,29 +257,24 @@
                         <form class="col w-full" method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="form-group w-full">
-                                <label for="form-register-last-name">Nume</label>
+                                <label for="form-register-last-name">Nume<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-register-last-name" type="text" name="last_name" required>
-                                {{-- <p class="form-validation">Completează acest câmp.</p> --}}
                             </div>
                             <div class="form-group w-full">
-                                <label for="form-register-first-name">Prenume</label>
+                                <label for="form-register-first-name">Prenume<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-register-first-name" type="text" name="first_name" required>
-                                {{-- <p class="form-validation">Completează acest câmp.</p> --}}
                             </div>
                             <div class="form-group w-full">
-                                <label for="form-register-email">Adresa de email</label>
+                                <label for="form-register-email">Adresa de email<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-register-email" type="text" name="email" required>
-                                {{-- <p class="form-validation">Completează acest câmp.</p> --}}
                             </div>
                             <div class="form-group w-full">
-                                <label for="form-register-telefon">Telefon</label>
+                                <label for="form-register-telefon">Telefon<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-register-telefon" type="text" name="phone" required>
-                                {{-- <p class="form-validation">Completează acest câmp.</p> --}}
                             </div>
                             <div class="form-group w-full">
-                                <label for="form-register-password">Parola</label>
+                                <label for="form-register-password">Parola<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-register-password" type="password" name="password" required>
-                                {{-- <p class="form-validation">Completează acest câmp.</p> --}}
                             </div>
                             <div class="row align-center">
                                 <input type="checkbox" class="hidden" name="terms" id="tc" required checked>
