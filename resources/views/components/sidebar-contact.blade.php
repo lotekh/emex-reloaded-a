@@ -60,23 +60,23 @@
                 <form id="formular-sidebar-contact" class="col w-full" method="POST" action="{{ route('contact.store') }}">
                     @csrf
                     <div class="form-group w-full">
-                        <label for="side-contact-name">Nume</label>
+                        <label for="side-contact-name">Nume<span class="text-red">*</span></label>
                         <input id="side-contact-name" required type="text" name="Contact[name]" class="w-full">
                     </div>
                     <div class="form-group w-full">
                         <label for="side-contact-societate">Societate</label>
-                        <input id="side-contact-societate" type="text" required name="Contact[company]" class="w-full">
+                        <input id="side-contact-societate" type="text" name="Contact[company]" class="w-full">
                     </div>
                     <div class="form-group w-full">
-                        <label for="side-contact-email">Email</label>
+                        <label for="side-contact-email">Email<span class="text-red">*</span></label>
                         <input id="side-contact-email" type="email" required name="Contact[email]" class="w-full">
                     </div>
                     <div class="form-group w-full">
-                        <label for="side-contact-telefon">Telefon</label>
+                        <label for="side-contact-telefon">Telefon<span class="text-red">*</span></label>
                         <input id="side-contact-telefon" type="tel" placeholder="+1 (555) 555-5555" required name="Contact[phone]" class="w-full">
                     </div>
                     <div class="form-group w-full">
-                        <label for="side_contact_msg">Mesaj</label>
+                        <label for="side_contact_msg">Mesaj<span class="text-red">*</span></label>
                         <textarea rows="4" name="Contact[message]" required class="w-full" id="side_contact_msg" placeholder="Mentionati, in masura in care se poate, toate cerintele sau informatiile dorite, legate de solicitarea Dvs."></textarea>
                     </div>
 

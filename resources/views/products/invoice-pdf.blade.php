@@ -331,15 +331,42 @@
             <td colspan="4" style="text-align: right; padding: 10px 5px; font-weight: bold" class="table-borders-none">Total General</td>
             <td colspan="2" style="text-align: center; padding: 10px 5px; font-weight: bold" class="ta_r table-borders-none">{{ number_format($order['total'], 2, '.', ',') }} lei</td>
         </tr>
-        <tr style="margin: 0">
+
+        {{-- <tr style="margin: 0">
             <td colspan="6" style="text-align: right; padding: 10px 5px" class="table-borders-none">
                 @if($order['payment_method'] != 'ramburs')
-                <a href="{{ url('/') }}">
+                    <img src="{{ public_path('resources/images/Buton-Plata-Online.png') }}">
+                @endif
+            </td>
+        </tr> --}}
+        
+    </table>
+
+    <br>
+
+        
+            @if($order['payment_method'] != 'ramburs')
+            <a href="https://www.google.com/?hl=ro">
+                </a>
+            @endif
+        
+
+        
+        {{-- <tr style="margin: 0"> --}}
+            
+                @if($order['payment_method'] != 'ramburs')
+                <a href="{{ route('secure-payment', [
+                    'guid' => $order->guid,
+                    'firstName' => $order->contact_person_first_name,
+                    'lastName' => $order->contact_person_last_name,
+                    'email' => $order->organization_email,
+                    'orderNo' => $order->identifier,
+                    'amount' => $order->total
+                ]) }}">
                     <img src="{{ public_path('resources/images/Buton-Plata-Online.png') }}">
                 </a>
                 @endif
-            </td>
-        </tr>
-    </table>
+            
+        {{-- </tr> --}}
 
 </div>

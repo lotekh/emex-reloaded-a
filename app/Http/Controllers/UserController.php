@@ -86,7 +86,8 @@ class UserController extends Controller
         $user = Auth::user();
         $user->update($request->only(['last_name', 'first_name', 'phone']));
 
-        return redirect()->back()->with('success', 'Detalii cont actualizate cu succes.');
+        // return redirect()->back()->with('success', 'Detalii cont actualizate cu succes.');
+        return redirect('/contul-meu#' . $request->input('active_tab'))->with('success', 'Detalii cont actualizate cu succes.');
     }
 
     public function saveFacturare(Request $request)
@@ -97,7 +98,9 @@ class UserController extends Controller
         $user->billing_type = $request->billing_type;
         $user->save();
 
-        return redirect()->back()->with('success', 'Informatii facturare actualizate cu succes.');
+        // return redirect()->back()->with('success', 'Informatii facturare actualizate cu succes.');
+        $activeTab = $request->input('active_tab', 'detalii-cont');
+        return redirect('/contul-meu#' . $activeTab)->with('success', 'Informatii facturare actualizate cu succes.');
     }
 
     public function saveLivrare(Request $request)
@@ -107,7 +110,8 @@ class UserController extends Controller
         $user->delivery_information = json_encode($data);
         $user->save();
 
-        return redirect()->back()->with('success', 'Informatii livrare actualizate cu succes.');
+        // return redirect()->back()->with('success', 'Informatii livrare actualizate cu succes.');
+        return redirect('/contul-meu#' . $request->input('active_tab'))->with('success', 'Informatii livrare actualizate cu succes.');
     }
 
     public function saveSchimbaParola(Request $request)
@@ -126,7 +130,8 @@ class UserController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
 
-        return redirect()->back()->with('success', 'Parola a fost schimbata cu succes.');
+        // return redirect()->back()->with('success', 'Parola a fost schimbata cu succes.');
+        return redirect('/contul-meu#' . $request->input('active_tab'))->with('success', 'Parola a fost schimbata cu succes.');
     }
 
     public function getCountiesByCountry($countryId)
