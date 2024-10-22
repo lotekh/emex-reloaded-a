@@ -347,6 +347,22 @@
                 @endif
             </td>
         </tr>
+
+        <td colspan="6" style="text-align: right; padding: 10px 5px" class="table-borders-none">
+            @if($order['payment_method'] != 'ramburs')
+            <a href="{{ route('secure-payment', [
+                'guid' => $order->guid,
+                'firstName' => $order->contact_person_first_name,
+                'lastName' => $order->contact_person_last_name,
+                'email' => $order->organization_email,
+                'orderNo' => $order->identifier,
+                'amount' => $order->total
+            ]) }}">
+                    Click aici pentru a efectua plata online
+                </a>
+            @endif
+        </td>
+        
     </table>
 
 </div>

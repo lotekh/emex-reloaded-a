@@ -92,9 +92,6 @@
                             <label>Judet</label>
                             <select class="w-full" name="person_county_id" id="person_county_id" data-selected-county="{{ $companyInformation['person_county_id'] ?? '' }}">
                                 <option value="">Alege judetul</option>
-                                @foreach ($counties as $county)
-                                    <option value="{{ $county->id }}" @if (($companyInformation['person_county_id'] ?? null) == $county->id) selected @endif>{{ $county->name }}</option>
-                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
@@ -150,9 +147,6 @@
                             <label>Judet</label>
                             <select class="w-full" name="organization_county_id" id="organization_county_id">
                                 <option value="">Alege judetul</option>
-                                @foreach ($counties as $county)
-                                    <option value="{{ $county->id }}" @if (($user->company_information->organization_county_id ?? null) == $county->id) selected @endif>{{ $county->name }}</option>
-                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
@@ -211,9 +205,6 @@
                         <label>Judet</label>
                         <select class="w-full" name="delivery_county_id" id="delivery_county_id">
                             <option value="">Alege judetul</option>
-                            @foreach ($counties as $county)
-                                <option value="{{ $county->id }}" @if (($deliveryInformation['delivery_county_id'] ?? null) == $county->id) selected @endif>{{ $county->name }}</option>
-                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
@@ -414,26 +405,26 @@
     }
 
     const countrySelects = document.querySelectorAll('[name$="_country_id"]');
+    console.log(countrySelects);
     countrySelects.forEach(countrySelect => {
         const countySelect = document.getElementById(countrySelect.name.replace('country', 'county'));
         const selectedCountyId = countySelect.getAttribute('data-selected-county');
 
-        function preselectCounty(countyData) {
-            countySelect.innerHTML = '<option value="">Alege judetul</option>';
+        function preselectCounty(countyData, firstShow=false) {
             countyData.forEach(county => {
                 countySelect.innerHTML += `<option value="${county.id}">${county.name}</option>`;
             });
-
-            if (selectedCountyId) {
+            if (selectedCountyId && firstShow) {
                 countySelect.value = selectedCountyId;
             }
         }
 
-        function loadCounties(countryId) {
+        function loadCounties(countryId, firstShow=false) {
+            console.log(countySelect);
             fetch('/get-counties-by-country/' + countryId)
                 .then(response => response.json())
                 .then(data => {
-                    preselectCounty(data);
+                    preselectCounty(data, firstShow);
                 })
                 .catch(error => {
                     console.error('Eroare la încărcarea județelor:', error);
@@ -442,8 +433,8 @@
         }
 
         countrySelect.addEventListener('change', function () {
+            countySelect.innerHTML = '<option value="" selected>Alege judetul</option>';
             if (!this.value) {
-                countySelect.innerHTML = '<option value="">Alege judetul</option>';
                 return;
             }
 
@@ -451,7 +442,8 @@
         });
 
         if (countrySelect.value) {
-            loadCounties(countrySelect.value);
+            console.log("country select:", countrySelect, countrySelect.value);
+            loadCounties(countrySelect.value, true);
         }
     });
 
