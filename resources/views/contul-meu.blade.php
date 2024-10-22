@@ -145,7 +145,7 @@
                         </div>
                         <div class="form-group">
                             <label>Judet</label>
-                            <select class="w-full" name="organization_county_id" id="organization_county_id">
+                            <select class="w-full" name="organization_county_id" id="organization_county_id" data-selected-county="{{ $companyInformation['organization_county_id'] ?? '' }}">
                                 <option value="">Alege judetul</option>
                             </select>
                         </div>
@@ -203,7 +203,7 @@
                     </div>
                     <div class="form-group">
                         <label>Judet</label>
-                        <select class="w-full" name="delivery_county_id" id="delivery_county_id">
+                        <select class="w-full" name="delivery_county_id" id="delivery_county_id" data-selected-county="{{ $deliveryInformation['delivery_county_id'] ?? '' }}">
                             <option value="">Alege judetul</option>
                         </select>
                     </div>
