@@ -328,6 +328,7 @@ html {
 .ul-feature,
 .ul-feature li {
   /* list-style: url("resources/images/checklist-icon.png") none outside; */
+  list-style: url("/resources/general/checklist-icon.png") none outside;
   margin-left: 20px;
 }
 /* .hr-line {
