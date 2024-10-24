@@ -1,8 +1,44 @@
+<head>
+    <meta charset="UTF-8">
+</head>
+
 <style>
     @page {
      margin: 0px;
      margin-header: 0; /* <any of the usual CSS values for margins> */
 	 margin-footer: 0; /* <any of the usual CSS values for margins> */
+    }
+
+    /* @font-face {
+        font-family: 'Times New Roman';
+        src: url('{{ public_path('fonts/times.ttf') }}') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Times New Roman';
+        src: url('{{ public_path('fonts/timesbd.ttf') }}') format('truetype');
+        font-weight: bold;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Times New Roman';
+        src: url('{{ public_path('fonts/timesi.ttf') }}') format('truetype');
+        font-weight: normal;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Times New Roman';
+        src: url('{{ public_path('fonts/timesbi.ttf') }}') format('truetype');
+        font-weight: bold;
+        font-style: italic;
+    } */
+
+    body {
+        font-family: "Times New Roman", serif;
     }
 
     #summary_bill_container>* {
@@ -111,7 +147,7 @@
     p.id {
         font-size: 14px;
         font-weight: bold;
-        margin: 20px 0 30px;
+        /* margin: 20px 0 30px; */
     }
     .small-font p {
         margin: 0;
@@ -164,7 +200,7 @@
                         <td style="padding: 5px"></td>
                     </tr>
                     <tr class="col-12">
-                        <td class="col-8" style="padding-bottom: 9px">
+                        <td class="col-8" style="padding-bottom: 3px">
                             <h2>Proforma</h2>
                             <p>Data emiterii: {{ \Carbon\Carbon::parse($order['created_at'])->format('d-m-Y') }}</p>
                         </td>
@@ -344,29 +380,26 @@
 
     <br>
 
+    @if($order['payment_method'] != 'ramburs')
+        <a href="https://www.google.com/?hl=ro"></a>
+    @endif
         
-            @if($order['payment_method'] != 'ramburs')
-            <a href="https://www.google.com/?hl=ro">
-                </a>
-            @endif
-        
+    <div style="float: right; margin-top: 7px; padding-right: 35px; max-width:200px;">
+        @if($order['payment_method'] != 'ramburs')
+            <a href="{{ route('secure-payment', [
+                'guid' => $order->guid,
+                'firstName' => $order->contact_person_first_name,
+                'lastName' => $order->contact_person_last_name,
+                'email' => $order->organization_email,
+                'orderNo' => $order->identifier,
+                'amount' => $order->total
+            ]) }}">
+                <img src="{{ public_path('resources/images/Buton-Plata-Online.png') }}">
+            </a>
+        @endif
+    </div>
 
-        
-        {{-- <tr style="margin: 0"> --}}
-            
-                @if($order['payment_method'] != 'ramburs')
-                <a href="{{ route('secure-payment', [
-                    'guid' => $order->guid,
-                    'firstName' => $order->contact_person_first_name,
-                    'lastName' => $order->contact_person_last_name,
-                    'email' => $order->organization_email,
-                    'orderNo' => $order->identifier,
-                    'amount' => $order->total
-                ]) }}">
-                    <img src="{{ public_path('resources/images/Buton-Plata-Online.png') }}">
-                </a>
-                @endif
-            
-        {{-- </tr> --}}
+    <br>
+    <h2>Order GUID: {{ $order->guid }}</h2>
 
 </div>
