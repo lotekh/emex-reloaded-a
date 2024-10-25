@@ -1,5 +1,6 @@
 <head>
-    <meta charset="UTF-8">
+    {{-- <meta charset="UTF-8"> --}}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 
 <style>
@@ -37,8 +38,12 @@
         font-style: italic;
     } */
 
-    body {
+    /* body {
         font-family: "Times New Roman", serif;
+    } */
+
+    body { 
+        font-family: DejaVu Sans, sans-serif; 
     }
 
     #summary_bill_container>* {
@@ -386,20 +391,10 @@
         
     <div style="float: right; margin-top: 7px; padding-right: 35px; max-width:200px;">
         @if($order['payment_method'] != 'ramburs')
-            <a href="{{ route('secure-payment', [
-                'guid' => $order->guid,
-                'firstName' => $order->contact_person_first_name,
-                'lastName' => $order->contact_person_last_name,
-                'email' => $order->organization_email,
-                'orderNo' => $order->identifier,
-                'amount' => $order->total
-            ]) }}">
+            <a href="/secure-payment?guid={{$order->guid}}&orderNo={{$order->identifier}}&firstName={{$order->contact_person_first_name}}&lastName={{$order->contact_person_last_name}}&email={{$order->organization_email}}&amount={{$order->total}}">
                 <img src="{{ public_path('resources/images/Buton-Plata-Online.png') }}">
             </a>
         @endif
     </div>
-
-    <br>
-    <h2>Order GUID: {{ $order->guid }}</h2>
 
 </div>
