@@ -12,7 +12,7 @@
             </svg>
         </button>
         <a href="{{ url('/') }}" title="Pagina principala" class="mobile-logo">
-            <img src="{{ asset('resources/new_design/general/logo.png') }}" height="47.22" width="144" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim" class="logo">
+            <img src="{{ asset('resources/new_design/general/logo.png') }}" height="47" width="144" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim" class="logo">
         </a>
 
         <div class="row gap-lg w-full justify-end">
