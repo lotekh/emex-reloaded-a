@@ -93,7 +93,7 @@
                             $proformaUrl = asset('storage/' . $proformaPath);
                         @endphp
                         <a href="{{$proformaUrl}}" target="_blank">
-                            <button id="descarca_proforma" class="btn btn-blue rounded-sm">Descarcă Proforma</button>
+                            <button id="descarca_proforma" class="btn btn-blue rounded-sm">Exporta ca PDF</button>
                         </a>
                         
                         
