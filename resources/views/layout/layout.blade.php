@@ -85,7 +85,7 @@
                             Contul meu
                         </span>
                     @endauth
-                    <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
+                    <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more arrow" title="See more">
                 </div>
                 <div class="col dropdown-menu">
                     @auth
