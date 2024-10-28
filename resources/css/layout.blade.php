@@ -5,20 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <link rel="icon" type="image/x-icon" href="{{ asset('resources/emex-favicon.ico') }}">
 
 
-    <link rel="stylesheet" href="{{ minify('css/adrian.css') }}">
-    <link rel="stylesheet" href="{{ minify('css/footer.css') }}">
-    <link rel="stylesheet" href="{{ minify('css/form.css') }}">
-    <link rel="stylesheet" href="{{ minify('css/generic.css') }}">
-    <link rel="stylesheet" href="{{ minify('css/header.css') }}">
-    <link rel="stylesheet" href="{{ minify('css/layout.css') }}">
-    <link rel="stylesheet" href="{{ minify('css/new.css') }}">
-    <link rel="stylesheet" href="{{ minify('css/root.css') }}">
-    <link rel="stylesheet" href="{{ minify('css/sprite.css') }}">
+    <link rel="stylesheet" href="{{ minify(/css/adrian.css')) }}">
+    <!-- <link rel="stylesheet" href="{{ minify(asset('css/footer.css')) }}">
+    <link rel="stylesheet" href="{{ minify(asset('css/form.css')) }}">
+    <link rel="stylesheet" href="{{ minify(asset('css/generic.css')) }}">
+    <link rel="stylesheet" href="{{ minify(asset('css/header.css')) }}">
+    <link rel="stylesheet" href="{{ minify(asset('css/layout.css')) }}">
+    <link rel="stylesheet" href="{{ minify(asset('css/new.css')) }}">
+    <link rel="stylesheet" href="{{ minify(asset('css/root.css')) }}">
+    <link rel="stylesheet" href="{{ minify(asset('css/sprite.css')) }}"> -->
     @yield('css')
     {{-- @vite('resources/css/app.css') --}}
 </head>
