@@ -89,12 +89,9 @@ class ProductResource extends Resource
                             ->schema(JSONLD::make()),
                         Tabs\Tab::make('Consumption')
                             ->schema([
-                                        Forms\Components\TextInput::make('consumption.surface_name')
-                                            ->required(),
-                                        Forms\Components\TextInput::make('consumption.surface_types')
-                                            ->required(),
+                                        Forms\Components\TextInput::make('consumption.surface_name'),
+                                        Forms\Components\TextInput::make('consumption.surface_types'),
                                         Forms\Components\TextInput::make('consumption.surface_type_name')
-                                            ->required(),
                             ]),
 
                         Tabs\Tab::make('Consumption SEO')

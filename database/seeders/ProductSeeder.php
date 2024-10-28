@@ -93,7 +93,7 @@ class ProductSeeder extends Seeder
                 }
             }
         }
-        return json_encode($seo);
+        return $seo;
     }
 
     public static function uploadFile($fileUrl, $dbProduct, $column)
