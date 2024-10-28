@@ -30,6 +30,8 @@ class ProductVariationSeeder extends Seeder
                 $quantityAndMeasurementUnit = explode(' ', $csvRow[1]);
                 $measurementUnit = MeasurementUnit::where('name', $quantityAndMeasurementUnit[1])->first();
 
+                $weight = $csvRow[10] ? $csvRow[10] : 0;
+
                 if($product && $measurementUnit) {
                     ProductVariation::create([
                         'product_id' => $product->id,
@@ -41,7 +43,7 @@ class ProductVariationSeeder extends Seeder
                         'addon_text' => $csvRow[7],
                         'ean' => $csvRow[8],
                         'sku' => $csvRow[9],
-                        'weight' => $csvRow[10],
+                        'weight' => $weight,
                     ]);
                 }
                 else {
