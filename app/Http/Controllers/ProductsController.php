@@ -104,7 +104,7 @@ class ProductsController extends Controller
 
     public function showProduct($slug, Request $request)
     {
-        $product = Product::where('slug', $slug)->with('featuredImage', 'variations', 'reviews')->firstOrFail();
+        $product = Product::where('slug', $slug)->with('largeImage', 'variations', 'reviews')->firstOrFail();
 
         $categories_products = $product->categories;
 

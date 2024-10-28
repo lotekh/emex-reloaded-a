@@ -50,7 +50,6 @@ class CategoryFiltersSeeder extends Seeder
                 }
 
                 while ($data = fgetcsv($handler, null, ',')) {
-                    $messages[] = $data;
                     if ($row > 0) {
                         $filter = [];
                         if($data[0]) {

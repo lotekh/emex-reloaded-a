@@ -9,7 +9,7 @@
     $initialEan = $initialVariation->ean ?? null;
     $initial_q = 1;
 
-    $featuredImageUrl = $product->featuredImage ? asset('storage/' . $product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
+    $largeImageUrl = $product->largeImage ? asset('storage/' . $product->largeImage->path) : $baseUrl . '/images/default-placeholder.png';
 
     // Calculate the average rating safely
     $rating_sum = 0;
@@ -26,7 +26,7 @@
         <div class="col flex-md">
             <div class="relative image-container z-0" style="text-align: center;">
                 <a href="{{ url($product->slug) }}">
-                    <img src="{{ $featuredImageUrl }}" alt="imagine" title="imagineprodus" style="height: 180px; max-width: 230px;">
+                    <img src="{{ $largeImageUrl }}" alt="imagine" title="imagineprodus" style="height: 180px; max-width: 230px;">
                 </a>
             </div>
             <div class="col w-full justify-between form-container">

@@ -28,10 +28,10 @@
         <div class="col">
             <div class="w-full h-full relative img-container">
                 @php
-                    $featuredImageUrl = $product->featuredImage ? asset('storage/' .$product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
+                    $largeImageUrl = $product->largeImage ? asset('storage/' .$product->largeImage->path) : $baseUrl . '/images/default-placeholder.png';
                 @endphp
 
-                <img class="contain featured-image-1" src="{{ $featuredImageUrl }}" alt="imagine" title="imagineprodus">
+                <img class="contain featured-image-1" src="{{ $largeImageUrl }}" alt="imagine" title="imagineprodus">
             </div>
         </div>
 

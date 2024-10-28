@@ -29,7 +29,7 @@ class ConsumController extends Controller
     {
         // Găsește produsul după consumption_slug
         $product = Product::where('consumption_slug', $consumption_slug)
-            ->with('categories', 'featuredImage', 'variations', 'reviews')
+            ->with('categories', 'largeImage', 'variations', 'reviews')
             ->firstOrFail();
         
         // Obține categoria principală a produsului (dacă există)

@@ -1,0 +1,18 @@
+/* custom css  */
+.cookie-notifier {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* background-color: rgba(23, 54, 71, 0.8); */
+    padding: 12px;
+    z-index: 1000;
+    text-align: center;
+    border-top: 2px solid #ff9800;
+    background-color: #173647;
+}
+.cookie-btn-container .info {
+    /* text-decoration: underline; */
+    color: var(--white);
+    margin-right: 16px;
+	}

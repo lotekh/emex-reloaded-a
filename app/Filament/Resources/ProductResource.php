@@ -8,6 +8,7 @@ use App\Helpers\JSONLD;
 use App\Helpers\SeoForm;
 use App\Models\Product;
 use Filament\Forms;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -40,11 +41,11 @@ class ProductResource extends Resource
                                     ->maxLength(255),
                                 Forms\Components\TextInput::make('sub_title')
                                     ->maxLength(255),
-                                Forms\Components\RichEditor::make('description')
+                                MarkdownEditor::make('description')
                                     ->columnSpanFull(),
-                                Forms\Components\RichEditor::make('usage_details')
+                                MarkdownEditor::make('usage_details')
                                     ->columnSpanFull(),
-                                Forms\Components\RichEditor::make('technical_details')
+                                MarkdownEditor::make('technical_details')
                                     ->columnSpanFull(),
                                 Forms\Components\Grid::make(3)
                                     ->schema([
@@ -79,7 +80,7 @@ class ProductResource extends Resource
                                 Forms\Components\TextInput::make('price_disclaimer')
                                     ->columnSpanFull()
                                     ->maxLength(255),
-                                Forms\Components\RichEditor::make('category_page_description')
+                                MarkdownEditor::make('category_page_description')
                                     ->columnSpanFull(),
                             ]),
                         Tabs\Tab::make('SEO')
