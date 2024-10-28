@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/anagajari.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/anagajari.css') }}">
 @endsection
 
 @section('breadcrumbs')
