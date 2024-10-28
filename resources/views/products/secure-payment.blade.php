@@ -115,8 +115,8 @@
                             <tr>
                                 <td class="name">
                                     @php
-                                        $imageUrl = $ordered_product->product->featuredImage 
-                                            ? asset('storage/' . $ordered_product->product->featuredImage->path) 
+                                        $imageUrl = $ordered_product->product->largeImage 
+                                            ? asset('storage/' . $ordered_product->product->largeImage->path) 
                                             : asset('images/default-placeholder.png'); 
                                     @endphp
 
