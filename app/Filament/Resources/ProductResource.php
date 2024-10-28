@@ -7,6 +7,8 @@ use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Helpers\JSONLD;
 use App\Helpers\SeoForm;
 use App\Models\Product;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\PathGenerators\DefaultPathGenerator;
 use Filament\Forms;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Tabs;
@@ -47,6 +49,19 @@ class ProductResource extends Resource
                                     ->columnSpanFull(),
                                 MarkdownEditor::make('technical_details')
                                     ->columnSpanFull(),
+                                Forms\Components\Grid::make(2)
+                                    ->schema([
+                                        CuratorPicker::make('large_image_id')
+                                            ->label('Large Image')
+                                            ->relationship('largeImage', 'large_image_id')
+                                            ->pathGenerator(DefaultPathGenerator::class)
+                                            ->preserveFilenames(),
+                                        CuratorPicker::make('small_image_id')
+                                            ->label('Small Image')
+                                            ->relationship('smallImage', 'small_image_id')
+                                            ->pathGenerator(DefaultPathGenerator::class)
+                                            ->preserveFilenames(),
+                                    ]),
                                 Forms\Components\Grid::make(3)
                                     ->schema([
                                         Forms\Components\Toggle::make('has_palette')

@@ -6,6 +6,7 @@ use App\Models\Media;
 use App\Models\Product;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
@@ -124,16 +125,34 @@ class ProductSeeder extends Seeder
                         }
 
                         $extension = explode('.', $filename)[1];
+                        $filenameWithoutExtension = explode('.', $filename)[0];
+
+                        switch($extension) {
+                            case 'webp':
+                                $type = 'image/webp';
+                                break;
+                            case 'jpg':
+                                $type = 'image/jpg';
+                                break;
+                            case 'pdf':
+                                $type = 'application/pdf';
+                                break;
+                            case 'png':
+                                $type = 'image/png';
+                                break; 
+                            default: 
+                                $type = '???';
+                        }
 
                         Media::create([
                             'disk' => 'public',
                             'directory' => 'media/' . $newId,
                             'visibility' => 'public',
-                            'name' => $dbProduct->id,
+                            'name' => $filenameWithoutExtension,
                             'path' => 'media/' . $dbProduct->slug . '/' . $filename,
                             'height' => $height,
                             'width' => $width,
-                            'type' => 'image/jpg',
+                            'type' => $type,
                             'ext' => $extension,
                         ]);
 
@@ -142,7 +161,7 @@ class ProductSeeder extends Seeder
                     }
                 }
             } catch (\Exception $e) {
-                dd($e);
+                Log::error($e);
             }
         }
     }

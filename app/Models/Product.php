@@ -125,6 +125,10 @@ class Product extends Model
         return $this->belongsTo(Media::class, 'technical_file_id', 'id');
     }
 
+    public function seoOgImage(): BelongsTo
+    {
+        return $this->belongsTo(Media::class, 'og_image_id', 'id');
+    }
 
     public function consumptionSeoOgImage(): BelongsTo
     {

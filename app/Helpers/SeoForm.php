@@ -60,11 +60,10 @@ class SeoForm
                                 ->label('OG Description')
                                 ->rows(3)
                                 ->columnSpan(3),
-                            CuratorPicker::make($prefix . 'og_image_id')
+                            CuratorPicker::make('og_image_id')
                                 ->label('OG Image')
-                                ->relationship($prefix ? str_replace($prefix, '_', '') . 'SeoOgImage' : 'seoOgImage', 'id')
+                                ->relationship('seoOgImage', 'og_image_id')
                                 ->pathGenerator(DefaultPathGenerator::class)
-                                ->tenantAware(false)
                                 ->preserveFilenames()
                                 ->columnSpan(3),
                             TextInput::make($prefix . 'seo.og_image_width')
