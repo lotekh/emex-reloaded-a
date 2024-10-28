@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
     <link rel="stylesheet" href="{{ asset('css/new.css') }}">
     <link rel="stylesheet" href="{{ asset('css/root.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/sprite.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/sprite.css') }}"> --}}
     @yield('css')
     {{-- @vite('resources/css/app.css') --}}
 </head>

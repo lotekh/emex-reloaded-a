@@ -5,8 +5,8 @@
     <link rel="stylesheet" href="{{ asset('css/product-card.css') }}">
     <link rel="stylesheet" href="{{ asset('css/product-page.css') }}">
     <link rel="stylesheet" href="{{ asset('css/tabs.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}"> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('css/pagination.css') }}"> --}}
 @endsection
 
 @section('breadcrumbs')
