@@ -1,12 +1,10 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/produs.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/product-card.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/product-page.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/tabs.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}"> --}}
-    {{-- <link rel="stylesheet" href="{{ asset('css/pagination.css') }}"> --}}
+    <link rel="stylesheet" href="{{ minify('css/produs.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/product-card.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/product-page.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/tabs.css') }}">
 @endsection
 
 @section('breadcrumbs')
