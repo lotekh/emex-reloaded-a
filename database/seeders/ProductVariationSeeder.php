@@ -38,7 +38,7 @@ class ProductVariationSeeder extends Seeder
                         'measurement_unit_id' => $measurementUnit->id,
                         'quantity' => $quantityAndMeasurementUnit[0],
                         'colour' => $csvRow[2],
-                        'price' => $csvRow[5],
+                        'price' => doubleval($csvRow[5]),
                         'name' => $csvRow[6],
                         'addon_text' => $csvRow[7],
                         'ean' => $csvRow[8],
