@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/product-card.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/product-card.css') }}">
 @endsection
 
 @section('breadcrumbs')
@@ -64,7 +64,7 @@
                   <td>
                       <a href="{{ url($ordered_product->product->slug) }}" class="flex align-center">
                           <div>
-                              <img layout="fixed" width="90px" height="90px" src="{{ $ordered_product->product->featuredImage ? asset('storage/' . $ordered_product->product->featuredImage->path) : asset('/images/default-placeholder.png') }}" alt="{{ strip_tags($ordered_product->product->name) }}">
+                              <img layout="fixed" width="90px" height="90px" src="{{ $ordered_product->product->largeImage ? asset('storage/' . $ordered_product->product->largeImage->path) : asset('/images/default-placeholder.png') }}" alt="{{ strip_tags($ordered_product->product->name) }}">
                           </div>
                           {{-- Get the product name until the first '-' sign --}}
                           <h3 class="normal-weight">{{ \Illuminate\Support\Str::before($ordered_product->name, ' -') }}</h3>
@@ -134,7 +134,7 @@
           <div class="w-full">
             <div class="relative image-container z-0 mb-16">
               <a href="{{ url($ordered_product->product->slug) }}">
-                {{-- <img src="{{ $ordered_product->product->featuredImage ? asset('storage/' . $ordered_product->product->featuredImage->path) : asset('/images/default-placeholder.png') }}" 
+                {{-- <img src="{{ $ordered_product->product->largeImage ? asset('storage/' . $ordered_product->product->largeImage->path) : asset('/images/default-placeholder.png') }}" 
                      alt="{{ strip_tags($ordered_product->product->name) }}" 
                      title="{{ strip_tags($ordered_product->product->name) }}" 
                      width="90" height="90"> --}}

@@ -1,12 +1,10 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/produs.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/product-card.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/product-page.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/tabs.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/produs.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/product-card.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/product-page.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/tabs.css') }}">
 @endsection
 
 @section('breadcrumbs')
@@ -28,10 +26,10 @@
         <div class="col">
             <div class="w-full h-full relative img-container">
                 @php
-                    $featuredImageUrl = $product->featuredImage ? asset('storage/' .$product->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
+                    $largeImageUrl = $product->largeImage ? asset('storage/' .$product->largeImage->path) : $baseUrl . '/images/default-placeholder.png';
                 @endphp
 
-                <img class="contain featured-image-1" src="{{ $featuredImageUrl }}" alt="imagine" title="imagineprodus">
+                <img class="contain featured-image-1" src="{{ $largeImageUrl }}" alt="imagine" title="imagineprodus">
             </div>
         </div>
 

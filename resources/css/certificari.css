@@ -1,0 +1,93 @@
+.certificari h1 {
+  position: relative;
+
+  padding: 24px 40px;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  text-shadow: 0px 0px 5px #000000;
+  color: var(--white);
+}
+
+.certificari h1::before {
+  border-image-width: 8px;
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 8px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 25%,
+    rgba(255, 255, 255, 0) 75%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.header_img_bg {
+  height: 500px;
+  display: none;
+  width: 100%;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#header_img_bg {
+  background-image: url("resources/images/Certificari-ISO-Romtehnochim.jpg");
+}
+
+@media (min-width: 768px) {
+  .header_img_bg {
+    display: flex;
+  }
+}
+
+.certificates-slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%; /* Ajustează această valoare dacă este necesar */
+}
+
+.certificate-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px; /* Ajustează dimensiunea containerului dacă este necesar */
+  margin: auto;
+  overflow: hidden;
+}
+
+button.prev,
+button.next {
+  position: absolute;
+  top: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 18px;
+  transform: translateY(-50%);
+  z-index: 100;
+}
+
+button.prev {
+  left: 0;
+}
+
+button.next {
+  right: 0;
+}
+
+.responsive-img {
+  width: 100%; /* Ajustare pentru a face imaginea responsive */
+  height: auto;
+}

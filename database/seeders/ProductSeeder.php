@@ -6,6 +6,7 @@ use App\Models\Media;
 use App\Models\Product;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,9 +22,9 @@ class ProductSeeder extends Seeder
         Schema::enableForeignKeyConstraints();
 
         $jsonFile = resource_path('json/productsImport.json');
-        $products = array_values((array)json_decode(file_get_contents($jsonFile), true))[0];
+        $products = array_values((array)json_decode(file_get_contents($jsonFile), true))[2]['data'];
 
-        foreach($products as $product) {
+        foreach ($products as $product) {
             $seo = self::generateSeo($product);
             $consumptionSeo = self::generateSeo($product, 'consumption_seo_');
             $availableSince = $product['disponibil_din_data'] ? date('Y-m-d', strtotime($product['disponibil_din_data'])) : null;
@@ -58,13 +59,15 @@ class ProductSeeder extends Seeder
                 'is_package' => $product['is_package'],
             ]);
 
-            $dbProduct->categories()->attach($product['category_id'],['order' => $product['sort_priority']]);
+            $dbProduct->categories()->attach($product['category_id'], ['order' => $product['sort_priority']]);
 
             //TO DO image, technical file
-            $mainImageUrl = self::constructMainImageUrl($product);
+            $largeImageUrl = self::constructImageUrl($product, 'large_image_path');
+            $smallImageUrl = self::constructImageUrl($product, 'small_image_path');
             $technicalFileUrl = self::constructTechnicalFileUrl($product);
 
-            self::uploadFile($mainImageUrl, $dbProduct, 'featured_image_id');
+            self::uploadFile($largeImageUrl, $dbProduct, 'large_image_id');
+            self::uploadFile($smallImageUrl, $dbProduct, 'small_image_id');
             self::uploadFile($product['seo_og_image'], $dbProduct, 'og_image_id');
             self::uploadFile($product['consum_seo_og_image'], $dbProduct, 'consumption_og_image_id');
             self::uploadFile($product['seo_twitter_image'], $dbProduct, 'twitter_image_id');
@@ -73,65 +76,105 @@ class ProductSeeder extends Seeder
         }
     }
 
-    public static function generateSeo($category, $prefix = 'seo_') {
+    public static function generateSeo($category, $prefix = 'seo_')
+    {
         $seo = [];
         $avilableSeoAttributes = ['title', 'og_url', 'og_type', 'og_title', 'fb_app_id', 'og_locale', 'twitter_url', 'og_image_alt', 'og_site_name', 'twitter_card', 'twitter_site', 'meta_keywords',  'twitter_title', 'og_description', 'og_image_width', 'og_image_height', 'meta_description', 'twitter_image_alt', 'twitter_description'];
 
-        foreach($avilableSeoAttributes as $attribute) {
+        foreach ($avilableSeoAttributes as $attribute) {
             $seo[$attribute] = null;
         }
 
-        foreach($category as $attribute => $value) {
-            if(str_contains($attribute, 'seo_')) {
+        foreach ($category as $attribute => $value) {
+            if (str_contains($attribute, 'seo_')) {
                 $newAttributeName = substr($attribute, 4);
 
-                if(in_array($newAttributeName, $avilableSeoAttributes)) {
+                if (in_array($newAttributeName, $avilableSeoAttributes)) {
                     $seo[$newAttributeName] = $value;
                 }
             }
         }
-        return json_encode($seo);
+        return $seo;
     }
 
-    public static function uploadFile($seoOgImage, $dbProduct, $column, $extension = 'jpg') {
-        if($seoOgImage) {
+    public static function uploadFile($fileUrl, $dbProduct, $column)
+    {
+        $parts = explode('/', $fileUrl);
+        $filename = end($parts);
+
+        if ($fileUrl) {
             try {
-                $imageContent = file_get_contents($seoOgImage);
-                if($imageContent) {
-                    $maxId = Media::max('id');
-                    $newId = $maxId + 1;
-                    $image = '/media/' . $newId . '/' . $dbProduct->id . $extension;
-                    Storage::disk('public')->put($image, $imageContent);
-    
-                    Media::create([
-                        'disk' => 'public',
-                        'directory' => 'media/' . $newId,
-                        'visibility' => 'public',
-                        'name' => $dbProduct->id,
-                        'path' => 'media/' . $newId . '/' . $dbProduct->id . $extension,
-                        'height' => 628,
-                        'width' => 1200,
-                        'type' => 'image/jpg',
-                        'ext' => 'jpg',
-                    ]);
-    
-                    $dbProduct->$column = $newId;
-                    $dbProduct->save();
+                $header = get_headers($fileUrl);
+
+                if (strpos($header[0], '404') === false) {
+                    $imageContent = file_get_contents($fileUrl);
+                    if ($imageContent) {
+                        $maxId = Media::max('id');
+                        $newId = $maxId + 1;
+                        $image = '/media/' . $dbProduct->slug . '/' . $filename;
+                        Storage::disk('public')->put($image, $imageContent);
+                        $path = public_path('storage' . $image);
+
+                        $data = getimagesize($path);
+                        if ($data) {
+                            $width = $data[0];
+                            $height = $data[1];
+                        } else {
+                            $width = null;
+                            $height = null;
+                        }
+
+                        $extension = explode('.', $filename)[1];
+                        $filenameWithoutExtension = explode('.', $filename)[0];
+
+                        switch($extension) {
+                            case 'webp':
+                                $type = 'image/webp';
+                                break;
+                            case 'jpg':
+                                $type = 'image/jpg';
+                                break;
+                            case 'pdf':
+                                $type = 'application/pdf';
+                                break;
+                            case 'png':
+                                $type = 'image/png';
+                                break; 
+                            default: 
+                                $type = '???';
+                        }
+
+                        Media::create([
+                            'disk' => 'public',
+                            'directory' => 'media/' . $newId,
+                            'visibility' => 'public',
+                            'name' => $filenameWithoutExtension,
+                            'path' => 'media/' . $dbProduct->slug . '/' . $filename,
+                            'height' => $height,
+                            'width' => $width,
+                            'type' => $type,
+                            'ext' => $extension,
+                        ]);
+
+                        $dbProduct->$column = $newId;
+                        $dbProduct->save();
+                    }
                 }
-            }
-            catch(\Exception $e) {
-                echo $e->getMessage();
+            } catch (\Exception $e) {
+                Log::error($e);
             }
         }
     }
 
-    public static function constructMainImageUrl($product) {
+    public static function constructImageUrl($product, $param)
+    {
         $site = 'https://vopsele.xyz/images/';
-        
-        return $site . $product['image_path'] . '/' . $product['image_file_name'];
+
+        return $site . $product[$param];
     }
 
-    public static function constructTechnicalFileUrl($product) {
+    public static function constructTechnicalFileUrl($product)
+    {
         $site = 'https://vopsele.xyz/';
 
         return $site . $product['fisa_tehnica'];

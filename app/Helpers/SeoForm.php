@@ -3,12 +3,12 @@
 namespace App\Helpers;
 
 use Awcodes\Curator\Components\Forms\CuratorPicker;
-use Awcodes\Curator\PathGenerators\UserPathGenerator;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Grid;
+use Awcodes\Curator\PathGenerators\DefaultPathGenerator;
 
 class SeoForm
 {
@@ -60,11 +60,10 @@ class SeoForm
                                 ->label('OG Description')
                                 ->rows(3)
                                 ->columnSpan(3),
-                            CuratorPicker::make($prefix . 'og_image_id')
+                            CuratorPicker::make('og_image_id')
                                 ->label('OG Image')
-                                ->relationship($prefix ? str_replace($prefix, '_', '') . 'SeoOgImage' : 'seoOgImage', 'id')
-                                ->pathGenerator(UserPathGenerator::class)
-                                ->tenantAware(false)
+                                ->relationship('seoOgImage', 'og_image_id')
+                                ->pathGenerator(DefaultPathGenerator::class)
                                 ->preserveFilenames()
                                 ->columnSpan(3),
                             TextInput::make($prefix . 'seo.og_image_width')
@@ -110,8 +109,8 @@ class SeoForm
                             CuratorPicker::make($prefix . 'twitter_image_id')
                                 ->label('Twitter Image')
                                 ->relationship($prefix ? str_replace($prefix, '_', '').'SeoTwitterImage' : 'seoTwitterImage', 'id')
-                                ->pathGenerator(UserPathGenerator::class)
-                                ->tenantAware(false)
+                                ->pathGenerator(DefaultPathGenerator::class)
+                                // ->tenantAware(false)
                                 ->preserveFilenames()
                                 ->columnSpan(3),
                             TextInput::make($prefix . 'seo.twitter_image_alt')

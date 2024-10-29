@@ -117,7 +117,7 @@
     p.id {
         font-size: 14px;
         font-weight: bold;
-        margin: 20px 0 30px;
+        /* margin: 20px 0 30px; */
     }
     .small-font p {
         margin: 0;
@@ -172,7 +172,7 @@
                     <td style="padding: 5px"></td>
                 </tr>
                 <tr class="col-12">
-                    <td class="col-8" style="padding-bottom: 9px">
+                    <td class="col-8" style="padding-bottom: 3px">
                         <h2>Proforma</h2>
                         <p>Data emiterii: {{ \Carbon\Carbon::parse($order['created_at'])->format('d-m-Y') }}</p>
                     </td>
@@ -339,7 +339,7 @@
         <td colspan="4" style="text-align: right; padding: 10px 5px; font-weight: bold" class="table-borders-none">Total General</td>
         <td colspan="2" style="text-align: center; padding: 10px 5px; font-weight: bold" class="ta_r table-borders-none">{{ number_format($order['total'], 2, '.', ',') }} lei</td>
     </tr>
-    <tr style="margin: 0">
+    {{-- <tr style="margin: 0">
         <td colspan="6" style="text-align: right; padding: 10px 5px" class="table-borders-none">
             @if($order['payment_method'] != 'ramburs')
             <a href="{{ url('/') }}">
@@ -347,9 +347,27 @@
             </a>
             @endif
         </td>
-    </tr>
+    </tr> --}}
 </table>
-
+    
+@if($order['payment_method'] != 'ramburs')
+    <a href="https://www.google.com/?hl=ro"></a>
+@endif
+        
+<div style="float: right; margin-top: 1px; padding-right: 35px; max-width:200px;">
+    @if($order['payment_method'] != 'ramburs')
+        <a href="{{ route('secure-payment', [
+            'guid' => $order->guid,
+            'firstName' => $order->contact_person_first_name,
+            'lastName' => $order->contact_person_last_name,
+            'email' => $order->organization_email,
+            'orderNo' => $order->identifier,
+            'amount' => $order->total
+        ]) }}">
+            <img src="{{ asset('resources/images/Buton-Plata-Online.png') }}">
+        </a>
+    @endif
+</div>
 
 
 </div>

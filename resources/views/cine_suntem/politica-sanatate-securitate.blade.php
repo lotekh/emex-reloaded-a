@@ -1,8 +1,8 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/politica-de-securitate.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/tabs.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/politica-de-securitate.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/tabs.css') }}">
 @endsection
 
 @section('breadcrumbs')

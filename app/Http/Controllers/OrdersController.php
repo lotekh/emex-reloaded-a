@@ -18,7 +18,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
-
 class OrdersController extends Controller
 {
     public function index()

@@ -1,8 +1,8 @@
 @extends('layout.layout')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/product-card.css') }}">
-<link rel="stylesheet" href="{{ asset('css/cart.css') }}">
+<link rel="stylesheet" href="{{ minify('css/product-card.css') }}">
+<link rel="stylesheet" href="{{ minify('css/cart.css') }}">
 @endsection
 
 @section('breadcrumbs')

@@ -11,6 +11,7 @@ use App\Models\Tag;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\PathGenerators\UserPathGenerator;
 use Filament\Forms;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -55,7 +56,7 @@ class BlogArticleResource extends Resource
                                     })
                                     ->multiple()
                                     ->required(),
-                                Forms\Components\RichEditor::make('body')
+                                MarkdownEditor::make('body')
                                     ->required()
                                     ->columnSpanFull(),
                                 CuratorPicker::make('featured_image_id')

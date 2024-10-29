@@ -8,6 +8,7 @@ use App\Helpers\JSONLD;
 use App\Helpers\SeoForm;
 use App\Models\Category;
 use Filament\Forms;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Form;
 use Filament\Resources\Components\Tab;
@@ -40,7 +41,7 @@ class CategoryResource extends Resource
                                     ->required()
                                     ->columnSpanFull()
                                     ->maxLength(255),
-                                Forms\Components\RichEditor::make('description')
+                                MarkdownEditor::make('description')
                                     ->columnSpanFull(),
                                 Forms\Components\Toggle::make('active')
                                     ->required()

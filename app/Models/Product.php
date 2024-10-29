@@ -19,7 +19,8 @@ class Product extends Model
         'consumption_og_image_id',
         'twitter_image_id',
         'consumption_twitter_image_id',
-        'featured_image_id',
+        'large_image_id',
+        'small_image_id',
         'technical_file_id',
         'slug',
         'name',
@@ -109,9 +110,14 @@ class Product extends Model
         return $this->belongsToMany(User::class, 'wishlist_items', 'user_id', 'product_id');
     }
 
-    public function featuredImage(): BelongsTo
+    public function largeImage(): BelongsTo
     {
-        return $this->belongsTo(Media::class, 'featured_image_id', 'id');
+        return $this->belongsTo(Media::class, 'large_image_id', 'id');
+    }
+
+    public function smallImage(): BelongsTo
+    {
+        return $this->belongsTo(Media::class, 'small_image_id', 'id');
     }
 
     public function technicalFile(): BelongsTo 
@@ -119,6 +125,10 @@ class Product extends Model
         return $this->belongsTo(Media::class, 'technical_file_id', 'id');
     }
 
+    public function seoOgImage(): BelongsTo
+    {
+        return $this->belongsTo(Media::class, 'og_image_id', 'id');
+    }
 
     public function consumptionSeoOgImage(): BelongsTo
     {

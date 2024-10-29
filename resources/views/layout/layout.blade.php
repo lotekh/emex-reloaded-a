@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="ro">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +10,14 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('resources/emex-favicon.ico') }}">
 
 
-    <link rel="stylesheet" href="{{ asset('css/adrian.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/generic.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/new.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/root.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/sprite.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/adrian.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/footer.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/form.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/generic.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/header.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/layout.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/new.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/root.css') }}">
     @yield('css')
     {{-- @vite('resources/css/app.css') --}}
 </head>
@@ -85,7 +84,7 @@
                             Contul meu
                         </span>
                     @endauth
-                    <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
+                    <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more arrow" title="See more">
                 </div>
                 <div class="col dropdown-menu">
                     @auth
@@ -209,9 +208,9 @@
                         <div></div>
                         <img class="logo-footer" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
                         <button onclick="closeModal('auth-lightbox')" role="button" tabindex="0" class="close-btn" aria-label="Inchide">
-                            <div class="flex align-center">
+                            <span class="flex align-center">
                                 <img src="{{ asset('resources/new_design/icons/close.svg') }}" alt="close" width="32" height="32">
-                            </div>
+                            </span>
                         </button>
                     </div>
                     <div class="header-buttons">
@@ -244,9 +243,9 @@
                         <div></div>
                         <img class="logo-footer" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
                         <button onclick="closeModal('register-lightbox')" role="button" tabindex="0" class="close-btn" aria-label="Inchide">
-                            <div class="flex align-center">
+                            <span class="flex align-center">
                                 <img src="{{ asset('resources/new_design/icons/close.svg') }}" alt="close" width="32" height="32">
-                            </div>
+                            </span>
                         </button>
                     </div>
                     <div class="header-buttons">
@@ -303,9 +302,9 @@
                         <div></div>
                         <img class="logo-footer" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
                         <button onclick="closeModal('recover-password-lightbox')" role="button" tabindex="0" class="close-btn" aria-label="Recupereaza parola">
-                            <div class="flex align-center">
+                            <span class="flex align-center">
                                 <img src="{{ asset('resources/new_design/icons/close.svg') }}" alt="close" width="32" height="32">
-                            </div>
+                            </span>
                         </button>
                     </div>
                     <div class="col align-center content">
