@@ -107,7 +107,7 @@
     p.id {
         font-size: 14px;
         font-weight: bold;
-        margin: 20px 0 30px;
+        margin: 20px 0 12px;
     }
     .small-font p {
         margin: 0;

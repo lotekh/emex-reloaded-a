@@ -1,0 +1,52 @@
+.desktop-cart {
+  display: table;
+}
+
+.desktop-cart h5 {
+  white-space: break-spaces;
+}
+
+.mobile-cart {
+  display: none;
+  font-size: 18px;
+}
+
+.mobile-cart span,
+p {
+  font-size: 14px;
+}
+
+@media screen and (max-width: 1024px) {
+  .desktop-cart {
+    display: none;
+  }
+
+  .mobile-cart {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+#wishlist-page .btn {
+  width: 200px;
+}
+
+.mobile-cart .product-card {
+  padding: 8px;
+}
+
+.mobile-cart button.delete {
+  position: absolute;
+  top: 16px;
+  right: 12px;
+}
+
+.mobile-cart button.delete img {
+  width: 24px;
+  height: 24px;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  opacity: 1;
+}

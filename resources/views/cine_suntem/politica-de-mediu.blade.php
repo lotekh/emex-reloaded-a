@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/politica-de-mediu.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/politica-de-mediu.css') }}">
 @endsection
 
 @section('breadcrumbs')
