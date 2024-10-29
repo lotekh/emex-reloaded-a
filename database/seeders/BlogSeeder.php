@@ -23,24 +23,49 @@ class BlogSeeder extends Seeder
         foreach($articles as $article) {
             $tags = explode(',', $article['tags']);
 
-            $article = BlogArticle::firstOrCreate([
-                'title' => $article['post_title'],
-                'slug' => $article['post_name'],
-                'body' => $article['post_content'],
-                'created_at' => $article['post_date'],
-            ]);
+            $seo = json_decode($article['seo'], true);
+            $newSeo = [];
 
-            self::uploadFile($article['image_url'], $article);
+            foreach($seo as $seoTag) {
+                if (strpos($seoTag['key'], 'scp_fields') !== false) {
+                    $newKey = substr($seoTag['key'], 11);
+                    if($newKey != 'og_image' && $newKey != 'twitter_image') {
+                        $newSeo[$newKey] = $seoTag['value'];
+                    }
+                    else {
+                        if($newKey == 'og_image') {
+                            $ogImageUrl = $seoTag['value'];
+                        }
+                        else if($newKey == 'twitter_image') {
+                            $twitterImageUrl = $seoTag['value'];
+                        }
+                    }
+                }
+            }
 
-            foreach($tags as $tag) {
-                $newTag = Tag::firstOrCreate(['name' => $tag]);
-
-                $article->tags()->attach($newTag->id);
+            if(!BlogArticle::where('slug', $article['post_name'])->exists()) {
+                $dbArticle = BlogArticle::firstOrCreate([
+                    'title' => $article['post_title'],
+                    'slug' => $article['post_name'],
+                    'body' => $article['post_content'],
+                    'created_at' => $article['post_date'],
+                    'seo' => $newSeo,
+                ]);
+    
+                self::uploadFile($article['image_url'], $dbArticle, 'featured_image_id');
+                self::uploadFile($ogImageUrl, $dbArticle, 'og_image_id');
+                self::uploadFile($twitterImageUrl, $dbArticle, 'twitter_image_id');
+    
+                foreach($tags as $tag) {
+                    $newTag = Tag::firstOrCreate(['name' => $tag]);
+    
+                    $dbArticle->tags()->attach($newTag->id);
+                }
             }
         }
     }
 
-    public static function uploadFile($fileUrl, $article)
+    public static function uploadFile($fileUrl, $article, $column)
     {
         $parts = explode('/', $fileUrl);
         $filename = end($parts);
@@ -99,7 +124,7 @@ class BlogSeeder extends Seeder
                             'ext' => $extension,
                         ]);
 
-                        $article->featured_image_id = $newId;
+                        $article->$column = $newId;
                         $article->save();
                     }
                 }
