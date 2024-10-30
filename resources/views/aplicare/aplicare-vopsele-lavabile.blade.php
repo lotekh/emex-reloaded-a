@@ -1,12 +1,12 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="{{ minify('css/produs.css') }}">
-    <link rel="stylesheet" href="{{ minify('css/product-card.css') }}">
-    <link rel="stylesheet" href="{{ minify('css/product-page.css') }}">
-    <link rel="stylesheet" href="{{ minify('css/tabs.css') }}">
-    <link rel="stylesheet" href="{{ minify('css/pagination.css') }}">
-    <link rel="stylesheet" href="{{ minify('css/aplicare.css') }}">
+    <link rel="stylesheet" href="/{{ minify('css/produs.css') }}">
+    <link rel="stylesheet" href="/{{ minify('css/product-card.css') }}">
+    <link rel="stylesheet" href="/{{ minify('css/product-page.css') }}">
+    <link rel="stylesheet" href="/{{ minify('css/tabs.css') }}">
+    <link rel="stylesheet" href="/{{ minify('css/pagination.css') }}">
+    <link rel="stylesheet" href="/{{ minify('css/aplicare.css') }}">
 @endsection
 
 @section('breadcrumbs')
