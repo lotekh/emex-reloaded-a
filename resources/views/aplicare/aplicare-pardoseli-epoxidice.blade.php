@@ -1,8 +1,7 @@
 @extends('aplicare.layout') 
 
 @section('css')
-  <link rel="stylesheet" href="{{ asset('css/aplicare.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
+  <link rel="stylesheet" href="{{ minify('css/aplicare.css') }}">
 @endsection
 
 @section('breadcrumbs')

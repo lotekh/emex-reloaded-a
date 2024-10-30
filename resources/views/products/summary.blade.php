@@ -1,11 +1,10 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/produs.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/product-card.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/product-page.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/tabs.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/produs.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/product-card.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/product-page.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/tabs.css') }}">
 @endsection
 
 @section('breadcrumbs')
@@ -93,7 +92,7 @@
                             $proformaUrl = asset('storage/' . $proformaPath);
                         @endphp
                         <a href="{{$proformaUrl}}" target="_blank">
-                            <button id="descarca_proforma" class="btn btn-blue rounded-sm">Descarcă Proforma</button>
+                            <button id="descarca_proforma" class="btn btn-blue rounded-sm">Exporta ca PDF</button>
                         </a>
                         
                         

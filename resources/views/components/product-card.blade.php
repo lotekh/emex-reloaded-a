@@ -58,12 +58,11 @@
       </div>
 
       @php
-        $largeImageUrl = $product->largeImage ? asset('storage/' .$product->largeImage->path) : $baseUrl . '/images/default-placeholder.png';
-        // dd($product->largeImage);
+        $smallImageUrl = $product->smallImage ? asset('storage/' .$product->smallImage->path) : $baseUrl . '/images/default-placeholder.png';
       @endphp
 
       <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
-        <img src="{{ $largeImageUrl }}" alt="{{ $product->name }}" title="{{ $product->name }}" width="300" height="300">
+        <img src="{{ $smallImageUrl }}" alt="{{ $product->name }}" title="{{ $product->name }}">
       </a>
     </div>
 

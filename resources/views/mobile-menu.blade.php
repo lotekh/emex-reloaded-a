@@ -12,7 +12,7 @@
             </svg>
         </button>
         <a href="{{ url('/') }}" title="Pagina principala" class="mobile-logo">
-            <img src="{{ asset('resources/new_design/general/logo.png') }}" height="47.22" width="144" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim" class="logo">
+            <img src="{{ asset('resources/new_design/general/logo.png') }}" height="47" width="144" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim" class="logo">
         </a>
 
         <div class="row gap-lg w-full justify-end">
@@ -52,7 +52,7 @@
             <form class="relative col justify-center align-center w-full h-full gap-xs" method="GET" action="{{ url('/search') }}">
                 @csrfWithoutAutocomplete
                 <div class="row w-full align-center">
-                    <img src="{{ asset('resources/new_design/icons/search.svg') }}" id="search-icon" width="16" height="16">
+                    <img src="{{ asset('resources/new_design/icons/search.svg') }}" id="search-icon" alt="search-icon" width="16" height="16">
                     <input id="search-input-mobile" type="text" name="zoom_query" class="form-control w-full" placeholder="Cauta dupa nume produs sau cod SKU">
                 </div>
                 <div class="btns">
