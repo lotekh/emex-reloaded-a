@@ -76,7 +76,7 @@ $currentPage = 0;
 
             <div class="steps_content">
                 <form action="{{ route('consum.store') }}" method="POST" id="consum_form">
-                    @csrf
+                    @csrfWithoutAutocomplete
                     <input type="hidden" name="calculate" value="1">
                     <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
                     <input type="hidden" name="consumption_slug" value="{{ $product->consumption_slug }}">

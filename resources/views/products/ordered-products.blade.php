@@ -16,7 +16,7 @@
     </h1>
     @if(!empty($ordered_products))
       <form method="POST" action="{{ route('orders.empty') }}" style="display: none;">
-        @csrf
+        @csrfWithoutAutocomplete
         <button id="delete-all" class="flex align-center grey-button" type="submit">
             <img width="18" height="18" src="{{ asset('resources/new_design/icons/bin-grey.svg') }}">
             <span class="ml-8">Sterge tot</span>
@@ -75,7 +75,7 @@
                     <div class="quantity-selector flex text-center">
                       {{-- Lower the quantity by 1 --}}
                       <form method="POST" action="{{ route('orders.updateQuantity') }}">
-                        @csrf
+                        @csrfWithoutAutocomplete
                         <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
                         <input type="hidden" name="quantity" value="{{ max(1, $ordered_product->ordered_quantity - 1) }}">
                         <button type="submit" aria-label="Scade cantitatea">-</button>
@@ -84,7 +84,7 @@
                       {{-- {{ $ordered_product->ordered_quantity }} --}}
                       {{-- Up the quantity by 1 --}}
                       <form method="POST" action="{{ route('orders.updateQuantity') }}">
-                        @csrf
+                        @csrfWithoutAutocomplete
                         <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
                         <input type="hidden" name="quantity" value="{{ $ordered_product->ordered_quantity + 1 }}">
                         <button type="submit" aria-label="Creste cantitatea">+</button>
@@ -100,7 +100,7 @@
                       <div class="flex justify-between">
                           <p class="price">{{ number_format($totalIndividualPrice, 2) }} Lei</p>
                           <form method="POST" action="{{ route('orders.removeProduct') }}">
-                              @csrf
+                              @csrfWithoutAutocomplete
                               <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
                               <button aria-label="Sterge produsul"><img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="18" height="18"></button>
                           </form>
@@ -156,7 +156,7 @@
                 <div class="quantity-selector quantity-selector-mobile flex">
                   {{-- Scade cantitatea --}}
                   <form method="POST" action="{{ route('orders.updateQuantity') }}">
-                    @csrf
+                    @csrfWithoutAutocomplete
                     <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
                     <input type="hidden" name="quantity" value="{{ max(1, $ordered_product->ordered_quantity - 1) }}">
                     <button type="submit" aria-label="Scade cantitatea">-</button>
@@ -164,7 +164,7 @@
                   {{ $ordered_product->ordered_quantity }}
                   {{-- Creste cantitatea --}}
                   <form method="POST" action="{{ route('orders.updateQuantity') }}">
-                    @csrf
+                    @csrfWithoutAutocomplete
                     <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
                     <input type="hidden" name="quantity" value="{{ $ordered_product->ordered_quantity + 1 }}">
                     <button type="submit" aria-label="Creste cantitatea">+</button>
@@ -185,7 +185,7 @@
     
             <div class="p-16 flex align-end">
               <form method="POST" action="{{ route('orders.removeProduct') }}">
-                @csrf
+                @csrfWithoutAutocomplete
                 <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
                 <button class="delete" aria-label="Sterge produsul">
                   <img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="18" height="18" alt="Sterge produsul">

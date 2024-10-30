@@ -18,7 +18,7 @@
         <!-- Detalii cont -->
         <div id="detalii-cont-content" class="tab-content">
             <form action="{{ url('/save-detalii-cont') }}" method="POST">
-                @csrf
+                @csrfWithoutAutocomplete
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
                 <input type="hidden" name="active_tab" id="active_tab_detalii_cont">
                 <div class="grid grid-2 gap-md">
@@ -53,7 +53,7 @@
         <!-- Facturare -->
         <div id="facturare-content" class="tab-content" style="display:none;">
             <form class="col" action="{{ url('/save-facturare') }}" method="POST">
-                @csrf
+                @csrfWithoutAutocomplete
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
                 <input type="hidden" name="active_tab" id="active_tab_facturare">
                 <div class="w-full form-group">
@@ -168,7 +168,7 @@
         <!-- Livrare -->
         <div id="livrare-content" class="tab-content" style="display:none;">
             <form class="col" action="{{ url('/save-livrare') }}" method="POST">
-                @csrf
+                @csrfWithoutAutocomplete
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
                 <input type="hidden" name="active_tab" id="active_tab_livrare">
                 <h5>Persoana de contact</h5>
@@ -225,7 +225,7 @@
         <!-- Schimb parola -->
         <div id="schimb-parola-content" class="tab-content" style="display:none;">
             <form class="col" action="{{ url('/save-schimba-parola') }}" method="POST">
-                @csrf
+                @csrfWithoutAutocomplete
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
                 <input type="hidden" name="active_tab" id="active_tab_schimb_parola">
                 <div class="grid grid-2 gap-md">

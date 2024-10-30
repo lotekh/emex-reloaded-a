@@ -105,7 +105,7 @@
                          Iesire din cont
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
+                            @csrfWithoutAutocomplete
                         </form>
                      
 
@@ -220,7 +220,7 @@
                     </div>
                     <div class="col align-center content">
                         <form class="col w-full" method="POST" action="{{ route('login') }}">
-                            @csrf
+                            @csrfWithoutAutocomplete
                             <div class="form-group w-full">
                                 <label for="form-login-email">Adresa de email<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-login-email" type="text" name="email" required>
@@ -255,7 +255,7 @@
                     </div>
                     <div class="col align-center content">
                         <form class="col w-full" method="POST" action="{{ route('register') }}">
-                            @csrf
+                            @csrfWithoutAutocomplete
                             <div class="form-group w-full">
                                 <label for="form-register-last-name">Nume<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-register-last-name" type="text" name="last_name" required>
@@ -311,7 +311,7 @@
                     <div class="col align-center content">
                         <p>Recupereaza Parola</p>
                         <form class="col align-center w-full" method="POST" action="{{ route('password.email') }}">
-                            @csrf
+                            @csrfWithoutAutocomplete
                             <div class="form-group w-full">
                                 <label for="form-recover-password" class="form-label">E-mail</label>
                                 <input class="w-full" id="form-recover-password" type="email" name="email" required>
@@ -479,7 +479,7 @@
                     Daca doriti sa aflati noutati despre noi sau produsele noastre puteti sa ne lasati adresa de mail. Atunci cand vom lansa un produs nou, sau vom desfasura un eveniment cu adevarat important, veti primi informatia.
                 </p>
                 <form id="newsletter_form" method="POST" class="w-full mt-16" action="{{ route('newsletter.subscribe') }}">
-                    @csrf
+                    @csrfWithoutAutocomplete
                     <input type="hidden" name="current_url" value="{{ request()->url() }}">
                     <input type="email" required class="w-full form-control" name="NewsletterEmails[email]" placeholder="Adauga email..." id="nfi">
                     <input type="submit" class="btn btn-blue w-full mt-8" id="nfs_btn" value="Aboneaza-te">
@@ -626,7 +626,7 @@
         <div id="cookie_notifier" class="cookie-notifier">
             <div class="main-container">
                 <form class="row align-center justify-between wrap gap-md" id="cookieForm" method="POST" action="{{ route('accept.cookies') }}">
-                    @csrf
+                    @csrfWithoutAutocomplete
                     <p class="text-white">
                         Cookie-urile ne ajuta sa va oferim servicii mai bune. Prin folosirea site-ului, acceptati folosirea acestora. &nbsp;
                     </p>
@@ -754,7 +754,7 @@
                          Iesire din cont
                     </a>
                     <form id="logout-form-mobil" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
+                        @csrfWithoutAutocomplete
                     </form>
                 @else
                     {{-- <button id="auth_lightbox_trigger_mobile" class="btn btn-blue" role="button" aria-label="Autentificare">

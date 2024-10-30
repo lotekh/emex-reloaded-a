@@ -33,7 +33,7 @@
                     <h2 class="m-0 mb-8 mt-16">Detalii tranzacție</h2>
                     <p class="text-center mb-32">Plata se poate face doar în baza facturii proforma emise de Romtehnochim, prin pagina securizată a băncii procesatoare.</p>
                     <form method="GET" action="{{ url()->current() }}" class="flex col align-center w-full">
-                        @csrf
+                        @csrfWithoutAutocomplete
                         <input type="hidden" name="guid" value="{{ $order->guid }}">
             
                         <div class="flex gap-md w-full">

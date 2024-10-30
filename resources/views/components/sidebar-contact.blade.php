@@ -58,7 +58,7 @@
                 @endif
 
                 <form id="formular-sidebar-contact" class="col w-full" method="POST" action="{{ route('contact.store') }}">
-                    @csrf
+                    @csrfWithoutAutocomplete
                     <div class="form-group w-full">
                         <label for="side-contact-name">Nume<span class="text-red">*</span></label>
                         <input id="side-contact-name" required type="text" name="Contact[name]" class="w-full">
