@@ -61,7 +61,7 @@
         <div class="col">
             <h2 class="info text-center text-white">Instant mail “Romtehnochim”</h2>
             <form id="cpf" method="POST" action="{{ route('contact.store') }}">
-                @csrf
+                @csrfWithoutAutocomplete
                 <div class="grid grid-2 gap-md" id="row_inputs_contact_form">
                     <div class="form-group">
                         <label for="contact_page_nume">Nume<span class="text-red">*</span></label>

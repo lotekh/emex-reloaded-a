@@ -17,7 +17,7 @@
   <div>
     <div class="relative image">
       {{-- <form method="POST" class="addToWishlistBt absolute z-10" id="product_wish_list_form{{ $product->id }}" action="{{ $product->isInWishlist ? url('/remove-from-wishlist') : url('/add-to-wishlist') }}">
-        @csrf
+        @csrfWithoutAutocomplete
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         
         <button type="submit" aria-label="{{ $product->isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
@@ -30,7 +30,7 @@
       @endphp
 
       <form method="POST" class="addToWishlistBt absolute z-10" id="product_wish_list_form{{ $product->id }}" action="{{ $isInWishlist ? url('/remove-from-wishlist') : url('/add-to-wishlist') }}">
-          @csrf
+          @csrfWithoutAutocomplete
           <input type="hidden" name="product_id" value="{{ $product->id }}">
 
           <button type="submit" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">

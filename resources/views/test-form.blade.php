@@ -7,7 +7,7 @@
 </head>
 <body>
     <form method="POST" action="{{ url('/side-contact') }}">
-        @csrf
+        @csrfWithoutAutocomplete
         <input type="text" name="test" placeholder="Test input">
         <button type="submit">Submit</button>
     </form>

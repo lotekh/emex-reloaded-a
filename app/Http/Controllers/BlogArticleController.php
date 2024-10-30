@@ -8,10 +8,9 @@ use Illuminate\Http\Request;
 
 class BlogArticleController extends Controller
 {
-    // Afișare lista de articole
+    // Show the list of articles
     public function index()
     {
-        // Paginăm articolele
         $blogArticles = BlogArticle::with(['tags', 'featuredImage'])->orderBy('created_at', 'desc')->paginate(10);
     
         // Pentru arhivă și filtrul de tag-uri (exemplu dacă le folosești)
@@ -21,18 +20,11 @@ class BlogArticleController extends Controller
         return view('blog.index', compact('blogArticles', 'archive', 'tagFilter'));
     }
 
-    // Afișare articol specific
-    public function show($id)
+    // Show a specific article
+    public function show($slug)
     {
-        $model = BlogArticle::with(['tags', 'featuredImage'])->findOrFail($id);
+        $model = BlogArticle::where('slug', $slug)->with(['tags', 'featuredImage'])->firstOrFail();
 
-        // dd($model);
-        // dd($model->tags->first->name);
-
-        // $tags = $model->tags()->first();
-        // dd($tags);
-
-        // Articole recente și arhiva
         $recentArticles = BlogArticle::orderBy('created_at', 'desc')->take(5)->get();
         $archives = BlogArticle::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as articles_number')
                                 ->groupBy('year', 'month')
@@ -45,7 +37,8 @@ class BlogArticleController extends Controller
         return view('blog.view', compact('model', 'recentArticles', 'archives', 'monthNames'));
     }
 
-    // Căutare articole
+
+    // Search the articles
     public function search(Request $request)
     {
         $query = $request->input('query');

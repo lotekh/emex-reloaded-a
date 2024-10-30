@@ -18,7 +18,7 @@
         </div>
         <div class="col align-center content">
             <form class="col w-full" method="POST" action="{{ route('login') }}">
-                @csrf
+                @csrfWithoutAutocomplete
                 <div class="form-group w-full">
                     <label for="form-login-email">Adresa de email</label>
                     <input class="w-full" id="form-login-email" type="text" name="email" required>
@@ -55,7 +55,7 @@
         </div>
         <div class="col align-center content">
             <form class="col w-full" method="POST" action="{{ route('register') }}">
-                @csrf
+                @csrfWithoutAutocomplete
                 <div class="form-group w-full">
                     <label for="form-register-last-name">Nume</label>
                     <input class="w-full" id="form-register-last-name" type="text" name="last_name" required>
@@ -116,7 +116,7 @@
         <div class="col align-center content">
             <p>Recupereaza Parola</p>
             <form class="col align-center w-full" method="POST" action="{{ route('password.email') }}">
-                @csrf
+                @csrfWithoutAutocomplete
                 <div class="form-group w-full">
                     <label for="form-recover-password" class="form-label">E-mail</label>
                     <input class="w-full" id="form-recover-password" type="email" name="email" required>

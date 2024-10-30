@@ -37,7 +37,7 @@
     @endif
 
     <form class="mt-16" id="form_solicita_cotatie" method="POST" action="{{ url('/solicita-cotatie') }}" enctype="multipart/form-data">
-        @csrf
+        @csrfWithoutAutocomplete
         <div class="grid grid-3 gap-md">
             <div class="form-group">
                 <label>Nume sau firma <span class="text-red">*</span></label>

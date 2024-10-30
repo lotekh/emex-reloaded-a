@@ -7,12 +7,14 @@ use App\Filament\Resources\ReviewResource\RelationManagers;
 use App\Models\Product;
 use App\Models\Review;
 use Filament\Forms;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewResource extends Resource
 {
@@ -31,12 +33,15 @@ class ReviewResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('rating')
                     ->required()
-                    ->numeric(),
+                    ->numeric()
+                    ->minValue(1)
+                    ->maxValue(5),
                 Forms\Components\Textarea::make('review')
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\Toggle::make('approved')
                     ->required(),
+                Hidden::make('user_id')->default(fn (): int => Auth::user()->id),
             ]);
     }
 

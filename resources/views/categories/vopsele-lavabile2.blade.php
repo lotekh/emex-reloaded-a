@@ -39,7 +39,7 @@ $total_pages = ceil($total_results / $per_page);
             <ul class="row align-center justify-center pagination gap-md">
                 <li>
                     <form method="get" action="{{ url()->current() }}">
-                        @csrf
+                        @csrfWithoutAutocomplete
                         <input type="hidden" name="category_name" value="vopsele-lavabile" />
                         <input type="hidden" name="per_page" value="{{ $per_page }}" />
                         <button aria-label="Inapoi" type="submit" {{ $current_page <= 1 ? 'disabled' : '' }} value="{{ $current_page - 1 }}" name="current_page_number">
@@ -52,7 +52,7 @@ $total_pages = ceil($total_results / $per_page);
                 @for ($i = max(1, $current_page - 2); $i <= min($total_pages, $current_page + 3); $i++)
                     <li>
                         <form method="get" action="{{ url()->current() }}">
-                            @csrf
+                            @csrfWithoutAutocomplete
                             <input type="hidden" name="category_name" value="vopsele-lavabile" />
                             <input type="hidden" name="per_page" value="{{ $per_page }}" />
                             <button class="{{ $i == $current_page ? 'active' : '' }}" type="submit" value="{{ $i }}" name="current_page_number" aria-label="Pagina {{ $i }}">
@@ -68,7 +68,7 @@ $total_pages = ceil($total_results / $per_page);
                 </li>
                 <li>
                     <form method="get" action="{{ url()->current() }}">
-                        @csrf
+                        @csrfWithoutAutocomplete
                         <input type="hidden" name="category_name" value="vopsele-lavabile" />
                         <input type="hidden" name="per_page" value="{{ $per_page }}" />
                         <button aria-label="Inainte" type="submit" {{ $current_page >= $total_pages ? 'disabled' : '' }} value="{{ $current_page + 1 }}" name="current_page_number">
@@ -104,7 +104,7 @@ $total_pages = ceil($total_results / $per_page);
     <ul class="row align-center justify-center pagination gap-md">
         <li>
             <form method="get" action="{{ url()->current() }}">
-                @csrf
+                @csrfWithoutAutocomplete
                 <input type="hidden" name="category_name" value="vopsele-lavabile" />
                 <input type="hidden" name="per_page" value="{{ $per_page }}" />
                 <button aria-label="Inapoi" type="submit" {{ $current_page <= 1 ? 'disabled' : '' }} value="{{ $current_page - 1 }}" name="current_page_number">
@@ -117,7 +117,7 @@ $total_pages = ceil($total_results / $per_page);
         @for ($i = max(1, $current_page - 2); $i <= min($total_pages, $current_page + 3); $i++)
             <li>
                 <form method="get" action="{{ url()->current() }}">
-                    @csrf
+                    @csrfWithoutAutocomplete
                     <input type="hidden" name="category_name" value="vopsele-lavabile" />
                     <input type="hidden" name="per_page" value="{{ $per_page }}" />
                     <button class="{{ $i == $current_page ? 'active' : '' }}" type="submit" value="{{ $i }}" name="current_page_number" aria-label="Pagina {{ $i }}">
@@ -133,7 +133,7 @@ $total_pages = ceil($total_results / $per_page);
         </li>
         <li>
             <form method="get" action="{{ url()->current() }}">
-                @csrf
+                @csrfWithoutAutocomplete
                 <input type="hidden" name="category_name" value="vopsele-lavabile" />
                 <input type="hidden" name="per_page" value="{{ $per_page }}" />
                 <button aria-label="Inainte" type="submit" {{ $current_page >= $total_pages ? 'disabled' : '' }} value="{{ $current_page + 1 }}" name="current_page_number">

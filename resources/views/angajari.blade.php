@@ -38,7 +38,7 @@
     @endif
 
     <form class="mt-64" method="POST" action="{{ url('/angajari') }}" enctype="multipart/form-data" id="angajari_wrapper">
-        @csrf
+        @csrfWithoutAutocomplete
         <div class="grid grid-3 gap-md">
             <div class="form-group">
                 <label>Nume</label>
