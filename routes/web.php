@@ -170,7 +170,7 @@ Route::get('/secure-payment', [PaymentController::class, 'securePayment'])->name
 
 // Blog
 Route::get('/blog', [BlogArticleController::class, 'index'])->name('blog.index');
-Route::get('/blog/article/{id}', [BlogArticleController::class, 'show'])->name('blog.article.show');
+Route::get('/blog/{slug}', [BlogArticleController::class, 'show'])->name('blog.article.show');
 Route::get('/search', [BlogArticleController::class, 'search'])->name('blog.search');
 
 
