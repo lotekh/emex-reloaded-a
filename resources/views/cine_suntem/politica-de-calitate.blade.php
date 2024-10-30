@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="{{ minify('css/politica-de-calitate.css') }}">
+    <link rel="stylesheet" href="/{{ minify('css/politica-de-calitate.css') }}">
 @endsection
 
 @section('breadcrumbs')
