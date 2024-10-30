@@ -52,8 +52,11 @@
             <h2 class="m-0 mb-8">Postari recente</h2>
             @if (count($recentArticles))
                 @foreach ($recentArticles as $recentArticle)
-                    <a href="{{ url('/blog/article', ['id' => $recentArticle->id]) }}">
+                    {{-- <a href="{{ url('/blog/article', ['id' => $recentArticle->id]) }}">
                         {{ $recentArticle->title }}
+                    </a> --}}
+                    <a href="{{ route('blog.article.show', ['slug' => $recentArticle->slug]) }}">
+                        <h1>{{ $recentArticle->title }}</h1>
                     </a>
                 @endforeach
             @else

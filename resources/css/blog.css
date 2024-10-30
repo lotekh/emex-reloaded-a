@@ -412,3 +412,18 @@ input[type="search"] {
   color: #0000ff;
   display: block;
 }
+
+.flex.mb-16.align-center {
+  flex-wrap: wrap;
+}
+
+.tag {
+  max-width: calc(100% - 16px);
+  margin-bottom: 8px;
+  word-wrap: break-word;
+}
+
+.publish-date {
+  width: 100%;
+  margin-top: 1px;
+}
