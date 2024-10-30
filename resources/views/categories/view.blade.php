@@ -44,7 +44,7 @@ $base_url = url('/');
             <ul class="row align-center justify-center pagination gap-md">
                 <li>
                     <form method="get" action="{{ url()->current() }}">
-                        @csrf
+                        @csrfWithoutAutocomplete
                         <input type="hidden" name="category_name" value="{{ $category->name }}" />
                         <input type="hidden" name="per_page" value="{{ $per_page }}" />
                         <button aria-label="Inapoi" type="submit" {{ $current_page <= 1 ? 'disabled' : '' }} value="{{ $current_page - 1 }}" name="page">
@@ -57,7 +57,7 @@ $base_url = url('/');
                 @for ($i = max(1, $current_page - 2); $i <= min($total_pages, $current_page + 3); $i++)
                     <li>
                         <form method="get" action="{{ url()->current() }}">
-                            @csrf
+                            @csrfWithoutAutocomplete
                             <input type="hidden" name="category_name" value="{{ $category->name }}" />
                             <input type="hidden" name="per_page" value="{{ $per_page }}" />
                             <button class="{{ $i == $current_page ? 'active' : '' }}" type="submit" value="{{ $i }}" name="page" aria-label="Pagina {{ $i }}">
@@ -73,7 +73,7 @@ $base_url = url('/');
                 </li>
                 <li>
                     <form method="get" action="{{ url()->current() }}">
-                        @csrf
+                        @csrfWithoutAutocomplete
                         <input type="hidden" name="category_name" value="{{ $category->name }}" />
                         <input type="hidden" name="per_page" value="{{ $per_page }}" />
                         <button aria-label="Inainte" type="submit" {{ $current_page >= $total_pages ? 'disabled' : '' }} value="{{ $current_page + 1 }}" name="page">
@@ -102,7 +102,7 @@ $base_url = url('/');
     <ul class="row align-center justify-center pagination gap-md">
         <li>
             <form method="get" action="{{ url()->current() }}">
-                @csrf
+                @csrfWithoutAutocomplete
                 <input type="hidden" name="category_name" value="{{ $category->name }}" />
                 <input type="hidden" name="per_page" value="{{ $per_page }}" />
                 <button aria-label="Inapoi" type="submit" {{ $current_page <= 1 ? 'disabled' : '' }} value="{{ $current_page - 1 }}" name="page">
@@ -115,7 +115,7 @@ $base_url = url('/');
         @for ($i = max(1, $current_page - 2); $i <= min($total_pages, $current_page + 3); $i++)
             <li>
                 <form method="get" action="{{ url()->current() }}">
-                    @csrf
+                    @csrfWithoutAutocomplete
                     <input type="hidden" name="category_name" value="{{ $category->name }}" />
                     <input type="hidden" name="per_page" value="{{ $per_page }}" />
                     <button class="{{ $i == $current_page ? 'active' : '' }}" type="submit" value="{{ $i }}" name="page" aria-label="Pagina {{ $i }}">
@@ -131,7 +131,7 @@ $base_url = url('/');
         </li>
         <li>
             <form method="get" action="{{ url()->current() }}">
-                @csrf
+                @csrfWithoutAutocomplete
                 <input type="hidden" name="category_name" value="{{ $category->name }}" />
                 <input type="hidden" name="per_page" value="{{ $per_page }}" />
                 <button aria-label="Inainte" type="submit" {{ $current_page >= $total_pages ? 'disabled' : '' }} value="{{ $current_page + 1 }}" name="page">

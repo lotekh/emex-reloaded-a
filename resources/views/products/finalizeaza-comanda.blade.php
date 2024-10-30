@@ -11,7 +11,7 @@
 @section('content')
 <div class="main-container" id="order-page">
     <form method="POST" action="{{ url('/save-order') }}" id="order_form">
-        @csrf
+        @csrfWithoutAutocomplete
          <input type="hidden" id="orderr_id" name="order_id" value="{{ $order_id }}">
         {{-- <input type="hidden" name="ordered_products_number" value="{{ $ordered_products->count() }}">
         <input type="hidden" name="guid" value="{{ $order->guid }}">

@@ -200,7 +200,7 @@
                     @endphp
 
                     <form id="wishlist-form-{{ $product->id }}" action="{{ $isInWishlist ? route('wishlist.remove', ['product_id' => $product->id]) : route('wishlist.store') }}" method="POST">
-                        @csrf
+                        @csrfWithoutAutocomplete
                         @if (!$isInWishlist)
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                         @endif

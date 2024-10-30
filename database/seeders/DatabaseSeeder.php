@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             ProductVariationSeeder::class,
             CategoryFiltersSeeder::class,
-            BlogSeeder::class
+            BlogSeeder::class,
+            PopupSeeder::class,
         ]);
     }
 }
