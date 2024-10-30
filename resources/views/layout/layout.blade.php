@@ -548,7 +548,7 @@
     
             <div id="fsm" class="sprites">
                 <span>
-                    <a href="{{ url('/blog') }}" title="Blog Emex by Romtehnochim">
+                    <a href="{{ url('/blog') }}" title="Blog Emex by Romtehnochim" aria-label="Accesează Blogul Emex">
                         <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 179.51975 179.20429">
                             <path fill="#f06a35" d="M20.512413 178.49886c-3.359449-.8837-6.258272-2.1837-8.931866-4.0056-2.256922-1.5379-5.555601-4.7174-6.810077-6.5637-1.532132-2.255-3.293254-6.1168-4.010994-8.795-.732062-2.7319-.743927-3.8198-.757063-69.39501-.01306-65.24411.0018-66.67877.719335-69.48264C3.259268 10.34132 11.117019 2.7971 21.251347.54646 24.165189-.10065 154.331139-.21383 157.47424.42803c8.508999 1.73759 15.197718 6.84619 19.06824 14.56362 3.07712 6.13545 2.80203-.61622 2.94296 72.23085.0897 46.34991.007 65.80856-.28883 68.23286-1.38576 11.3442-9.210679 20.1431-20.470153 23.0183-2.880202.7354-3.882129.7459-69.275121.7259-63.227195-.019-66.474476-.052-68.938923-.7007z" />
                             <path fill="none" d="M-82.99522 87.83767V-84.06232h1020v343.79998h-1020V87.83767z" />
@@ -673,13 +673,11 @@
                     <li id="apmim_mob"><a href="{{ url('/produse') }}" title="toate produsele">Toate Produsele</a></li>
 
                     @foreach ($categories as $ind => $category)
-                    <div>
                         <li>
                             <a href="{{ url($category->slug) }}">
                                 {{ $category->name }}
                             </a>
                         </li>
-                    </div>
                     @endforeach
 
                 </ul>
@@ -702,17 +700,13 @@
             <div class="categorii" id="consum" onclick="toggleAccordion('consum')">
                 <header>Consum</header>
                 <ul class="dropdown-menu" id="consum-menu">
-
                     @foreach ($categories as $ind => $category)
-                    <div>
                         <li>
                             <a href="{{ route('consum.index', ['category' => $category->slug]) }}">
                                 {{ $category->name }}
                             </a>
                         </li>
-                    </div>
-                @endforeach
-                    
+                    @endforeach   
                 </ul>
             </div>
             <div class="categorii" id="servicii" onclick="toggleAccordion('servicii')">
