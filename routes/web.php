@@ -172,7 +172,8 @@ Route::get('/secure-payment', [PaymentController::class, 'securePayment'])->name
 Route::get('/blog', [BlogArticleController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogArticleController::class, 'show'])->name('blog.article.show');
 Route::get('/blog/tag/{tagId}', [BlogArticleController::class, 'searchByTag'])->name('blog.searchByTag');
-Route::get('/blog', [BlogArticleController::class, 'searchByArchive'])->name('blog.search.archive');
+Route::get('/blogarchive', [BlogArticleController::class, 'searchByArchive'])->name('blog.search.archive');
+
 
 
 // Cine suntem
