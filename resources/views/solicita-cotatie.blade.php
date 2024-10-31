@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="{{ minify('css/solicita-cotatie.css') }}">
+    <link rel="stylesheet" href="/{{ minify('css/solicita-cotatie.css') }}">
 @endsection
 
 @section('content')

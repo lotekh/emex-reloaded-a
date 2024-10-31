@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="{{ minify('css/despre.css') }}">
+    <link rel="stylesheet" href="/{{ minify('css/despre.css') }}">
 @endsection
 
 @section('breadcrumbs')

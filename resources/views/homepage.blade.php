@@ -4,7 +4,7 @@
 // dd('test');
 ?>
 @section('css')
-    <link rel="stylesheet" href="{{ minify('css/homepage.css') }}">
+    <link rel="stylesheet" href="/{{ minify('css/homepage.css') }}">
 @endsection
 
 @section('breadcrumbs')
