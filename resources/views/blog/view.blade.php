@@ -69,9 +69,17 @@
             @php
                 $monthNames = ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'];
             @endphp
-            @foreach ($archives as $archive)
+            {{-- @foreach ($archives as $archive)
                 <p>
                     <a href="{{ url('/blog', ['year' => $archive['year'], 'month' => $archive['month']]) }}">
+                        {{ $monthNames[$archive['month'] - 1] }} {{ $archive['year'] }}
+                    </a>
+                    ({{ $archive['articles_number'] }})
+                </p>
+            @endforeach --}}
+            @foreach ($archives as $archive)
+                <p>
+                    <a href="{{ route('blog.search.archive', ['year' => $archive['year'], 'month' => $archive['month']]) }}">
                         {{ $monthNames[$archive['month'] - 1] }} {{ $archive['year'] }}
                     </a>
                     ({{ $archive['articles_number'] }})
@@ -82,8 +90,13 @@
         @if (count($model->tags))
             <div class="flex col">
                 <h2 class="m-0 mb-8">Tags</h2>
-                @foreach ($model->tags as $tag)
+                {{-- @foreach ($model->tags as $tag)
                     <a href="{{ url('/blog', ['tag' => $tag->id]) }}">
+                        <span class="tag mr-8">{{ $tag->name }}</span>
+                    </a>
+                @endforeach --}}
+                @foreach ($model->tags as $tag)
+                    <a href="{{ route('blog.search.tag', ['tag' => $tag->name]) }}">
                         <span class="tag mr-8">{{ $tag->name }}</span>
                     </a>
                 @endforeach
