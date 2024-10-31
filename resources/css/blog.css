@@ -427,3 +427,14 @@ input[type="search"] {
   width: 100%;
   margin-top: 1px;
 }
+
+/* #header_search_tags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+} */
+
+#span_search_tags {
+  margin-top: 8px;
+}

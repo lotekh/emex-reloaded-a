@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="{{ minify('css/blog.css') }}">
+    <link rel="stylesheet" href="/{{ minify('css/blog.css') }}">
 @endsection
 
 @section('breadcrumbs')
@@ -21,10 +21,9 @@
         </div>
     </div>
 
-    12
 
     <div class="main-container">
-        <h2 class="flex align-center mt-32">Articole cu tagul <span class="tag ml-8">{{ $tag->name }}</span></h2>
+        <h2 id="header_search_tags" class="flex align-center mt-32">Articole cu tagul <span id="span_search_tags" class="tag ml-8">{{ $tag->name }}</span></h2>
 
         @foreach ($blogArticles as $key => $blogArticle)
             <div class="article">
