@@ -12,10 +12,9 @@ class BlogArticleController extends Controller
     public function index()
     {
         $blogArticles = BlogArticle::with(['tags', 'featuredImage'])->orderBy('created_at', 'desc')->paginate(10);
-    
-        // Pentru arhivă și filtrul de tag-uri (exemplu dacă le folosești)
-        $archive = null; // Sau logica ta pentru a popula arhiva
-        $tagFilter = null; // Sau logica ta pentru filtrarea pe taguri
+
+        $archive = null; 
+        $tagFilter = null; 
     
         return view('blog.index', compact('blogArticles', 'archive', 'tagFilter'));
     }
@@ -37,13 +36,16 @@ class BlogArticleController extends Controller
         return view('blog.view', compact('model', 'recentArticles', 'archives', 'monthNames'));
     }
 
-    public function searchByTag($tag)
+    public function searchByTag($tagId)
     {
-        $tagModel = Tag::where('name', $tag)->firstOrFail();
-        $blogArticles = $tagModel->blogArticles()->with(['tags', 'featuredImage'])->orderBy('created_at', 'desc')->paginate(10);
+        $tag = Tag::findOrFail($tagId); 
+        $blogArticles = BlogArticle::whereHas('tags', function ($query) use ($tagId) {
+            $query->where('tags.id', $tagId);
+        })->with(['tags', 'featuredImage'])->paginate(10); 
 
-        return view('blog.search_results_tags', compact('blogArticles', 'tagModel'));
+        return view('blog.search_results_tags', compact('blogArticles', 'tag'));
     }
+
 
     public function searchByArchive(Request $request)
     {

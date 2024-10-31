@@ -10,7 +10,7 @@
 
 @section('content')
 <div id="content">
-    
+
     <div class="hidden-xs">
         <div class="top_header_image_bg">
             <div class="col justify-center align-center" id="blog_header" style="background: url('{{ asset('resources/images/blog/blog-background.jpg') }}'); height: 146px;">
@@ -21,8 +21,10 @@
         </div>
     </div>
 
+    12
+
     <div class="main-container">
-        <h2 class="flex align-center mt-32">Articole cu tagul <span class="tag ml-8">{{ $tagModel->name }}</span></h2>
+        <h2 class="flex align-center mt-32">Articole cu tagul <span class="tag ml-8">{{ $tag->name }}</span></h2>
 
         @foreach ($blogArticles as $key => $blogArticle)
             <div class="article">

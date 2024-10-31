@@ -90,18 +90,17 @@
         @if (count($model->tags))
             <div class="flex col">
                 <h2 class="m-0 mb-8">Tags</h2>
-                {{-- @foreach ($model->tags as $tag)
-                    <a href="{{ url('/blog', ['tag' => $tag->id]) }}">
-                        <span class="tag mr-8">{{ $tag->name }}</span>
-                    </a>
-                @endforeach --}}
                 @foreach ($model->tags as $tag)
-                    <a href="{{ route('blog.search.tag', ['tag' => $tag->name]) }}">
+                    {{-- <a href="{{ route('blog.searchByTag', ['tagId' => $tag->id]) }}">
+                        <span class="tag mr-8">{{ $tag->name }}</span>
+                    </a> --}}
+                    <a href="{{ route('blog.searchByTag', ['tagId' => $tag->id]) }}">
                         <span class="tag mr-8">{{ $tag->name }}</span>
                     </a>
                 @endforeach
             </div>
         @endif
+
     </div>
 </div>
 @endsection
