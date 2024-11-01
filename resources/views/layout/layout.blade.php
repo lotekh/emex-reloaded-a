@@ -200,6 +200,17 @@
 
     </header>
 
+
+    <div class="popups">
+        <div id="popup9" class="popup">
+            <div class="text">
+                Comenzile se preiau doar prin intermediul formularului de comanda sau pe mail.<br><strong class="mark"><em>Comenzile nu se pot prelua telefonic !</em></strong><p style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 24px; color: #900; margin-top: 0px; margin-bottom: 10px; margin-left: 0px; text-align: left;"><br><strong>Va multumim pentru intelegere !</strong></p>
+            </div>
+            <img src="{{ asset('resources/images/close-line-red.png') }}" role="button" tabindex="0">
+        </div>
+
+    </div>
+
     <div class="autentificare-1">
         <div class="autentificare-2">
             <div id="auth-lightbox" class="w-full h-screen flex justify-center align-center modal">
