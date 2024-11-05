@@ -1,4 +1,3 @@
-<!-- resources/views/categories/view.blade.php -->
 @extends('layout.layout')
 
 @section('css')

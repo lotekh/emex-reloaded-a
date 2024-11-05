@@ -218,7 +218,7 @@
                 <div class="modal-container">
                     <div class="relative header row justify-between align-center">
                         <div></div>
-                        <img class="logo-footer" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
+                        <img class="logo-footer" alt="Emex - un brand de incredere" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
                         <button onclick="closeModal('auth-lightbox')" role="button" tabindex="0" class="close-btn" aria-label="Inchide">
                             <span class="flex align-center">
                                 <img src="{{ asset('resources/new_design/icons/close.svg') }}" alt="close" width="32" height="32">
@@ -253,7 +253,7 @@
                 <div class="modal-container">
                     <div class="relative header row justify-between align-center">
                         <div></div>
-                        <img class="logo-footer" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
+                        <img class="logo-footer" alt="Emex - un brand de incredere" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
                         <button onclick="closeModal('register-lightbox')" role="button" tabindex="0" class="close-btn" aria-label="Inchide">
                             <span class="flex align-center">
                                 <img src="{{ asset('resources/new_design/icons/close.svg') }}" alt="close" width="32" height="32">
@@ -312,7 +312,7 @@
                 <div class="modal-container">
                     <div class="relative header row justify-between align-center">
                         <div></div>
-                        <img class="logo-footer" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
+                        <img class="logo-footer" alt="Emex - un brand de incredere" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
                         <button onclick="closeModal('recover-password-lightbox')" role="button" tabindex="0" class="close-btn" aria-label="Recupereaza parola">
                             <span class="flex align-center">
                                 <img src="{{ asset('resources/new_design/icons/close.svg') }}" alt="close" width="32" height="32">

@@ -73,7 +73,7 @@ use Illuminate\Support\Str;
             <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
         </span>
         <div class="dropdown-menu">
-            <ul class="category-wrapper">
+            <div class="category-wrapper">
                 <div class="products-dropdown-categories">
                     <a href="{{ url('/aplicare-vopsele-lavabile') }}" title="Aplicare vopsele lavabile">Vopsele Lavabile</a>
                 </div>
@@ -104,7 +104,7 @@ use Illuminate\Support\Str;
                 <div class="products-dropdown-categories blue-item">
                     <a href="{{ url('/aplicare-vopsele-hidrosolubile') }}" title="Membrana Poliuteranica">Vopsele Hidrosolubile</a>
                 </div>
-            </ul>
+            </div>
         </div>
     </div>
 
@@ -114,7 +114,7 @@ use Illuminate\Support\Str;
             <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
         </span>
         <div class="dropdown-menu">
-            <ul class="category-wrapper">
+            <div class="category-wrapper">
                 <div class="products-dropdown-categories">
                     <a href="{{ url('/aplicare-covor-epoxidic-stb') }}" title="Pardoseli Cuartz Epoxi">Pardoseli Cuartz Epoxi</a>
                 </div>
@@ -127,7 +127,7 @@ use Illuminate\Support\Str;
                 <div class="products-dropdown-categories blue-item">
                     <a href="{{ url('/servicii') }}" title="Vopsiri Epoxidice">Servicii Generale</a>
                 </div>
-            </ul>
+            </div>
         </div>
     </div>
 
@@ -157,14 +157,14 @@ use Illuminate\Support\Str;
             <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
         </span>
         <div class="dropdown-menu">
-            <ul class="category-wrapper">
+            <div class="category-wrapper">
                 <div class="products-dropdown-categories">
                     <a href="{{ url('/cartela-culori-ral-vopsele') }}" title="Cartela RAL - Emailuri">Cartela RAL - Emailuri</a>
                 </div>
                 <div class="products-dropdown-categories blue-item">
                     <a href="{{ url('/cartela-culori-lavabile') }}" title="Paletar Lavabile">Paletar Lavabile</a>
                 </div>
-            </ul>
+            </div>
         </div>
     </div>
 
