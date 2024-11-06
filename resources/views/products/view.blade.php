@@ -34,8 +34,8 @@
         </div>
         
         
-            <div class="w-full col px-8 product-details-container">
-                <form method="GET" action="{{ url('/adauga-produs') }}">
+        <div class="w-full col px-8 product-details-container">
+                {{-- <form method="GET" action="{{ url('/adauga-produs') }}"> --}}
             <div class="col gap-xl">
                     <div class="top-container">
                         <div class="col justify-between">

@@ -137,7 +137,7 @@ use Illuminate\Support\Str;
             <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
         </span>
         <div class="dropdown-menu">
-            <ul class="category-wrapper">
+            <div class="category-wrapper">
                 @foreach ($categories as $ind => $category)
                     <div class="products-dropdown-categories{{ $ind % 2 > 0 ? ' blue-item' : '' }}">
                         <a href="{{ route('consum.index', ['category' => $category->slug]) }}">
@@ -145,7 +145,7 @@ use Illuminate\Support\Str;
                         </a>
                     </div>
                 @endforeach
-            </ul>
+            </div>
         </div>
     </div>
     
