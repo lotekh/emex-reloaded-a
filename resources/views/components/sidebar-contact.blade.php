@@ -106,7 +106,7 @@
                         </span>                        
                     </div>
                     
-                    <div class="form-validation" style="display: none;" data-validation-for="consent-checkbox">Conform reglementarilor in vigoare, trebuie sa fiti de acord cu Termeni si Conditii si Politica de Confidentialitate</div>
+                    <div class="form-validation" style="display: none;">Conform reglementarilor in vigoare, trebuie sa fiti de acord cu Termeni si Conditii si Politica de Confidentialitate</div>
 
                     <div class="w-full flex justify-center">
                         <input type="submit" class="w-fit btn btn-blue rounded-lg px-16 mt-16" value="Trimite" id="contact_lighbox_submit_btn">

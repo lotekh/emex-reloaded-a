@@ -412,3 +412,29 @@ input[type="search"] {
   color: #0000ff;
   display: block;
 }
+
+.flex.mb-16.align-center {
+  flex-wrap: wrap;
+}
+
+.tag {
+  max-width: calc(100% - 16px);
+  margin-bottom: 8px;
+  word-wrap: break-word;
+}
+
+.publish-date {
+  width: 100%;
+  margin-top: 1px;
+}
+
+/* #header_search_tags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+} */
+
+#span_search_tags {
+  margin-top: 8px;
+}

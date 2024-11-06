@@ -154,8 +154,9 @@
                             Sunt de acord cu <a href="{{ url('/confidentialitate-gdpr') }}">politica de confidentialitate</a> si <a class="link_color1" href="{{ url('/termeni-si-conditii') }}">termeni si conditii.</a>
                         </label>
                     </div>
-                    <div class="form-validation" visible-when-invalid="valueMissing" validation-for="consent-checkbox">Conform reglementarilor in vigoare, trebuie sa fiti de acord cu Termeni si Conditii si Politica de Confidentialitate</div>
+                    <div class="form-validation" style="display: none;">Conform reglementarilor in vigoare, trebuie sa fiti de acord cu Termeni si Conditii si Politica de Confidentialitate</div>
                 </div>
+                
 
                 @php
                     $no1 = rand(0, 10);
@@ -185,3 +186,28 @@
 </div>
 
 @endsection
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('cpf');
+        const consentCheckbox = document.getElementById('consent-checkbox');
+        const validationMessage = document.querySelector('.form-validation');
+
+        // Elimină atributul 'required' de la checkbox și lasă validarea manuală
+        consentCheckbox.removeAttribute('required');
+
+        if (form) {
+            form.addEventListener('submit', function (event) {
+                // Verificăm dacă checkbox-ul este bifat
+                if (!consentCheckbox.checked) {
+                    event.preventDefault(); // Oprește trimiterea formularului
+                    validationMessage.style.display = 'block'; // Afișează mesajul de eroare
+                    consentCheckbox.focus();  // Forțează checkbox-ul să devină activ
+                } else {
+                    validationMessage.style.display = 'none'; // Ascunde mesajul dacă este bifat
+                }
+            });
+        }
+    });
+</script>
