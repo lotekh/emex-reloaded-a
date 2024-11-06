@@ -342,7 +342,7 @@ class OrdersController extends Controller
                 'price_no_vat' => $cartItem['price_no_vat'],
             ]);
 
-            // Calculăm totalul
+            // Calculate the total
             $total += $cartItem['quantity'] * $cartItem['price'];
         }
         $dbOrder->total = $total;
@@ -350,7 +350,7 @@ class OrdersController extends Controller
 
 
         if ($dbOrder) {
-            // Preluăm transport_price și transport_price_no_tva din sesiune
+            // Get transport_price and transport_price_no_tva from session
             if (isset($order['transport_price']) && isset($order['transport_price_no_tva'])) {
                 $dbOrder->transport_price = $order['transport_price'];
                 $dbOrder->transport_price_no_tva = $order['transport_price_no_tva'];
@@ -360,8 +360,9 @@ class OrdersController extends Controller
             $companyCountyId = null;
             $deliveryCountyId = null;
 
-            // Setăm valorile pentru persoană fizică sau juridică în funcție de billing_type
-            if ($request->input('billing_type') == 0) { // Persoană fizică
+            // Set the values for persoana fizica or persoana juridica based on billing_type
+            // Persoană fizică
+            if ($request->input('billing_type') == 0) { 
                 $companyInformationArray = [
                     'person_last_name' => $request->input('person_last_name'),
                     'person_first_name' => $request->input('person_first_name'),
@@ -373,7 +374,8 @@ class OrdersController extends Controller
                     'person_address' => $request->input('company_information.person_address'),
                 ];
                 $personCountyId = $companyInformationArray['person_county_id'];
-            } elseif ($request->input('billing_type') == 1) { // Persoană juridică
+            // Persoană juridică
+            } elseif ($request->input('billing_type') == 1) { 
                 $companyInformationArray = [
                     'organization_name' => $request->input('organization_name'),
                     'organization_cui' => $request->input('organization_cui'),
@@ -391,14 +393,15 @@ class OrdersController extends Controller
                 $companyCountyId = $companyInformationArray['organization_county_id'];
             }
 
-            // Calculează costul de ramburs dacă tipul de livrare este curier
+            // Calculate rambursValue if delivery_type is 0 (curier)
             $rambursValue = 0;
             $rambursTva = 0;
             if ($request->input('delivery_type') == 0 && $request->input('payment_method') == 'ramburs') {
-                // valoarea de ramburs e 3 la suta din valoarea comenzii fara tva, adica 3 la suta din 100-19 = 81% din $dbOrder->total
+                // rambursValue is 3% of the order value without TVA, so it is 3% of 100-19 = 81% of $dbOrder->total
                 $rambursValue = (($dbOrder->total * 81) / 100) * 3 / 100;
                 $rambursTva = ($rambursValue * 19) / 100;
-                $dbOrder->total += $rambursValue + $rambursTva; // Adăugăm costul rambursului la total
+                // Add the cost of ramburs(rambursValue+rambursTva) to the total
+                $dbOrder->total += $rambursValue + $rambursTva;
             }
 
             $dbOrder->transport_price_no_tva = $dbOrder->transport_price;
@@ -408,9 +411,10 @@ class OrdersController extends Controller
 
             $deliveryInformation = null;
             $deliveryInformationArray = null;
-            // Copierea datelor de facturare în datele de livrare, dacă opțiunea este bifată
+            // Copy the billing data(company_information) in the delivery data, if that option is checked
             if ($request->input('delivery_data_same_as_billing')) {
-                if ($request->input('billing_type') == 0) { // Persoană fizică
+                // Persoană fizică
+                if ($request->input('billing_type') == 0) { 
                     $deliveryInformationArray = [
                         'delivery_last_name' => $request->input('person_last_name'),
                         'delivery_first_name' => $request->input('person_first_name'),
@@ -421,7 +425,8 @@ class OrdersController extends Controller
                         'delivery_locality' => $request->input('company_information.person_locality'),
                         'delivery_address' => $request->input('company_information.person_address'),
                     ];
-                } elseif ($request->input('billing_type') == 1) { // Persoană juridică
+                // Persoană juridică
+                } elseif ($request->input('billing_type') == 1) { 
                     $deliveryInformationArray = [
                         'delivery_last_name' => $request->input('contact_person_last_name'),
                         'delivery_first_name' => $request->input('contact_person_first_name'),
