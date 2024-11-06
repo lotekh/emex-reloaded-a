@@ -21,7 +21,10 @@
 @endphp
 
 <div class="main-container product-page" id="product_container">
+
     <h1 class="mobile-title mt-32">{!! $product->name !!}</h1>
+
+    {{-- Product info --}}
     <div class="w-full product-info-grid">
         <div class="col">
             <div class="w-full h-full relative img-container">
@@ -263,6 +266,7 @@
         {{-- </form> --}}
     </div>
 
+    {{-- Product tabs -> Descriere, Detalii Utilizare, Caracteristici tehnice --}}
     <div class="mt-16 mt-custom">
         <div class="tabs-selector-row">
             <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid selected" option="0" aria-selected="true" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
@@ -297,7 +301,7 @@
         </div>
     </div>
 
-    {{-- Cautari similare --}}
+    {{-- Similar results(Cautari similare) --}}
     <div class="mt-16"> 
         <div class="cautari">Cautari similare</div>
         <div class="mt-8 grid grid-4 gap-xs">
@@ -312,6 +316,7 @@
         </div>
     </div> 
 
+    {{-- Certification images --}}
     <div class="w-full grid grid-3 min-row-height gap-lg mt-16" id="pwgw">
         <div class="badge">
             <div class="relative w-full h-full">
