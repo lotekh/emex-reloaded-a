@@ -36,10 +36,9 @@
             </div>
         </div>
         
-        
         <div class="w-full col px-8 product-details-container">
-                {{-- <form method="GET" action="{{ url('/adauga-produs') }}"> --}}
             <div class="col gap-xl">
+                <form method="GET" action="{{ url('/adauga-produs') }}">
                     <div class="top-container">
                         <div class="col justify-between">
                             <div>
@@ -175,10 +174,13 @@
                     </div>
                 </form>
 
+                {{-- Adauga in cos, Vizualizeaza cosul, Adauga la favorite --}}
                 <div class="col flex-md gap-xs w-full">
-                    <div class="w-full h-full">
-                        <input type="submit" id="adauga_produs_submit" class="{{ empty($initialVariation->price) || !$product->active ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || !$product->active ? 'disabled' : '' }}>
-                    </div>
+                    <form method="GET" action="{{ url('/adauga-produs') }}">
+                        <div class="w-full h-full">
+                            <input type="submit" id="adauga_produs_submit" class="{{ empty($initialVariation->price) || !$product->active ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || !$product->active ? 'disabled' : '' }}>
+                        </div>
+                    </form>
                     <a href="{{ url('/produse-adaugate') }}" title="Cos" class="flex h-full">
                         <div class="btn-blue-outline rounded-sm text-nowrap w-full h-full flex justify-center align-center font-sm px-16 py-8 line-height-1">
                             Vizualizeaza cosul
@@ -210,8 +212,8 @@
                  
                 </div>
             </div>
-            </form>
 
+            {{-- Fisa tehnica, Calcul Consum, Instructiuni, Paleta Culorio --}}
             <div class="col">
                 <p class="text-center mt-16">
                     @if ($product->price_disclaimer)
@@ -263,7 +265,6 @@
                 </div>
             </div>
         </div>
-        {{-- </form> --}}
     </div>
 
     {{-- Product tabs -> Descriere, Detalii Utilizare, Caracteristici tehnice --}}
