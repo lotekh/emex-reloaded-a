@@ -152,9 +152,6 @@
                                         </select>
                                     </div>
                                 @endif
-
-
-                                
                                     <input type="hidden" name="product_variation_id" id="variationInput{{$product->id}}" value="{{ $initialVariation->id }}">
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <input type="hidden" name="submited" value="1">
@@ -164,18 +161,12 @@
                                     <input type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
                                     <input type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
                                     
-                                    <!-- Adăugare câmp pentru quantity -->
+                                    <!-- Quantity field -->
                                     <div class="form-group">
                                         <label id="choose-quantity" class="section-info">Selecteaza cantitate</label>
-                                        <input class="w-full" aria-labelledby="choose-quantity" min="1" pattern="[0-9]+" type="number" name="quantity" value="1" />
+                                        <input class="w-full" aria-labelledby="choose-quantity" min="1" type="number" name="quantity" value="1" />
                                     </div>
-
-                                    
-                                    
-                                    
-                                
-                                
-                                
+            
                             </div>
                         @endif
                     </div>
@@ -203,13 +194,13 @@
                         @endif
 
                         <button type="submit" class="flex align-center btn-blue-outline rounded-sm text-nowrap w-full gap-md justify-center h-full font-sm px-16 py-4">
-                            <div class="addToWhislistSvgWrapper">
+                            <span class="addToWhislistSvgWrapper">
                                 @if ($isInWishlist)
                                     <img width="16" height="15" src="{{ asset('resources/new_design/icons/star-fill.svg') }}" title="review-star" alt="review-star">
                                 @else
                                     <img width="16" height="15" src="{{ asset('resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
                                 @endif
-                            </div>
+                            </span>
                             <span>{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}</span>
                         </button>
                     </form>
@@ -283,8 +274,11 @@
 
             <div id="Descriere" class="tab-content active">
                 @php
-                    $description = str_replace(['<amp-img', '</amp-img>'], ['<img', '</img>'], 
-                                                $product->description);
+                    $description = str_replace(
+                                        ['<amp-img', '</amp-img>', 'layout="responsive"'], 
+                                        ['<img', '', ''], 
+                                        $product->description
+                                    );
                 @endphp 
                 {!! $description !!}
                 {{-- Descriere --}}
