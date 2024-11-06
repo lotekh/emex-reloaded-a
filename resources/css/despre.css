@@ -11,7 +11,7 @@
 
 .despre h1::before {
   border-image-width: 8px;
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   padding: 8px;
@@ -22,9 +22,9 @@
     rgba(255, 255, 255, 0) 75%,
     rgba(255, 255, 255, 1) 100%
   );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  /* -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
+  -webkit-mask-composite: xor; */
   mask-composite: exclude;
 }
 .header_img_bg {
@@ -37,7 +37,7 @@
 }
 
 #header_img_bg {
-  background-image: url('resources/images/despre-emex-by-romtehnochim.jpg');
+  background-image: url("resources/images/despre-emex-by-romtehnochim.jpg");
 }
 
 @media (min-width: 768px) {

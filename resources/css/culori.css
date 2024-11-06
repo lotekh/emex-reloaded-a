@@ -209,7 +209,7 @@
 
 .dialog-bubble {
   position: relative;
-  background: #ffffff85;
+  /* background: #ffffff85; */
   border-radius: 1em;
   max-width: 200px;
   padding: 18px 20px;
