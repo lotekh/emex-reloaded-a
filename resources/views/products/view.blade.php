@@ -38,7 +38,6 @@
         
         <div class="w-full col px-8 product-details-container">
             <div class="col gap-xl">
-                <form method="GET" action="{{ url('/adauga-produs') }}">
                     <div class="top-container">
                         <div class="col justify-between">
                             <div>
@@ -133,7 +132,7 @@
                                 @if ($product->variations->pluck('colour')->filter()->count())
                                     <div class="form-group">
                                         <label class="section-info" id="choose-color">Selecteaza culoare</label>
-                                        <select aria-labelledby="choose-color" class="w-full" name="color" id="colorSelect{{ $product->id }}">
+                                        <select form="adauga-in-cos" aria-labelledby="choose-color" class="w-full" name="color" id="colorSelect{{ $product->id }}">
                                             @foreach ($product->variations->pluck('colour')->filter() as $value)
                                                 <option value="{{ $value }}">{{ $value }}</option>
                                             @endforeach
@@ -145,7 +144,7 @@
                                 @if ($product->variations->pluck('quantity')->filter()->count())
                                     <div class="form-group">
                                         <label class="section-info" id="choose-type">Selecteaza ambalare</label>
-                                        <select aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
+                                        <select form="adauga-in-cos" aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
                                             @foreach ($product->variations->unique('quantity') as $variation)
                                                 <option value="{{ $variation->quantity }}">
                                                     {{ $variation->quantity }} {{ $variation->measurementUnit->name }}
@@ -154,29 +153,28 @@
                                         </select>
                                     </div>
                                 @endif
-                                    <input type="hidden" name="product_variation_id" id="variationInput{{$product->id}}" value="{{ $initialVariation->id }}">
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                    <input type="hidden" name="submited" value="1">
-                                    <input type="hidden" name="name" value="{{ $product->plain_name }}">
-                                    <input type="hidden" name="price" id="priceInput{{ $product->id }}" value="{{ $initialVariation->price }}">
-                                    <input type="hidden" name="price_no_tva" id="priceNoTvaInput" value="{{ $initialVariation->price_no_tva }}">
-                                    <input type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
-                                    <input type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
+                                    <input form="adauga-in-cos" type="hidden" name="product_variation_id" id="variationInput{{$product->id}}" value="{{ $initialVariation->id }}">
+                                    <input form="adauga-in-cos" type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input form="adauga-in-cos" type="hidden" name="submited" value="1">
+                                    <input form="adauga-in-cos" type="hidden" name="name" value="{{ $product->plain_name }}">
+                                    <input form="adauga-in-cos" type="hidden" name="price" id="priceInput{{ $product->id }}" value="{{ $initialVariation->price }}">
+                                    <input form="adauga-in-cos" type="hidden" name="price_no_tva" id="priceNoTvaInput" value="{{ $initialVariation->price_no_tva }}">
+                                    <input form="adauga-in-cos" type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
+                                    <input form="adauga-in-cos" type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
                                     
                                     <!-- Quantity field -->
                                     <div class="form-group">
                                         <label id="choose-quantity" class="section-info">Selecteaza cantitate</label>
-                                        <input class="w-full" aria-labelledby="choose-quantity" min="1" type="number" name="quantity" value="1" />
+                                        <input form="adauga-in-cos" class="w-full" aria-labelledby="choose-quantity" min="1" type="number" name="quantity" value="1" />
                                     </div>
             
                             </div>
                         @endif
                     </div>
-                {{-- </form> --}}
 
                 {{-- Adauga in cos, Vizualizeaza cosul, Adauga la favorite --}}
                 <div class="col flex-md gap-xs w-full">
-                    {{-- <form method="GET" action="{{ url('/adauga-produs') }}"> --}}
+                    <form id="adauga-in-cos" method="GET" action="{{ url('/adauga-produs') }}">
                         <div class="w-full h-full">
                             <input type="submit" id="adauga_produs_submit" class="{{ empty($initialVariation->price) || !$product->active ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || !$product->active ? 'disabled' : '' }}>
                         </div>
@@ -280,8 +278,8 @@
             <div id="Descriere" class="tab-content active">
                 @php
                     $description = str_replace(
-                                        ['<amp-img', '</amp-img>', 'layout="responsive"'], 
-                                        ['<img', '', ''], 
+                                        ['<amp-img', '</amp-img>', 'layout="responsive"', 'fallback'], 
+                                        ['<img', '', '', ''], 
                                         $product->description
                                     );
                 @endphp 
