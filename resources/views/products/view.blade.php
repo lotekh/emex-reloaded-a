@@ -32,14 +32,11 @@
                 <img class="contain featured-image-1" src="{{ $largeImageUrl }}" alt="imagine" title="imagineprodus">
             </div>
         </div>
-
-        {{-- <form method="GET" class="w-full col px-8 product-details-container" action="{{ url('/adauga-produs') }}"> --}}
         
         
             <div class="w-full col px-8 product-details-container">
                 <form method="GET" action="{{ url('/adauga-produs') }}">
             <div class="col gap-xl">
-                {{-- <form id="form_adauga_produs" method="GET" action="{{ url('/adauga-produs') }}"> --}}
                     <div class="top-container">
                         <div class="col justify-between">
                             <div>
@@ -195,7 +192,7 @@
                     </a>
                     
                     @php
-                        // Verifică dacă produsul este în wishlist, fie că utilizatorul este logat sau nu
+                        // Verify if the product is in wishlist, no matter if the user is logged in or guest
                         $isInWishlist = app('App\Http\Controllers\WishlistController')->isInWishlist($product->id);
                     @endphp
 
@@ -216,11 +213,7 @@
                             <span>{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}</span>
                         </button>
                     </form>
-
-                    
-                    
-                    
-                    
+                 
                 </div>
             </div>
             </form>
@@ -240,7 +233,6 @@
                 @endphp
                 <div id="product_extras_icons" class="icons-grid gap-md mt-16">
                     @if ($product->has_technical_file == 1)
-                        {{-- <a class="icon" href="{{ $product->getFisaTehnicaUrl() }}"> --}}
                         <a class="icon" href="{{$featuredFileUrl}}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" stroke="#1071ff" id="fisa" viewBox="0 0 19.18 24">
                                 <path d="M13.75.71v4.61s4.51.05 4.65 0 0 17.97 0 17.97H.71V.71h13.03l4.65 4.61" fill="none" stroke-width="1.43"></path>
@@ -259,7 +251,6 @@
                         </a>
                     @endif
                     @if ($product->has_instructions == 1)
-                        {{-- <a class="icon" href="{{ $product->getAplicareUrl() }}"> --}}
                         <a class="icon" href="{{ url($product->application_slug) }}">                       
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.92 23.97" fill="#1071ff" width="20" height="20">
                                 <path d="M14.4 23.97H0V0h19.92v18.43l-5.52 5.54ZM2.04 21.92H12V15.9h6V1.93H2.04v2.05H18v1.93H2.04v16.02Zm12-3.97v3.61l3.6-3.61h-3.6Zm-5.04 0H4.08V15.9h5.04v2.05H9Zm7.08-3.97h-12v-2.05h12v2.05Zm-2.04-3.97H4.08V7.96h9.96v2.05Z"></path>
@@ -384,25 +375,23 @@ document.addEventListener('DOMContentLoaded', function () {
     packagingSelect.addEventListener('change', updateVariation);
     colorSelect.addEventListener('change', updateVariation);
 
-    // Funcția openTab trebuie definită în afara event listener-ului DOMContentLoaded
     window.openTab = function(evt, tabName) {
-        // Declară toate variabilele
         var i, tabcontent, tablinks;
 
-        // Ascunde tot conținutul taburilor
+        // Hide the tabs content
         tabcontent = document.getElementsByClassName("tab-content");
         for (i = 0; i < tabcontent.length; i++) {
             tabcontent[i].classList.remove("active");
         }
 
-        // Elimină clasa 'selected' și aria-selected de la toate butoanele
+        // Eliminate 'selected' class and aria-selected from all buttons
         tablinks = document.getElementsByClassName("btn");
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].classList.remove("selected");
             tablinks[i].setAttribute("aria-selected", "false");
         }
 
-        // Afișează tab-ul curent și adaugă clasa 'active' și 'selected' la butonul selectat
+        // Show the current tab and add 'active' and 'selected' class to the selected button
         document.getElementById(tabName).classList.add("active");
         evt.currentTarget.classList.add("selected");
         evt.currentTarget.setAttribute("aria-selected", "true");
