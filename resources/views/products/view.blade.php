@@ -172,11 +172,11 @@
                             </div>
                         @endif
                     </div>
-                </form>
+                {{-- </form> --}}
 
                 {{-- Adauga in cos, Vizualizeaza cosul, Adauga la favorite --}}
                 <div class="col flex-md gap-xs w-full">
-                    <form method="GET" action="{{ url('/adauga-produs') }}">
+                    {{-- <form method="GET" action="{{ url('/adauga-produs') }}"> --}}
                         <div class="w-full h-full">
                             <input type="submit" id="adauga_produs_submit" class="{{ empty($initialVariation->price) || !$product->active ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || !$product->active ? 'disabled' : '' }}>
                         </div>
