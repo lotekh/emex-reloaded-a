@@ -12,10 +12,9 @@ class BlogArticleController extends Controller
     public function index()
     {
         $blogArticles = BlogArticle::with(['tags', 'featuredImage'])->orderBy('created_at', 'desc')->paginate(10);
-    
-        // Pentru arhivă și filtrul de tag-uri (exemplu dacă le folosești)
-        $archive = null; // Sau logica ta pentru a popula arhiva
-        $tagFilter = null; // Sau logica ta pentru filtrarea pe taguri
+
+        $archive = null; 
+        $tagFilter = null; 
     
         return view('blog.index', compact('blogArticles', 'archive', 'tagFilter'));
     }
@@ -37,15 +36,32 @@ class BlogArticleController extends Controller
         return view('blog.view', compact('model', 'recentArticles', 'archives', 'monthNames'));
     }
 
-
-    // Search the articles
-    public function search(Request $request)
+    public function searchByTag($tagId)
     {
-        $query = $request->input('query');
-        $results = BlogArticle::where('title', 'LIKE', '%' . $query . '%')
-                                ->orWhere('body', 'LIKE', '%' . $query . '%')
-                                ->get();
+        $tag = Tag::findOrFail($tagId); 
+        $blogArticles = BlogArticle::whereHas('tags', function ($query) use ($tagId) {
+            $query->where('tags.id', $tagId);
+        })->with(['tags', 'featuredImage'])->paginate(10); 
 
-        return view('blog.search_results', compact('results', 'query'));
+        return view('blog.search_results_tags', compact('blogArticles', 'tag'));
     }
+
+
+    public function searchByArchive(Request $request)
+    {
+        $year = $request->input('year');
+        $month = $request->input('month');
+        $blogArticles = BlogArticle::whereYear('created_at', $year)
+                                    ->whereMonth('created_at', $month)
+                                    ->with(['tags', 'featuredImage'])
+                                    ->orderBy('created_at', 'desc')
+                                    ->paginate(10);
+
+        $monthNames = ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'];
+        $monthName = $monthNames[$month - 1];
+
+        return view('blog.search_results_archive', compact('blogArticles', 'year', 'monthName'));
+    }
+
+    
 }

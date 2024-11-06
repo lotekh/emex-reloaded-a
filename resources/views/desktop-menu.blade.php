@@ -4,7 +4,7 @@ use Illuminate\Support\Str;
 
 
 
-<ul class="navigation_ul row align-center gap-md font-500">
+<div class="navigation_ul row align-center gap-md font-500">
 
 @php
     $acasa = false;
@@ -36,7 +36,7 @@ use Illuminate\Support\Str;
     }
 @endphp
 
-    <li class="dropdown products-dropdown" id="productsDropdown">
+    <div class="dropdown products-dropdown" id="productsDropdown">
         <div class="dropdown-toggle menuitm" data-toggle="dropdown">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="products-menuitm-icon">
                 <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -65,15 +65,15 @@ use Illuminate\Support\Str;
 
             </div>
         </div>
-    </li>
+    </div>
 
-    <li class="dropdown products-dropdown">
+    <div class="dropdown products-dropdown">
         <span class="dropdown-toggle menuitm" data-toggle="dropdown">
             Aplicare
             <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
         </span>
         <div class="dropdown-menu">
-            <ul class="category-wrapper">
+            <div class="category-wrapper">
                 <div class="products-dropdown-categories">
                     <a href="{{ url('/aplicare-vopsele-lavabile') }}" title="Aplicare vopsele lavabile">Vopsele Lavabile</a>
                 </div>
@@ -104,17 +104,17 @@ use Illuminate\Support\Str;
                 <div class="products-dropdown-categories blue-item">
                     <a href="{{ url('/aplicare-vopsele-hidrosolubile') }}" title="Membrana Poliuteranica">Vopsele Hidrosolubile</a>
                 </div>
-            </ul>
+            </div>
         </div>
-    </li>
+    </div>
 
-    <li class="dropdown products-dropdown">
+    <div class="dropdown products-dropdown">
         <span class="dropdown-toggle menuitm" data-toggle="dropdown">
             Servicii
             <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
         </span>
         <div class="dropdown-menu">
-            <ul class="category-wrapper">
+            <div class="category-wrapper">
                 <div class="products-dropdown-categories">
                     <a href="{{ url('/aplicare-covor-epoxidic-stb') }}" title="Pardoseli Cuartz Epoxi">Pardoseli Cuartz Epoxi</a>
                 </div>
@@ -127,11 +127,11 @@ use Illuminate\Support\Str;
                 <div class="products-dropdown-categories blue-item">
                     <a href="{{ url('/servicii') }}" title="Vopsiri Epoxidice">Servicii Generale</a>
                 </div>
-            </ul>
+            </div>
         </div>
-    </li>
+    </div>
 
-    <li class="dropdown products-dropdown">
+    <div class="dropdown products-dropdown">
         <span class="dropdown-toggle menuitm" data-toggle="dropdown">
             Consum
             <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
@@ -147,42 +147,42 @@ use Illuminate\Support\Str;
                 @endforeach
             </ul>
         </div>
-    </li>
+    </div>
     
     
 
-    <li class="dropdown products-dropdown">
+    <div class="dropdown products-dropdown">
         <span class="dropdown-toggle menuitm" data-toggle="dropdown">
             Culori
             <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more" title="See more">
         </span>
         <div class="dropdown-menu">
-            <ul class="category-wrapper">
+            <div class="category-wrapper">
                 <div class="products-dropdown-categories">
                     <a href="{{ url('/cartela-culori-ral-vopsele') }}" title="Cartela RAL - Emailuri">Cartela RAL - Emailuri</a>
                 </div>
                 <div class="products-dropdown-categories blue-item">
                     <a href="{{ url('/cartela-culori-lavabile') }}" title="Paletar Lavabile">Paletar Lavabile</a>
                 </div>
-            </ul>
+            </div>
         </div>
-    </li>
+    </div>
 
 
-    <li class="dropdown products-dropdown">
+    <div class="dropdown products-dropdown">
         <a href="{{ url('/blog') }}" title="Blog">
             <span class="dropdown-toggle menuitm" data-toggle="dropdown">
                 Blog
             </span>
         </a>
-    </li>
+    </div>
 
-    <li class="dropdown products-dropdown">
+    <div class="dropdown products-dropdown">
         <a href="{{ url('/contact') }}" title="Contact">
             <span class="dropdown-toggle menuitm" data-toggle="dropdown">
                 Contact
             </span>
         </a>
-    </li>
-</ul>
+    </div>
+</div>
 

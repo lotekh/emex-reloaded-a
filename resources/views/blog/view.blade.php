@@ -52,7 +52,7 @@
             <h2 class="m-0 mb-8">Postari recente</h2>
             @if (count($recentArticles))
                 @foreach ($recentArticles as $recentArticle)
-                    <a href="{{ url('/blog/article', ['id' => $recentArticle->id]) }}">
+                    <a href="{{ route('blog.article.show', ['slug' => $recentArticle->slug]) }}">
                         {{ $recentArticle->title }}
                     </a>
                 @endforeach
@@ -68,7 +68,7 @@
             @endphp
             @foreach ($archives as $archive)
                 <p>
-                    <a href="{{ url('/blog', ['year' => $archive['year'], 'month' => $archive['month']]) }}">
+                    <a href="{{ route('blog.search.archive', ['year' => $archive['year'], 'month' => $archive['month']]) }}">
                         {{ $monthNames[$archive['month'] - 1] }} {{ $archive['year'] }}
                     </a>
                     ({{ $archive['articles_number'] }})
@@ -80,12 +80,13 @@
             <div class="flex col">
                 <h2 class="m-0 mb-8">Tags</h2>
                 @foreach ($model->tags as $tag)
-                    <a href="{{ url('/blog', ['tag' => $tag->id]) }}">
+                    <a href="{{ route('blog.searchByTag', ['tagId' => $tag->id]) }}">
                         <span class="tag mr-8">{{ $tag->name }}</span>
                     </a>
                 @endforeach
             </div>
         @endif
+
     </div>
 </div>
 @endsection

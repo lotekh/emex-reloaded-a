@@ -242,7 +242,7 @@
                     @if ($product->has_technical_file == 1)
                         {{-- <a class="icon" href="{{ $product->getFisaTehnicaUrl() }}"> --}}
                         <a class="icon" href="{{$featuredFileUrl}}">
-                            <svg id="pdf" xmlns="http://www.w3.org/2000/svg" width="20" height="20" stroke="#1071ff" id="fisa" viewBox="0 0 19.18 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" stroke="#1071ff" id="fisa" viewBox="0 0 19.18 24">
                                 <path d="M13.75.71v4.61s4.51.05 4.65 0 0 17.97 0 17.97H.71V.71h13.03l4.65 4.61" fill="none" stroke-width="1.43"></path>
                                 <path d="M9.56 14.36c-3.68.86-5.85 2.13-6.28 2.99s-.22 1.91 1.29.86C6.08 17.17 8.9 11.4 9.56 6.88c.22-1.48-1.51-2.34-1.51-.43 0 2.56 1.29 7.24 6.5 8.77 1.95.43 2.17-1.48 0-1.48s-4.99.61-4.99.61Z" fill="none" stroke-width="1.03"></path>
                             </svg>

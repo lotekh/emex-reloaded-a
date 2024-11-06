@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\View;
 use App\Models\Category;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Request;
+use App\Models\Popup;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,5 +35,12 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('csrfWithoutAutocomplete', function () {
             return '<input type="text" style="display:none" name="_token" value="<?php echo csrf_token(); ?>">';
         });
+
+        // Get the slug of the current Url
+        $currentSlug = Request::segment(1); 
+        // Verify if there is a popup that is active and that has the same slug as the current URL
+        $popup = Popup::where('slug', $currentSlug)->where('is_active', 1)->first();
+        // Share popup with all views
+        View::share('popup', $popup);
     }
 }
