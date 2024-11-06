@@ -30,7 +30,6 @@
         </div>
 
         <div class="flex col align-center">
-            {{-- <img style="width: 100%" src="{{ $model->getFeaturedImageUrl() }}" alt="{{ $model->title }}"> --}}
             <div>
                 {!! $model->body !!}
             </div>
