@@ -664,9 +664,9 @@
                 <img src="{{ asset('resources/new_design/general/logo-footer.png') }}" height="72" width="201" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim">
             </a>
             <section>
-                <header>
+                <div class="categorii-mobile">
                     <a href="{{ url('/') }}" title="Acasa">Acasa</a>
-                </header>
+                </div>
             </section>
             <div class="categorii" id="cine-suntem" onclick="toggleAccordion('cine-suntem')">
                 <div class="categorii-mobile">Cine suntem</div>
