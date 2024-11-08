@@ -664,9 +664,9 @@
                 <img src="{{ asset('resources/new_design/general/logo-footer.png') }}" height="72" width="201" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim">
             </a>
             <section>
-                <div class="categorii-mobile">
+                <header>
                     <a href="{{ url('/') }}" title="Acasa">Acasa</a>
-                </div>
+                </header>
             </section>
             <div class="categorii" id="cine-suntem" onclick="toggleAccordion('cine-suntem')">
                 <div class="categorii-mobile">Cine suntem</div>
@@ -695,7 +695,7 @@
                 </ul>
             </div>
             <div class="categorii" id="aplicare" onclick="toggleAccordion('aplicare')">
-                <div class="categorii-mobile"Aplicare</header>
+                <div class="categorii-mobile">Aplicare</div>
                 <ul class="dropdown-menu" id="aplicare-menu">
                     <li><a href="{{ url('/aplicare-vopsele-lavabile') }}" title="Vopsele Lavabile">Vopsele Lavabile</a></li>
                     <li><a href="{{ url('/aplicare-email') }}" title="Emailuri Decorative">Emailuri Decorative</a></li>
