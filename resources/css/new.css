@@ -915,3 +915,15 @@
   height: 24px;
   margin-left: 4px;
 }
+
+.categorii-mobile {
+  background-color: var(--lightgrey);
+  border: 0;
+  font-size: 18px;
+  color: var(--darkgrey);
+  font-weight: 700;
+  margin: 0;
+  box-shadow: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
