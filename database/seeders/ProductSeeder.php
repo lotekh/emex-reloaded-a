@@ -21,7 +21,7 @@ class ProductSeeder extends Seeder
         Product::truncate();
         Schema::enableForeignKeyConstraints();
 
-        $jsonFile = resource_path('json/productsImport.json');
+        $jsonFile = resource_path('json/productsImport2.json');
         $products = array_values((array)json_decode(file_get_contents($jsonFile), true))[2]['data'];
 
         foreach ($products as $product) {
@@ -66,8 +66,8 @@ class ProductSeeder extends Seeder
             $smallImageUrl = self::constructImageUrl($product, 'small_image_path');
             $technicalFileUrl = self::constructTechnicalFileUrl($product);
 
-            self::uploadFile($largeImageUrl, $dbProduct, 'large_image_id');
-            self::uploadFile($smallImageUrl, $dbProduct, 'small_image_id');
+            self::uploadFile($largeImageUrl, $dbProduct, 'large_image_id', (array)json_decode($product['large_image_metadata']));
+            self::uploadFile($smallImageUrl, $dbProduct, 'small_image_id', (array)json_decode($product['small_image_metadata']));
             self::uploadFile($product['seo_og_image'], $dbProduct, 'og_image_id');
             self::uploadFile($product['consum_seo_og_image'], $dbProduct, 'consumption_og_image_id');
             self::uploadFile($product['seo_twitter_image'], $dbProduct, 'twitter_image_id');
@@ -97,7 +97,7 @@ class ProductSeeder extends Seeder
         return $seo;
     }
 
-    public static function uploadFile($fileUrl, $dbProduct, $column)
+    public static function uploadFile($fileUrl, $dbProduct, $column, $metadata = ['alt' => null, 'title' => null])
     {
         $parts = explode('/', $fileUrl);
         $filename = end($parts);
@@ -144,6 +144,9 @@ class ProductSeeder extends Seeder
                                 $type = '???';
                         }
 
+                        $alt = isset($metadata['alt']) ? $metadata['alt'] : null;
+                        $title = isset($metadata['title']) ? $metadata['title'] : null;
+
                         Media::create([
                             'disk' => 'public',
                             'directory' => 'media/' . $newId,
@@ -154,6 +157,8 @@ class ProductSeeder extends Seeder
                             'width' => $width,
                             'type' => $type,
                             'ext' => $extension,
+                            'alt' => $alt,
+                            'title' => $title
                         ]);
 
                         $dbProduct->$column = $newId;
