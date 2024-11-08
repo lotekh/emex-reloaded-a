@@ -439,7 +439,7 @@ class OrdersController extends Controller
                     ];
                 }
             } else {
-                // Dacă datele de livrare nu sunt aceleași cu cele de facturare, folosește valoarea din inputurile de livrare
+                // If the deliery data(deliveryInformation) is not the same as the billing data(companyInformation), use the value from the delivery inputs
                 if ($request->input('delivery_type') == 0) { // Curier
                     $deliveryInformationArray = [
                         'delivery_last_name' => $request->input('delivery_last_name'),
