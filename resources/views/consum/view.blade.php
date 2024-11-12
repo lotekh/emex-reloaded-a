@@ -19,9 +19,9 @@
         <div>
             <div class="consum-product-image mb-16" id="div_img_consum">
                 @php
-                    $largeImageUrl = $product->largeImage ? asset('storage/' .$product->largeImage->path) : $baseUrl . '/images/default-placeholder.png';
+                    $smallImageUrl = $product->smallImage ? asset('storage/' .$product->smallImage->path) : $baseUrl . '/images/default-placeholder.png';
                 @endphp
-                <img class="product-img img-responsive bordered m-16" src="{{ $largeImageUrl }}" alt="imagine produs" title="imag produs" width="300" height="300">
+                <img class="product-img img-responsive bordered m-16" src="{{ $smallImageUrl }}" alt="imagine produs" title="imag produs" width="300" height="300">
             </div>
 
             <div class="w-full" id="pwgw">

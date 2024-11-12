@@ -23,9 +23,9 @@
     <div class="article col-span-3">
         <h1>{{ $model->title }}</h1>
         <div class="flex mb-16 align-center">
-            @foreach ($model->tags as $tag)
+            {{-- @foreach ($model->tags as $tag)
                 <span class="tag mr-8">{{ $tag->name }}</span>
-            @endforeach
+            @endforeach --}}
             <span class="publish-date">publicat pe {{ \Carbon\Carbon::parse($model->created_at)->format('j.m.Y') }}</span>
         </div>
 
