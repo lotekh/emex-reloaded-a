@@ -64,7 +64,7 @@
                   <td>
                       <a href="{{ url($ordered_product->product->slug) }}" class="flex align-center">
                           <div>
-                              <img layout="fixed" width="90px" height="90px" src="{{ $ordered_product->product->largeImage ? asset('storage/' . $ordered_product->product->largeImage->path) : asset('/images/default-placeholder.png') }}" alt="{{ strip_tags($ordered_product->product->name) }}">
+                              <img class="image-cart" layout="fixed" src="{{ $ordered_product->product->smallImage ? asset('storage/' . $ordered_product->product->smallImage->path) : asset('/images/default-placeholder.png') }}" alt="{{ strip_tags($ordered_product->product->name) }}">
                           </div>
                           {{-- Get the product name until the first '-' sign --}}
                           <h3 class="normal-weight">{{ \Illuminate\Support\Str::before($ordered_product->name, ' -') }}</h3>

@@ -646,7 +646,6 @@
                         <a href="{{ url('/cookies') }}" title="Politica de folosire a cookies" class="info">
                             Detalii
                         </a>
-                        <!-- Butonul "Ok" va declanșa funcția JavaScript -->
                         <button type="button" class="cookie-btn" aria-label="Ok" onclick="acceptCookies()">Ok</button>
                     </div>
                 </form>
@@ -754,7 +753,6 @@
                     <a href="{{ url('/wishlist') }}" title="Favorite">Favorite</a>
                     <a href="{{ url('/contul-meu') }}" title="Istoric">Istoric</a>
                     <a href="{{ url('/contul-meu') }}" title="Facturare">Facturare</a>
-                    {{-- <a href="{{ url('/logout') }}" title="Iesire">Iesire</a> --}}
                     <a href="{{ route('logout') }}" id="logoutButtonMobile" title="Iesire"
                         onclick="event.preventDefault(); document.getElementById('logout-form-mobil').submit();">
                          Iesire din cont
@@ -763,9 +761,6 @@
                         @csrfWithoutAutocomplete
                     </form>
                 @else
-                    {{-- <button id="auth_lightbox_trigger_mobile" class="btn btn-blue" role="button" aria-label="Autentificare">
-                        Autentificare
-                    </button> --}}
                     <button id="auth_lightbox_trigger_mobile" class="btn btn-blue" onclick="toggleSidebar()" role="button" aria-label="Autentificare">
                         Autentificare
                     </button>

@@ -21,7 +21,7 @@
                 @php
                     $smallImageUrl = $product->smallImage ? asset('storage/' .$product->smallImage->path) : $baseUrl . '/images/default-placeholder.png';
                 @endphp
-                <img class="product-img img-responsive bordered m-16" src="{{ $smallImageUrl }}" alt="imagine produs" title="imag produs" width="300" height="300">
+                <img class="product-img img-responsive bordered m-16" src="{{ $smallImageUrl }}" alt="imagine produs" title="imag produs">
             </div>
 
             <div class="w-full" id="pwgw">

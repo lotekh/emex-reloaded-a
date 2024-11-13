@@ -927,3 +927,8 @@
   cursor: pointer;
   box-sizing: border-box;
 }
+
+.image-cart {
+  width: 180px;
+  height: 180px;
+}
