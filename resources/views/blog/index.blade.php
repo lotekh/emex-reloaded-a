@@ -46,14 +46,14 @@
                         <span>publicat pe {{ \Carbon\Carbon::parse($blogArticle->created_at)->format('j.m.Y') }}</span>
                     </div>
                 </div>
-                <div class="flex grid grid-5">
+                <div class="flex grid grid-3">
                     <div class="flex justify-center hide-mobile pr-32">
                         @php
                             $blogImageUrl = $blogArticle->featuredImage ? asset('storage/' .$blogArticle->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
                         @endphp
                         <img class="w-full" src="{{ $blogImageUrl}}" alt="">
                     </div>
-                    <div class="col-span-4 pl-16 flex col justify-center">
+                    <div class="col-span-2 pl-16 flex col justify-center">
                         <span>
                             {{ \Illuminate\Support\Str::words(html_entity_decode(strip_tags($blogArticle->body)), 50, '...') }}
                         </span>

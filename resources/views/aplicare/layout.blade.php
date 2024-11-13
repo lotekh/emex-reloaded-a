@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="main-container product-page mt-32" id="product_container">
+    <div class="aplicari main-container product-page mt-32" id="product_container">
         <div class="mt-16 mt-custom">
             <div class="tabs-selector-row">
                 @yield('tab-buttons')
