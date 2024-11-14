@@ -49,11 +49,7 @@ $base_url = url('/');
             <p class="mr-8 mb-8">Produse pe pagina:</p>
             <div class="flex row">
                 @foreach ($numsPerPage as $num)
-                    <a href="?per_page={{ $num }}">
-                        <button class="btn btn-empty rounded-sm {{ $per_page == $num ? 'active' : '' }} mr-8">
-                            {{ $num }}
-                        </button>
-                    </a>
+                    <a href="?per_page={{ $num }}" class="btn btn-empty rounded-sm {{ $per_page == $num ? 'active' : '' }} mr-8"> {{ $num }} </a>
                 @endforeach
             </div>
         </div>

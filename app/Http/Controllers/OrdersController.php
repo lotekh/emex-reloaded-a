@@ -26,11 +26,11 @@ class OrdersController extends Controller
         
         $ordered_products = [];
 
-        // Dacă există produse în sesiune, preia detaliile despre produse
+        // If there are alredy products in the session, get the product details
         if (!empty($cart)) {
             $productVariationIds = array_column($cart, 'product_variation_id');
             
-            // Preia produsele corespunzătoare din baza de date
+            // Get the information from the database
             $ordered_products = ProductVariation::whereIn('id', $productVariationIds)->with('product')->get();
             
             foreach ($ordered_products as $product) {
@@ -56,10 +56,10 @@ class OrdersController extends Controller
         $productVariationId = $request->input('product_variation_id');
         $quantity = $request->input('quantity', 1);
 
-        // Preluăm lista de produse din sesiune
+        // Get the cart from session
         $cart = session()->get('cart', []);
 
-        // Verificăm dacă produsul există deja în sesiune și actualizăm cantitatea
+        // Verify if the product is already in session and update the quantity
         if (isset($cart[$productVariationId])) {
             $cart[$productVariationId]['quantity'] += $quantity;
         } else {
@@ -67,12 +67,12 @@ class OrdersController extends Controller
             $cart[$productVariationId] = [
                 'quantity' => $quantity,
                 'price' => $productVariation->price,
-                'price_no_vat' => $productVariation->price * 0.81, // Calculăm fără TVA
+                'price_no_vat' => $productVariation->price * 0.81,
                 'product_variation_id' => $productVariationId,
             ];
         }
 
-        // Salvăm lista de produse actualizată în sesiune
+        // Save the updated cart in session
         session()->put('cart', $cart);
 
         return redirect()->back()->with('success', 'Produsul a fost adăugat în coș.');
@@ -85,16 +85,15 @@ class OrdersController extends Controller
         $productVariationId = $request->input('product_variation_id');
         $quantity = $request->input('quantity', 1);  // Implicit cantitatea e 1
 
-        // Preluăm coșul din sesiune
+        // Get the cart from session
         $cart = session()->get('cart', []);
 
-        // Verificăm dacă produsul există în coș
+        // If that product is in cart
         if (isset($cart[$productVariationId])) {
-            // Setăm cantitatea la minim 1
             $cart[$productVariationId]['quantity'] = max(1, $quantity);
         }
 
-        // Actualizăm coșul în sesiune
+        // Save the updated cart in session 
         session()->put('cart', $cart);
 
         return redirect()->back()->with('success', 'Cantitatea a fost actualizată.');
@@ -120,7 +119,7 @@ class OrdersController extends Controller
     {
         $countyId = $request->query('county_id');
         
-        // Verificăm dacă există produse în sesiune
+        // Verify if there are already products in the session
         $cart = session()->get('cart', []);
 
         if (empty($cart)) {
@@ -128,12 +127,11 @@ class OrdersController extends Controller
         }
 
         $productVariationIds = array_column($cart, 'product_variation_id');
-        // $ordered_products = ProductVariation::whereIn('id', $productVariationIds)->get();
         $ordered_products = ProductVariation::whereIn('id', $productVariationIds)->with('product')->get();
 
         $totalQuantity = 0;
 
-        // Calculăm cantitatea totală a produselor din sesiune
+        // Calculate the total quantity of products in the session
         foreach ($ordered_products as $product) {
             foreach ($cart as $cartItem) {
                 if ($cartItem['product_variation_id'] == $product->id) {
@@ -142,7 +140,7 @@ class OrdersController extends Controller
             }
         }
 
-        // Definim prețurile de transport pe baza cantității și regiunii
+        // Set the transport prices based on quantity and region
         $transportPricesBucurestiIlfov = [
             ['min' => 0, 'max' => 50, 'price' => 25],
             ['min' => 51, 'max' => 100, 'price' => 75],
@@ -157,17 +155,18 @@ class OrdersController extends Controller
             ['min' => 201, 'max' => 250, 'price' => 175],
         ];
 
-        // Determinăm prețul corect pe baza județului și cantității
+        // Get the right price based on county and quantity
         $price = 0;
-
-        if (in_array($countyId, [1160, 1176])) { // Bucuresti + Ilfov
+        // Bucuresti + Ilfov
+        if (in_array($countyId, [1160, 1176])) { 
             foreach ($transportPricesBucurestiIlfov as $range) {
                 if ($totalQuantity >= $range['min'] && $totalQuantity <= $range['max']) {
                     $price = $range['price'];
                     break;
                 }
             }
-        } else { // Restul tarii
+        // Others
+        } else { 
             foreach ($transportPricesInTara as $range) {
                 if ($totalQuantity >= $range['min'] && $totalQuantity <= $range['max']) {
                     $price = $range['price'];
@@ -176,10 +175,10 @@ class OrdersController extends Controller
             }
         }
 
-        // Calculează TVA-ul
+        // Calculate TVA
         $tva = $price * 0.19;
 
-        // Formatează prețul și TVA-ul pentru a avea două zecimale
+        // Format the price and TVA to have 2 decimals
         $formattedPrice = number_format($price, 2, '.', '');
         $formattedTva = number_format($tva, 2, '.', '');
 
@@ -189,7 +188,7 @@ class OrdersController extends Controller
         session()->put('order', $order);
 
 
-        // Returnează un array cu valorile calculului
+        // Return an array with the calculated values
         return response()->json([
             'price' => $formattedPrice,
             'tva' => $formattedTva,
@@ -200,7 +199,7 @@ class OrdersController extends Controller
 
     public function emptyCart()
     {
-        // Golește coșul de cumpărături din sesiune
+        // Empty the cart from the session
         session()->forget('cart');
 
         return redirect()->route('orders.index')->with('success', 'Coșul de cumpărături a fost golit.');
@@ -257,16 +256,16 @@ class OrdersController extends Controller
             }
         }
 
-        // Verificăm dacă există deja un 'order_id' în sesiune
+        // Verify if there is already an 'order_id' in session
         $order_id = session()->get('order_id', null);
         
-        // Dacă nu există, generăm unul nou și îl salvăm în sesiune
+        // If there isn't one, generate a new one and save it in the session
         if (!$order_id) {
             $order_id = Str::uuid(); // Poți folosi un UUID sau alt mecanism pentru generare
             session()->put('order_id', $order_id);
         }
 
-        // Inițializăm sau preluăm datele din sesiune pentru comanda curentă
+        // Initialize or get the data from the session for our current order 
         $order = session()->get('order', [
             'guid' => \Illuminate\Support\Str::uuid(),
             'identifier' => strtoupper(\Illuminate\Support\Str::random(10)),
@@ -280,7 +279,7 @@ class OrdersController extends Controller
             'delivery_information' => $user ? $user->delivery_information : null
         ]);
 
-        // Actualizăm datele de facturare și livrare dacă utilizatorul este autentificat
+        // Update company_information and delivery_information if the user is logged in
         if ($user) {
             $order['company_information'] = is_string($user->company_information)
                 ? json_decode($user->company_information, true)
@@ -291,10 +290,10 @@ class OrdersController extends Controller
                 : $user->delivery_information;
         }
 
-        // Salvăm comanda în sesiune
+        // Save the order in session
         session()->put('order', $order);
 
-        // Preluăm listele de țări și județe
+        // Get the list of countries and counties
         $countries = Country::all();
         $counties = County::all();
 
@@ -335,10 +334,6 @@ class OrdersController extends Controller
             ]
         );
 
-        // $dbOrder->billing_type = $request->input('billing_type');
-        // $dbOrder->delivery_type = $request->input('delivery_type');
-        // $dbOrder->payment_method = $request->input('payment_method');
-
         $total = 0;
         foreach ($cart as $cartItem) {
             $dbOrder->productVariations()->attach($cartItem['product_variation_id'], [
@@ -347,7 +342,7 @@ class OrdersController extends Controller
                 'price_no_vat' => $cartItem['price_no_vat'],
             ]);
 
-            // Calculăm totalul
+            // Calculate the total
             $total += $cartItem['quantity'] * $cartItem['price'];
         }
         $dbOrder->total = $total;
@@ -355,7 +350,7 @@ class OrdersController extends Controller
 
 
         if ($dbOrder) {
-            // Preluăm transport_price și transport_price_no_tva din sesiune
+            // Get transport_price and transport_price_no_tva from session
             if (isset($order['transport_price']) && isset($order['transport_price_no_tva'])) {
                 $dbOrder->transport_price = $order['transport_price'];
                 $dbOrder->transport_price_no_tva = $order['transport_price_no_tva'];
@@ -365,8 +360,9 @@ class OrdersController extends Controller
             $companyCountyId = null;
             $deliveryCountyId = null;
 
-            // Setăm valorile pentru persoană fizică sau juridică în funcție de billing_type
-            if ($request->input('billing_type') == 0) { // Persoană fizică
+            // Set the values for persoana fizica or persoana juridica based on billing_type
+            // Persoană fizică
+            if ($request->input('billing_type') == 0) { 
                 $companyInformationArray = [
                     'person_last_name' => $request->input('person_last_name'),
                     'person_first_name' => $request->input('person_first_name'),
@@ -378,7 +374,8 @@ class OrdersController extends Controller
                     'person_address' => $request->input('company_information.person_address'),
                 ];
                 $personCountyId = $companyInformationArray['person_county_id'];
-            } elseif ($request->input('billing_type') == 1) { // Persoană juridică
+            // Persoană juridică
+            } elseif ($request->input('billing_type') == 1) { 
                 $companyInformationArray = [
                     'organization_name' => $request->input('organization_name'),
                     'organization_cui' => $request->input('organization_cui'),
@@ -396,14 +393,15 @@ class OrdersController extends Controller
                 $companyCountyId = $companyInformationArray['organization_county_id'];
             }
 
-            // Calculează costul de ramburs dacă tipul de livrare este curier
+            // Calculate rambursValue if delivery_type is 0 (curier)
             $rambursValue = 0;
             $rambursTva = 0;
             if ($request->input('delivery_type') == 0 && $request->input('payment_method') == 'ramburs') {
-                // valoarea de ramburs e 3 la suta din valoarea comenzii fara tva, adica 3 la suta din 100-19 = 81% din $dbOrder->total
+                // rambursValue is 3% of the order value without TVA, so it is 3% of 100-19 = 81% of $dbOrder->total
                 $rambursValue = (($dbOrder->total * 81) / 100) * 3 / 100;
                 $rambursTva = ($rambursValue * 19) / 100;
-                $dbOrder->total += $rambursValue + $rambursTva; // Adăugăm costul rambursului la total
+                // Add the cost of ramburs(rambursValue+rambursTva) to the total
+                $dbOrder->total += $rambursValue + $rambursTva;
             }
 
             $dbOrder->transport_price_no_tva = $dbOrder->transport_price;
@@ -413,9 +411,10 @@ class OrdersController extends Controller
 
             $deliveryInformation = null;
             $deliveryInformationArray = null;
-            // Copierea datelor de facturare în datele de livrare, dacă opțiunea este bifată
+            // Copy the billing data(company_information) in the delivery data, if that option is checked
             if ($request->input('delivery_data_same_as_billing')) {
-                if ($request->input('billing_type') == 0) { // Persoană fizică
+                // Persoană fizică
+                if ($request->input('billing_type') == 0) { 
                     $deliveryInformationArray = [
                         'delivery_last_name' => $request->input('person_last_name'),
                         'delivery_first_name' => $request->input('person_first_name'),
@@ -426,7 +425,8 @@ class OrdersController extends Controller
                         'delivery_locality' => $request->input('company_information.person_locality'),
                         'delivery_address' => $request->input('company_information.person_address'),
                     ];
-                } elseif ($request->input('billing_type') == 1) { // Persoană juridică
+                // Persoană juridică
+                } elseif ($request->input('billing_type') == 1) { 
                     $deliveryInformationArray = [
                         'delivery_last_name' => $request->input('contact_person_last_name'),
                         'delivery_first_name' => $request->input('contact_person_first_name'),
@@ -439,7 +439,7 @@ class OrdersController extends Controller
                     ];
                 }
             } else {
-                // Dacă datele de livrare nu sunt aceleași cu cele de facturare, folosește valoarea din inputurile de livrare
+                // If the deliery data(deliveryInformation) is not the same as the billing data(companyInformation), use the value from the delivery inputs
                 if ($request->input('delivery_type') == 0) { // Curier
                     $deliveryInformationArray = [
                         'delivery_last_name' => $request->input('delivery_last_name'),

@@ -311,7 +311,7 @@ html {
   padding-left: 0;
 }
 .descript_par p {
-  margin: 16px 0;
+  /* margin: 16px 0; */
 }
 .Caracteristici {
   border-bottom: 1px dotted #f90;

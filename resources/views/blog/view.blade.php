@@ -47,14 +47,13 @@
     <div class="article col-span-3">
         <h1>{{ $model->title }}</h1>
         <div class="flex mb-16 align-center">
-            @foreach ($model->tags as $tag)
+            {{-- @foreach ($model->tags as $tag)
                 <span class="tag mr-8">{{ $tag->name }}</span>
-            @endforeach
+            @endforeach --}}
             <span class="publish-date">publicat pe {{ \Carbon\Carbon::parse($model->created_at)->format('j.m.Y') }}</span>
         </div>
 
         <div class="flex col align-center">
-            {{-- <img style="width: 100%" src="{{ $model->getFeaturedImageUrl() }}" alt="{{ $model->title }}"> --}}
             <div>
                 {!! $model->body !!}
             </div>
@@ -66,7 +65,7 @@
             <h2 class="m-0 mb-8">Cautare</h2>
             <form class="relative flex align-center w-full justify-end" method="GET" action="{{ url('/search') }}">
                 <div class="flex align-center">
-                    <img id="search-icon" width="18" height="18" src="{{ asset('resources/new_design/icons/search.svg') }}" alt="search-icon" title="search-icon">
+                    <img id="search-icon-blog" width="18" height="18" src="{{ asset('resources/new_design/icons/search.svg') }}" alt="search-icon" title="search-icon">
                 </div>
                 <input id="search-input-desktop" type="text" name="zoom_query" class="form-control w-full" placeholder="Cautare...">
             </form>

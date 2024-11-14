@@ -45,7 +45,10 @@
 @endphp
 
 <div class="main-container product-page" id="product_container">
+
     <h1 class="mobile-title mt-32">{!! $product->name !!}</h1>
+
+    {{-- Product info --}}
     <div class="w-full product-info-grid">
         <div class="col">
             <div class="w-full h-full relative img-container">
@@ -56,14 +59,9 @@
                 <img class="contain featured-image-1" src="{{ $largeImageUrl }}" alt="imagine" title="imagineprodus">
             </div>
         </div>
-
-        {{-- <form method="GET" class="w-full col px-8 product-details-container" action="{{ url('/adauga-produs') }}"> --}}
         
-        
-            <div class="w-full col px-8 product-details-container">
-                <form method="GET" action="{{ url('/adauga-produs') }}">
+        <div class="w-full col px-8 product-details-container">
             <div class="col gap-xl">
-                {{-- <form id="form_adauga_produs" method="GET" action="{{ url('/adauga-produs') }}"> --}}
                     <div class="top-container">
                         <div class="col justify-between">
                             <div>
@@ -158,7 +156,7 @@
                                 @if ($product->variations->pluck('colour')->filter()->count())
                                     <div class="form-group">
                                         <label class="section-info" id="choose-color">Selecteaza culoare</label>
-                                        <select aria-labelledby="choose-color" class="w-full" name="color" id="colorSelect{{ $product->id }}">
+                                        <select form="adauga-in-cos" aria-labelledby="choose-color" class="w-full" name="color" id="colorSelect{{ $product->id }}">
                                             @foreach (array_unique($product->variations->pluck('colour')->filter()->toArray()) as $value)
                                                 <option value="{{ $value }}">{{ $value }}</option>
                                             @endforeach
@@ -170,7 +168,7 @@
                                 @if ($product->variations->pluck('quantity')->filter()->count())
                                     <div class="form-group">
                                         <label class="section-info" id="choose-type">Selecteaza ambalare</label>
-                                        <select aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
+                                        <select form="adauga-in-cos" aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
                                             @foreach ($product->variations->unique('quantity') as $variation)
                                                 <option value="{{ $variation->quantity }}">
                                                     {{ $variation->quantity }} {{ $variation->measurementUnit->name }}
@@ -179,39 +177,32 @@
                                         </select>
                                     </div>
                                 @endif
-
-
-                                
-                                    <input type="hidden" name="product_variation_id" id="variationInput{{$product->id}}" value="{{ $initialVariation->id }}">
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                    <input type="hidden" name="submited" value="1">
-                                    <input type="hidden" name="name" value="{{ $product->plain_name }}">
-                                    <input type="hidden" name="price" id="priceInput{{ $product->id }}" value="{{ $initialVariation->price }}">
-                                    <input type="hidden" name="price_no_tva" id="priceNoTvaInput" value="{{ $initialVariation->price_no_tva }}">
-                                    <input type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
-                                    <input type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
+                                    <input form="adauga-in-cos" type="hidden" name="product_variation_id" id="variationInput{{$product->id}}" value="{{ $initialVariation->id }}">
+                                    <input form="adauga-in-cos" type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input form="adauga-in-cos" type="hidden" name="submited" value="1">
+                                    <input form="adauga-in-cos" type="hidden" name="name" value="{{ $product->plain_name }}">
+                                    <input form="adauga-in-cos" type="hidden" name="price" id="priceInput{{ $product->id }}" value="{{ $initialVariation->price }}">
+                                    <input form="adauga-in-cos" type="hidden" name="price_no_tva" id="priceNoTvaInput" value="{{ $initialVariation->price_no_tva }}">
+                                    <input form="adauga-in-cos" type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
+                                    <input form="adauga-in-cos" type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
                                     
-                                    <!-- Adăugare câmp pentru quantity -->
+                                    <!-- Quantity field -->
                                     <div class="form-group">
                                         <label id="choose-quantity" class="section-info">Selecteaza cantitate</label>
-                                        <input class="w-full" aria-labelledby="choose-quantity" min="1" pattern="[0-9]+" type="number" name="quantity" value="1" />
+                                        <input form="adauga-in-cos" class="w-full" aria-labelledby="choose-quantity" min="1" type="number" name="quantity" value="1" />
                                     </div>
-
-                                    
-                                    
-                                    
-                                
-                                
-                                
+            
                             </div>
                         @endif
                     </div>
-                </form>
 
+                {{-- Adauga in cos, Vizualizeaza cosul, Adauga la favorite --}}
                 <div class="col flex-md gap-xs w-full">
-                    <div class="w-full h-full">
-                        <input type="submit" id="adauga_produs_submit" class="{{ empty($initialVariation->price) || !$product->active ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || !$product->active ? 'disabled' : '' }}>
-                    </div>
+                    <form class="w-full" id="adauga-in-cos" method="GET" action="{{ url('/adauga-produs') }}">
+                        <div class="w-full h-full">
+                            <input type="submit" id="adauga_produs_submit" class="{{ empty($initialVariation->price) || !$product->active ? 'btn-disabled' : 'cursor-pointer' }} w-full h-full btn-blue font-sm rounded-sm" value="Adauga in cos" {{ empty($initialVariation->price) || !$product->active ? 'disabled' : '' }}>
+                        </div>
+                    </form>
                     <a href="{{ url('/produse-adaugate') }}" title="Cos" class="flex h-full">
                         <div class="btn-blue-outline rounded-sm text-nowrap w-full h-full flex justify-center align-center font-sm px-16 py-8 line-height-1">
                             Vizualizeaza cosul
@@ -219,7 +210,7 @@
                     </a>
                     
                     @php
-                        // Verifică dacă produsul este în wishlist, fie că utilizatorul este logat sau nu
+                        // Verify if the product is in wishlist, no matter if the user is logged in or guest
                         $isInWishlist = app('App\Http\Controllers\WishlistController')->isInWishlist($product->id);
                     @endphp
 
@@ -230,25 +221,21 @@
                         @endif
 
                         <button type="submit" class="flex align-center btn-blue-outline rounded-sm text-nowrap w-full gap-md justify-center h-full font-sm px-16 py-4">
-                            <div class="addToWhislistSvgWrapper">
+                            <span class="addToWhislistSvgWrapper">
                                 @if ($isInWishlist)
                                     <img width="16" height="15" src="{{ asset('resources/new_design/icons/star-fill.svg') }}" title="review-star" alt="review-star">
                                 @else
                                     <img width="16" height="15" src="{{ asset('resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
                                 @endif
-                            </div>
+                            </span>
                             <span>{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}</span>
                         </button>
                     </form>
-
-                    
-                    
-                    
-                    
+                 
                 </div>
             </div>
-            </form>
 
+            {{-- Fisa tehnica, Calcul Consum, Instructiuni, Paleta Culorio --}}
             <div class="col">
                 <p class="text-center mt-16">
                     @if ($product->price_disclaimer)
@@ -264,7 +251,6 @@
                 @endphp
                 <div id="product_extras_icons" class="icons-grid gap-md mt-16">
                     @if ($product->has_technical_file == 1)
-                        {{-- <a class="icon" href="{{ $product->getFisaTehnicaUrl() }}"> --}}
                         <a class="icon" href="{{$featuredFileUrl}}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" stroke="#1071ff" id="fisa" viewBox="0 0 19.18 24">
                                 <path d="M13.75.71v4.61s4.51.05 4.65 0 0 17.97 0 17.97H.71V.71h13.03l4.65 4.61" fill="none" stroke-width="1.43"></path>
@@ -283,7 +269,6 @@
                         </a>
                     @endif
                     @if ($product->has_instructions == 1)
-                        {{-- <a class="icon" href="{{ $product->getAplicareUrl() }}"> --}}
                         <a class="icon" href="{{ url($product->application_slug) }}">                       
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.92 23.97" fill="#1071ff" width="20" height="20">
                                 <path d="M14.4 23.97H0V0h19.92v18.43l-5.52 5.54ZM2.04 21.92H12V15.9h6V1.93H2.04v2.05H18v1.93H2.04v16.02Zm12-3.97v3.61l3.6-3.61h-3.6Zm-5.04 0H4.08V15.9h5.04v2.05H9Zm7.08-3.97h-12v-2.05h12v2.05Zm-2.04-3.97H4.08V7.96h9.96v2.05Z"></path>
@@ -302,9 +287,9 @@
                 </div>
             </div>
         </div>
-        {{-- </form> --}}
     </div>
 
+    {{-- Product tabs -> Descriere, Detalii Utilizare, Caracteristici tehnice --}}
     <div class="mt-16 mt-custom">
         <div class="tabs-selector-row">
             <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid selected" option="0" aria-selected="true" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
@@ -316,8 +301,11 @@
 
             <div id="Descriere" class="tab-content active">
                 @php
-                    $description = str_replace(['<amp-img', '</amp-img>'], ['<img', '</img>'], 
-                                                $product->description);
+                    $description = str_replace(
+                                        ['<amp-img', '</amp-img>', 'layout="responsive"', 'fallback'], 
+                                        ['<img', '', '', ''], 
+                                        $product->description
+                                    );
                 @endphp 
                 {!! $description !!}
                 {{-- Descriere --}}
@@ -336,7 +324,7 @@
         </div>
     </div>
 
-    {{-- Cautari similare --}}
+    {{-- Similar results(Cautari similare) --}}
     <div class="mt-16"> 
         <div class="cautari">Cautari similare</div>
         <div class="mt-8 grid grid-4 gap-xs">
@@ -351,6 +339,7 @@
         </div>
     </div> 
 
+    {{-- Certification images --}}
     <div class="w-full grid grid-3 min-row-height gap-lg mt-16" id="pwgw">
         <div class="badge">
             <div class="relative w-full h-full">
@@ -408,25 +397,23 @@ document.addEventListener('DOMContentLoaded', function () {
     packagingSelect.addEventListener('change', updateVariation);
     colorSelect.addEventListener('change', updateVariation);
 
-    // Funcția openTab trebuie definită în afara event listener-ului DOMContentLoaded
     window.openTab = function(evt, tabName) {
-        // Declară toate variabilele
         var i, tabcontent, tablinks;
 
-        // Ascunde tot conținutul taburilor
+        // Hide the tabs content
         tabcontent = document.getElementsByClassName("tab-content");
         for (i = 0; i < tabcontent.length; i++) {
             tabcontent[i].classList.remove("active");
         }
 
-        // Elimină clasa 'selected' și aria-selected de la toate butoanele
+        // Eliminate 'selected' class and aria-selected from all buttons
         tablinks = document.getElementsByClassName("btn");
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].classList.remove("selected");
             tablinks[i].setAttribute("aria-selected", "false");
         }
 
-        // Afișează tab-ul curent și adaugă clasa 'active' și 'selected' la butonul selectat
+        // Show the current tab and add 'active' and 'selected' class to the selected button
         document.getElementById(tabName).classList.add("active");
         evt.currentTarget.classList.add("selected");
         evt.currentTarget.setAttribute("aria-selected", "true");
