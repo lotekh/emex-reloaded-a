@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Media;
 use App\Models\Product;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use DOMDocument;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
@@ -61,7 +61,6 @@ class ProductSeeder extends Seeder
 
             $dbProduct->categories()->attach($product['category_id'], ['order' => $product['sort_priority']]);
 
-            //TO DO image, technical file
             $largeImageUrl = self::constructImageUrl($product, 'large_image_path');
             $smallImageUrl = self::constructImageUrl($product, 'small_image_path');
             $technicalFileUrl = self::constructTechnicalFileUrl($product);
@@ -73,6 +72,29 @@ class ProductSeeder extends Seeder
             self::uploadFile($product['seo_twitter_image'], $dbProduct, 'twitter_image_id');
             self::uploadFile($product['consum_seo_twitter_image'], $dbProduct, 'consumption_twitter_image_id');
             self::uploadFile($technicalFileUrl, $dbProduct, 'technical_file_id', '.pdf');
+
+            //Fix technical file link in the usage details
+            if($dbProduct->technicalFile) {
+                $usageDetails = $dbProduct->usage_details;
+                $document = new DOMDocument();
+                libxml_use_internal_errors(true);
+                $document->loadHTML($usageDetails);
+                libxml_use_internal_errors(false);
+    
+                $strong = $document->getElementsByTagName('strong');
+                $contents = [];
+                foreach($strong as $strongElement) {
+                    $contents[] = $strongElement->textContent;
+    
+                    if($strongElement->textContent == 'Fisa Tehnica') {
+                        $newHref = $dbProduct->technicalFile->url;
+                        $strongElement->parentElement->setAttribute('href', $newHref);
+                    }
+                }
+                $newUsageDetails = $document->saveHTML();
+                $dbProduct->usage_details = $newUsageDetails;
+                $dbProduct->save();
+            }
         }
     }
 
