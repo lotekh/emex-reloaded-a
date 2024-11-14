@@ -19,7 +19,7 @@
   color: #009;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  padding: 0 40px;
+  padding: 0 24px;
 }
 .product-card .title:hover {
   color: var(--red);

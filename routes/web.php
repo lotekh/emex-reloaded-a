@@ -16,6 +16,7 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ConsumController;
 use App\Http\Controllers\BlogArticleController;
+use App\Http\Controllers\FeedsController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Middleware\AuthenticatedOnly;
@@ -323,5 +324,19 @@ Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle'
 Route::get('/consum/{category}', [ConsumController::class, 'index'])->name('consum.index');
 Route::get('/{consumption_slug}', [ConsumController::class, 'show'])->name('consum.show');
 Route::post('/consum/store', [ConsumController::class, 'store'])->name('consum.store');
+
+Route::prefix('/feed')->group(function () {
+    Route::get('/bizoo-v2', [FeedsController::class, 'bizooV2'])->name('feeds.bizoo.v2');
+
+    Route::get('/update-feeds', [FeedsController::class, 'updateFeeds'])->name('feeds.update');
+
+    Route::get('/price', [FeedsController::class, 'price'])->name('feeds.price');
+
+    Route::get('/shopmania', [FeedsController::class, 'shopmania'])->name('feeds.shopmania');
+
+    Route::get('/shopmania-ro', [FeedsController::class, 'shopmaniaRo'])->name('feeds.shopmania-ro');
+
+    Route::get('/okazii', [FeedsController::class, 'okazii'])->name('feeds.okazii');
+});
 
 
