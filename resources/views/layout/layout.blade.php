@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/{{ minify('css/layout.css') }}">
     <link rel="stylesheet" href="/{{ minify('css/new.css') }}">
     <link rel="stylesheet" href="/{{ minify('css/root.css') }}">
+    <link rel="stylesheet" href="/{{ minify('css/sprite.css') }}">
     @yield('css')
     {{-- @vite('resources/css/app.css') --}}
 </head>
@@ -645,7 +646,6 @@
                         <a href="{{ url('/cookies') }}" title="Politica de folosire a cookies" class="info">
                             Detalii
                         </a>
-                        <!-- Butonul "Ok" va declanșa funcția JavaScript -->
                         <button type="button" class="cookie-btn" aria-label="Ok" onclick="acceptCookies()">Ok</button>
                     </div>
                 </form>
@@ -664,12 +664,12 @@
                 <img src="{{ asset('resources/new_design/general/logo-footer.png') }}" height="72" width="201" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim">
             </a>
             <section>
-                <header>
+                <div class="categorii-mobile">
                     <a href="{{ url('/') }}" title="Acasa">Acasa</a>
-                </header>
+                </div>
             </section>
             <div class="categorii" id="cine-suntem" onclick="toggleAccordion('cine-suntem')">
-                <header>Cine suntem</header>
+                <div class="categorii-mobile">Cine suntem</div>
                 <ul class="dropdown-menu" id="cine-suntem-menu">
                     <li><a href="{{ url('/despre-noi') }}" title="Despre noi">Despre noi</a></li>
                     <li><a href="{{ url('/politica-de-calitate') }}" title="Politica de Calitate">Politica de Calitate</a></li>
@@ -680,7 +680,7 @@
                 </ul>
             </div>
             <div class="categorii" id="produse" onclick="toggleAccordion('produse')">
-                <header>Produse</header>
+                <div class="categorii-mobile">Produse</div>
                 <ul class="dropdown-menu" id="produse-menu">
                     <li id="apmim_mob"><a href="{{ url('/produse') }}" title="toate produsele">Toate Produsele</a></li>
 
@@ -695,7 +695,7 @@
                 </ul>
             </div>
             <div class="categorii" id="aplicare" onclick="toggleAccordion('aplicare')">
-                <header>Aplicare</header>
+                <div class="categorii-mobile">Aplicare</div>
                 <ul class="dropdown-menu" id="aplicare-menu">
                     <li><a href="{{ url('/aplicare-vopsele-lavabile') }}" title="Vopsele Lavabile">Vopsele Lavabile</a></li>
                     <li><a href="{{ url('/aplicare-email') }}" title="Emailuri Decorative">Emailuri Decorative</a></li>
@@ -710,7 +710,7 @@
                 </ul>
             </div>
             <div class="categorii" id="consum" onclick="toggleAccordion('consum')">
-                <header>Consum</header>
+                <div class="categorii-mobile">Consum</div>
                 <ul class="dropdown-menu" id="consum-menu">
                     @foreach ($categories as $ind => $category)
                         <li>
@@ -722,7 +722,7 @@
                 </ul>
             </div>
             <div class="categorii" id="servicii" onclick="toggleAccordion('servicii')">
-                <header>Servicii</header>
+                <div class="categorii-mobile">Servicii</div>
                 <ul class="dropdown-menu" id="servicii-menu">
                     <li><a href="{{ url('/aplicare-covor-epoxidic-stb') }}" title="Pardoseli Cuartz">Pardoseli Cuartz Epoxi</a></li>
                     <li><a href="{{ url('/aplicare-pardoseala-epoxidica-autonivelanta') }}" title="Autonivelanta Epoxi">Autonivelanta Epoxi</a></li>
@@ -731,21 +731,21 @@
                 </ul>
             </div>
             <div class="categorii" id="culori" onclick="toggleAccordion('culori')">
-                <header>Culori</header>
+                <div class="categorii-mobile">Culori</div>
                 <ul class="dropdown-menu" id="culori-menu">
                     <li><a href="{{ url('/cartela-culori-ral-vopsele') }}" title="Cartela RAL">Cartela RAL - Emailuri</a></li>
                     <li><a href="{{ url('/cartela-culori-lavabile') }}" title="Paletar Lavabile">Paletar Lavabile</a></li>
                 </ul>
             </div>
             <section>
-                <header>
+                <div class="categorii-mobile">
                     <a href="{{ url('/blog') }}" title="blog">Blog</a>
-                </header>
+                </div>
             </section>
             <section>
-                <header>
+                <div class="categorii-mobile">
                     <a href="{{ url('/contact') }}" title="contact">Contact</a>
-                </header>
+                </div>
             </section>
             <div class="contul_meu">
                 @if (Auth::check())
@@ -753,7 +753,6 @@
                     <a href="{{ url('/wishlist') }}" title="Favorite">Favorite</a>
                     <a href="{{ url('/contul-meu') }}" title="Istoric">Istoric</a>
                     <a href="{{ url('/contul-meu') }}" title="Facturare">Facturare</a>
-                    {{-- <a href="{{ url('/logout') }}" title="Iesire">Iesire</a> --}}
                     <a href="{{ route('logout') }}" id="logoutButtonMobile" title="Iesire"
                         onclick="event.preventDefault(); document.getElementById('logout-form-mobil').submit();">
                          Iesire din cont
@@ -762,9 +761,6 @@
                         @csrfWithoutAutocomplete
                     </form>
                 @else
-                    {{-- <button id="auth_lightbox_trigger_mobile" class="btn btn-blue" role="button" aria-label="Autentificare">
-                        Autentificare
-                    </button> --}}
                     <button id="auth_lightbox_trigger_mobile" class="btn btn-blue" onclick="toggleSidebar()" role="button" aria-label="Autentificare">
                         Autentificare
                     </button>

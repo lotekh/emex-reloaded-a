@@ -35,32 +35,28 @@
 
         @foreach ($blogArticles as $key => $blogArticle)
             <div class="article">
-                {{-- <a href="{{ url('/blog/article', $blogArticle->id) }}"> --}}
                 <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}">
                     <h1>{{ $blogArticle->title }}</h1>
                 </a>
                 <div class="flex mb-16 align-center">
-                    @foreach ($blogArticle->tags as $tag)
+                    {{-- @foreach ($blogArticle->tags as $tag)
                         <span class="tag mr-8">{{ $tag->name }}</span>
-                    @endforeach
-                    {{-- <span class="publish-date">publicat pe {{ \Carbon\Carbon::parse($blogArticle->created_at)->format('j.m.Y') }}</span> --}}
+                    @endforeach --}}
                     <div class="publish-date">
                         <span>publicat pe {{ \Carbon\Carbon::parse($blogArticle->created_at)->format('j.m.Y') }}</span>
                     </div>
                 </div>
-                <div class="flex grid grid-5">
+                <div class="flex grid grid-3">
                     <div class="flex justify-center hide-mobile pr-32">
                         @php
                             $blogImageUrl = $blogArticle->featuredImage ? asset('storage/' .$blogArticle->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
                         @endphp
                         <img class="w-full" src="{{ $blogImageUrl}}" alt="">
                     </div>
-                    <div class="col-span-4 pl-16 flex col justify-center">
+                    <div class="col-span-2 pl-16 flex col justify-center">
                         <span>
                             {{ \Illuminate\Support\Str::words(html_entity_decode(strip_tags($blogArticle->body)), 50, '...') }}
-                            {{-- {!! \Illuminate\Support\Str::words($blogArticle->body, 50, '...') !!} --}}
                         </span>
-                        {{-- <a href="{{ url('/blog/article', $blogArticle->id) }}" class="link">Vezi mai mult</a> --}}
                         <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}" class="link">Vezi mai mult</a>
                     </div>
                 </div>

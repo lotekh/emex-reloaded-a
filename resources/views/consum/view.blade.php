@@ -9,28 +9,19 @@
     <link rel="stylesheet" href="/{{ minify('css/consum.css') }}">
 @endsection
 
-{{-- @php
-$currentPage = 0;
-@endphp --}}
-
 @section('content')
 <div class="main-container" id="consum-page">
     <div class="w-full flex justify-center mb-8">
         <h2 class="text-center dark-blue">CALCULATOR CONSUM {!! $product->name !!}</h2>
     </div>
 
-    {{-- <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}"> --}}
-    {{-- <input type="hidden" name="suprafata_type_name" id="suprafata_type_name" value="{{ $consumData['suprafata_type_name'] }}">
-    <input type="hidden" name="suprafata_name" id="suprafata_name" value="{{ $consumData['suprafata_name'] }}">
-    <input type="hidden" name="consumption_slug" id="consumption_slug" value="{{ $product->consumption_slug }}"> --}}
-
     <div class="grid grid-3 consum-container">
         <div>
             <div class="consum-product-image mb-16" id="div_img_consum">
                 @php
-                    $largeImageUrl = $product->largeImage ? asset('storage/' .$product->largeImage->path) : $baseUrl . '/images/default-placeholder.png';
+                    $smallImageUrl = $product->smallImage ? asset('storage/' .$product->smallImage->path) : $baseUrl . '/images/default-placeholder.png';
                 @endphp
-                <img class="product-img img-responsive bordered m-16" src="{{ $largeImageUrl }}" alt="imagine produs" title="imag produs" width="300" height="300">
+                <img class="product-img img-responsive bordered m-16" src="{{ $smallImageUrl }}" alt="imagine produs" title="imag produs">
             </div>
 
             <div class="w-full" id="pwgw">
@@ -82,7 +73,7 @@ $currentPage = 0;
                             <select class="form-control mb-16" id="product_select" onchange="location = this.value;">
                                 @foreach ($category->products as $categoryProduct)
                                 @php
-                                // Înlocuiește toate aparițiile de <br> cu spațiu
+                                // Replace <br> with space
                                 $productName = str_replace('<br>', ' ', $categoryProduct->category_page_title);
                                 @endphp
                                     @if(!empty($categoryProduct->consumption_slug))
@@ -94,10 +85,6 @@ $currentPage = 0;
                                             Product slug not available
                                         </option>
                                     @endif
-                            
-                                    {{-- <option value="{{ route('consum.show', ['consumption_slug' => $categoryProduct->consumption_slug]) }}" {{ $product->id == $categoryProduct->id ? 'selected' : '' }}>
-                                        {!! $productName !!}
-                                    </option> --}}
                                 @endforeach
                             </select>
                             
@@ -145,16 +132,12 @@ $currentPage = 0;
                             <button type="submit" class="btn btn-blue rounded-sm mb-16">CALCULEAZA
                                 <img src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
                             </button>
-                            {{-- <button type="button" class="btn btn-blue rounded-sm mb-16" onclick="showNextStep(3)">CALCULEAZA
-                                <img src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
-                            </button> --}}
                         </div>
                     </div>
                 </form>
             </div>
 
             <!-- Step 4 -->
-            {{-- <div id="cr" class="consum_content_step hidden"> --}}
             <div id="cr" class="{{ $currentPage == 3 ? 'flex' : 'hidden' }}">
                 @if (!empty($result))
                     {!! $result !!}
@@ -162,32 +145,15 @@ $currentPage = 0;
                     <p>Nu există rezultate disponibile pentru această cerere.</p>
                 @endif
 
-                {{-- <div class="consum_content_step" id="cr2"> --}}
+                
                 <div class="consum_content_step {{ $currentPage == 3 ? 'consum_content_step_active' : '' }}">
                     <p class="mt-16"><strong>Alege alt produs din gama:</strong></p>
-                    {{-- <div class="consum_form_group">
-                        <div class="flex w-full mt-8 mb-8">
-                            <label for='product_select' id="step1_title">Tip Produs*</label>
-                        </div>
-                        <select class="form-control mb-16" id="product_select" onchange="location = this.value;">
-                            @foreach ($category->products as $categoryProduct)
-                            @php
-                            // Înlocuiește toate aparițiile de <br> cu spațiu
-                            $productName = str_replace('<br>', ' ', $categoryProduct->category_page_title);
-                            @endphp
-                                <option value="{{ route('consum.show', ['consumption_slug' => $categoryProduct->consumption_slug]) }}" {{ $product->id == $categoryProduct->id ? 'selected' : '' }}>
-                                    {!! $productName !!}
-                                </option>
-                            @endforeach
-                        </select>
-                        
-                    </div> --}}
                     <div class="consum_form_group">
                         <label for='product_select-consum' class="mb-8">Tip Produs*</label>
                         <select class="form-control mb-16" id="product_select-consum" onchange="location = this.value;">
                             @foreach ($category->products as $categoryProduct)
                             @php
-                            // Înlocuiește toate aparițiile de <br> cu spațiu
+                            // Replace <br> with space
                             $productName = str_replace('<br>', ' ', $categoryProduct->category_page_title);
                             @endphp
                                 @if(!empty($categoryProduct->consumption_slug))
@@ -199,10 +165,7 @@ $currentPage = 0;
                                         Product slug not available
                                     </option>
                                 @endif
-                        
-                                {{-- <option value="{{ route('consum.show', ['consumption_slug' => $categoryProduct->consumption_slug]) }}" {{ $product->id == $categoryProduct->id ? 'selected' : '' }}>
-                                    {!! $productName !!}
-                                </option> --}}
+                    
                             @endforeach
                         </select>
                     </div>
@@ -222,8 +185,6 @@ $currentPage = 0;
                 <span class="ml-8 red"><em class="green-mark">Cantitatea finala este conditionata si de ambalajul produsului. Nu se pot livra fractii</em>.</span>
             </div>
             <p>Pentru obtinerea unor rezultate optime consultati:<br>
-                {{-- <a class="dark-blue" href="{{ $product->getFisaTehnicaUrl() }}" title="{{ $product->sub_title }}"> Fisa Tehnica a produsului: {{ $product->sub_title }}
-                </a> --}}
                 <a class="dark-blue" href="https://vopsele.xyz/consum-superlavabila-interior" title="{{ $product->sub_title }}"> Fisa Tehnica a produsului: {{ $product->sub_title }}
                 </a>
             </p>
@@ -245,7 +206,8 @@ $currentPage = 0;
 
 
 <script>
-   let currentPage = {{ $currentPage }}; // Inițializează currentPage cu valoarea din server
+   // Initialize currentPage with the value from server
+   let currentPage = {{ $currentPage }}; 
 
 function showNextStep(nextPage) {
     currentPage = nextPage;
@@ -272,7 +234,7 @@ function updateStepVisibility() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    updateStepVisibility(); // Inițializează vizibilitatea pasului curent
+    updateStepVisibility(); 
 });
 
 </script>

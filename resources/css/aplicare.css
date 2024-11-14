@@ -22,9 +22,9 @@
     rgba(255, 255, 255, 0) 75%,
     rgba(255, 255, 255, 1) 100%
   );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  /* -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; */
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
   mask-composite: exclude;
 }
 
@@ -53,7 +53,7 @@
 .aplicare_c_green {
   color: #27ae61;
 }
-#am h2 {
+#PregatireMetal h2 {
   color: var(--gold);
 }
 .aplicare_title_separator {
@@ -84,20 +84,21 @@
 /* .tab-pane p, .tab-pane h2, .tab-pane h3 {
     padding-left: 20px;
 } */
-#ap ul,
-#al ul,
-#ab ul,
-#am ul {
+#PregatireProdus ul,
+#PregatireLemn ul,
+#PregatireBeton ul,
+#PregatireMetal ul {
   padding-left: 18px;
 }
 .link_color1 {
   text-decoration: none;
   color: #009;
 }
-#ap ul li:before,
-#al ul li:before,
-#ab ul li:before,
-#am ul li:before {
+
+#PregatireProdus ul li::before,
+#PregatireLemn ul li::before,
+#PregatireBeton ul li::before,
+#PregatireMetal ul li::before {
   content: "*";
   color: #f13627;
   font-size: 25px;
@@ -106,6 +107,17 @@
   margin-right: -10px;
   left: -15px;
 }
+
+#PregatireMetal ul li::before {
+  color: #f29800;
+}
+#PregatireLemn ul li::before {
+  color: #27ae61;
+}
+#PregatireBeton ul li::before {
+  color: #1976d3;
+}
+
 .aplicari ul {
   margin: 0;
   margin-bottom: 10px;
@@ -113,6 +125,7 @@
 .aplicari li {
   list-style: none;
   margin-left: 40px;
+  line-height: 140%;
 }
 .aplicari p {
   margin: 0;
@@ -125,15 +138,7 @@
   list-style: none;
   list-style: square;
 }
-#am ul li:before {
-  color: #f29800;
-}
-#al ul li:before {
-  color: #27ae61;
-}
-#ab ul li:before {
-  color: #1976d3;
-}
+
 .subs-attn {
   text-decoration: underline;
 }
@@ -150,10 +155,10 @@
   flex-direction: column;
 }
 @media (min-width: 992px) {
-  #ap,
-  #am,
-  #al,
-  #ab,
+  #PregatireProdus,
+  #PregatireMetal,
+  #PregatireLemn,
+  #PregatireBeton,
   #al2 {
     min-height: 600px;
   }
@@ -189,10 +194,10 @@
   #aspd .pull-left {
     width: 100%;
   }
-  #ap ul,
-  #al ul,
-  #ab ul,
-  #am ul,
+  #PregatireProdus ul,
+  #PregatireLemn ul,
+  #PregatireBeton ul,
+  #PregatireMetal ul,
   #al2 ul {
     padding-left: 0px;
   }
@@ -359,4 +364,8 @@
 }
 #mod_avh {
   background-image: url("resources/images/aplicare/Aplicare-vopsele-hidrosolubile.jpg");
+}
+
+.descript_par ul {
+  list-style-type: none;
 }
