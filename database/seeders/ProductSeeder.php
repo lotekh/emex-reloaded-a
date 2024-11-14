@@ -71,7 +71,7 @@ class ProductSeeder extends Seeder
             self::uploadFile($product['consum_seo_og_image'], $dbProduct, 'consumption_og_image_id');
             self::uploadFile($product['seo_twitter_image'], $dbProduct, 'twitter_image_id');
             self::uploadFile($product['consum_seo_twitter_image'], $dbProduct, 'consumption_twitter_image_id');
-            self::uploadFile($technicalFileUrl, $dbProduct, 'technical_file_id', '.pdf');
+            self::uploadFile($technicalFileUrl, $dbProduct, 'technical_file_id');
 
             //Fix technical file link in the usage details
             if($dbProduct->technicalFile) {
@@ -131,13 +131,21 @@ class ProductSeeder extends Seeder
                 if (strpos($header[0], '404') === false) {
                     $imageContent = file_get_contents($fileUrl);
                     if ($imageContent) {
-                        $maxId = Media::max('id');
-                        $newId = $maxId + 1;
-                        $image = '/media/' . $dbProduct->slug . '/' . $filename;
-                        Storage::disk('public')->put($image, $imageContent);
-                        $path = public_path('storage' . $image);
+                        $extension = explode('.', $filename)[1];
+                        $filenameWithoutExtension = explode('.', $filename)[0];
 
-                        $data = getimagesize($path);
+                        if($extension == 'pdf') {
+                            $path = 'media/technical-files/' . $dbProduct->slug;
+                        }
+                        else {
+                            $path = 'media/images/' . $dbProduct->slug;
+                        }
+                        $image =  '/' . $path . '/' . $filename;
+
+                        Storage::disk('public')->put($image, $imageContent);
+                        $filePath = public_path('storage' . $image);
+
+                        $data = getimagesize($filePath);
                         if ($data) {
                             $width = $data[0];
                             $height = $data[1];
@@ -145,9 +153,6 @@ class ProductSeeder extends Seeder
                             $width = null;
                             $height = null;
                         }
-
-                        $extension = explode('.', $filename)[1];
-                        $filenameWithoutExtension = explode('.', $filename)[0];
 
                         switch($extension) {
                             case 'webp':
@@ -169,12 +174,12 @@ class ProductSeeder extends Seeder
                         $alt = isset($metadata['alt']) ? $metadata['alt'] : null;
                         $title = isset($metadata['title']) ? $metadata['title'] : null;
 
-                        Media::create([
+                        $media = Media::create([
                             'disk' => 'public',
-                            'directory' => 'media/' . $newId,
+                            'directory' => $path,
                             'visibility' => 'public',
                             'name' => $filenameWithoutExtension,
-                            'path' => 'media/' . $dbProduct->slug . '/' . $filename,
+                            'path' => $path . '/' . $filename, 
                             'height' => $height,
                             'width' => $width,
                             'type' => $type,
@@ -183,7 +188,7 @@ class ProductSeeder extends Seeder
                             'title' => $title
                         ]);
 
-                        $dbProduct->$column = $newId;
+                        $dbProduct->$column = $media->id;
                         $dbProduct->save();
                     }
                 }

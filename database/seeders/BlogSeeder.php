@@ -65,7 +65,76 @@ class BlogSeeder extends Seeder
         }
     }
 
-    public static function uploadFile($fileUrl, $article, $column)
+    // public static function uploadFile($fileUrl, $article, $column)
+    // {
+    //     $parts = explode('/', $fileUrl);
+    //     $filename = end($parts);
+
+    //     if ($fileUrl) {
+    //         try {
+    //             $header = get_headers($fileUrl);
+
+    //             if (strpos($header[0], '404') === false) {
+    //                 $imageContent = file_get_contents($fileUrl);
+    //                 if ($imageContent) {
+    //                     $maxId = Media::max('id');
+    //                     $newId = $maxId + 1;
+    //                     $image = '/media/' . $article->slug . '/' . $filename;
+    //                     Storage::disk('public')->put($image, $imageContent);
+    //                     $path = public_path('storage' . $image);
+
+    //                     $data = getimagesize($path);
+    //                     if ($data) {
+    //                         $width = $data[0];
+    //                         $height = $data[1];
+    //                     } else {
+    //                         $width = null;
+    //                         $height = null;
+    //                     }
+
+    //                     $extension = explode('.', $filename)[1];
+    //                     $filenameWithoutExtension = explode('.', $filename)[0];
+
+    //                     switch($extension) {
+    //                         case 'webp':
+    //                             $type = 'image/webp';
+    //                             break;
+    //                         case 'jpg':
+    //                             $type = 'image/jpg';
+    //                             break;
+    //                         case 'pdf':
+    //                             $type = 'application/pdf';
+    //                             break;
+    //                         case 'png':
+    //                             $type = 'image/png';
+    //                             break; 
+    //                         default: 
+    //                             $type = '???';
+    //                     }
+
+    //                     Media::create([
+    //                         'disk' => 'public',
+    //                         'directory' => 'media/' . $newId,
+    //                         'visibility' => 'public',
+    //                         'name' => $filenameWithoutExtension,
+    //                         'path' => 'media/' . $article->slug . '/' . $filename,
+    //                         'height' => $height,
+    //                         'width' => $width,
+    //                         'type' => $type,
+    //                         'ext' => $extension,
+    //                     ]);
+
+    //                     $article->$column = $newId;
+    //                     $article->save();
+    //                 }
+    //             }
+    //         } catch (\Exception $e) {
+    //             Log::error($e);
+    //         }
+    //     }
+    // }
+
+    public static function uploadFile($fileUrl, $article, $column, $metadata = ['alt' => null, 'title' => null])
     {
         $parts = explode('/', $fileUrl);
         $filename = end($parts);
@@ -77,13 +146,21 @@ class BlogSeeder extends Seeder
                 if (strpos($header[0], '404') === false) {
                     $imageContent = file_get_contents($fileUrl);
                     if ($imageContent) {
-                        $maxId = Media::max('id');
-                        $newId = $maxId + 1;
-                        $image = '/media/' . $article->slug . '/' . $filename;
-                        Storage::disk('public')->put($image, $imageContent);
-                        $path = public_path('storage' . $image);
+                        $extension = explode('.', $filename)[1];
+                        $filenameWithoutExtension = explode('.', $filename)[0];
 
-                        $data = getimagesize($path);
+                        if($extension == 'pdf') {
+                            $path = 'media/technical-files/' . $article->slug;
+                        }
+                        else {
+                            $path = 'media/images/' . $article->slug;
+                        }
+                        $image =  '/' . $path . '/' . $filename;
+
+                        Storage::disk('public')->put($image, $imageContent);
+                        $filePath = public_path('storage' . $image);
+
+                        $data = getimagesize($filePath);
                         if ($data) {
                             $width = $data[0];
                             $height = $data[1];
@@ -91,9 +168,6 @@ class BlogSeeder extends Seeder
                             $width = null;
                             $height = null;
                         }
-
-                        $extension = explode('.', $filename)[1];
-                        $filenameWithoutExtension = explode('.', $filename)[0];
 
                         switch($extension) {
                             case 'webp':
@@ -112,19 +186,24 @@ class BlogSeeder extends Seeder
                                 $type = '???';
                         }
 
-                        Media::create([
+                        $alt = isset($metadata['alt']) ? $metadata['alt'] : null;
+                        $title = isset($metadata['title']) ? $metadata['title'] : null;
+
+                        $media = Media::create([
                             'disk' => 'public',
-                            'directory' => 'media/' . $newId,
+                            'directory' => $path,
                             'visibility' => 'public',
                             'name' => $filenameWithoutExtension,
-                            'path' => 'media/' . $article->slug . '/' . $filename,
+                            'path' => $path . '/' . $filename, 
                             'height' => $height,
                             'width' => $width,
                             'type' => $type,
                             'ext' => $extension,
+                            'alt' => $alt,
+                            'title' => $title
                         ]);
 
-                        $article->$column = $newId;
+                        $article->$column = $media->id;
                         $article->save();
                     }
                 }
@@ -133,4 +212,5 @@ class BlogSeeder extends Seeder
             }
         }
     }
+
 }
