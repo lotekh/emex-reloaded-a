@@ -6,7 +6,7 @@
   border: 1px solid var(--white);
   border-radius: 8px;
   color: var(--black);
-  background-color: none;
+  background-color: transparent;
   cursor: pointer;
   font-size: 16px;
   fill: var(--black);

@@ -17,6 +17,7 @@ APLICARE COVOR EPOXIDIC DE CUARTZ
 @endsection
 
 @section('section_1_text')
+<p>
 Printre pardoselile epoxidice cu caracteristici de
 inalta performanta, se numara si <strong><em>Covorul Epoxidic Decorativ “Emex Quartz”</em></strong>,
 denumit adesea si <strong><em>Pardoseala Epoxidica STB</em></strong>. Fiind realizat prin elicoperizarea
@@ -39,6 +40,7 @@ Proprietati generale ale Pardoselii Epoxidice “Emex Quartz”
 @endsection
 
 @section('section_2_text')
+<p>
 Principalele proprietati ale <strong>Covorului Epoxidic “Emex Quartz”</strong>, care
 recomanda utilizarea sa in zonele cele mai expuse, pentru aplicatii mai ales industriale, sunt:
 </p>

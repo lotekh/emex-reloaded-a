@@ -11,8 +11,8 @@ APLICARE TENCUIELI <br> DECORATIVE “EMEX”
 
 @section('tab-buttons')
     <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid selected" option="0" aria-selected="true" tabindex="0" onclick="openTab(event, 'PregatireProdus')"><span>Pregatire Produs</span></button>
-    <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid" option="1" aria-selected="false" tabindex="0" onclick="openTab(event, 'PregatireSuport')"><span>Pregatire Suport</span></button>
-    <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid" option="2" aria-selected="false" tabindex="0" onclick="openTab(event, 'AplicareProdus')"><span>Aplicare Produs</span></button>
+    <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid" option="1" aria-selected="false" tabindex="0" onclick="openTab(event, 'PregatireMetal')"><span>Pregatire Suport</span></button>
+    <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid" option="2" aria-selected="false" tabindex="0" onclick="openTab(event, 'PregatireLemn')"><span>Aplicare Produs</span></button>
 @endsection
 
 @section('tab_contents')
@@ -51,7 +51,7 @@ APLICARE TENCUIELI <br> DECORATIVE “EMEX”
                     </div>
     </div>
 
-    <div id="PregatireSuport" class="tab-content">
+    <div id="PregatireMetal" class="tab-content">
         <div class="col" id="tab_technical_chars">
             <h2 class="aplicare_tab_content_title">Pregatirea suprafetelor pentru aplicarea de tencuieli decorative</h2>
             <div class="aplicare_title_separator aplicare_c_orange"></div>
@@ -79,7 +79,7 @@ APLICARE TENCUIELI <br> DECORATIVE “EMEX”
         </div>
     </div>
 
-    <div id="AplicareProdus" class="tab-content">
+    <div id="PregatireLemn" class="tab-content">
         <div class="col" id="tab_technical_chars2">
             <h2 class="aplicare_tab_content_title aplicare_c_green">Aplicarea tencuielilor decorative</h2>
             <div class="aplicare_title_separator aplicare_separator_green"></div>

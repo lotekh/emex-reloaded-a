@@ -12,7 +12,7 @@
 
 .servicii h1::before {
   border-image-width: 8px;
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   padding: 8px;
@@ -23,9 +23,9 @@
     rgba(255, 255, 255, 0) 75%,
     rgba(255, 255, 255, 1) 100%
   );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  /* -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; */
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
   mask-composite: exclude;
 }
 
@@ -147,7 +147,7 @@
 }
 
 #landing_first_list li::before {
-  content: '≡';
+  content: "≡";
   position: relative;
   margin-right: 6px;
   color: #1c9005;
@@ -158,7 +158,7 @@
 }
 
 .ul-feature {
-  list-style: url('resources/images/checklist-icon.png') none outside;
+  list-style: url("resources/images/checklist-icon.png") none outside;
   margin-left: 20px;
 }
 
@@ -181,15 +181,15 @@ em {
 }
 
 #veph {
-  background-image: url('resources/images/vopsire-epoxidica-pardoseli-landing.jpg');
+  background-image: url("resources/images/vopsire-epoxidica-pardoseli-landing.jpg");
 }
 
 #acesh {
-  background-image: url('resources/images/pardoseala-cuartz-epoxidica-stb-cover.jpg');
+  background-image: url("resources/images/pardoseala-cuartz-epoxidica-stb-cover.jpg");
 }
 
 #apeah {
-  background-image: url('resources/images/Pardoseala-autonivelanta-epoxidica-cover.jpg');
+  background-image: url("resources/images/Pardoseala-autonivelanta-epoxidica-cover.jpg");
 }
 
 /* #servicii_header {

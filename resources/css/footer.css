@@ -110,9 +110,9 @@ footer .link-section .section ul a {
   font-size: 14px;
   white-space: nowrap;
   color: var(--darkgrey);
-  -webkit-transform: all 0.3s ease-in-out;
-  -ms-transform: all 0.3s ease-in-out;
-  transform: all 0.3s ease-in-out;
+  /* -webkit-transform: all 0.3s ease-in-out; */
+  /* -ms-transform: all 0.3s ease-in-out; */
+  /* transform: all 0.3s ease-in-out; */
 }
 
 footer .link-section .section ul a:hover {

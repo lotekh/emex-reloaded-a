@@ -194,18 +194,18 @@
         const consentCheckbox = document.getElementById('consent-checkbox');
         const validationMessage = document.querySelector('.form-validation');
 
-        // Elimină atributul 'required' de la checkbox și lasă validarea manuală
         consentCheckbox.removeAttribute('required');
 
         if (form) {
             form.addEventListener('submit', function (event) {
-                // Verificăm dacă checkbox-ul este bifat
                 if (!consentCheckbox.checked) {
-                    event.preventDefault(); // Oprește trimiterea formularului
-                    validationMessage.style.display = 'block'; // Afișează mesajul de eroare
-                    consentCheckbox.focus();  // Forțează checkbox-ul să devină activ
+                    // If the checkbox is not checked, stop sending the form
+                    event.preventDefault(); 
+                    validationMessage.style.display = 'block'; 
+                    consentCheckbox.focus();  
                 } else {
-                    validationMessage.style.display = 'none'; // Ascunde mesajul dacă este bifat
+                    // Hide the message if the checkbox is checked
+                    validationMessage.style.display = 'none'; 
                 }
             });
         }
