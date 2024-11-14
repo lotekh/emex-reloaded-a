@@ -59,7 +59,7 @@ class CategorySeeder extends Seeder
                 }
             }
         }
-        return json_encode($seo);
+        return $seo;
     }
 
     public static function uploadImage($seoOgImage, $dbCategory, $column) {

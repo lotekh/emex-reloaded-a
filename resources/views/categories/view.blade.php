@@ -1,5 +1,29 @@
 @extends('layout.layout')
 
+@section('seo')
+    <title>{{ $category->seo['title'] }}</title>
+    <meta name="keywords" content="{{ $category->seo['meta_keywords'] }}">
+    <meta name="description" content="{{ $category->seo['meta_description'] }}">
+    <meta property="fb:app_id" content="{{ $category->seo['fb_app_id'] }}">
+    <meta property="og:locale" content="ro_RO">
+    <meta property="og:title" content="{{ $category->seo['og_title'] }}">
+    <meta property="og:image" content="{{ $category->seoOgImage->url }}">
+    <meta property="og:image:secure_url" content="{{ $category->seoOgImage->url }}" />
+    <meta property="og:image:width" content="{{ $category->seo['og_image_width'] }}" />
+    <meta property="og:image:height" content="{{ $category->seo['og_image_height'] }}" />
+    <meta property="og:image:alt" content="{{ $category->seo['og_image_alt'] }}" />
+    <meta property="og:description" content="{{ $category->seo['og_description'] }}">
+    <meta property="og:url" content="{{ $category->seo['og_url'] }}">
+    <meta property="og:site_name" content="{{ $category->seo['og_site_name'] }}">
+    <meta property="og:type" content="{{ $category->seo['og_type'] }}" />
+    <meta name="twitter:card" content="{{ $category->seo['twitter_card'] }}">
+    <meta name="twitter:site" content="{{ $category->seo['twitter_site'] }}">
+    <meta name="twitter:image" content="{{ $category->seoTwitterImage->url }}">
+    <meta name="twitter:title" content="{{ $category->seo['twitter_title'] }}">
+    <meta name="twitter:description" content="{{ $category->seo['twitter_description'] }}">
+    <meta name="twitter:url" content="{{ $category->seo['twitter_url'] }}">
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="/{{ minify('css/produs.css') }}">
     <link rel="stylesheet" href="/{{ minify('css/product-card.css') }}">

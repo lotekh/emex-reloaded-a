@@ -7,6 +7,30 @@
     <link rel="stylesheet" href="/{{ minify('css/tabs.css') }}">
 @endsection
 
+@section('seo')
+    <title>{{ $product->seo['title'] }}</title>
+    <meta name="keywords" content="{{ $product->seo['meta_keywords'] }}">
+    <meta name="description" content="{{ $product->seo['meta_description'] }}">
+    <meta property="fb:app_id" content="{{ $product->seo['fb_app_id'] }}">
+    <meta property="og:locale" content="ro_RO">
+    <meta property="og:title" content="{{ $product->seo['og_title'] }}">
+    <meta property="og:image" content="{{ $product->seoOgImage->url }}">
+    <meta property="og:image:secure_url" content="{{ $product->seoOgImage->url }}" />
+    <meta property="og:image:width" content="{{ $product->seo['og_image_width'] }}" />
+    <meta property="og:image:height" content="{{ $product->seo['og_image_height'] }}" />
+    <meta property="og:image:alt" content="{{ $product->seo['og_image_alt'] }}" />
+    <meta property="og:description" content="{{ $product->seo['og_description'] }}">
+    <meta property="og:url" content="{{ $product->seo['og_url'] }}">
+    <meta property="og:site_name" content="{{ $product->seo['og_site_name'] }}">
+    <meta property="og:type" content="{{ $product->seo['og_type'] }}" />
+    <meta name="twitter:card" content="{{ $product->seo['twitter_card'] }}">
+    <meta name="twitter:site" content="{{ $product->seo['twitter_site'] }}">
+    <meta name="twitter:image" content="{{ $product->seoTwitterImage->url }}">
+    <meta name="twitter:title" content="{{ $product->seo['twitter_title'] }}">
+    <meta name="twitter:description" content="{{ $product->seo['twitter_description'] }}">
+    <meta name="twitter:url" content="{{ $product->seo['twitter_url'] }}">
+@endsection
+
 @section('breadcrumbs')
 <ul class="flex gap-xs"><li class="font-xs"><a href="/produse">Produse</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="{{$categories_products->unique('id')->first()->slug}}">{{$categories_products->unique('id')->first()->name}}</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">{{ ucwords($product->sub_title) }}</li></ul>
 @endsection
@@ -135,7 +159,7 @@
                                     <div class="form-group">
                                         <label class="section-info" id="choose-color">Selecteaza culoare</label>
                                         <select aria-labelledby="choose-color" class="w-full" name="color" id="colorSelect{{ $product->id }}">
-                                            @foreach ($product->variations->pluck('colour')->filter() as $value)
+                                            @foreach (array_unique($product->variations->pluck('colour')->filter()->toArray()) as $value)
                                                 <option value="{{ $value }}">{{ $value }}</option>
                                             @endforeach
                                         </select>
