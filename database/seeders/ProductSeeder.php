@@ -92,6 +92,8 @@ class ProductSeeder extends Seeder
                     }
                 }
                 $newUsageDetails = $document->saveHTML();
+                $newUsageDetails = str_replace('&acirc;&#128;&#156;', '&#x201C;', $newUsageDetails);
+                $newUsageDetails = str_replace('&acirc;&#128;&#157;', '&#x201D;', $newUsageDetails);
                 $dbProduct->usage_details = $newUsageDetails;
                 $dbProduct->save();
             }

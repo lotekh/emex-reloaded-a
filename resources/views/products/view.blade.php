@@ -313,7 +313,7 @@
             </div>
 
             <div id="DetaliiUtilizare" class="tab-content">
-                {!! $product->usage_details !!}
+                {!! html_entity_decode($product->usage_details) !!}
                 {{-- Detalii Utilizare --}}
             </div>
 
