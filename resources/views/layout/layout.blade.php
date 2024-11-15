@@ -399,21 +399,38 @@
             </div>
             
             <div>
-                <div class="grid grid-3">
+                <div class="grid grid-2" id="footer-links-news">
                     <!-- links -->
                     <div class="col">
-                        <p class="title">Linkuri utile</p>
+                        <p class="title">LINKURI UTILE</p>
                         <div class="link-section">
                             <div class="section">
-                                <ul>
+                                <ul class="one-half">
                                     <li>
                                         <a href="{{ url('/') }}" rel="noopener noreferrer">Acasa</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/despre-noi') }}" rel="noopener noreferrer">Despre noi</a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/servicii') }}" rel="noopener noreferrer">Servicii</a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/blog') }}" rel="noopener noreferrer">Blog</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/certificari-iso') }}" rel="noopener noreferrer">Certificari</a>
+                                    </li>
+                                </ul>
+                                <ul class="one-half" id="one-half-right">  
+                                    <li>
+                                        <a href="{{ url('/cartela-culori-ral-vopsele') }}" rel="noopener noreferrer">Paleta Culori RAL</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/cartela-culori-lavabile') }}" rel="noopener noreferrer">Paletar Lavabile</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/contact') }}" rel="noopener noreferrer">Contact</a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/solicita-cotatie') }}" rel="noopener noreferrer">Solicita Cotatie</a>
@@ -424,44 +441,16 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
-        
-                    <div class="col">
-                        <p class="title">Cine suntem</p>
-                        <div class="link-section">
-                            <div class="section">
-                                <ul>
-                                    <li>
-                                        <a href="{{ url('/despre-noi') }}" rel="noopener noreferrer">Despre noi</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/politica-de-calitate') }}" rel="noopener noreferrer">Politica de calitate</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/politica-de-mediu') }}" rel="noopener noreferrer">Politica de mediu</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/politica-sanatate-securitate') }}" rel="noopener noreferrer">Politica de securitate</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/certificari-iso') }}" rel="noopener noreferrer">Certificari ISO</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ asset('catalog-emex.pdf') }}" rel="noopener noreferrer">Catalog "EMEX"</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    </div> 
         
                     <!-- stiri -->
-                    <div class="col">
+                    <div class="col" id="recent-news">
                         <div class="footer_news_area">
                             <h3 class="title">Stiri recente</h3>
                             @php
                             $blogArticles = \App\Models\BlogArticle::latest()->limit(3)->get();
                             @endphp
-                            <ul class="col">
+                            <ul class="col" id="recent-news-list">
                                 @foreach ($blogArticles as $blogArticle)
                                     <li>
                                         <div class="news_row mb-16">

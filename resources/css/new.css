@@ -932,3 +932,27 @@
   width: 180px;
   height: 180px;
 }
+
+#recent-news-list {
+  padding: 0px;
+}
+
+.one-half {
+  float: left;
+  width: 50%;
+  list-style: none;
+  padding-left: 0px;
+  margin: 0px;
+}
+
+#one-half-right {
+  padding-left: 30px;
+}
+
+#recent-news {
+  padding-right: 20px;
+}
+
+#footer-links-news{
+  padding-left: 50px;
+}
