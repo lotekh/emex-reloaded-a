@@ -72,21 +72,18 @@
                             </div>
                             <select class="form-control mb-16" id="product_select" onchange="location = this.value;">
                                 @foreach ($category->products as $categoryProduct)
-                                @php
-                                // Replace <br> with space
-                                $productName = str_replace('<br>', ' ', $categoryProduct->category_page_title);
-                                @endphp
+                                    @php
+                                        // Replace <br> with space
+                                        $productName = str_replace('<br>', ' ', $categoryProduct->category_page_title);
+                                    @endphp
                                     @if(!empty($categoryProduct->consumption_slug))
-                                    <option value="{{ route('consum.show', ['consumption_slug' => $categoryProduct->consumption_slug]) }}" {{ $product->id == $categoryProduct->id ? 'selected' : '' }}>
-                                        {!! $productName !!}
-                                    </option>
-                                    @else
-                                        <option disabled>
-                                            Product slug not available
+                                        <option value="{{ route('consum.show', ['consumption_slug' => $categoryProduct->consumption_slug]) }}" {{ $product->id == $categoryProduct->id ? 'selected' : '' }}>
+                                            {!! $productName !!}
                                         </option>
                                     @endif
                                 @endforeach
                             </select>
+                            
                             
                         </div>
                         <div class="consum_wizard_next_div">

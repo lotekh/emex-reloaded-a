@@ -454,7 +454,11 @@
                                 @foreach ($blogArticles as $blogArticle)
                                     <li>
                                         <div class="news_row mb-16">
-                                            <h4 class="news-title"><a href="{{ url('/blog/article', ['id' => $blogArticle->id]) }}">{{ $blogArticle->title }}</a></h4>
+                                            {{-- <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}" class="link">Vezi mai mult</a> --}}
+                                            {{-- <h4 class="news-title"><a href="{{ url('/blog/article', ['id' => $blogArticle->id]) }}">{{ $blogArticle->title }}</a></h4> --}}
+                                            <h4 class="news-title">
+                                                <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}">{{ $blogArticle->title }}</a>
+                                            </h4>                                            
                                             <p>{{ $blogArticle->created_at->format('j.m.Y') }}</p>
                                         </div>
                                     </li>
