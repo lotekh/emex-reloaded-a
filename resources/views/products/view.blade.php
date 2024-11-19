@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="/{{ minify('css/tabs.css') }}">
 @endsection
 
+
 {{-- {!! htmlentities(ucwords($product->sub_title), ENT_QUOTES, 'UTF-8') !!} --}}
 @section('breadcrumbs')
-<ul class="flex gap-xs p-0"><li class="font-xs"><a href="/produse">Produse</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="{{$categories_products->unique('id')->first()->slug}}">{{$categories_products->unique('id')->first()->name}}</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">{{$product->sub_title}}</li></ul>
+<ul class="flex gap-xs p-0"><li class="font-xs"><a href="/produse">Produse</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="{{$categories_products->unique('id')->first()->slug}}">{{$categories_products->unique('id')->first()->name}}</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">{{htmlentities(ucwords($product->sub_title))}}</li></ul>
 @endsection
 
 @section('content')
@@ -33,7 +34,7 @@
                     $largeImageUrl = $product->largeImage ? asset('storage/' .$product->largeImage->path) : $baseUrl . '/images/default-placeholder.png';
                 @endphp
 
-                <img class="contain featured-image-1" src="{{ $largeImageUrl }}" alt="imagine" title="imagineprodus">
+                <img class="featured-image-1" id="imagine-produs" src="{{ $largeImageUrl }}" alt="imagine" title="imagineprodus">
             </div>
         </div>
         

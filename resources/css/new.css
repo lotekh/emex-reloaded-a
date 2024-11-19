@@ -184,6 +184,11 @@
   .modal .content {
     padding: 14px 24px;
   }
+
+  #imagine-produs {
+    width: 500px;
+    height: 500px;
+  }
 }
 
 /* site */
@@ -953,6 +958,6 @@
   padding-right: 20px;
 }
 
-#footer-links-news{
+#footer-links-news {
   padding-left: 50px;
 }
