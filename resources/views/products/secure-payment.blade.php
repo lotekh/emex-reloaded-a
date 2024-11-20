@@ -11,7 +11,7 @@
 
 @section('content')
 <div class="main-container flex col align-center payment">
-    @if (isset($dataAll))
+    @if (!isset($dataAll))
         <h3 class="redirect">Vă rugăm să așteptați. Sunteți redirecționat către pagina securizată de plată ...</h3>
         <form action="https://secure.euplatesc.ro/tdsprocess/tranzactd.php" method="post" id="payment">
             @foreach ($dataAll as $key => $value)
@@ -32,8 +32,11 @@
                 <div class="card flex col p-16 align-center rounded-xs">
                     <h2 class="m-0 mb-8 mt-16">Detalii tranzacție</h2>
                     <p class="text-center mb-32">Plata se poate face doar în baza facturii proforma emise de Romtehnochim, prin pagina securizată a băncii procesatoare.</p>
-                    <form method="GET" action="{{ url()->current() }}" class="flex col align-center w-full">
+                    <form action="https://secure.euplatesc.ro/tdsprocess/tranzactd.php" method="post" class="flex col align-center w-full">
                         @csrfWithoutAutocomplete
+                        @foreach ($dataAll as $key => $value)
+                            <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                        @endforeach
                         <input type="hidden" name="guid" value="{{ $order->guid }}">
             
                         <div class="flex gap-md w-full">
