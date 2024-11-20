@@ -32,7 +32,7 @@
 @endsection
 
 @section('breadcrumbs')
-<ul class="flex gap-xs p-0"><li class="font-xs"><a href="/produse">Produse</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="{{$categories_products->unique('id')->first()->slug}}">{{$categories_products->unique('id')->first()->name}}</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">{{htmlentities(ucwords($product->sub_title))}}</li></ul>
+<div class="flex gap-xs"><div class="font-xs"><a href="/produse">Produse</a></div><div class="separator">/</div><div class="font-xs -ml-4"><a href="{{$categories_products->unique('id')->first()->slug}}">{{$categories_products->unique('id')->first()->name}}</a></div><div class="separator">/</div><div class="font-xs -ml-4 ellipsis">{{ html_entity_decode($product->sub_title) }}</div></div>
 @endsection
 
 @section('content')
@@ -65,7 +65,7 @@
                     <div class="top-container">
                         <div class="col justify-between">
                             <div>
-                                <h2 class="subtitle">{{ $product->sub_title }}</h2>
+                                <h2 class="subtitle">{{ html_entity_decode($product->sub_title) }}</h2>
                                 <div id="product_categories" class="row align-center">
                                     <p class="space-xl">Categorii: </p>
                                     @php
