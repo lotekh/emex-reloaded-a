@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 class PaymentController extends Controller
 {
     // Cheia și ID-ul merchantului de la EuPlatesc (ar trebui să fie configurate din .env)
-    private $mid = "44840986050";
-    private $key = "4F335629860767F4364F96F47ADF485BB75F0D58"; // Ar trebui stocată într-un loc sigur, ex: .env
 
     public function securePayment(Request $request)
 {
@@ -42,13 +40,13 @@ class PaymentController extends Controller
         'curr' => 'RON',
         'invoice_id' => $ep_order,
         'order_desc' => 'Plata factura - ' . $string . ' / ' . $request->input('orderNo'),
-        'merch_id' => $this->mid,
+        'merch_id' => env('EUPLATESC_MID'),
         'timestamp' => gmdate("YmdHis"),
         'nonce' => md5(microtime() . mt_rand()),
     ];
 
     // Generăm hash-ul pentru semnătură
-    $dataAll['fp_hash'] = strtoupper($this->euplatesc_mac($dataAll, $this->key));
+    $dataAll['fp_hash'] = strtoupper($this->euplatesc_mac($dataAll, env('EUPLATESC_KEY')));
     $dataAll['email'] = $email;
     $dataAll['fname'] = $firstName;
     $dataAll['lname'] = $lastName;
@@ -56,8 +54,6 @@ class PaymentController extends Controller
     if ($order->billing_type == 1) { // Dacă este persoană juridică, adăugăm și numele companiei
         $dataAll['company'] = $companyInfo['organization_name'];
     }
-
-    // dd($dataAll);
 
     $orderedProducts = $this->getOrderedProducts($order);
 
@@ -87,19 +83,17 @@ class PaymentController extends Controller
         return $errors;
     }
 
-    // Funcția pentru a genera semnătura HMAC-SHA1
-    private function euplatesc_mac($data, $key)
-    {
+    function euplatesc_mac($data, $key){
         $str = NULL;
-        foreach ($data as $d) {
-            if ($d === NULL || strlen($d) == 0) {
+        foreach($data as $d){
+            if($d === NULL || strlen($d) == 0){
                 $str .= '-';
-            } else {
+            }else{
                 $str .= strlen($d) . $d;
             }
         }
-        $key = pack('H*', $key);
-        return hash_hmac('sha1', $str, $key);
+        
+        return hash_hmac('MD5',$str, pack('H*', $key));
     }
 
     private function getOrderedProducts($order)

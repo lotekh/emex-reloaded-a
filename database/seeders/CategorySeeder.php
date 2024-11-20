@@ -7,6 +7,7 @@ use App\Models\CategoryProduct;
 use App\Models\Media;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
@@ -59,32 +60,84 @@ class CategorySeeder extends Seeder
                 }
             }
         }
-        return json_encode($seo);
+        return $seo;
     }
 
-    public static function uploadImage($seoOgImage, $dbCategory, $column) {
-        if($seoOgImage) {
-            $imageContent = file_get_contents($seoOgImage);
-            if($imageContent) {
-                $maxId = Media::max('id');
-                $newId = $maxId + 1;
-                $image = '/media/' . $newId . '/' . $dbCategory->id . '.jpg';
-                Storage::disk('public')->put($image, $imageContent);
+    public static function uploadImage($fileUrl, $dbProduct, $column, $metadata = ['alt' => null, 'title' => null])
+    {
+        $parts = explode('/', $fileUrl);
+        $filename = end($parts);
 
-                Media::create([
-                    'disk' => 'public',
-                    'directory' => 'media/' . $newId,
-                    'visibility' => 'public',
-                    'name' => $dbCategory->id,
-                    'path' => 'media/' . $newId . '/' . $dbCategory->id . '.jpg',
-                    'height' => 628,
-                    'width' => 1200,
-                    'type' => 'image/jpg',
-                    'ext' => 'jpg',
-                ]);
+        if ($fileUrl) {
+            try {
+                $header = get_headers($fileUrl);
 
-                $dbCategory->$column = $newId;
-                $dbCategory->save();
+                if (strpos($header[0], '404') === false) {
+                    $imageContent = file_get_contents($fileUrl);
+                    if ($imageContent) {
+                        $extension = explode('.', $filename)[1];
+                        $filenameWithoutExtension = explode('.', $filename)[0];
+
+                        if($extension == 'pdf') {
+                            $path = 'media/technical-files/' . $dbProduct->slug;
+                        }
+                        else {
+                            $path = 'media/images/' . $dbProduct->slug;
+                        }
+                        $image =  '/' . $path . '/' . $filename;
+
+                        Storage::disk('public')->put($image, $imageContent);
+                        $filePath = public_path('storage' . $image);
+
+                        $data = getimagesize($filePath);
+                        if ($data) {
+                            $width = $data[0];
+                            $height = $data[1];
+                        } else {
+                            $width = null;
+                            $height = null;
+                        }
+
+                        switch($extension) {
+                            case 'webp':
+                                $type = 'image/webp';
+                                break;
+                            case 'jpg':
+                                $type = 'image/jpg';
+                                break;
+                            case 'pdf':
+                                $type = 'application/pdf';
+                                break;
+                            case 'png':
+                                $type = 'image/png';
+                                break; 
+                            default: 
+                                $type = '???';
+                        }
+
+                        $alt = isset($metadata['alt']) ? $metadata['alt'] : null;
+                        $title = isset($metadata['title']) ? $metadata['title'] : null;
+
+                        $media = Media::create([
+                            'disk' => 'public',
+                            'directory' => $path,
+                            'visibility' => 'public',
+                            'name' => $filenameWithoutExtension,
+                            'path' => $path . '/' . $filename, 
+                            'height' => $height,
+                            'width' => $width,
+                            'type' => $type,
+                            'ext' => $extension,
+                            'alt' => $alt,
+                            'title' => $title
+                        ]);
+
+                        $dbProduct->$column = $media->id;
+                        $dbProduct->save();
+                    }
+                }
+            } catch (\Exception $e) {
+                Log::error($e);
             }
         }
     }

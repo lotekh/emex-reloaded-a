@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- SEO -->
+    <meta name="Author" content="Emex by Romtehnochim">
+    <meta name="rating" content="General">
+    <meta name="geo.region" content="RO-IF">
+    <meta name="geo.placename" content="Jilava">
+    <meta name="geo.position" content="44.328689;26.067273">
+    <meta name="ICBM" content="44.328689,26.067273">
+
+    @yield('seo')
     @yield('title')
     <link rel="icon" type="image/x-icon" href="{{ asset('resources/emex-favicon.ico') }}">
 

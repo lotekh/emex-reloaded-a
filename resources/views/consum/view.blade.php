@@ -1,5 +1,29 @@
 @extends('layout.layout')
 
+@section('seo')
+    <title>{{ $product->consumption_seo['title'] }}</title>
+    <meta name="keywords" content="{{ $product->consumption_seo['meta_keywords'] }}">
+    <meta name="description" content="{{ $product->consumption_seo['meta_description'] }}">
+    <meta property="fb:app_id" content="{{ $product->consumption_seo['fb_app_id'] }}">
+    <meta property="og:locale" content="ro_RO">
+    <meta property="og:title" content="{{ $product->consumption_seo['og_title'] }}">
+    <meta property="og:image" content="{{ $product->seoOgImage->url }}">
+    <meta property="og:image:secure_url" content="{{ $product->seoOgImage->url }}" />
+    <meta property="og:image:width" content="{{ $product->consumption_seo['og_image_width'] }}" />
+    <meta property="og:image:height" content="{{ $product->consumption_seo['og_image_height'] }}" />
+    <meta property="og:image:alt" content="{{ $product->consumption_seo['og_image_alt'] }}" />
+    <meta property="og:description" content="{{ $product->consumption_seo['og_description'] }}">
+    <meta property="og:url" content="{{ $product->consumption_seo['og_url'] }}">
+    <meta property="og:site_name" content="{{ $product->consumption_seo['og_site_name'] }}">
+    <meta property="og:type" content="{{ $product->consumption_seo['og_type'] }}" />
+    <meta name="twitter:card" content="{{ $product->consumption_seo['twitter_card'] }}">
+    <meta name="twitter:site" content="{{ $product->consumption_seo['twitter_site'] }}">
+    <meta name="twitter:image" content="{{ $product->consumptionSeoTwitterImage->url }}">
+    <meta name="twitter:title" content="{{ $product->consumption_seo['twitter_title'] }}">
+    <meta name="twitter:description" content="{{ $product->consumption_seo['twitter_description'] }}">
+    <meta name="twitter:url" content="{{ $product->consumption_seo['twitter_url'] }}">
+@endsection
+
 @section('breadcrumbs')
 <ul class="flex gap-xs"><li class="font-xs"><a href="{{ url($category->slug) }}">{{ $category->name }}</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="{{ url($product->slug) }}">{{ ucwords($product->sub_title) }}</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Calcul consum</li></ul>
 @endsection

@@ -121,15 +121,11 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('plain_name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('sub_title')
+                Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('category_page_link_title')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('category_page_title')
                     ->searchable(),
                 Tables\Columns\IconColumn::make('active')
                     ->boolean(),
@@ -143,15 +139,6 @@ class ProductResource extends Resource
                     ->boolean(),
                 Tables\Columns\IconColumn::make('has_hardener')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('h2_contact_title')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('h3_contact_title')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('price_disclaimer')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('available_since')
-                    ->date()
-                    ->sortable(),
                 Tables\Columns\IconColumn::make('is_package')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')

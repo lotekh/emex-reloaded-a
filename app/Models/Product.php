@@ -58,7 +58,7 @@ class Product extends Model
     ];
 
     protected $with = [
-        'variations' 
+        'variations'
     ];
 
     public function variations(): HasMany
@@ -73,10 +73,10 @@ class Product extends Model
 
     public function getPaletaCuloriUrl()
     {
-        $productCategory = $this->categories()->first();  
+        $productCategory = $this->categories()->first();
 
         if (!$productCategory) {
-            return url('/cartela-culori-ral-vopsele'); 
+            return url('/cartela-culori-ral-vopsele');
         }
 
         switch ($productCategory->category_id) {
@@ -88,16 +88,10 @@ class Product extends Model
         }
     }
 
-
-    // public function categoryfilters(): BelongsToMany
-    // {
-    //     return $this->belongsToMany(CategoryFilter::class);
-    // }
-
     public function categoryfilters(): BelongsToMany
-{
-    return $this->belongsToMany(CategoryFilter::class, 'category_filters_products', 'product_id', 'category_filter_id');
-}
+    {
+        return $this->belongsToMany(CategoryFilter::class, 'category_filters_products', 'product_id', 'category_filter_id');
+    }
 
 
     public function reviews(): HasMany
@@ -120,7 +114,7 @@ class Product extends Model
         return $this->belongsTo(Media::class, 'small_image_id', 'id');
     }
 
-    public function technicalFile(): BelongsTo 
+    public function technicalFile(): BelongsTo
     {
         return $this->belongsTo(Media::class, 'technical_file_id', 'id');
     }
@@ -128,6 +122,11 @@ class Product extends Model
     public function seoOgImage(): BelongsTo
     {
         return $this->belongsTo(Media::class, 'og_image_id', 'id');
+    }
+
+    public function seoTwitterImage(): BelongsTo
+    {
+        return $this->belongsTo(Media::class, 'twitter_image_id', 'id');
     }
 
     public function consumptionSeoOgImage(): BelongsTo
@@ -140,13 +139,13 @@ class Product extends Model
         return $this->belongsTo(Media::class, 'consumption_twitter_image_id', 'id');
     }
 
-    
+
     public function getIsInWishlistAttribute()
     {
         if (auth()->check()) {
             return WishlistItem::where('user_id', auth()->id())
-                                ->where('product_id', $this->id)
-                                ->exists();
+                ->where('product_id', $this->id)
+                ->exists();
         }
 
         return false;
