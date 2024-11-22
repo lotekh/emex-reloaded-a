@@ -887,11 +887,11 @@
     });
 
     function closeFlashMessage(button) {
-        // Închide mesajul flash
+        // Close the flash message
         const messageElement = button.closest('.alert-message');
         messageElement.style.display = 'none';
 
-        // Verificăm dacă mai sunt alte mesaje vizibile
+        // Check if there are other visibile messages
         const container = document.querySelector('.flash-messages-container');
         const remainingMessages = container.querySelectorAll('.alert-message');
         
@@ -899,7 +899,7 @@
             return message.style.display !== 'none';
         });
 
-        // Dacă toate mesajele au fost închise, ascunde și containerul
+        // If all messagges are closed, hide the container
         if (visibleMessages.length === 0) {
             container.style.display = 'none';
         }

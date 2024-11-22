@@ -17,12 +17,11 @@ class ProductsController extends Controller
         $filters = $request->except(['per_page', 'current_page_number']);
         $filtersString = '?' . http_build_query($filters);
 
-        // Interogare pentru produse active
+        // Query for active products
         $productsQuery = Product::where('active', 1);
 
-        // Preluăm filtrele din request
+        // Get filters from request
         $filtersSelected = [];
-
         foreach ($filters as $key => $value) {
             // Verificăm dacă filtrul este un checkbox (de exemplu "category2" => "on")
             if (strpos($key, 'category') === 0 && $value === 'on') {
@@ -30,13 +29,11 @@ class ProductsController extends Controller
                 $filtersSelected[] = $filterId;
             }
         }
-
-        // Grupăm filtrele selectate după categoria lor părinte
+        // Group filters based on their parent category
         $filtersGrouped = CategoryFilter::whereIn('id', $filtersSelected)
             ->get()
             ->groupBy('category_filter_id');
-
-        // Aplicăm filtrele la query
+        // Apply filters on query
         foreach ($filtersGrouped as $parentCategoryId => $filterGroup) {
             $productsQuery->whereHas('categoryfilters', function ($query) use ($filterGroup) {
                 $filterIds = $filterGroup->pluck('id');

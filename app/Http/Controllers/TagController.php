@@ -8,11 +8,11 @@ class TagController extends Controller
 {
     public function showTags()
     {
-        // Obține URL-ul curent fără query string
+        // Get the URL without query string
         $current_url = url()->current();
         $current_url = basename(parse_url($current_url, PHP_URL_PATH));
 
-        // Citește fișierul tags.csv din public/resources
+        // Read tags.csv from public/resources
         $tags = [];
         $path = public_path('resources/tags.csv');
         if (file_exists($path)) {
