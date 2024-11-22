@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Consumption extends Model
 {
@@ -17,9 +16,4 @@ class Consumption extends Model
         'surface_type_name',
         'script'
     ];
-
-    public function jsonLd(): MorphOne
-    {
-        return $this->morphOne(JsonLd::class, 'model');
-    }
 }

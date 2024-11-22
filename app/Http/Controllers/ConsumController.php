@@ -13,8 +13,12 @@ class ConsumController extends Controller
         // Găsește categoria după slug
         $category = Category::where('slug', $categorySlug)->firstOrFail();
 
-        // Obține primul produs din acea categorie
-        $firstProduct = $category->products()->orderBy('order', 'asc')->first(); 
+        // Get the first product from that category which has a valid consumption_slug
+        $firstProduct = $category->products()
+            ->whereNotNull('consumption_slug')
+            ->where('consumption_slug', '!=', '')
+            ->orderBy('order', 'asc')
+            ->first();
 
         if ($firstProduct) {
             // Redirecționează către URL-ul consumului folosind `consumption_slug`

@@ -10,10 +10,10 @@ APLICARI LACURI, VOPSELE SI GRUNDURI DECORATIVE <br> “EMEX”
 @endsection
 
 @section('tab-buttons')
-    <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid selected" option="0" aria-selected="true" tabindex="0" onclick="openTab(event, 'PregatireProdus')"><span>Pregatire Produs</span></button>
-    <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid" option="1" aria-selected="false" tabindex="0" onclick="openTab(event, 'PregatireMetal')"><span>Pregatire Metal</span></button>
-    <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid" option="2" aria-selected="false" tabindex="0" onclick="openTab(event, 'PregatireLemn')"><span>Pregatire Lemn</span></button>
-    <button type="button" name="current_tab" value="3" role="tab" class="btn user-valid valid" option="3" aria-selected="false" tabindex="0" onclick="openTab(event, 'PregatireBeton')"><span>Pregatire Beton</span></button>
+    <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid selected" aria-selected="true" tabindex="0" onclick="openTab(event, 'PregatireProdus')"><span>Pregatire Produs</span></button>
+    <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid" aria-selected="false" tabindex="0" onclick="openTab(event, 'PregatireMetal')"><span>Pregatire Metal</span></button>
+    <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid" aria-selected="false" tabindex="0" onclick="openTab(event, 'PregatireLemn')"><span>Pregatire Lemn</span></button>
+    <button type="button" name="current_tab" value="3" role="tab" class="btn user-valid valid" aria-selected="false" tabindex="0" onclick="openTab(event, 'PregatireBeton')"><span>Pregatire Beton</span></button>
 @endsection
 
 @section('tab_contents')

@@ -736,10 +736,10 @@ class OrdersController extends Controller
     {
         $guid = $request->route('guid');
 
-        // Găsește comanda pe baza `guid`
+        // Find the order based on guid
         $order = Order::where('guid', $guid)->first();
 
-        // Verifică dacă comanda există și dacă utilizatorul este autentificat
+        // Verify if the order exists and if the user is logged in
         if (!$order) {
             return redirect()->route('blog.index')->with('error', 'Comanda nu a fost găsită.');
         }
@@ -750,11 +750,13 @@ class OrdersController extends Controller
         $countyName = 0;
         $city = 0;
 
-        if ($order->delivery_type == 0) {  //livrare prin curier
+        //livrare prin curier
+        if ($order->delivery_type == 0) {  
             // $county = $order->deliveryCounty->name ;
             $county = County::where('id', $order->delivery_county_id)->first();
             $countyName = $county ? $county->name : 'Necunoscut';
-            $city = $order->delivery_information['delivery_locality'] ?? ''; // Ia localitatea din informațiile de livrare
+            // Ia localitatea din informațiile de livrare
+            $city = $order->delivery_information['delivery_locality'] ?? ''; 
         }
 
         $billingCountyId = null;

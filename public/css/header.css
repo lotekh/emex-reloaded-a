@@ -208,7 +208,7 @@ header {
 }
 
 .breadcrumbs .separator {
-  width: 10px;
+  width: 20px;
 }
 
 .breadcrumbs_wrapper::-webkit-scrollbar {
