@@ -50,13 +50,13 @@
 
     {{-- Product info --}}
     <div class="w-full product-info-grid">
-        <div class="col">
-            <div class="w-full h-full relative img-container">
+        <div class="col" id="imagine-produs-3">
+            <div class="w-full h-full relative img-container" id="imagine-produs-2">
                 @php
                     $largeImageUrl = $product->largeImage ? asset('storage/' .$product->largeImage->path) : $baseUrl . '/images/default-placeholder.png';
                 @endphp
 
-                <img class="contain featured-image-1" src="{{ $largeImageUrl }}" alt="imagine" title="imagineprodus">
+                <img class="featured-image-1" id="imagine-produs" src="{{ $largeImageUrl }}" alt="imagine" title="imagineprodus">
             </div>
         </div>
         
@@ -292,9 +292,9 @@
     {{-- Product tabs -> Descriere, Detalii Utilizare, Caracteristici tehnice --}}
     <div class="mt-16 mt-custom">
         <div class="tabs-selector-row">
-            <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid selected" option="0" aria-selected="true" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
-            <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid" option="1" aria-selected="false" tabindex="0" onclick="openTab(event, 'DetaliiUtilizare')"><span>Detalii de utilizare</span></button>
-            <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid" option="2" aria-selected="false" tabindex="0" onclick="openTab(event, 'CaracteristiciTehnice')"><span>Caracteristici Tehnice</span></button>
+            <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid selected" aria-selected="true" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
+            <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid" aria-selected="false" tabindex="0" onclick="openTab(event, 'DetaliiUtilizare')"><span>Detalii de utilizare</span></button>
+            <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid" aria-selected="false" tabindex="0" onclick="openTab(event, 'CaracteristiciTehnice')"><span>Caracteristici Tehnice</span></button>
         </div>
 
         <div class="tab-content-container">
@@ -343,20 +343,20 @@
     <div class="w-full grid grid-3 min-row-height gap-lg mt-16" id="pwgw">
         <div class="badge">
             <div class="relative w-full h-full">
-                <div id="produs-logo">
+                <div class="produs-logo">
                     <img width="363" height="68" src="{{ asset('resources/images/Fabricat-in-Romania.png') }}" alt="Produs fabricat in Romania" title="Produs de fabricatie romaneasca">
                 </div>
             </div>
         </div>
         <div class="badge">
             <div class="relative w-full h-full">
-                <div id="produs-logo">
+                <div class="produs-logo">
                     <img width="363" height="68" src="{{ asset('resources/images/iso.png') }}" alt="Romtehnochim asigura garantia calitatii" title="Emex - produse certificate ISO">
                 </div>
             </div>
         </div>
         <div class="badge">
-            <div id="produs-logo">
+            <div class="produs-logo">
                 <a class="excelent-img col justify-center" href="https://excellent-sme-plus-romania.safesigned.com/romtehnochim-srl/" title="Certificat excelenta in afaceri">
                     <img width="363" height="68" src="{{ asset('resources/general/Romtehnochim-certificat-de-excelenta.png') }}" alt="Verificare certificat Coface Camera de Comert" title="Certificat excelenta in afaceri">
                 </a>

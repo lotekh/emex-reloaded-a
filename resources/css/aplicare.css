@@ -24,7 +24,9 @@
   );
   /* -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor; */
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  /* mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); */
+  mask: linear-gradient(to bottom, #fff 0%, #fff 100%) content-box,
+    linear-gradient(to bottom, #fff 0%, #fff 100%);
   mask-composite: exclude;
 }
 
@@ -368,4 +370,24 @@
 
 .descript_par ul {
   list-style-type: none;
+}
+
+.aplicare_titlu {
+  font-weight: 700;
+}
+
+h2.aplicare_tab_content_title {
+  margin-left: 10px;
+}
+
+/* first child of tab-content with the classes 'aplicare_title_separator'   */
+.tab-content > .aplicare_title_separator:first-of-type {
+  margin-left: 10px;
+}
+.col > .aplicare_title_separator:first-of-type {
+  margin-left: 10px;
+}
+
+.aplicari p {
+  margin-bottom: 10px;
 }

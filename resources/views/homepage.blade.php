@@ -1,8 +1,9 @@
 @extends('layout.layout')
 
-<?php
-// dd('test');
-?>
+@section('title')
+    <title>Vopsea tencuiala pardoseala | Emex by Romtehnochim</title>
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="/{{ minify('css/homepage.css') }}">
 @endsection

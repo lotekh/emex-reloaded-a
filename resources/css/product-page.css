@@ -336,7 +336,7 @@
 
 @media screen and (min-width: 1024px) {
   .product-info-grid {
-    grid-template-columns: 400px 1fr;
+    grid-template-columns: 500px 1fr;
     grid-template-rows: 1fr;
     gap: 32px;
   }

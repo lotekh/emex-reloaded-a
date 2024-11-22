@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
 
     <!-- SEO -->
     <meta name="Author" content="Emex by Romtehnochim">
@@ -14,7 +13,7 @@
     <meta name="ICBM" content="44.328689,26.067273">
 
     @yield('seo')
-
+    @yield('title')
     <link rel="icon" type="image/x-icon" href="{{ asset('resources/emex-favicon.ico') }}">
 
 
@@ -407,21 +406,38 @@
             </div>
             
             <div>
-                <div class="grid grid-3">
+                <div class="grid grid-2" id="footer-links-news">
                     <!-- links -->
                     <div class="col">
-                        <p class="title">Linkuri utile</p>
+                        <p class="title">LINKURI UTILE</p>
                         <div class="link-section">
                             <div class="section">
-                                <ul>
+                                <ul class="one-half">
                                     <li>
                                         <a href="{{ url('/') }}" rel="noopener noreferrer">Acasa</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/despre-noi') }}" rel="noopener noreferrer">Despre noi</a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/servicii') }}" rel="noopener noreferrer">Servicii</a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/blog') }}" rel="noopener noreferrer">Blog</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/certificari-iso') }}" rel="noopener noreferrer">Certificari</a>
+                                    </li>
+                                </ul>
+                                <ul class="one-half" id="one-half-right">  
+                                    <li>
+                                        <a href="{{ url('/cartela-culori-ral-vopsele') }}" rel="noopener noreferrer">Paleta Culori RAL</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/cartela-culori-lavabile') }}" rel="noopener noreferrer">Paletar Lavabile</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/contact') }}" rel="noopener noreferrer">Contact</a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/solicita-cotatie') }}" rel="noopener noreferrer">Solicita Cotatie</a>
@@ -432,48 +448,24 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
-        
-                    <div class="col">
-                        <p class="title">Cine suntem</p>
-                        <div class="link-section">
-                            <div class="section">
-                                <ul>
-                                    <li>
-                                        <a href="{{ url('/despre-noi') }}" rel="noopener noreferrer">Despre noi</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/politica-de-calitate') }}" rel="noopener noreferrer">Politica de calitate</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/politica-de-mediu') }}" rel="noopener noreferrer">Politica de mediu</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/politica-sanatate-securitate') }}" rel="noopener noreferrer">Politica de securitate</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/certificari-iso') }}" rel="noopener noreferrer">Certificari ISO</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ asset('catalog-emex.pdf') }}" rel="noopener noreferrer">Catalog "EMEX"</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    </div> 
         
                     <!-- stiri -->
-                    <div class="col">
+                    <div class="col" id="recent-news">
                         <div class="footer_news_area">
                             <h3 class="title">Stiri recente</h3>
                             @php
                             $blogArticles = \App\Models\BlogArticle::latest()->limit(3)->get();
                             @endphp
-                            <ul class="col">
+                            <ul class="col" id="recent-news-list">
                                 @foreach ($blogArticles as $blogArticle)
                                     <li>
                                         <div class="news_row mb-16">
-                                            <h4 class="news-title"><a href="{{ url('/blog/article', ['id' => $blogArticle->id]) }}">{{ $blogArticle->title }}</a></h4>
+                                            {{-- <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}" class="link">Vezi mai mult</a> --}}
+                                            {{-- <h4 class="news-title"><a href="{{ url('/blog/article', ['id' => $blogArticle->id]) }}">{{ $blogArticle->title }}</a></h4> --}}
+                                            <h4 class="news-title">
+                                                <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}">{{ $blogArticle->title }}</a>
+                                            </h4>                                            
                                             <p>{{ $blogArticle->created_at->format('j.m.Y') }}</p>
                                         </div>
                                     </li>
@@ -893,11 +885,11 @@
     });
 
     function closeFlashMessage(button) {
-        // Închide mesajul flash
+        // Close the flash message
         const messageElement = button.closest('.alert-message');
         messageElement.style.display = 'none';
 
-        // Verificăm dacă mai sunt alte mesaje vizibile
+        // Check if there are other visibile messages
         const container = document.querySelector('.flash-messages-container');
         const remainingMessages = container.querySelectorAll('.alert-message');
         
@@ -905,7 +897,7 @@
             return message.style.display !== 'none';
         });
 
-        // Dacă toate mesajele au fost închise, ascunde și containerul
+        // If all messagges are closed, hide the container
         if (visibleMessages.length === 0) {
             container.style.display = 'none';
         }

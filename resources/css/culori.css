@@ -210,6 +210,7 @@
 .dialog-bubble {
   position: relative;
   /* background: #ffffff85; */
+  background: rgba(255, 255, 255, 0.52);
   border-radius: 1em;
   max-width: 200px;
   padding: 18px 20px;
@@ -230,7 +231,8 @@
 .dialog-bubble:after {
   left: 77%;
   border: 34px solid transparent;
-  border-top-color: #ffffff85;
+  /* border-top-color: #ffffff85; */
+  border-top-color: rgba(255, 255, 255, 0.52);
   margin-left: -21px;
   margin-bottom: -34px;
 }
