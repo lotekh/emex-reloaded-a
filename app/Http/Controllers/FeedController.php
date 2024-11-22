@@ -6,7 +6,7 @@ use App\Models\Product;
 use App\Models\ProductVariation;
 use Illuminate\Http\Request;
 
-class FeedsController extends Controller
+class FeedController extends Controller
 {
     private $exceptFromPreturiCulori = ['5946143065566', '5946143065573'];
 
@@ -383,44 +383,34 @@ class FeedsController extends Controller
 
     public function merxu() 
     {
-        header("Content-type: text/csv; charset=utf-8");
+        // header("Content-type: text/csv; charset=utf-8");
         
-        header("Content-Transfer-Encoding: UTF-8");
-        header("Content-Disposition: attachment; filename=merxu.csv");
-        header("Pragma: no-cache");
-        header("Expires: 0");
+        // header("Content-Transfer-Encoding: UTF-8");
+        // header("Content-Disposition: attachment; filename=merxu.csv");
+        // header("Pragma: no-cache");
+        // header("Expires: 0");
 
         echo 'supplier_product_id, merxu_category_path, name, description, manufacturer, main_image_url, currency, price, vat' . "\r\n";
 
-        $products = Products::find()->all();
+        $products = Product::all();
 
         $string = '';
 
-        foreach ($products as $product) {
-            $categories_products = CategoriesProducts::findAll([
-                'product_id' => $product->id
-            ]);
-            foreach ($categories_products as $category_product) {
-                $category_name = $category_product->category->name;
-                break;
-            }
+        dd($products);
 
+        foreach ($products as $product) {
             $description = trim(preg_replace("/\r|\n/", "", str_replace('    ', '', strip_tags(substr($product->description, 0, strpos($product->description, '<p class="Caracteristici">'))))));
             $description = str_replace('“', '', $description);
             $description = str_replace('”', '', $description);
             $description = '"' . $description . '"';
-            $product_url = 'https://emex.ro/' . $product->slug;
             $image_url = $product->largeImage->url;
-            $fisa_tehnica = 'https://emex.ro' . $product->technicalFile->url;
 
             $categoryName = 'Materiale și echipamente de construcții/Materiale de finisare/Produse chimice pentru construcții/Vopsele și lacuri';
-            $siteController = new SiteController('frontend\controllers\SiteController', '');
-            $products_details = $siteController->getProductsColorsPrices($product->slug)['produse'];
+            $products_details = $product->variations;
             foreach ($products_details as $product_details) {
                 if(!in_array($product_details['ean'], $this->exceptFromPreturiCulori) && !strpos($string, $product_details['ean'])) {
                     $string .= ', ' . $product_details['ean'];
                     $price = $product_details['price_no_tva'];
-                    $weight = intval($product_details['weight']);
                     echo $product_details['ean'] . ', ' . $categoryName . ', ' . $product_details['name'] . ',' . $description . ', Romtehnochim SRL, ' . $image_url . ', RON, ' . $price . ', 19' . "\r\n";
                 }
             }
