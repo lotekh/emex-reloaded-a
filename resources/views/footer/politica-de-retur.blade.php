@@ -1,5 +1,23 @@
 @extends('layout.layout')
 
+@section('seo')
+<title>Politica de Returnare a Produselor</title>
+<meta name="keywords" content="retur produse, returnare vopsea, garantia calitatii">
+<meta name="description" content="Politica de retur sau restituire plati pentru produsele Emex realizate de compania Romtehnochim.">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Garantie de returnare">
+<meta property="og:image" content="https://emex.ro/images/social/Politica-de-retur-sm.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Politica-de-retur-sm.jpg" />
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="628"/>
+<meta property="og:image:alt" content="Returnare sau restituire plati"/>
+<meta property="og:description" content="Modul de retur sau restuirea platilor pentru produsele Emex realizate de compania Romtehnochim">
+<meta property="og:url" content="https://emex.ro/politica-de-retur">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website"/>
+@endsection
+
 @section('css')
 <link rel="stylesheet" href="/{{ minify('css/retur.css') }}">
 @endsection

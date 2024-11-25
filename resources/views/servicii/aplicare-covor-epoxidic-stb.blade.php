@@ -1,5 +1,29 @@
 @extends('servicii.layout')
 
+@section('seo')
+<title>Aplicare pardoseala epoxidica decorativa cuartz STB</title>
+<meta name="description" content="Pardoseala epoxidica decorativa cuartz STB este cel mai dur sistem epoxidic. &#x2B50; Covor epoxidic de cuartz cu rezistenta maxima la solicitari extreme.">
+<meta name="keywords" content="covor epoxidic de cuartz, pardoseala STB, pardoseala epoxidica cuartz, pardoseala decorativa cuartz">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Covor epoxidic de cuartz">
+<meta property="og:image" content="https://emex.ro/images/social/Pardoseala-decorativa-epoxidica-STB-SM.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Pardoseala-decorativa-epoxidica-STB-SM.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="628" />
+<meta property="og:image:alt" content="Aplicare covor decorativ de cuartz" />
+<meta property="og:description" content="Cu o duritate speciala si rezistenta mare la solicitari mecanice, aceasta pardoseala epoxidica imbina aspectul decorativ cu utilizarea industriala.">
+<meta property="og:url" content="https://emex.ro/aplicare-covor-epoxidic-stb">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="Product" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Romtehnochim">
+<meta name="twitter:image" content="https://emex.ro/images/social/Pardoseala-decorativa-epoxidica-STB-SM.jpg">
+<meta name="twitter:title" content="Covor epoxidic cuartz">
+<meta name="twitter:description" content="Este cea mai dura acoperire epoxidica de pardoseala, cu o rezistenta deosebita, chiar si la trafic de masini si utilaje grele.">
+<meta name="twitter:url" content="https://emex.ro/aplicare-covor-epoxidic-stb">
+@endsection
+
 <?php
 $baseUrl = url('/');
 ?>

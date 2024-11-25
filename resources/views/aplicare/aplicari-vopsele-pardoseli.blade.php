@@ -1,5 +1,29 @@
 @extends('aplicare.layout') 
 
+@section('seo')
+<title>Aplicari vopsele pardoseli</title>
+<meta name="description" content="Imagini cu vopsiri de pardoseala cu vopsele bicomponente epoxidice sau poliuretanice Emex, realizate de Romtehnochim">
+<meta name="keywords" content="vopsea pardoseala, epoxidica pardoseli, vopsire bicomponenta beton">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Aplicari vopsele pardoseli">
+<meta property="og:image" content="https://emex.ro/images/social/Aplicari-vopsele-pardoseli-sm.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Aplicari-vopsele-pardoseli-sm.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="628" />
+<meta property="og:image:alt" content="Aplicari vopsele bicomponente de pardoseala" />
+<meta property="og:description" content="Romtehnochim asigura serviciu de aplicare pentru toate vopselele bicomponente, epoxidice, poliuretanice, poliesterice fabricate sub marca Emex.">
+<meta property="og:url" content="https://emex.ro/aplicari-vopsele-pardoseli">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="Product" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Romtehnochim">
+<meta name="twitter:image" content="https://emex.ro/images/social/Aplicari-vopsele-pardoseli-sm.jpg">
+<meta name="twitter:title" content="Vopsele bicomponente de pardoseli">
+<meta name="twitter:description" content="Vopsiri epoxidice, poliuretanice sau poliesterice Emex pentru pardoseli, realizate de Romtehnochim">
+<meta name="twitter:url" content="https://emex.ro/aplicari-vopsele-pardoseli">
+@endsection
+
 @section('css')
   <link rel="stylesheet" href="/{{ minify('css/aplicare.css') }}">
 @endsection

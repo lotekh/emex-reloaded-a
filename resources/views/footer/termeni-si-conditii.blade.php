@@ -1,5 +1,23 @@
 @extends('layout.layout')
 
+@section('seo')
+<title>Termeni si Conditii de Utilizarea a Site-ului Emex</title>
+<meta name="keywords" content="termeni si conditii, comenzi on-line Emex, conditii utilizare magazin">
+<meta name="description" content="Termenii si conditiile de utilizare a magazinului on-line Emex by Romtehnochim - producator de pardoseli, vopsele, lacuri si grunduri, tencuieli">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Termeni si conditii Emex">
+<meta property="og:image" content="https://emex.ro/images/social/Termeni-si-conditii-sm.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Termeni-si-conditii-sm.jpg" />
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="628"/>
+<meta property="og:image:alt" content="Termeni si conditii Emex by Romtehnochim"/>
+<meta property="og:description" content="Pentru logarea si accesul la serviciile site-ului Emex, in cele mai bune conditii, se recomanda citirea atenta a tuturor termenilor si conditiilor.">
+<meta property="og:url" content="https://emex.ro/termeni-si-conditii">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website"/>
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="/{{ minify('css/tabs.css') }}">
 @endsection

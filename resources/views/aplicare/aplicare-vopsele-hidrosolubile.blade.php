@@ -1,5 +1,29 @@
 @extends('aplicare.layout')
 
+@section('seo')
+<title>Aplicare lacuri si vopsele solubile in apa</title>
+<meta name="keywords" content="aplicare vopsele pe baza de apa, vopsiri solubile in apa, vopsire in imersie">
+<meta name="description" content="Aplicare lacuri si vopsele solubile in apa: pregatire vopsele si suprafete pentru aplicare pe lemn metal zidarie - instructiuni pentru vopsire">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Vopsirea cu vopsele pe baza de apa">
+<meta property="og:image" content="https://emex.ro/images/social/Vopsele-solubile-in-apa-Facebook.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Vopsele-solubile-in-apa-Facebook.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="628" />
+<meta property="og:image:alt" content="Aplicare vopsele solubile in apa" />
+<meta property="og:description" content="Mod de folosire al vopselelor pe baza de apa pregatirea suprafetelor si aplicarea acestor vopsele hidrosolubile pe suporturi de lemn metal sau zidarie.">
+<meta property="og:url" content="https://emex.ro/aplicare-vopsele-hidrosolubile">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Romtehnochim">
+<meta name="twitter:image" content="https://emex.ro/images/social/Vopsele-solubile-in-apa-Facebook.jpg">
+<meta name="twitter:title" content="Aplicare vopsele hidrosolubile">
+<meta name="twitter:description" content="Vopselele solubile in apa sunt folosite pe suporturi diverse, cu performante chiar superioare vopselelor conventionale.">
+<meta name="twitter:url" content="https://emex.ro/aplicare-vopsele-hidrosolubile">
+@endsection
+
 @section('header_image_source', asset('resources/images/aplicare/Aplicare-vopsele-hidrosolubile.jpg'))
 @section('header_title') 
 APLICARI LACURI SI VOPSELE SOLUBILE <br> IN APA “EMEX”

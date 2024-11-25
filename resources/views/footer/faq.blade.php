@@ -1,5 +1,23 @@
 @extends('layout.layout')
 
+@section('seo')
+<title>Intrebari frecvente</title>
+<meta name="keywords" content="faq, cum comand, comanda emex">
+<meta name="description" content="Intrebari frecvente legate de modul de comanda pe site-ul emex">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Intrebari despre comanda site emex">
+<meta property="og:image" content="https://emex.ro/images/social/Intrebari-frecvente-sm.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Intrebari-frecvente-sm.jpg" />
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="628"/>
+<meta property="og:image:alt" content="Emex faq"/>
+<meta property="og:description" content="Modul de utilizare al formularului de comanda din site-ul emex. Personalizare comanda si mod de plata">
+<meta property="og:url" content="https://emex.ro/faq">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website"/>
+@endsection
+
 @section('breadcrumbs')
 <ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="/despre-noi">Despre noi</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Politica de Retur</li></ul>
 @endsection

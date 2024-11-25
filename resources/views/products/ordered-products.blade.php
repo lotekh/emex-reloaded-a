@@ -1,5 +1,11 @@
 @extends('layout.layout')
 
+@section('seo')
+<title>Vezi cos - Produse adaugate</title>
+<meta name="keywords" content="cosul tau, produse in cos, comanda ta">
+<meta name="description" content="Vezi produsele adaugate in cosul Emex by Romtehnochim - Comanda ta online de vopsele">
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="/{{ minify('css/product-card.css') }}">
 @endsection

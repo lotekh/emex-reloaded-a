@@ -1,5 +1,23 @@
 @extends('aplicare.layout')
 
+@section('seo')
+<title>Aplicare pardoseli autonivelante bicomponente</title>
+<meta name="keywords" content="montare pardoseala epoxidica, aplicare pardoseala poliuretanica, cum se aplica pardoseala, turnare pardoseli autonivelante">
+<meta name="description" content="Aplicare pardoseli autonivelante bicomponente: pregatire suprafete pentru aplicare pardoseala epoxidica pardoseala poliuretanica sau metilmetacrilat">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Mod de aplicare pardoseli bicomponente">
+<meta property="og:image" content="https://emex.ro/images/social/Aplicare-pardoseala-epoxidica-Facebook.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Aplicare-pardoseala-epoxidica-Facebook.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="628" />
+<meta property="og:image:alt" content="Aplicare pardoseala epoxidica sau poliuretanica" />
+<meta property="og:description" content="Modul de aplicare al pardoselilor bicomponente epoxidice poliuretanie sau metil-metacrilat (MMA) – pregatirea si etapele importante ale aplicarii.">
+<meta property="og:url" content="https://emex.ro/aplicare-pardoseli-autonivelante-bicomponente">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website" />
+@endsection
+
 @section('header_image_source', asset('resources/images/aplicare/Pardoseala-Decorativa.jpg'))
 @section('header_title') 
 APLICARE PARDOSELI AUTONIVELANTE <br> BICOMPONENTE “EMEX”
