@@ -1,0 +1,37 @@
+{
+	"@context":"http://schema.org",
+	"@type":"Article",
+	"headline":"Vopsele si Emailuri - Cartela RAL",
+	"url":"https://emex.ro/cartela-culori-ral-vopsele",
+	"keywords":[
+	"paletar RAL",
+	"cartela",
+	"paletar culori"
+	],
+	"description":"Pentru o nuantare finala de finete a vopselelor pe baza de rasini sintetice solventate alchidice epoxidice poliuretanice clorcauciuc este necesara folosirea unui ⭐ Catalog sau Paletar de Culori RAL ✅ Cartela RAL de Culori instrument important in alegerea nuantei de vopsea dorite !",
+	"image":{
+		"@type":"ImageObject",
+		"url":"https://emex.ro/images/social/Paletar-cartela-culori-ral-sm.jpg",
+		"width":"1200",
+		"height":"628"
+	},
+	"mainEntityOfPage":"True",
+	"publisher": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/",
+		"logo": {
+			"@type":"ImageObject",
+			"url":"https://emex.ro/images/Logo-json.png",
+			"width":"750",
+			"height":"300"
+		}
+	},
+	"author": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro"
+	},
+	"datePublished":"2022-04-11",
+	"dateModified":"2022-04-11"
+}

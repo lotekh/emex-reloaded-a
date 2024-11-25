@@ -1,0 +1,38 @@
+{
+	"@context":"http://schema.org",
+	"@type":"Article",
+	"headline":"Lacuri | Vopsele | Tencuieli | Pardoseli - Emex",
+	"url":"https://emex.ro/produse",
+	"keywords":[
+	"vopsea metal",
+	"pardoseli epoxidice",
+	"tencuiala decorativa",
+	"vopsea Emex"
+	],
+	"description":"Romtehnochim produce o gama variata de vopsele de uz general: vopsea si grund alchidic, email alchidic sau alchidic modificat, vopsea lavabila sau tencuiala decorativa, si vopsele profesionale, cum ar fi: vopsea clorcauciuc, vopsea si pardoseala epoxidica, vopsele si pardoseli poliuretanice.",
+	"image":{
+		"@type":"ImageObject",
+		"url":"https://emex.ro/images/social/Toate-produsele-Emex.jpg",
+		"width":"1200",
+		"height":"628"
+	},
+	"mainEntityOfPage":"True",
+	"publisher": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/",
+		"logo": {
+			"@type":"ImageObject",
+			"url":"https://emex.ro/images/Logo-json.png",
+			"width":"750",
+			"height":"300"
+		}
+	},
+	"author": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro"
+	},
+	"datePublished":"2022-04-11",
+	"dateModified":"2022-04-11"
+}

@@ -17,6 +17,32 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('resources/emex-favicon.ico') }}">
 
 
+    {{-- <script type="application/ld+json">
+        @yield('json-lds')
+    </script> --}}
+    {{-- @yield('json-lds') --}}
+
+    {{-- <div style="display: none;">
+        @yield('json-ld')
+    </div>
+    
+    @if (View::hasSection('json-ld'))
+        @php
+            $jsonLdFile = resource_path('views/layouts/partials/json-lds') . DIRECTORY_SEPARATOR . trim($__env->yieldContent('json-ld')) . '.json-ld';
+        @endphp
+
+        @if (file_exists($jsonLdFile))
+            <script type="application/ld+json">
+                {!! file_get_contents($jsonLdFile) !!}
+            </script>
+        @else
+            {{ $__env->yieldContent('json-ld') }} 
+        @endif
+    @endif --}}
+    
+    @include('layouts.partials.json-ld')
+
+
     <link rel="stylesheet" href="/{{ minify('css/adrian.css') }}">
     <link rel="stylesheet" href="/{{ minify('css/footer.css') }}">
     <link rel="stylesheet" href="/{{ minify('css/form.css') }}">

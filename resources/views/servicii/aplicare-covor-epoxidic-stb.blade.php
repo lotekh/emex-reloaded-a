@@ -24,6 +24,10 @@
 <meta name="twitter:url" content="https://emex.ro/aplicare-covor-epoxidic-stb">
 @endsection
 
+@section('json-ld')
+aplicare-covor-epoxidic-stb
+@endsection
+
 <?php
 $baseUrl = url('/');
 ?>

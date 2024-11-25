@@ -1,0 +1,38 @@
+{
+	"@context":"http://schema.org",
+	"@type":"Article",
+	"headline":"Aplicare Vopsele de Pardoseala “Emex”",
+	"url":"https://emex.ro/aplicare-vopsele-pardoseala",
+	"keywords":[
+	"vopsire pardoseala",
+	"vopsele pentru pardoseli",
+	"aplicare clorcauciuc pardoseala",
+	"vopsire epoxidica pardoseli"
+	],
+	"description":"Aplicare vopsele pentru pardoseala: instructiuni de pregatire si aplicare pentru vopsirea pardoselilor cu vopsele speciale epoxidice, poliuretanice, poliesterice sau clorcauciuc. Romtehnochim asigura si serviciu specializat, cu utilaje adecvate si personal instruit la nivel profesional.",
+	"image":{
+		"@type":"ImageObject",
+		"url":"https://emex.ro/images/social/Aplicare-vopsea-epoxidica-pardoseli-SM.jpg",
+		"width":"1200",
+		"height":"628"
+	},
+	"mainEntityOfPage":"True",
+	"publisher": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/",
+		"logo": {
+			"@type":"ImageObject",
+			"url":"https://emex.ro/images/Logo-json.png",
+			"width":"750",
+			"height":"300"
+		}
+	},
+	"author": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/"
+	},
+	"datePublished":"2022-03-31",
+	"dateModified":"2022-03-31"
+}

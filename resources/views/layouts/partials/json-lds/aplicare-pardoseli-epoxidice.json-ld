@@ -1,0 +1,37 @@
+{
+	"@context":"http://schema.org",
+	"@type":"Article",
+	"headline":"Aplicare Pardoseala Epoxidica",
+	"url":"https://emex.ro/aplicare-pardoseli-epoxidice",
+	"keywords":[
+	"aplicare pardoseala epoxidica",
+	"montaj epoxidica",
+	"aplicare rasina epoxidica"
+	],
+	"description":"Romtehnochim, producator de pardoseli si vopsele epoxidice, poliuretanice, poliesterice ofera de asemeni si servicii de aplicare pardoseli epoxidice, poliuretanice sau metilmetacrilat, bicomponente, cu utilaje profesionale si personal specializat.",
+	"image":{
+		"@type":"ImageObject",
+		"url":"https://emex.ro/images/social/Pardoseala-industriala-epoxidica-servicii-sm.jpg",
+		"width":"1200",
+		"height":"628"
+	},
+	"mainEntityOfPage":"True",
+	"publisher": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/",
+		"logo": {
+			"@type":"ImageObject",
+			"url":"https://emex.ro/images/Logo-json.png",
+			"width":"750",
+			"height":"300"
+		}
+	},
+	"author": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro"
+	},
+	"datePublished":"2022-03-31",
+	"dateModified":"2022-03-31"
+}

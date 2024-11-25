@@ -1,0 +1,37 @@
+{
+	"@context":"http://schema.org",
+	"@type":"Article",
+	"headline":"Aplicare Membrana Hidroizolanta Poliuretanica “Emex”",
+	"url":"https://emex.ro/aplicare-membrana-hidroizolanta-poliuretanica",
+	"keywords":[
+	"aplicare membrana hidroizolanta",
+	"cum se aplica hidroizolatia",
+	"montare membrana impermeabila"
+	],
+	"description":"Aplicarea de Membrana Hidroprotectoare pe Suprafetele din Beton, Mozaic sau Alte Tipuri de Materiale Cimentice pentru Pardoseala se face Numai dupa Pregatirea Corespunzatoare a Suportului, Deoarece Aceasta Etapa are o Influenta Hotaratoare Asupra Calitatii si Durabilitatii Acoperirii.",
+	"image":{
+		"@type":"ImageObject",
+		"url":"https://emex.ro/images/social/Aplicare-membrana-poliuretanica-Facebook.jpg",
+		"width":"1200",
+		"height":"628"
+	},
+	"mainEntityOfPage":"True",
+	"publisher": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/",
+		"logo": {
+			"@type":"ImageObject",
+			"url":"https://emex.ro/images/Logo-json.png",
+			"width":"750",
+			"height":"300"
+		}
+	},
+	"author": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro"
+	},
+	"datePublished":"2022-03-01",
+	"dateModified":"2022-03-01"
+}

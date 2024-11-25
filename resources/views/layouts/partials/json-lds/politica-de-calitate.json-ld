@@ -1,0 +1,37 @@
+{
+	"@context":"http://schema.org",
+	"@type":"Article",
+	"headline":"Politica Romtehnochim privind Calitatea",
+	"url":"https://emex.ro/politica-de-calitate",
+	"keywords":[
+	"politica de calitate",
+	"vopsele de calitate",
+	"Norme ISO vopsele"
+	],
+	"description":"Romtehnochim are un sistem de management al calitatii in cadrul caruia opereaza toate procesele cerute la realizarea serviciului. In managementul calitatii identificam acele dorinte si asteptari ce trebuiesc indeplinite de societate, pentru a furniza servicii care sa satisfaca toti clientii nostri.",
+	"image":{
+		"@type":"ImageObject",
+		"url":"https://emex.ro/images/social/Politica-de-calitate-Romtehnochim-sm.jpg",
+		"width":"1200",
+		"height":"628"
+	},
+	"mainEntityOfPage":"True",
+	"publisher": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/",
+		"logo": {
+			"@type":"ImageObject",
+			"url":"https://emex.ro/images/Logo-json.png",
+			"width":"750",
+			"height":"300"
+		}
+	},
+	"author": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro"
+	},
+	"datePublished":"2022-04-11",
+	"dateModified":"2022-04-11"
+}
