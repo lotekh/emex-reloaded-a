@@ -1,0 +1,106 @@
+{
+  "@context":"https://schema.org",
+  "@type":"VideoObject",
+  "name":"Aplicare pardoseala epoxidica autonivelanta",
+  "description":"Filmarea unei aplicari de pardoseala autonivelanta, de catre o echipa a Romtehnochim, in care se pot urmari pasii principali, care asigura o aplicare corecta a unei pardoseli autonivelante epoxidice. Acest video are doar un caracter informativ, pentru prezentarea modului de utilizare a pardoselii epoxidice autonivelante marca Emex.",
+  "thumbnailUrl":"https://emex.ro/videos/Filmare-pardoseala-autonivelanta-epoxidica.jpg",
+  "uploadDate":"2018-03-18T20:00:00+02:00",
+  "duration":"PT2M42S",
+  "contentUrl":"https://emex.ro/videos/Filmare-epoxidica-autonivelanta-Emex.mp4",
+  "embedUrl":"https://www.youtube.com/watch?v=_ZWyxk5OIec",
+   "interactionStatistic":{
+     "@type":"InteractionCounter",
+     "interactionType":{
+	 "@type": "WatchAction"
+	 },
+     "userInteractionCount": "111209"
+  },
+  "hasPart": {
+    "@type": "Clip",
+    "name": "Aplicare pardoseala epoxidica autonivelanta",
+    "startOffset": "1",
+    "endOffset": "162",
+    "url": "https://emex.ro/videos/Filmare-epoxidica-autonivelanta-Emex.mp4"
+  },
+  "expires": "2030-03-30T00:00:00.000Z",
+  "publication": {
+    "@type": "BroadcastEvent",
+    "isLiveBroadcast": "true",
+    "startDate": "2018-03-18T00:00:00.000Z",
+    "endDate": "2030-03-30T00:00:00.000Z"
+  },
+    "regionsAllowed": "EU,RO"
+},
+{
+  "@context":"http://schema.org",
+  "@type":"ItemList",
+  "url":"https://emex.ro/aplicare-pardoseala-epoxidica-autonivelanta",
+  "name":"Aplicare pardoseala epoxidica autonivelanta bicomponenta",
+  "description":"Din gama de pardoseli bicomponente ✅ Pardoseala Epoxidica Autonivelanta “Emex” reprezinta una dintre protectiile cele mai versatile. Utilizata mai ales in scopuri industriale, in zone cu trafic foarte intens sau cu masini grele, dar si in conditii de expunere la solicitari mecanice sau chimice.",
+  "itemListElement":[
+     {
+        "@type":"ListItem",
+        "position":1,
+        "name":"Pardoseala epoxidica applicata in club",
+        "image":"https://emex.ro/images/landing/autonivelanta/mici/Pardoseala-autonivelanta-epoxidica-restaurant.jpg",
+        "description":"Aplicarea unei pardoseli epoxidice autonivelante decorative pentru intrarea in clubul unui restaurant. Pardoseala are rezistenta mare la zgariere si aspect superior.",
+        "url":"https://emex.ro/images/landing/autonivelanta/mari/Pardoseala-epoxidica-autonivelanta-club.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":2,
+        "name":"Aplicare pardoseala epoxidica pentru tipografie",
+        "image":"https://emex.ro/images/landing/autonivelanta/mici/Pardoseala-autonivelanta-epoxidica-tipografie.jpg",
+        "description":"O pardoseala epoxidica, in special cea turnata, cu autonivelare trebuie sa indeplineasca atat o functie decorativa, care sa asigure un aspect superior, cat si de rezistenta, in special la trafic pietonal, cu lize sau stivuitoare, si uzura.",
+        "url":"https://emex.ro/images/landing/autonivelanta/mari/Pardoseala-epoxidica-tipografie.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":3,
+        "name":"Pardoseala epoxidica autonivelanta agrementata sanitar",
+        "image":"https://emex.ro/images/landing/autonivelanta/mici/Pardoseala-epoxidica-autonivelanta-crama.jpg",
+        "description":"Pardoseala epoxidica autonivelanta, executata din rasini epoxidice nesolventate asigura o protectie eficienta la trafic, dar si o buna sigilare a suportului, pentru o igiena speciala. Produsele epoxidice “Emex”, fabricate de Romtehnochim, au agrement sanitar.",
+        "url":"https://emex.ro/images/landing/autonivelanta/mari/Pardoseala-autonivelanta-crama.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":4,
+        "name":"Amenajare living - pardoseala epoxidica",
+        "image":"https://emex.ro/images/landing/autonivelanta/mici/Pardoseala-epoxidica-living.jpg",
+        "description":"Pardoseala epoxidica bicomponenta autnonivelanta decorativa, cu luciu superior, destinata amenajarii de spatii dechise, de prezentare, pentru constructii civile sau casnice, dar si industriale sau de prezentare.",
+        "url":"https://emex.ro/images/landing/autonivelanta/mari/Pardoseala-living-vila.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":5,
+        "name":"Pardoseala epoxidica in spatiu cu trafic intens",
+        "image":"https://emex.ro/images/landing/autonivelanta/mici/Pardoseala-epoxidica-trafic-gara.jpg",
+        "description":"Spatiile supuse unui trafic intens sunt deosebit de bine protejate prin aplicarea de pardoseala epoxidica autonivelanta, cu mare rezistenta la trafic pietonal sau de masini, dar beneficiaza suplimentar si de un aspect decorativ superior.",
+        "url":"https://emex.ro/images/landing/autonivelanta/mari/Pardoseala-autonivelanta-gara.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":6,
+        "name":"Hala industriala cu pardoseala epoxidica",
+        "image":"https://emex.ro/images/landing/autonivelanta/mici/Pardoseala-industriala-autonivelanta-hala-productie.jpg",
+        "description":"Pardoseala epoxidica autonivelanta reprezinta o solutie de protectie exceptionala a spatiilor industriale, expuse la solicitari mecanice, chimice sau de orice alta natura, la care are o rezistenta foarte buna.",
+        "url":"https://emex.ro/images/landing/autonivelanta/mari/Pardoseala-autonivelanta-industriala.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":7,
+        "name":"Salon medical protejat cu pardoseala epoxidica",
+        "image":"https://emex.ro/images/landing/autonivelanta/mici/Salon-medical-pardoseala-epoxidica.jpg",
+        "description":"Spatiile cu cerinte speciale de igiena, ca laboratoare medicale, farmacii, industrie alimentara sau de prelucrare a alimentelor sunt perfect protejate cu pardoseala epoxidica autonivelanta care, suplimentar, prezinta si un aspect superior.",
+        "url":"https://emex.ro/images/landing/autonivelanta/mari/Epoxidica-autonivelanta-sala-radiografie.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":8,
+        "name":"Autonivelanta epoxidica industriala",
+        "image":"https://emex.ro/images/landing/autonivelanta/mici/Pardoseala-industriala-epoxidica.jpg",
+        "description":"Pardoseala epoxidica bicomponenta autonivelanta este printre pardoselile cu maxima rezistenta la solicitari sau socuri mecanice ori termice, trafic intens sau expunere la agenti chimici corozivi.",
+        "url":"https://emex.ro/images/landing/autonivelanta/mari/Pardoseala-autonivelanta-hala-productie.jpg"
+     }
+  ]
+}

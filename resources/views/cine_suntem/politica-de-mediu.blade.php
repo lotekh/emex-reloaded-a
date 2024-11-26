@@ -1,5 +1,23 @@
 @extends('layout.layout')
 
+@section('seo')
+<title>Politica de mediu Emex by Romtehnochim</title>
+<meta name="description" content="Politica de mediu Emex by Romtehnochim producator de tencuieli pardoseli emailuri grunduri vopsele lavabile - certificat ISO 14001">
+<meta name="keywords" content="ISO 14001, politica de mediu, protejarea mediului, prevenirea poluarii">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Politica de Mediu a Romtehnochim">
+<meta property="og:image" content="https://emex.ro/images/social/Politica-de-mediu-Romtehnochim-sm.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Politica-de-mediu-Romtehnochim-sm.jpg" />
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="628"/>
+<meta property="og:image:alt" content="Romtehnochim - vopsele cu COV redus"/>
+<meta property="og:description" content="Informatii despre politica de mediu a Romtehnochim producator certificat ISO - management integrat - vopsele tencuieli si pardoseli “Emex”">
+<meta property="og:url" content="https://emex.ro/politica-de-mediu">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website"/>
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="/{{ minify('css/politica-de-mediu.css') }}">
 @endsection

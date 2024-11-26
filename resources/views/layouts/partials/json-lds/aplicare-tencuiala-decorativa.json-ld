@@ -1,0 +1,37 @@
+{
+	"@context":"http://schema.org",
+	"@type":"Article",
+	"headline":"Aplicare Pardoseala Epoxidica",
+	"url":"https://emex.ro/aplicare-tencuiala-decorativa",
+	"keywords":[
+	"aplicare tencuieli decorative",
+	"cum se aplica tencuiala decorativa",
+	"instructiuni de aplicare tencuiala"
+	],
+	"description":"Instructiuni de aplicare comune tuturor tencuielilor decorative, dar si produselor conexe ca Grunduri de amorsare pentru tencuieli. Aplicarea tencuielilor decorative pe suprafata-suport se face numai dupa pregatirea corespunzatoare a acesteia, potrivit indicatiilor din fisa tehnica.",
+	"image":{
+		"@type":"ImageObject",
+		"url":"https://emex.ro/images/social/Tencuiala-decorativa-nou-vechi-sm.jpg",
+		"width":"1200",
+		"height":"628"
+	},
+	"mainEntityOfPage":"True",
+	"publisher": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/",
+		"logo": {
+			"@type":"ImageObject",
+			"url":"https://emex.ro/images/Logo-json.png",
+			"width":"750",
+			"height":"300"
+		}
+	},
+	"author": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro"
+	},
+	"datePublished":"2022-03-31",
+	"dateModified":"2022-03-31"
+}

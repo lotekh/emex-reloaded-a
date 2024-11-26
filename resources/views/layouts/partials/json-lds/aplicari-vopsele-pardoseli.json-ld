@@ -1,0 +1,37 @@
+{
+	"@context":"http://schema.org",
+	"@type":"Article",
+	"headline":"Vopsiri Decorative si Industriale de Pardoseala",
+	"url":"https://emex.ro/aplicari-vopsele-pardoseli",
+	"keywords":[
+	"vopsea pardoseala",
+	"epoxidica pardoseli",
+	"vopsire bicomponenta beton"
+	],
+	"description":"Pagina de capitol cu imagini de vopsiri bicomponente de pardoseala realizate de Romtehnochim. Firma asigura un serviciu specializat de aplicare a vopselelor bicomponente epoxidice, poliuretanice, poliesterice, fabricate sub marca Emex, cu utilaje profesionale si personal specializat.",
+	"image":{
+		"@type":"ImageObject",
+		"url":"https://emex.ro/images/social/Aplicari-vopsele-pardoseli-sm.jpg",
+		"width":"1200",
+		"height":"628"
+	},
+	"mainEntityOfPage":"True",
+	"publisher": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/",
+		"logo": {
+			"@type":"ImageObject",
+			"url":"https://emex.ro/images/Logo-json.png",
+			"width":"750",
+			"height":"300"
+		}
+	},
+	"author": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/"
+	},
+	"datePublished":"2022-03-31",
+	"dateModified":"2022-03-31"
+}

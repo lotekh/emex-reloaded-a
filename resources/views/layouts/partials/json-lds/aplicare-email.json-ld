@@ -1,0 +1,38 @@
+{
+	"@context":"http://schema.org",
+	"@type":"Article",
+	"headline":"Aplicari Lacuri Vopsele si Grunduri Decorative “Emex”",
+	"url":"https://emex.ro/aplicare-email",
+	"keywords":[
+	"aplicare lacuri si vopsele",
+	"pregatire pentru vopsire",
+	"cum se vopseste",
+	"vopsire cu email alchidic"
+	],
+	"description":"Instructiuni de Pregatire a Produsului si a Suprafetelor - in Aceasta Categorie se Regasesc Toate Vopselele Alchidice Grase, Vopsele si Lacuri Alchidice Uretanizate, Vopsele si Lacuri pe Baza de Rasini Alchidice Medii si Slabe, Lacuri de Uz General pentru Lemn, sau Grunduri Alchidice.",
+	"image":{
+		"@type":"ImageObject",
+		"url":"https://emex.ro/images/social/Aplicare-emailuri-decorative-SM.jpg",
+		"width":"1200",
+		"height":"628"
+	},
+	"mainEntityOfPage":"True",
+	"publisher": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/",
+		"logo": {
+			"@type":"ImageObject",
+			"url":"https://emex.ro/images/Logo-json.png",
+			"width":"750",
+			"height":"300"
+		}
+	},
+	"author": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro"
+	},
+	"datePublished":"2022-03-01",
+	"dateModified":"2022-03-01"
+}

@@ -1,5 +1,28 @@
 @extends('aplicare.layout')
 
+@section('seo')
+<title>Aplicare vopsea pentru marcaj rutier</title>
+<meta name="keywords" content="marcaje rutiere, marcare rutiera, vopsire parcari, vopsire marcaj rutier">
+<meta name="description" content="Aplicare vopsea pentru marcaj rutier: marcarea pe asfalt sau beton a benzilor de circulatie piste de aeroport treceri de pietoni sau parcari">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Vopsire pentru marcaje rutiere">
+<meta property="og:image" content="https://emex.ro/images/social/Aplicare-vopsea-marcaj-rutier-sm.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Aplicare-vopsea-marcaj-rutier-sm.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="628" />
+<meta property="og:image:alt" content="Marcare rutiera cu vopsea marcaj" />
+<meta property="og:description" content="Modul de vopsire stradala si aplicarea de marcaje rutiere pe asfalt sau beton in scopul trasarii benzilor de circulatie parcari sau treceri pietonale.">
+<meta property="og:url" content="https://emex.ro/aplicare-vopsea-marcaj-rutier">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website" />
+<meta name="rating" content="General">
+<meta name="geo.region" content="RO-IF">
+<meta name="geo.placename" content="Jilava">
+<meta name="geo.position" content="44.328689;26.067273">
+<meta name="ICBM" content="44.328689,26.067273">
+@endsection
+
 @section('header_image_source', asset('resources/images/aplicare/Aplicare-trafic-rutier.jpg'))
 @section('header_title') 
 APLICARE VOPSELE MARCAJ <br> RUTIER “EMEX ROUTE”

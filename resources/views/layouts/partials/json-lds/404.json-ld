@@ -1,0 +1,19 @@
+{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "inLanguage": "ro-RO",
+    "isFamilyFriendly":"http://schema.org/True",
+    "name":"Emex by Romtehnochim",
+    "alternateName":"Emex - Vopsele | Tencuieli | Pardoseli",
+    "url":"https://emex.ro/404",
+    "image":"https://emex.ro/images/general/Emex-logo.png",
+    "description":"Romtehnochim, este ✅ Producator de Lacuri, Vopsele, Tencuieli si Pardoseli sub brandul ⭐ “Emex”, ca: vopsea epoxidica, tencuiala decorativa, vopsea lavabila, pardoseala epoxidica sau poliuretanica. Brandul “Emex” se remarca in Romania, in special, prin calitatea excelenta si constanta acesteia.",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Emex by Romtehnochim",
+        "logo": {
+            "@type": "imageObject",
+            "url": "https://emex.ro/images/general/Emex-logo.png"
+        }
+    }
+}

@@ -1,5 +1,11 @@
 @extends('layout.layout')
 
+@section('seo')
+<title>Confirmare trimitere mail</title>
+<meta name="keywords" content="confirmare mail, mail solicitate, formular multumire">
+<meta name="description" content="Va multumim pentru solicitare">
+@endsection
+
 @section('breadcrumbs')
 <ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Thank you</li></ul>
 @endsection

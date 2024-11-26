@@ -1,0 +1,39 @@
+{
+	"@context":"http://schema.org",
+	"@type":"Article",
+	"headline":"Aplicare Vopsele Marcaj Rutier “Emex Route”",
+	"url":"https://emex.ro/aplicare-vopsea-marcaj-rutier",
+	"keywords":[
+	"marcaje rutiere",
+	"marcare rutiera",
+	"vopsire parcari",
+	"vopsire marcaj rutier",
+	"trasare marcaje"
+	],
+	"description":"Aplicare vopsea pentru marcaj rutier: marcarea pe asfalt sau beton a benzilor de circulatie piste de aeroport, treceri de pietoni sau parcari. Aplicarea Vopselei de Marcaj Rutier se poate face prin stropire cu masini speciale de aplicare, pensulare, roluire sau pulverizare cu instalatii airless.",
+	"image":{
+		"@type":"ImageObject",
+		"url":"https://emex.ro/images/social/Aplicare-vopsea-marcaj-rutier-sm.jpg",
+		"width":"1200",
+		"height":"628"
+	},
+	"mainEntityOfPage":"True",
+	"publisher": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/",
+		"logo": {
+			"@type":"ImageObject",
+			"url":"https://emex.ro/images/Logo-json.png",
+			"width":"750",
+			"height":"300"
+		}
+	},
+	"author": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro"
+	},
+	"datePublished":"2022-03-31",
+	"dateModified":"2022-03-31"
+}

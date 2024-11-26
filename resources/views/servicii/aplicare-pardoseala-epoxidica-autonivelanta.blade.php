@@ -1,5 +1,29 @@
 @extends('servicii.layout')
 
+@section('seo')
+<title>Aplicare pardoseala epoxidica autonivelanta</title>
+<meta name="description" content="Pardoseala epoxidica autonivelanta bicomponenta este un produs profesional de mare duritate cu rezistenta la trafic si socuri mecanice sau termice">
+<meta name="keywords" content="pardoseala epoxidica, pardoseala autonivelanta, epoxidica autonivelanta, pardoseala epoxidica turnata">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Pardoseala epoxidica autonivelanta">
+<meta property="og:image" content="https://emex.ro/images/social/Pardoseala-autonivelanta-epoxidica-aplicari-SM.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Pardoseala-autonivelanta-epoxidica-aplicari-SM.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="628" />
+<meta property="og:image:alt" content="Aplicare pardoseala epoxidica autonivelanta" />
+<meta property="og:description" content="Un mod corect de aplicare al acestei pardoseli cu aspect superior si rezistenta mare la trafic sau uzura, asigura o durata de viata de minim 10 ani.">
+<meta property="og:url" content="https://emex.ro/aplicare-pardoseala-epoxidica-autonivelanta">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="Product" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Romtehnochim">
+<meta name="twitter:image" content="https://emex.ro/images/social/Pardoseala-autonivelanta-epoxidica-aplicari-SM.jpg">
+<meta name="twitter:title" content="Autonivelanta epoxidica">
+<meta name="twitter:description" content="Pardoseala epoxidica cu rezistenta excelenta la trafic si uzura, aspect decorativ superior si 10 ani durata minima de viata.">
+<meta name="twitter:url" content="https://emex.ro/aplicare-pardoseala-epoxidica-autonivelanta">
+@endsection
+
 <?php
 $baseUrl = url('/');
 ?>

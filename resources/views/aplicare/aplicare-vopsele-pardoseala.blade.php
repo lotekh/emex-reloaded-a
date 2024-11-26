@@ -1,5 +1,29 @@
 @extends('aplicare.layout')
 
+@section('seo')
+<title>Aplicare vopsele pentru pardoseala</title>
+<meta name="keywords" content="vopsire pardoseala, vopsele pentru pardoseli, aplicare clorcauciuc pardoseala, vopsire epoxidica pardoseli">
+<meta name="description" content="Aplicare vopsele pentru pardoseala: pregatire si instructiuni pentru vopsirea pardoselilor cu vopsele speciale epoxidice clorcauciuc sau poliuretanice">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Vopsire epoxidica decorativa profesionala">
+<meta property="og:image" content="https://emex.ro/images/social/Aplicare-vopsea-epoxidica-pardoseli-SM.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Aplicare-vopsea-epoxidica-pardoseli-SM.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="628" />
+<meta property="og:image:alt" content="Vopsire epoxidica profesionala pentru pardoseli decorative" />
+<meta property="og:description" content="Instructiuni necesare pentru realizarea unei corecte vopsiri epoxidice, poliuretanice sau clorcauciuc, pentru pardoseli decorative sau industriale.">
+<meta property="og:url" content="https://emex.ro/aplicare-vopsele-pardoseala">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Romtehnochim">
+<meta name="twitter:image" content="https://emex.ro/images/social/Aplicare-vopsea-epoxidica-pardoseli-SM.jpg">
+<meta name="twitter:title" content="Vopsire epoxidica decorativa">
+<meta name="twitter:description" content="Pentru o vopsire epoxidica profesionala, decorativa sau industriala, este necesara doar urmarirea catorva instructiuni.">
+<meta name="twitter:url" content="https://emex.ro/aplicare-vopsele-pardoseala">
+@endsection
+
 @section('header_image_source', asset('resources/images/aplicare/Vopsea-epoxidica-de-pardoselala.jpg'))
 @section('header_title') 
 APLICARE VOPSELE DE <br> PARDOSEALA “EMEX”

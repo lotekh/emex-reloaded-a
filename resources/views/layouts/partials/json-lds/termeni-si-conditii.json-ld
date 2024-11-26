@@ -1,0 +1,37 @@
+{
+	"@context":"http://schema.org",
+	"@type":"Article",
+	"headline":"Termeni si Conditii de Utilizarea a Site-ului Emex",
+	"url":"https://emex.ro/termeni-si-conditii",
+	"keywords":[
+	"termeni si conditii",
+	"comenzi on-line Emex",
+	"conditii utilizare magazin"
+	],
+	"description":"Folosirea site-ului Emex implica acceptarea termenilor si conditilor. Pentru folosirea in cele mai bune conditii, se recomanda citirea atenta a tuturor termenilor si conditiilor. Utilizarea site-ului, logarea si accesul la servicii, presupune implicit acceptarea acestor termeni si conditii.",
+	"image":{
+		"@type":"ImageObject",
+		"url":"https://emex.ro/images/social/Termeni-si-conditii-sm.jpg",
+		"width":"1200",
+		"height":"628"
+	},
+	"mainEntityOfPage":"True",
+	"publisher": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/",
+		"logo": {
+			"@type":"ImageObject",
+			"url":"https://emex.ro/images/Logo-json.png",
+			"width":"750",
+			"height":"300"
+		}
+	},
+	"author": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro"
+	},
+	"datePublished":"2022-12-11",
+	"dateModified":"2022-12-11"
+}

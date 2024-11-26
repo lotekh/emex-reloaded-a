@@ -1,0 +1,37 @@
+{
+	"@context":"http://schema.org",
+	"@type":"Article",
+	"headline":"Certificari ISO de Calitate ale Romtehnochim",
+	"url":"https://emex.ro/certificari-iso",
+	"keywords":[
+	"certificare ISO",
+	"calitate ISO vopsele",
+	"management integrat al calitatii"
+	],
+	"description":"Romtehnochim produce lacuri vopsele grunduri si tencuieli decorative profesionale sub certificarea sistemului de management integrat al calitatii ISO 9001, 14001, 18001",
+	"image":{
+		"@type":"ImageObject",
+		"url":"https://emex.ro/images/social/Certificate-ISO-Instagram.jpg",
+		"width":"1200",
+		"height":"628"
+	},
+	"mainEntityOfPage":"True",
+	"publisher": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/",
+		"logo": {
+			"@type":"ImageObject",
+			"url":"https://emex.ro/images/Logo-json.png",
+			"width":"750",
+			"height":"300"
+		}
+	},
+	"author": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro"
+	},
+	"datePublished":"2022-04-11",
+	"dateModified":"2022-04-11"
+}

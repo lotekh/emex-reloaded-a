@@ -1,0 +1,83 @@
+{
+    "@context": "http://schema.org",
+    "@type": "ItemList",
+    "url": "https://emex.ro/",
+    "name": "Emex - Vopsele | Tencuieli | Pardoseli",
+    "description": "Emex este denumirea sub care Romtehnochim produce vopsea epoxidica, tencuiala decorativa sau vopsea lavabila, in general vopsea sub brandul Emex",
+    "keywords": "emex by romtehnochim, vopsea epoxidica emex, vopsea lavabila emex, tencuiala decorativa emex",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Vopsea Lavabila",
+        "image": "https://emex.ro/resources/images/homepage-cards/Vopsea-lavabila-de-interior-si-exterior.jpg",
+        "description": "Vopselele Lavabile “Emex” sunt vopsele specializate, destinate in primul rand utilizarii profesionale. Acestea pot fi folosite si in scopuri domestice, insa, cu respectarea recomandarilor producatorului. Se remarca prin calitati excelente de pelicula, rezistenta si durabilitate, enumerate in lista de proprietati, sau in Fisa Tehnica.",
+        "url": "https://emex.ro/vopsele-lavabile"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Emailuri Decorative",
+        "image": "https://emex.ro/resources/images/homepage-cards/Emailuri-lacuri-vopsele-decorative.jpg",
+        "description": "Vopselele Decorative “Emex”, reprezentate printr-o gama extinsa de emailuri, lacuri, vopsele si grunduri pe baza de rasini sintetice, alchidice sau combinatii ale acestora, cu o larga paleta de domenii de aplicabilitate, atat industriale cat si domestice. Sunt produse profesionale, durabile, avand calitati excelente de pelicula.",
+        "url": "https://emex.ro/vopsele-decorative"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Tencuiala Decorativa",
+        "image": "https://emex.ro/resources/images/homepage-cards/Tencuiala-decorativa-structurata-de-fatade.jpg",
+        "description": "Tencuiala Decorativa “Emex”, reprezentata printr-o paleta larga, atat de modele, cat si de culori de tencuiala, destinata finisarii decorative a fatadelor de cladiri, sau soclurilor acestora. Cu o aplicabilitate facila, tencuiala decorativa “Emex” se remarca prin durata de viata de peste 10 ani, si o rezistenta speciala a structurii si culorii.",
+        "url": "https://emex.ro/tencuieli-decorative "
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Vopsele Industriale",
+        "image": "https://emex.ro/resources/images/homepage-cards/Vopsele-profesionale-pentru-industrie.jpg",
+        "description": "Vopselele Speciale si Industriale “Emex”, sunt reprezentate de acele produse care au, in mod special, o aplicare strict profesionala. Sunt vopsele cu rezistenta foarte mare la coroziune, cu rezistente superioare deosebite, la factori agresivi chimici, mecanici, temperaturi mari, etc. Au o rezistenta superioara la imbatranire.",
+        "url": "https://emex.ro/vopsele-industriale"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "Vopsele Hidrosolubile",
+        "image": "https://emex.ro/resources/images/homepage-cards/Vopsele-solubile-in-apa.jpg",
+        "description": "Produsele Solubile in Apa “Emex”, cum ar fi vopsele, lacuri, grunduri anticorozive, aplicabile pe suporturi din cele mai diverse, de la metal pana la material plastic, prezinta un aspect chiar superior sistemelor conventionale de vopsire, in conditiile in care asigura o protectie superioara a mediului, prin caracteristicile lor ecologice.",
+        "url": "https://emex.ro/vopsele-dispersii-hidrosolubile"
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "name": "Pardoseli Turnate",
+        "image": "https://emex.ro/resources/images/homepage-cards/Pardoseli-epoxidice-poliuretanice-poliesterice.jpg",
+        "description": "Pardoselile Decorative Turnate “Emex” sunt reprezentate de o gama diversa de produse destinate protejarii si decorarii superioare a suprafetelor de circulatie din beton, expuse unui trafic intens, cu rezistente foarte mari, duritate si durabilitate. Aceste caracteristici se prezinta mult accentuate in cazul Covorului de Cuartz.",
+        "url": "https://emex.ro/pardoseli-trafic"
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "name": "Vopsele Pardoseli si Trafic",
+        "image": "https://emex.ro/resources/images/homepage-cards/Vopsele-pentru-pardoseli-din-beton.jpg",
+        "description": "Vopselele de Pardoseli si Trafic “Emex” sunt optim adaptate diverselor tipuri de suprafete cimentice pe care sunt aplicate, dar si modului de exploatare. Sunt destinate spatiilor comerciale intens circulate, pentru aspectul decorativ, dar si spatiilor industriale, pentru rezistenta superioara. Ex: Vopsea epoxidica “Emex” pentru pardoseli.",
+        "url": "https://emex.ro/vopsele-trafic-pardoseala"
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "name": "Grunduri si Amorse: Apa",
+        "image": "https://emex.ro/resources/images/homepage-cards/Amorse-pentru-lavabile-si-tencuieli.jpg",
+        "description": "Grundurile si Amorsele Solubile in Apa “Emex” sunt solutii conexe pentru sustinerea zugravirilor profesionale cu vopsele lavabile, sau aplicarea de tencuieli decorative. Vopselele, chiar profesionale, trebuiesc sustinute, pentru rezultate optime, printr-o corecta pregatire a suportului, lucru ce nu poate fi realizat fara produse primare.",
+        "url": "https://emex.ro/grunduri-amorse"
+      },
+      {
+        "@type": "ListItem",
+        "position": 9,
+        "name": "Grunduri Anticorozive",
+        "image": "https://emex.ro/resources/images/homepage-cards/Grunduri-anticorozive-pentru-metal.jpg",
+        "description": "Grundurile Anticorozive “Emex” reprezinta produse de maxima performanta pentru realizarea protectiilor primare in cazul suprafetelor metalice, in vederea protejarii acestora impotriva factorilor generatori ai ruginii imediate sau de lunga durata. Impreuna cu celelalte produse conexe, acestea sustin pregatirea pentru o vopsire de calitate.",
+        "url": "https://emex.ro/grunduri-anticorozive"
+      }
+    ]
+}
+

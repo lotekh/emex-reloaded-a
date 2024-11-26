@@ -1,0 +1,73 @@
+{
+  "@context":"http://schema.org",
+  "@type":"ItemList",
+  "url":"https://emex.ro/vopsire-epoxidica-pardoseli",
+  "name":"Vopsire epoxidica si poliuretanica pardoseli beton",
+  "description":"Sistemele care cuprind ✅ Vopsele epoxidice sau poliuretanice de pardoseala, sunt produse specializate, profesionale, de ultima generatie. Ele ofera un raspuns callitativ superior, atat din punct de vedere structural, cat si estetic sau functional - antiderapante, autonivelante, decorative, etc.",
+  "itemListElement":[
+     {
+        "@type":"ListItem",
+        "position":"1",
+        "name":"Aplicare vopsea epoxidica in zona birouri",
+        "image":"https://emex.ro/images/landing/mici/Epoxidica-birouri.jpg",
+        "description":"Aplicare de vopsea pentru pardoseli pe baza de rasina epoxidica intr-un spatiu pentru birouri, intens utilizat pietonal.",
+        "url":" https://emex.ro/images/landing/mari/Vopsire-epoxidica-birou.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":"2",
+        "name":"Aplicare vopsea epoxidica in statie service",
+        "image":"https://emex.ro/images/landing/mici/Service-auto-vopsire-epoxidica.jpg",
+        "description":"Aplicare de vopsea pe baza de rasina epoxidica pentru pardoseli din beton intr-un service auto si statie ITP. Lucrarea a fost realizata de Romtehnochim cu vopsele “Emex”",
+        "url":"https://emex.ro/images/landing/mari/Aplicare-epoxidica-service.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":"3",
+        "name":"Vopsire rasina epoxidica hala industriala",
+        "image":"https://emex.ro/images/landing/mici/Vopsire-hala-industriala.jpg",
+        "description":"Vopsire pe baza de rasina epoxidica profesionala a pardoselilor in hala industriala. Aplicare executata de Romtehnochim.",
+        "url":"https://emex.ro/images/landing/mari/Hala-industriala.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":"4",
+        "name":"Vopsea de beton pentru spatiu productie",
+        "image":"https://emex.ro/images/landing/mici/Epoxidica-spatiu-productie.jpg",
+        "description":"Vopsire cu vopsea epoxidica a pardoselilor unui spatiu de productie, executata de Romtehnochim, cu marcare si delimitare zone de lucru",
+        "url":"https://emex.ro/images/landing/mari/Vopsire-spatiu-productie.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":"5",
+        "name":"Aplicare vopsea rasina epoxidica service auto",
+        "image":"https://emex.ro/images/landing/mici/Service-Dacia-vopsire-epoxidica.jpg",
+        "description":"Vopsire pe baza de rasina epoxidica, rezistenta la hidrocarburi ca benzina si ulei, efectuata de Romtehnochim cu vopsea de pardoseala din beton, in service Dacia.",
+        "url":"https://emex.ro/images/landing/mari/Vopsire-epoxidica-service.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":"6",
+        "name":"Vopsire subsol cu vopsea beton epoxidica",
+        "image":"https://emex.ro/images/landing/mici/Aplicare-epoxidica-subsol.jpg",
+        "description":"Vopsirea unui subsol in care exista scurgeri de apa pe suport, cu vopsea de pardoseala pe baza de rasini epoxidice. Lucrare realizata de Romtehnochim.",
+        "url":"https://emex.ro/images/landing/mari/Vopsire-epoxidica-statie-pompare.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":"7",
+        "name":"Aplicare vopsea epoxidica pardoseala garaj",
+        "image":"https://emex.ro/images/landing/mici/Vopsea-epoxidica-garaj.jpg",
+        "description":"Pardoseala de garaj acoperita cu vopsea epoxidica  “Emex” de pardoseala, pentru rezistenta la trafic, uzura si hidrocarburi. Executie realizata de Romtehnochim.",
+        "url":"https://emex.ro/images/landing/mari/Epoxidica-pardoseala-garaj.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":"8",
+        "name":"Vopsire industriala epoxidica de pardoseala",
+        "image":"https://emex.ro/images/landing/mici/Linie-de-productie-fabrica.jpg",
+        "description":"Aplicare de vopsea pentru pardoseli pe baza de rasina epoxidica in sectie de productie a unei fabrici, executata de Romtehnochim.",
+        "url":"https://emex.ro/images/landing/mari/Pardoseala-vopsita-epoxy-fabrica.jpg"
+     }
+  ]
+}

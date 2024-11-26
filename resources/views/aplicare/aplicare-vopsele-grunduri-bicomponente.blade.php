@@ -1,5 +1,29 @@
 @extends('aplicare.layout')
 
+@section('seo')
+<title>Lacuri vopsele si grunduri bicomponente: aplicare</title>
+<meta name="keywords" content="cum se vopseste cu pistolul, vopsire epoxidica, aplicare vopsele epoxidice, vopsire bicomponente">
+<meta name="description" content="Lacuri vopsele si grunduri epoxidice sau poliuretanice rezistente la benzina ulei si trafic intens – modul de pregatire a suprafetelor si vopsire">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Vopsire epoxidica profesionala a pardoselilor">
+<meta property="og:image" content="https://emex.ro/images/social/Aplicari-vopsele-bicomponente-SM.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Aplicari-vopsele-bicomponente-SM.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="628" />
+<meta property="og:image:alt" content="Vopsire bicomponenta epoxidica sau poliuretanica" />
+<meta property="og:description" content="Aplicarea vopselelor lacurilor si grundurilor bicomponente, ca cele epoxidice sau poliuretanice, rezistente la trafic dar cu aspect estetic superior.">
+<meta property="og:url" content="https://emex.ro/aplicare-vopsele-grunduri-bicomponente">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="Product" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Romtehnochim">
+<meta name="twitter:image" content="https://emex.ro/images/social/Aplicari-vopsele-bicomponente-SM.jpg">
+<meta name="twitter:title" content="Vopsele epoxidice decorative">
+<meta name="twitter:description" content="Durata indelungata de viata. Finisare decorativa, cu luciu superior. Rezistenta la trafic, dar cu aspect de exceptie.">
+<meta name="twitter:url" content="https://emex.ro/aplicare-vopsele-grunduri-bicomponente">
+@endsection
+
 @section('header_image_source', asset('resources/images/aplicare/Vopsiri-epoxidice-poliuretanice.jpg'))
 @section('header_title') 
 APLICARI VOPSELE SI GRUNDURI <br> BICOMPONENTE “EMEX”
