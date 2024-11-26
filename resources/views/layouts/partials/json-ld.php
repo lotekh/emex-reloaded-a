@@ -17,12 +17,12 @@ if (file_exists($jsonFile)) {
 }
 $big_json = '[' . $big_json . ']';
 // dd(($big_json[0]));
-var_dump($big_json); die();
+// var_dump($big_json); die();
 ?>
 
 
 <script type="application/ld+json">
 <?php
-    echo "<pre><code>".$big_json."</pre></code>";
+    echo "$big_json";
 ?>
 </script>
