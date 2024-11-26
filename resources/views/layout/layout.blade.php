@@ -16,33 +16,11 @@
     @yield('title')
     <link rel="icon" type="image/x-icon" href="{{ asset('resources/emex-favicon.ico') }}">
 
+    {{-- @php require_once '..\resources\views\layouts\partials\json-ld.php'; @endphp --}}
 
-    {{-- <script type="application/ld+json">
-        @yield('json-lds')
-    </script> --}}
-    {{-- @yield('json-lds') --}}
-
-    {{-- <div style="display: none;">
-        @yield('json-ld')
-    </div>
-    
-    @if (View::hasSection('json-ld'))
-        @php
-            $jsonLdFile = resource_path('views/layouts/partials/json-lds') . DIRECTORY_SEPARATOR . trim($__env->yieldContent('json-ld')) . '.json-ld';
-        @endphp
-
-        @if (file_exists($jsonLdFile))
-            <script type="application/ld+json">
-                {!! file_get_contents($jsonLdFile) !!}
-            </script>
-        @else
-            {{ $__env->yieldContent('json-ld') }} 
-        @endif
-    @endif --}}
-    
-    @include('layouts.partials.json-ld')
-
-
+    <script type="application/json">
+        {{ json_encode(json_decode('{ "@context":"http://schema.org", "@type":"WebSite", "inLanguage":"ro-RO", "isFamilyFriendly":"http://schema.org/True", "copyrightHolder":{ "@type":"Corporation", "name":"Emex by Romtehnochim" }, "copyrightYear":"2020", "name":"Emex by Romtehnochim", "alternateName":"Emex – Vopsele | Tencuieli | Pardoseli", "url":"https://emex.ro", "image":{ "@type":"imageObject", "url":"https://emex.ro/images/general/Fabrica-Emex.jpg", "width":"1920", "height":"1080" }, "headline":"Romtehnochim este producator de vopsele, tencuieli, pardoseli sub brandul “Emex”", "description":"Romtehnochim, este ✅ Producator de Lacuri, Vopsele, Tencuieli si Pardoseli sub brandul ⭐ “Emex”, ca: vopsea epoxidica, tencuiala decorativa, vopsea lavabila, pardoseala epoxidica sau poliuretanica. Brandul “Emex” se remarca in Romania, in special, prin calitatea excelenta si constanta acesteia. ", "publisher":{ "@type":"Corporation", "name":"Emex by Romtehnochim", "logo":{ "@type":"imageObject", "url":"https://emex.ro/images/Logo-json.png", "width":"750", "height":"300" } }, "potentialAction":{ "@type":"SearchAction", "target":"https://query.emex.ro/search?q={search_term_string}", "query-input":"required name=search_term_string" } },{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": "1", "item": { "@id": "/", "name": "Acasa" } },{ "@type": "ListItem", "position": "2", "item": { "@id": "/produse", "name": "Toate Produsele" } },{ "@type": "ListItem", "position": "3", "item": { "@id": "/vopsele-decorative", "name": "Vopsele Decorative" } }] },{ "@context":"http://www.schema.org", "@type":"Corporation", "name":"Emex by Romtehnochim", "alternateName":"Emex - Vopsele | Tencuieli | Pardoseli", "url":"https://emex.ro/", "logo":"https://emex.ro/images/Logo-json.png", "image":{ "@type":"imageObject", "url":"https://emex.ro/images/general/Fabrica-Emex.jpg", "width":"1920", "height":"1080" }, "description":"Romtehnochim firma certificata ISO 9001, 14001 si 18001 este producatoare de vopsea lavabila, tencuiala decorativa, vopsea clorcauciuc de trafic sau piscina, vopsea si pardoseala epoxidica sau poliuretanica, vopsea de tigla, vopsea metalizata, vopsele pentru trafic rutier, vopsea termorezistenta, alte vopsele profesionale.", "address":{ "@type":"PostalAddress", "streetAddress":"Str. Steaua Sudului, Nr. 22", "addressLocality":"Jilava", "addressRegion":"Ilfov", "postalCode":"77120", "addressCountry":"Romania" }, "contactPoint":{ "@type":"ContactPoint", "telephone":"[+40724509552]", "name":"secretariat", "email":[ "office@emex.ro", "marketing@emex.ro" ], "contacttype":"customer support" } },{ "@context":"http://schema.org", "@type":"Organization", "url":"https://emex.ro/", "name":"Emex by Romtehnochim", "alternateName":"Emex - Vopsele | Tencuieli | Pardoseli", "image":{ "@type":"imageObject", "url":"https://emex.ro/images/general/Fabrica-Emex.jpg", "width":"1920", "height":"1080" }, "brand":"Emex", "description":"“Romtehnochim” ofera, in cadrul gamei de produse “Emex”, atat produse industriale, profesionale, cat si DIY, cum ar fi: lacuri, vopsele si grunduri alchidice, vopsea lavabila, tencuiala decorativa acrilica si siliconica, vopsele si pardoseli epoxidice, poliuretanice sau poliesterice, vopsele pentru tigla, vopsea hidroizolanta, etc.", "sameAs":[ "https://www.facebook.com/EmexByRomtehnochim/", "https://www.linkedin.com/company/romtehnochim", "https://ro.pinterest.com/romtehnochim/", "https://twitter.com/Romtehnochim", "https://www.youtube.com/c/EmexRomtehnochim", "https://www.instagram.com/emexbyromtehnochim/", "https://blog.emex.ro/", "https://romtehnochim.blogspot.com/" ], "address":{ "addressCountry":"Romania", "postalCode":"77120", "streetAddress":"Steaua Sudului Nr. 22", "addressRegion":"Jilava", "Telephone":"[+40214571693]" } },{ "@context":"http://www.schema.org", "@type":"HomeAndConstructionBusiness", "name":"Emex by Romtehnochim", "alternateName":"Emex - Vopsele | Tencuieli | Pardoseli", "telephone":"[+40214571693]", "email":[ "office@emex.ro", "marketing@emex.ro" ], "url":"https://emex.ro/", "image":{ "@type":"imageObject", "url":"https://emex.ro/images/general/Fabrica-Emex.jpg", "width":"1920", "height":"1080" }, "description":"Productie lacuri vopsele tencuieli pardoseli. Productie vopsele epoxidice poliuretanice poliesterice clorcauciuc. Servicii de aplicari profesionale de pardoseli epoxidice si poliuretanice.", "priceRange":"10 - 100 Ron", "paymentAccepted":[ "cash", "check", "credit card", "invoice" ], "address":{ "@type":"PostalAddress", "streetAddress":"Str. Steaua Sudului Nr. 22", "addressLocality":"Jilava", "addressRegion":"Ilfov", "postalCode":"77120", "addressCountry":"Romania" }, "geo":{ "@type":"GeoCoordinates", "latitude":"44.328689", "longitude":"26.067273" }, "hasMap":"https://www.google.com/maps/@44.3284708,26.0671007,16z", "openingHours":"Mo, Tu, We, Th, Fr 08:00-16:30", "contactPoint":{ "@type":"ContactPoint", "contactType":"customer support", "telephone":"[+40724509552]" } },{ "@context":"http://schema.org", "@type":"Article", "headline":"Aplicari Lacuri Vopsele si Grunduri Decorative “Emex”", "url":"https://emex.ro/aplicare-lacuri-alchidice", "keywords":[ "lacuire lemn", "lacuire metal", "lacuri de parchet", "supralacuire vopsele" ], "description":"Aceasta Categorie Cuprinde Instructiuni pentru Toate Lacurile Folosite fie pentru Lacuirea Lemnului, ca Parchet, Mobila sau Mobilier de Gradina, Lambriuri, Sageac-uri, etc., fie pentru Supralacuirea Vopselelor Decorative, in Special a celor Alchidice, Aplicate pe orice Suprafata, Inclusiv Metal.", "image":{ "@type":"ImageObject", "url":"https://emex.ro/images/social/Lacuri-pentru-lemn-Facebook.jpg", "width":"1200", "height":"628" }, "mainEntityOfPage":"True", "publisher": { "@type":"Organization", "name":"Romtehnochim", "url":"https://emex.ro/", "logo": { "@type":"ImageObject", "url":"https://emex.ro/images/Logo-json.png", "width":"750", "height":"300" } }, "author": { "@type":"Organization", "name":"Romtehnochim", "url":"https://emex.ro" }, "datePublished":"2022-03-01", "dateModified":"2022-03-01" }')) }}
+    </script>
     <link rel="stylesheet" href="/{{ minify('css/adrian.css') }}">
     <link rel="stylesheet" href="/{{ minify('css/footer.css') }}">
     <link rel="stylesheet" href="/{{ minify('css/form.css') }}">
