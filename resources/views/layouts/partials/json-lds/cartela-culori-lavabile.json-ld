@@ -1,0 +1,38 @@
+{
+	"@context":"http://schema.org",
+	"@type":"Article",
+	"headline":"Vopsele Lavabile si Tencuieli - Paleta de culori",
+	"url":"https://emex.ro/cartela-culori-lavabile",
+	"keywords":[
+	"paletar",
+	"paleta",
+	"cartela culori",
+	"culori lavabila"
+	],
+	"description":"Alege Culoarea din Mii de Nuante ⭐ Paleta de Culori pentru Vopsele Lavabile si Tencuieli Decorative Structurate - Paletar sau Cartela de Culori ✅ Romtehnochim Produce pentru Brandul Emex o Gama Larga de Culori si Nuante la Comanda ☎️ 0724-509.552 - Calitate la Pret de Producator !",
+	"image":{
+		"@type":"ImageObject",
+		"url":"https://emex.ro/images/social/Paleta-vopsele-lavabile-interior-exterior-sm.jpg",
+		"width":"1200",
+		"height":"628"
+	},
+	"mainEntityOfPage":"True",
+	"publisher": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/",
+		"logo": {
+			"@type":"ImageObject",
+			"url":"https://emex.ro/images/Logo-json.png",
+			"width":"750",
+			"height":"300"
+		}
+	},
+	"author": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro"
+	},
+	"datePublished":"2022-04-11",
+	"dateModified":"2022-04-11"
+}

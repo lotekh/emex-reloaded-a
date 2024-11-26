@@ -1,5 +1,29 @@
 @extends('aplicare.layout') 
 
+@section('seo')
+<title>Aplicare pardoseli epoxidice</title>
+<meta name="description" content="Imagini cu pardoseli epoxidice aplicate de Romtehnochim cu produse epoxidice bicomponente Emex">
+<meta name="keywords" content="aplicare pardoseala epoxidica, montaj epoxidica, aplicare rasina epoxidica">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Aplicare pardoseli epoxidice">
+<meta property="og:image" content="https://emex.ro/images/social/Pardoseala-industriala-epoxidica-servicii-sm.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Pardoseala-industriala-epoxidica-servicii-sm.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="628" />
+<meta property="og:image:alt" content="Aplicari pardoseli epoxy" />
+<meta property="og:description" content="Romtehnochim ofera servicii de aplicare pardoseli epoxidice bicomponente, cu utilaje profesionale si personal specializat.">
+<meta property="og:url" content="https://emex.ro/aplicare-pardoseli-epoxidice">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="Product" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Romtehnochim">
+<meta name="twitter:image" content="https://emex.ro/images/social/Pardoseala-industriala-epoxidica-servicii-sm.jpg">
+<meta name="twitter:title" content="Aplicare pardoseli industriale">
+<meta name="twitter:description" content="Romtehnochim asigura servicii de aplicare pardoseli epoxidice">
+<meta name="twitter:url" content="https://emex.ro/aplicare-pardoseli-epoxidice">
+@endsection
+
 @section('css')
   <link rel="stylesheet" href="/{{ minify('css/aplicare.css') }}">
 @endsection

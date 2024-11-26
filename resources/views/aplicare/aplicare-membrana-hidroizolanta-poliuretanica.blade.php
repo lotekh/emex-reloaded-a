@@ -1,5 +1,23 @@
 @extends('aplicare.layout')
 
+@section('seo')
+<title>Aplicare membrana hidroizolanta poliuretanica</title>
+<meta name="keywords" content="aplicare membrana hidroizolanta, cum se aplica hidroizolatia, montare membrana impermeabila">
+<meta name="description" content="Aplicare membrana hidroizolanta poliuretanica - instructiuni de pregatire a suportului si modul de aplicare al membranei hidroprotectoare impermeabile">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Mod de aplicare membrana impermeabilizanta">
+<meta property="og:image" content="https://emex.ro/images/social/Aplicare-membrana-poliuretanica-Facebook.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Aplicare-membrana-poliuretanica-Facebook.jpg" />
+<meta property="og:image:width" content="1024" />
+<meta property="og:image:height" content="512" />
+<meta property="og:image:alt" content="Membrana poliuretanica aplicata impotriva apei" />
+<meta property="og:description" content="Modul de aplicare al membranei poliuretanice impermeabile – instructiuni de pregatire a suportului si efectuarea operatiunilor de impermeabilizare.">
+<meta property="og:url" content="https://emex.ro/aplicare-membrana-hidroizolanta-poliuretanica">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website" />
+@endsection
+
 @section('header_image_source', asset('resources/images/aplicare/Protectie-intemperii.jpg'))
 @section('header_title') 
 APLICARE MEMBRANA HIDROIZOLANTA <br> POLIURETANICA “EMEX”

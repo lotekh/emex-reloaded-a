@@ -1,5 +1,30 @@
 @extends('layout.layout')
 
+@section('seo')
+<title>Cartela Paletar de Culori RAL / Catalog de Culori</title>
+<meta name="keywords" content="paletar RAL, paletar culori, cartela">
+<meta name="description" content="Pentru o nuantare finala de finete a vopselelor solventate este necesara folosirea unui ⭐ Catalog sau Paletar de Culori RAL - ✅ Cartela RAL de culori !">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="⭐ Cartela RAL pentru vopsele in solvent">
+<meta property="og:image" content="https://emex.ro/images/social/Paletar-cartela-culori-ral-sm.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Paletar-cartela-culori-ral-sm.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="628"/>
+<meta property="og:image:alt" content="Paletar catalog de culori RAL"/>
+<meta property="og:description" content="Paletar RAL pentru alegerea culorilor sau nuantelor de vopsele pe baza de rasini sintetice solventate alchidice epoxidice poliuretanice clorcauciuc etc.">
+<meta property="og:url" content="https://emex.ro/cartela-culori-ral-vopsele">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Romtehnochim">
+<meta name="twitter:image" content="https://emex.ro/images/social/Paletar-cartela-culori-ral-sm.jpg">
+<meta name="twitter:image:alt" content="Catalog cartela de culori-Paletar RAL">
+<meta name="twitter:title" content="⭐ Paletar de culori RAL">
+<meta name="twitter:description" content="Cartela de culori RAL, utilizata ca paletar sau catalog de culori este un instrument important in alegerea nuantei de vopsea dorite.">
+<meta name="twitter:url" content="https://emex.ro/cartela-culori-ral-vopsele">
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="/{{ minify('css/cartela-ral-culori.css') }}">
     <link rel="stylesheet" href="/{{ minify('css/culori.css') }}">

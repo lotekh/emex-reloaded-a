@@ -1,5 +1,30 @@
 @extends('layout.layout')
 
+@section('seo')
+<title>Paletar de Culori Vopsea Lavabila - Paleta Culori</title>
+<meta name="keywords" content="paletar, paleta, cartela culori, culori lavabila">
+<meta name="description" content="Instrument online ⭐ Paleta de Culori pentru Vopsea Lavabila si Tencuieli Decorative. Paletar sau Cartela de culori ✅ Alege Culoarea din Mii de Nuante !">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Paletar de culori vopsele lavabile">
+<meta property="og:image" content="https://emex.ro/images/social/Paleta-vopsele-lavabile-interior-exterior-sm.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Paleta-vopsele-lavabile-interior-exterior-sm.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="628" />
+<meta property="og:image:alt" content="Cartela de culori vopsele apa" />
+<meta property="og:description" content="Pentru vopseaua lavabila sau tencuiala decorativa poti sa alegi nuanta dorita din mii de culori prezente in paletarul sau cartela de culori &#8220;Emex&#8221;.">
+<meta property="og:url" content="https://emex.ro/cartela-culori-lavabile">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Romtehnochim">
+<meta name="twitter:image" content="https://emex.ro/images/social/Paleta-vopsele-lavabile-interior-exterior-sm.jpg">
+<meta name="twitter:image:alt" content="Catalog cartela de culori - Paleta lavabile">
+<meta name="twitter:title" content="⭐ Paletar de culori lavabile">
+<meta name="twitter:description" content="Alege nuanta dorita din mii de culori prezente intr-un paletar de culori online de vopsea lavabila si tencuiala decorativa.">
+<meta name="twitter:url" content="https://emex.ro/cartela-culori-lavabile">
+@endsection
+
 @section('css')
 <link rel="stylesheet" href="/{{ minify('css/cartela-lavabile-culori.css') }}">
 <link rel="stylesheet" href="/{{ minify('css/culori.css') }}">

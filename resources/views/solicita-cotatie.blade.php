@@ -1,5 +1,23 @@
 @extends('layout.layout')
 
+@section('seo')
+<title>Solicita cotatie aplicare</title>
+<meta name="keywords" content="pardoseala epoxidica pret, aplicare pardoseala pret, montaj epoxidica pret">
+<meta name="description" content="Emex by Romtehnochim - asigura  montaj sau aplicare de pardoseala epoxidica si poliuretanica la pret accesibil. Similar vopsea epoxidica si poliuretanica">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Veniti in echipa Romtehnochim">
+<meta property="og:image" content="https://emex.ro/images/social/Solicita-cotatie-servicii-sm.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Solicita-cotatie-servicii-sm.jpg" />
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Angajari Romtehnochim"/>
+<meta property="og:description" content="Angajam personal calificat pentru vopsiri si aplicari de pardoseli epoxidice si poliuretanice ingineri operatori si tehnologi vopsele.">
+<meta property="og:url" content="https://emex.ro/angajari">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website"/>
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="/{{ minify('css/solicita-cotatie.css') }}">
 @endsection

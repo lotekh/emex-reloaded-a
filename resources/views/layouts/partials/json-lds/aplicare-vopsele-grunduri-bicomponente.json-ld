@@ -1,0 +1,38 @@
+{
+	"@context":"http://schema.org",
+	"@type":"Article",
+	"headline":"Aplicari Vopsele si Grunduri Bicomponente “Emex”",
+	"url":"https://emex.ro/aplicare-vopsele-grunduri-bicomponente",
+	"keywords":[
+	"cum se vopseste cu pistolul",
+	"vopsire epoxidica",
+	"aplicare vopsele epoxidice",
+	"vopsire bicomponente"
+	],
+	"description":"Instructiuni cu caracter orientativ pentru aplicarea de vopsele pentru pardoseala ca: vopsea epoxidica de pardoseala, vopsea poliuretanica de pardoseala sau vopsea clorcauciuc de pardoseala. Romtehnochim asigura si serviciu specializat, cu utilaje adecvate si personal instruit la nivel profesional.",
+	"image":{
+		"@type":"ImageObject",
+		"url":"https://emex.ro/images/social/Aplicari-vopsele-bicomponente-SM.jpg",
+		"width":"1200",
+		"height":"628"
+	},
+	"mainEntityOfPage":"True",
+	"publisher": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/",
+		"logo": {
+			"@type":"ImageObject",
+			"url":"https://emex.ro/images/Logo-json.png",
+			"width":"750",
+			"height":"300"
+		}
+	},
+	"author": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro"
+	},
+	"datePublished":"2022-03-31",
+	"dateModified":"2022-03-31"
+}

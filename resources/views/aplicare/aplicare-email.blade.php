@@ -1,5 +1,29 @@
 @extends('aplicare.layout')
 
+@section('seo')
+<title>Aplicare lacuri vopsele grunduri alchidice</title>
+<meta name="keywords" content="aplicare lacuri si vopsele, pregatire pentru vopsire, cum se vopseste, vopsire cu email alchidic">
+<meta name="description" content="Lacuri grunduri si vopsele decorative: pregatire suprafete pentru vopsire cu vopsele de lemn metal zidarie si mod de aplicare pentru rasini alchidice">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Mod de aplicare emailuri">
+<meta property="og:image" content="https://emex.ro/images/social/Aplicare-emailuri-decorative-SM.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Aplicare-emailuri-decorative-SM.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="628"/>
+<meta property="og:image:alt" content="Cum se aplica vopseaua"/>
+<meta property="og:description" content="Modul de folosire si aplicare al emailurilor vopselelor si grundurilor monocomponente cat si modul de pregatire al suprafetei pentru vopsire.">
+<meta property="og:url" content="https://emex.ro/aplicare-email">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Romtehnochim">
+<meta name="twitter:image" content="https://emex.ro/images/social/Aplicare-emailuri-decorative-SM.jpg">
+<meta name="twitter:title" content="Mod de aplicare vopsele">
+<meta name="twitter:description" content="Mod de folosire si aplicare al emailurilor vopselelor si grundurilor clasice pe baza de rasini alchidice pentru lemn metal si zidarie.">
+<meta name="twitter:url" content="https://emex.ro/aplicare-email">
+@endsection
+
 @section('header_image_source', asset('resources/images/aplicare/Aplicare-vopsea-decorativa.jpg'))
 @section('header_title') 
 APLICARI LACURI, VOPSELE SI GRUNDURI DECORATIVE <br> “EMEX”

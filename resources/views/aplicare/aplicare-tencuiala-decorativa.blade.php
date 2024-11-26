@@ -1,5 +1,23 @@
 @extends('aplicare.layout')
 
+@section('seo')
+<title>Tencuiala decorativa structurata: pregatire si aplicare</title>
+<meta name="keywords" content="aplicare tencuieli decorative, cum se aplica tencuiala decorativa, instructiuni de aplicare tencuiala">
+<meta name="description" content="Aplicare tencuieli decorative: pregatirea peretilor sau fatadelor - tencuiala structurata cu cuartz - acrilica sau siliconica - cu aspect zgariat">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Aplicarea tencuielilor decorative structurate">
+<meta property="og:image" content="https://emex.ro/images/social/Tencuiala-decorativa-nou-vechi-sm.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Tencuiala-decorativa-nou-vechi-sm.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="628" />
+<meta property="og:image:alt" content="Aplicare tencuiala decorativa" />
+<meta property="og:description" content="Aplicarea tencuielilor decorative structurate cu aspect zgariat de coaja de copac se face prin intindere cu fierul de glet si structurare cu drisca.">
+<meta property="og:url" content="https://emex.ro/aplicare-tencuiala-decorativa">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website" />
+@endsection
+
 @section('header_image_source', asset('resources/images/aplicare/Aplicare-tencuiala-decorativa.jpg'))
 @section('header_title') 
 APLICARE TENCUIELI <br> DECORATIVE “EMEX”

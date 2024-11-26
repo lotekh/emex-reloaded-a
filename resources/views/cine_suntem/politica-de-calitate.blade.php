@@ -1,5 +1,23 @@
 @extends('layout.layout')
 
+@section('seo')
+<title>Politica de calitate a Romtehnochim</title>
+<meta name="keywords" content="politica de calitate, calitate superioara, vopsele de calitate, Norme ISO vopsele">
+<meta name="description" content="Politica de calitate Emex by Romtehnochim producator de lacuri vopsele tencuieli pardoseli - certificat ISO 9001, ISO 14001, OHSAS 18001">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Politica de Calitate a Romtehnochim">
+<meta property="og:image" content="https://emex.ro/images/social/Politica-de-calitate-Romtehnochim-sm.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Politica-de-calitate-Romtehnochim-sm.jpg" />
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="628"/>
+<meta property="og:image:alt" content="Emex marca a Romtehnochim"/>
+<meta property="og:description" content="Informatii despre politica de calitate a Romtehnochim producator certificat ISO – management integrat – al vopselelor tencuielilor si pardoselilor &#8220;Emex&#8221;.">
+<meta property="og:url" content="https://emex.ro/politica-de-calitate">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website"/>
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="/{{ minify('css/politica-de-calitate.css') }}">
 @endsection

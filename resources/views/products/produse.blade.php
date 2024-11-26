@@ -1,5 +1,29 @@
 @extends('layout.layout')
 
+@section('seo')
+<title>Lacuri | Vopsele | Tencuieli | Pardoseli - Emex</title>
+<meta name="keywords" content="vopsea metal, pardoseli epoxidice, tencuiala decorativa, vopsea Emex">
+<meta name="description" content="Romtehnochim produce o gama variata de lacuri vopsele tencuieli si pardoseli de calitate superioara cu aplicare in zonele de industrie si constructii">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Lista de produse Emex">
+<meta property="og:image" content="https://emex.ro/images/social/Toate-produsele-Emex.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Toate-produsele-Emex.jpg" />
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="628"/>
+<meta property="og:image:alt" content="Lista generala de produse &#8220;Emex&#8221;"/>
+<meta property="og:description" content="Lacuri - Vopsele - Tencuieli - Pardoseli - o lista succinta, cu link si imagini, a produselor uzuale realizate de Romtehnochim sub marca &#8220;Emex&#8221;">
+<meta property="og:url" content="https://emex.ro/produse">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="Product"/>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Romtehnochim">
+<meta name="twitter:image" content="https://emex.ro/images/social/Toate-produsele-Emex.jpg">
+<meta name="twitter:title" content="Emex - Produse Generale">
+<meta name="twitter:description" content="O mare parte din gama de produse &#8220;Emex&#8221;, realizate de Romtehnochim, prezentata cu link-uri si imagini, intr-un pachet compact">
+<meta name="twitter:url" content="https://emex.ro/produse">
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="/{{ minify('css/produs.css') }}">
     <link rel="stylesheet" href="/{{ minify('css/product-card.css') }}">

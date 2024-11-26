@@ -1,5 +1,23 @@
 @extends('layout.layout')
 
+@section('seo')
+<title>Declaratie de utilizare cookies</title>
+<meta name="keywords" content="cookies, principii, protectie date">
+<meta name="description" content="Politica de utilizare cookies pentru site-ul emex.ro al companiei Romtehnochim.">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Utilizare cookies">
+<meta property="og:image" content="https://emex.ro/images/social/Cookies-Instagram.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Cookies-Instagram.jpg" />
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="628"/>
+<meta property="og:image:alt" content="Utilizare cookies Emex marca a Romtehnochim"/>
+<meta property="og:description" content="Modul de utilizare cookies pt site-ul Emex proprietate a companiei Romtehnochim producator de vopsele, tencuieli, pardoseli">
+<meta property="og:url" content="https://emex.ro/cookies">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website"/>
+@endsection
+
 @section('breadcrumbs')
 <ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Cookies</li></ul>
 @endsection

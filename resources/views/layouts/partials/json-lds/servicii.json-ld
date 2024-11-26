@@ -1,0 +1,37 @@
+{
+	"@context":"http://schema.org",
+	"@type":"Article",
+	"headline":"Servicii de aplicare vopsele si pardoseli",
+	"url":"https://emex.ro/servicii",
+	"keywords":[
+	"sevicii vopsitorie",
+	"aplicare pardoseli",
+	"montaj pardoseli epoxidice"
+	],
+	"description":"Romtehnochim asigura aplicarea profesionala a vopselelor si pardoselilor epoxidice sau poliuretanice dar si a altor produse realizate sub marca Emex. In acest scop exista un sistem de management al calitatii in cadrul caruia opereaza toate procesele cerute pentru realizarea serviciului.",
+	"image":{
+		"@type":"ImageObject",
+		"url":"https://emex.ro/images/social/Servicii-generale-sm.jpg",
+		"width":"1200",
+		"height":"628"
+	},
+	"mainEntityOfPage":"True",
+	"publisher": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/",
+		"logo": {
+			"@type":"ImageObject",
+			"url":"https://emex.ro/images/Logo-json.png",
+			"width":"750",
+			"height":"300"
+		}
+	},
+	"author": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro"
+	},
+	"datePublished":"2022-04-11",
+	"dateModified":"2022-04-11"
+}

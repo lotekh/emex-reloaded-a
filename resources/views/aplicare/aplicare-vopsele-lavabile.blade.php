@@ -1,5 +1,23 @@
 @extends('layout.layout')
 
+@section('seo')
+<title>Pregatire pereti si zugravire cu vopsea lavabila</title>
+<meta name="keywords" content="aplicare vopsele lavabile, cum se zugraveste, zugravirea cu lavabile">
+<meta name="description" content="Aplicare vopsele lavabile: pregatirea peretilor pentru zugravire modul de aplicare si pregatirea vopselei lavabile pentru zugraveli profesionale">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Zugravire cu vopsele lavabile profesionale">
+<meta property="og:image" content="https://emex.ro/images/social/Aplicare-lavabila-Facebook.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Aplicare-lavabila-Facebook.jpg" />
+<meta property="og:image:width" content="1024" />
+<meta property="og:image:height" content="512" />
+<meta property="og:image:alt" content="Vopsire zugravire cu vopsele lavabile" />
+<meta property="og:description" content="Zugravirea si modul de pregatire si aplicare al vopselelor lavabile pe baza de rasini acrilice tip Latex pentru realizarea de zugraveli profesionale.">
+<meta property="og:url" content="https://emex.ro/aplicare-vopsele-lavabile">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website" />
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="/{{ minify('css/produs.css') }}">
     <link rel="stylesheet" href="/{{ minify('css/product-card.css') }}">

@@ -1,5 +1,11 @@
 @extends('layout.layout')
 
+@section('seo')
+<title>Politica de Confidentialitate</title>
+<meta name="keywords" content="GDPR, politica de confidentialitate">
+<meta name="description" content="Politica de confidentialitate a Romtehnochim si utilizarea datelor personale">
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="/{{ minify('css/tabs.css') }}">
 @endsection

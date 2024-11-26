@@ -1,0 +1,109 @@
+{
+  "@context":"https://schema.org",
+  "@type":"VideoObject",
+  "name":"Aplicare covor epoxidic de cuartz STB - Filmare",
+  "description":"Modul de realizare a unei pardoseli epoxidice de tip STB prin elicopterizare cu granule de cuartz colorat de marimi diferite, pentru obtinerea unei suprafete decorative cu rezistenta si duritate excelente. Filmare realizata in timpul aplicarii acestui tip de pardoseala epoxidica de o echipa a Romtehnochim, cu produse Emex",
+  "thumbnailUrl":"https://emex.ro/videos/Filmare-covor-epoxidic-cuartz-stb.jpg",
+  "uploadDate":"2016-01-23T20:31:40+02:00",
+  "duration":"PT4M48S",
+  "contentUrl":"https://emex.ro/videos/Pardoseala-covor-de-cuart-epoxidic.mp4",
+  "embedUrl":"https://www.youtube.com/watch?v=ptj9vKaYSNY",
+ 
+   "hasPart": {
+    "@type": "Clip",
+    "name": "Aplicare pardoseala epoxidica autonivela",
+    "startOffset": "1",
+    "endOffset": "162",
+    "url": "https://emex.ro/videos/Pardoseala-covor-de-cuart-epoxidic.mp4"
+  },
+  "expires": "2030-03-30T00:00:00.000Z",
+  "publication": {
+    "@type": "BroadcastEvent",
+    "isLiveBroadcast": "true",
+    "startDate": "2018-01-23T00:00:00.000Z",
+    "endDate": "2030-03-30T00:00:00.000Z"
+  },
+
+  "interactionStatistic":{
+     "@type":"InteractionCounter",
+     "interactionType":{
+	 "@type": "WatchAction"
+	 },
+     "userInteractionCount":"92941"
+  },
+    "regionsAllowed":"EU,RO"
+},
+
+{
+  "@context":"http://schema.org",
+  "@type":"ItemList",
+  "url":"https://emex.ro/aplicare-covor-epoxidic-stb",
+  "name":"Aplicare sistem bicomponent epoxidic STB – Covor de cuartz",
+  "description":"Produs de inalta performanta ✅ Covor epoxidic decorativ de cuart sau ⭐ Pardoseala Epoxidica STB - reprezinta un sistem bicomponent pentru protectia superioara a pardoselilor din beton. Duritate foarte mare si aspect decorativ excelent. Utilizat atat in mediul industrial cat si in cel arhitectural.",
+  "itemListElement":[
+     {
+        "@type":"ListItem",
+        "position":"1",
+        "name":"Pardoseala decorativa cuartz hala depozitare",
+        "image":"https://emex.ro/images/landing/stb/mici/Pardoseala-cuartz-epoxdica-depozit-legume.jpg",
+        "description":"Aplicarea unei pardoseli epoxidice STB cu cuartz colorat pentru o hala de depozitare cu trafic atat pietonal cat si de stivuitoare. Aplicare facuta prin elicopterizare cu granule de cuatz colorat.",
+        "url":"https://emex.ro/images/landing/stb/mari/Pardoseala-stb-depozit-legume.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":"2",
+        "name":"Aplicare covor de cuart decorativ epoxidic",
+        "image":"https://emex.ro/images/landing/stb/mici/Pardoseala-STB-epoxidic-scari-decorative.jpg",
+        "description":"Covor epoxidic decorativ executat cu cuartz colorat tip STB pentru decorarea unui spatiu interior ce cuprinde si scari. Pardoseala epoxidica decorativa.",
+        "url":"https://emex.ro/images/landing/stb/mari/Pardoseala-STB-scari-decorative.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":"3",
+        "name":"Pardoseala epoxidica sanitara pentru bucatarie",
+        "image":"https://emex.ro/images/landing/stb/mici/Pardoseala-epoxidica-bucatarie.jpg",
+        "description":"Pardoseala epoxidica decorativa cu cuartz, de tip STB, pentru care exista certificat sanitar, poate fi cu succes aplicata in spatii de productie alimentare, sau cu cerinte speciale de igiena sanitara.",
+        "url":"https://emex.ro/images/landing/stb/mari/Pardoseala-epoxidica-stb-bucatarie.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":"4",
+        "name":"Aplicare covor epoxidic industrial",
+        "image":"https://emex.ro/images/landing/stb/mici/Pardoseala-stb-decorativa-epoxidica.jpg",
+        "description":"Covor epoxidic (pardoseala epoxidica STB) in hala industriala cu rezistenta mare la trafic pietonal, cu lize, stivuitoare sau utilaje in hala de productie.",
+        "url":"https://emex.ro/images/landing/stb/mari/Covor-stb-decor.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":"5",
+        "name":"Depozit agricol pardoseala epoxidica cuartz",
+        "image":"https://emex.ro/images/landing/stb/mici/Pardoseala-stb-epoxidica-hala-depozit.jpg",
+        "description":"Covor de cuartz din rasini epoxidice si lacuire finala, cu certificat sanitar (aviz sanitar), executat de Romtehnochim, in hala de depozitare produse agricole.",
+        "url":"https://emex.ro/images/landing/stb/mari/Pardoseala-stb-depozit-agricol.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":"6",
+        "name":"Covor epoxidic in hala cuptoare industriale",
+        "image":"https://emex.ro/images/landing/stb/mici/Pardoseala-stb-cuartz-epoxidic.jpg",
+        "description":"Pardoseala epoxidica, de tip covor de cuartz STB, aplicata intr-o hala cu cuptoare industriale in scop decorativ si de protectie. Cu rezistenta mare la trafic de masini si utilaje, sau socuri mecanice ori termice.",
+        "url":"https://emex.ro/images/landing/stb/mari/Pardoseala-stb-cuptor.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":"7",
+        "name":"Covor cuartz epoxidic hala depozitare",
+        "image":"https://emex.ro/images/landing/stb/mici/Pardoseala-stb-cuartz-epoxidic-hala.jpg",
+        "description":"Aplicare executata de Romtehnochim a unei pardoseli epoxidice cu cuartz, de tip STB, de mare duritate intr-o hala de depozitare produse alimentare cu cerinte speciale de igiena. Suprafata este lacuita la final cu lac “Emex UV Shield”.",
+        "url":"https://emex.ro/images/landing/stb/mari/Pardoseala-STB-hala-depozitare.jpg"
+     },
+     {
+        "@type":"ListItem",
+        "position":"8",
+        "name":"Pardoseala epoxidica STB in fabrica de bauturi",
+        "image":"https://emex.ro/images/landing/stb/mici/Pardoseala-stb-epoxidica-fabrica-bauturi.jpg",
+        "description":"Aplicare de pardoseala epoxidica de tip covor de cuartz STB, in sectie de ambalare a unei fabrici de bauturi, executata de Romtehnochim, cu produse “Emex”.",
+        "url":"https://emex.ro/images/landing/stb/mari/Pardoseala-stb-fabrica-bauturi.jpg"
+     }
+  ]
+}

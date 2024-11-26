@@ -1,5 +1,23 @@
 @extends('aplicare.layout')
 
+@section('seo')
+<title>Aplicare lacuri monocomponente</title>
+<meta name="keywords" content="lacuire lemn, lacuire metal, supralacuirea vopselelor">
+<meta name="description" content="Aplicare lacuri monocomponente pe baza de solvent sau apa pe suprafete din lemn metal sau pentru supralacuire - instructiuni de pregatire si aplicare">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Mod de aplicare lacuri pentru lemn">
+<meta property="og:image" content="https://emex.ro/images/social/Lacuri-pentru-lemn-Facebook.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Lacuri-pentru-lemn-Facebook.jpg" />
+<meta property="og:image:width" content="1024" />
+<meta property="og:image:height" content="512" />
+<meta property="og:image:alt" content="Cum se aplica lacurile de mobila" />
+<meta property="og:description" content="Lacuirea suprafelelor din lemn mobila mobilier de gradina sau elemente de structura ori decorative din lemn cu lacuri pe baza de solvent sau apa.">
+<meta property="og:url" content="https://emex.ro/aplicare-lacuri-alchidice">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website" />
+@endsection
+
 @section('header_image_source', asset('resources/images/aplicare/Aplicare-lacuri-lemn.jpg'))
 @section('header_title') 
 APLICARI LACURI DECORATIVE <br> MONOCOMPONENTE “EMEX”

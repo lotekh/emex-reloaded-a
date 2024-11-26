@@ -1,5 +1,23 @@
 @extends('layout.layout')
 
+@section('seo')
+<title>Declaratie de principii - Emex by Romtehnochim</title>
+<meta name="keywords" content="Romtehnochim producator vopsele, Emex, lacuri si vopsele">
+<meta name="description" content="Declaratie de principii a Romtehnochim - producator de vopsele certificat ISO privitor la politicile de mediu, calitate si securitate in munca">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Despre Emex by Romtehnochim">
+<meta property="og:image" content="https://emex.ro/images/social/Despre-noi-instagram.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Despre-noi-instagram.jpg" />
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="628"/>
+<meta property="og:image:alt" content="Emex marca a Romtehnochim"/>
+<meta property="og:description" content="Relatii despre politica generala a Romtehnochim producator certificat ISO – management integrat – al vopselelor tencuielilor si pardoselilor &#8220;Emex&#8221;.">
+<meta property="og:url" content="https://emex.ro/despre-noi">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website"/>
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="/{{ minify('css/despre.css') }}">
 @endsection

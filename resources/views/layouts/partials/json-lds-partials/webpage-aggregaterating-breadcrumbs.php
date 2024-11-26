@@ -1,0 +1,39 @@
+<?php //Webpage + Agregate Rating + Breadcrumbs ?>
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "inLanguage": "ro-RO",
+    "isFamilyFriendly":"http://schema.org/True",
+    "name":"Emex by Romtehnochim",
+    "alternateName":"Emex - Vopsele | Tencuieli | Pardoseli",
+    "url":"https://emex.ro/decapant-ecologic-vopsele",<?php //todo de pus url curent + la image de luat poza la produse si categproii cea mai amre iar cele statice se pun de mana ?>
+    "image":"https://emex.ro/images/vopsele-emex/decorative/mari/Decapant-vopsele-vechi.jpg",
+    "description":"Solutia Decapanta Emex PC ECO este un produs prezentat sub forma de pasta sau gel,
+    pentru a putea fi aplicat si pe suprafete verticale. Este utilizat pentru decaparea straturilor vechi
+     de vopsea sau emailuri aplicate pe lemn, metal, zidarie, sau pentru curatarea contaminantilor pe baza
+     de rasini, a grasimilor, a unor solutii de lipire, etc. Acest decapant are capacitatea de a curata si
+     graffiti-uri murale.", <?php //todo la produs si categorii nu mai aduagam descrption la webpage ?>
+    "publisher": {
+    "@type": "Organization",
+    "name": "Emex by Romtehnochim",
+    "logo": {
+    "@type": "imageObject",
+    "url": "https://emex.ro/images/general/Emex-logo.png"
+}
+},
+ "aggregateRating": {
+    "@type": "AggregateRating",
+    "itemReviewed":"Product",
+    "ratingCount":"7",
+    "bestRating":"5",
+    "ratingValue":"5"
+  },
+"breadcrumb":{
+    "@type":"BreadcrumbList",
+      "itemListElement": [
+        <?php echo implode(',', $breadcrumbs_items); ?>
+      ]
+    }
+}
+</script>

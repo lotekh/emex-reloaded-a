@@ -1,0 +1,39 @@
+{
+	"@context":"http://schema.org",
+	"@type":"Article",
+	"headline":"Aplicare Pardoseli Autonivelante Bicomponente “Emex”",
+	"url":"https://emex.ro/aplicare-pardoseli-autonivelante-bicomponente",
+	"keywords":[
+	"montare pardoseala epoxidica",
+	"aplicare pardoseala poliuretanica",
+	"cum se aplica pardoseala",
+	"pardoseli bicomponente",
+	"turnare pardoseli autonivelante"
+	],
+	"description":"In Aceasta Categorie se Regasesc Intructiuni Generale pentru Toate Pardoselile Bicomponente Turnate, Epoxidice, Poliuretanice, Poliesterice sau Metilmetacrilat. Aplicarea Propriu-Zisa se Face Numai dupa Pregatirea Corespunzatoare a Suportului, ce Asigura Calitatea si Durabilitatea Acoperirii.",
+	"image":{
+		"@type":"ImageObject",
+		"url":"https://emex.ro/images/social/Aplicare-pardoseala-epoxidica-Facebook.jpg",
+		"width":"1200",
+		"height":"628"
+	},
+	"mainEntityOfPage":"True",
+	"publisher": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro/",
+		"logo": {
+			"@type":"ImageObject",
+			"url":"https://emex.ro/images/Logo-json.png",
+			"width":"750",
+			"height":"300"
+		}
+	},
+	"author": {
+		"@type":"Organization",
+		"name":"Romtehnochim",
+		"url":"https://emex.ro"
+	},
+	"datePublished":"2022-03-01",
+	"dateModified":"2022-03-01"
+}
