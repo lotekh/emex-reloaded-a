@@ -223,9 +223,9 @@
                         <button type="submit" class="flex align-center btn-blue-outline rounded-sm text-nowrap w-full gap-md justify-center h-full font-sm px-16 py-4">
                             <span class="addToWhislistSvgWrapper">
                                 @if ($isInWishlist)
-                                    <img width="16" height="15" src="{{ asset('resources/new_design/icons/star-fill.svg') }}" title="review-star" alt="review-star">
+                                    <img width="16" height="15" src="{{ asset('resources/new_design/icons/star-fill.svg') }}" title="wishlist" alt="wishlist">
                                 @else
-                                    <img width="16" height="15" src="{{ asset('resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
+                                    <img width="16" height="15" src="{{ asset('resources/new_design/icons/star.svg') }}" title="wishlist" alt="wishlist">
                                 @endif
                             </span>
                             <span>{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}</span>
