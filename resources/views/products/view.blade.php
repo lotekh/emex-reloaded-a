@@ -85,8 +85,8 @@
                                     @if (!empty($initialVariation->price))
                                         <div class="row items-baseline price-container">
                                             <p>
-                                                <span class="font-700 text-red price-num" id="price{{ $product->id }}">{{ $initialVariation->price }}</span>
-                                                <span class="text-red">Lei&nbsp;/&nbsp;</span>
+                                                <span class="font-700 text-red price-num" id="price{{ $product->id }}">{{ number_format($initialVariation->price, 2) }}</span>
+                                                <span class="text-red ml-4">Lei&nbsp;/&nbsp;</span>
                                             </p>
                                             
                                             @if ($product->has_hardener)
@@ -386,7 +386,7 @@ document.addEventListener('DOMContentLoaded', function () {
         );
 
         if (variation) {
-            priceDisplay.textContent = variation.price;
+            priceDisplay.textContent = variation.price.toFixed(2);
             priceInput.value = variation.price;
             variationInput.value = variation.id;
         } else {

@@ -55,7 +55,7 @@
                 if (variation) {
                     // Actualizează prețul afișat și valoarea inputului hidden
                     console.log('Matching Variation:', variation);
-                    priceDisplay{{ $product->id }}.textContent = variation.price;
+                    priceDisplay{{ $product->id }}.textContent = variation.price.toFixed(2);
                     variationInput{{ $product->id }}.value = variation.id;
                     console.log('Product Variation ID (input hidden):', variationInput{{ $product->id }}.value);
                 } else {
