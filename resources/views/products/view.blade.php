@@ -14,8 +14,8 @@
     <meta property="fb:app_id" content="{{ $product->seo['fb_app_id'] }}">
     <meta property="og:locale" content="ro_RO">
     <meta property="og:title" content="{{ $product->seo['og_title'] }}">
-    <meta property="og:image" content="{{ $product->seoOgImage->url }}">
-    <meta property="og:image:secure_url" content="{{ $product->seoOgImage->url }}" />
+    <meta property="og:image" content="{{  $product->seoOgImage ? $product->seoOgImage->url : '' }}">
+    <meta property="og:image:secure_url" content="{{ $product->seoOgImage ? $product->seoOgImage->url : '' }}" />
     <meta property="og:image:width" content="{{ $product->seo['og_image_width'] }}" />
     <meta property="og:image:height" content="{{ $product->seo['og_image_height'] }}" />
     <meta property="og:image:alt" content="{{ $product->seo['og_image_alt'] }}" />
@@ -25,7 +25,7 @@
     <meta property="og:type" content="{{ $product->seo['og_type'] }}" />
     <meta name="twitter:card" content="{{ $product->seo['twitter_card'] }}">
     <meta name="twitter:site" content="{{ $product->seo['twitter_site'] }}">
-    <meta name="twitter:image" content="{{ $product->seoTwitterImage->url }}">
+    <meta name="twitter:image" content="{{ $product->seoTwitterImage ? $product->seoTwitterImage->url : '' }}">
     <meta name="twitter:title" content="{{ $product->seo['twitter_title'] }}">
     <meta name="twitter:description" content="{{ $product->seo['twitter_description'] }}">
     <meta name="twitter:url" content="{{ $product->seo['twitter_url'] }}">
