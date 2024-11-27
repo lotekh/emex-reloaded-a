@@ -2,6 +2,25 @@
 $big_json = [];
 
 // JSON-LD Dynamic
+$website_json = include base_path('resources/views/layouts/partials/json-lds-partials/website.php');
+$big_json[] = $website_json;
+
+// $breadcrumbs_json_ld = include base_path('resources/views/layouts/partials/json-lds-partials/breadcrumbs-list.php');
+// $big_json[] = $breadcrumbs_json_ld;
+
+$corporation_json = include base_path('resources/views/layouts/partials/json-lds-partials/corporation.php');
+$big_json[] = $corporation_json;
+
+$organization_json = include base_path('resources/views/layouts/partials/json-lds-partials/organization.php');
+$big_json[] = $organization_json;
+
+$local_business_json = include base_path('resources/views/layouts/partials/json-lds-partials/local-business.php');
+$big_json[] = $local_business_json;
+
+// $aggregate_rating_json = include base_path('resources/views/layouts/partials/json-lds-partials/agregate-rating.php');
+// if ($aggregate_rating_json != false) {
+//     $big_json[] = $aggregate_rating_json;
+// }
 
 // JSON-LD Static
 $currentUrl = request()->path() ?: 'homepage';
