@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             CategoryFiltersSeeder::class,
             BlogSeeder::class,
             PopupSeeder::class,
+            ReviewSeeder::class,
         ]);
     }
 }
