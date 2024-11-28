@@ -29,6 +29,32 @@
     <meta name="twitter:title" content="{{ $product->seo['twitter_title'] }}">
     <meta name="twitter:description" content="{{ $product->seo['twitter_description'] }}">
     <meta name="twitter:url" content="{{ $product->seo['twitter_url'] }}">
+
+    {{-- <script type="application/ld+json">
+        {!! json_encode([
+            '@context' => 'http://schema.org/',
+            '@type' => 'Product',
+            'name' => $product->sub_title,
+            'image' => $product->largeImage->url ?? '',
+            'description' => strip_tags($product->description),
+            'sku' => $product->sku,
+            'mpn' => $product->variations->first()->mpn ?? '',
+            'gtin' => $product->variations->first()->ean ?? '',
+            'aggregateRating' => [
+                '@type' => 'AggregateRating',
+                'ratingValue' => $product->reviews->avg('rating') ?? 5,
+                'reviewCount' => $product->reviews->count() ?? 0,
+            ],
+            'offers' => [
+                '@type' => 'Offer',
+                'priceCurrency' => 'RON',
+                'price' => $product->variations->first()->price ?? 0,
+                'availability' => 'https://schema.org/InStock',
+                'itemCondition' => 'http://schema.org/NewCondition',
+                'url' => url($product->slug),
+            ],
+        ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script> --}}
 @endsection
 
 @section('breadcrumbs')

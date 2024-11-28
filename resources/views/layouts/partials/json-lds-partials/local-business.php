@@ -48,3 +48,6 @@ $local_business_json = <<<js
   }
 }
 js;
+
+return $local_business_json;
+?>

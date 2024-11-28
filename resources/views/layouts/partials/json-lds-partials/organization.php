@@ -35,3 +35,6 @@ $organization_json = <<<js
   }
 }
 js;
+
+return $organization_json;
+?>

@@ -38,4 +38,6 @@ $website_json = <<<js
   }
 }
 js;
+
+return $website_json;
 ?>

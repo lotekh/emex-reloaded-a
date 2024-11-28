@@ -10,32 +10,32 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // Logica pentru afișarea paginii de start
         return view('homepage');
     }
 
     public function handleSlug($slug, Request $request)
     {
-        // Verifică dacă slug-ul aparține unei categorii
+        // Verifiy if the slug is for category page
         $category = Category::where('slug', $slug)->first();
         if ($category) {
+            $request->merge(['is_category_page' => true]);
             return app(CategoryController::class)->showCategory($slug, $request);
         }
 
-        // Verifică dacă slug-ul aparține unui produs
+        // Verifiy if the slug is for product page
         $product = Product::where('slug', $slug)->first();
         if ($product) {
+            $request->merge(['is_product_page' => true]);
             return app(ProductsController::class)->showProduct($slug, $request);
         }
 
-        // Verifică dacă slug-ul aparține unui consum
+        // Verifiy if the slug is for consum page
         $consumptionSlugproduct = Product::where('consumption_slug', $slug)->first();
         if ($consumptionSlugproduct) {
+            $request->merge(['is_consum_page' => true]);
             return app(ConsumController::class)->show($slug, $request);
-            // return app(ConsumController::class)->show($slug);
         }
 
-        // Dacă slug-ul nu aparține niciunei categorii, produs sau consum, returnează un 404 sau o altă pagină
         abort(404);
     }
 }
