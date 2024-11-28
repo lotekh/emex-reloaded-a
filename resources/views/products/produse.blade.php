@@ -124,11 +124,6 @@
                 @endif
 
                 @for ($i = max(1, $currentPage - 2); $i <= min($totalPages, $currentPage + 3); $i++)
-                    <!-- <a href="{{ url('/produse') . $filtersString }}&current_page_number={{ $i }}">
-                        <button class="{{ $i == $currentPage ? 'active' : '' }}" aria-label="Pagina {{ $i }}">
-                            {{ $i }}
-                        </button>
-                    </a> -->
                     <form method="get" action="{{ url()->current() }}">
                         @csrfWithoutAutocomplete
                         <input type="hidden" name="per_page" value="{{ $perPage }}" />
