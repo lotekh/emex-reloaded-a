@@ -21,7 +21,7 @@
             </button>
             <a href="{{ url('/wishlist') }}" class="relative nav-icon" title="Favorite">
                 <div class="flex align-center">
-                    <img width="20" height="20" src="{{ asset('resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
+                    <img width="20" height="20" src="{{ asset('resources/new_design/icons/star.svg') }}" title="wishlist" alt="wishlist">
                 </div>
                 <div class="circle">
                     <span>

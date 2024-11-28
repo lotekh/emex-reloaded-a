@@ -9,7 +9,7 @@
     $initialEan = $initialVariation->ean ?? null;
     $initial_q = 1;
 
-    $largeImageUrl = $product->largeImage ? asset('storage/' . $product->largeImage->path) : $baseUrl . '/images/default-placeholder.png';
+    $smallImageUrl = $product->smallImage ? asset('storage/' . $product->smallImage->path) : $baseUrl . '/images/default-placeholder.png';
 
     // Calculate the average rating safely
     $rating_sum = 0;
@@ -26,12 +26,12 @@
         <div class="col flex-md">
             <div class="relative image-container z-0" style="text-align: center;">
                 <a href="{{ url($product->slug) }}">
-                    <img src="{{ $largeImageUrl }}" alt="imagine" title="imagineprodus" style="height: 180px; max-width: 230px;">
+                    <img src="{{ $smallImageUrl }}" alt="imagine" title="imagineprodus" style="height: 180px; max-width: 230px;">
                 </a>
             </div>
             <div class="col w-full justify-between form-container">
                 <div class="col">
-                    <h5 class="m-0 mt-16 mb-8">{{ $product->plain_name }}</h5>
+                    <h5 class="m-0 mt-16 mb-8">{{ html_entity_decode($product->plain_name) }}</h5>
                     @unless($hideRating)
                         <div class="flex rating mb-16 align-center">
                             @for($i = 0; $i < 5; $i++)
@@ -52,7 +52,7 @@
                 @if(!empty($initialPrice))
                     <div class="price row mb-16 flex align-center">
                         <p class="mr-4">Pret:</p>
-                        <p class="value" id="priceDisplay{{ $product->id }}">{{ $initialPrice }}</p>
+                        <p class="value" id="priceDisplay{{ $product->id }}">{{ number_format($initialPrice, 2) }}</p>
                         <p class="value ml-4">Lei</p>
                     </div>
                 @else
@@ -78,7 +78,7 @@
                         <div class="form-group mr-8">
                             <label class="section-info" id="choose-color">Culoare</label>
                             <select aria-labelledby="choose-color" class="w-full" name="color" id="colorSelect{{ $product->id }}">
-                                @foreach ($product->variations->pluck('colour')->filter() as $value)
+                                @foreach (array_unique($product->variations->pluck('colour')->filter()->toArray()) as $value)
                                     <option value="{{ $value }}">{{ $value }}</option>
                                 @endforeach
                             </select>

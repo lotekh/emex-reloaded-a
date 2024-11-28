@@ -14,8 +14,8 @@
     <meta property="fb:app_id" content="{{ $product->seo['fb_app_id'] }}">
     <meta property="og:locale" content="ro_RO">
     <meta property="og:title" content="{{ $product->seo['og_title'] }}">
-    <meta property="og:image" content="{{ $product->seoOgImage->url }}">
-    <meta property="og:image:secure_url" content="{{ $product->seoOgImage->url }}" />
+    <meta property="og:image" content="{{  $product->seoOgImage ? $product->seoOgImage->url : '' }}">
+    <meta property="og:image:secure_url" content="{{ $product->seoOgImage ? $product->seoOgImage->url : '' }}" />
     <meta property="og:image:width" content="{{ $product->seo['og_image_width'] }}" />
     <meta property="og:image:height" content="{{ $product->seo['og_image_height'] }}" />
     <meta property="og:image:alt" content="{{ $product->seo['og_image_alt'] }}" />
@@ -25,7 +25,7 @@
     <meta property="og:type" content="{{ $product->seo['og_type'] }}" />
     <meta name="twitter:card" content="{{ $product->seo['twitter_card'] }}">
     <meta name="twitter:site" content="{{ $product->seo['twitter_site'] }}">
-    <meta name="twitter:image" content="{{ $product->seoTwitterImage->url }}">
+    <meta name="twitter:image" content="{{ $product->seoTwitterImage ? $product->seoTwitterImage->url : '' }}">
     <meta name="twitter:title" content="{{ $product->seo['twitter_title'] }}">
     <meta name="twitter:description" content="{{ $product->seo['twitter_description'] }}">
     <meta name="twitter:url" content="{{ $product->seo['twitter_url'] }}">
@@ -111,8 +111,8 @@
                                     @if (!empty($initialVariation->price))
                                         <div class="row items-baseline price-container">
                                             <p>
-                                                <span class="font-700 text-red price-num" id="price{{ $product->id }}">{{ $initialVariation->price }}</span>
-                                                <span class="text-red">Lei&nbsp;/&nbsp;</span>
+                                                <span class="font-700 text-red price-num" id="price{{ $product->id }}">{{ number_format($initialVariation->price, 2) }}</span>
+                                                <span class="text-red ml-4">Lei&nbsp;/&nbsp;</span>
                                             </p>
                                             
                                             @if ($product->has_hardener)
@@ -249,9 +249,9 @@
                         <button type="submit" class="flex align-center btn-blue-outline rounded-sm text-nowrap w-full gap-md justify-center h-full font-sm px-16 py-4">
                             <span class="addToWhislistSvgWrapper">
                                 @if ($isInWishlist)
-                                    <img width="16" height="15" src="{{ asset('resources/new_design/icons/star-fill.svg') }}" title="review-star" alt="review-star">
+                                    <img width="16" height="15" src="{{ asset('resources/new_design/icons/star-fill.svg') }}" title="wishlist" alt="wishlist">
                                 @else
-                                    <img width="16" height="15" src="{{ asset('resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
+                                    <img width="16" height="15" src="{{ asset('resources/new_design/icons/star.svg') }}" title="wishlist" alt="wishlist">
                                 @endif
                             </span>
                             <span>{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}</span>
@@ -412,7 +412,7 @@ document.addEventListener('DOMContentLoaded', function () {
         );
 
         if (variation) {
-            priceDisplay.textContent = variation.price;
+            priceDisplay.textContent = variation.price.toFixed(2);
             priceInput.value = variation.price;
             variationInput.value = variation.id;
         } else {
