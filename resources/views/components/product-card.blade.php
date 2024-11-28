@@ -21,7 +21,7 @@
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         
         <button type="submit" aria-label="{{ $product->isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
-            <img width="20" height="20" src="{{ $product->isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
+            <img width="20" height="20" src="{{ $product->isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="wishlist" alt="wishlist">
         </button>
     </form> --}}
 
@@ -34,7 +34,7 @@
           <input type="hidden" name="product_id" value="{{ $product->id }}">
 
           <button type="submit" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
-              <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="review-star" alt="review-star">
+              <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="wishlist" alt="wishlist">
           </button>
       </form>
 
