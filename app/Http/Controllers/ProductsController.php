@@ -54,8 +54,6 @@ class ProductsController extends Controller
 
     public function showProduct($slug, Request $request)
     {
-        // echo '<pre>';
-        // print_r( get_html_translation_table(HTML_ENTITIES));die();
         $product = Product::where('slug', $slug)->with('largeImage', 'variations', 'reviews')->firstOrFail();
 
         $categories_products = $product->categories;
