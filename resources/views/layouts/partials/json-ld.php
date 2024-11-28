@@ -22,6 +22,44 @@ $big_json[] = $local_business_json;
 //     $big_json[] = $aggregate_rating_json;
 // }
 
+// Dynamic JSON-LD for Product
+if (request()->get('is_product_page', false)) {
+    $product_json = include base_path('resources/views/layouts/partials/json-lds-partials/product.php');
+    if ($product_json) {
+        $big_json[] = $product_json;
+    }
+}
+
+// Dynamic JSON-LD for Consum Page
+if (request()->get('is_consum_page', false)) {
+    $consum_json = include base_path('resources/views/layouts/partials/json-lds-partials/consum.php');
+    if ($consum_json) {
+        $big_json[] = $consum_json;
+    }
+}
+
+// Dynamic JSON-LD for Category Page
+if (request()->get('is_category_page', false)) {
+    // dd(1);
+    $category_json = include base_path('resources/views/layouts/partials/json-lds-partials/category.php');
+    // dd($category_json);
+    if ($category_json) {
+        $big_json[] = $category_json;
+    }
+}
+
+if (request()->routeIs('blog.article.show')) {
+    // dd(1);
+    $article_json = include base_path('resources/views/layouts/partials/json-lds-partials/article.php');
+    if ($article_json) {
+        $big_json[] = $article_json;
+    }
+}
+
+
+
+
+
 // JSON-LD Static
 $currentUrl = request()->path() ?: 'homepage';
 // dd($currentUrl);
