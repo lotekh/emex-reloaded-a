@@ -382,15 +382,17 @@
                     </li>
                 </ul>
                 <div class="col contact-info-container">
-                    <div class="row align-center cursor-default">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                        </svg>
-                        <span>
-                            Str. Steaua Sudului Nr. 22, Jilava, Ilfov, Romania
-                        </span>
-                    </div>
+                    <a href="https://maps.app.goo.gl/GM6pEhVhbmxqmZSK9" class="cursor-pointer" target="_blank">
+                        <div class="row align-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span>
+                                Str. Steaua Sudului Nr. 22, Jilava, Ilfov, Romania
+                            </span>
+                        </div>
+                    </a>
                     <div class="infos-row">
                         <div class="row align-center my-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
