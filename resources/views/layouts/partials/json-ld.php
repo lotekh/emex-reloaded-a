@@ -2,6 +2,63 @@
 $big_json = [];
 
 // JSON-LD Dynamic
+$website_json = include base_path('resources/views/layouts/partials/json-lds-partials/website.php');
+$big_json[] = $website_json;
+
+// $breadcrumbs_json_ld = include base_path('resources/views/layouts/partials/json-lds-partials/breadcrumbs-list.php');
+// $big_json[] = $breadcrumbs_json_ld;
+
+$corporation_json = include base_path('resources/views/layouts/partials/json-lds-partials/corporation.php');
+$big_json[] = $corporation_json;
+
+$organization_json = include base_path('resources/views/layouts/partials/json-lds-partials/organization.php');
+$big_json[] = $organization_json;
+
+$local_business_json = include base_path('resources/views/layouts/partials/json-lds-partials/local-business.php');
+$big_json[] = $local_business_json;
+
+// $aggregate_rating_json = include base_path('resources/views/layouts/partials/json-lds-partials/agregate-rating.php');
+// if ($aggregate_rating_json != false) {
+//     $big_json[] = $aggregate_rating_json;
+// }
+
+// Dynamic JSON-LD for Product
+if (request()->get('is_product_page', false)) {
+    $product_json = include base_path('resources/views/layouts/partials/json-lds-partials/product.php');
+    if ($product_json) {
+        $big_json[] = $product_json;
+    }
+}
+
+// Dynamic JSON-LD for Consum Page
+if (request()->get('is_consum_page', false)) {
+    $consum_json = include base_path('resources/views/layouts/partials/json-lds-partials/consum.php');
+    if ($consum_json) {
+        $big_json[] = $consum_json;
+    }
+}
+
+// Dynamic JSON-LD for Category Page
+if (request()->get('is_category_page', false)) {
+    // dd(1);
+    $category_json = include base_path('resources/views/layouts/partials/json-lds-partials/category.php');
+    // dd($category_json);
+    if ($category_json) {
+        $big_json[] = $category_json;
+    }
+}
+
+if (request()->routeIs('blog.article.show')) {
+    // dd(1);
+    $article_json = include base_path('resources/views/layouts/partials/json-lds-partials/article.php');
+    if ($article_json) {
+        $big_json[] = $article_json;
+    }
+}
+
+
+
+
 
 // JSON-LD Static
 $currentUrl = request()->path() ?: 'homepage';
@@ -17,12 +74,12 @@ if (file_exists($jsonFile)) {
 }
 $big_json = '[' . $big_json . ']';
 // dd(($big_json[0]));
-var_dump($big_json); die();
+// var_dump($big_json); die();
 ?>
 
 
 <script type="application/ld+json">
 <?php
-    echo "<pre><code>".$big_json."</pre></code>";
+    echo "$big_json";
 ?>
 </script>

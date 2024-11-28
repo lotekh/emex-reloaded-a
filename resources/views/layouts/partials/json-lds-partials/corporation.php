@@ -36,4 +36,5 @@ $corporation_json = <<<js
 }
 js;
 
-
+return $corporation_json;
+?>

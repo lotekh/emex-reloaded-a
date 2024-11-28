@@ -1,58 +1,53 @@
-<?php //Category ?>
-<?php if(!empty($json_data) && !empty($json_data['type']) && $json_data['type'] == 'category'): ?>
 <?php
-$model = $json_data['data'];
-$categories_products = \common\models\CategoriesProducts::find()->where([
-    'category_id' => $model->id
-])->all();
-$products = [];
-foreach ($categories_products as $categories_product){
-    $product_model = \common\models\Products::findOne($categories_product->product_id);
-    if(!empty($product_model)){
-        $products[] = '{
-          "@type": "ListItem",
-          "position": "'.($categories_product->sort_priority + 1).'",
-          "url": "'.\yii\helpers\Url::base() . '/' . $product_model->slug.'",
-          "name": "'.$product_model->sub_title.'",
-          "image": "'.$product_model->getCategoryImageUrl().'",
-          "description": "'.$model->jsonld_description.'"
-        }';
-    }
+
+if (!isset($category) || !isset($products)) {
+    return false; 
 }
 
-$productsList = implode(',', $products);
-$name = $model->name;
-$seo_title = $model->seo_title;
-$url = \yii\helpers\Url::base() . '/' . $model->slug;
-$featured_image_url = $model->getFeaturedImageUrl();
-$descr = $model->seo_meta_description;
-?>
-<?php
-$category_json = <<<js
-{
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "itemListElement": [$productsList]
-},
-{
-    "@context": "http://schema.org",
-    "@type": "WebPage",
-    "inLanguage": "ro-RO",
-    "isFamilyFriendly":"http://schema.org/True",
-    "name":"$name",
-    "alternateName":"$seo_title",
-    "url":"$url",
-    "image": "$featured_image_url",
-    "description":"$descr",
-    "publisher": {
-        "@type": "Organization",
-        "name": "Emex by Romtehnochim",
-        "logo": {
-            "@type": "imageObject",
-            "url": "https://emex.ro/images/general/Emex-logo.png"
-        }
-    }
+$productsList = [];
+foreach ($products as $index => $product) {
+    $productsList[] = [
+        '@type' => 'ListItem',
+        'position' => $index + 1,
+        'url' => url($product->slug),
+        'name' => $product->sub_title,
+        'image' => $product->largeImage->url ?? '', 
+        'description' => strip_tags($product->description), 
+    ];
 }
-js;
-?>
-<?php endif; ?>
+$productsListJson = json_encode($productsList, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+
+$categoryName = $category->name;
+$seoTitle = $category->seo_title ?? $category->name;
+$url = url($category->slug);
+$featuredImageUrl = $category->featured_image_url ?? ''; 
+$description = $category->seo_meta_description ?? '';
+
+$category_json = [
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'ItemList',
+        'itemListElement' => json_decode($productsListJson, true),
+    ],
+    [
+        '@context' => 'http://schema.org',
+        '@type' => 'WebPage',
+        'inLanguage' => 'ro-RO',
+        'isFamilyFriendly' => 'http://schema.org/True',
+        'name' => $categoryName,
+        'alternateName' => $seoTitle,
+        'url' => $url,
+        'image' => $featuredImageUrl,
+        'description' => $description,
+        'publisher' => [
+            '@type' => 'Organization',
+            'name' => 'Emex by Romtehnochim',
+            'logo' => [
+                '@type' => 'imageObject',
+                'url' => 'https://emex.ro/images/general/Emex-logo.png',
+            ],
+        ],
+    ],
+];
+
+return json_encode($category_json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
