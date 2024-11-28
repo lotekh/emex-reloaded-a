@@ -78,7 +78,7 @@
                         <div class="form-group mr-8">
                             <label class="section-info" id="choose-color">Culoare</label>
                             <select aria-labelledby="choose-color" class="w-full" name="color" id="colorSelect{{ $product->id }}">
-                                @foreach ($product->variations->pluck('colour')->filter() as $value)
+                                @foreach (array_unique($product->variations->pluck('colour')->filter()->toArray()) as $value)
                                     <option value="{{ $value }}">{{ $value }}</option>
                                 @endforeach
                             </select>
