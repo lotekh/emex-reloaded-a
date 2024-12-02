@@ -22,6 +22,10 @@
     <link rel="stylesheet" href="/{{ minify('css/solicita-cotatie.css') }}">
 @endsection
 
+@section('breadcrumbs')
+<ul style="padding: 0px;" class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Solicita cotatie aplicare</li></ul>
+@endsection
+
 @section('content')
 
 <style>

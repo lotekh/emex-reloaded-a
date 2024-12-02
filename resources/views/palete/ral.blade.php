@@ -49,7 +49,7 @@
                     Selectati o culoare pentru previzualizare.
                 </div>
             </div>
-            <p id="big-text" class="text-center"> A1 - a </p>
+            <p id="big-text" class="text-center"> RAL 1000 </p>
         </div>
         <div class="height-contrain culori-container">
             @foreach ($color_codes as $color_patten => $color)

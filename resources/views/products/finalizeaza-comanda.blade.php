@@ -530,7 +530,54 @@
                             </button>
                         </div>
                         <div class="card flex col align-center" id="rambursCard">
+                            {{-- <div class="flex align-center">
+                                Cost livrare
+                                <div class="tooltip ml-8">
+                                    <img src="{{ asset('resources/new_design/icons/info.svg') }}">
+                                    <span class="tooltip_text tooltip_text_top trans_tooltip" id="tooltip_order_body">
+                                        <div class="ot_title">
+                                            <b>Romtehnochim sustine parte din costurile de transport. Astfel, acestea sunt:</b>
+                                        </div>
+                                        <div class="ot_subtitle">Bucuresti + Imprejurimi</div>
+                                        <ul class="ott_ul">
+                                            <li>&lt; 50 Kg: 25 Ron</li>
+                                            <li>50 - 100 Kg: 75 Ron</li>
+                                            <li>100 - 250 Kg: 100 Ron</li>
+                                        </ul>
+                                        <div class="ot_subtitle"><b>In tara</b></div>
+                                        <ul class="ott_ul">
+                                            <li>1 - 10 Kg: 25 Ron</li>
+                                            <li>11 - 50 Kg: 45 Ron</li>
+                                            <li>51 - 100 Kg: 75 Ron</li>
+                                            <li>101 - 200 Kg: 150 Ron</li>
+                                            <li>200 - 250 Kg: 175 Ron</li>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div> --}}
                             <div class="title mb-8">Ramburs</div>
+                            <div class="tooltip ml-8">
+                                <img src="{{ asset('resources/new_design/icons/info.svg') }}">
+                                <span class="tooltip_text tooltip_text_top trans_tooltip" id="tooltip_order_body">
+                                    <div class="ot_title">
+                                        <b>Romtehnochim sustine parte din costurile de transport. Astfel, acestea sunt:</b>
+                                    </div>
+                                    <div class="ot_subtitle">Bucuresti + Imprejurimi</div>
+                                    <ul class="ott_ul">
+                                        <li>&lt; 50 Kg: 25 Ron</li>
+                                        <li>50 - 100 Kg: 75 Ron</li>
+                                        <li>100 - 250 Kg: 100 Ron</li>
+                                    </ul>
+                                    <div class="ot_subtitle"><b>In tara</b></div>
+                                    <ul class="ott_ul">
+                                        <li>1 - 10 Kg: 25 Ron</li>
+                                        <li>11 - 50 Kg: 45 Ron</li>
+                                        <li>51 - 100 Kg: 75 Ron</li>
+                                        <li>101 - 200 Kg: 150 Ron</li>
+                                        <li>200 - 250 Kg: 175 Ron</li>
+                                    </ul>
+                                </span>
+                            </div>
                             <img src="{{ asset('resources/new_design/icons/delivery.svg') }}" class="mb-8">
                             <button type="button" class="checkbox p-0 flex justify-center align-center" id="ramburs" data-checked="false" aria-label="Ramburs">
                                 <img src="{{ asset('resources/new_design/icons/check.svg') }}" class="hidden">

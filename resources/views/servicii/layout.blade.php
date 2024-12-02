@@ -82,5 +82,34 @@ $baseUrl = url('/');
     </div>
 </div>
 
+<div id="global-lightbox" class="lightbox hidden">
+    <div class="lightbox-content">
+        <span class="close-btn-servicii" onclick="closeServiciiLightbox()">&times;</span>
+        <img id="global-lightbox-image" src="" alt="" title="">
+    </div>
+</div>
+
+<script>
+    function openServiciiLightbox(image) {
+        const lightbox = document.getElementById('global-lightbox');
+        const lightboxImage = document.getElementById('global-lightbox-image');
+
+        // Set the attributes for the image
+        lightboxImage.src = image.getAttribute('data-lightbox-src');
+        lightboxImage.alt = image.getAttribute('data-lightbox-alt') || '';
+        lightboxImage.title = image.getAttribute('data-lightbox-title') || '';
+
+        // Show the lightbox
+        lightbox.classList.remove('hidden');
+    }
+
+    function closeServiciiLightbox() {
+        const lightbox = document.getElementById('global-lightbox');
+
+        // Hide the lightbox
+        lightbox.classList.add('hidden');
+    }
+
+</script>
 
 @endsection
