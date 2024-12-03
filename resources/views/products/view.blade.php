@@ -365,7 +365,9 @@
     </div>
 </div>
 
+
 <script>
+
 document.addEventListener('DOMContentLoaded', function () {
     const packagingSelect = document.getElementById('packagingSelect{{ $product->id }}');
     const colorSelect = document.getElementById('colorSelect{{ $product->id }}');
@@ -374,13 +376,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const variationInput = document.getElementById('variationInput{{ $product->id }}');
 
     // Preload all product variations into JavaScript
-    const variations = @json($product->variations);
+    const variations = @json($product->variations || []);
 
+    // If the product is available, update the variations
     function updateVariation() {
+        if (!packagingSelect || !colorSelect || !variations.length) {
+            console.warn('Variations, packaging, or color select not available.');
+            return;
+        }
+
         const selectedPackaging = packagingSelect.value;
         const selectedColor = colorSelect.value;
 
-        // Find the correct variation
+        // Găsim variația corectă
         const variation = variations.find(variation => 
             variation.quantity == selectedPackaging && variation.colour == selectedColor
         );
@@ -393,32 +401,50 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('No matching variation found.');
         }
     }
+    
+    if (packagingSelect) packagingSelect.addEventListener('change', updateVariation);
+    if (colorSelect) colorSelect.addEventListener('change', updateVariation);
 
-    packagingSelect.addEventListener('change', updateVariation);
-    colorSelect.addEventListener('change', updateVariation);
-
+    // Logic for tabs
     window.openTab = function(evt, tabName) {
         var i, tabcontent, tablinks;
 
-        // Hide the tabs content
+        // Hide all tab content
         tabcontent = document.getElementsByClassName("tab-content");
         for (i = 0; i < tabcontent.length; i++) {
             tabcontent[i].classList.remove("active");
         }
 
-        // Eliminate 'selected' class and aria-selected from all buttons
+        // Remove 'selected' and 'aria-selected' classes from all buttons
         tablinks = document.getElementsByClassName("btn");
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].classList.remove("selected");
             tablinks[i].setAttribute("aria-selected", "false");
         }
 
-        // Show the current tab and add 'active' and 'selected' class to the selected button
-        document.getElementById(tabName).classList.add("active");
-        evt.currentTarget.classList.add("selected");
-        evt.currentTarget.setAttribute("aria-selected", "true");
+        // Show the selected tab and add the necessary classes
+        const currentTab = document.getElementById(tabName);
+        if (currentTab) {
+            currentTab.classList.add("active");
+            evt.currentTarget.classList.add("selected");
+            evt.currentTarget.setAttribute("aria-selected", "true");
+        } else {
+            console.error(`Tab-ul ${tabName} nu a fost găsit.`);
+        }
     };
+
+    const defaultTab = document.querySelector('.tab-content');
+    if (defaultTab) {
+        defaultTab.classList.add('active');
+        const defaultButton = document.querySelector('.tabs-selector-row .btn');
+        if (defaultButton) {
+            defaultButton.classList.add('selected');
+            defaultButton.setAttribute('aria-selected', 'true');
+        }
+    }
 });
 
 </script>
+
+
 @endsection
