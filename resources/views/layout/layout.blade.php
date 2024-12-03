@@ -241,6 +241,7 @@
                             <div class="form-group w-full">
                                 <label for="form-login-password">Parola<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-login-password" type="password" name="password" required>
+                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" class="password-toggle-icon" id="toggle-password-visibility" onclick="togglePasswordVisibility()" style="width:20px;">
                             </div>
                             <div class="w-full flex justify-center">
                                 <button type="submit" class="w-fit btn rounded-lg px-16 mt-32">Autentifica-te</button>
@@ -898,6 +899,22 @@
             container.style.display = 'none';
         }
     }
+
+    function togglePasswordVisibility() {
+        const passwordField = document.getElementById('form-login-password');
+        const toggleIcon = document.getElementById('toggle-password-visibility');
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            // Closed eye icon
+            toggleIcon.src = "{{ asset('resources/new_design/icons/eye-slash-solid.svg') }}"; 
+        } else {
+            passwordField.type = 'password';
+            // Open eye icon
+            toggleIcon.src = "{{ asset('resources/new_design/icons/eye-solid.svg') }}"; 
+        }
+    }
+
+
 
 
 </script>
