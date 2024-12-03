@@ -530,53 +530,14 @@
                             </button>
                         </div>
                         <div class="card flex col align-center" id="rambursCard">
-                            {{-- <div class="flex align-center">
-                                Cost livrare
+                            <div class="title mb-8">
+                                Ramburs
                                 <div class="tooltip ml-8">
                                     <img src="{{ asset('resources/new_design/icons/info.svg') }}">
                                     <span class="tooltip_text tooltip_text_top trans_tooltip" id="tooltip_order_body">
-                                        <div class="ot_title">
-                                            <b>Romtehnochim sustine parte din costurile de transport. Astfel, acestea sunt:</b>
-                                        </div>
-                                        <div class="ot_subtitle">Bucuresti + Imprejurimi</div>
-                                        <ul class="ott_ul">
-                                            <li>&lt; 50 Kg: 25 Ron</li>
-                                            <li>50 - 100 Kg: 75 Ron</li>
-                                            <li>100 - 250 Kg: 100 Ron</li>
-                                        </ul>
-                                        <div class="ot_subtitle"><b>In tara</b></div>
-                                        <ul class="ott_ul">
-                                            <li>1 - 10 Kg: 25 Ron</li>
-                                            <li>11 - 50 Kg: 45 Ron</li>
-                                            <li>51 - 100 Kg: 75 Ron</li>
-                                            <li>101 - 200 Kg: 150 Ron</li>
-                                            <li>200 - 250 Kg: 175 Ron</li>
-                                        </ul>
+                                        <div class="ot_title">Costurile ocazionate de transferul de numerar sunt in cuatum de 3% din valoarea comenzii.</div>
                                     </span>
                                 </div>
-                            </div> --}}
-                            <div class="title mb-8">Ramburs</div>
-                            <div class="tooltip ml-8">
-                                <img src="{{ asset('resources/new_design/icons/info.svg') }}">
-                                <span class="tooltip_text tooltip_text_top trans_tooltip" id="tooltip_order_body">
-                                    <div class="ot_title">
-                                        <b>Romtehnochim sustine parte din costurile de transport. Astfel, acestea sunt:</b>
-                                    </div>
-                                    <div class="ot_subtitle">Bucuresti + Imprejurimi</div>
-                                    <ul class="ott_ul">
-                                        <li>&lt; 50 Kg: 25 Ron</li>
-                                        <li>50 - 100 Kg: 75 Ron</li>
-                                        <li>100 - 250 Kg: 100 Ron</li>
-                                    </ul>
-                                    <div class="ot_subtitle"><b>In tara</b></div>
-                                    <ul class="ott_ul">
-                                        <li>1 - 10 Kg: 25 Ron</li>
-                                        <li>11 - 50 Kg: 45 Ron</li>
-                                        <li>51 - 100 Kg: 75 Ron</li>
-                                        <li>101 - 200 Kg: 150 Ron</li>
-                                        <li>200 - 250 Kg: 175 Ron</li>
-                                    </ul>
-                                </span>
                             </div>
                             <img src="{{ asset('resources/new_design/icons/delivery.svg') }}" class="mb-8">
                             <button type="button" class="checkbox p-0 flex justify-center align-center" id="ramburs" data-checked="false" aria-label="Ramburs">
@@ -825,18 +786,17 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Fetch judete by tara
+        // Fetch judete by country
         const countrySelects = document.querySelectorAll('select[name*="country_id"]');
         
         countrySelects.forEach(countrySelect => {
             const countySelect = document.querySelector(`select[name="${countrySelect.name.replace('country', 'county')}"]`);
             
-            // Verifică dacă există deja o valoare selectată pentru țară și județ
             const selectedCountry = countrySelect.value;
             const selectedCounty = countySelect.value;
 
             if (selectedCountry) {
-                // Dacă există o țară selectată, încarcă județele corespunzătoare
+                // If there is a selected country, load the counties for that country
                 fetch(`/get-counties-by-country/${selectedCountry}`)
                     .then(response => response.json())
                     .then(data => {
@@ -846,16 +806,16 @@
                         });
                     });
             } else {
-                // Initializează dropdown-ul de județ cu "Selectează județul" dacă nu există o țară selectată
+                // If there is no country, have the option to select the county
                 countySelect.innerHTML = '<option value="">Selectează județul</option>';
             }
 
             countrySelect.addEventListener('change', function () {
                 if (this.value === "") {
-                    // Dacă se selectează "Selectează țara", resetează dropdown-ul de județ
+                    // If a country is selected, reset the dropdown for counties
                     countySelect.innerHTML = '<option value="">Selectează județul</option>';
                 } else {
-                    // Dacă o țară validă este selectată, încarcă județele corespunzătoare
+                    // If a valid country is selected, load the necessary counties
                     fetch(`/get-counties-by-country/${this.value}`)
                         .then(response => response.json())
                         .then(data => {
