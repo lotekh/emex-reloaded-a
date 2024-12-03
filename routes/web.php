@@ -16,6 +16,7 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ConsumController;
 use App\Http\Controllers\BlogArticleController;
+use App\Http\Controllers\OfferRequestController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\PaymentController;
@@ -74,6 +75,7 @@ Route::get('/angajari', function () {
 Route::get('/solicita-cotatie', function () {
     return view('solicita-cotatie');
 });
+Route::post('/solicita-cotatie', [OfferRequestController::class, 'store'])->name('offer_requests.store');
 
 // Palete
 Route::get('/cartela-culori-ral-vopsele', [PaleteController::class, 'ral'])->name('palete.ral');
