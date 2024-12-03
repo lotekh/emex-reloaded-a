@@ -6,9 +6,13 @@
         @if(isset($alt)) alt="{{ $alt }}" @endif
         @if(isset($title)) title="{{ $title }}" @endif
         src="{{ $url }}"
-        onclick="document.getElementById('{{ $id }}').style.display='block'"
+        data-lightbox-src="{{ $lightboxSrc }}"
+        data-lightbox-alt="{{ $alt ?? '' }}"
+        data-lightbox-title="{{ $title ?? '' }}"
+        onclick="openServiciiLightbox(this)"
     />
 </div>
+
 
 <div id="{{ $id }}" style="display:none;">
     <div class="ligthbox_container" role="button" tabindex="0" onclick="document.getElementById('{{ $id }}').style.display='none'">
