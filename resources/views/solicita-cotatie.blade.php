@@ -81,7 +81,7 @@
             </div>
             <div class="form-group">
                 <label>Localitate</label>
-                <input placeholder="Localitate" type="text" class="w-full" name="locality">
+                <input placeholder="Localitate" type="text" class="w-full" name="city">
             </div>
             <div class="form-group">
                 <label>Suprafata totala</label>
