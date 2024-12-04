@@ -32,21 +32,26 @@ class OfferRequestController extends Controller
             $file = $request->file('file');
             $path = $file->store('offer_requests/files', 'public');
             $extension = $file->getClientOriginalExtension();
+            
+            // Determine file type based on MIME type
+            $type = match ($extension) {
+                'jpg', 'jpeg' => 'image/jpeg',
+                'png' => 'image/png',
+                'zip' => 'application/zip',
+                'rar' => 'application/x-rar-compressed',
+                default => 'attachment', // fallback type
+            };
 
             // Save file in Media table
             $media = Media::create([
                 'name' => $file->getClientOriginalName(),
                 'path' => $path,
-                'type' => 'attachment',
+                'type' => $type,
                 'ext' => $extension,
             ]);
 
-            // dd($media);
-
             $fileId = $media->id;
-            // dd($fileId);
         }
-        // dd($validated['city'] ?? null);
 
         // Save offer request in database
         $offerRequest = OfferRequest::create([

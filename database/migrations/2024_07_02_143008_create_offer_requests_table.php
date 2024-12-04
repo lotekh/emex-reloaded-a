@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('application')->nullable();
             $table->text('message');
             $table->boolean('interior_exterior')->nullable();
+            $table->foreignId('file_id')->nullable()->constrained('media');
             $table->timestamps();
         });
     }

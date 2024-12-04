@@ -13,12 +13,14 @@ class OfferRequest extends Model
         'name',
         'email',
         'phone',
+        'city',
         'address',
         'surface',
         'usage',
         'application',
         'message',
         'interior_exterior',
+        'file_id',
     ];
 
     public function file()
