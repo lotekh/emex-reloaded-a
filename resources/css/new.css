@@ -961,3 +961,7 @@
 #footer-links-news {
   padding-left: 50px;
 }
+
+.breadcrumbs.pull-left ul{
+  padding: 0px;
+}
