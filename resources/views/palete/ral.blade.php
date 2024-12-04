@@ -62,7 +62,7 @@
     </div>
 </div>
     
-<div class="modal" id="promotie_modal_1">
+<div class="modal-ral" id="promotie_modal_1">
     <div class="modal-dialog">
         <div class="modal-header">
             <div>
@@ -89,8 +89,6 @@
         // document.getElementById('promotie_modal_1').style.display = 'none';
     }
 
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     document.getElementById('promotie_modal').classList.remove('hide-modal');
-    // });
 </script>
+
 @endsection
