@@ -118,8 +118,8 @@
                 
             </div>
             <div class="form-group">
-                <label>Incarca imagini (max. 10 Mb)</label>
-                <input type="file" class="w-full" name="images[]" multiple="true">
+                <label>Incarca o imagine/arhiva (max. 10Mb)</label>
+                <input type="file" class="w-full" name="file">
             </div>
         </div>
         <div class="form-group mt-16">
