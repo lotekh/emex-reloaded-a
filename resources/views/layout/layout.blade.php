@@ -238,10 +238,10 @@
                                 <label for="form-login-email">Adresa de email<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-login-email" type="text" name="email" required>
                             </div>
-                            <div class="form-group w-full">
+                            <div class="form-group w-full relative">
                                 <label for="form-login-password">Parola<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-login-password" type="password" name="password" required>
-                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" class="password-toggle-icon" id="toggle-password-visibility" onclick="togglePasswordVisibility()" style="width:20px;">
+                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" class="password-toggle-icon" id="toggle-password-visibility" onclick="togglePasswordVisibility()">
                             </div>
                             <div class="w-full flex justify-center">
                                 <button type="submit" class="w-fit btn rounded-lg px-16 mt-32">Autentifica-te</button>
