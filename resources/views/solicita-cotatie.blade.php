@@ -119,7 +119,7 @@
             </div>
             <div class="form-group">
                 <label>Incarca o imagine/arhiva (max. 10Mb)</label>
-                <input type="file" class="w-full" name="file">
+                <input type="file" class="w-full" name="file" accept=".jpg,.jpeg,.png,.rar,.zip">
             </div>
         </div>
         <div class="form-group mt-16">

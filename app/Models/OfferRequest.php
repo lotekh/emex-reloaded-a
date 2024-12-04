@@ -20,4 +20,10 @@ class OfferRequest extends Model
         'message',
         'interior_exterior',
     ];
+
+    public function file()
+    {
+        return $this->belongsTo(Media::class, 'file_id', 'id');
+    }
+
 }
