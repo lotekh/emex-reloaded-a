@@ -44,8 +44,11 @@ class OfferRequestController extends Controller
 
             // Save file in Media table
             $media = Media::create([
+                'disk' => 'public',
+                'directory' => 'media/offer_requests/files',
+                'visibility' => 'public',
                 'name' => $file->getClientOriginalName(),
-                'path' => $path,
+                'path' => 'media/offer_requests/files/' . $file->getClientOriginalName(),
                 'type' => $type,
                 'ext' => $extension,
             ]);
