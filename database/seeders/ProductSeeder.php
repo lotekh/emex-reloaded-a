@@ -91,7 +91,15 @@ class ProductSeeder extends Seeder
                         $strongElement->parentElement->setAttribute('href', $newHref);
                     }
                 }
-                $newUsageDetails = $document->saveHTML();
+                $nodes = $document->getElementsByTagName('div');
+                foreach($nodes as $node) {
+                    if($node->className == 'descript_par') {
+                        $newUsageDetails = $document->saveHTML($node);
+                    }
+                }
+                if(!isset($newUsageDetails)) {
+                    $newUsageDetails = $document->saveHTML();
+                }
                 $newUsageDetails = str_replace('&acirc;&#128;&#156;', '&#x201C;', $newUsageDetails);
                 $newUsageDetails = str_replace('&acirc;&#128;&#157;', '&#x201D;', $newUsageDetails);
                 $dbProduct->usage_details = $newUsageDetails;
