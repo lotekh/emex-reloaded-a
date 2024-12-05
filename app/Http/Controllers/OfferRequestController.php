@@ -30,7 +30,7 @@ class OfferRequestController extends Controller
         $fileId = null;
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $path = $file->store('offer_requests/files', 'public');
+            $path = $file->store('media/offer_requests/files', 'public');
             $extension = $file->getClientOriginalExtension();
             
             // Determine file type based on MIME type
