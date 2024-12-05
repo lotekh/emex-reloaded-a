@@ -85,7 +85,7 @@
     </div>
 </div>
 
-<div class="modal" id="promotie_modal">
+<div class="modal-ral" id="promotie_modal">
     <div class="modal-dialog">
         <div class="modal-header">
             <div>

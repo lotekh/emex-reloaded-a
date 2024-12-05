@@ -81,7 +81,7 @@
             </div>
             <div class="form-group">
                 <label>Localitate</label>
-                <input placeholder="Localitate" type="text" class="w-full" name="locality">
+                <input placeholder="Localitate" type="text" class="w-full" name="city">
             </div>
             <div class="form-group">
                 <label>Suprafata totala</label>
@@ -112,18 +112,19 @@
                 <label>Interior/ Exterior</label>
                 <select class="w-full" name="interior_exterior">
                     <option selected value> -- Selecteaza o optiune -- </option>
-                    <option value="interior">Interior</option>
-                    <option value="exterior">Exterior</option>
+                    <option value="1">Interior</option>
+                    <option value="2">Exterior</option>
                 </select>
+                
             </div>
             <div class="form-group">
-                <label>Incarca imagini (max. 10 Mb)</label>
-                <input type="file" class="w-full" name="images[]" multiple="true">
+                <label>Incarca o imagine/arhiva (max. 10Mb)</label>
+                <input type="file" class="w-full" name="file" accept=".jpg,.jpeg,.png,.rar,.zip">
             </div>
         </div>
         <div class="form-group mt-16">
-            <label for='solicita-oferta_mesaj'>Mesaj</label>
-            <textarea rows="10" class="w-full" name="message" id="solicita-oferta_mesaj" placeholder="Va rugam sa incercati sa ne oferiti cat mai multe detalii, despre suport si starea acestuia. Va multumim !"></textarea>
+            <label for='solicita-oferta_mesaj'>Mesaj <span class="text-red">*</span></label>
+            <textarea rows="10" class="w-full" name="message" id="solicita-oferta_mesaj" placeholder="Va rugam sa incercati sa ne oferiti cat mai multe detalii, despre suport si starea acestuia. Va multumim !" required></textarea>
         </div>            
         <div class="row justify-center mt-16">
             <input type="submit" value="Trimite" class="btn btn-blue">
