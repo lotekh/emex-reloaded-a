@@ -50,7 +50,7 @@ class OfferRequestResource extends Resource
                 CuratorPicker::make('file_id')
                     ->label('File')
                     ->relationship('file', 'file_id')
-                    ->pathGenerator(DefaultPathGenerator::class)
+                    // ->pathGenerator(DefaultPathGenerator::class)
                     ->preserveFilenames(),
             ]);
     }
