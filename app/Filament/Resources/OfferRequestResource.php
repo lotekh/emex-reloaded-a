@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\OfferRequestResource\Pages;
 use App\Filament\Resources\OfferRequestResource\RelationManagers;
 use App\Models\OfferRequest;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\PathGenerators\DefaultPathGenerator;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -45,6 +47,11 @@ class OfferRequestResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('city')
                     ->maxLength(255),
+                CuratorPicker::make('file_id')
+                    ->label('File')
+                    ->relationship('file', 'file_id')
+                    // ->pathGenerator(DefaultPathGenerator::class)
+                    ->preserveFilenames(),
             ]);
     }
 
