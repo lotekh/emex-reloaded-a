@@ -209,7 +209,7 @@
                 <div class="text">
                     {!! $popup->message !!}
                 </div>
-                <img src="{{ asset('resources/images/close-line-red.png') }}" role="button" tabindex="0" onclick="document.getElementById('popupContainer').style.display = 'none'">
+                <img alt="close-line-red" src="{{ asset('resources/images/close-line-red.png') }}" role="button" tabindex="0" onclick="document.getElementById('popupContainer').style.display = 'none'">
             </div>
         </div>
     @endif

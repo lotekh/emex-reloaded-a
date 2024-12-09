@@ -67,7 +67,7 @@
                 <div class="flex align-center">
                     <img id="search-icon-blog" width="18" height="18" src="{{ asset('resources/new_design/icons/search.svg') }}" alt="search-icon" title="search-icon">
                 </div>
-                <input id="search-input-desktop" type="text" name="zoom_query" class="form-control w-full" placeholder="Cautare...">
+                <input id="search-input-blog-desktop" type="text" name="zoom_query" class="form-control w-full" placeholder="Cautare...">
             </form>
         </div>
 
