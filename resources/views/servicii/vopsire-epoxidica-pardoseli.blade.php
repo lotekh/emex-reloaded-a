@@ -94,7 +94,6 @@ Daca vopsirea s-a facut la exterior, se va aplica un
     <strong><em>Lac Poliuretanic de Protectie “Emex UV Shield”</em></strong>
 </a>, un top-coat rezistent la lumina si radiatii UV, care asigura suprafetei un excedent de rezistenta si luciu,
 marind perioada de utilizare a suprafetei protejate, asigurandu-i in plus si o estetica excelenta.
-</p>
 @endsection
 
 @section('section_4_list')
