@@ -616,12 +616,10 @@
     </div>
     @endif
 
-    @if ($errors->any())
+    @if (session('error'))
     <div class="flash-messages-container">
         <div class="alert-message alert-message-error">
-            <p>
-                {{ implode('. ', $errors->all()) }}
-            </p>
+            <p>{{ session('error') }}</p>
             <button type="button" class="close-flash-message" aria-label="Inchide" onclick="closeFlashMessage(this)">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289Z" />
