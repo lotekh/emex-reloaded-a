@@ -53,6 +53,9 @@
                 </div>
                 <p class="marg-left">
                     <span class="alineat_span"></span>Romtehnochim urmareste indeaproape asigurarea unei maxime eficiente a executiei comenzilor, a constantei calitatii, dar si a utilitatii fiselor tehnice pentru punerea in opera a produselor sale. De asemenea, compania noastra se bucura de reputatia unui personal competent si deschis catre colaborare si catre nou, dispus sa asigure colaboratorilor nostri tot suportul necesar pentru obtinerea unor rezultate maxime in folosirea produselor noastre.
+                    <div class="spaces-despre-noi">
+                        <br> <br> 
+                    </div>
                 </p>
             </div>
 
@@ -63,6 +66,9 @@
                 </div>
                 <p class="marg-left">
                     <span class="alineat_span"></span>Politica prioritara a companiei noastre este de a urmari in detaliu asigurarea constantei calitatii conform Sistemului de Management Integrat al Calitatii, Mediului si Securitatii Ocupationale ISO 9001, ISO 14001 si respectiv ISO 18001. Totodata urmarim alinierea produselor la standardele europene prin folosirea de noi componente, de ultima generatie, cu continut scazut de compusi organici volatili si grad scazut de toxicitate.
+                    <div class="spaces-despre-noi">
+                        <br> <br> 
+                    </div>
                 </p>
             </div>
 
@@ -73,6 +79,9 @@
                 </div>
                 <p class="marg-left">
                     <span class="alineat_span"></span>In tot ceea ce facem respectam mediul natural, sanatatea clientilor, a angajatilor si a locuitorilor din vecinatatea noastra. Dezvoltarea produselor si intreaga noastra activitate tine seama de cerintele ecologice la nivelul Uniunii Europene.
+                    <div class="spaces-despre-noi">
+                        <br> <br> <br> <br> <br>
+                    </div>
                 </p>
             </div>
         </div>

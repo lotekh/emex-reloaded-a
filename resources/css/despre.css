@@ -174,21 +174,9 @@ a, a:before, a:after, abbr, abbr:before, abbr:after, address, address:before, ad
   margin-left: 0px;
 }
 
-/* .imagine-despre-noi{
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  padding: 0!important;
-  border: none!important;
-  display: block;
-  height: 0;
-  max-height: 100%;
-  max-width: 100%;
-  min-height: 100%;
-  min-width: 100%;
-  width: 0;
-  margin: auto;
-} */
+@media (max-width: 768px) {
+  .spaces-despre-noi{
+    display: none;
+  }
+}
 
