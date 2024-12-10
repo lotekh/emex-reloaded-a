@@ -341,7 +341,7 @@
     </div>
 
 
-    <div class="phone-icon" id="scrollToTopButton">
+    <div class="phone-icon" id="phone-overlay">
         <a href="tel:+40724509552">
             <img width="50" height="50" src="{{ asset('resources/images/Phone-mobile.png') }}" alt="Phone Emex">
         </a>
@@ -355,7 +355,7 @@
         @yield('content')
     </div>
 
-    <footer class="w-full">
+    <footer class="w-full" id="page-footer">
         <div class="sixth_top"></div>
         <div id="fsr" class="main-container footer-container">
             <div class="logo-section">
@@ -837,10 +837,6 @@
         });
     }
 
-
-
-
-
     function toggleAccordion(id) {
         var menu = document.getElementById(id + '-menu');
         console.log('menu', menu);
@@ -912,6 +908,26 @@
             toggleIcon.src = "{{ asset('resources/new_design/icons/eye-solid.svg') }}"; 
         }
     }
+
+    document.addEventListener('scroll', function () {
+        const footer = document.getElementById('page-footer');
+        const phoneOverlay = document.getElementById('phone-overlay');
+        const emailOverlay = document.getElementById('contact_email_small_devices');
+
+        // Get the position of footer based on the viewport
+        const footerRect = footer.getBoundingClientRect();
+
+        // If the footer is visible in viewport
+        if (footerRect.top <= window.innerHeight && footerRect.bottom >= 0) {
+            // Hide the overlays
+            phoneOverlay.style.display = 'none';
+            emailOverlay.style.display = 'none';
+        } else {
+            // Show the overlays
+            phoneOverlay.style.display = 'block';
+            emailOverlay.style.display = 'block';
+        }
+    });
 
 
 

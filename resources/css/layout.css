@@ -735,6 +735,9 @@
   .hidden-xs {
     display: none;
   }
+  .gap-xl-categories {
+    gap: 0;
+  }
 }
 
 .autentificare-1 {
@@ -1569,6 +1572,9 @@ form .disclaimer {
   }
   .gap-xl {
     gap: 32px;
+  }
+  .gap-xl-categories {
+    gap: 24px;
   }
   .flex-md {
     -ms-flex-direction: row;
