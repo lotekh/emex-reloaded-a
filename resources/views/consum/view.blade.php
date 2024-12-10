@@ -110,8 +110,6 @@
                                     @endif
                                 @endforeach
                             </select>
-                            
-                            
                         </div>
                         <div class="consum_wizard_next_div">
                             <button type="button" tabindex="1" onclick="showNextStep(1)" class="btn btn-blue rounded-sm mb-16">INAINTE

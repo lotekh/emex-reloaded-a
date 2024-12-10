@@ -522,11 +522,11 @@
   }
 
   .email-icon {
-    display: none;
+    display: none !important;
   }
 
   #phone-overlay {
-    display: none;
+    display: none !important;
   }
 }
 
