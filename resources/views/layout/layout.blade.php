@@ -910,22 +910,25 @@
     }
 
     document.addEventListener('scroll', function () {
-        const footer = document.getElementById('page-footer');
-        const phoneOverlay = document.getElementById('phone-overlay');
-        const emailOverlay = document.getElementById('contact_email_small_devices');
+        // Overlays are only on mobile, so when the width is <=767px
+        if (window.innerWidth <= 767) {
+            const footer = document.getElementById('page-footer');
+            const phoneOverlay = document.getElementById('phone-overlay');
+            const emailOverlay = document.getElementById('contact_email_small_devices');
 
-        // Get the position of footer based on the viewport
-        const footerRect = footer.getBoundingClientRect();
+            // Get the position of footer based on the viewport
+            const footerRect = footer.getBoundingClientRect();
 
-        // If the footer is visible in viewport
-        if (footerRect.top <= window.innerHeight && footerRect.bottom >= 0) {
-            // Hide the overlays
-            phoneOverlay.style.display = 'none';
-            emailOverlay.style.display = 'none';
-        } else {
-            // Show the overlays
-            phoneOverlay.style.display = 'block';
-            emailOverlay.style.display = 'block';
+            // If the footer is visible in viewport
+            if (footerRect.top <= window.innerHeight && footerRect.bottom >= 0) {
+                // Hide the overlays
+                phoneOverlay.style.display = 'none';
+                emailOverlay.style.display = 'none';
+            } else {
+                // Show the overlays
+                phoneOverlay.style.display = 'block';
+                emailOverlay.style.display = 'block';
+            }
         }
     });
 
