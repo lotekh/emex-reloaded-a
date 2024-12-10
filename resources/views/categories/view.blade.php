@@ -42,7 +42,7 @@ $base_url = url('/');
 <div class="col main-container">
     <div id="cdr">
         <h1>{{ $category->name }}</h1>
-        <p>{!! $category->description !!}</p>
+        <div>{!! $category->description !!}</div>
     </div>
     <div class="flex justify-between align-center categories-header gap-lg mt-32">
         <div class="flex col">
