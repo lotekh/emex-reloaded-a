@@ -80,7 +80,7 @@
                 <p class="marg-left">
                     <span class="alineat_span"></span>In tot ceea ce facem respectam mediul natural, sanatatea clientilor, a angajatilor si a locuitorilor din vecinatatea noastra. Dezvoltarea produselor si intreaga noastra activitate tine seama de cerintele ecologice la nivelul Uniunii Europene.
                     <div class="spaces-despre-noi">
-                        <br> <br> <br> <br> <br>
+                        <br> <br> <br> <br>
                     </div>
                 </p>
             </div>
