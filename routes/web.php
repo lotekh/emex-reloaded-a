@@ -22,6 +22,7 @@ use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Middleware\AuthenticatedOnly;
 use Illuminate\Support\Facades\Response;
+use App\Http\Controllers\CareerContactController;
 
 require __DIR__.'/auth.php';
 
@@ -71,6 +72,7 @@ Route::get('/get-counties-by-country/{country_id}', [CountyController::class, 'g
 Route::get('/angajari', function () {
     return view('angajari');
 });
+Route::post('/angajari', [CareerContactController::class, 'store']);
 
 Route::get('/solicita-cotatie', function () {
     return view('solicita-cotatie');

@@ -19,5 +19,12 @@ class CareerContact extends Model
         'ip',
         'message',
         'date_of_birth',
+        'cv_id',
     ];
+
+    public function cv()
+    {
+        return $this->belongsTo(Media::class, 'cv_id');
+        // return $this->belongsTo(Media::class, 'cv_id'. 'id');
+    }
 }
