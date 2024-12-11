@@ -110,8 +110,6 @@
                                     @endif
                                 @endforeach
                             </select>
-                            
-                            
                         </div>
                         <div class="consum_wizard_next_div">
                             <button type="button" tabindex="1" onclick="showNextStep(1)" class="btn btn-blue rounded-sm mb-16">INAINTE
@@ -209,7 +207,7 @@
                 <span class="ml-8 red"><em class="green-mark">Cantitatea finala este conditionata si de ambalajul produsului. Nu se pot livra fractii</em>.</span>
             </div>
             <p>Pentru obtinerea unor rezultate optime consultati:<br>
-                <a class="dark-blue" href="https://vopsele.xyz/consum-superlavabila-interior" title="{{ html_entity_decode($product->sub_title) }}"> Fisa Tehnica a produsului: {{ html_entity_decode($product->sub_title) }}
+                <a class="dark-blue" href="{{ asset('storage/' . $product->technicalFile->path) }}" title="{{ html_entity_decode($product->sub_title) }}"> Fisa Tehnica a produsului: {{ html_entity_decode($product->sub_title) }}
                 </a>
             </p>
             <p class="pull-right i-icon mt-16" id="consum_bottom" style="display: flex; align-items: center; flex-wrap: wrap">

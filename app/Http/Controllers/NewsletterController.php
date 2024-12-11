@@ -10,8 +10,13 @@ class NewsletterController extends Controller
     public function subscribe(Request $request)
     {
         $request->validate([
-            'NewsletterEmails.email' => 'required|email|unique:newsletter_emails,email',
+            'NewsletterEmails.email' => 'required|email',
+            // 'NewsletterEmails.email' => 'required|email|unique:newsletter_emails,email',
         ]);
+
+        if (NewsletterEmail::where('email', $request->input('NewsletterEmails.email'))->exists()) {
+            return redirect()->back()->with('error', 'Acest email este deja înregistrat!');
+        }
 
         $newsletterEmail = new NewsletterEmail();
         $newsletterEmail->email = $request->input('NewsletterEmails.email');

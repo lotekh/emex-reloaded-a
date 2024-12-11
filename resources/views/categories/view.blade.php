@@ -42,7 +42,7 @@ $base_url = url('/');
 <div class="col main-container">
     <div id="cdr">
         <h1>{{ $category->name }}</h1>
-        <p>{!! $category->description !!}</p>
+        <div>{!! $category->description !!}</div>
     </div>
     <div class="flex justify-between align-center categories-header gap-lg mt-32">
         <div class="flex col">
@@ -107,7 +107,7 @@ $base_url = url('/');
     </div>
     
     {{-- The Products --}}
-    <div class="my-32 grid grid-3 gap-xl" id="clw">
+    <div class="my-32 grid grid-3 gap-xl-categories" id="clw">
         @foreach ($products as $ind => $product)
             @if (!empty($product))
                 <div>

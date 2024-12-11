@@ -32,9 +32,13 @@ class ConsumController extends Controller
     public function show($consumption_slug, Request $request)
     {
         // Găsește produsul după consumption_slug
+        // $product = Product::where('consumption_slug', $consumption_slug)
+        //     ->with('categories', 'largeImage', 'variations', 'reviews')
+        //     ->firstOrFail();
         $product = Product::where('consumption_slug', $consumption_slug)
-            ->with('categories', 'largeImage', 'variations', 'reviews')
-            ->firstOrFail();
+        ->with(['categories', 'largeImage', 'variations', 'reviews', 'technicalFile'])
+        ->firstOrFail();
+
         
         // Obține categoria principală a produsului (dacă există)
         $category = $product->categories->first();
