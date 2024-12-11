@@ -46,21 +46,21 @@
             <div class="relative cover certificate">
                 <div id="iso_certificates_slider_wrapper" class="certificates-slider">
                     <div class="certificate-slide">
-                        <img src="https://emex.ro/images/general/ISO-18001.png" width="246" height="348" alt="ISO 9001:2015" class="responsive-img">
+                        <img src="https://emex.ro/images/general/ISO-18001.png" width="246" height="348" alt="ISO 9001" class="responsive-img">
                         <div class="text-center mt-16">
-                            <label class="cert_first">ISO 9001:2015</label>
+                            <label class="cert_first">ISO-9001</label>
                         </div>
                     </div>
                     <div class="certificate-slide">
-                        <img src="https://emex.ro/images/general/ISO-18001.png" width="246" height="348" alt="ISO 14001:2015" class="responsive-img">
+                        <img src="https://emex.ro/images/general/ISO-18001.png" width="246" height="348" alt="ISO 14001" class="responsive-img">
                         <div class="text-center mt-16">
-                            <label class="cert_sec">ISO 14001:2015</label>
+                            <label class="cert_sec">ISO-14001</label>
                         </div>
                     </div>
                     <div class="certificate-slide">
-                        <img src="https://emex.ro/images/general/ISO-18001.png" width="246" height="348" alt="ISO 45001:2018" class="responsive-img">
+                        <img src="https://emex.ro/images/general/ISO-18001.png" width="246" height="348" alt="ISO 18001" class="responsive-img">
                         <div class="text-center mt-16">
-                            <label class="cert_third">ISO 45001:2018</label>
+                            <label class="cert_third">ISO-18001</label>
                         </div>
                     </div>
                 </div>

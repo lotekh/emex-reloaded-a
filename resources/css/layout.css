@@ -522,7 +522,11 @@
   }
 
   .email-icon {
-    display: none;
+    display: none !important;
+  }
+
+  #phone-overlay {
+    display: none !important;
   }
 }
 
@@ -734,6 +738,9 @@
 @media (max-width: 767px) {
   .hidden-xs {
     display: none;
+  }
+  .gap-xl-categories {
+    gap: 0;
   }
 }
 
@@ -987,7 +994,7 @@
   padding-left: 50px;
 }
 
-.breadcrumbs.pull-left ul{
+.breadcrumbs.pull-left ul {
   padding: 0px;
 }
 
@@ -1318,7 +1325,6 @@ footer .sprites {
   font-weight: normal;
 }
 
-
 form input,
 form textarea,
 form select {
@@ -1329,7 +1335,7 @@ form select {
   color: var(--darkgrey);
 }
 
-form input[type='checkbox'] {
+form input[type="checkbox"] {
   width: 16px;
   height: 100%;
   min-height: 16px;
@@ -1525,7 +1531,10 @@ form .disclaimer {
   display: -ms-grid;
   display: grid;
 }
-.grid-2, .grid-3, .grid-4, .grid-5 {
+.grid-2,
+.grid-3,
+.grid-4,
+.grid-5 {
   -ms-grid-columns: 1fr;
   grid-template-columns: 1fr;
 }
@@ -1567,6 +1576,9 @@ form .disclaimer {
   }
   .gap-xl {
     gap: 32px;
+  }
+  .gap-xl-categories {
+    gap: 24px;
   }
   .flex-md {
     -ms-flex-direction: row;
@@ -1969,7 +1981,7 @@ form .disclaimer {
   transition: all 0.3s linear;
 }
 .switch i::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   width: 42px;
@@ -1980,7 +1992,7 @@ form .disclaimer {
   transition: all 0.25s linear;
 }
 .switch i::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   width: 22px;
@@ -2024,7 +2036,7 @@ form .disclaimer {
 }
 .slider:before {
   position: absolute;
-  content: '';
+  content: "";
   height: 14px;
   width: 17px;
   left: 1px;
@@ -2116,7 +2128,7 @@ button.link {
   background-color: #2196f3;
 }
 .checkmark:after {
-  content: '';
+  content: "";
   position: absolute;
   display: none;
 }
@@ -2869,8 +2881,6 @@ header {
   height: auto;
 }
 
-
-
 :root {
   /* colors */
   --dark-blue: #009;
@@ -3469,3 +3479,6 @@ video:hover::-webkit-media-controls {
   width: 20px;
 }
 
+#cdr > div p {
+  text-align: justify;
+}

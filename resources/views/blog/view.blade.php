@@ -53,7 +53,7 @@
             <span class="publish-date">publicat pe {{ \Carbon\Carbon::parse($model->created_at)->format('j.m.Y') }}</span>
         </div>
 
-        <div class="flex col align-center">
+        <div class="flex col align-center" id="description-blog">
             <div>
                 {!! $model->body !!}
             </div>

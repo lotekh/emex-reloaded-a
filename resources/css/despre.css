@@ -47,3 +47,136 @@
     display: flex;
   }
 }
+
+ .despre_noi_title {
+  background-color: #347589;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 5px;
+  text-align: center;
+  margin-top: 10px;
+  margin-right: 15px;
+  margin-left: 15px;
+} 
+
+.container, .container-fluid {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row-despre {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.despre_noi_content p {
+  padding-left: 150px;
+  text-align: justify;
+  margin-right: 0px;
+  padding-top: 5px;
+}
+
+@media (min-width: 768px) {
+  .container {
+      max-width: 768px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+      max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+      max-width: 1248px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+#mcdnr {
+  padding-left: 10px;
+}
+}
+
+@media (min-width: 900px) {
+  #despre_noi_content_wrapper {
+      padding-right: 20px;
+      padding-left: 20px;
+  }
+}
+
+
+@media (min-width: 576px) {
+  .col-sm-12 {
+      flex: 0 0 100%;
+      max-width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .col-md-12 {
+      flex: 0 0 100%;
+      max-width: 100%;
+  }
+}
+@media (min-width: 992px) {
+  .col-lg-12 {
+      flex: 0 0 100%;
+      max-width: 100%;
+  }
+}
+
+#mcdnr {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+#despre_noi_content_wrapper {
+  background-color: #ffffff;
+  padding-top: 20px;
+  border: #ccc solid 1px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+a, a:before, a:after, abbr, abbr:before, abbr:after, address, address:before, address:after, area, area:before, area:after, article, article:before, article:after, aside, aside:before, aside:after, amp-audio, amp-audio:before, amp-audio:after, b, b:before, b:after, bdi, bdi:before, bdi:after, bdo, bdo:before, bdo:after, blockquote, blockquote:before, blockquote:after, button, button:before, button:after, canvas, canvas:before, canvas:after, caption, caption:before, caption:after, cite, cite:before, cite:after, code, code:before, code:after, col, col:before, col:after, colgroup, colgroup:before, colgroup:after, datalist, datalist:before, datalist:after, dd, dd:before, dd:after, del, del:before, del:after, details, details:before, details:after, dfn, dfn:before, dfn:after, dialog, dialog:before, dialog:after, div, div:before, div:after, dl, dl:before, dl:after, dt, dt:before, dt:after, em, em:before, em:after, fieldset, fieldset:before, fieldset:after, figcaption, figcaption:before, figcaption:after, figure, figure:before, figure:after, footer, footer:before, footer:after, form, form:before, form::after, h1, h1:before, h1:after, h2, h2:before, h2:after, h3, h3:before, h3:after, h4, h4:before, h4:after, h5, h5:before, h5:after, h6, h6:before, h6:after, header, header:before, header:after, hgroup, hgroup:before, hgroup:after, hr, hr:before, hr:after, i, i:before, i:after, input, input:before, input:after, amp-iframe, amp-iframe:before, amp-iframe:after, amp-img, amp-img:before, amp-img:after, ins, ins:before, ins:after, kbd, kbd:before, kbd:after, keygen, keygen:before, keygen:after, label, label:before, label:after, legend, legend:before, legend:after, li, li:before, li:after, main, main:before, main:after, map, map:before, map:after, mark, mark:before, mark:after, menu, menu:before, menu:after, menuitem, menuitem:before, menuitem:after, meter, meter:before, meter:after, nav, nav:before, nav:after, noscript, noscript:before, noscript:after, ol, ol:before, ol:after, optgroup, optgroup:before, optgroup:after, output, output:before, output:after, p, p:before, p:after, pre, pre:before, pre:after, progress, progress:before, progress:after, q, q:before, q:after, rp, rp:before, rp:after, rt, rt:before, rt:after, s, s:before, s:after, samp, samp:before, samp:after, section, section:before, section:after, small, small:before, small:after, source, source:before, source:after, span, span:before, span:after, strong, strong:before, strong:after, sub, sub:before, sub:after, select, select:before, select:after, sup, sup:before, sup:after, table, table:before, table:after, tbody, tbody:before, tbody:after, td, td:before, td:after, textarea, tfoot, tfoot:before, tfoot:after, th, th:before, th:after, thead, thead:before, thead:after, tr, tr:before, tr:after, u, u:before, u:after, ul, ul:before, ul:after, amp-video, amp-video:before, amp-video:after, wbr, wbr:before, wbr:after {
+    box-sizing: border-box;
+}
+
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+} 
+
+@media screen and (max-width: 450px) {
+  .despre_noi_content p {
+      padding-left: 0px;
+  }
+
+  .despre_noi_content img {
+    margin-right: 5px;
+  }
+}
+
+.despre_noi_content img {
+  float: left;
+  margin-left: 0px;
+}
+
+@media (max-width: 768px) {
+  .spaces-despre-noi{
+    display: none;
+  }
+}
+

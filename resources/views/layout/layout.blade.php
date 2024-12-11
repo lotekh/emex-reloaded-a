@@ -341,7 +341,7 @@
     </div>
 
 
-    <div class="phone-icon" id="scrollToTopButton">
+    <div class="phone-icon" id="phone-overlay">
         <a href="tel:+40724509552">
             <img width="50" height="50" src="{{ asset('resources/images/Phone-mobile.png') }}" alt="Phone Emex">
         </a>
@@ -355,7 +355,7 @@
         @yield('content')
     </div>
 
-    <footer class="w-full">
+    <footer class="w-full" id="page-footer">
         <div class="sixth_top"></div>
         <div id="fsr" class="main-container footer-container">
             <div class="logo-section">
@@ -616,12 +616,10 @@
     </div>
     @endif
 
-    @if ($errors->any())
+    @if (session('error'))
     <div class="flash-messages-container">
         <div class="alert-message alert-message-error">
-            <p>
-                {{ implode('. ', $errors->all()) }}
-            </p>
+            <p>{{ session('error') }}</p>
             <button type="button" class="close-flash-message" aria-label="Inchide" onclick="closeFlashMessage(this)">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289Z" />
@@ -839,10 +837,6 @@
         });
     }
 
-
-
-
-
     function toggleAccordion(id) {
         var menu = document.getElementById(id + '-menu');
         console.log('menu', menu);
@@ -914,6 +908,29 @@
             toggleIcon.src = "{{ asset('resources/new_design/icons/eye-solid.svg') }}"; 
         }
     }
+
+    document.addEventListener('scroll', function () {
+        // Overlays are only on mobile, so when the width is <=767px
+        if (window.innerWidth <= 767) {
+            const footer = document.getElementById('page-footer');
+            const phoneOverlay = document.getElementById('phone-overlay');
+            const emailOverlay = document.getElementById('contact_email_small_devices');
+
+            // Get the position of footer based on the viewport
+            const footerRect = footer.getBoundingClientRect();
+
+            // If the footer is visible in viewport
+            if (footerRect.top <= window.innerHeight && footerRect.bottom >= 0) {
+                // Hide the overlays
+                phoneOverlay.style.display = 'none';
+                emailOverlay.style.display = 'none';
+            } else {
+                // Show the overlays
+                phoneOverlay.style.display = 'block';
+                emailOverlay.style.display = 'block';
+            }
+        }
+    });
 
 
 
