@@ -26,7 +26,7 @@
         <div class="col flex-md">
             <div class="relative image-container z-0" style="text-align: center;">
                 <a href="{{ url($product->slug) }}">
-                    <img src="{{ $smallImageUrl }}" alt="imagine" title="imagineprodus" style="height: 180px; max-width: 230px;">
+                    <img src="{{ $smallImageUrl }}" alt="{{ $product->smallImage ? $product->smallImage->alt : 'imagine'}}" title="{{ $product->smallImage ? $product->smallImage->title : 'imagineprodus'}}" style="height: 180px; max-width: 230px;">
                 </a>
             </div>
             <div class="col w-full justify-between form-container">
