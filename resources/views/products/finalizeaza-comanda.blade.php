@@ -120,7 +120,7 @@
                     @if ($isGuest)
                         <div class="guest-row">
                             Ai deja cont?
-                            <button id="auth_lightbox_trigger2" class="link" role="button" tabindex="0" aria-label="Autentificare">
+                            <button id="auth_lightbox_trigger2" type="button" class="link" role="button" tabindex="0" aria-label="Autentificare">
                                 Autentificare
                             </button>
                         </div>
@@ -835,13 +835,6 @@
         authContainer.style.display = 'inline-block';
         document.getElementById('auth-lightbox').style.display = 'flex';
     });
-
-    document.getElementById('order_form').addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') { 
-        event.preventDefault(); 
-        console.log('enttteeerrrr');
-    }
-});
 </script>
 
 @endsection
