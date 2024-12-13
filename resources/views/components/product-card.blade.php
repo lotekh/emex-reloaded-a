@@ -62,7 +62,7 @@
       @endphp
 
       <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
-        <img src="{{ $smallImageUrl }}" alt="{{ $product->name }}" title="{{ $product->name }}">
+        <img src="{{ $smallImageUrl }}" alt="{{ $product->smallImage ? $product->smallImage->alt : 'imagine'}}" title="{{ $product->smallImage ? $product->smallImage->title : 'imagineprodus'}}">
       </a>
     </div>
 

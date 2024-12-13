@@ -70,7 +70,7 @@
                   <td>
                       <a href="{{ url($ordered_product->product->slug) }}" class="flex align-center">
                           <div>
-                              <img class="image-cart" layout="fixed" src="{{ $ordered_product->product->smallImage ? asset('storage/' . $ordered_product->product->smallImage->path) : asset('/images/default-placeholder.png') }}" alt="{{ strip_tags($ordered_product->product->name) }}">
+                              <img class="image-cart" layout="fixed" src="{{ $ordered_product->product->smallImage ? asset('storage/' . $ordered_product->product->smallImage->path) : asset('/images/default-placeholder.png') }}" alt="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->alt : 'imagine'}}" title="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->title : 'imagineprodus'}}">
                           </div>
                           {{-- Get the product name until the first '-' sign --}}
                           <h3 class="normal-weight">{{ \Illuminate\Support\Str::before($ordered_product->name, ' -') }}</h3>
@@ -138,14 +138,6 @@
     
         <div class="product-card relative col justify-between h-full mb-16">
           <div class="w-full">
-            <div class="relative image-container z-0 mb-16">
-              <a href="{{ url($ordered_product->product->slug) }}">
-                {{-- <img src="{{ $ordered_product->product->largeImage ? asset('storage/' . $ordered_product->product->largeImage->path) : asset('/images/default-placeholder.png') }}" 
-                     alt="{{ strip_tags($ordered_product->product->name) }}" 
-                     title="{{ strip_tags($ordered_product->product->name) }}" 
-                     width="90" height="90"> --}}
-              </a>
-            </div>
             <div class="px-8">
               <p class="title text-center">{{ \Illuminate\Support\Str::before($ordered_product->name, ' -') }} 
                 @if ($ordered_product->addon_quantity) 
@@ -154,7 +146,6 @@
               </p>
             </div>
           </div>
-          
           <div class="w-full flex justify-between px-8">
             <div class="col">
               <div class="flex align-center mt-16">
