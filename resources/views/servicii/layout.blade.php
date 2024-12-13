@@ -85,7 +85,7 @@ $baseUrl = url('/');
 <div id="global-lightbox" class="lightbox hidden">
     <div class="lightbox-content">
         <span class="close-btn-servicii" style=" background-image: url('{{ asset('resources/images/sprite.png') }}');" onclick="closeServiciiLightbox()"></span>
-        <img id="global-lightbox-image" src="" alt="" title="">
+        <img id="global-lightbox-image" src="" alt="global-lightbox image" title="Global Lightbox Image">
     </div>
 </div>
 

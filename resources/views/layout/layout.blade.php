@@ -241,7 +241,7 @@
                             <div class="form-group w-full relative">
                                 <label for="form-login-password">Parola<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-login-password" type="password" name="password" required>
-                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" class="password-toggle-icon" id="toggle-login-password-visibility"  onclick="togglePasswordVisibility('form-login-password', 'toggle-login-password-visibility')" >
+                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" alt="eye-solid-icon" class="password-toggle-icon" id="toggle-login-password-visibility"  onclick="togglePasswordVisibility('form-login-password', 'toggle-login-password-visibility')" >
                             </div>
                             <div class="w-full flex justify-center">
                                 <button type="submit" class="w-fit btn rounded-lg px-16 mt-32">Autentifica-te</button>
@@ -289,7 +289,7 @@
                             <div class="form-group w-full">
                                 <label for="form-register-password">Parola<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-register-password" type="password" name="password" required>
-                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" class="password-toggle-icon" id="toggle-register-password-visibility"  onclick="togglePasswordVisibility('form-register-password', 'toggle-register-password-visibility')" >
+                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" alt="eye-solid-icon" class="password-toggle-icon" id="toggle-register-password-visibility"  onclick="togglePasswordVisibility('form-register-password', 'toggle-register-password-visibility')" >
                             </div>
                             <div class="row align-center">
                                 <input type="checkbox" class="hidden" name="terms" id="tc" required checked>

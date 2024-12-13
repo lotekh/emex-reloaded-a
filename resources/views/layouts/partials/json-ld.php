@@ -40,16 +40,14 @@ if (request()->get('is_consum_page', false)) {
 
 // Dynamic JSON-LD for Category Page
 if (request()->get('is_category_page', false)) {
-    // dd(1);
     $category_json = include base_path('resources/views/layouts/partials/json-lds-partials/category.php');
-    // dd($category_json);
     if ($category_json) {
         $big_json[] = $category_json;
     }
 }
 
+// Dynamic JSON-LD for Blog Page
 if (request()->routeIs('blog.article.show')) {
-    // dd(1);
     $article_json = include base_path('resources/views/layouts/partials/json-lds-partials/article.php');
     if ($article_json) {
         $big_json[] = $article_json;
@@ -64,13 +62,13 @@ if (request()->routeIs('blog.article.show')) {
 $currentUrl = request()->path() ?: 'homepage';
 $jsonFile = resource_path('views/layouts/partials/json-lds/' . $currentUrl . '.json-ld');
 $big_json = implode(',', $big_json);
-if (!empty($big_json)) {
-    $big_json .= ','; 
-}
 
 if (file_exists($jsonFile)) {
     $static_jsonld_content = trim(file_get_contents($jsonFile));
     if (!empty($static_jsonld_content)) {
+        if (!empty($big_json)) {
+            $big_json .= ','; 
+        }
         $big_json .= $static_jsonld_content;
     }
 }
