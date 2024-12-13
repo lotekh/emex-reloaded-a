@@ -15,9 +15,9 @@ class Order extends Model
 
     protected $fillable = [
         'user_id',
-        'delivery_county_id',
-        'person_county_id',
-        'company_county_id',
+        'delivery_city_id',
+        'person_city_id',
+        'company_city_id',
         'discount_code_id',
         'guid',
         'identifier',

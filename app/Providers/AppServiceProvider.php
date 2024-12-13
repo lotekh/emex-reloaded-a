@@ -39,8 +39,9 @@ class AppServiceProvider extends ServiceProvider
         // Get the slug of the current Url
         $currentSlug = Request::segment(1); 
         // Verify if there is a popup that is active and that has the same slug as the current URL
-        $popup = Popup::where('slug', $currentSlug)->where('is_active', 1)->first();
-        // Share popup with all views
-        View::share('popup', $popup);
+        if(Schema::hasTable('popups')) {
+            $popup = Popup::where('slug', $currentSlug)->where('is_active', 1)->first();
+            View::share('popup', $popup);
+        }
     }
 }

@@ -16,8 +16,8 @@ class User extends Authenticatable implements HasName
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'person_county_id',
-        'organization_county_id',
+        'person_city_id',
+        'organization_city_id',
         'first_name',
         'last_name',
         'email',
