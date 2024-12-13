@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users', 'id');
-            $table->foreignId('delivery_county_id')->nullable()->constrained('counties', 'id');
-            $table->foreignId('person_county_id')->nullable()->constrained('counties', 'id');
-            $table->foreignId('company_county_id')->nullable()->constrained('counties', 'id');
+            $table->foreignId('delivery_city_id')->nullable()->constrained('cities', 'id');
+            $table->foreignId('person_city_id')->nullable()->constrained('cities', 'id');
+            $table->foreignId('company_city_id')->nullable()->constrained('cities', 'id');
             $table->foreignId('discount_code_id')->nullable()->constrained('discount_codes', 'id');
 
             $table->uuid('guid');
