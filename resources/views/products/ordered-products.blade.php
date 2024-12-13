@@ -40,9 +40,10 @@
   @if(empty($ordered_products))
     <p>Cosul tau este gol.</p>
     <div class="flex col align-end wrap mt-8">
-      <a class="dropdown-item row align-center mb-8" href="{{ url('/produse') }}">
+      {{-- <a class="dropdown-item row align-center mb-8" href="{{ url('/produse') }}">
         <button class="btn btn-blue rounded-xl medium-width">Continua cumparaturile</button>
-      </a>
+      </a> --}}
+      <button class="btn btn-blue rounded-xl medium-width" onclick="location.href='{{ url('/produse') }}';">Continua cumparaturile</button>
     </div>
   @else
     <div class="w-full scrollable-x">

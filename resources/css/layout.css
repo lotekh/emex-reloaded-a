@@ -493,7 +493,7 @@
   height: 45px;
   position: fixed;
   bottom: 40px;
-  left: 16px;
+  left: 40px;
 
   display: flex;
   justify-content: center;
@@ -505,8 +505,8 @@
 
 .email-icon {
   position: fixed;
-  bottom: 40px;
-  right: 16px;
+  bottom: 30px;
+  right: 40px;
 
   display: flex;
   justify-content: center;
@@ -3484,4 +3484,43 @@ video:hover::-webkit-media-controls {
 
 #cdr > div p {
   text-align: justify;
+}
+
+@media screen and (max-width: 639px) {
+  #footer-links-news {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  #recent-news {
+    padding: 0;
+  }
+
+  #one-half-right {
+    padding: 0;
+  }
+
+  .col-certifications {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  footer .link-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (min-width: 640px) and (max-width: 1023px) {
+  .col-certifications {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+  }
 }

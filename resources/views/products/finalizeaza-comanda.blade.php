@@ -120,7 +120,7 @@
                     @if ($isGuest)
                         <div class="guest-row">
                             Ai deja cont?
-                            <button id="auth_lightbox_trigger2" class="link" role="button" tabindex="0" aria-label="Autentificare">
+                            <button id="auth_lightbox_trigger2" type="button" class="link" role="button" tabindex="0" aria-label="Autentificare">
                                 Autentificare
                             </button>
                         </div>
