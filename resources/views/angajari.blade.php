@@ -41,27 +41,27 @@
         @csrfWithoutAutocomplete
         <div class="grid grid-3 gap-md">
             <div class="form-group">
-                <label>Nume</label>
+                <label>Nume <span class="text-red">*</span></label>
                 <input class="w-full" type="text" class="form-control" placeholder="Nume..." name="Angajari[name]" aria-required="true" required="required">
             </div>
             <div class="form-group">
-                <label>Data Nasterii</label>
+                <label>Data Nasterii <span class="text-red">*</span></label>
                 <input class="w-full" type="date" class="form-control" placeholder="Data Nasterii..." name="Angajari[date_of_birth]" aria-required="true" required="required">
             </div>
             <div class="form-group">
-                <label>Adresa</label>
+                <label>Adresa <span class="text-red">*</span></label>
                 <input class="w-full" type="text" class="form-control" placeholder="Adresa..." name="Angajari[address]" aria-required="true" required="required">
             </div>
             <div class="form-group">
-                <label>Cod Postal</label>
+                <label>Cod Postal <span class="text-red">*</span></label>
                 <input class="w-full" type="text" class="form-control" placeholder="Cod Postal..." name="Angajari[postal_code]" aria-required="true" required="required">
             </div>
             <div class="form-group">
-                <label>Email</label>
+                <label>Email <span class="text-red">*</span></label>
                 <input class="w-full" type="email" class="form-control" placeholder="Email..." name="Angajari[email]" aria-required="true" required="required">
             </div>
             <div class="form-group">
-                <label>Sex</label>
+                <label>Sex <span class="text-red">*</span></label>
                 <select class="w-full" name="Angajari[gender]" aria-required="true" required="required">
                     <option value="M">Masculin</option>
                     <option value="F">Feminin</option>
@@ -70,17 +70,17 @@
         </div>
         <div class="grid grid-2 gap-md mt-16">
             <div class="form-group">
-                <label>Oras</label>
+                <label>Oras <span class="text-red">*</span></label>
                 <input class="w-full" type="text" class="form-control" placeholder="Oras..." name="Angajari[city]" aria-required="true" required="required">
             </div>
 
             <div class="form-group">
-                <label>CV</label>
+                <label>CV <span class="text-red">*</span></label>
                 <input class="w-full" type="file" class="form-control" placeholder="CV..." name="Angajari[upload]" aria-required="true" required="required">
             </div>
         </div>
         <div class="form-group mt-32">
-            <label>Mesaj</label>
+            <label>Mesaj <span class="text-red">*</span></label>
             <textarea class="w-full" id="apm" placeholder="Mesaj..." name="Angajari[message]" rows="10" aria-required="true" required="required"></textarea>
         </div>
 
