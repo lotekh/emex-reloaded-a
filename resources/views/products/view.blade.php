@@ -56,7 +56,7 @@
                     $largeImageUrl = $product->largeImage ? asset('storage/' .$product->largeImage->path) : $baseUrl . '/images/default-placeholder.png';
                 @endphp
 
-                <img class="featured-image-1" id="imagine-produs" src="{{ $largeImageUrl }}" alt="imagine" title="imagineprodus">
+                <img class="featured-image-1" id="imagine-produs" src="{{ $largeImageUrl }}" alt="{{ $product->largeImage ? $product->largeImage->alt : ''}}" title="{{ $product->largeImage ? $product->largeImage->title : ''}}">
             </div>
         </div>
         

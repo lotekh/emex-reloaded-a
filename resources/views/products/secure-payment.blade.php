@@ -118,13 +118,13 @@
                             <tr>
                                 <td class="name">
                                     @php
-                                        $imageUrl = $ordered_product->product->largeImage 
-                                            ? asset('storage/' . $ordered_product->product->largeImage->path) 
+                                        $imageUrl = $ordered_product->product->smallImage 
+                                            ? asset('storage/' . $ordered_product->product->smallImage->path) 
                                             : asset('images/default-placeholder.png'); 
                                     @endphp
 
                                     <a href="{{ url($ordered_product->product->slug) }}" class="flex align-center">
-                                        <img src="{{ $imageUrl }}" width="90" height="90" alt="{{ $ordered_product->product->name }}" id="image-cart-secure-payment">
+                                        <img src="{{ $imageUrl }}" width="90" height="90" alt="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->alt : '' }}" title="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->title : '' }}" id="image-cart-secure-payment">
                                         <h3 class="normal-weight ml-8">{{ $ordered_product->name }}</h3>
                                     </a>
                                 </td>

@@ -42,14 +42,14 @@
             <h2 class="text-center dark-blue">CALCULATOR CONSUM {!! $product->name !!}</h2>
         </div>
 
-        <div class="grid grid-3 consum-container">
-            <div>
-                <div class="consum-product-image mb-16" id="div_img_consum">
-                    @php
-                        $smallImageUrl = $product->smallImage ? asset('storage/' .$product->smallImage->path) : $baseUrl . '/images/default-placeholder.png';
-                    @endphp
-                    <img class="product-img img-responsive bordered m-16" src="{{ $smallImageUrl }}" alt="imagine produs" title="imag produs">
-                </div>
+    <div class="grid grid-3 consum-container">
+        <div>
+            <div class="consum-product-image mb-16" id="div_img_consum">
+                @php
+                    $smallImageUrl = $product->smallImage ? asset('storage/' .$product->smallImage->path) : $baseUrl . '/images/default-placeholder.png';
+                @endphp
+                <img class="product-img img-responsive bordered m-16" src="{{ $smallImageUrl }}" alt="{{ $product->smallImage ? $product->smallImage->alt : 'imagine'}}" title="{{ $product->smallImage ? $product->smallImage->title : 'imagineprodus'}}">
+            </div>
 
                 <div class="w-full" id="pwgw">
                     <div class="badge">

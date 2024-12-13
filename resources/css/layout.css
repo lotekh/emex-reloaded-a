@@ -1082,12 +1082,15 @@ footer .infos-row {
   margin-top: 4px;
 }
 
-footer .contact-info-container a,
+footer .contact-info-container div a,
 footer .contact-info-container span {
   margin-left: 8px;
   color: var(--blue);
   text-align: left;
   font-size: 14px;
+}
+
+footer .contact-info-container span {
 }
 
 footer .link-section {
