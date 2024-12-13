@@ -150,3 +150,15 @@
   justify-content: center;
   align-items: center;
 }
+
+/* .consum_form_group {
+  width: 100%; 
+  max-width: 400px; 
+  margin: 0 auto; 
+} */
+
+@media screen and (max-width: 768px) {
+  .consum_form_group {
+    max-width: 90vw;
+  }
+}

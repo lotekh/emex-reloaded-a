@@ -24,10 +24,6 @@
 <meta name="twitter:url" content="https://emex.ro/index">
 @endsection
 
-@section('title')
-    <title>Vopsea tencuiala pardoseala | Emex by Romtehnochim</title>
-@endsection
-
 @section('css')
     <link rel="stylesheet" href="/{{ minify('css/homepage.css') }}">
 @endsection

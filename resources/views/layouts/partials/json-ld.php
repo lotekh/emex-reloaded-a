@@ -62,10 +62,12 @@ if (request()->routeIs('blog.article.show')) {
 
 // JSON-LD Static
 $currentUrl = request()->path() ?: 'homepage';
-// dd($currentUrl);
 $jsonFile = resource_path('views/layouts/partials/json-lds/' . $currentUrl . '.json-ld');
-// dd($jsonFile);
 $big_json = implode(',', $big_json);
+if (!empty($big_json)) {
+    $big_json .= ','; 
+}
+
 if (file_exists($jsonFile)) {
     $static_jsonld_content = trim(file_get_contents($jsonFile));
     if (!empty($static_jsonld_content)) {
