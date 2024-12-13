@@ -113,7 +113,7 @@
 
                        
                     @else
-                        <button id="auth_lightbox_trigger" class="auth" role="button" tabindex="0" aria-label="Autentificare">
+                        <button id="auth_lightbox_trigger" class="auth" type="button" role="button" tabindex="0" aria-label="Autentificare">
                             Autentificare
                         </button>
                     @endauth
@@ -757,7 +757,7 @@
                         @csrfWithoutAutocomplete
                     </form>
                 @else
-                    <button id="auth_lightbox_trigger_mobile" class="btn btn-blue" onclick="toggleSidebar()" role="button" aria-label="Autentificare">
+                    <button id="auth_lightbox_trigger_mobile" type="button" class="btn btn-blue" onclick="toggleSidebar()" role="button" aria-label="Autentificare">
                         Autentificare
                     </button>
                 @endif

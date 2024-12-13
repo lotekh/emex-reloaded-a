@@ -835,6 +835,13 @@
         authContainer.style.display = 'inline-block';
         document.getElementById('auth-lightbox').style.display = 'flex';
     });
+
+    document.getElementById('order_form').addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') { 
+        event.preventDefault(); 
+        console.log('enttteeerrrr');
+    }
+});
 </script>
 
 @endsection
