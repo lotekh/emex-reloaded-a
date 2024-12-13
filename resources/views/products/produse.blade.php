@@ -43,11 +43,15 @@
                     <div class="flex w-full col">
                         <h4 class="m-0 mb-8">Filtre</h4>
                         <div class="flex gap-md">
-                            <a href="{{ url('/produse') }}">
+                            {{-- <a href="{{ url('/produse') }}">
                                 <button class="btn btn-blue-outline rounded-sm" type="button">
                                     Sterge filtre
                                 </button>
-                            </a>
+                            </a> --}}
+                            <button class="btn btn-blue-outline rounded-sm" type="button" onclick="window.location.href='{{ url('/produse') }}'">
+                                Sterge filtre
+                            </button>
+                            
                             <button class="btn btn-blue rounded-sm" type="submit">
                                 Aplica filtre
                             </button>
@@ -61,17 +65,17 @@
                             @foreach ($filters as $filterCategory)
                                 <div class="accordion-item">
                                     <h4 class="accordion-header marginbottom-0 paddintop-0">{{ $filterCategory->name }}</h4>
-                                    <ul class="filter-list">
+                                    <div class="filter-list">
                                         @foreach ($filterCategory->children as $subFilter)
                                             <div>
                                                 <label class="custom-checkbox">
-                                                    <p class="filter">{{ $subFilter->name }}</p>
+                                                    <span class="filter">{{ $subFilter->name }}</span>
                                                     <input type="checkbox" name="category{{ $subFilter->id }}" {{ request()->has('category'.$subFilter->id) ? 'checked' : '' }}>
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
                                         @endforeach
-                                    </ul>
+                                    </div>
                                 </div>
                             @endforeach
                         </div>

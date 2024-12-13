@@ -190,7 +190,7 @@
                                 <label class="mr-5 captcha-value"><b>{{ $no1 }} + </b></label>
                                 <label class="mr-5 captcha-value"><b>{{ $no2 }} = </b></label>
                             </div>
-                            <input type="text" id="captchaResult" name="captchaResult" required>
+                            <input type="text" id="captchaResultBlade" name="captchaResult" required>
                             <input type="hidden" name="captchaMdResult" value="{{ $mdResult }}">
                         </div>
                     </div>

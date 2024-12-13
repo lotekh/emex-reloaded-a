@@ -177,7 +177,7 @@
             </div>
         
             <div id="Pagina4" class="tab-content">
-                <div class="tab-pane" id="ap">
+                <div class="tab-pane" id="pagina-4-termeni-conditii">
                     <p><span class="alineat_span"></span>Intregul continut al site-ului <em>&#8220;Emex&#8221;</em>, incluzand, enumerativ, dar nu limitativ, imagini, texte, butoane, programe, scripturi si orice alte date, este proprietatea Romtehnochim s.r.l. si este protejat conform Legii drepturilor de autor si legilor privind dreptul de proprietate intelectuala si industriala.<br>
                         <span class="alineat_span"></span>Folosirea fara acordul scris a Romtehnochim s.r.l. a oricaror elemente enumerate mai sus este sanctionata conform legilor in vigoare.<br>
                         <span class="alineat_span"></span>Pentru raportarea problemelor legate de drepturile de proprietate intelectuala va rugam sa ne contactati, in scris, la adresa de email: <a href="mailto:office@emex.ro"><span class="link_color1"><em>office@emex.ro</em></span></a>.<br>
