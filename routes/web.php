@@ -64,9 +64,10 @@ Route::post('/save-detalii-cont', [UserController::class, 'saveDetaliiCont']);
 Route::post('/save-facturare', [UserController::class, 'saveFacturare']);
 Route::post('/save-livrare', [UserController::class, 'saveLivrare']);
 Route::post('/save-schimba-parola', [UserController::class, 'saveSchimbaParola']);
-Route::get('/counties-by-country/{country}', [UserController::class, 'getCountiesByCountry']);
+Route::get('/get-cities-by-county/{county_id}', [UserController::class, 'getCitiesByCounty']);
 
-Route::get('/get-counties-by-country/{country_id}', [CountyController::class, 'getCountiesByCountry']);
+// Route::get('/counties-by-country/{country}', [UserController::class, 'getCountiesByCountry']);
+// Route::get('/get-counties-by-country/{country_id}', [CountyController::class, 'getCountiesByCountry']);
 
 
 Route::get('/angajari', function () {

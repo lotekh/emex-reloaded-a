@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Country;
+use App\Models\City;
 use App\Models\County;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -72,13 +72,13 @@ class UserController extends Controller
     public function edit()
     {
         $user = Auth::user();
-        $countries = Country::all();
         $counties = County::all();
+        $cities = City::all();
 
-        // Preluăm comenzile utilizatorului împreună cu produsele din comenzi
+        // Get the orders of the user along with the products from the order
         $orders = $user->orders()->with('productVariations.product')->get();
 
-        return view('contul-meu', compact('user', 'countries', 'counties', 'orders'));
+        return view('contul-meu', compact('user', 'cities', 'counties', 'orders'));
     }
 
     public function saveDetaliiCont(Request $request)
@@ -134,10 +134,10 @@ class UserController extends Controller
         return redirect('/contul-meu#' . $request->input('active_tab'))->with('success', 'Parola a fost schimbata cu succes.');
     }
 
-    public function getCountiesByCountry($countryId)
+    public function getCitiesByCounty($countyId)
     {
-        $counties = County::where('country_id', $countryId)->get();
-
-        return response()->json($counties);
+        $cities = City::where('county_id', $countyId)->get();
+        return response()->json($cities);
     }
+
 }
