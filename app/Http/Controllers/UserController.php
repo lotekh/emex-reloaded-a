@@ -94,6 +94,13 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $data = $request->except(['_token', 'user_id']);
+
+        if ($request->billing_type == 0) { // Persoana fizica
+            $user->person_city_id = $request->input('person_city_id'); 
+        } elseif ($request->billing_type == 1) { // Persoana juridica
+            $user->organization_city_id = $request->input('organization_city_id'); 
+        }
+
         $user->company_information = json_encode($data);
         $user->billing_type = $request->billing_type;
         $user->save();
