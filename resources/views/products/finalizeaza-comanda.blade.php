@@ -136,9 +136,8 @@
                             $personFirstName = optional($companyInfo)->person_first_name;
                             $personPhone = optional($companyInfo)->person_phone;
                             $personEmail = optional($companyInfo)->person_email;
-                            $personCountryId = optional($companyInfo)->person_country_id;
                             $personCountyId = optional($companyInfo)->person_county_id;
-                            $personLocality = optional($companyInfo)->person_locality;
+                            $personCityId = optional($companyInfo)->person_city_id;
                             $personAddress = optional($companyInfo)->person_address;
 
                             $organizationName = optional($companyInfo)->organization_name;
@@ -148,10 +147,9 @@
                             $organizationBank = optional($companyInfo)->organization_bank;
                             $organizationBankAccount = optional($companyInfo)->organization_bank_account;
                             $organizationContactLastName = optional($companyInfo)->contact_person_last_name;
-                            $organizationContactFirstName = optional($companyInfo)->contact_person_first_name;
-                            $organizationCountryId = optional($companyInfo)->organization_country_id;
+                            $organizationContactFirstName = optional($companyInfo)->contact_person_first_name;                     
                             $organizationCountyId = optional($companyInfo)->organization_county_id;
-                            $organizationLocality = optional($companyInfo)->organization_locality;
+                            $organizationCityId = optional($companyInfo)->organization_city_id;
                             $organizationAddress = optional($companyInfo)->organization_address;
                         @endphp
                     @endif
@@ -180,7 +178,7 @@
                         </div>
 
                         <div class="grid grid-4 gap-lg p-8">
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label>Tara <span class="text-red">*</span></label>
                                 <select class="form-control w-full height-43px" name="company_information[person_country_id]">
                                     <option value="">Selectează țara</option> 
@@ -202,12 +200,33 @@
                                     @endforeach
                                 </select>
                             </div>
-                            
-                            
                             <div class="form-group">
                                 <label>Localitate <span class="text-red">*</span></label>
                                 <input class="form-control w-full" type="text" id="person_locality_id" name="company_information[person_locality]" value="{{ $personLocality ?? '' }}" >
+                            </div> --}}
+                            <div class="form-group">
+                                <label>Tara <span class="text-red">*</span></label>
+                                <select class="form-control w-full height-43px" name="company_information[person_county_id]">
+                                    <option value="">Selectează județul</option> 
+                                    @foreach ($counties as $county)
+                                        <option value="{{ $county->id }}" {{ ($companyInfo->person_county_id ?? '') == $county->id ? 'selected' : '' }}>
+                                            {{ $county->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
+                            <div class="form-group">
+                                <label>Oras <span class="text-red">*</span></label>
+                                <select class="form-control w-full height-43px" name="company_information[person_city_id]" id="person_county_id">
+                                    <option value="">Selectează orasul</option> 
+                                    @foreach ($cities as $city)
+                                        <option value="{{ $city->id }}" {{ ($companyInfo->person_city_id ?? '') == $city->id ? 'selected' : '' }}>
+                                            {{ $city->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                             <div class="form-group">
                                 <label>Adresa <span class="text-red">*</span></label>
                                 <input class="form-control w-full" type="text" id="person_address" name="company_information[person_address]" value="{{ $personAddress ?? '' }}">
@@ -259,7 +278,7 @@
                         </div>
                         <div class="grid grid-4 gap-lg p-8">
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label>Tara <span class="text-red">*</span></label>
                                 <select class="form-control w-full height-43px" name="company_information[organization_country_id]">
                                     <option value="">Selectează țara</option> 
@@ -281,12 +300,34 @@
                                     @endforeach
                                 </select>
                             </div>
-                            
-                            
                             <div class="form-group">
                                 <label>Localitate <span class="text-red">*</span></label>
                                 <input class="form-control w-full" type="text" id="organization_locality_id" name="company_information[organization_locality]" value="{{ $organizationLocality ?? ''}}" >
+                            </div> --}}
+
+                            <div class="form-group">
+                                <label>Judet <span class="text-red">*</span></label>
+                                <select class="form-control w-full height-43px" name="company_information[organization_county_id]">
+                                    <option value="">Selectează județul</option> 
+                                    @foreach ($counties as $county)
+                                        <option value="{{ $county->id }}" {{ ($companyInfo->organization_county_id ?? '') == $county->id ? 'selected' : '' }}>
+                                            {{ $county->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
+                            <div class="form-group">
+                                <label>Oras <span class="text-red">*</span></label>
+                                <select class="form-control w-full height-43px" id="organization_city_id" name="company_information[organization_city_id]">
+                                    <option value="">Selectează orasul</option> 
+                                    @foreach ($cities as $city)
+                                        <option value="{{ $city->id }}" {{ ($companyInfo->organization_city_id ?? '') == $city->id ? 'selected' : '' }}>
+                                            {{ $city->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                             <div class="form-group">
                                 <label>Adresa <span class="text-red">*</span></label>
                                 <input class="form-control w-full" type="text" id="organization_address" name="company_information[organization_address]" value="{{ $organizationAddress ?? ''}}" >
@@ -345,66 +386,12 @@
                                 $deliveryFirstName = optional($deliveryInfo)->delivery_first_name;
                                 $deliveryPhone = optional($deliveryInfo)->delivery_phone;
                                 $deliveryEmail = optional($deliveryInfo)->delivery_email;
-                                $deliveryCountryId = optional($deliveryInfo)->delivery_country_id;
                                 $deliveryCountyId = optional($deliveryInfo)->delivery_county_id;
-                                $deliveryLocality = optional($deliveryInfo)->delivery_locality;
+                                $deliveryCityId = optional($deliveryInfo)->delivery_city_id;
                                 $deliveryAddress = optional($deliveryInfo)->delivery_address;
                             @endphp
                         @endif
 
-
-                        {{-- <div id="delivery-inputs">
-                            <div class="grid grid-4 gap-lg p-8">
-                                <div class="form-group">
-                                    <label>Nume <span class="text-red">*</span></label>
-                                    <input class="form-control w-full" type="text" id="delivery_last_name" name="delivery_last_name" value="{{ $order->delivery_information->delivery_last_name ?? '' }}" >
-                                </div>
-                                <div class="form-group">
-                                    <label>Prenume <span class="text-red">*</span></label>
-                                    <input class="form-control w-full" type="text" id="delivery_first_name" name="delivery_first_name" value="{{ $order->delivery_information->delivery_first_name ?? '' }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>Telefon <span class="text-red">*</span></label>
-                                    <input class="form-control w-full" type="tel" id="delivery_phone" name="delivery_phone" pattern="^\+?[0-9]{1,4}?[0-9]{6,14}$" placeholder="Ex: +40700000000" value="{{ $order->delivery_information->delivery_phone ?? '' }}" >
-                                </div>
-                                <div class="form-group">
-                                    <label>Email <span class="text-red">*</span></label>
-                                    <input class="form-control w-full" type="text" id="delivery_email" name="delivery_email" value="{{ $order->delivery_information->delivery_email ?? '' }}">
-                                </div>
-                            </div>
-
-                           
-                            <div class="grid grid-4 gap-lg p-8">
-
-                                <div class="form-group">
-                                    <label>Tara <span class="text-red">*</span></label>
-                                    <select class="form-control w-full height-43px" name="delivery_information[delivery_country_id]">
-                                        <option value="">Selectează țara</option> 
-                                        @foreach ($countries as $country)
-                                            <option value="{{ $country->id }}" {{ ($order->delivery_information->delivery_country_id ?? '') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Judet <span class="text-red">*</span></label>
-                                    <select class="form-control w-full height-43px" id="delivery_county_id" name="delivery_information[delivery_county_id]">
-                                        <option value="">Alege judetul</option>
-                                        @foreach ($counties as $county)
-                                            <option value="{{ $county->id }}" {{ ($order->delivery_information->delivery_county_id ?? '') == $county->id ? 'selected' : '' }}>{{ $county->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Localitate <span class="text-red">*</span></label>
-                                    <input class="form-control w-full" type="text" id="delivery_locality" name="delivery_locality" value="{{ $order->delivery_information->delivery_locality ?? '' }}" >
-                                </div>
-                                <div class="form-group">
-                                    <label>Adresa <span class="text-red">*</span></label>
-                                    <input class="form-control w-full" type="text" id="delivery_address" name="delivery_address" value="{{ $order->delivery_information->delivery_address ?? '' }}">
-                                </div>
-                            </div>
-                        </div> --}}
                         <div id="delivery-inputs">
                             <div class="grid grid-4 gap-lg p-8">
                                 <div class="form-group">
@@ -426,7 +413,7 @@
                             </div>
                         
                             <div class="grid grid-4 gap-lg p-8">
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label>Tara <span class="text-red">*</span></label>
                                     <select class="form-control w-full height-43px" name="delivery_information[delivery_country_id]">
                                         <option value="">Selectează țara</option> 
@@ -448,12 +435,34 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                
-                        
                                 <div class="form-group">
                                     <label>Localitate <span class="text-red">*</span></label>
                                     <input class="form-control w-full" type="text" id="delivery_locality" name="delivery_locality" value="{{ $deliveryLocality ?? ''  }}">
+                                </div> --}}
+
+                                <div class="form-group">
+                                    <label>Judet <span class="text-red">*</span></label>
+                                    <select class="form-control w-full height-43px" name="delivery_information[delivery_county_id]">
+                                        <option value="">Alege județul</option> 
+                                        @foreach ($counties as $county)
+                                            <option value="{{ $county->id }}" {{ ($deliveryInfo->delivery_county_id ?? '') == $county->id ? 'selected' : '' }}>
+                                                {{ $county->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
+                                <div class="form-group">
+                                    <label>Oras <span class="text-red">*</span></label>
+                                    <select class="form-control w-full height-43px" id="delivery_city_id" name="delivery_information[delivery_city_id]">
+                                        <option value="">Alege orasul</option> 
+                                        @foreach ($cities as $city)
+                                            <option value="{{ $city->id }}" {{ ($deliveryInfo->delivery_city_id ?? '') == $city->id ? 'selected' : '' }}>
+                                                {{ $city->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                
                                 <div class="form-group">
                                     <label>Adresa <span class="text-red">*</span></label>
                                     <input class="form-control w-full" type="text" id="delivery_address" name="delivery_address" value="{{ $deliveryAddress ?? ''  }}">
@@ -786,42 +795,42 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Fetch judete by country
-        const countrySelects = document.querySelectorAll('select[name*="country_id"]');
+        // Fetch judete by county
+        const countySelects = document.querySelectorAll('select[name*="county_id"]');
         
-        countrySelects.forEach(countrySelect => {
-            const countySelect = document.querySelector(`select[name="${countrySelect.name.replace('country', 'county')}"]`);
+        countySelects.forEach(countySelect => {
+            const citySelect = document.querySelector(`select[name="${countySelect.name.replace('county', 'city')}"]`);
             
-            const selectedCountry = countrySelect.value;
             const selectedCounty = countySelect.value;
+            const selectedCity = citySelect.value;
 
-            if (selectedCountry) {
-                // If there is a selected country, load the counties for that country
-                fetch(`/get-counties-by-country/${selectedCountry}`)
+            if (selectedCounty) {
+                // If there is a selected county, load the cities for that county
+                fetch(`/get-counties-by-county/${selectedCounty}`)
                     .then(response => response.json())
                     .then(data => {
-                        countySelect.innerHTML = '<option value="">Selectează judetul</option>';
-                        data.forEach(county => {
-                            countySelect.innerHTML += `<option value="${county.id}" ${county.id == selectedCounty ? 'selected' : ''}>${county.name}</option>`;
+                        citySelect.innerHTML = '<option value="">Selectează orasul</option>';
+                        data.forEach(city => {
+                            citySelect.innerHTML += `<option value="${city.id}" ${city.id == selectedCity ? 'selected' : ''}>${city.name}</option>`;
                         });
                     });
             } else {
-                // If there is no country, have the option to select the county
-                countySelect.innerHTML = '<option value="">Selectează județul</option>';
+                // If there is no county, have the option to select the city
+                citySelect.innerHTML = '<option value="">Selectează orasul</option>';
             }
 
-            countrySelect.addEventListener('change', function () {
+            countySelect.addEventListener('change', function () {
                 if (this.value === "") {
-                    // If a country is selected, reset the dropdown for counties
-                    countySelect.innerHTML = '<option value="">Selectează județul</option>';
+                    // If a county is selected, reset the dropdown for cities
+                    citySelect.innerHTML = '<option value="">Selectează orasul</option>';
                 } else {
-                    // If a valid country is selected, load the necessary counties
-                    fetch(`/get-counties-by-country/${this.value}`)
+                    // If a valid county is selected, load the necessary cities
+                    fetch(`/get-counties-by-county/${this.value}`)
                         .then(response => response.json())
                         .then(data => {
-                            countySelect.innerHTML = '<option value="">Selectează județul</option>';
+                            citySelect.innerHTML = '<option value="">Selectează orasul</option>';
                             data.forEach(county => {
-                                countySelect.innerHTML += `<option value="${county.id}">${county.name}</option>`;
+                                citySelect.innerHTML += `<option value="${city.id}">${city.name}</option>`;
                             });
                         });
                 }
