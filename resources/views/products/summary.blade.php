@@ -12,51 +12,6 @@
 @endsection
 
 @section('content')
-{{-- @php
-    use Illuminate\Support\Facades\Auth;
-    use Illuminate\Support\Facades\URL;
-
-    $invoice = $order->initial_bill;
-    $pos = strpos($invoice, 'resources');
-    $invoice = './emex/' . substr($invoice, $pos);
-    $invoice = str_replace("\\", '/', $invoice);
-
-    if ($order->billing_type) {
-        $company_name = $order->organization_name;
-    } else {
-        $company_name = $order->person_last_name . ' ' . $order->person_first_name;
-    }
-
-    $user = Auth::user();
-    $email = $user ? $user->email : '';
-
-    $order_no = 'RTCH-N-' . $order->identifier;
-    $amount = number_format($order->total, 2, '.', '');
-
-    if ($order->billing_type) {
-        $url = url('/secure-payment') . '?guid=' . $order->guid . '&firstName=' . $order->contact_person_first_name . '&lastName=' . $order->contact_person_last_name . '&companyName=' . $company_name . '&email=' . $order->organization_email . '&orderNo=' . $order_no . '&amount=' . $amount;
-    } else {
-        $url = url('/secure-payment') . '?guid=' . $order->guid . '&firstName=' . $order->person_first_name . '&lastName=' . $order->person_last_name . '&email=' . $order->person_email . '&orderNo=' . $order_no . '&amount=' . $amount;
-    }
-
-    $conversion_value = 0;
-    foreach ($orders_products as $product) {
-        if ($product['name'] != 'Transport' and $product['name'] != 'Cost Ramburs') {
-            $conversion_value += $product['price_no_tva'] * $product['quantity'];
-        }
-    }
-    $conversion_value = number_format(round($conversion_value, 2), 2, '.', ',');
-@endphp --}}
-
-{{-- <script>
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-        'event': 'purchase',
-        'transaction_id': '{{ $order->id }}',
-        'value': '{{ $conversion_value }}',
-        'currency': 'RON'
-    });
-</script> --}}
 
 <style>
     #summary_bill_container>* {
@@ -135,26 +90,5 @@
         @endif
     </div>
 </div>
-
-{{-- @if ($order->payment_method == 'card')
-    <script>
-        function GoBackWithRefresh() {
-            window.location = '{{ $url }}';
-        }
-
-        var counter = 5;
-
-        if (screen.width > 1000) {
-            var timer = setInterval(function() {
-                counter--;
-                document.getElementById('redirect_counter').innerHTML = counter;
-                if (counter == 0) {
-                    GoBackWithRefresh();
-                    clearInterval(timer);
-                }
-            }, 1000);
-        }
-    </script>
-@endif --}}
 
 @endsection

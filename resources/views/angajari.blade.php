@@ -42,23 +42,23 @@
         <div class="grid grid-3 gap-md">
             <div class="form-group">
                 <label>Nume <span class="text-red">*</span></label>
-                <input class="w-full" type="text" class="form-control" placeholder="Nume..." name="Angajari[name]" aria-required="true" required="required">
+                <input class="w-full form-control" type="text" placeholder="Nume..." name="Angajari[name]" aria-required="true" required="required">
             </div>
             <div class="form-group">
                 <label>Data Nasterii <span class="text-red">*</span></label>
-                <input class="w-full" type="date" class="form-control" placeholder="Data Nasterii..." name="Angajari[date_of_birth]" aria-required="true" required="required">
+                <input class="w-full form-control" type="date" name="Angajari[date_of_birth]" aria-required="true" required="required">
             </div>
             <div class="form-group">
                 <label>Adresa <span class="text-red">*</span></label>
-                <input class="w-full" type="text" class="form-control" placeholder="Adresa..." name="Angajari[address]" aria-required="true" required="required">
+                <input class="w-full form-control" type="text" placeholder="Adresa..." name="Angajari[address]" aria-required="true" required="required">
             </div>
             <div class="form-group">
                 <label>Cod Postal <span class="text-red">*</span></label>
-                <input class="w-full" type="text" class="form-control" placeholder="Cod Postal..." name="Angajari[postal_code]" aria-required="true" required="required">
+                <input class="w-full form-control" type="text" placeholder="Cod Postal..." name="Angajari[postal_code]" aria-required="true" required="required">
             </div>
             <div class="form-group">
                 <label>Email <span class="text-red">*</span></label>
-                <input class="w-full" type="email" class="form-control" placeholder="Email..." name="Angajari[email]" aria-required="true" required="required">
+                <input class="w-full form-control" type="email" placeholder="Email..." name="Angajari[email]" aria-required="true" required="required">
             </div>
             <div class="form-group">
                 <label>Sex <span class="text-red">*</span></label>
@@ -71,12 +71,12 @@
         <div class="grid grid-2 gap-md mt-16">
             <div class="form-group">
                 <label>Oras <span class="text-red">*</span></label>
-                <input class="w-full" type="text" class="form-control" placeholder="Oras..." name="Angajari[city]" aria-required="true" required="required">
+                <input class="w-full form-control" type="text" placeholder="Oras..." name="Angajari[city]" aria-required="true" required="required">
             </div>
 
             <div class="form-group">
                 <label>CV <span class="text-red">*</span></label>
-                <input class="w-full" type="file" class="form-control" placeholder="CV..." name="Angajari[upload]" aria-required="true" required="required">
+                <input class="w-full form-control" type="file" name="Angajari[upload]" aria-required="true" required="required">
             </div>
         </div>
         <div class="form-group mt-32">

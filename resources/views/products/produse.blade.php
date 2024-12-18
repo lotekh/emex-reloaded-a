@@ -93,16 +93,20 @@
                 <div class="flex align-center">
                     <p class="mr-8">Produse pe pagina:</p>
                     <div class="flex">
-                        <a href="{{ url('/produse') . $filtersString }}&per_page=9">
-                            <button class="btn btn-empty rounded-sm {{ $perPage == 9 ? 'active' : '' }} mr-8">9</button>
+                        <a href="{{ url('/produse') . $filtersString }}&per_page=9" 
+                           class="btn btn-empty rounded-sm {{ $perPage == 9 ? 'active' : '' }} mr-8">
+                            9
                         </a>
-                        <a href="{{ url('/produse') . $filtersString }}&per_page=27">
-                            <button class="btn btn-empty rounded-sm {{ $perPage == 27 ? 'active' : '' }} mr-8">27</button>
+                        <a href="{{ url('/produse') . $filtersString }}&per_page=27" 
+                           class="btn btn-empty rounded-sm {{ $perPage == 27 ? 'active' : '' }} mr-8">
+                            27
                         </a>
-                        <a href="{{ url('/produse') . $filtersString }}&per_page=72">
-                            <button class="btn btn-empty rounded-sm {{ $perPage == 72 ? 'active' : '' }}">72</button>
+                        <a href="{{ url('/produse') . $filtersString }}&per_page=72" 
+                           class="btn btn-empty rounded-sm {{ $perPage == 72 ? 'active' : '' }}">
+                            72
                         </a>
                     </div>
+                    
                 </div>
             </div>
 

@@ -79,7 +79,7 @@
                             <label>Telefon</label>
                             <input class="w-full" type="text" name="person_phone" value="{{ $companyInformation['person_phone'] ?? '' }}">
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label>Tara</label>
                             <select class="w-full" name="person_country_id" id="person_country_id">
                                 <option value="">Alege tara</option>
@@ -97,7 +97,23 @@
                         <div class="form-group">
                             <label>Localitate</label>
                             <input class="w-full" type="text" name="person_locality" value="{{ $companyInformation['person_locality'] ?? '' }}">
+                        </div> --}}
+                        <div class="form-group">
+                            <label>Județ</label>
+                            <select class="w-full" name="person_county_id" id="person_county_id" data-selected-county="{{ $companyInformation['person_county_id'] ?? '' }}">
+                                <option value="">Alege județul</option>
+                                @foreach ($counties as $county)
+                                    <option value="{{ $county->id }}" @if (($companyInformation['person_county_id'] ?? null) == $county->id) selected @endif>{{ $county->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
+                        <div class="form-group">
+                            <label>Localitate</label>
+                            <select class="w-full" name="person_city_id" id="person_city_id" data-selected-city="{{ $companyInformation['person_city_id'] ?? '' }}">
+                                <option value="">Alege localitatea</option>
+                            </select>
+                        </div>
+                        
                         <div class="form-group">
                             <label>Adresa</label>
                             <input class="w-full" type="text" name="person_address" value="{{ $companyInformation['person_address'] ?? '' }}">
@@ -134,7 +150,7 @@
                             <label>Prenume persoana de contact</label>
                             <input class="w-full" type="text" name="contact_person_first_name" value="{{ $companyInformation['contact_person_first_name'] ?? '' }}">
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label>Tara</label>
                             <select class="w-full" name="organization_country_id" id="organization_country_id">
                                 <option value="">Alege tara</option>
@@ -152,7 +168,23 @@
                         <div class="form-group">
                             <label>Localitate</label>
                             <input class="w-full" type="text" name="organization_locality" value="{{ $companyInformation['organization_locality'] ?? '' }}">
+                        </div> --}}
+                        <div class="form-group">
+                            <label>Județ</label>
+                            <select class="w-full" name="organization_county_id" id="organization_county_id" data-selected-county="{{ $companyInformation['organization_county_id'] ?? '' }}">
+                                <option value="">Alege județul</option>
+                                @foreach ($counties as $county)
+                                    <option value="{{ $county->id }}" @if (($companyInformation['organization_county_id'] ?? null) == $county->id) selected @endif>{{ $county->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
+                        <div class="form-group">
+                            <label>Localitate</label>
+                            <select class="w-full" name="organization_city_id" id="organization_city_id" data-selected-city="{{ $companyInformation['organization_city_id'] ?? '' }}">
+                                <option value="">Alege localitatea</option>
+                            </select>
+                        </div>
+                        
                         <div class="form-group">
                             <label>Adresa</label>
                             <input class="w-full" type="text" name="organization_address" value="{{ $companyInformation['organization_bank_address'] ?? '' }}">
@@ -192,7 +224,7 @@
                 </div>
                 <h5 class="mt-32">Adresa de livrare</h5>
                 <div class="grid grid-3 gap-md">
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label>Tara</label>
                         <select class="w-full" name="delivery_country_id" id="delivery_country_id">
                             <option value="">Alege tara</option>
@@ -210,7 +242,23 @@
                     <div class="form-group">
                         <label>Localitate</label>
                         <input type="text" class="w-full" name="delivery_locality" value="{{ $deliveryInformation['delivery_locality'] ?? '' }}">
+                    </div> --}}
+                    <div class="form-group">
+                        <label>Județ</label>
+                        <select class="w-full" name="delivery_county_id" id="delivery_county_id" data-selected-county="{{ $deliveryInformation['delivery_county_id'] ?? '' }}">
+                            <option value="">Alege județul</option>
+                            @foreach ($counties as $county)
+                                <option value="{{ $county->id }}" @if (($deliveryInformation['delivery_county_id'] ?? null) == $county->id) selected @endif>{{ $county->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
+                    <div class="form-group">
+                        <label>Localitate</label>
+                        <select class="w-full" name="delivery_city_id" id="delivery_city_id" data-selected-city="{{ $deliveryInformation['delivery_city_id'] ?? '' }}">
+                            <option value="">Alege localitatea</option>
+                        </select>
+                    </div>
+                    
                     <div class="form-group">
                         <label>Adresa</label>
                         <input class="w-full" type="text" name="delivery_address" value="{{ $deliveryInformation['delivery_address'] ?? '' }}">
@@ -376,91 +424,92 @@
             });
         });
 
-    const billingType = document.getElementById('billing-type');
-    const personBilling = document.getElementById('person-billing');
-    const organizationBilling = document.getElementById('organization-billing');
-    
-    billingType.addEventListener('change', function () {
-        if (this.value == '0') {
+        const billingType = document.getElementById('billing-type');
+        const personBilling = document.getElementById('person-billing');
+        const organizationBilling = document.getElementById('organization-billing');
+        
+        billingType.addEventListener('change', function () {
+            if (this.value == '0') {
+                personBilling.style.display = 'flex';
+                organizationBilling.style.display = 'none';
+            } else if (this.value == '1') {
+                personBilling.style.display = 'none';
+                organizationBilling.style.display = 'flex';
+            } else {
+                personBilling.style.display = 'none';
+                organizationBilling.style.display = 'none';
+            }
+        });
+
+        if (billingType.value == '0') {
             personBilling.style.display = 'flex';
             organizationBilling.style.display = 'none';
-        } else if (this.value == '1') {
+        } else if (billingType.value == '1') {
             personBilling.style.display = 'none';
             organizationBilling.style.display = 'flex';
         } else {
             personBilling.style.display = 'none';
             organizationBilling.style.display = 'none';
         }
-    });
 
-    if (billingType.value == '0') {
-        personBilling.style.display = 'flex';
-        organizationBilling.style.display = 'none';
-    } else if (billingType.value == '1') {
-        personBilling.style.display = 'none';
-        organizationBilling.style.display = 'flex';
-    } else {
-        personBilling.style.display = 'none';
-        organizationBilling.style.display = 'none';
-    }
+        const countySelects = document.querySelectorAll('[name$="_county_id"]');
 
-    const countrySelects = document.querySelectorAll('[name$="_country_id"]');
-    console.log(countrySelects);
-    countrySelects.forEach(countrySelect => {
-        const countySelect = document.getElementById(countrySelect.name.replace('country', 'county'));
-        const selectedCountyId = countySelect.getAttribute('data-selected-county');
+        countySelects.forEach(countySelect => {
+            const citySelect = document.getElementById(countySelect.name.replace('county', 'city'));
+            const selectedCityId = citySelect.getAttribute('data-selected-city');
 
-        function preselectCounty(countyData, firstShow=false) {
-            countyData.forEach(county => {
-                countySelect.innerHTML += `<option value="${county.id}">${county.name}</option>`;
-            });
-            if (selectedCountyId && firstShow) {
-                countySelect.value = selectedCountyId;
-            }
-        }
-
-        function loadCounties(countryId, firstShow=false) {
-            console.log(countySelect);
-            fetch('/get-counties-by-country/' + countryId)
-                .then(response => response.json())
-                .then(data => {
-                    preselectCounty(data, firstShow);
-                })
-                .catch(error => {
-                    console.error('Eroare la încărcarea județelor:', error);
-                    countySelect.innerHTML = '<option value="">Eroare la încărcarea județelor</option>';
+            // Funcție pentru preselectarea localităților
+            function preselectCity(cityData, firstShow = false) {
+                citySelect.innerHTML = '<option value="">Alege localitatea</option>';
+                cityData.forEach(city => {
+                    citySelect.innerHTML += `<option value="${city.id}">${city.name}</option>`;
                 });
-        }
-
-        countrySelect.addEventListener('change', function () {
-            countySelect.innerHTML = '<option value="" selected>Alege judetul</option>';
-            if (!this.value) {
-                return;
+                if (selectedCityId && firstShow) {
+                    citySelect.value = selectedCityId;
+                }
             }
 
-            loadCounties(this.value);
+            // Funcție pentru încărcarea localităților pe baza județului selectat
+            function loadCities(countyId, firstShow = false) {
+                console.log(citySelect);
+                fetch('/get-cities-by-county/' + countyId)
+                    .then(response => response.json())
+                    .then(data => {
+                        preselectCity(data, firstShow);
+                    })
+                    .catch(error => {
+                        console.error('Eroare la încărcarea localităților:', error);
+                        citySelect.innerHTML = '<option value="">Eroare la încărcarea localităților</option>';
+                    });
+            }
+
+            // Ascultă schimbarea județului pentru a încărca localitățile
+            countySelect.addEventListener('change', function () {
+                citySelect.innerHTML = '<option value="" selected>Alege localitatea</option>';
+                if (!this.value) {
+                    return;
+                }
+
+                loadCities(this.value);
+            });
+
+            // Preîncarcă localitățile dacă există deja un județ selectat
+            if (countySelect.value) {
+                console.log("county select:", countySelect, countySelect.value);
+                loadCities(countySelect.value, true);
+            }
         });
 
-        if (countrySelect.value) {
-            console.log("country select:", countrySelect, countrySelect.value);
-            loadCounties(countrySelect.value, true);
+        const hash = window.location.hash.substring(1);  
+        if (hash) {
+            showTab(hash);  
         }
+
+        window.addEventListener('hashchange', function() {
+            const newHash = window.location.hash.substring(1);
+            showTab(newHash);  
+        });
     });
-
-    const hash = window.location.hash.substring(1);  
-    if (hash) {
-        showTab(hash);  
-    }
-
-    window.addEventListener('hashchange', function() {
-        const newHash = window.location.hash.substring(1);
-        showTab(newHash);  
-    });
-});
-
-
-
-
 
 </script>
 @endsection

@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Response;
 // use Illuminate\Http\Response;
-use App\Models\Country;
+use App\Models\City;
 use App\Models\County;
 use App\Models\User;
 use App\Models\Order;
@@ -293,11 +293,12 @@ class OrdersController extends Controller
         // Save the order in session
         session()->put('order', $order);
 
-        // Get the list of countries and counties
-        $countries = Country::all();
+        // Get the list of counties and cities
+        
         $counties = County::all();
+        $cities = City::all();
 
-        return view('products.finalizeaza-comanda', compact('user', 'order', 'countries', 'counties', 'ordered_products', 'isGuest', 'order_id'));
+        return view('products.finalizeaza-comanda', compact('user', 'order', 'cities', 'counties', 'ordered_products', 'isGuest', 'order_id'));
     }
 
 
@@ -356,9 +357,9 @@ class OrdersController extends Controller
                 $dbOrder->transport_price_no_tva = $order['transport_price_no_tva'];
             }
 
-            $personCountyId = null;
-            $companyCountyId = null;
-            $deliveryCountyId = null;
+            $personCityId = null;
+            $companyCityId = null;
+            $deliveryCityId = null;
 
             // Set the values for persoana fizica or persoana juridica based on billing_type
             // Persoană fizică
@@ -368,12 +369,11 @@ class OrdersController extends Controller
                     'person_first_name' => $request->input('person_first_name'),
                     'person_phone' => $request->input('person_phone'),
                     'person_email' => $request->input('person_email'),
-                    'person_country_id' => $request->input('company_information.person_country_id'),
                     'person_county_id' => $request->input('company_information.person_county_id'),
-                    'person_locality' => $request->input('company_information.person_locality'),
+                    'person_city_id' => $request->input('company_information.person_city_id'),
                     'person_address' => $request->input('company_information.person_address'),
                 ];
-                $personCountyId = $companyInformationArray['person_county_id'];
+                $personCityId = $companyInformationArray['person_city_id'];
             // Persoană juridică
             } elseif ($request->input('billing_type') == 1) { 
                 $companyInformationArray = [
@@ -385,12 +385,11 @@ class OrdersController extends Controller
                     'organization_bank_account' => $request->input('organization_bank_account'),
                     'contact_person_last_name' => $request->input('contact_person_last_name'),
                     'contact_person_first_name' => $request->input('contact_person_first_name'),
-                    'organization_country_id' => $request->input('company_information.organization_country_id'),
                     'organization_county_id' => $request->input('company_information.organization_county_id'),
-                    'organization_locality' => $request->input('company_information.organization_locality'),
+                    'organization_city_id' => $request->input('company_information.organization_city_id'),
                     'organization_address' => $request->input('company_information.organization_address'),
                 ];
-                $companyCountyId = $companyInformationArray['organization_county_id'];
+                $companyCityId = $companyInformationArray['organization_city_id'];
             }
 
             // Calculate rambursValue if delivery_type is 0 (curier)
@@ -420,9 +419,8 @@ class OrdersController extends Controller
                         'delivery_first_name' => $request->input('person_first_name'),
                         'delivery_phone' => $request->input('person_phone'),
                         'delivery_email' => $request->input('person_email'),
-                        'delivery_country_id' => $request->input('company_information.person_country_id'),
-                        'delivery_county_id' => $personCountyId,
-                        'delivery_locality' => $request->input('company_information.person_locality'),
+                        'delivery_county_id' => $request->input('company_information.person_county_id'),
+                        'delivery_city_id' => $personCityId,
                         'delivery_address' => $request->input('company_information.person_address'),
                     ];
                 // Persoană juridică
@@ -432,9 +430,8 @@ class OrdersController extends Controller
                         'delivery_first_name' => $request->input('contact_person_first_name'),
                         'delivery_phone' => $request->input('organization_phone'),
                         'delivery_email' => $request->input('organization_email'),
-                        'delivery_country_id' => $request->input('company_information.organization_country_id'),
-                        'delivery_county_id' => $companyCountyId,
-                        'delivery_locality' => $request->input('company_information.organization_locality'),
+                        'delivery_county_id' => $request->input('company_information.organization_county_id'),
+                        'delivery_city_id' => $companyCityId,
                         'delivery_address' => $request->input('company_information.organization_address'),
                     ];
                 }
@@ -446,16 +443,15 @@ class OrdersController extends Controller
                         'delivery_first_name' => $request->input('delivery_first_name'),
                         'delivery_phone' => $request->input('delivery_phone'),
                         'delivery_email' => $request->input('delivery_email'),
-                        'delivery_country_id' => $request->input('delivery_information.delivery_country_id'),
                         'delivery_county_id' => $request->input('delivery_information.delivery_county_id'),
-                        'delivery_locality' => $request->input('delivery_locality'),
+                        'delivery_city_id' => $request->input('delivery_information.delivery_city_id'),
                         'delivery_address' => $request->input('delivery_address'),
                     ];
                 }
             }
 
             if ($deliveryInformationArray){
-                $deliveryCountyId = $deliveryInformationArray['delivery_county_id'];
+                $deliveryCityId = $deliveryInformationArray['delivery_city_id'];
             }
 
             if ($request->input('delivery_type') == 0) { // Livrare prin curier
@@ -484,9 +480,9 @@ class OrdersController extends Controller
                 'billing_type' => $request->input('billing_type'),
                 'delivery_type' => $request->input('delivery_type'),
                 'payment_method' => $request->input('payment_method'),
-                'person_county_id' => $personCountyId,
-                'company_county_id' => $companyCountyId,
-                'delivery_county_id' => $deliveryCountyId,
+                'person_city_id' => $personCityId,
+                'company_city_id' => $companyCityId,
+                'delivery_city_id' => $deliveryCityId,
                 'company_information' => json_encode($companyInformationArray),  
                 'is_paid' => true,
                 'delivery_information' => $deliveryInformation,
@@ -511,9 +507,8 @@ class OrdersController extends Controller
                     $companyInformationUser['person_first_name'] = $companyInformation['person_first_name'] ?? null;
                     $companyInformationUser['person_phone'] = $companyInformation['person_phone'] ?? null;
                     $companyInformationUser['person_email'] = $companyInformation['person_email'] ?? null;
-                    $companyInformationUser['person_country_id'] = $companyInformation['person_country_id'] ?? null;
                     $companyInformationUser['person_county_id'] = $companyInformation['person_county_id'] ?? null;
-                    $companyInformationUser['person_locality'] = $companyInformation['person_locality'] ?? null;
+                    $companyInformationUser['person_city_id'] = $companyInformation['person_city_id'] ?? null;
                     $companyInformationUser['person_address'] = $companyInformation['person_address'] ?? null;
                 } elseif ($request->input('billing_type') == 1) { // Persoană juridică
                     $companyInformationUser['organization_name'] = $companyInformation['organization_name'] ?? null;
@@ -524,9 +519,8 @@ class OrdersController extends Controller
                     $companyInformationUser['organization_bank_account'] = $companyInformation['organization_bank_account'] ?? null;
                     $companyInformationUser['contact_person_last_name'] = $companyInformation['contact_person_last_name'] ?? null;
                     $companyInformationUser['contact_person_first_name'] = $companyInformation['contact_person_first_name'] ?? null;
-                    $companyInformationUser['organization_country_id'] = $companyInformation['organization_country_id'] ?? null;
                     $companyInformationUser['organization_county_id'] = $companyInformation['organization_county_id'] ?? null;
-                    $companyInformationUser['organization_locality'] = $companyInformation['organization_locality'] ?? null;
+                    $companyInformationUser['organization_city_id'] = $companyInformation['organization_city_id'] ?? null;
                     $companyInformationUser['organization_address'] = $companyInformation['organization_address'] ?? null;
                 }
 
@@ -536,9 +530,8 @@ class OrdersController extends Controller
                     $deliveryInformationUser['delivery_first_name'] = $deliveryInformationArray['delivery_first_name'] ?? null;
                     $deliveryInformationUser['delivery_phone'] = $deliveryInformationArray['delivery_phone'] ?? null;
                     $deliveryInformationUser['delivery_email'] = $deliveryInformationArray['delivery_email'] ?? null;
-                    $deliveryInformationUser['delivery_country_id'] = $deliveryInformationArray['delivery_country_id'] ?? null;
                     $deliveryInformationUser['delivery_county_id'] = $deliveryInformationArray['delivery_county_id'] ?? null;
-                    $deliveryInformationUser['delivery_locality'] = $deliveryInformationArray['delivery_locality'] ?? null;
+                    $deliveryInformationUser['delivery_city_id'] = $deliveryInformationArray['delivery_city_id'] ?? null;
                     $deliveryInformationUser['delivery_address'] = $deliveryInformationArray['delivery_address'] ?? null;
                 }
 
@@ -756,7 +749,7 @@ class OrdersController extends Controller
             $county = County::where('id', $order->delivery_county_id)->first();
             $countyName = $county ? $county->name : 'Necunoscut';
             // Ia localitatea din informațiile de livrare
-            $city = $order->delivery_information['delivery_locality'] ?? ''; 
+            $city = $order->delivery_information['delivery_city'] ?? ''; 
         }
 
         $billingCountyId = null;

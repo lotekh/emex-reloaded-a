@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Country;
+use App\Models\City;
 use App\Models\County;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -72,13 +72,13 @@ class UserController extends Controller
     public function edit()
     {
         $user = Auth::user();
-        $countries = Country::all();
         $counties = County::all();
+        $cities = City::all();
 
-        // Preluăm comenzile utilizatorului împreună cu produsele din comenzi
+        // Get the orders of the user along with the products from the order
         $orders = $user->orders()->with('productVariations.product')->get();
 
-        return view('contul-meu', compact('user', 'countries', 'counties', 'orders'));
+        return view('contul-meu', compact('user', 'cities', 'counties', 'orders'));
     }
 
     public function saveDetaliiCont(Request $request)
@@ -94,6 +94,13 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $data = $request->except(['_token', 'user_id']);
+
+        if ($request->billing_type == 0) { // Persoana fizica
+            $user->person_city_id = $request->input('person_city_id'); 
+        } elseif ($request->billing_type == 1) { // Persoana juridica
+            $user->organization_city_id = $request->input('organization_city_id'); 
+        }
+
         $user->company_information = json_encode($data);
         $user->billing_type = $request->billing_type;
         $user->save();
@@ -134,10 +141,10 @@ class UserController extends Controller
         return redirect('/contul-meu#' . $request->input('active_tab'))->with('success', 'Parola a fost schimbata cu succes.');
     }
 
-    public function getCountiesByCountry($countryId)
+    public function getCitiesByCounty($countyId)
     {
-        $counties = County::where('country_id', $countryId)->get();
-
-        return response()->json($counties);
+        $cities = City::where('county_id', $countyId)->get();
+        return response()->json($cities);
     }
+
 }

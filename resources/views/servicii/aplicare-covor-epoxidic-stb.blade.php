@@ -45,14 +45,12 @@ APLICARE COVOR EPOXIDIC DE CUARTZ
 @endsection
 
 @section('section_1_text')
-<p>
 Printre pardoselile epoxidice cu caracteristici de
 inalta performanta, se numara si <strong><em>Covorul Epoxidic Decorativ “Emex Quartz”</em></strong>,
 denumit adesea si <strong><em>Pardoseala Epoxidica STB</em></strong>. Fiind realizat prin elicoperizarea
 granulelor de cuartz pe o baza epoxidica, acest tip de acoperire se constituie intr-una din cele mai
 rezistente solutii existente, cu conditia sa fie realizata conform proceselor tehnologice stabilite de
 producator, si pusa in opera de catre personal specializat.
-</p>
 @endsection
 
 @section('link_vezi_produsul')

@@ -17,7 +17,7 @@ var personFirstName = document.getElementById("person_first_name");
 var personPhone = document.getElementById("person_phone");
 var personCountyId = document.getElementById("person_county_id");
 // var personLocalityId = document.getElementById("person_locality_id");
-var personLocalityId = document.getElementById("person_locality_id");
+var personCityId = document.getElementById("person_city_id");
 // console.log("personLocalityId:", personLocalityId); // Verifică dacă elementul este definit corect
 
 // if (personLocalityId) {
@@ -34,9 +34,7 @@ var personEmail = document.getElementById("person_email");
 var organizationName = document.getElementById("organization_name");
 var organizationCUI = document.getElementById("organization_cui");
 var organizationCountyId = document.getElementById("organization_county_id");
-var organizationLocalityId = document.getElementById(
-  "organization_locality_id"
-);
+var organizationCityId = document.getElementById("organization_city_id");
 var organizationAddress = document.getElementById("organization_address");
 var organizationPhone = document.getElementById("organization_phone");
 var organizationEmail = document.getElementById("organization_email");
@@ -68,14 +66,14 @@ function initializeBillingType() {
     personFirstName.required = false;
     personPhone.required = false;
     personCountyId.required = false;
-    personLocalityId.required = false;
+    personCityId.required = false;
     personAddress.required = false;
     personEmail.required = false;
 
     organizationName.required = true;
     organizationCUI.required = true;
     organizationCountyId.required = true;
-    organizationLocalityId.required = true;
+    organizationCityId.required = true;
     organizationAddress.required = true;
     organizationPhone.required = true;
     organizationEmail.required = true;
@@ -97,14 +95,14 @@ function initializeBillingType() {
     personFirstName.required = true;
     personPhone.required = true;
     personCountyId.required = true;
-    personLocalityId.required = true;
+    personCityId.required = true;
     personAddress.required = true;
     personEmail.required = true;
 
     organizationName.required = false;
     organizationCUI.required = false;
     organizationCountyId.required = false;
-    organizationLocalityId.required = false;
+    organizationCityId.required = false;
     organizationAddress.required = false;
     organizationPhone.required = false;
     organizationEmail.required = false;
@@ -134,14 +132,14 @@ function changeBillingType() {
       personFirstName.required = false;
       personPhone.required = false;
       personCountyId.required = false;
-      personLocalityId.required = false;
+      personCityId.required = false;
       personAddress.required = false;
       personEmail.required = false;
 
       organizationName.required = true;
       organizationCUI.required = true;
       organizationCountyId.required = true;
-      organizationLocalityId.required = true;
+      organizationCityId.required = true;
       organizationAddress.required = true;
       organizationPhone.required = true;
       organizationEmail.required = true;
@@ -175,14 +173,14 @@ function changeBillingType() {
       personFirstName.required = true;
       personPhone.required = true;
       personCountyId.required = true;
-      personLocalityId.required = true;
+      personCityId.required = true;
       personAddress.required = true;
       personEmail.required = true;
 
       organizationName.required = false;
       organizationCUI.required = false;
       organizationCountyId.required = false;
-      organizationLocalityId.required = false;
+      organizationCityId.required = false;
       organizationAddress.required = false;
       organizationPhone.required = false;
       organizationEmail.required = false;
