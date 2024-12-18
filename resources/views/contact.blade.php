@@ -203,9 +203,6 @@
     </div>
 </div>
 
-@endsection
-
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const form = document.getElementById('cpf');
@@ -229,3 +226,8 @@
         }
     });
 </script>
+
+@endsection
+
+
+

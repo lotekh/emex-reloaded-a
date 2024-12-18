@@ -128,11 +128,7 @@ function populateSummary() {
     summaryBillingCounty.innerHTML =
       personCountyId.options[personCountyId.selectedIndex].text;
 
-    // summaryBillingCity.innerHTML = personLocalityId.options[personLocalityId.selectedIndex].text;
-    // var personLocalityId = document.getElementById("person_locality_id");
-    // console.log("Valoarea pentru personLocalityId: ", personLocalityId.value);
-    summaryBillingCity.innerHTML = personLocalityId.value;
-    // summaryBillingCity.innerHTML = personLocalityId.value;
+    summaryBillingCity.innerHTML = personCityId.value;
 
     summaryBillingAddress.innerHTML = personAddress.value;
     summaryBillingCUIContainer.style.display = "none";
@@ -146,12 +142,7 @@ function populateSummary() {
     summaryBillingCounty.innerHTML =
       organizationCountyId.options[organizationCountyId.selectedIndex].text;
 
-    // summaryBillingCity.innerHTML = organizationLocalityId.options[organizationLocalityId.selectedIndex].text;
-    // var organizationLocalityId = document.getElementById(
-    //     "organization_locality_id"
-    //   );
-
-    summaryBillingCity.innerHTML = organizationLocalityId.value;
+    summaryBillingCity.innerHTML = organizationCityId.value;
     summaryBillingAddress.innerHTML = organizationAddress.value;
     summaryBillingCUIContainer.style.display = "block";
     summaryBillingBankContainer.style.display = "block";
@@ -202,9 +193,7 @@ function populateSummary() {
         summaryDeliveryEmail.innerHTML = personEmail.value;
         summaryDeliveryCounty.innerHTML =
           personCountyId.options[personCountyId.selectedIndex].text;
-        // summaryDeliveryCity.innerHTML =
-        //   personLocalityId.options[personLocalityId.selectedIndex].text;
-        summaryDeliveryCity.innerHTML = personLocalityId.value;
+        summaryDeliveryCity.innerHTML = personCityId.value;
         summaryDeliveryAddress.innerHTML = personAddress.value;
 
         getTransportPrice(personCountyId.value);
@@ -214,12 +203,7 @@ function populateSummary() {
         summaryDeliveryEmail.innerHTML = organizationEmail.value;
         summaryDeliveryCounty.innerHTML =
           organizationCountyId.options[organizationCountyId.selectedIndex].text;
-        // summaryDeliveryCity.innerHTML =
-        //   organizationLocalityId.options[
-        //     organizationLocalityId.selectedIndex
-        //   ].text;
-        console.log(organizationLocalityId.value);
-        summaryDeliveryCity.innerHTML = organizationLocalityId.value;
+        summaryDeliveryCity.innerHTML = organizationCityId.value;
         summaryDeliveryAddress.innerHTML = organizationAddress.value;
 
         getTransportPrice(organizationCountyId.value);
@@ -231,9 +215,7 @@ function populateSummary() {
       summaryDeliveryEmail.innerHTML = deliveryEmail.value;
       summaryDeliveryCounty.innerHTML =
         deliveryCountyId.options[deliveryCountyId.selectedIndex].text;
-      //   summaryDeliveryCity.innerHTML =
-      //     deliveryLocalityId.options[deliveryLocalityId.selectedIndex].text;
-      summaryDeliveryCity.innerHTML = deliveryLocalityId.value;
+      summaryDeliveryCity.innerHTML = deliveryCityId.value;
       summaryDeliveryAddress.innerHTML = deliveryAddress.value;
 
       getTransportPrice(deliveryCountyId.value);
