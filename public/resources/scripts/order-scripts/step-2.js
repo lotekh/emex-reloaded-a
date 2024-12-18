@@ -19,8 +19,7 @@ var deliveryFirstName = document.getElementById("delivery_first_name");
 var deliveryPhone = document.getElementById("delivery_phone");
 var deliveryEmail = document.getElementById("delivery_email");
 var deliveryCountyId = document.getElementById("delivery_county_id");
-// var deliveryLocalityId = document.getElementById('delivery_locality_id');
-var deliveryLocalityId = document.getElementById("delivery_locality");
+var deliveryCityId = document.getElementById("delivery_city_id");
 var deliveryAddress = document.getElementById("delivery_address");
 
 curierCheck.addEventListener("click", changeDeliveryType);
@@ -43,7 +42,7 @@ function changeDeliveryType() {
       deliveryPhone.required = true;
       deliveryEmail.required = true;
       deliveryCountyId.required = true;
-      deliveryLocalityId.required = true;
+      deliveryCityId.required = true;
       deliveryAddress.required = true;
 
       if (goToStep3.classList.contains("btn-disabled")) {
@@ -69,7 +68,7 @@ function changeDeliveryType() {
       deliveryPhone.required = false;
       deliveryEmail.required = false;
       deliveryCountyId.required = false;
-      deliveryLocalityId.required = false;
+      deliveryCityId.required = false;
       deliveryAddress.required = false;
 
       if (goToStep3.classList.contains("btn-disabled")) {
@@ -99,7 +98,7 @@ function sameDataAsBilling() {
     deliveryPhone.required = false;
     deliveryEmail.required = false;
     deliveryCountyId.required = false;
-    deliveryLocalityId.required = false;
+    deliveryCityId.required = false;
     deliveryAddress.required = false;
   } else {
     hideOrShowDeliveryInputs(true);

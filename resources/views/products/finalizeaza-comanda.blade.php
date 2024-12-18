@@ -205,8 +205,8 @@
                                 <input class="form-control w-full" type="text" id="person_locality_id" name="company_information[person_locality]" value="{{ $personLocality ?? '' }}" >
                             </div> --}}
                             <div class="form-group">
-                                <label>Tara <span class="text-red">*</span></label>
-                                <select class="form-control w-full height-43px" name="company_information[person_county_id]">
+                                <label>Judet <span class="text-red">*</span></label>
+                                <select class="form-control w-full height-43px" name="company_information[person_county_id]" id="person_county_id">
                                     <option value="">Selectează județul</option> 
                                     @foreach ($counties as $county)
                                         <option value="{{ $county->id }}" {{ ($companyInfo->person_county_id ?? '') == $county->id ? 'selected' : '' }}>
@@ -217,7 +217,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Oras <span class="text-red">*</span></label>
-                                <select class="form-control w-full height-43px" name="company_information[person_city_id]" id="person_county_id">
+                                <select class="form-control w-full height-43px" name="company_information[person_city_id]" id="person_city_id">
                                     <option value="">Selectează orasul</option> 
                                     @foreach ($cities as $city)
                                         <option value="{{ $city->id }}" {{ ($companyInfo->person_city_id ?? '') == $city->id ? 'selected' : '' }}>
@@ -307,7 +307,7 @@
 
                             <div class="form-group">
                                 <label>Judet <span class="text-red">*</span></label>
-                                <select class="form-control w-full height-43px" name="company_information[organization_county_id]">
+                                <select class="form-control w-full height-43px" name="company_information[organization_county_id]" id="organization_county_id">
                                     <option value="">Selectează județul</option> 
                                     @foreach ($counties as $county)
                                         <option value="{{ $county->id }}" {{ ($companyInfo->organization_county_id ?? '') == $county->id ? 'selected' : '' }}>
@@ -442,7 +442,7 @@
 
                                 <div class="form-group">
                                     <label>Judet <span class="text-red">*</span></label>
-                                    <select class="form-control w-full height-43px" name="delivery_information[delivery_county_id]">
+                                    <select class="form-control w-full height-43px" name="delivery_information[delivery_county_id]" id="delivery_county_id">
                                         <option value="">Alege județul</option> 
                                         @foreach ($counties as $county)
                                             <option value="{{ $county->id }}" {{ ($deliveryInfo->delivery_county_id ?? '') == $county->id ? 'selected' : '' }}>
@@ -772,8 +772,8 @@
     var totalPrice = '{{ number_format($total_price, 2, '.', '') }}';
     var totalValue = '{{ number_format($total_value, 2, '.', '') }}';
     var totalTva = '{{ number_format($total_tva, 2, '.', '') }}';
-    var userPersonLocalityId = '{{ $order->company_information->person_locality_id ?? '' }}';
-    var userOrganizationLocalityId = '{{ $order->company_information->organization_locality_id ?? '' }}';
+    var userPersonCityId = '{{ $order->company_information->person_city_id ?? '' }}';
+    var userOrganizationCityId = '{{ $order->company_information->organization_city_id ?? '' }}';
     // var userDeliveryLocalityId = '{{ $order->delivery_information->delivery_locality ?? '' }}';
 </script>
 
@@ -795,7 +795,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Fetch judete by county
+        // Fetch cities by county
         const countySelects = document.querySelectorAll('select[name*="county_id"]');
         
         countySelects.forEach(countySelect => {
@@ -806,7 +806,7 @@
 
             if (selectedCounty) {
                 // If there is a selected county, load the cities for that county
-                fetch(`/get-counties-by-county/${selectedCounty}`)
+                fetch(`/get-cities-by-county/${selectedCounty}`)
                     .then(response => response.json())
                     .then(data => {
                         citySelect.innerHTML = '<option value="">Selectează orasul</option>';
@@ -825,11 +825,11 @@
                     citySelect.innerHTML = '<option value="">Selectează orasul</option>';
                 } else {
                     // If a valid county is selected, load the necessary cities
-                    fetch(`/get-counties-by-county/${this.value}`)
+                    fetch(`/get-cities-by-county/${this.value}`)
                         .then(response => response.json())
                         .then(data => {
                             citySelect.innerHTML = '<option value="">Selectează orasul</option>';
-                            data.forEach(county => {
+                            data.forEach(city => {
                                 citySelect.innerHTML += `<option value="${city.id}">${city.name}</option>`;
                             });
                         });

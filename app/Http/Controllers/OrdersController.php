@@ -749,7 +749,7 @@ class OrdersController extends Controller
             $county = County::where('id', $order->delivery_county_id)->first();
             $countyName = $county ? $county->name : 'Necunoscut';
             // Ia localitatea din informațiile de livrare
-            $city = $order->delivery_information['delivery_locality'] ?? ''; 
+            $city = $order->delivery_information['delivery_city'] ?? ''; 
         }
 
         $billingCountyId = null;
