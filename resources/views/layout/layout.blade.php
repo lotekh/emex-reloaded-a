@@ -630,7 +630,7 @@
     </div>
     @endif
 
-    {{-- @if ($errors->any())
+    @if ($errors->any())
     <div class="flash-messages-container">
         <div class="alert-message alert-message-error">
             <p>
@@ -644,7 +644,7 @@
             </button>
         </div>
     </div>
-    @endif --}}
+    @endif
 
     @if (!Cookie::get('cookies_accepted'))
         <div id="cookie_notifier" class="cookie-notifier">
