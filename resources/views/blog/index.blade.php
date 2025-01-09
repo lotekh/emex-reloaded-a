@@ -36,12 +36,9 @@
         @foreach ($blogArticles as $key => $blogArticle)
             <div class="article">
                 <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}">
-                    <h1>{{ $blogArticle->title }}</h1>
+                    <h1 class="article-blog">{{ $blogArticle->title }}</h1>
                 </a>
                 <div class="flex mb-16 align-center">
-                    {{-- @foreach ($blogArticle->tags as $tag)
-                        <span class="tag mr-8">{{ $tag->name }}</span>
-                    @endforeach --}}
                     <div class="publish-date">
                         <span>publicat pe {{ \Carbon\Carbon::parse($blogArticle->created_at)->format('j.m.Y') }}</span>
                     </div>
@@ -51,7 +48,10 @@
                         @php
                             $blogImageUrl = $blogArticle->featuredImage ? asset('storage/' .$blogArticle->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
                         @endphp
-                        <img class="w-full" src="{{ $blogImageUrl}}" alt="">
+                         <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}">
+                            <img class="w-full" src="{{ $blogImageUrl }}" alt="">
+                        </a>
+                        {{-- <img class="w-full" src="{{ $blogImageUrl}}" alt=""> --}}
                     </div>
                     <div class="col-span-2 pl-16 flex col justify-center">
                         <span>
