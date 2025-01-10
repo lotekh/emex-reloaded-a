@@ -451,3 +451,7 @@ input[type="search"] {
     height: auto;
   }
 }
+
+.article-blog {
+  color: #009;
+}
