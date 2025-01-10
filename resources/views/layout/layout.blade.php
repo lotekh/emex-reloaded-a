@@ -630,7 +630,7 @@
     </div>
     @endif
 
-    {{-- @if ($errors->any())
+    @if ($errors->any())
     <div class="flash-messages-container">
         <div class="alert-message alert-message-error">
             <p>
@@ -644,7 +644,7 @@
             </button>
         </div>
     </div>
-    @endif --}}
+    @endif
 
     @if (!Cookie::get('cookies_accepted'))
         <div id="cookie_notifier" class="cookie-notifier">
@@ -682,7 +682,7 @@
             </section>
             <div class="categorii" id="cine-suntem" onclick="toggleAccordion('cine-suntem')">
                 <div class="categorii-mobile">Cine suntem</div>
-                <ul class="dropdown-menu" id="cine-suntem-menu">
+                <ul class="dropdown-menu dropdown-menu-mobile" id="cine-suntem-menu">
                     <li><a href="{{ url('/despre-noi') }}" title="Despre noi">Despre noi</a></li>
                     <li><a href="{{ url('/politica-de-calitate') }}" title="Politica de Calitate">Politica de Calitate</a></li>
                     <li><a href="{{ url('/politica-de-mediu') }}" title="Politica de Mediu">Politica de Mediu</a></li>
@@ -693,7 +693,7 @@
             </div>
             <div class="categorii" id="produse" onclick="toggleAccordion('produse')">
                 <div class="categorii-mobile">Produse</div>
-                <ul class="dropdown-menu" id="produse-menu">
+                <ul class="dropdown-menu dropdown-menu-mobile" id="produse-menu">
                     <li id="apmim_mob"><a href="{{ url('/produse') }}" title="toate produsele">Toate Produsele</a></li>
 
                     @foreach ($categories as $ind => $category)
@@ -708,7 +708,7 @@
             </div>
             <div class="categorii" id="aplicare" onclick="toggleAccordion('aplicare')">
                 <div class="categorii-mobile">Aplicare</div>
-                <ul class="dropdown-menu" id="aplicare-menu">
+                <ul class="dropdown-menu dropdown-menu-mobile" id="aplicare-menu">
                     <li><a href="{{ url('/aplicare-vopsele-lavabile') }}" title="Vopsele Lavabile">Vopsele Lavabile</a></li>
                     <li><a href="{{ url('/aplicare-email') }}" title="Emailuri Decorative">Emailuri Decorative</a></li>
                     <li><a href="{{ url('/aplicare-lacuri-alchidice') }}" title="Lacuri Monocomponente">Lacuri Monocomponente</a></li>
@@ -723,7 +723,7 @@
             </div>
             <div class="categorii" id="consum" onclick="toggleAccordion('consum')">
                 <div class="categorii-mobile">Consum</div>
-                <ul class="dropdown-menu" id="consum-menu">
+                <ul class="dropdown-menu dropdown-menu-mobile" id="consum-menu">
                     @foreach ($categories as $ind => $category)
                         <li>
                             <a href="{{ route('consum.index', ['category' => $category->slug]) }}">
@@ -735,7 +735,7 @@
             </div>
             <div class="categorii" id="servicii" onclick="toggleAccordion('servicii')">
                 <div class="categorii-mobile">Servicii</div>
-                <ul class="dropdown-menu" id="servicii-menu">
+                <ul class="dropdown-menu dropdown-menu-mobile" id="servicii-menu">
                     <li><a href="{{ url('/aplicare-covor-epoxidic-stb') }}" title="Pardoseli Cuartz">Pardoseli Cuartz Epoxi</a></li>
                     <li><a href="{{ url('/aplicare-pardoseala-epoxidica-autonivelanta') }}" title="Autonivelanta Epoxi">Autonivelanta Epoxi</a></li>
                     <li><a href="{{ url('/vopsire-epoxidica-pardoseli') }}" title="Vopsiri Epoxidice">Vopsiri Epoxidice</a></li>
@@ -744,7 +744,7 @@
             </div>
             <div class="categorii" id="culori" onclick="toggleAccordion('culori')">
                 <div class="categorii-mobile">Culori</div>
-                <ul class="dropdown-menu" id="culori-menu">
+                <ul class="dropdown-menu dropdown-menu-mobile" id="culori-menu">
                     <li><a href="{{ url('/cartela-culori-ral-vopsele') }}" title="Cartela RAL">Cartela RAL - Emailuri</a></li>
                     <li><a href="{{ url('/cartela-culori-lavabile') }}" title="Paletar Lavabile">Paletar Lavabile</a></li>
                 </ul>

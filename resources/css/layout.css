@@ -53,6 +53,7 @@
   text-align: center;
   border-top: 2px solid #ff9800;
   background-color: #173647;
+  /* min-height: 190px; */
 }
 .cookie-btn-container .info {
   /* text-decoration: underline; */
@@ -3523,4 +3524,34 @@ video:hover::-webkit-media-controls {
     text-align: center;
     margin: 0 auto;
   }
+}
+
+#search-lightbox {
+  position: fixed !important;
+  z-index: 1000;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  display: inline-block;
+}
+
+.i-amphtml-fill-content {
+  display: block;
+  height: 0;
+  max-height: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  min-width: 100%;
+  width: 0;
+  margin: auto;
+}
+
+#search-icon-mobile {
+  position: absolute;
+  margin-left: 18px;
+}
+
+.dropdown-menu-mobile {
+  padding-top: 10px;
 }

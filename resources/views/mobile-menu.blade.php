@@ -49,17 +49,30 @@
         </div>
 
         <div id="search-lightbox" class="search-lightbox" style="display: none;">
-            <form class="relative col justify-center align-center w-full h-full gap-xs" method="GET" action="{{ url('/search') }}">
-                @csrfWithoutAutocomplete
-                <div class="row w-full align-center">
-                    <img src="{{ asset('resources/new_design/icons/search.svg') }}" id="search-icon-mobile" alt="search-icon" width="16" height="16">
-                    <input id="search-input-mobile" type="text" name="zoom_query" class="form-control w-full" placeholder="Cauta dupa nume produs sau cod SKU">
-                </div>
-                <div class="btns">
-                    <div role="button" onclick="toggleSearchLightbox()" tabindex="0">Anuleaza</div>
-                    <input type="submit" role="button" value="Cauta">
-                </div>
-            </form>
+            <div class="i-amphtml-fill-content">
+                <form class="relative col justify-center align-center w-full h-full gap-xs" method="GET" action="{{ url('/search') }}">
+                    @csrfWithoutAutocomplete
+                    <div class="row w-full align-center">
+                        <img src="{{ asset('resources/new_design/icons/search.svg') }}" id="search-icon-mobile" alt="search-icon" width="16" height="16">
+                        <input id="search-input-mobile" type="text" name="zoom_query" class="form-control w-full" placeholder="Cauta dupa nume produs sau cod SKU">
+                    </div>
+                    <div class="btns">
+                        <div role="button" onclick="toggleSearchLightbox()" tabindex="0">Anuleaza</div>
+                        <input type="submit" role="button" value="Cauta">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    function toggleSearchLightbox() {
+        const searchLightbox = document.getElementById('search-lightbox');
+        if (searchLightbox.style.display === 'none' || !searchLightbox.style.display) {
+            searchLightbox.style.display = 'flex'; 
+        } else {
+            searchLightbox.style.display = 'none'; 
+        }
+    }
+</script>
