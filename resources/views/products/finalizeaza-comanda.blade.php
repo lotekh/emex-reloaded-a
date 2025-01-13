@@ -500,13 +500,6 @@
                                 <img src="{{ asset('resources/new_design/icons/check.svg') }}" class="hidden">
                             </button>
                         </div>
-                        <div class="card flex col align-center" id="cashCard">
-                            <div class="title mb-8">Cash</div>
-                            <img src="{{ asset('resources/new_design/icons/location.svg') }}" class="mb-8">
-                            <button type="button" class="checkbox p-0 flex justify-center align-center" id="cash" data-checked="false" aria-label="Cash">
-                                <img src="{{ asset('resources/new_design/icons/check.svg') }}" class="hidden">
-                            </button>
-                        </div>
                         <input type="hidden" name="payment_method" id="payment_method" value="{{ $order['payment_method'] ?? '' }}">
                     </div>
                 </div>
