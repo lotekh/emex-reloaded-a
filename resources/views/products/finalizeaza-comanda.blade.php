@@ -278,33 +278,6 @@
                         </div>
                         <div class="grid grid-4 gap-lg p-8">
 
-                            {{-- <div class="form-group">
-                                <label>Tara <span class="text-red">*</span></label>
-                                <select class="form-control w-full height-43px" name="company_information[organization_country_id]">
-                                    <option value="">Selectează țara</option> 
-                                    @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}" {{ ($companyInfo->organization_country_id ?? '') == $country->id ? 'selected' : '' }}>
-                                            {{ $country->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Judet <span class="text-red">*</span></label>
-                                <select class="form-control w-full height-43px" id="organization_county_id" name="company_information[organization_county_id]">
-                                    <option value="">Selectează județul</option> 
-                                    @foreach ($counties as $county)
-                                        <option value="{{ $county->id }}" {{ ($companyInfo->organization_county_id ?? '') == $county->id ? 'selected' : '' }}>
-                                            {{ $county->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Localitate <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="organization_locality_id" name="company_information[organization_locality]" value="{{ $organizationLocality ?? ''}}" >
-                            </div> --}}
-
                             <div class="form-group">
                                 <label>Judet <span class="text-red">*</span></label>
                                 <select class="form-control w-full height-43px" name="company_information[organization_county_id]" id="organization_county_id">
@@ -673,7 +646,8 @@
 
 
                             {{-- Cost livrare --}}
-                            <tr>
+                            <tr id="transport-row" style="display: none;">
+                            {{-- <tr id="transport-row"> --}}
                                 <td>
                                     <div class="flex align-center">
                                         Cost livrare
@@ -708,7 +682,7 @@
                             </tr>
 
                             {{-- Cost ramburs --}}
-                            <tr>
+                            <tr id="ramburs-row" style="display: none;">
                                 <td>Cost ramburs</td>
                                 <td>1</td>
                                 <td id="ramburs_unitary">-</td>
