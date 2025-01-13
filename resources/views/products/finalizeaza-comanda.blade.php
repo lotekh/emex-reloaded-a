@@ -413,32 +413,6 @@
                             </div>
                         
                             <div class="grid grid-4 gap-lg p-8">
-                                {{-- <div class="form-group">
-                                    <label>Tara <span class="text-red">*</span></label>
-                                    <select class="form-control w-full height-43px" name="delivery_information[delivery_country_id]">
-                                        <option value="">Selectează țara</option> 
-                                        @foreach ($countries as $country)
-                                            <option value="{{ $country->id }}" {{ ($deliveryInfo->delivery_country_id ?? '') == $country->id ? 'selected' : '' }}>
-                                                {{ $country->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Judet <span class="text-red">*</span></label>
-                                    <select class="form-control w-full height-43px" id="delivery_county_id" name="delivery_information[delivery_county_id]">
-                                        <option value="">Alege județul</option> 
-                                        @foreach ($counties as $county)
-                                            <option value="{{ $county->id }}" {{ ($deliveryInfo->delivery_county_id ?? '') == $county->id ? 'selected' : '' }}>
-                                                {{ $county->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Localitate <span class="text-red">*</span></label>
-                                    <input class="form-control w-full" type="text" id="delivery_locality" name="delivery_locality" value="{{ $deliveryLocality ?? ''  }}">
-                                </div> --}}
 
                                 <div class="form-group">
                                     <label>Judet <span class="text-red">*</span></label>
@@ -698,8 +672,8 @@
                             @endforeach
 
 
+                            {{-- Cost livrare --}}
                             <tr>
-                                {{-- <td>Cost livrare</td> --}}
                                 <td>
                                     <div class="flex align-center">
                                         Cost livrare
@@ -732,6 +706,8 @@
                                 <td id="transport_value">-</td>
                                 <td id="transport_TVA">-</td>
                             </tr>
+
+                            {{-- Cost ramburs --}}
                             <tr>
                                 <td>Cost ramburs</td>
                                 <td>1</td>
@@ -739,6 +715,8 @@
                                 <td id="ramburs_value">-</td>
                                 <td id="ramburs_TVA">-</td>
                             </tr>
+
+                            {{-- Total general --}}
                             <tr>
                                 <th colspan="3" class="align-right">Total general:</th>
                                 <th colspan="2" id="total_general"></th>
