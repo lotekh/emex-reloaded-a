@@ -14,6 +14,8 @@ var backToStep1 = document.getElementById("back-to-step-1");
 var deliverySameAsBilling = document.getElementById("delivery-same-as-billing");
 var deliveryInputs = document.getElementById("delivery-inputs");
 
+let deliveryDataSameAsBilling = false;
+
 var deliveryLastName = document.getElementById("delivery_last_name");
 var deliveryFirstName = document.getElementById("delivery_first_name");
 var deliveryPhone = document.getElementById("delivery_phone");
@@ -37,13 +39,15 @@ function changeDeliveryType() {
         curierContainer.classList.remove("hidden");
       }
 
-      deliveryLastName.required = true;
-      deliveryFirstName.required = true;
-      deliveryPhone.required = true;
-      deliveryEmail.required = true;
-      deliveryCountyId.required = true;
-      deliveryCityId.required = true;
-      deliveryAddress.required = true;
+      if (deliveryDataSameAsBilling == false) {
+        deliveryLastName.required = true;
+        deliveryFirstName.required = true;
+        deliveryPhone.required = true;
+        deliveryEmail.required = true;
+        deliveryCountyId.required = true;
+        deliveryCityId.required = true;
+        deliveryAddress.required = true;
+      }
 
       if (goToStep3.classList.contains("btn-disabled")) {
         goToStep3.classList.remove("btn-disabled");
@@ -87,12 +91,8 @@ function changeDeliveryType() {
 
 function sameDataAsBilling() {
   if (this.checked) {
+    deliveryDataSameAsBilling = true;
     hideOrShowDeliveryInputs(false);
-    if (billingType.value == 0) {
-      // getTransportPrice(personCountyIdSelect.value);
-    } else if (billingType.value == 1) {
-      // getTransportPrice(organizationCountyIdSelect.value);
-    }
     deliveryLastName.required = false;
     deliveryFirstName.required = false;
     deliveryPhone.required = false;
@@ -101,62 +101,10 @@ function sameDataAsBilling() {
     deliveryCityId.required = false;
     deliveryAddress.required = false;
   } else {
+    deliveryDataSameAsBilling = false;
     hideOrShowDeliveryInputs(true);
-    // getTransportPrice(deliveryCountyIdSelect.value);
   }
 }
-
-// function sameDataAsBilling() {
-//   if (this.checked) {
-//     hideOrShowDeliveryInputs(false);
-
-//     // Copiem datele din facturare în câmpurile de livrare
-//     if (billingType.value == 0) {
-//       // Persoană fizică
-//       deliveryLastName.value =
-//         document.getElementById("person_last_name").value;
-//       deliveryFirstName.value =
-//         document.getElementById("person_first_name").value;
-//       deliveryPhone.value = document.getElementById("person_phone").value;
-//       deliveryEmail.value = document.getElementById("person_email").value;
-//       deliveryCountyId.value =
-//         document.getElementById("person_county_id").value;
-//       deliveryLocalityId.value =
-//         document.getElementById("person_locality_id").value;
-//       deliveryAddress.value = document.getElementById("person_address").value;
-//     } else if (billingType.value == 1) {
-//       // Persoană juridică
-//       deliveryLastName.value = document.getElementById(
-//         "contact_person_last_name"
-//       ).value;
-//       deliveryFirstName.value = document.getElementById(
-//         "contact_person_first_name"
-//       ).value;
-//       deliveryPhone.value = document.getElementById("organization_phone").value;
-//       deliveryEmail.value = document.getElementById("organization_email").value;
-//       deliveryCountyId.value = document.getElementById(
-//         "organization_county_id"
-//       ).value;
-//       deliveryLocalityId.value = document.getElementById(
-//         "organization_locality_id"
-//       ).value;
-//       deliveryAddress.value = document.getElementById(
-//         "organization_address"
-//       ).value;
-//     }
-
-//     // Facem ca câmpurile de livrare să nu mai fie necesare deoarece sunt deja completate
-//     deliveryLastName.required = false;
-//     deliveryFirstName.required = false;
-//     deliveryPhone.required = false;
-//     deliveryEmail.required = false;
-//     deliveryCountyId.required = false;
-//     deliveryLocalityId.required = false;
-//     deliveryAddress.required = false;
-//   } else {
-//     hideOrShowDeliveryInputs(true);
-//   }
-// }
 
 function hideOrShowDeliveryInputs(show) {
   if (show == false) {
@@ -170,10 +118,12 @@ function hideOrShowDeliveryInputs(show) {
 
 function validateAndProceedToNextStep() {
   if (!this.classList.contains("btn-disabled")) {
+    console.log(deliveryType);
     var toValidate;
     var valid = true;
     if (deliveryType.value == 0) {
       toValidate = curierContainer.getElementsByClassName("form-control");
+      console.log(toValidate);
 
       for (let item of toValidate) {
         if (item.reportValidity() == false) {

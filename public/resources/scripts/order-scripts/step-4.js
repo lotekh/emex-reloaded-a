@@ -14,12 +14,13 @@ var rambursCard = document.getElementById("rambursCard");
 
 curierCheck.addEventListener("click", function () {
   rambursCard.style.display = "flex";
-  changePaymentType(true);
 });
 
 ridicarePersonalaCheck.addEventListener("click", function () {
   rambursCard.style.display = "none";
-  changePaymentType(true);
+  if (paymentType.value == "ramburs") {
+    changePaymentType(true);
+  }
 });
 
 card.addEventListener("click", changePaymentType);
