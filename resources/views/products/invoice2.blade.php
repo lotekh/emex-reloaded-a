@@ -302,7 +302,7 @@
 
     {{-- Transport --}}
     
-    @if ($order->transport_price)
+    @if ($order->transport_price && $order->transport_price > 0)
         @php $i++; @endphp
         <tr>
             <td style="padding: 10px 5px" class="ta_c table-borders">{{ $i }}</td>

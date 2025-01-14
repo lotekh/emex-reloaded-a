@@ -102,4 +102,7 @@
   #image-cart-secure-payment {
     display: none;
   }
+  .total-general-plata{
+    margin-bottom: 16px;
+  }
 }
