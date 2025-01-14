@@ -118,12 +118,10 @@ function hideOrShowDeliveryInputs(show) {
 
 function validateAndProceedToNextStep() {
   if (!this.classList.contains("btn-disabled")) {
-    console.log(deliveryType);
     var toValidate;
     var valid = true;
     if (deliveryType.value == 0) {
       toValidate = curierContainer.getElementsByClassName("form-control");
-      console.log(toValidate);
 
       for (let item of toValidate) {
         if (item.reportValidity() == false) {

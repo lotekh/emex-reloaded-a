@@ -17,6 +17,9 @@ use App\Models\Media;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class OrdersController extends Controller
 {
@@ -320,6 +323,29 @@ class OrdersController extends Controller
     
         if (!$order) {
             return redirect()->route('orders.index')->with('error', 'Comanda nu a fost găsită.');
+        }
+
+        // If the guest has opted to create account, then create the account and log him in
+        if ($request->input('create_account')) {
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:6',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
+            $user = User::create([
+                'first_name' => $request->input('person_first_name'),
+                'last_name' => $request->input('person_last_name'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
+                'billing_type' => $request->input('billing_type'),
+            ]);
+
+            Auth::login($user);
+            Session::flash('success', 'Contul a fost creat și utilizatorul a fost autentificat cu succes!');
         }
 
         $dbOrder = Order::firstOrCreate(
