@@ -102,7 +102,7 @@
             </div>
             
 
-            <div class="flex col section p-16 align-center col-span-3">
+            <div class="flex col section px-16 align-center col-span-3">
                 <h2 class="m-0 mb-8 mt-32">Sumar comandă</h2>
                 <div class="w-full scrollable-x">
                     <table class="mb-8 styled desktop-cart w-full" id="cart-secure-payment">
@@ -132,10 +132,20 @@
                                 <td class="blue bold">{{ number_format($ordered_product->price * $ordered_product->pivot->quantity, 2) }} Ron</td>
                             </tr>
                             @endforeach
+                            {{-- Add transport, if it exists --}}
+                            @if ($order->transport_price && $order->transport_price > 0)
+                            <tr>
+                                <td class="name">
+                                    <h3 class="normal-weight ml-8">Transport</h3>
+                                </td>
+                                <td>1</td>
+                                <td class="blue bold">{{ number_format($order->transport_price, 2) }} Ron</td>
+                            </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>
-                <div class="flex align-center justify-end mt-16 w-full">
+                <div class="flex align-center justify-end mt-16 w-full total-general-plata">
                     <span>Total general:</span>
                     <span class="blue bold total ml-8">{{ number_format($order->total, 2) }} Ron</span>
                 </div>

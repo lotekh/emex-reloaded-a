@@ -2,6 +2,10 @@ var summaryBillingType = document.querySelector("#summary_billing_type span");
 var summaryBillingName = document.querySelector("#summary_billing_name span");
 var summaryBillingPhone = document.querySelector("#summary_billing_phone span");
 var summaryBillingEmail = document.querySelector("#summary_billing_email span");
+
+var summaryTransportRow = document.querySelector("#transport-row");
+var summaryRambursRow = document.querySelector("#ramburs-row");
+
 var summaryBillingCounty = document.querySelector(
   "#summary_billing_county_name span"
 );
@@ -118,6 +122,15 @@ function returnToStep4() {
 }
 
 function populateSummary() {
+  let curierSelected =
+    document.getElementById("curier").getAttribute("data-checked") === "true";
+  let ridicarePersonalaSelected =
+    document
+      .getElementById("ridicare-personala")
+      .getAttribute("data-checked") === "true";
+  let rambursSelected =
+    document.getElementById("ramburs").getAttribute("data-checked") === "true";
+
   if (billingType.value == 0) {
     summaryBillingType.innerHTML = "Persoana fizica";
     summaryBillingName.innerHTML =
@@ -223,6 +236,19 @@ function populateSummary() {
   }
 
   summaryPaymentType.innerHTML = paymentType.value;
+
+  if (curierSelected) {
+    summaryTransportRow.style.display = "table-row";
+    if (rambursSelected) {
+      summaryRambursRow.style.display = "table-row";
+    } else {
+      summaryRambursRow.style.display = "none";
+    }
+  }
+  if (ridicarePersonalaSelected) {
+    summaryTransportRow.style.display = "none";
+    summaryRambursRow.style.display = "none";
+  }
 }
 
 var transportValue = document.getElementById("transport_value");

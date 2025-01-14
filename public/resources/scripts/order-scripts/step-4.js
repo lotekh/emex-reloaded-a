@@ -11,26 +11,22 @@ var ordinDePlata = document.getElementById("ordin-de-plata");
 var transferBancar = document.getElementById("transfer-bancar");
 var ramburs = document.getElementById("ramburs");
 var rambursCard = document.getElementById("rambursCard");
-var cash = document.getElementById("cash");
-var cashCard = document.getElementById("cashCard");
 
 curierCheck.addEventListener("click", function () {
   rambursCard.style.display = "flex";
-  cashCard.style.display = "none";
-  changePaymentType(true);
 });
 
 ridicarePersonalaCheck.addEventListener("click", function () {
   rambursCard.style.display = "none";
-  cashCard.style.display = "flex";
-  changePaymentType(true);
+  if (paymentType.value == "ramburs") {
+    changePaymentType(true);
+  }
 });
 
 card.addEventListener("click", changePaymentType);
 ordinDePlata.addEventListener("click", changePaymentType);
 transferBancar.addEventListener("click", changePaymentType);
 ramburs.addEventListener("click", changePaymentType);
-cash.addEventListener("click", changePaymentType);
 
 goToStep5.addEventListener("click", proceedToStep5);
 backToStep3.addEventListener("click", returnToPreviousStep);
@@ -52,7 +48,6 @@ function changePaymentType(resetPayment = false) {
       ordinDePlata.dataset.checked = false;
       transferBancar.dataset.checked = false;
       ramburs.dataset.checked = false;
-      cash.dataset.checked = false;
 
       paymentType.value = "card";
     } else if (this.id == "ordin-de-plata") {
@@ -60,7 +55,6 @@ function changePaymentType(resetPayment = false) {
       card.dataset.checked = false;
       transferBancar.dataset.checked = false;
       ramburs.dataset.checked = false;
-      cash.dataset.checked = false;
 
       paymentType.value = "ordin de plata";
     } else if (this.id == "transfer-bancar") {
@@ -68,7 +62,6 @@ function changePaymentType(resetPayment = false) {
       card.dataset.checked = false;
       ordinDePlata.dataset.checked = false;
       ramburs.dataset.checked = false;
-      cash.dataset.checked = false;
 
       paymentType.value = "transfer bancar";
     } else if (this.id == "ramburs") {
@@ -76,17 +69,8 @@ function changePaymentType(resetPayment = false) {
       card.dataset.checked = false;
       transferBancar.dataset.checked = false;
       ordinDePlata.dataset.checked = false;
-      cash.dataset.checked = false;
 
       paymentType.value = "ramburs";
-    } else if (this.id == "cash") {
-      this.dataset.checked = true;
-      card.dataset.checked = false;
-      transferBancar.dataset.checked = false;
-      ordinDePlata.dataset.checked = false;
-      ramburs.dataset.checked = false;
-
-      paymentType.value = "cash";
     }
 
     if (goToStep5.classList.contains("btn-disabled")) {
