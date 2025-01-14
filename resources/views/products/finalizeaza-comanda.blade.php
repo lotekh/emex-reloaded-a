@@ -444,6 +444,7 @@
                             <div class="form-group">
                                 <label>Email</label>
                                 <input class="form-control w-full" type="text" id="email" name="email">
+                                {{-- <span class="text-red-500 hidden" id="create-account-email"></span> --}}
                             </div>
                             <div class="form-group mt-16">
                                 <label>Parola</label>
