@@ -814,10 +814,20 @@ class OrdersController extends Controller
     
     public function validateAccount(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
-        ]);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:6',
+            ],
+            [
+                'email.required' => 'Adresa de email este obligatorie.',
+                'email.email' => 'Adresa de email nu este validă.',
+                'email.unique' => 'Această adresă de email este deja folosită.',
+                'password.required' => 'Parola este obligatorie.',
+                'password.min' => 'Parola trebuie să conțină cel puțin :min caractere.',
+            ]
+        );
 
         $errors = [];
 
