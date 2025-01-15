@@ -270,3 +270,7 @@ table th {
   margin-bottom: 5px;
   font-style: italic;
 }
+
+.block{
+  display: block;
+}
