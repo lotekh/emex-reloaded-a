@@ -336,12 +336,23 @@ class OrdersController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 
+            $billingTypeUser = $request->input('billing_type');
+            if ($billingTypeUser == 1) {
+                // Persoană juridică
+                $firstNameUser = $request->input('organization_name');
+                $lastNameUser = null;
+            } else {
+                // Persoană fizică
+                $firstNameUser = $request->input('person_first_name');
+                $lastNameUser = $request->input('person_last_name');
+            }
+            
             $user = User::create([
-                'first_name' => $request->input('person_first_name'),
-                'last_name' => $request->input('person_last_name'),
+                'first_name' => $firstNameUser,
+                'last_name' => $lastNameUser,
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
-                'billing_type' => $request->input('billing_type'),
+                'billing_type' => $billingTypeUser,
             ]);
 
             Auth::login($user);
