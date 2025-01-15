@@ -404,17 +404,16 @@
                             <div class="form-group">
                                 <label>Email</label>
                                 <input class="form-control w-full" type="text" id="email" name="email">
-                                <span class="hidden" id="create-account-email"></span>
                             </div>
+                            <span class="hidden" id="create-account-email"></span>
                             <div class="form-group mt-16">
                                 <label>Parola</label>
                                 <input class="form-control w-full" type="password" id="password" name="password">
-                                <span class="hidden" id="create-account-password"></span>
-                                {{-- <span class="block" id="create-account-password">The password has been taken</span> --}}
                             </div>
+                            <span class="hidden" id="create-account-password"></span>
                         </div>
                     </div>
-                    <p>Pentru a crea un cont va trebui doar să definiți o parolă. Restul elementelor sunt cele ce oricum sunt completate.</p>
+                    <p class="mt-16">Pentru a crea un cont va trebui doar să definiți o parolă. Restul elementelor sunt cele ce oricum sunt completate.</p>
                     <p>Contul, însă, vă va permite să parcurgeți comenzi anterioare, să descărcați facturi și, mai ales, să păstrați produse în lista de favorite, pe care să le puteți comanda ulterior, fără să mai trebuiască să parcurgeți o altă căutare.</p>
                 </div>
                 <div class="flex justify-end col flex-md align-center gap-md">
