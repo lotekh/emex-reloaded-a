@@ -410,6 +410,7 @@
                                 <label>Parola</label>
                                 <input class="form-control w-full" type="password" id="password" name="password">
                                 <span class="hidden" id="create-account-password"></span>
+                                {{-- <span class="block" id="create-account-password">The password has been taken</span> --}}
                             </div>
                         </div>
                     </div>

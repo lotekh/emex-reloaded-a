@@ -811,6 +811,33 @@ class OrdersController extends Controller
         // Returnează pagina de sumar comandă
         return view('products.summary', compact('order', 'orders_products','billingCountyName', 'county', 'countyName', 'city', 'valid_link', 'conversion_value'));
     }
+    
+    public function validateAccount(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+        ]);
+
+        $errors = [];
+
+        if ($validator->fails()) {
+            if ($validator->errors()->has('email')) {
+                $errors['email'] = $validator->errors()->first('email');
+            }
+
+            if ($validator->errors()->has('password')) {
+                $errors['password'] = $validator->errors()->first('password');
+            }
+
+            return response()->json([
+                'success' => false,
+                'errors' => $errors
+            ]);
+        }
+
+        return response()->json(['success' => true]);
+    }
 
 
 }

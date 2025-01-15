@@ -12,6 +12,8 @@
     <meta name="geo.position" content="44.328689;26.067273">
     <meta name="ICBM" content="44.328689,26.067273">
 
+    <meta name="csrf-token" content="{{csrf_token()}}">
+
     @yield('seo')
     @yield('title')
     <link rel="icon" type="image/x-icon" href="{{ asset('resources/emex-favicon.ico') }}">
@@ -832,19 +834,19 @@
     function acceptCookies() {
         console.log('Accept Cookies button clicked');
         const form = document.getElementById('cookieForm');
-        const formData = new FormData(form); // Obținem datele din formular (inclusiv CSRF token)
+        const formData = new FormData(form); // Get the data from the form (including CSRF token)
 
         fetch(form.action, {
             method: 'POST',
-            body: formData, // Trimitem datele formularului
+            body: formData, // Send the form data
             headers: {
-                'X-Requested-With': 'XMLHttpRequest' // Setați antetul pentru cereri AJAX
+                'X-Requested-With': 'XMLHttpRequest' // Header for AJAX requests
             }
         })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Ascundem div-ul după ce cookie-ul este setat
+                // Hide the div after the cookie is set
                 document.getElementById('cookie_notifier').style.display = 'none';
             }
         })
