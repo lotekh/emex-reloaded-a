@@ -141,7 +141,9 @@ function populateSummary() {
     summaryBillingCounty.innerHTML =
       personCountyId.options[personCountyId.selectedIndex].text;
 
-    summaryBillingCity.innerHTML = personCityId.value;
+    // summaryBillingCity.innerHTML = personCityId.value;
+    summaryBillingCity.innerHTML =
+      personCityId.options[personCityId.selectedIndex].text;
 
     summaryBillingAddress.innerHTML = personAddress.value;
     summaryBillingCUIContainer.style.display = "none";
@@ -154,8 +156,9 @@ function populateSummary() {
     summaryBillingEmail.innerHTML = organizationEmail.value;
     summaryBillingCounty.innerHTML =
       organizationCountyId.options[organizationCountyId.selectedIndex].text;
-
-    summaryBillingCity.innerHTML = organizationCityId.value;
+    // summaryBillingCity.innerHTML = organizationCityId.value;
+    summaryBillingCity.innerHTML =
+      organizationCityId.options[organizationCityId.selectedIndex].text;
     summaryBillingAddress.innerHTML = organizationAddress.value;
     summaryBillingCUIContainer.style.display = "block";
     summaryBillingBankContainer.style.display = "block";
@@ -206,7 +209,9 @@ function populateSummary() {
         summaryDeliveryEmail.innerHTML = personEmail.value;
         summaryDeliveryCounty.innerHTML =
           personCountyId.options[personCountyId.selectedIndex].text;
-        summaryDeliveryCity.innerHTML = personCityId.value;
+        // summaryDeliveryCity.innerHTML = personCityId.value;
+        summaryDeliveryCity.innerHTML =
+          personCityId.options[personCityId.selectedIndex].text;
         summaryDeliveryAddress.innerHTML = personAddress.value;
 
         getTransportPrice(personCountyId.value);
@@ -216,7 +221,9 @@ function populateSummary() {
         summaryDeliveryEmail.innerHTML = organizationEmail.value;
         summaryDeliveryCounty.innerHTML =
           organizationCountyId.options[organizationCountyId.selectedIndex].text;
-        summaryDeliveryCity.innerHTML = organizationCityId.value;
+        // summaryDeliveryCity.innerHTML = organizationCityId.value;
+        summaryDeliveryCity.innerHTML =
+          organizationCityId.options[organizationCityId.selectedIndex].text;
         summaryDeliveryAddress.innerHTML = organizationAddress.value;
 
         getTransportPrice(organizationCountyId.value);
@@ -228,7 +235,9 @@ function populateSummary() {
       summaryDeliveryEmail.innerHTML = deliveryEmail.value;
       summaryDeliveryCounty.innerHTML =
         deliveryCountyId.options[deliveryCountyId.selectedIndex].text;
-      summaryDeliveryCity.innerHTML = deliveryCityId.value;
+      // summaryDeliveryCity.innerHTML = deliveryCityId.value;
+      summaryDeliveryCity.innerHTML =
+        deliveryCityId.options[deliveryCityId.selectedIndex].text;
       summaryDeliveryAddress.innerHTML = deliveryAddress.value;
 
       getTransportPrice(deliveryCountyId.value);
