@@ -299,11 +299,6 @@ function getTransportPrice(county_id) {
         }
       }
     };
-    // xmlhttp.open(
-    //   "GET",
-    //   baseUrl + "/get-transport-price?county_id=" + county_id,
-    //   true
-    // );
     xmlhttp.open(
       "GET",
       baseUrl +
@@ -322,7 +317,6 @@ var rambursUnitary = document.getElementById("ramburs_unitary");
 var rambursTvaTd = document.getElementById("ramburs_TVA");
 
 function calculateRamburs(transportPrice = 0) {
-  // console.log(totalValue);
   if (!isNaN(totalValue)) {
     rambursValue = (totalValue * 3) / 100;
     rambursValue = rambursValue.toFixed(2);
