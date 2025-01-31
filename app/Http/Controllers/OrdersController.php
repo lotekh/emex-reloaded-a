@@ -336,12 +336,23 @@ class OrdersController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 
+            $billingTypeUser = $request->input('billing_type');
+            if ($billingTypeUser == 1) {
+                // Persoană juridică
+                $firstNameUser = $request->input('organization_name');
+                $lastNameUser = null;
+            } else {
+                // Persoană fizică
+                $firstNameUser = $request->input('person_first_name');
+                $lastNameUser = $request->input('person_last_name');
+            }
+            
             $user = User::create([
-                'first_name' => $request->input('person_first_name'),
-                'last_name' => $request->input('person_last_name'),
+                'first_name' => $firstNameUser,
+                'last_name' => $lastNameUser,
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
-                'billing_type' => $request->input('billing_type'),
+                'billing_type' => $billingTypeUser,
             ]);
 
             Auth::login($user);
@@ -810,6 +821,43 @@ class OrdersController extends Controller
 
         // Returnează pagina de sumar comandă
         return view('products.summary', compact('order', 'orders_products','billingCountyName', 'county', 'countyName', 'city', 'valid_link', 'conversion_value'));
+    }
+    
+    public function validateAccount(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:6',
+            ],
+            [
+                'email.required' => 'Adresa de email este obligatorie.',
+                'email.email' => 'Adresa de email nu este validă.',
+                'email.unique' => 'Această adresă de email este deja folosită.',
+                'password.required' => 'Parola este obligatorie.',
+                'password.min' => 'Parola trebuie să conțină cel puțin :min caractere.',
+            ]
+        );
+
+        $errors = [];
+
+        if ($validator->fails()) {
+            if ($validator->errors()->has('email')) {
+                $errors['email'] = $validator->errors()->first('email');
+            }
+
+            if ($validator->errors()->has('password')) {
+                $errors['password'] = $validator->errors()->first('password');
+            }
+
+            return response()->json([
+                'success' => false,
+                'errors' => $errors
+            ]);
+        }
+
+        return response()->json(['success' => true]);
     }
 
 
