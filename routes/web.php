@@ -162,6 +162,7 @@ Route::post('/sterge-produs', [OrdersController::class, 'removeProduct'])->name(
 Route::post('/goleste-cosul', [OrdersController::class, 'emptyCart'])->name('orders.empty');
 Route::get('/invoice/{orderId}', [OrdersController::class, 'showInvoicePage'])->name('invoice.page');
 
+Route::post('/validate-account', [OrdersController::class, 'validateAccount'])->name('checkout.validateAccount');
 // Route::post('/create-account', [OrdersController::class, 'createAccount']);
 
 // Routes for checkout

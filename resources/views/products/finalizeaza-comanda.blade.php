@@ -13,24 +13,11 @@
     <form method="POST" action="{{ url('/save-order') }}" id="order_form">
         @csrfWithoutAutocomplete
          <input type="hidden" id="orderr_id" name="order_id" value="{{ $order_id }}">
-        {{-- <input type="hidden" name="ordered_products_number" value="{{ $ordered_products->count() }}">
-        <input type="hidden" name="guid" value="{{ $order->guid }}">
-        <input type="hidden" name="identifier" value="{{ $order->identifier }}"> --}}
-        {{-- @foreach ($ordered_products as $key => $value)
-            <input type="hidden" name="product{{ $key }}_id" value="{{ $value->product_id }}">
-            <input type="hidden" name="product{{ $key }}_quantity" value="{{ $value->pivot->quantity }}">
-            <input type="hidden" name="product{{ $key }}_price" value="{{ $value->pivot->price }}">
-            <input type="hidden" name="product{{ $key }}_price_no_tva" value="{{ $value->pivot->price_no_vat }}">
-            <input type="hidden" name="product{{ $key }}_name" value="{{ $value->product->name }}">
-            <input type="hidden" name="product{{ $key }}_color" value="{{ $value->product->color }}">
-            <input type="hidden" name="product{{ $key }}_packaging" value="{{ $value->product->ambalare }}">
-            <input type="hidden" name="product{{ $key }}_addon_quantity" value="{{ $value->pivot->addon_quantity }}">
-        @endforeach --}}
         @foreach ($ordered_products as $key => $value)
             <input type="hidden" name="product{{ $key }}_id" value="{{ $value->product_id }}">
-            <input type="hidden" name="product{{ $key }}_quantity" value="{{ $value->ordered_quantity }}"> <!-- updated -->
-            <input type="hidden" name="product{{ $key }}_price" value="{{ $value->price }}"> <!-- updated -->
-            <input type="hidden" name="product{{ $key }}_price_no_tva" value="{{ $value->price_no_vat }}"> <!-- updated -->
+            <input type="hidden" name="product{{ $key }}_quantity" value="{{ $value->ordered_quantity }}"> 
+            <input type="hidden" name="product{{ $key }}_price" value="{{ $value->price }}"> 
+            <input type="hidden" name="product{{ $key }}_price_no_tva" value="{{ $value->price_no_vat }}"> 
             <input type="hidden" name="product{{ $key }}_name" value="{{ $value->product->name }}">
             <input type="hidden" name="product{{ $key }}_color" value="{{ $value->product->color }}">
             <input type="hidden" name="product{{ $key }}_packaging" value="{{ $value->product->ambalare }}">
@@ -178,32 +165,6 @@
                         </div>
 
                         <div class="grid grid-4 gap-lg p-8">
-                            {{-- <div class="form-group">
-                                <label>Tara <span class="text-red">*</span></label>
-                                <select class="form-control w-full height-43px" name="company_information[person_country_id]">
-                                    <option value="">Selectează țara</option> 
-                                    @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}" {{ ($companyInfo->person_country_id ?? '') == $country->id ? 'selected' : '' }}>
-                                            {{ $country->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Judet <span class="text-red">*</span></label>
-                                <select class="form-control w-full height-43px" name="company_information[person_county_id]" id="person_county_id">
-                                    <option value="">Selectează județul</option> 
-                                    @foreach ($counties as $county)
-                                        <option value="{{ $county->id }}" {{ ($companyInfo->person_county_id ?? '') == $county->id ? 'selected' : '' }}>
-                                            {{ $county->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Localitate <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="person_locality_id" name="company_information[person_locality]" value="{{ $personLocality ?? '' }}" >
-                            </div> --}}
                             <div class="form-group">
                                 <label>Judet <span class="text-red">*</span></label>
                                 <select class="form-control w-full height-43px" name="company_information[person_county_id]" id="person_county_id">
@@ -439,20 +400,20 @@
                     </div>
 
                     <div id="order_register" class="hidden">
-                        <div id="email_error" class="hidden">Adresa de email introdusa corespunde deja unui cont!</div>
                         <div class="flex col align-center">
                             <div class="form-group">
                                 <label>Email</label>
                                 <input class="form-control w-full" type="text" id="email" name="email">
-                                {{-- <span class="text-red-500 hidden" id="create-account-email"></span> --}}
                             </div>
+                            <span class="hidden" id="create-account-email"></span>
                             <div class="form-group mt-16">
                                 <label>Parola</label>
                                 <input class="form-control w-full" type="password" id="password" name="password">
                             </div>
+                            <span class="hidden" id="create-account-password"></span>
                         </div>
                     </div>
-                    <p>Pentru a crea un cont va trebui doar să definiți o parolă. Restul elementelor sunt cele ce oricum sunt completate.</p>
+                    <p class="mt-16">Pentru a crea un cont va trebui doar să definiți o parolă. Restul elementelor sunt cele ce oricum sunt completate.</p>
                     <p>Contul, însă, vă va permite să parcurgeți comenzi anterioare, să descărcați facturi și, mai ales, să păstrați produse în lista de favorite, pe care să le puteți comanda ulterior, fără să mai trebuiască să parcurgeți o altă căutare.</p>
                 </div>
                 <div class="flex justify-end col flex-md align-center gap-md">
