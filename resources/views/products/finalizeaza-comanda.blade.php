@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="/{{ minify('css/order.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bundled/order.min.css') }}">
 @endsection
 
 @section('breadcrumbs')
