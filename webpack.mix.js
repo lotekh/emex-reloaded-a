@@ -92,8 +92,8 @@ mix.styles([
 //consum
 mix.styles([
         'resources/css/layout.css',
-        'resources/css/consum.css',
         'resources/css/produs.css',
+        'resources/css/consum.css',
 ], 'public/css/bundled/consum.css').minify('public/css/bundled/consum.css');
 
 //tabs
@@ -108,12 +108,19 @@ mix.styles([
         'resources/css/retur.css',
 ], 'public/css/bundled/retur.css').minify('public/css/bundled/retur.css');
 
-//culori
+//culori lavabile
 mix.styles([
         'resources/css/layout.css',
-        'resources/css/culori.css',
         'resources/css/cartela-lavabile-culori.css',
-], 'public/css/bundled/culori.css').minify('public/css/bundled/culori.css');
+        'resources/css/culori.css',
+], 'public/css/bundled/culori-lavabile.css').minify('public/css/bundled/culori-lavabile.css');
+
+//culori-ral
+mix.styles([
+        'resources/css/layout.css',
+        'resources/css/cartela-ral-culori.css',
+        'resources/css/culori.css',
+], 'public/css/bundled/culori-ral.css').minify('public/css/bundled/culori-ral.css');
 
 //order
 mix.styles([
