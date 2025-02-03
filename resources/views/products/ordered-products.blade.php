@@ -7,7 +7,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="/{{ minify('css/product-card.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bundled/product-card.min.css') }}">
 @endsection
 
 @section('breadcrumbs')

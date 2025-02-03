@@ -19,7 +19,7 @@
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="/{{ minify('css/retur.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bundled/retur.min.css') }}">
 @endsection
 
 @section('breadcrumbs')

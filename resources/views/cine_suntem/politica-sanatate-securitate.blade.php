@@ -19,8 +19,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="/{{ minify('css/politica-de-securitate.css') }}">
-    <link rel="stylesheet" href="/{{ minify('css/tabs.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bundled/politica-de-securitate.min.css') }}">
 @endsection
 
 @section('breadcrumbs')

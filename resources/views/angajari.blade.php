@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="/{{ minify('css/angajari.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bundled/angajari.min.css') }}">
 @endsection
 
 @section('breadcrumbs')
@@ -12,7 +12,7 @@
 
 <style>
     #header_img_bg {
-        background-image: url('{{ asset('resources/Angajari-Romtehnochim.jpg') }}');
+        background-image: url("{{ asset('resources/Angajari-Romtehnochim.jpg') }}");
     }
 </style>
 

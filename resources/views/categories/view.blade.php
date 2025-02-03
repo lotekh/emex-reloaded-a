@@ -25,9 +25,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="/{{ minify('css/produs.css') }}">
-    <link rel="stylesheet" href="/{{ minify('css/product-card.css') }}">
-    <link rel="stylesheet" href="/{{ minify('css/pagination.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bundled/category.min.css') }}">
 @endsection
 
 @section('breadcrumbs')

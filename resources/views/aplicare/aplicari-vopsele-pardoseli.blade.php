@@ -25,7 +25,7 @@
 @endsection
 
 @section('css')
-  <link rel="stylesheet" href="/{{ minify('css/aplicare.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bundled/aplicare.min.css') }}">
 @endsection
 
 @section('breadcrumbs')

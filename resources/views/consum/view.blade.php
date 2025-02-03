@@ -29,8 +29,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="/{{ minify('css/produs.css') }}">
-    <link rel="stylesheet" href="/{{ minify('css/consum.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bundled/consum.min.css') }}">
 @endsection
 
 @section('content')
