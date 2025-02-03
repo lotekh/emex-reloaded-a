@@ -82,7 +82,9 @@
                         <circle fill="none" cx="11.75" cy="11.75" r="11.25" stroke="#203471" stroke-miterlimit="10"></circle>
                     </svg>
                     @auth
-                        {{ Auth::user()->last_name }} {{ Auth::user()->first_name }}
+                        <span>
+                            {{ Auth::user()->last_name }} {{ Auth::user()->first_name }}
+                        </span>
                     @else
                         <span>
                             Contul meu
@@ -683,7 +685,14 @@
                 </div>
             </section>
             <div class="categorii" id="cine-suntem" onclick="toggleAccordion('cine-suntem')">
-                <div class="categorii-mobile">Cine suntem</div>
+                <div class="categorii-mobile">
+                    {{-- Cine suntem
+                    <span class="arrow">&#9662;</span> --}}
+                    <li class="menu-item">
+                        Cine suntem
+                        <span class="arrow">▼</span>
+                    </li>
+                </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="cine-suntem-menu">
                     <li><a href="{{ url('/despre-noi') }}" title="Despre noi">Despre noi</a></li>
                     <li><a href="{{ url('/politica-de-calitate') }}" title="Politica de Calitate">Politica de Calitate</a></li>
@@ -694,7 +703,12 @@
                 </ul>
             </div>
             <div class="categorii" id="produse" onclick="toggleAccordion('produse')">
-                <div class="categorii-mobile">Produse</div>
+                <div class="categorii-mobile">
+                    <li class="menu-item">
+                        Produse
+                        <span class="arrow">▼</span>
+                    </li>
+                </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="produse-menu">
                     <li id="apmim_mob"><a href="{{ url('/produse') }}" title="toate produsele">Toate Produsele</a></li>
 
@@ -709,7 +723,12 @@
                 </ul>
             </div>
             <div class="categorii" id="aplicare" onclick="toggleAccordion('aplicare')">
-                <div class="categorii-mobile">Aplicare</div>
+                <div class="categorii-mobile">
+                    <li class="menu-item">
+                        Aplicare
+                        <span class="arrow">▼</span>
+                    </li>
+                </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="aplicare-menu">
                     <li><a href="{{ url('/aplicare-vopsele-lavabile') }}" title="Vopsele Lavabile">Vopsele Lavabile</a></li>
                     <li><a href="{{ url('/aplicare-email') }}" title="Emailuri Decorative">Emailuri Decorative</a></li>
@@ -724,7 +743,12 @@
                 </ul>
             </div>
             <div class="categorii" id="consum" onclick="toggleAccordion('consum')">
-                <div class="categorii-mobile">Consum</div>
+                <div class="categorii-mobile">
+                    <li class="menu-item">
+                        Consum
+                        <span class="arrow">▼</span>
+                    </li>
+                </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="consum-menu">
                     @foreach ($categories as $ind => $category)
                         <li>
@@ -736,7 +760,12 @@
                 </ul>
             </div>
             <div class="categorii" id="servicii" onclick="toggleAccordion('servicii')">
-                <div class="categorii-mobile">Servicii</div>
+                <div class="categorii-mobile">
+                    <li class="menu-item">
+                        Servicii
+                        <span class="arrow">▼</span>
+                    </li>
+                </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="servicii-menu">
                     <li><a href="{{ url('/aplicare-covor-epoxidic-stb') }}" title="Pardoseli Cuartz">Pardoseli Cuartz Epoxi</a></li>
                     <li><a href="{{ url('/aplicare-pardoseala-epoxidica-autonivelanta') }}" title="Autonivelanta Epoxi">Autonivelanta Epoxi</a></li>
@@ -745,7 +774,12 @@
                 </ul>
             </div>
             <div class="categorii" id="culori" onclick="toggleAccordion('culori')">
-                <div class="categorii-mobile">Culori</div>
+                <div class="categorii-mobile">
+                    <li class="menu-item">
+                        Culori
+                        <span class="arrow">▼</span>
+                    </li>
+                </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="culori-menu">
                     <li><a href="{{ url('/cartela-culori-ral-vopsele') }}" title="Cartela RAL">Cartela RAL - Emailuri</a></li>
                     <li><a href="{{ url('/cartela-culori-lavabile') }}" title="Paletar Lavabile">Paletar Lavabile</a></li>
@@ -855,16 +889,37 @@
         });
     }
 
+    // function toggleAccordion(id) {
+    //     var menu = document.getElementById(id + '-menu');
+    //     console.log('menu', menu);
+    //     console.log('menu style', menu.style.display);
+    //     if (menu.style.display === 'none' || menu.style.display === '') {
+    //         menu.style.display = 'block';
+    //     } else {
+    //         menu.style.display = 'none';
+    //     }
+    // }
+
     function toggleAccordion(id) {
-        var menu = document.getElementById(id + '-menu');
-        console.log('menu', menu);
-        console.log('menu style', menu.style.display);
-        if (menu.style.display === 'none' || menu.style.display === '') {
-            menu.style.display = 'block';
+        // Find all the menus(categories) opened
+        var openedMenus = document.querySelectorAll(".dropdown-menu-mobile");
+
+        // Collapse(close) all the menus(categories) except the one clicked
+        openedMenus.forEach(function(menu) {
+            if (menu.id !== id + "-menu") {
+                menu.style.display = "none";
+            }
+        });
+
+        // Close/open the selected menu(category)
+        var menu = document.getElementById(id + "-menu");
+        if (menu.style.display === "none" || menu.style.display === "") {
+            menu.style.display = "block";
         } else {
-            menu.style.display = 'none';
+            menu.style.display = "none";
         }
     }
+
 
     function closeModal(modalId) {
         document.getElementById(modalId).style.display = 'none';
