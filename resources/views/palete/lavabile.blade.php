@@ -26,7 +26,7 @@
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/bundled/culori.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bundled/culori-lavabile.min.css') }}">
 @endsection
 
 @section('breadcrumbs')
