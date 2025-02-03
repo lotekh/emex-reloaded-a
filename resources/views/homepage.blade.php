@@ -25,7 +25,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="/{{ minify('css/homepage.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bundled/homepage.min.css') }}">
 @endsection
 
 @section('breadcrumbs')

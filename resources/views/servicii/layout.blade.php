@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="/{{ minify('css/servicii.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bundled/servicii.min.css') }}">
 @endsection
 
 <?php

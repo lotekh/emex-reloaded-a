@@ -19,11 +19,12 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('resources/emex-favicon.ico') }}">
 
     @php require_once '../resources/views/layouts/partials/json-ld.php'; @endphp
-
-    <link rel="stylesheet" href="/{{ minify('css/layout.css') }}">
     
-    @yield('css')
-    {{-- @vite('resources/css/app.css') --}}
+    @hasSection('css')
+        @yield('css')
+    @else 
+        <link rel="stylesheet" href="{{ asset('css/bundled/layout.min.css') }}">
+    @endif
 </head>
 
 @php

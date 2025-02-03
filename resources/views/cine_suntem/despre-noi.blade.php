@@ -19,7 +19,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="/{{ minify('css/despre.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bundled/despre.min.css') }}">
 @endsection
 
 @section('breadcrumbs')

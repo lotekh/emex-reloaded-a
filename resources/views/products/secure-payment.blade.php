@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="/{{ minify('css/plata.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bundled/plata.min.css') }}">
 @endsection
 
 @section('breadcrumbs')

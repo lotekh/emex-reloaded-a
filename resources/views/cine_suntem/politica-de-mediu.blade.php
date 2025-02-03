@@ -19,7 +19,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="/{{ minify('css/politica-de-mediu.css') }}">
+    <link rel="stylesheet" href="{{ minify('css/bundled/politica-de-mediu.min.css') }}">
 @endsection
 
 @section('breadcrumbs')

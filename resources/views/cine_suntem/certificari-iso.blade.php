@@ -19,7 +19,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="/{{ minify('css/certificari.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bundled/certificari.min.css') }}">
 @endsection
 
 @section('breadcrumbs')

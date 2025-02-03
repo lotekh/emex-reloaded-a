@@ -19,7 +19,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="/{{ minify('css/solicita-cotatie.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bundled/solicita-cotatie.min.css') }}">
 @endsection
 
 @section('breadcrumbs')
@@ -30,7 +30,7 @@
 
 <style>
     #solicit_header {
-        background-image: url('{{ asset('resources/new_design/images/Aplicari-solicita-cotatie.jpg') }}');
+        background-image: url("{{ asset('resources/new_design/images/Aplicari-solicita-cotatie.jpg') }}");
     }
 </style>
 
