@@ -362,7 +362,7 @@
     </div>
 </div>
 
-@include('components.sidebar-contact', ['secondary_title' => $product->sub_title ?? 'Produs necunoscut'])
+@include('components.sidebar-contact', ['secondary_title' => $product->name ?? 'Produs necunoscut'])
 
 
 <script>

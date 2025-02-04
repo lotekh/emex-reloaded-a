@@ -43,7 +43,7 @@
                     @if ($isHomepage)
                         {{-- empty --}}
                     @else 
-                        {{ $secondary_title }}
+                        {!! $secondary_title !!}
                     @endif
                 </h2>
 
