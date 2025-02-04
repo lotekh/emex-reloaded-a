@@ -159,16 +159,17 @@ class OrdersController extends Controller
         ];
 
         // Get the right price based on county and quantity
+        $county = County::find($countyId);
         $price = 0;
-        // Bucuresti + Ilfov
-        if (in_array($countyId, [1160, 1176])) { 
+        // București or Ilfov
+        if ($county && in_array($county->code, ['B', 'IF'])) { 
             foreach ($transportPricesBucurestiIlfov as $range) {
                 if ($totalQuantity >= $range['min'] && $totalQuantity <= $range['max']) {
                     $price = $range['price'];
                     break;
                 }
             }
-        // Others
+        // Other counties
         } else { 
             foreach ($transportPricesInTara as $range) {
                 if ($totalQuantity >= $range['min'] && $totalQuantity <= $range['max']) {
@@ -177,6 +178,7 @@ class OrdersController extends Controller
                 }
             }
         }
+
 
         // Calculate TVA
         $tva = $price * 0.19;
