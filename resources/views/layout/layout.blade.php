@@ -820,7 +820,7 @@
 
     <div id="mobile-sidebar-open-backdrop" class="hidden"></div>
 
-    @include('components.sidebar-contact', ['secondary_title' => 'vopsele'])
+    
 
 
 
