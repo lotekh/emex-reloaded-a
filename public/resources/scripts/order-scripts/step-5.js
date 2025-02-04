@@ -318,10 +318,12 @@ var rambursTvaTd = document.getElementById("ramburs_TVA");
 
 function calculateRamburs(transportPrice = 0) {
   if (!isNaN(totalValue)) {
-    rambursValue = (totalValue * 3) / 100;
+    let totalForRamburs = parseFloat(totalValue) + parseFloat(transportPrice);
+
+    let rambursValue = (totalForRamburs * 3) / 100; // ramburs is 3% of total sum(sum of order + transport price)
     rambursValue = rambursValue.toFixed(2);
 
-    ramburs_TVA = (rambursValue * 19) / 100;
+    let ramburs_TVA = (rambursValue * 19) / 100;
     ramburs_TVA = ramburs_TVA.toFixed(2);
 
     rambursValueTd.textContent = rambursValue;
