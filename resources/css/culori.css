@@ -92,12 +92,13 @@
 }
 
 .culori .parent-grid .info-container {
-  font-weight: 700;
+  /* font-weight: 700; */
   font-size: 16px;
   color: var(--white);
   background-color: var(--dark-blue);
   padding: 16px;
   border-radius: 8px;
+  text-align: center;
 }
 
 .culori .big-color {
