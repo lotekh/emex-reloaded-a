@@ -62,7 +62,7 @@
                     <div class="top-container">
                         <div class="col justify-between">
                             <div>
-                                <h2 class="subtitle">{{ html_entity_decode($product->sub_title) }}</h2>
+                                <h2 class="subtitle" id="product-subtitle">{{ html_entity_decode($product->sub_title) }}</h2>
                                 <div id="product_categories" class="row align-center">
                                     <p class="space-xl">Categorii: </p>
                                     @php
@@ -78,7 +78,7 @@
                             </div>
 
                             @if ($product->active)
-                                <div class="col">
+                                <div class="col mt-8">
                                     @if (!empty($initialVariation->price))
                                         <div class="row items-baseline price-container">
                                             <p>
@@ -95,16 +95,16 @@
 
                                         @if ($product->has_hardener)
                                             <div class="row items-baseline price-container">
-                                                <p class="section-info" id="pret_value">
-                                                    Vopsea {{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}
+                                                <p class="section-info text-blue-009">
+                                                    Contine: Vopsea {{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}
                                                 </p>
-                                                <p class="section-info">+ Bid. 0.90 Kg Intaritor</p>
+                                                <p class="section-info text-blue-009">&nbsp;+ Bid. 0.90 Kg Intaritor</p>
                                             </div>
                                         @endif
 
-                                        <p class="section-info tva-label">Pret - inclusiv tva</p>
+                                        <p class="section-info tva-label tva-produs">Pret - inclusiv tva</p>
                                     @else
-                                        <p class="section-info tva-label" id="pret_pre">Produs indisponibil</p>
+                                        <p class="section-info tva-label tva-produs" id="pret_pre">Produs indisponibil</p>
                                     @endif
                                 </div>
                             @endif
@@ -132,15 +132,15 @@
                                     @for ($i = 0; $i < 5; $i++)
                                         @if ($i < $averageRating)
                                             <div class="flex align-center">
-                                                <img src="{{ asset('resources/new_design/icons/gold-star.svg') }}" width="18" height="18" title="review-star" alt="review-star">
+                                                <img src="{{ asset('resources/new_design/icons/gold-star.svg') }}" class="review-star-product" width="18" height="18" title="review-star" alt="review-star">
                                             </div>
                                         @else
                                             <div class="flex align-center">
-                                                <img src="{{ asset('resources/new_design/icons/dark-star.svg') }}" width="18" height="18" title="review-star" alt="review-star">
+                                                <img src="{{ asset('resources/new_design/icons/dark-star.svg') }}" class="review-star-product" width="18" height="18" title="review-star" alt="review-star">
                                             </div>
                                         @endif
                                     @endfor
-                                    <p class="ml-8 font-sm">
+                                    <p class="ml-8 font-sm text-blue-009">
                                         <span class="font-700 font-sm">{{ number_format($averageRating, 2) }}</span>
                                         ({{ $reviewCount }})
                                     </p>
@@ -362,6 +362,8 @@
     </div>
 </div>
 
+@include('components.sidebar-contact', ['secondary_title' => $product->name ?? 'Produs necunoscut'])
+
 
 <script>
 
@@ -373,7 +375,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const variationInput = document.getElementById('variationInput{{ $product->id }}');
 
     // Preload all product variations into JavaScript
-    const variations = @json($product->variations || []);
+    const variations = @json($product->variations);
 
     // If the product is available, update the variations
     function updateVariation() {

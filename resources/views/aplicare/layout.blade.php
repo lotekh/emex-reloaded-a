@@ -52,5 +52,8 @@
     });
     </script>
 
+@include('components.sidebar-contact', ['secondary_title' =>  isset($secondary_title) ? $secondary_title : 'Aplicarea Vopselelor Lavabile “Emex”'])
+
+
 @endsection
 

@@ -138,6 +138,7 @@
     <img width="201" height="185" src="{{ asset('resources/images/aplicare/Design-zugraveli-lavabile.jpg') }}" alt="Aspect zugraveli decorative lavabile" class="aplicare_image_sidebar justify-self-center">
 </div>
 
+@include('components.sidebar-contact', ['secondary_title' => 'Aplicarea Vopselelor Lavabile “Emex”'])
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
