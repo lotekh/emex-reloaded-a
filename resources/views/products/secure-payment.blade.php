@@ -41,7 +41,7 @@
             
                         <div class="flex gap-md w-full">
                             <div class="form-group mb-16">
-                                <label for="last_name">Nume<span class="star">*</span></label>
+                                <label for="last_name">Nume</label>
                                 <input type="text" name="last_name" class="form-control @error('last_name') red_input @enderror" 
                                     value="{{ old('last_name', $lastName) }}" required>
                                 @error('last_name')
@@ -49,7 +49,7 @@
                                 @enderror
                             </div>
                             <div class="form-group mb-16">
-                                <label for="first_name">Prenume<span class="star">*</span></label>
+                                <label for="first_name">Prenume</label>
                                 <input type="text" name="first_name" class="form-control @error('first_name') red_input @enderror" 
                                     value="{{ old('first_name', $firstName) }}" required>
                                 @error('first_name')
@@ -70,7 +70,7 @@
                         @endif
             
                         <div class="form-group mb-16">
-                            <label for="EMAIL">Email-ul dvs<span class="star">*</span></label>
+                            <label for="EMAIL">Email-ul dvs</label>
                             <input type="email" name="EMAIL" class="form-control @error('email') red_input @enderror" 
                                 value="{{ old('email', $email) }}" required>
                             @error('email')
@@ -79,7 +79,7 @@
                         </div>
             
                         <div class="form-group mb-16">
-                            <label for="ORDER">Nr Factură<span class="star">*</span></label>
+                            <label for="ORDER">Nr Factură</label>
                             <input type="text" name="ORDER" class="form-control @error('orderNo') red_input @enderror" 
                                 value="{{ old('orderNo', $order->identifier) }}" required>
                             @error('orderNo')
@@ -88,7 +88,7 @@
                         </div>
             
                         <div class="form-group mb-16">
-                            <label for="AMOUNT">Suma<span class="star">*</span></label>
+                            <label for="AMOUNT">Suma</label>
                             <input type="text" name="AMOUNT" class="form-control @error('amount') red_input @enderror" 
                                 value="{{ old('amount', number_format($order->total, 2)) }}" readonly required>
                             @error('amount')

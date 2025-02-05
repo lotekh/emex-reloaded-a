@@ -78,7 +78,7 @@
                             </div>
 
                             @if ($product->active)
-                                <div class="col">
+                                <div class="col mt-8">
                                     @if (!empty($initialVariation->price))
                                         <div class="row items-baseline price-container">
                                             <p>
