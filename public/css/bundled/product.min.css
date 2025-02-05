@@ -5367,6 +5367,23 @@ amp-lightbox {
   }
 }
 
+#product-subtitle {
+  margin-bottom: 2px;
+}
+
+.tva-produs {
+  color: #69089b !important;
+  text-decoration: underline;
+}
+
+.review-star-product {
+  color: #f2b600;
+}
+
+.text-blue-009 {
+  color: #009 !important;
+}
+
 .product-card {
   position: relative;
   display: flex;
@@ -6128,7 +6145,7 @@ amp-selector [option][selected] {
   color: #ff9800;
 }
 
-#pagina-4-termeni-conditii h2 {
+#pagina-4-termeni-conditii h2{
   color: #1976d2;
 }
 
@@ -6176,21 +6193,4 @@ amp-selector [option][selected] {
   #al2 ul {
     padding-left: 0px;
   }
-}
-
-#product-subtitle {
-  margin-bottom: 2px;
-}
-
-.tva-produs {
-  color: #69089b !important;
-  text-decoration: underline;
-}
-
-.review-star-product {
-  color: #f2b600;
-}
-
-.text-blue-009 {
-  color: #009 !important;
 }
