@@ -134,3 +134,7 @@ APLICARE MEMBRANA HIDROIZOLANTA <br> POLIURETANICA “EMEX”
 <img width="201" height="185" src="{{ asset('resources/images/aplicare/Protectie-membrana-poliuretanica.jpg') }}" alt="Aspect zugraveli decorative lavabile" class="aplicare_image_sidebar justify-self-center">
 
 @endsection
+
+@php
+    $secondary_title = 'Aplicarea Membranei Hidroizolante “Emex”';
+@endphp

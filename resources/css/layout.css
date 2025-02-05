@@ -3538,3 +3538,27 @@ video:hover::-webkit-media-controls {
 .dropdown-menu-mobile {
   padding-top: 10px;
 }
+
+.arrow-menu {
+  font-size: 20px;
+  color: gray;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.menu-item .arrow-menu {
+  font-size: 14px;
+  color: gray;
+  position: absolute;
+  right: 5px;
+  transition: transform 0.3s ease;
+}
+
+.menu-item.open .arrow-menu {
+  transform: rotate(180deg);
+}

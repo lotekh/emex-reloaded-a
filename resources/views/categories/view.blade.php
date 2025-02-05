@@ -161,4 +161,7 @@ $base_url = url('/');
     </ul>
 </div>
 
+@include('components.sidebar-contact', ['secondary_title' => $category->name ?? 'Categorie necunoscută'])
+
+
 @endsection

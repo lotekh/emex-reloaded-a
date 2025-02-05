@@ -31,8 +31,6 @@
                 </button>
             </div>
             <div class="col align-center content">
-                {{-- <p class="gray-title"> $main_title </p>
-                <h2 id="contact_light_box_first_h5" class="mt-8">$secondary_title</h2> --}}
 
                 <p class="gray-title">
                     @if ($isHomepage)
@@ -44,10 +42,8 @@
                 <h2 id="contact_light_box_first_h5" class="mt-8">
                     @if ($isHomepage)
                         {{-- empty --}}
-                    @elseif ($isCategoryPage)
-                        {{ $category->name }}
-                    @else
-                        {{-- fallback in case it is another type of page --}}
+                    @else 
+                        {!! $secondary_title !!}
                     @endif
                 </h2>
 

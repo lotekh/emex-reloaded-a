@@ -133,3 +133,7 @@ APLICARI LACURI DECORATIVE <br> MONOCOMPONENTE “EMEX”
 
     <img width="201" height="185" src="{{ asset('resources/images/aplicare/Lac-pentru-ornamente-lemn.jpg') }}" alt="Aspect zugraveli decorative lavabile" class="aplicare_image_sidebar justify-self-center">
 @endsection
+
+@php
+    $secondary_title = 'Aplicarea Lacurilor Monocomponente “Emex”';
+@endphp

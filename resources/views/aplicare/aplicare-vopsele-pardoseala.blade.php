@@ -60,15 +60,15 @@ APLICARE VOPSELE DE <br> PARDOSEALA “EMEX”
                         <div class="aplicare_titlu mt-40 aplicare_tab_content_title aplicare_c_red">Conditii de aplicare</div>
                         <div class="aplicare_title_separator aplicare_separator_red"></div>
                         <ul>
-                            <li>Temperatura optima de aplicare a produsului: 5 - 30°C.</li>
-                            <li>Temperatura produsului: 5 - 30°C.</li>
-                            <li>Temperatura suportului: 5 - 40°C., dar obligatoriu cu min 3°C peste temperatura punctului de roua, temperatura la care apare riscul condensarii umiditatii pe suport, fapt care diminueaza caracteristicile finale de pelicula.</li>
+                            <li>Temperatura optima de aplicare a produsului: 12 - 30°C.</li>
+                            <li>Temperatura produsului: 12 - 30°C.</li>
+                            <li>Temperatura suportului: 12 - 40°C., dar obligatoriu cu min 3°C peste temperatura punctului de roua, temperatura la care apare riscul condensarii umiditatii pe suport, fapt care diminueaza caracteristicile finale de pelicula.</li>
                             <li>Umiditatea relativa a mediului max. 65%.</li>
                             <li>Produsele nu se vor aplica pe timp de ceata, ploaie, ninsoare, vant, in prezenta prafului, sau cand exista pelicula de apa sau gheata pe suprafata – suport.</li>
                             <li>Vopselele de pardoseala, epoxidice sau poliuretanice, nu se vor utiliza sau depozita la temperaturi de sub 10°C.</li>
-                            <li>Aplicarea la temperaturi de sub 10°C nu este recomandata, pentru ca rezultatele se pot situa sub limitele de calitate acceptabile.</li>
+                            <li>Aplicarea la temperaturi de sub 12°C nu este recomandata, pentru ca rezultatele se pot situa sub limitele de calitate acceptabile.</li>
                             <li>De asemeni, nu se recomanda aplicarea la temperaturi mai mari de 35°C in aer, datorita faptului ca peste aceasta temperatura pot aparea fenomene de uscare fortata, care, si in acest caz va diminua calitatea finala a peliculei.</li>
-                            <li><strong>Aplicarea sub 10°C poate fi facuta doar dupa instiintarea producatorului, cu materiale speciale pentru acest scop, care pot cobori temperatura de formare a filmului pana la 0°C</strong>.
+                            <li><strong>Aplicarea sub 12°C poate fi facuta doar dupa instiintarea producatorului, cu materiale speciale pentru acest scop, care pot cobori temperatura de formare a filmului pana la 0°C</strong>.
                             </li></ul>
                         <p class="text-center"><em><span class="subs-attn">Pentru obtinerea de rezultate optime este obligatorie consultarea <strong>Fisei Tehnice</strong></span>.</em></p>
                     </div>
