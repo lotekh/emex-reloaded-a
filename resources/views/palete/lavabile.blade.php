@@ -56,8 +56,7 @@
 
         <div class="col">
             <p class="info-container">
-                Aceasta cartela are doar caracter orientativ. Datorita diferentelor de redare dintre monitoare pentru o culoare exacta este necesar sa consultati un paletar
-                "Emex by Romtehnochim".
+                Cartela are doar caracter orientativ. Datorita diferentelor dintre monitoare pentru o culoare exacta trebuie sa consultati un paletar fizic. <em>Intre loturi sunt posibile mici diferente de nuanta</em>.
             </p>
             <div class="w-full mt-16 h-full big-color ABC-0xf2e8f5" id="big">
                 <div class="dialog-bubble">
