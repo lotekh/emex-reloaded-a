@@ -298,10 +298,9 @@ class OrdersController extends Controller
         // Save the order in session
         session()->put('order', $order);
 
-        // Get the list of counties and cities
-        
-        $counties = County::all();
-        $cities = City::all();
+        // Get the list of counties and cities in alphabetical order
+        $counties = County::orderBy('name', 'asc')->get();
+        $cities = City::orderBy('name', 'asc')->get();
 
         return view('products.finalizeaza-comanda', compact('user', 'order', 'cities', 'counties', 'ordered_products', 'isGuest', 'order_id'));
     }

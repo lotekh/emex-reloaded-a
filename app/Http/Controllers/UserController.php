@@ -143,7 +143,9 @@ class UserController extends Controller
 
     public function getCitiesByCounty($countyId)
     {
-        $cities = City::where('county_id', $countyId)->get();
+        $cities = City::where('county_id', $countyId)
+        ->orderBy('name', 'asc') 
+        ->get();
         return response()->json($cities);
     }
 
