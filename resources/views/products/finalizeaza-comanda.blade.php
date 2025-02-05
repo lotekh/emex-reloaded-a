@@ -602,7 +602,6 @@
 
                             {{-- Cost livrare --}}
                             <tr id="transport-row" style="display: none;">
-                            {{-- <tr id="transport-row"> --}}
                                 <td>
                                     <div class="flex align-center">
                                         Cost livrare

@@ -128,3 +128,8 @@ APLICARE PARDOSELI AUTONIVELANTE <br> BICOMPONENTE “EMEX”
 <img width="201" height="185" src="{{ asset('resources/images/aplicare/Aplicare-pardoseala-bicomponenta-turnata.jpg') }}" alt="Aspect zugraveli decorative lavabile" class="aplicare_image_sidebar justify-self-center">
 
 @endsection
+
+
+@php
+    $secondary_title = 'Aplicarea Pardoselilor Bicomponente “Emex”';
+@endphp

@@ -135,3 +135,7 @@ APLICARE VOPSELE MARCAJ <br> RUTIER “EMEX ROUTE”
 
     <img width="201" height="185" src="{{ asset('resources/images/aplicare/marcaje-rutiere-si-pietonale.jpg') }}" alt="Aspect zugraveli decorative lavabile" class="aplicare_image_sidebar justify-self-center">
 @endsection
+
+@php
+    $secondary_title = 'Aplicarea Vopselelor de Marcaj “Emex Route”';
+@endphp

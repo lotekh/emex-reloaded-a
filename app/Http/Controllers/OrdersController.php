@@ -159,16 +159,17 @@ class OrdersController extends Controller
         ];
 
         // Get the right price based on county and quantity
+        $county = County::find($countyId);
         $price = 0;
-        // Bucuresti + Ilfov
-        if (in_array($countyId, [1160, 1176])) { 
+        // București or Ilfov
+        if ($county && in_array($county->code, ['B', 'IF'])) { 
             foreach ($transportPricesBucurestiIlfov as $range) {
                 if ($totalQuantity >= $range['min'] && $totalQuantity <= $range['max']) {
                     $price = $range['price'];
                     break;
                 }
             }
-        // Others
+        // Other counties
         } else { 
             foreach ($transportPricesInTara as $range) {
                 if ($totalQuantity >= $range['min'] && $totalQuantity <= $range['max']) {
@@ -177,6 +178,7 @@ class OrdersController extends Controller
                 }
             }
         }
+
 
         // Calculate TVA
         $tva = $price * 0.19;
@@ -296,10 +298,9 @@ class OrdersController extends Controller
         // Save the order in session
         session()->put('order', $order);
 
-        // Get the list of counties and cities
-        
-        $counties = County::all();
-        $cities = City::all();
+        // Get the list of counties and cities in alphabetical order
+        $counties = County::orderBy('name', 'asc')->get();
+        $cities = City::orderBy('name', 'asc')->get();
 
         return view('products.finalizeaza-comanda', compact('user', 'order', 'cities', 'counties', 'ordered_products', 'isGuest', 'order_id'));
     }
@@ -429,21 +430,21 @@ class OrdersController extends Controller
                 $companyCityId = $companyInformationArray['organization_city_id'];
             }
 
-            // Calculate rambursValue if delivery_type is 0 (curier)
-            $rambursValue = 0;
-            $rambursTva = 0;
-            if ($request->input('delivery_type') == 0 && $request->input('payment_method') == 'ramburs') {
-                // rambursValue is 3% of the order value without TVA, so it is 3% of 100-19 = 81% of $dbOrder->total
-                $rambursValue = (($dbOrder->total * 81) / 100) * 3 / 100;
-                $rambursTva = ($rambursValue * 19) / 100;
-                // Add the cost of ramburs(rambursValue+rambursTva) to the total
-                $dbOrder->total += $rambursValue + $rambursTva;
-            }
-
             $dbOrder->transport_price_no_tva = $dbOrder->transport_price;
             $dbOrder->transport_price = 1.19 * $dbOrder->transport_price_no_tva;
             $dbOrder->total = $dbOrder->total + $dbOrder->transport_price;
             $dbOrder->total_no_tva = $dbOrder->total * 0.81;
+
+            // Calculate rambursValue if delivery_type is 0 (curier)
+            $rambursValue = 0;
+            $rambursTva = 0;
+            if ($request->input('delivery_type') == 0 && $request->input('payment_method') == 'ramburs') {
+                // rambursValue is 3% of the order value(value of the products+transport price) without TVA, so it is 3% of of $dbOrder->total_no_tva
+                $rambursValue = ($dbOrder->total_no_tva) * 3 / 100;
+                $rambursTva = ($rambursValue * 19) / 100;
+                // Add the cost of ramburs(rambursValue+rambursTva) to the total
+                $dbOrder->total += $rambursValue + $rambursTva;
+            }
 
             $deliveryInformation = null;
             $deliveryInformationArray = null;

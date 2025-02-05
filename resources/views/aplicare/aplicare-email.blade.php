@@ -79,3 +79,8 @@ APLICARI LACURI, VOPSELE SI GRUNDURI DECORATIVE <br> “EMEX”
 
     <img width="201" height="185" src="{{ asset('resources/images/aplicare/Lacuri-vopsele-emailuri.jpg') }}" alt="Aspect zugraveli decorative lavabile" class="aplicare_image_sidebar justify-self-center">
 @endsection
+
+
+@php
+    $secondary_title = 'Aplicarea Vopselelor Decorative “Emex”';
+@endphp
