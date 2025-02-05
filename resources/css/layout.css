@@ -3539,7 +3539,7 @@ video:hover::-webkit-media-controls {
   padding-top: 10px;
 }
 
-.arrow {
+.arrow-menu {
   font-size: 20px;
   color: gray;
 }
@@ -3551,9 +3551,14 @@ video:hover::-webkit-media-controls {
   position: relative;
 }
 
-.menu-item .arrow {
+.menu-item .arrow-menu {
   font-size: 14px;
   color: gray;
   position: absolute;
   right: 5px;
+  transition: transform 0.3s ease;
+}
+
+.menu-item.open .arrow-menu {
+  transform: rotate(180deg);
 }

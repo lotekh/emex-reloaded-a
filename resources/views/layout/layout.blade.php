@@ -691,7 +691,7 @@
                     <span class="arrow">&#9662;</span> --}}
                     <li class="menu-item">
                         Cine suntem
-                        <span class="arrow">▼</span>
+                        <span class="arrow-menu">▼</span>
                     </li>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="cine-suntem-menu">
@@ -707,7 +707,7 @@
                 <div class="categorii-mobile">
                     <li class="menu-item">
                         Produse
-                        <span class="arrow">▼</span>
+                        <span class="arrow-menu">▼</span>
                     </li>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="produse-menu">
@@ -727,7 +727,7 @@
                 <div class="categorii-mobile">
                     <li class="menu-item">
                         Aplicare
-                        <span class="arrow">▼</span>
+                        <span class="arrow-menu">▼</span>
                     </li>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="aplicare-menu">
@@ -747,7 +747,7 @@
                 <div class="categorii-mobile">
                     <li class="menu-item">
                         Consum
-                        <span class="arrow">▼</span>
+                        <span class="arrow-menu">▼</span>
                     </li>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="consum-menu">
@@ -764,7 +764,7 @@
                 <div class="categorii-mobile">
                     <li class="menu-item">
                         Servicii
-                        <span class="arrow">▼</span>
+                        <span class="arrow-menu">▼</span>
                     </li>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="servicii-menu">
@@ -778,7 +778,7 @@
                 <div class="categorii-mobile">
                     <li class="menu-item">
                         Culori
-                        <span class="arrow">▼</span>
+                        <span class="arrow-menu">▼</span>
                     </li>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="culori-menu">
@@ -890,36 +890,37 @@
         });
     }
 
-    // function toggleAccordion(id) {
-    //     var menu = document.getElementById(id + '-menu');
-    //     console.log('menu', menu);
-    //     console.log('menu style', menu.style.display);
-    //     if (menu.style.display === 'none' || menu.style.display === '') {
-    //         menu.style.display = 'block';
-    //     } else {
-    //         menu.style.display = 'none';
-    //     }
-    // }
-
     function toggleAccordion(id) {
-        // Find all the menus(categories) opened
         var openedMenus = document.querySelectorAll(".dropdown-menu-mobile");
+        var allMenuItems = document.querySelectorAll(".menu-item");
 
-        // Collapse(close) all the menus(categories) except the one clicked
+        // Close all the menus and reset the arrows
         openedMenus.forEach(function(menu) {
             if (menu.id !== id + "-menu") {
                 menu.style.display = "none";
             }
         });
 
-        // Close/open the selected menu(category)
+        allMenuItems.forEach(function(item) {
+            if (item.id !== id) {
+                item.classList.remove("open"); 
+            }
+        });
+
+        // Select the menu and the parent item
         var menu = document.getElementById(id + "-menu");
+        var parentItem = document.getElementById(id).querySelector(".menu-item");
+
+        // Open/Close the menu and rotate the arrow(add/remove 'open' class)
         if (menu.style.display === "none" || menu.style.display === "") {
             menu.style.display = "block";
+            parentItem.classList.add("open"); 
         } else {
             menu.style.display = "none";
+            parentItem.classList.remove("open"); 
         }
     }
+
 
 
     function closeModal(modalId) {
