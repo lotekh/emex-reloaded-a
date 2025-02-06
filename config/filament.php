@@ -86,4 +86,8 @@ return [
 
     'livewire_loading_delay' => 'default',
 
+    'theme' => [
+        'path' => public_path('css/theme.css'), // Path to your generated 'theme.css'
+    ],
+
 ];
