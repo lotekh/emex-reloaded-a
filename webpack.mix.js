@@ -161,3 +161,8 @@ mix.styles([
         'resources/css/layout.css',
         'resources/css/servicii.css',
 ], 'public/css/bundled/servicii.css').minify('public/css/bundled/servicii.css');
+
+mix.postCss('resources/css/filament/admin/theme.css', 'public/css/app', [
+        require('tailwindcss'),
+        require('postcss-import'),
+    ]);
