@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Request;
 use App\Models\Popup;
+use Filament\Facades\Filament;
+use Filament\Support\Assets\Css;
+use Filament\Support\Facades\FilamentAsset;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -43,5 +46,11 @@ class AppServiceProvider extends ServiceProvider
             $popup = Popup::where('slug', $currentSlug)->where('is_active', 1)->first();
             View::share('popup', $popup);
         }
+
+        Filament::serving(function () {
+            FilamentAsset::register([
+                Css::make('theme', 'css/theme.css'),
+            ]);
+        });
     }
 }

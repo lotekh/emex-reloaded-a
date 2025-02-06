@@ -1,5 +1,21 @@
-@import '/vendor/filament/filament/resources/css/theme.css';
-@import "cropperjs/dist/cropper.css";
-@import "/vendor/awcodes/filament-curator/resources/css/plugin.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@config 'tailwind.config.js';
+@import "/vendor/filament/filament/resources/css/theme.css"; 
+@import "/vendor/awcodes/filament-curator/resources/css/plugin.css";
+@import "cropperjs/dist/cropper.css";
+
+@layer base {
+    :root.dark {
+        color-scheme: dark;
+    }
+}
+
+main.fi-main {
+    max-width: unset;
+}
+
+.fi-wi-stats-overview-stat {
+    color: red;
+}

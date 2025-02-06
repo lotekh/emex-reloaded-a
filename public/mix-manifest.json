@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
+    "/css/app/theme.css": "/css/app/theme.css",
     "/css/bundled/layout.css": "/css/bundled/layout.css",
     "/css/bundled/layout.min.css": "/css/bundled/layout.min.css",
     "/css/bundled/angajari.css": "/css/bundled/angajari.css",
