@@ -103,6 +103,8 @@
 .culori .big-color {
   border-radius: 8px;
   min-height: 200px;
+  /* height: 400px;
+  border: 1px solid #32b1de; */
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -141,16 +143,16 @@
   display: none;
 }
 
-.modal-dialog {
+/* .modal-dialog {
   width: 100%;
   height: fit-content;
   max-width: 500px;
   margin: 0 16px;
   background-color: var(--white);
   box-shadow: 0px 4px 8px 4px rgba(16, 133, 255, 0.3);
-}
+} */
 
-.modal-header {
+/* .modal-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -171,9 +173,9 @@
   font-weight: bold;
   font-size: 21px;
   color: #28292b;
-}
+} */
 
-.modal-content {
+/* .modal-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -196,16 +198,16 @@
 .modal-content .close:hover {
   background-color: #009;
   color: var(--white);
-}
+} */
 
-.font-xl-ral {
+/* .font-xl-ral {
   color: #009;
   font-style: normal;
   font-weight: 600;
   font-size: 23px;
   padding: 0 24px;
   margin: 0px 0px 30px;
-}
+} */
 
 .dialog-bubble {
   position: relative;
@@ -250,4 +252,222 @@
 }
 .mark {
   background-color: #f4f3ae;
+}
+
+/* #info-container-big {
+  color: #ffffff;
+  background: #203471;
+  padding: 8px 5px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+@media (min-width: 768px) {
+  .col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  .col-md-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+  .col-md-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12,
+.col,
+.col-auto,
+.col-sm-1,
+.col-sm-2,
+.col-sm-3,
+.col-sm-4,
+.col-sm-5,
+.col-sm-6,
+.col-sm-7,
+.col-sm-8,
+.col-sm-9,
+.col-sm-10,
+.col-sm-11,
+.col-sm-12,
+.col-sm,
+.col-sm-auto,
+.col-md-1,
+.col-md-2,
+.col-md-3,
+.col-md-4,
+.col-md-5,
+.col-md-6,
+.col-md-7,
+.col-md-8,
+.col-md-9,
+.col-md-10,
+.col-md-11,
+.col-md-12,
+.col-md,
+.col-md-auto,
+.col-lg-1,
+.col-lg-2,
+.col-lg-3,
+.col-lg-4,
+.col-lg-5,
+.col-lg-6,
+.col-lg-7,
+.col-lg-8,
+.col-lg-9,
+.col-lg-10,
+.col-lg-11,
+.col-lg-12,
+.col-lg,
+.col-lg-auto,
+.col-xl-1,
+.col-xl-2,
+.col-xl-3,
+.col-xl-4,
+.col-xl-5,
+.col-xl-6,
+.col-xl-7,
+.col-xl-8,
+.col-xl-9,
+.col-xl-10,
+.col-xl-11,
+.col-xl-12,
+.col-xl,
+.col-xl-auto {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.culori-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+#rt-culori {
+  padding-top: 5px;
+  background: #ffffff;
+  font-size: 34px;
+  font-weight: bold;
+  color: #00008a;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+#h2_ral {
+  font-size: 20px;
+  color: #009;
+  margin-bottom: 10px;
+  margin-top: 12px;
+}
+
+.block-color {
+  width: 16%;
+  height: 50px;
+  margin-bottom: 5%;
+  float: left;
+  border-radius: 7px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.1s;
+  margin-right: 15px;
+  border: 2px solid #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-codes {
+  max-height: 550px;
+  overflow-y: scroll;
+  background-color: white;
+  padding: 15px;
+  padding-left: 10%;
+  padding-top: 5%;
+} */
+
+.modal-header {
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+  display: block;
+}
+
+.modal-header .close {
+  font-size: 20px;
+  font-weight: 100;
+  background-color: #f3f7eb;
+  border-radius: 50%;
+  padding: 5px;
+  padding-top: 1px;
+  padding-bottom: 0px;
+  border: 1px solid #dcdadc;
+  margin-top: -7px;
+  margin-right: -7px;
+  color: red;
+  opacity: 1;
+  float: right;
+  cursor: pointer;
+}
+
+.font-xxl {
+  font-size: 3em;
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #ff0000;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+  margin: 0;
+}
+
+.palete_modal .modal-dialog {
+  max-width: 100%;
+}
+
+.modal-dialog {
+  width: 600px;
+  margin: 30px auto;
+  background-color: white;
+  padding-bottom: 30px;
+  border-radius: 6px;
+}
+
+.font-xl-ral {
+  font-size: 1.6em;
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  padding: 22px;
+  color: #062483;
+}
+
+.font-ral {
+  font-size: 2em;
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #ff0000;
+}
+
+.modal-background {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background-color: rgba(48, 48, 48, 0.7);
+  top: 0;
+  left: 0;
+  z-index: 1001;
 }
