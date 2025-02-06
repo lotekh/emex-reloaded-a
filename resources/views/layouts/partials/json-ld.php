@@ -78,7 +78,7 @@ $big_json = '[' . $big_json . ']';
 ?>
 
 
-<script type="application/ld+json">
+<script type="application/ld+json" ignore--minify>
 <?php
     echo "$big_json";
 ?>
