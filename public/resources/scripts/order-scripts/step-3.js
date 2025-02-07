@@ -1,6 +1,6 @@
 var registerForm = document.getElementById("order_register");
 var emailInput = document.getElementById("email");
-var passwordInput = document.getElementById("password");
+var passwordInput = document.getElementById("form-order-password");
 var createAccount = document.getElementById("create-account");
 
 // var emailValidation = document.getElementById("");
