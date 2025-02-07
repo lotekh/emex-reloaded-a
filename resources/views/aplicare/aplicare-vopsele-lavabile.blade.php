@@ -143,23 +143,23 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     window.openTab = function(evt, tabName) {
-        // Declară toate variabilele
+        // Declare all the variables
         var i, tabcontent, tablinks;
 
-        // Ascunde tot conținutul taburilor
+        // Hide the tab content
         tabcontent = document.getElementsByClassName("tab-content");
         for (i = 0; i < tabcontent.length; i++) {
             tabcontent[i].classList.remove("active");
         }
 
-        // Elimină clasa 'selected' și aria-selected de la toate butoanele
+        // Remove 'selected' class and aria-selected from all buttons
         tablinks = document.getElementsByClassName("btn");
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].classList.remove("selected");
             tablinks[i].setAttribute("aria-selected", "false");
         }
 
-        // Afișează tab-ul curent și adaugă clasa 'active' și 'selected' la butonul selectat
+        // Show the current tab and add 'active' and 'selected' classes to the current button
         document.getElementById(tabName).classList.add("active");
         evt.currentTarget.classList.add("selected");
         evt.currentTarget.setAttribute("aria-selected", "true");
