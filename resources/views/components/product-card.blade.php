@@ -10,7 +10,7 @@
   <!-- upper -->
   <div class="text-center">
     <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
-      <h2 class="title">{{ $product->plain_name }}</h2>
+      <h2 class="title">{!! $product->plain_name !!}</h2>
     </a>
   </div>
 
