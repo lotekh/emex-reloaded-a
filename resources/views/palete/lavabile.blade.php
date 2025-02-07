@@ -83,26 +83,30 @@
     </div>
 </div>
 
-<div class="modal-ral" id="promotie_modal">
-    <div class="modal-dialog">
-        <div class="modal-header">
-            <div>
-                <img width="40" height="35" class="atentie-consum" src="{{ asset('resources/images/general/emex_warning.png') }}" alt="Atentie suprafete nerecomandate">
-            </div>
-            <p class="modal-title text-center">Atentie !</p>
-            <p class="text-center note mark">
-                Aceasta cartela are doar rol informativ
-            </p>
-        </div>
-        <div class="modal-content">
-            <p class="text-center font-xl-ral">
-                Pentru culori sau nuante folositi<br>doar cartele de culori standardizate,<br>printate pe suport fizic.
-            </p>
+<div class="palete_modal modal-background">
+    <div id="promotie_modal_1">
 
-            <button type="button" onclick="closeModalRal()" class="close" data-dismiss="modal" aria-hidden="true" id="close_promotie_modal" aria-label="Inchide">
-                Am inteles
-            </button>
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" onclick="closeModalRal()" class="close" aria-hidden="true" aria-label="Inchide" id="close_promotie_modal">×</button>
+                    <h4 class="modal-title text-center font-xxl">ATENTIE !</h4>
+                </div>
+                
+                <div class="modal-body mt-16">
+                    <p class="text-center">
+                        <span class="font-xl-ral">Va rugam cititi cu atentie precizarile din pagina !<br> Pentru comenzi folositi<br> doar cartele de culori standardizate,<br> printate pe suport fizic.</span><br><span class="font-ral">ACEASTA CARTELA ARE DOAR<br> ROL INFORMATIV !</span>
+                        <br>
+                    </p>
+                    <div class="panel-footer"></div>
+                </div>
+
+                <div class="modal-footer"></div>
+
+            </div>
         </div>
+
     </div>
 </div>
 
@@ -174,8 +178,7 @@
     }
 
     function closeModalRal() {
-        document.getElementById('promotie_modal').classList.add('hide-modal');
-        // document.getElementById('promotie_modal').style.display = 'none';
+        document.querySelector('.modal-background').classList.add('hide-modal');
     }
 
     document.addEventListener('DOMContentLoaded', () => {

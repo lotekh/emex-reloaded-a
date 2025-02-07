@@ -104,6 +104,8 @@
 .culori .big-color {
   border-radius: 8px;
   min-height: 200px;
+  /* height: 400px;
+  border: 1px solid #32b1de; */
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -140,72 +142,6 @@
 
 .hide-modal {
   display: none;
-}
-
-.modal-dialog {
-  width: 100%;
-  height: fit-content;
-  max-width: 500px;
-  margin: 0 16px;
-  background-color: var(--white);
-  box-shadow: 0px 4px 8px 4px rgba(16, 133, 255, 0.3);
-}
-
-.modal-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--whitegrey);
-  padding: 24px 0;
-}
-
-.modal-header .modal-title {
-  font-style: normal;
-  font-weight: 700;
-  font-size: 32px;
-  color: #28292b;
-  margin: 6px 0;
-}
-
-.modal-header .note {
-  font-weight: bold;
-  font-size: 21px;
-  color: #28292b;
-}
-
-.modal-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 16px;
-}
-
-.modal-content .close {
-  padding: 12px 48px;
-  background-color: var(--white);
-  border: 1px solid #009;
-  color: #009;
-  border-radius: 4px;
-  transition: all 0.3s ease-in-out;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-}
-
-.modal-content .close:hover {
-  background-color: #009;
-  color: var(--white);
-}
-
-.font-xl-ral {
-  color: #009;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 23px;
-  padding: 0 24px;
-  margin: 0px 0px 30px;
 }
 
 .dialog-bubble {
@@ -251,4 +187,72 @@
 }
 .mark {
   background-color: #f4f3ae;
+}
+
+.modal-header {
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+  display: block;
+}
+
+.modal-header .close {
+  font-size: 20px;
+  font-weight: 100;
+  background-color: #f3f7eb;
+  border-radius: 50%;
+  padding: 5px;
+  padding-top: 1px;
+  padding-bottom: 0px;
+  border: 1px solid #dcdadc;
+  margin-top: -7px;
+  margin-right: -7px;
+  color: red;
+  opacity: 1;
+  float: right;
+  cursor: pointer;
+}
+
+.font-xxl {
+  font-size: 3em;
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #ff0000;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+  margin: 0;
+}
+
+.palete_modal .modal-dialog {
+  max-width: 100%;
+}
+
+.modal-dialog {
+  width: 600px;
+  margin: 30px auto;
+  background-color: white;
+  padding-bottom: 30px;
+  border-radius: 6px;
+}
+
+.font-xl-ral {
+  font-size: 1.6em;
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  padding: 22px;
+  color: #062483;
+}
+
+.font-ral {
+  font-size: 2em;
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #ff0000;
+}
+
+.modal-background {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background-color: rgba(48, 48, 48, 0.7);
+  top: 0;
+  left: 0;
+  z-index: 1001;
 }

@@ -74,7 +74,7 @@
                               <img class="image-cart" layout="fixed" src="{{ $ordered_product->product->smallImage ? asset('storage/' . $ordered_product->product->smallImage->path) : asset('/images/default-placeholder.png') }}" alt="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->alt : 'imagine'}}" title="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->title : 'imagineprodus'}}">
                           </div>
                           {{-- Get the product name until the first '-' sign --}}
-                          <h3 class="normal-weight">{{ \Illuminate\Support\Str::before($ordered_product->name, ' -') }}</h3>
+                          <h3 class="normal-weight">{{ \Illuminate\Support\Str::before($ordered_product->short_name, ' -') }}</h3>
                       </a>
                   </td>
 
