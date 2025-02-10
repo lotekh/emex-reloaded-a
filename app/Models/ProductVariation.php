@@ -18,6 +18,7 @@ class ProductVariation extends Model
         'colour',
         'price',
         'name',
+        'short_name',
         'addon_text',
         'ean',
         'sku',

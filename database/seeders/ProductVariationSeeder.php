@@ -30,6 +30,23 @@ class ProductVariationSeeder extends Seeder
                 $quantityAndMeasurementUnit = explode(' ', $csvRow[1]);
                 $measurementUnit = MeasurementUnit::where('name', $quantityAndMeasurementUnit[1])->first();
 
+                $name = $csvRow[6];
+
+                //Culoare
+                if($csvRow[2]) {
+                    $name .= ' - ' . $csvRow[2];
+                }
+
+                //Ambalaj
+                if($csvRow[1]) {
+                    $name .= ' - Bid. ' . $csvRow[1];
+                }
+
+                //Intaritor
+                if($csvRow[7]) {
+                    $name .= ' ' . $csvRow[7];
+                }
+
                 $weight = $csvRow[10] ? $csvRow[10] : 0;
 
                 if($product && $measurementUnit) {
@@ -39,7 +56,8 @@ class ProductVariationSeeder extends Seeder
                         'quantity' => $quantityAndMeasurementUnit[0],
                         'colour' => $csvRow[2],
                         'price' => doubleval($csvRow[5]),
-                        'name' => $csvRow[6],
+                        'short_name' => $csvRow[6],
+                        'name' => $name,
                         'addon_text' => $csvRow[7],
                         'ean' => $csvRow[8],
                         'sku' => $csvRow[9],

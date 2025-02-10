@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CategoryProduct;
 use App\Models\Media;
 use App\Models\Product;
 use DOMDocument;
@@ -19,6 +20,7 @@ class ProductSeeder extends Seeder
     {
         Schema::disableForeignKeyConstraints();
         Product::truncate();
+        CategoryProduct::truncate();
         Schema::enableForeignKeyConstraints();
 
         $jsonFile = resource_path('json/productsImport2.json');
