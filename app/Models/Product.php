@@ -21,6 +21,8 @@ class Product extends Model
         'consumption_twitter_image_id',
         'large_image_id',
         'small_image_id',
+        'png_small_image_id',
+        'png_large_image_id',
         'technical_file_id',
         'slug',
         'name',
@@ -112,6 +114,16 @@ class Product extends Model
     public function smallImage(): BelongsTo
     {
         return $this->belongsTo(Media::class, 'small_image_id', 'id');
+    }
+
+    public function pngSmallImage(): BelongsTo
+    {
+        return $this->belongsTo(Media::class, 'png_small_image_id', 'id');
+    }
+
+    public function pngLargeImage(): BelongsTo
+    {
+        return $this->belongsTo(Media::class, 'png_large_image_id', 'id');
     }
 
     public function technicalFile(): BelongsTo

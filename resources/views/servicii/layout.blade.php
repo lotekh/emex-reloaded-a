@@ -10,7 +10,7 @@ $baseUrl = url('/');
 
 @section('content')
 
-<div class="servicii relative w-full col justify-center align-center header" id="acesh" style="background-image: url('resources/images/pardoseala-cuartz-epoxidica-stb-cover.jpg');">
+<div class="servicii relative w-full col justify-center align-center header" id="acesh" style="background-image: url('@yield('header_background', 'resources/images/pardoseala-cuartz-epoxidica-stb-cover.jpg')');">
     <h1 class="z-10">
         @yield('header_title')
     </h1>

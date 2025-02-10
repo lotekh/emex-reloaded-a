@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             ProductSeeder::class,
             ProductVariationSeeder::class,
+            ImagesSeeder::class,
             CategoryFiltersSeeder::class,
             BlogSeeder::class,
             PopupSeeder::class,

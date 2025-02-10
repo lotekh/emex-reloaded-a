@@ -60,8 +60,8 @@
                       <li>10. Intrebari si contacte</li>
                     </ul>
                     <h2 class="h2-style">1. COLECTAREA INFORMATIILOR</h2>
-                    <p><span class="alineat_span"></span>Accesarea/ vizitarea site-ului emex.ro se supune <a href="{{ url('/termeni-si-conditii') }}"><em class="link_color1">Termeniilor si Conditiilor de Utilizare</em></a> si Politicii de Confidentialitate prezentate aici, implica acceptul dumneavoastra explicit cu privire la acestea si reprezinta intreaga intelegere dintre parti.</p>
-                    <p><span class="alineat_span">Atunci cand navigati pe Site, si/ sau accesati pagini sau formulare de contact, este posibil sa colectam urmatoarele:</span></p>
+                    <p><span class="alineat_span"></span>Accesarea/ vizitarea site-ului emex.ro se supune <a href="{{ url('/termeni-si-conditii') }}"><em class="link_color1">Termeniilor si Conditiilor de Utilizare</em></a> si Politicii de Confidentialitate prezentate aici, implica acceptul dumneavoastra explicit cu privire la acestea, si reprezinta intreaga intelegere dintre parti.</p>
+                    <p><span class="alineat_span"></span>Atunci cand navigati pe Site, si/ sau accesati pagini sau formulare de contact, este posibil sa colectam urmatoarele:</p>
                     <p><span class="alineat_span"></span><strong>Informatii transmise de dumneavoastra:</strong></p>
                     <p><span class="alineat_span"></span><strong>Date de contact</strong> - receptionam orice informatie transmisa pentru finalizarea unei comenzi. Formularele de comanda colecteaza informatiii despre dumneavoastra ce pot include: nume si prenume, CIF pentru societati, adresa postala (domiciliul / resedinta / adresa de corespondenta), numar de telefon, adresa de email, date localizare (IP - doar in scopuri de securitate).</p>
                     <p><span class="alineat_span"></span><strong>Informatii pe care le primim prin folosirea serviciilor noastre:</strong></p>

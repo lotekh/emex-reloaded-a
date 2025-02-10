@@ -1,6 +1,6 @@
 var registerForm = document.getElementById("order_register");
 var emailInput = document.getElementById("email");
-var passwordInput = document.getElementById("password");
+var passwordInput = document.getElementById("form-order-password");
 var createAccount = document.getElementById("create-account");
 
 // var emailValidation = document.getElementById("");
@@ -28,34 +28,9 @@ function toggleRegister() {
   }
 }
 
-// function validateAndProceedToStep4() {
-//   if (!this.classList.contains("btn-disabled")) {
-//     var toValidate;
-//     var valid = true;
-//     if (createAccount.checked == true) {
-//       toValidate = registerForm.getElementsByClassName("form-control");
-
-//       for (let item of toValidate) {
-//         if (item.reportValidity() == false) {
-//           valid = false;
-//         }
-//       }
-//     }
-
-//     if (valid) {
-//       step3Container.classList.remove("active");
-//       step4Container.classList.add("active");
-//       headerStep3.classList.remove("active");
-//       headerStep4.classList.add("active");
-//     }
-//   }
-// }
-
 function validateAndProceedToStep4() {
   if (!this.classList.contains("btn-disabled")) {
     clearErrorMessages();
-
-    // const csrfToken = document.querySelector('input[name="_token"]').value;
 
     if (createAccount.checked) {
       fetch("/validate-account", {
