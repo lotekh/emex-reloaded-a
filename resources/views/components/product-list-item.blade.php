@@ -10,6 +10,7 @@
     $initial_q = 1;
 
     $smallImageUrl = $product->smallImage ? asset('storage/' . $product->smallImage->path) : $baseUrl . '/images/default-placeholder.png';
+    $pngSmallImageUrl = $product->pngSmallImage ? asset('storage/' . $product->pngSmallImage->path) : $baseUrl . '/images/default-placeholder.png';
 
     // Calculate the average rating safely
     $rating_sum = 0;
@@ -26,7 +27,10 @@
         <div class="col flex-md">
             <div class="relative image-container z-0" style="text-align: center;">
                 <a href="{{ url($product->slug) }}">
-                    <img src="{{ $smallImageUrl }}" alt="{{ $product->smallImage ? $product->smallImage->alt : 'imagine'}}" title="{{ $product->smallImage ? $product->smallImage->title : 'imagineprodus'}}" style="height: 180px; max-width: 230px;">
+                    <picture>
+                        <source type="image/webp" srcset="{{ $smallImageUrl }}">
+                        <img style="height: 180px; max-width: 230px;" src="{{ $pngSmallImageUrl }}" alt="{{ $product->pngSmallImage ? $product->pngSmallImage->alt : 'imagine'}}" title="{{ $product->pngSmallImage ? $product->pngSmallImage->title : 'imagineprodus'}}">
+                    </picture>
                 </a>
             </div>
             <div class="col w-full justify-between form-container">

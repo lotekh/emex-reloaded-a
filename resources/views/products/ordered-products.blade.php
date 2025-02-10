@@ -71,7 +71,10 @@
                   <td>
                       <a href="{{ url($ordered_product->product->slug) }}" class="flex align-center">
                           <div>
-                              <img class="image-cart" layout="fixed" src="{{ $ordered_product->product->smallImage ? asset('storage/' . $ordered_product->product->smallImage->path) : asset('/images/default-placeholder.png') }}" alt="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->alt : 'imagine'}}" title="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->title : 'imagineprodus'}}">
+                            <picture>
+                              <source type="image/webp" srcset="{{ $ordered_product->product->smallImage ? asset('storage/' . $ordered_product->product->smallImage->path) : asset('/images/default-placeholder.png') }}">
+                              <img class="image-cart" layout="fixed" src="{{ $ordered_product->product->pngSmallImage ? asset('storage/' . $ordered_product->product->smallImage->path) : asset('/images/default-placeholder.png') }}" alt="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->alt : 'imagine'}}" title="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->title : 'imagineprodus'}}">
+                            </picture>
                           </div>
                           {{-- Get the product name until the first '-' sign --}}
                           <h3 class="normal-weight">{{ \Illuminate\Support\Str::before($ordered_product->short_name, ' -') }}</h3>

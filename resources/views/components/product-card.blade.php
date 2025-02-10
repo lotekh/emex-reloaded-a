@@ -59,10 +59,14 @@
 
       @php
         $smallImageUrl = $product->smallImage ? asset('storage/' .$product->smallImage->path) : $baseUrl . '/images/default-placeholder.png';
+        $pngSmallImageUrl = $product->pngSmallImage ? asset('storage/' .$product->pngSmallImage->path) : $baseUrl . '/images/default-placeholder.png';
       @endphp
 
       <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
-        <img src="{{ $smallImageUrl }}" alt="{{ $product->smallImage ? $product->smallImage->alt : 'imagine'}}" title="{{ $product->smallImage ? $product->smallImage->title : 'imagineprodus'}}">
+        <picture>
+          <source type="image/webp" srcset="{{ $smallImageUrl }}">
+          <img src="{{ $pngSmallImageUrl }}" alt="{{ $product->pngSmallImage ? $product->pngSmallImage->alt : 'imagine'}}" title="{{ $product->pngSmallImage ? $product->pngSmallImage->title : 'imagineprodus'}}"> 
+        </picture>
       </a>
     </div>
 
