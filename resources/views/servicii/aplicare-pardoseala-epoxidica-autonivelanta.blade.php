@@ -32,6 +32,8 @@ $baseUrl = url('/');
 <ul class="flex gap-xs"><li class="font-xs"><a href="/pardoseli-trafic">Pardoseli Turnate</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="/servicii">Servicii</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Epoxidica Autonivelanta “Emex”</li></ul>
 @endsection
 
+@section('header_background', 'resources/images/Pardoseala-autonivelanta-epoxidica-cover.jpg')
+
 @section('header_title')
 Pardoseala Epoxidica Autonivelanta <br> “Emex”
 @endsection
