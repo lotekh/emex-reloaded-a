@@ -9,6 +9,7 @@ use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactPageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CountyController;
 use App\Http\Controllers\PaleteController;
 use App\Http\Controllers\CookieController;
@@ -162,8 +163,11 @@ Route::post('/sterge-produs', [OrdersController::class, 'removeProduct'])->name(
 Route::post('/goleste-cosul', [OrdersController::class, 'emptyCart'])->name('orders.empty');
 Route::get('/invoice/{orderId}', [OrdersController::class, 'showInvoicePage'])->name('invoice.page');
 
+
 Route::post('/validate-account', [OrdersController::class, 'validateAccount'])->name('checkout.validateAccount');
-// Route::post('/create-account', [OrdersController::class, 'createAccount']);
+
+Route::post('/validate-login', [AuthController::class, 'validateLogin'])->name('auth.validateLogin');
+
 
 // Routes for checkout
 Route::get('/finalizeaza-comanda', [OrdersController::class, 'showCheckoutForm'])->name('checkout.form');

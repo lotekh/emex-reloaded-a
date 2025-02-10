@@ -407,8 +407,9 @@
                             </div>
                             <span class="hidden" id="create-account-email"></span>
                             <div class="form-group mt-16">
-                                <label>Parola</label>
-                                <input class="form-control w-full" type="password" id="password" name="password">
+                                <label for="form-order-password">Parola</label>
+                                <input class="form-control w-full" type="password" id="form-order-password" name="password">
+                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" alt="eye-solid-icon" class="password-toggle-icon" id="toggle-order-password-visibility"  onclick="togglePasswordVisibility('form-order-password', 'toggle-order-password-visibility')" >
                             </div>
                             <span class="hidden" id="create-account-password"></span>
                         </div>
@@ -750,6 +751,7 @@
         authContainer.style.display = 'inline-block';
         document.getElementById('auth-lightbox').style.display = 'flex';
     });
+
 </script>
 
 @endsection
