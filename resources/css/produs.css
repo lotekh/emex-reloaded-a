@@ -1808,7 +1808,7 @@ amp-lightbox {
 
 .tva-produs {
   color: #69089b !important;
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 .review-star-product {
@@ -1817,4 +1817,20 @@ amp-lightbox {
 
 .text-blue-009 {
   color: #009 !important;
+}
+
+.blue-divider:after {
+  content: "";
+  position: absolute;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #0b26a5;
+  /* width: 50%; */
+  bottom: 0;
+}
+
+.blue-divider {
+  box-shadow: 0 4px 3px -2px #bfa4ea;
+  position: relative;
+  border-bottom: 1px solid #0b26a5;
+  padding-bottom: 3px;
 }

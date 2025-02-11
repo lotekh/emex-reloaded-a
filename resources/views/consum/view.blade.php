@@ -46,8 +46,12 @@
             <div class="consum-product-image mb-16" id="div_img_consum">
                 @php
                     $smallImageUrl = $product->smallImage ? asset('storage/' .$product->smallImage->path) : $baseUrl . '/images/default-placeholder.png';
+                    $pngSmallImageUrl = $product->pngSmallImage ? asset('storage/' .$product->pngSmallImage->path) : $baseUrl . '/images/default-placeholder.png';
                 @endphp
-                <img class="product-img img-responsive bordered m-16" src="{{ $smallImageUrl }}" alt="{{ $product->smallImage ? $product->smallImage->alt : 'imagine'}}" title="{{ $product->smallImage ? $product->smallImage->title : 'imagineprodus'}}">
+                <picture>
+                    <source type="image/webp" srcset="{{ $smallImageUrl }}">
+                    <img class="product-img img-responsive bordered m-16" src="{{ $pngSmallImageUrl }}" alt="{{ $product->smallImage ? $product->smallImage->alt : 'imagine'}}" title="{{ $product->smallImage ? $product->smallImage->title : 'imagineprodus'}}">
+                </picture>
             </div>
 
                 <div class="w-full" id="pwgw">

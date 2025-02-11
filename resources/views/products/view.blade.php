@@ -51,9 +51,13 @@
             <div class="w-full h-full relative img-container" id="imagine-produs-2">
                 @php
                     $largeImageUrl = $product->largeImage ? asset('storage/' .$product->largeImage->path) : $baseUrl . '/images/default-placeholder.png';
+                    $pngLargeImageUrl = $product->pngLargeImage ? asset('storage/' .$product->pngLargeImage->path) : $baseUrl . '/images/default-placeholder.png';
                 @endphp
 
-                <img class="featured-image-1" id="imagine-produs" src="{{ $largeImageUrl }}" alt="{{ $product->largeImage ? $product->largeImage->alt : ''}}" title="{{ $product->largeImage ? $product->largeImage->title : ''}}">
+                <picture>
+                    <source type="image/webp" srcset="{{ $largeImageUrl }}">
+                    <img class="featured-image-1" id="imagine-produs" src="{{ $pngLargeImageUrl }}" alt="{{ $product->pngLargeImage ? $product->pngLargeImage->alt : ''}}" title="{{ $product->pngLargeImage ? $product->pngLargeImage->title : ''}}">
+                </picture>
             </div>
         </div>
         
@@ -78,7 +82,7 @@
                             </div>
 
                             @if ($product->active)
-                                <div class="col mt-8">
+                                <div class="col mt-8 blue-divider">
                                     @if (!empty($initialVariation->price))
                                         <div class="row items-baseline price-container">
                                             <p>

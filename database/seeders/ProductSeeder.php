@@ -23,7 +23,7 @@ class ProductSeeder extends Seeder
         CategoryProduct::truncate();
         Schema::enableForeignKeyConstraints();
 
-        $jsonFile = resource_path('json/productsImport2.json');
+        $jsonFile = resource_path('json/productsImport3.json');
         $products = array_values((array)json_decode(file_get_contents($jsonFile), true))[2]['data'];
 
         foreach ($products as $product) {
@@ -63,12 +63,12 @@ class ProductSeeder extends Seeder
 
             $dbProduct->categories()->attach($product['category_id'], ['order' => $product['sort_priority']]);
 
-            $largeImageUrl = self::constructImageUrl($product, 'large_image_path');
-            $smallImageUrl = self::constructImageUrl($product, 'small_image_path');
+            // $largeImageUrl = self::constructImageUrl($product, 'large_image_path');
+            // $smallImageUrl = self::constructImageUrl($product, 'small_image_path');
             $technicalFileUrl = self::constructTechnicalFileUrl($product);
 
-            self::uploadFile($largeImageUrl, $dbProduct, 'large_image_id', (array)json_decode($product['large_image_metadata']));
-            self::uploadFile($smallImageUrl, $dbProduct, 'small_image_id', (array)json_decode($product['small_image_metadata']));
+            // self::uploadFile($largeImageUrl, $dbProduct, 'large_image_id', (array)json_decode($product['large_image_metadata']));
+            // self::uploadFile($smallImageUrl, $dbProduct, 'small_image_id', (array)json_decode($product['small_image_metadata']));
             self::uploadFile($product['seo_og_image'], $dbProduct, 'og_image_id');
             self::uploadFile($product['consum_seo_og_image'], $dbProduct, 'consumption_og_image_id');
             self::uploadFile($product['seo_twitter_image'], $dbProduct, 'twitter_image_id');

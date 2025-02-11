@@ -111,7 +111,7 @@ marind perioada de utilizare a suprafetei protejate, asigurandu-i in plus si o e
 </li>
 <li>
     Se creaza o maxima compatibilitate intre stratul suport si vopseaua epoxidica, prin impregnarea suportului cu
-    <a href="<?= $baseUrl ?>/amorsa-impregnare-pardoseli-epoxidice" title="Amorsa epoxidica pentru vopsea beton">
+    <a href="<?= $baseUrl ?>/amorsa-epoxidica-impregnare" title="Amorsa epoxidica pentru vopsea beton">
         <strong><em>Amorsa Epoxidica de Impregnare “Emex”</em></strong>
     </a>, ce are si rol de fixare a suportului.
 </li>
