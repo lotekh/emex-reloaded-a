@@ -670,6 +670,24 @@ class OrdersController extends Controller
                 $clientName = $dbOrder->billing_type == 0
                     ? json_decode($dbOrder->company_information, true)['person_first_name'] . ' ' . json_decode($dbOrder->company_information, true)['person_last_name']
                     : json_decode($dbOrder->company_information, true)['organization_name'];
+                $companyInfo = json_decode($dbOrder->company_information, true) ?? [];
+                Log::info('Company Information:', $companyInfo);
+                $billingCityId = $dbOrder->billing_type == 0 
+                 ? ($companyInfo['person_city_id'] ?? null) 
+                 : ($companyInfo['organization_city_id'] ?? null);
+                $billingCityName = 'Necunoscut';
+                    if ($billingCityId) {
+                        $billingCity = City::where('id', $billingCityId)->first();
+                        $billingCityName = $billingCity ? $billingCity->name : 'Necunoscut';
+                    }
+                Log::info('Billing City:', $billingCityName);
+                // $deliveryInfo = json_decode($dbOrder->delivery_information, true) ?? [];
+                // $deliveryCityId1 = $deliveryInfo['delivery_city_id'] ?? null;
+                // $deliveryCityName = 'Necunoscut';
+                //     if ($deliveryCityId1) {
+                //         $deliveryCity = City::where('id', $deliveryCityId1)->first();
+                //         $deliveryCityName = $deliveryCity ? $deliveryCity->name : 'Necunoscut';
+                //     }
 
                 // Create the email content
                 $emailContent = "S-au comandat urmatoarele produse:\n\n";
@@ -688,9 +706,7 @@ class OrdersController extends Controller
                 $emailContent .= "Numar de telefon: " . json_decode($dbOrder->company_information, true)['person_phone'] . "\n";
                 $emailContent .= "Adresa de email: " . $clientEmail . "\n";
                 $emailContent .= "Judet: " . $billingCountyName . "\n";
-                $emailContent .= "Localitate: " . ($dbOrder->billing_type == 0 
-                    ? json_decode($dbOrder->company_information, true)['person_locality'] 
-                    : json_decode($dbOrder->company_information, true)['organization_locality']) . "\n";
+                $emailContent .= "Localitate: " . $billingCityName . "\n";
                 $emailContent .= "Adresa: " . ($dbOrder->billing_type == 0 
                     ? json_decode($dbOrder->company_information, true)['person_address'] 
                     : json_decode($dbOrder->company_information, true)['organization_address']) . "\n\n";
@@ -698,6 +714,8 @@ class OrdersController extends Controller
                 $emailContent .= "Tip: Ridicare personala\n";
                 $emailContent .= "Detalii plata:\n";
                 $emailContent .= "Tip: ordin de plata\n";
+                Log::info('Email Content:', ['content' => $emailContent]);
+
 
                 // Send the email to the client
                 Mail::raw($emailContent, function ($message) use ($clientEmail, $dbOrder, $filePath) {
@@ -712,16 +730,16 @@ class OrdersController extends Controller
                 ]);
 
                 // Send the email to Emex
-                Mail::raw($emailContent, function ($message) use ($emexEmail, $dbOrder, $filePath, $clientEmail, $clientName) {
-                    $message->to($emexEmail)
-                        ->from($clientEmail, $clientName) 
-                        ->subject('Comanda')
-                        ->attach(Storage::disk('public')->path($filePath)); 
-                });
-                Log::info('Email trimis cu succes către Emex:', [
-                    'email' => $emexEmail,
-                    'order_id' => $dbOrder->id,
-                ]);
+                // Mail::raw($emailContent, function ($message) use ($emexEmail, $dbOrder, $filePath, $clientEmail, $clientName) {
+                //     $message->to($emexEmail)
+                //         ->from($clientEmail, $clientName) 
+                //         ->subject('Comanda')
+                //         ->attach(Storage::disk('public')->path($filePath)); 
+                // });
+                // Log::info('Email trimis cu succes către Emex:', [
+                //     'email' => $emexEmail,
+                //     'order_id' => $dbOrder->id,
+                // ]);
 
             } catch (\Exception $e) {
                 Log::error('A apărut o eroare la trimiterea emailurilor:', [
