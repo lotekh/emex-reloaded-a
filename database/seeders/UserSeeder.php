@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'first_name' => 'Adrian',
             'last_name' => 'Petre',
             'email' => 'adrian.petre@emex.ro',
-            'password' => Hash::make('admin123')
+            'password' => Hash::make('adrian56')
         ]);
     }
 }

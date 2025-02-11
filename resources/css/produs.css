@@ -1831,4 +1831,6 @@ amp-lightbox {
 .blue-divider {
   box-shadow: 0 4px 3px -2px #bfa4ea;
   position: relative;
+  border-bottom: 1px solid #0b26a5;
+  padding-bottom: 3px;
 }

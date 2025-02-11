@@ -65,7 +65,7 @@
       <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
         <picture>
           <source type="image/webp" srcset="{{ $smallImageUrl }}">
-          <img src="{{ $pngSmallImageUrl }}" alt="{{ $product->pngSmallImage ? $product->pngSmallImage->alt : 'imagine'}}" title="{{ $product->pngSmallImage ? $product->pngSmallImage->title : 'imagineprodus'}}"> 
+          <img src="{{ $pngSmallImageUrl }}" class="w-full" alt="{{ $product->pngSmallImage ? $product->pngSmallImage->alt : 'imagine'}}" title="{{ $product->pngSmallImage ? $product->pngSmallImage->title : 'imagineprodus'}}"> 
         </picture>
       </a>
     </div>
