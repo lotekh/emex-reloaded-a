@@ -251,7 +251,7 @@
                             <div class="w-full flex justify-center">
                                 <button type="submit" class="w-fit btn rounded-lg px-16 mt-32">Autentifica-te</button>
                             </div>
-                            <button class="subtext mt-16 underline-hover" type="button" onclick="switchModal('auth-lightbox', 'recover-password-lightbox')" role="button" aria-label="Recupereaza Parola" tabindex="0">Parola uitata?</button>
+                            <button class="subtext mt-16 underline-hover" type="button" onclick="openRecoverPasswordModal()" role="button" aria-label="Recupereaza Parola" tabindex="0">Parola uitata?</button>
                         </form>
                     </div>
                 </div>
@@ -936,6 +936,16 @@
         document.getElementById(currentModalId).style.display = 'none';
         document.getElementById(targetModalId).style.display = 'flex';
     }
+
+    function openRecoverPasswordModal() {
+        // Hide the other modals
+        document.getElementById('auth-lightbox').style.display = 'none';
+        document.getElementById('register-lightbox').style.display = 'none';
+
+        // Show the recover password modal
+        document.getElementById('recover-password-lightbox').style.display = 'flex';
+    }
+
 
     document.getElementById('auth_lightbox_trigger').addEventListener('click', function() {
         var authContainer = document.querySelector('.autentificare-1');
