@@ -8,7 +8,8 @@
     $initialIntaritor = $initialVariation->addon_text ?? null;
     $initialEan = $initialVariation->ean ?? null;
     $initial_q = 1;
-
+    
+    $baseUrl = url('/');
     $smallImageUrl = $product->smallImage ? asset('storage/' . $product->smallImage->path) : $baseUrl . '/images/default-placeholder.png';
     $pngSmallImageUrl = $product->pngSmallImage ? asset('storage/' . $product->pngSmallImage->path) : $baseUrl . '/images/default-placeholder.png';
 
@@ -35,7 +36,8 @@
             </div>
             <div class="col w-full justify-between form-container">
                 <div class="col">
-                    <h5 class="m-0 mt-16 mb-8">{{ html_entity_decode($product->plain_name) }}</h5>
+                    {{-- <h5 class="m-0 mt-16 mb-8">{{ html_entity_decode($product->plain_name) }}</h5> --}}
+                    <h5 class="m-0 mt-16 mb-8 normal-weight">{{ \Illuminate\Support\Str::before(html_entity_decode($initialVariation->name), ' -') }}</h5>
                     @unless($hideRating)
                         <div class="flex rating mb-16 align-center">
                             @for($i = 0; $i < 5; $i++)

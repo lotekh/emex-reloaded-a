@@ -327,7 +327,7 @@
                                     <tbody>
                                         @foreach ($order->productVariations as $productVariation)
                                             <tr>
-                                                <td>{{ $productVariation->product->plain_name }}</td>
+                                                <td>{{ \Illuminate\Support\Str::before(html_entity_decode($productVariation->name), ' -') }}</td>
                                                 <td>{{ $productVariation->pivot->quantity }}</td>
                     
                                                 <td>{{ $productVariation->quantity }} {{ $productVariation->measurementUnit->name ?? '-' }}</td>
