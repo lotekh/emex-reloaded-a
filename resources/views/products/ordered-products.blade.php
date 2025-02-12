@@ -40,9 +40,6 @@
   @if(empty($ordered_products))
     <p>Cosul tau este gol.</p>
     <div class="flex col align-end wrap mt-8">
-      {{-- <a class="dropdown-item row align-center mb-8" href="{{ url('/produse') }}">
-        <button class="btn btn-blue rounded-xl medium-width">Continua cumparaturile</button>
-      </a> --}}
       <button class="btn btn-blue rounded-xl medium-width" onclick="location.href='{{ url('/produse') }}';">Continua cumparaturile</button>
     </div>
   @else
@@ -63,7 +60,7 @@
           @php $totalPrice = 0; @endphp
           @foreach ($ordered_products as $ordered_product)
               @php
-                  // Folosim cantitatea comandată din sesiune, nu cea din stoc
+              // dd($ordered_product);
                   $totalIndividualPrice = floatval($ordered_product->price) * intval($ordered_product->ordered_quantity);
                   $totalPrice += $totalIndividualPrice;
               @endphp
@@ -77,7 +74,7 @@
                             </picture>
                           </div>
                           {{-- Get the product name until the first '-' sign --}}
-                          <h3 class="normal-weight">{{ \Illuminate\Support\Str::before($ordered_product->short_name, ' -') }}</h3>
+                          <h3 class="normal-weight">{{ \Illuminate\Support\Str::before($ordered_product->name, ' -') }}</h3>
                       </a>
                   </td>
 
@@ -201,7 +198,7 @@
 
     <div class="grid grid-5 mt-8">
       <div class="col-span-4">
-        <p class="mb-8"><span class="bold">Cost total: </span>{{ number_format($totalPrice, 2) }} Lei, TVA inclus.</p>
+        <p class="mb-8"><span class="bold">Cost total: </span> {{ number_format($totalPrice, 2) }} Lei, TVA inclus.</p>
         <p><span class="green-mark italic">Toate preturile se refera la culori standard.</span></p>
         <p><span class="green-mark italic">Pentru nuante RAL sau destinatii speciale, va rugam sa ne contactati.</span></p>
         <em class="red-mark">Produsele pot fi livrate dupa circa 3 zile lucratoare, necesare procesului tehnologic.</em>
