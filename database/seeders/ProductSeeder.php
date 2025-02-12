@@ -59,6 +59,7 @@ class ProductSeeder extends Seeder
                 'consumption_jsonld' => $product['consum_jsonld_description'],
                 'available_since' => $availableSince,
                 'is_package' => $product['is_package'],
+                'consumption_details' => $product['consum_top']
             ]);
 
             $dbProduct->categories()->attach($product['category_id'], ['order' => $product['sort_priority']]);
@@ -212,14 +213,14 @@ class ProductSeeder extends Seeder
 
     public static function constructImageUrl($product, $param)
     {
-        $site = 'https://vopsele.xyz/images/';
+        $site = 'https://emex.ro/images/';
 
         return $site . $product[$param];
     }
 
     public static function constructTechnicalFileUrl($product)
     {
-        $site = 'https://vopsele.xyz/';
+        $site = 'https://emex.ro/';
 
         return $site . $product['fisa_tehnica'];
     }
