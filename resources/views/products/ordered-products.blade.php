@@ -199,17 +199,25 @@
     <div class="grid grid-5 mt-8">
       <div class="col-span-4">
         <p class="mb-8"><span class="bold">Cost total: </span> {{ number_format($totalPrice, 2) }} Lei, TVA inclus.</p>
-        <p><span class="green-mark italic">Toate preturile se refera la culori standard.</span></p>
-        <p><span class="green-mark italic">Pentru nuante RAL sau destinatii speciale, va rugam sa ne contactati.</span></p>
-        <em class="red-mark">Produsele pot fi livrate dupa circa 3 zile lucratoare, necesare procesului tehnologic.</em>
+        @if($totalPrice < 200)
+            <p class="red-mark">Valoarea comenzii trebuie sa fie de minim 200 RON.</p>
+        @else
+            <p><span class="green-mark italic">Toate preturile se refera la culori standard.</span></p>
+            <p><span class="green-mark italic">Pentru nuante RAL sau destinatii speciale, va rugam sa ne contactati.</span></p>
+            <em class="red-mark">Produsele pot fi livrate dupa circa 3 zile lucratoare, necesare procesului tehnologic.</em>
+        @endif
       </div>
       <div class="flex col-md mt-16 gap-xs justify-center align-end">
         <a class="row align-center" href="{{ url('/produse') }}">
           <button class="btn btn-blue rounded-xl medium-width">Continua cumparaturile</button>
         </a>
-        <a class="row align-center" href="{{ route('checkout.form') }}">
-          <button class="btn btn-blue rounded-xl medium-width">Finalizeaza comanda</button>
-        </a>
+        @if($totalPrice < 200)
+            {{-- no 'Finalizeaza Comanda' button --}}
+        @else
+          <a class="row align-center" href="{{ route('checkout.form') }}">
+            <button class="btn btn-blue rounded-xl medium-width">Finalizeaza comanda</button>
+          </a>
+        @endif
       </div>
     </div>
   @endif
