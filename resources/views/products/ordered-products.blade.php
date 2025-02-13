@@ -122,8 +122,8 @@
                           @csrfWithoutAutocomplete
                           <input type="hidden" name="product_id" value="{{ $productId }}">
                           <input type="hidden" name="remove_from_cart" value="1">
-                          <button type="submit" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
-                              <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="wishlist" alt="wishlist">
+                          <button type="submit" class="wishlist-btn-cos" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
+                              <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="Muta la Favorite" alt="wishlist">
                           </button>
                         </form>
                       </div>
