@@ -162,3 +162,11 @@
     max-width: 90vw;
   }
 }
+
+#consum_page form input, #consum_page form select, #consum_page form textarea {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: var(--white);
+  color: cornflowerblue;
+  border: 1px solid #00a7d0;
+}
