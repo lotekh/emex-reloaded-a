@@ -160,6 +160,87 @@ class WishlistController extends Controller
         }
     }
 
+    public function toggle(Request $request)
+{
+    $user = auth()->user();
+    $productId = $request->input('product_id');
+    $removeFromCart = $request->input('remove_from_cart', false); // verificăm dacă trebuie să-l scoatem din coș
+
+    if (!$productId) {
+        return redirect()->back()->with('error', 'Produs invalid.');
+    }
+
+    if ($user) {
+        $existingItem = WishlistItem::where('user_id', $user->id)
+            ->where('product_id', $productId)
+            ->first();
+
+        if ($existingItem) {
+            // Dacă produsul e deja în wishlist, îl scoatem
+            $existingItem->delete();
+            return redirect()->back()->with('success', 'Produsul a fost eliminat din favorite.');
+        } else {
+            // Dacă produsul NU e în wishlist, îl adăugăm
+            WishlistItem::create([
+                'user_id' => $user->id,
+                'product_id' => $productId,
+            ]);
+
+            // Dacă trebuie să îl eliminăm din coș, facem asta
+            if ($removeFromCart) {
+                $this->removeFromCart($productId, $user->id);
+            }
+
+            return redirect()->back()->with('success', 'Produsul a fost adăugat la favorite.');
+        }
+    } else {
+        // Utilizator neautentificat - folosim sesiunea
+        $wishlist = session()->get('wishlist', []);
+
+        if (in_array($productId, $wishlist)) {
+            // Dacă produsul este în wishlist, îl eliminăm
+            $wishlist = array_diff($wishlist, [$productId]);
+            session()->put('wishlist', $wishlist);
+            return redirect()->back()->with('success', 'Produsul a fost eliminat din favorite.');
+        } else {
+            // Dacă produsul NU e în wishlist, îl adăugăm
+            $wishlist[] = $productId;
+            session()->put('wishlist', $wishlist);
+
+            // Dacă trebuie să îl eliminăm din coș, facem asta
+            if ($removeFromCart) {
+                $this->removeFromCart($productId);
+            }
+
+            return redirect()->back()->with('success', 'Produsul a fost adăugat la favorite.');
+        }
+    }
+}
+
+/**
+ * Elimină produsul din coș pentru utilizatorul autentificat
+ */
+private function removeFromCart($productId)
+{
+    // Obține coșul din sesiune
+    $cart = session()->get('cart', []);
+
+    // Parcurge coșul și elimină produsul dacă există
+    foreach ($cart as $key => $item) {
+        if ($item['product_variation_id'] == $productId) {
+            unset($cart[$key]); // Șterge produsul din array
+            break;
+        }
+    }
+
+    // Salvează noul coș în sesiune
+    session()->put('cart', $cart);
+}
+
+
+
+
+
 
 
 
