@@ -102,7 +102,8 @@
                                                 <p class="section-info text-blue-009">
                                                     Contine: Vopsea {{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}
                                                 </p>
-                                                <p class="section-info text-blue-009">&nbsp;+ Bid. 0.90 Kg Intaritor</p>
+                                                <p class="section-info text-blue-009">&nbsp;{{ $initialVariation->addon_text }}</p>
+
                                             </div>
                                         @endif
 
