@@ -35,7 +35,7 @@
 @section('content')
 <div class="aplicari relative w-full">
   <div class="header_img_bg col justify-center align-center" id="aplicari_vopsele_pardoseli_paralax_img" style="background-image: url('resources/images/aplicari-vopsele-pardoseli/Vopsire-epoxidica-hala-industriala-servicii.jpg');">
-    <h1 class="z-10">Vopsiri Decorative si Industriale de Pardoseala</h1>
+    <h1 class="z-10" id="h1-aplicare-bg">Vopsiri Decorative si Industriale de Pardoseala</h1>
   </div>
 </div>
 
