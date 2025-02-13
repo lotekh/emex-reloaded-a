@@ -112,17 +112,19 @@
                               <button aria-label="Sterge produsul"><img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="18" height="18"></button>
                           </form>
                       </div>
-                  <td class="text-center price">
+                  <td>
                       @php
                         $isInWishlist = app('App\Http\Controllers\WishlistController')->isInWishlist($ordered_product->id);
                       @endphp
-                      <form method="POST" class="addToWishlistBt absolute z-10" id="product_wish_list_form{{ $ordered_product->id }}" action="{{ $isInWishlist ? url('/remove-from-wishlist') : url('/add-to-wishlist') }}">
-                        @csrfWithoutAutocomplete
-                        <input type="hidden" name="product_id" value="{{ $ordered_product->id }}">
-                        <button type="submit" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
-                            <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="wishlist" alt="wishlist">
-                        </button>
-                      </form>
+                      <div class="flex align-center">
+                        <form method="POST" class="addToWishlistBt" id="product_wish_list_form{{ $ordered_product->id }}" action="{{ $isInWishlist ? url('/remove-from-wishlist') : url('/add-to-wishlist') }}">
+                          @csrfWithoutAutocomplete
+                          <input type="hidden" name="product_id" value="{{ $ordered_product->id }}">
+                          <button type="submit" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
+                              <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="wishlist" alt="wishlist">
+                          </button>
+                        </form>
+                      </div>
                   </td>
                       
                   </td>
