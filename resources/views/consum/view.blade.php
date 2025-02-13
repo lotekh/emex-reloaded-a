@@ -41,44 +41,46 @@
             <h2 class="text-center dark-blue">CALCULATOR CONSUM {!! $product->name !!}</h2>
         </div>
 
-    <div class="grid grid-3 consum-container">
-        <div>
-            <div class="consum-product-image mb-16" id="div_img_consum">
-                @php
-                    $smallImageUrl = $product->smallImage ? asset('storage/' .$product->smallImage->path) : $baseUrl . '/images/default-placeholder.png';
-                    $pngSmallImageUrl = $product->pngSmallImage ? asset('storage/' .$product->pngSmallImage->path) : $baseUrl . '/images/default-placeholder.png';
-                @endphp
-                <picture>
-                    <source type="image/webp" srcset="{{ $smallImageUrl }}">
-                    <img class="product-img img-responsive bordered m-16" src="{{ $pngSmallImageUrl }}" alt="{{ $product->smallImage ? $product->smallImage->alt : 'imagine'}}" title="{{ $product->smallImage ? $product->smallImage->title : 'imagineprodus'}}">
-                </picture>
-            </div>
-
-                <div class="w-full" id="pwgw">
-                    <div class="badge">
-                        <div class="relative w-full h-full">
-                            <img src="{{ asset('resources/images/Fabricat-in-Romania.png') }}" alt="Produs fabricat in Romania" title="Produs de fabricatie romaneasca" />
-                        </div>
-                    </div>
-                    <div class="badge">
-                        <div class="relative w-full h-full">
-                            <img src="{{ asset('resources/images/iso.png') }}" alt="Romtehnochim asigura garantia calitatii" title="Emex - produse certificate ISO" />
-                        </div>
-                    </div>
-                    <div class="badge">
-                        <a class="excelent-img col justify-center" href="https://excellent-sme-plus-romania.safesigned.com/romtehnochim-srl/" title="Certificat excelenta in afaceri">
-                            <img src="{{ asset('resources/general/Romtehnochim-certificat-de-excelenta.png') }}" alt="Verificare certificat Coface Camera de Comert" title="Certificat excelenta in afaceri" width="363" height="68">
-                        </a>
-                    </div>
+        <div class="consum-container">
+            {{-- Left part --}}
+            <div>
+                <div class="consum-product-image mb-16" id="div_img_consum">
+                    @php
+                        $smallImageUrl = $product->smallImage ? asset('storage/' .$product->smallImage->path) : $baseUrl . '/images/default-placeholder.png';
+                        $pngSmallImageUrl = $product->pngSmallImage ? asset('storage/' .$product->pngSmallImage->path) : $baseUrl . '/images/default-placeholder.png';
+                    @endphp
+                    <picture>
+                        <source type="image/webp" srcset="{{ $smallImageUrl }}">
+                        <img class="product-img img-responsive bordered m-16" src="{{ $pngSmallImageUrl }}" alt="{{ $product->smallImage ? $product->smallImage->alt : 'imagine'}}" title="{{ $product->smallImage ? $product->smallImage->title : 'imagineprodus'}}">
+                    </picture>
                 </div>
 
-                <!-- Disclaimer -->
-                <div class="hidden-xs mt-16 grey text-center bbdo btdo p-8 font-sm">
-                    Imaginile prezentate pe site au doar caracter orientativ si nu atrag nici o obligativitate.
-                    Acestea pot fi modificate in functie de legislatie, sau necesitatea imbunatatirii designului.
-                </div>
+                    <div class="w-full" id="pwgw">
+                        <div class="badge">
+                            <div class="relative w-full h-full">
+                                <img src="{{ asset('resources/images/Fabricat-in-Romania.png') }}" alt="Produs fabricat in Romania" title="Produs de fabricatie romaneasca" />
+                            </div>
+                        </div>
+                        <div class="badge">
+                            <div class="relative w-full h-full">
+                                <img src="{{ asset('resources/images/iso.png') }}" alt="Romtehnochim asigura garantia calitatii" title="Emex - produse certificate ISO" />
+                            </div>
+                        </div>
+                        <div class="badge">
+                            <a class="excelent-img col justify-center" href="https://excellent-sme-plus-romania.safesigned.com/romtehnochim-srl/" title="Certificat excelenta in afaceri">
+                                <img src="{{ asset('resources/general/Romtehnochim-certificat-de-excelenta.png') }}" alt="Verificare certificat Coface Camera de Comert" title="Certificat excelenta in afaceri" width="363" height="68">
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Disclaimer -->
+                    <div class="hidden-xs mt-16 grey text-center bbdo btdo p-8 font-sm">
+                        Imaginile prezentate pe site au doar caracter orientativ si nu atrag nici o obligativitate.
+                        Acestea pot fi modificate in functie de legislatie, sau necesitatea imbunatatirii designului.
+                    </div>
             </div>
-            
+                
+            {{-- Middle part --}}
             <div>
                 <input type="hidden" id="base_url" value="{{ url('/') }}">
                 @if ($currentPage != 3)
@@ -219,13 +221,13 @@
                 </p>
             </div>
 
+            {{-- Right part --}}
             <div class="link_color1">
                 {!! $product->description !!}
                 <br>
                 ... [<a href="https://emex.ro/{{ $product->slug }}">citeste mai mult</a>]
             </div>
         </div>
-    </div>
 
     <script>
         // Initialize currentPage with the value from server
