@@ -100,7 +100,7 @@
                                 <div class="flex w-full mt-8 mb-8">
                                     <label for='product_select' id="step1_title">Tip Produs*</label>
                                 </div>
-                                <select class="form-control mb-16" id="product_select" onchange="location = this.value;">
+                                <select class="form-control mb-16" id="product_select" onchange="location = this.value;" required>
                                     @foreach ($category->products as $categoryProduct)
                                         @php
                                             // Replace <br> with space
@@ -127,7 +127,7 @@
                                 <div class="flex justify-center w-full mt-8 mb-8">
                                     <label for='surface_type'>Tip Suprafata*</label>
                                 </div>
-                                <select id="surface_type" class="form-control mb-16" name="{{ $consumData['suprafata_type_name'] }}">
+                                <select id="surface_type" class="form-control mb-16" name="{{ $consumData['suprafata_type_name'] }}" required>
                                     <option selected="selected" value="">Selecteaza...</option>
                                     @foreach ($consumData['suprafata_types'] as $suprafataType)
                                         <option value="{{ trim($suprafataType) }}">{{ trim($suprafataType) }}</option>
@@ -151,7 +151,7 @@
                                 <div class="flex justify-end w-full mt-8 mb-8">
                                     <label for='surface'>Suprafata in mp*</label>
                                 </div>
-                                <input type="text" id="surface" class="form-control mb-16" name="{{ $consumData['suprafata_name'] }}">
+                                <input type="text" id="surface" class="form-control mb-16" name="{{ $consumData['suprafata_name'] }}" required>
                             </div>
                             <div class="consum_wizard_back_next_div">
                                 <button type="submit" class="btn btn-blue rounded-sm mb-16">CALCULEAZA
@@ -231,35 +231,65 @@
         // Initialize currentPage with the value from server
         let currentPage = {{ $currentPage }}; 
      
-     function showNextStep(nextPage) {
-         currentPage = nextPage;
-         updateStepVisibility();
-     }
+        function showNextStep(nextPage) {
+            if (currentPage === 1 && !validateSurfaceType()) {
+                return; // Stop the execution if we have no surface type
+            }
+            currentPage = nextPage;
+            updateStepVisibility();
+        }
+        
+        function showPreviousStep(prevPage) {
+            currentPage = prevPage;
+            updateStepVisibility();
+        }
+        
+        function updateStepVisibility() {
+            document.querySelectorAll('.consum_content_step').forEach((element, index) => {
+                if (index === currentPage) {
+                    element.classList.add('consum_content_step_active');
+                    if (currentPage === 3) {
+                        document.getElementById('cr').classList.remove('hidden');
+                        document.getElementById('cr').classList.add('consum_content_step_active');
+                    }
+                } else {
+                    element.classList.remove('consum_content_step_active');
+                }
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            updateStepVisibility(); 
+        });
+
+        function validateSurfaceType() {
+            let surfaceType = document.getElementById("surface_type");
+            let errorMsg = document.getElementById("surfaceTypeError");
+
+            if (!errorMsg) {
+                errorMsg = document.createElement("div");
+                errorMsg.id = "surfaceTypeError";
+                errorMsg.style.color = "red";
+                errorMsg.style.fontSize = "14px";
+                errorMsg.style.marginLeft = "5px";
+                errorMsg.style.marginBottom = "10px";
+                errorMsg.style.display = "none";
+                errorMsg.innerText = "Nu ai selectat suprafața!";
+                surfaceType.parentNode.appendChild(errorMsg);
+            }
+
+            if (surfaceType.value === "" || surfaceType.value.toLowerCase().includes("selecteaza")) {
+                errorMsg.style.display = "block"; // Show the error message
+                return false;
+            } else {
+                errorMsg.style.display = "none"; // Hide the error message
+                surfaceType.classList.remove("border-red-500");
+                return true;
+            }
+        }
      
-     function showPreviousStep(prevPage) {
-         currentPage = prevPage;
-         updateStepVisibility();
-     }
-     
-     function updateStepVisibility() {
-         document.querySelectorAll('.consum_content_step').forEach((element, index) => {
-             if (index === currentPage) {
-                 element.classList.add('consum_content_step_active');
-                 if (currentPage === 3) {
-                     document.getElementById('cr').classList.remove('hidden');
-                     document.getElementById('cr').classList.add('consum_content_step_active');
-                 }
-             } else {
-                 element.classList.remove('consum_content_step_active');
-             }
-         });
-     }
-     
-     document.addEventListener('DOMContentLoaded', () => {
-         updateStepVisibility(); 
-     });
-     
-     </script>
+    </script>
+
      
 
 @endsection
