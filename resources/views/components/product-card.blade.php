@@ -16,15 +16,7 @@
 
   <div>
     <div class="relative image">
-      {{-- <form method="POST" class="addToWishlistBt absolute z-10" id="product_wish_list_form{{ $product->id }}" action="{{ $product->isInWishlist ? url('/remove-from-wishlist') : url('/add-to-wishlist') }}">
-        @csrfWithoutAutocomplete
-        <input type="hidden" name="product_id" value="{{ $product->id }}">
-        
-        <button type="submit" aria-label="{{ $product->isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
-            <img width="20" height="20" src="{{ $product->isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="wishlist" alt="wishlist">
-        </button>
-    </form> --}}
-
+      
       @php
         $isInWishlist = app('App\Http\Controllers\WishlistController')->isInWishlist($product->id);
       @endphp
