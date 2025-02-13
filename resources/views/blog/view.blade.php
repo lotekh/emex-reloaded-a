@@ -100,13 +100,15 @@
         </div>
 
         @if (count($model->tags))
-            <div class="flex col">
+            <div class="tags-container">
                 <h2 class="m-0 mb-8">Tags</h2>
-                @foreach ($model->tags as $tag)
-                    <a href="{{ route('blog.searchByTag', ['tagId' => $tag->id]) }}">
-                        <span class="tag mr-8">{{ $tag->name }}</span>
-                    </a>
-                @endforeach
+                <div class="tags-list">
+                    @foreach ($model->tags as $tag)
+                        <a class="tag-item" href="{{ route('blog.searchByTag', ['tagId' => $tag->id]) }}">
+                            <span>{{ $tag->name }}</span>@if(!$loop->last),&nbsp; @endif
+                        </a>
+                    @endforeach
+                </div>
             </div>
         @endif
 

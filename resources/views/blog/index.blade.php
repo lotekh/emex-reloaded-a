@@ -50,7 +50,6 @@
                          <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}">
                             <img class="w-full" src="{{ $blogImageUrl }}" alt="">
                         </a>
-                        {{-- <img class="w-full" src="{{ $blogImageUrl}}" alt=""> --}}
                     </div>
                     <div class="col-span-2 pl-16 flex col justify-center">
                         <span>
