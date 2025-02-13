@@ -118,9 +118,10 @@
                         $isInWishlist = app('App\Http\Controllers\WishlistController')->isInWishlist($productId);
                       @endphp
                       <div class="flex align-center">
-                        <form method="POST" class="addToWishlistBt" id="product_wish_list_form{{ $productId }}" action="{{ $isInWishlist ? url('/remove-from-wishlist') : url('/add-to-wishlist') }}">
+                        <form method="POST" class="addToWishlistBt" id="product_wish_list_form{{ $productId }}" action="{{ route('wishlist.toggle') }}">
                           @csrfWithoutAutocomplete
                           <input type="hidden" name="product_id" value="{{ $productId }}">
+                          <input type="hidden" name="remove_from_cart" value="1">
                           <button type="submit" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
                               <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="wishlist" alt="wishlist">
                           </button>
