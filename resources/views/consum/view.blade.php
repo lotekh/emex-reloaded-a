@@ -100,9 +100,9 @@
                         <div class="consum_content_step">
                             <div class="consum_form_group">
                                 <div class="flex w-full mt-8 mb-8">
-                                    <label for='product_select' id="step1_title">Tip Produs*</label>
+                                    <label class="titlu-tip-consum" for='product_select' id="step1_title">Tip Produs*</label>
                                 </div>
-                                <select class="form-control mb-16" id="product_select" onchange="location = this.value;" required>
+                                <select class="form-control mb-16 select-consum" id="product_select" onchange="location = this.value;" required>
                                     @foreach ($category->products as $categoryProduct)
                                         @php
                                             // Replace <br> with space
@@ -117,7 +117,7 @@
                                 </select>
                             </div>
                             <div class="consum_wizard_next_div">
-                                <button type="button" tabindex="1" onclick="showNextStep(1)" class="btn btn-blue rounded-sm mb-16">INAINTE
+                                <button type="button" tabindex="1" onclick="showNextStep(1)" class="btn btn-light-blue rounded-sm mb-16">INAINTE
                                     <img src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
                                 </button>
                             </div>
@@ -127,9 +127,9 @@
                         <div class="consum_content_step">
                             <div class="consum_form_group">
                                 <div class="flex justify-center w-full mt-8 mb-8">
-                                    <label for='surface_type'>Tip Suprafata*</label>
+                                    <label class="titlu-tip-consum" for='surface_type'>Tip Suprafata*</label>
                                 </div>
-                                <select id="surface_type" class="form-control mb-16" name="{{ $consumData['suprafata_type_name'] }}" required>
+                                <select id="surface_type" class="form-control mb-16 select-consum" name="{{ $consumData['suprafata_type_name'] }}" required>
                                     <option selected="selected" value="">Selecteaza...</option>
                                     @foreach ($consumData['suprafata_types'] as $suprafataType)
                                         <option value="{{ trim($suprafataType) }}">{{ trim($suprafataType) }}</option>
@@ -137,11 +137,11 @@
                                 </select>
                             </div>
                             <div class="flex mb-32">
-                                <button type="button" tabindex="1" onclick="showPreviousStep(0)" class="btn btn-blue rounded-sm mr-8">
+                                <button type="button" tabindex="1" onclick="showPreviousStep(0)" class="btn btn-light-blue rounded-sm mr-8">
                                     <img class="icon-reversed" src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
                                     INAPOI
                                 </button>
-                                <button type="button" tabindex="1" onclick="showNextStep(2)" class="btn btn-blue rounded-sm">INAINTE
+                                <button type="button" tabindex="1" onclick="showNextStep(2)" class="btn btn-light-blue rounded-sm">INAINTE
                                     <img src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
                                 </button>
                             </div>
@@ -151,12 +151,12 @@
                         <div class="consum_content_step">
                             <div class="consum_form_group">
                                 <div class="flex justify-end w-full mt-8 mb-8">
-                                    <label for='surface'>Suprafata in mp*</label>
+                                    <label class="titlu-tip-consum" for='surface'>Suprafata in mp*</label>
                                 </div>
-                                <input type="text" id="surface" class="form-control mb-16" name="{{ $consumData['suprafata_name'] }}" required>
+                                <input type="text" id="surface" class="form-control mb-16 select-consum" name="{{ $consumData['suprafata_name'] }}" required>
                             </div>
                             <div class="consum_wizard_back_next_div">
-                                <button type="submit" class="btn btn-blue rounded-sm mb-16">CALCULEAZA
+                                <button type="submit" class="btn btn-light-blue rounded-sm mb-16">CALCULEAZA
                                     <img src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
                                 </button>
                             </div>
@@ -173,11 +173,11 @@
                     @endif
 
                     
-                    <div class="consum_content_step {{ $currentPage == 3 ? 'consum_content_step_active' : '' }}">
-                        <p class="mt-16"><strong>Alege alt produs din gama:</strong></p>
+                    <div class="consum-step4-box consum_content_step {{ $currentPage == 3 ? 'consum_content_step_active' : '' }}">
+                        <p class="mt-16 titlu-tip-consum"><strong>Alege alt produs din gama:</strong></p>
                         <div class="consum_form_group">
-                            <label for='product_select-consum' class="mb-8">Tip Produs*</label>
-                            <select class="form-control mb-16" id="product_select-consum" onchange="location = this.value;">
+                            <label for='product_select-consum' class="mb-8 titlu-tip-consum">Tip Produs*</label>
+                            <select class="form-control mb-16 select-consum" id="product_select-consum" onchange="location = this.value;">
                                 @foreach ($category->products as $categoryProduct)
                                 @php
                                 // Replace <br> with space
@@ -197,7 +197,7 @@
                             </select>
                         </div>
                         <div class="consum_wizard_next_div flex justify-center">
-                            <button type="button" tabindex="0" class="btn btn-blue rounded-sm mb-16" onclick="showNextStep(1)">INAINTE
+                            <button type="button" tabindex="0" class="btn btn-light-blue rounded-sm mb-16" onclick="showNextStep(1)">INAINTE
                                 <img src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
                             </button>
                         </div>

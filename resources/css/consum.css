@@ -164,3 +164,27 @@
     max-width: 90vw;
   }
 }
+
+.select-consum {
+  border: 1px solid #00a7d0;
+  color: cornflowerblue;
+}
+
+.titlu-tip-consum {
+  color: #009;
+}
+
+.btn-light-blue {
+  background-color: #00a7d0;
+  color: #ffffff;
+}
+
+.consum-step4-box {
+  background-color: azure;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  border: 1px solid #c4c4c4;
+  border-radius: 12px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
