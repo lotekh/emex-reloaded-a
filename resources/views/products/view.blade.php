@@ -93,7 +93,10 @@
                                             @if ($product->is_package)
                                                 <p class="mb-4">Pachet</p>
                                             @else
-                                                <p class="section-info" id="pret_value">Bidon <span id="packaging{{ $product->id }}">{{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}</span></p>
+                                                <p class="section-info" id="pret_value">Bidon  <span id="packaging{{ $product->id }}">
+                                                    {{ fmod($initialVariation->quantity, 1) != 0 ? number_format($initialVariation->quantity, 2) : $initialVariation->quantity }}
+                                                    {{ $initialVariation->measurementUnit->name }}
+                                                </span></p>
                                             @endif
                                         </div>
 
@@ -182,9 +185,10 @@
                                         <label class="section-info" id="choose-type">Selecteaza ambalare</label>
                                         <select form="adauga-in-cos" aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
                                             @foreach ($product->variations->unique('quantity') as $variation)
-                                                <option value="{{ $variation->quantity }}">
-                                                    {{ $variation->quantity }} {{ $variation->measurementUnit->name }}
-                                                </option>
+                                            <option value="{{ $variation->quantity }}">
+                                                {{ fmod($variation->quantity, 1) != 0 ? number_format($variation->quantity, 2) : $variation->quantity }}
+                                                {{ $variation->measurementUnit->name }}
+                                            </option>
                                             @endforeach
                                         </select>
                                     </div>
