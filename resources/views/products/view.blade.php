@@ -100,8 +100,18 @@
                                         @if ($product->has_hardener)
                                             <div class="row items-baseline price-container">
                                                 <p class="section-info text-blue-009">
-                                                    Contine: Vopsea {{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}
+                                                    Contine: 
+                                                    @if (Str::contains(Str::lower($product->name), 'lac'))
+                                                        Lac
+                                                    @elseif (Str::contains(Str::lower($product->name), 'membran'))
+                                                        Membrană
+                                                    @else
+                                                        Vopsea
+                                                    @endif
+                                                    {{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}
                                                 </p>
+                                                
+                                                
                                                 <p class="section-info text-blue-009">&nbsp;{{ $initialVariation->addon_text }}</p>
 
                                             </div>
