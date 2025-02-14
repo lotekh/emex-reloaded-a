@@ -1,5 +1,4 @@
 <head>
-    {{-- <meta charset="UTF-8"> --}}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 
@@ -9,38 +8,6 @@
      margin-header: 0; /* <any of the usual CSS values for margins> */
 	 margin-footer: 0; /* <any of the usual CSS values for margins> */
     }
-
-    /* @font-face {
-        font-family: 'Times New Roman';
-        src: url('{{ public_path('fonts/times.ttf') }}') format('truetype');
-        font-weight: normal;
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Times New Roman';
-        src: url('{{ public_path('fonts/timesbd.ttf') }}') format('truetype');
-        font-weight: bold;
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Times New Roman';
-        src: url('{{ public_path('fonts/timesi.ttf') }}') format('truetype');
-        font-weight: normal;
-        font-style: italic;
-    }
-
-    @font-face {
-        font-family: 'Times New Roman';
-        src: url('{{ public_path('fonts/timesbi.ttf') }}') format('truetype');
-        font-weight: bold;
-        font-style: italic;
-    } */
-
-    /* body {
-        font-family: "Times New Roman", serif;
-    } */
 
     body { 
         font-family: DejaVu Sans, sans-serif; 
@@ -179,6 +146,10 @@
     .ta_c{
         text-align: center;
     }
+    .pad-top-bot-0{
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
 </style>
 
 <div id="summary_bill_container">
@@ -220,11 +191,11 @@
                         <td class="col-12">
                             <table class="col-12">
                                 <tr class="col-12">
-                                    <td class="blue-table col-12">
+                                    <td class="blue-table col-12" style="line-height: 1;">
                                         <table class="col-12">
                                             <tr class="col-12">
-                                                <td class="col-8 blue">TOTAL PLATA</td>
-                                                <td class="col-this-4 blue">{{ number_format($order['total'], 2, '.', ',') }} lei</td>
+                                                <td class="col-8 blue pad-top-bot-0">TOTAL PLATA</td>
+                                                <td class="col-this-4 blue pad-top-bot-0">{{ number_format($order['total'], 2, '.', ',') }} lei</td>
                                             </tr>
                                         </table>
                                     </td>
@@ -315,7 +286,6 @@
                     <p>Adresa: {{ $billingInformation['person_address'] ?? '' }}</p>
                 @else
                 <p>CUI: {{ $companyInformation['organization_cui'] }}</p>
-                {{-- <p>Adresa: {{ $companyInformation['organization_address'] . ', ' . $companyInformation['organization_locality'] . ', jud. ' . $billingCountyName }}</p> --}}
                 <p>Adresa: {{ $billingInformation['organization_address'] ?? '' }}, {{ $billingCityName }}, jud. {{ $billingCountyName }}</p>
                 <p>IBAN: {{ strtoupper($companyInformation['organization_bank_account']) }}</p>
                 <p>Banca: {{ $companyInformation['organization_bank'] }}</p>
@@ -383,14 +353,6 @@
             <td colspan="4" style="text-align: right; padding: 10px 5px; font-weight: bold" class="table-borders-none">Total General</td>
             <td colspan="2" style="text-align: center; padding: 10px 5px; font-weight: bold" class="ta_r table-borders-none">{{ number_format($order['total'], 2, '.', ',') }} lei</td>
         </tr>
-
-        {{-- <tr style="margin: 0">
-            <td colspan="6" style="text-align: right; padding: 10px 5px" class="table-borders-none">
-                @if($order['payment_method'] != 'ramburs')
-                    <img src="{{ public_path('resources/images/Buton-Plata-Online.png') }}">
-                @endif
-            </td>
-        </tr> --}}
         
     </table>
 

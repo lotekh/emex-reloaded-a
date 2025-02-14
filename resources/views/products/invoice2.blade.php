@@ -133,6 +133,11 @@
 
     .ta_c{
         text-align: center;
+    }  
+
+    .pad-top-bot-0{
+        padding-top: 0px;
+        padding-bottom: 0px;
     }
 </style>
 
@@ -159,7 +164,7 @@
                 </tr>
                 <tr class="col-12">
                     <td class="col-8" style="padding-bottom: 9px">
-                        <h2>Proforma</h2>
+                        <h2>Proforma 123</h2>
                         <p>Data emiterii: {{ \Carbon\Carbon::parse($order['created_at'])->format('d-m-Y') }}</p>
                     </td>
                     <td class="col-6" style="padding-bottom: 5px">
@@ -176,8 +181,8 @@
                                 <td class="blue-table col-12">
                                     <table class="col-12">
                                         <tr class="col-12">
-                                            <td class="col-8 blue">TOTAL PLATA</td>
-                                            <td class="col-this-4 blue">{{ number_format($order['total'], 2, '.', ',') }} lei</td>
+                                            <td class="col-8 blue pad-top-bot-0">TOTAL PLATA</td>
+                                            <td class="col-this-4 blue pad-top-bot-0">{{ number_format($order['total'], 2, '.', ',') }} lei</td>
                                         </tr>
                                     </table>
                                 </td>
