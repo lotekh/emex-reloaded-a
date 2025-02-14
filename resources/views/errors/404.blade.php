@@ -1,5 +1,9 @@
 @extends('layout.layout')
 
+@section('breadcrumbs')
+<ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis"><a href="/">404</a></li></ul>
+@endsection
+
 @section('content')
 
 <style>
@@ -12,7 +16,6 @@
 
     .middle {
         display: table-cell;
-        vertical-align: middle;
     }
 
     .inner {
@@ -53,10 +56,6 @@
     .h-404-txt {
         color: #009;
         text-decoration: none;
-    }
-
-    img {
-        vertical-align: middle;
     }
 
     #content_title404_1 {
@@ -275,47 +274,53 @@
         <div class="inner">
             <div id="header404">
                 <p>
-                    <a href="/index" title="Home">
-                        <amp-img src="<?php echo Url::base(); ?>/resources/images/Logo-Emex-404.png" alt="Logo Emex" width="222" height="81"></amp-img>
+                    <a href="{{ route('home') }}" title="Home">
+                        <img src="{{ asset('resources/images/Logo-Emex-404.png') }}" alt="Logo Emex" width="222" height="81">
                     </a>
+                </p>
                 <p style="margin-top: 10px">
                     <span style="margin: 0 10px">-</span>
-                    <a href="/index" title="Site index" class="h-404-txt">www.emex.ro</a>
-                </p>
+                    <a href="{{ route('home') }}" title="Site index" class="h-404-txt">www.emex.ro</a>
                 </p>
             </div>
             <div id="content_title404_1">
                 <h1>Oops...</h1>
-                <span><amp-img width="85" height="73" class="atentie-consum" src="<?php echo Url::base(); ?>/resources/images/emex_warning.png" alt="Atentie"></amp-img></span>
+                <span>
+                    <img width="85" height="73" class="atentie-consum" src="{{ asset('resources/images/emex_warning.png') }}" alt="Atentie">
+                </span>
                 <h1>404</h1>
             </div>
             <div id="content_title404_2">
-                <p><em>Pagina nu poate fi accesata... !</em></p>
-                <p><span class="content-404-small"><em>Te rugam sa folosesti meniul pentru a gasi pagina dorita.</em></span></p>
+                <p><em>Pagina nu poate fi accesată... !</em></p>
+                <p><span class="content-404-small"><em>Te rugăm să folosești meniul pentru a găsi pagina dorită.</em></span></p>
             </div>
             <div id="content_title404_3">
-                <form id="desktop_search_form" method="GET" target="_top" action="/search" novalidate="" class="navbar-form navbar-left navbar-search" title="Cautare Vopsea">
+                <form id="desktop_search_form" target="_top" class="navbar-form navbar-left navbar-search" method="GET" action="{{ url('/search') }}" title="Căutare Vopsea">
                     <div class="input-group">
-                        <input type="text" name="zoom_query" id="zoom_searchbox" class="form-control" placeholder="Cautare rapida">
+                        <input type="text" name="zoom_query" id="zoom_searchbox" class="form-control" placeholder="Căutare rapidă">
                         <div class="input-group-btn">
-                            <button class="btn btn-default" id="btn_404_1" type="submit" aria-label="Cautare">
-                                <em class="sprite-search"></em>
+                            <button class="btn btn-default" id="btn_404_1" type="submit" aria-label="Căutare"> 
+                                <em class="sprite-search"></em> 
                             </button>
                         </div>
                     </div>
                 </form>
-                <div class="pull-left" id="404_acasa"><a class="btn btn-default" id="btn_404_2" href="/">Acasa</a></div>
-                <div class="pull-left" id="404_sitemap"><a href="/sitemap.htm" title="Lista linkuri" class="btn btn-default" id="btn_404_3">Sitemap</a></div>
+                <div class="pull-left" id="404_acasa">
+                    <a class="btn btn-default" id="btn_404_2" href="{{ route('home') }}">Acasă</a>
+                </div>
+                <div class="pull-left" id="404_sitemap">
+                    <a href="{{ route('sitemap') }}" title="Lista linkuri" class="btn btn-default" id="btn_404_3">Sitemap</a>
+                </div>
             </div>
             <div class="clearfix"></div>
             <div id="content_title404_4">
-                <p>Suntem si pe:</p>
-                <div class="social-links text-center">
-                    <a href="https://www.facebook.com/EmexByRomtehnochim/" class="sprite-facebook" title="Facebook"></a>
-                    <a href="https://twitter.com/Romtehnochim" class="sprite-twitter" title="Twitter"></a>
-                    <a href="https://www.instagram.com/emexbyromtehnochim/" class="sprite-instagram" title="Instagram"></a>
-                    <a href="https://ro.pinterest.com/romtehnochim/" class="sprite-pinterest" title="Pinterest"></a>
-                    <a href="https://www.youtube.com/c/EmexRomtehnochim" class="sprite-youtube" title="Youtube"></a>
+                <p>Suntem și pe:</p>
+                <div class="social-links text-center"> 
+                    <a href="https://www.facebook.com/EmexByRomtehnochim/" class="sprite-facebook" title="Facebook"></a> 
+                    <a href="https://twitter.com/Romtehnochim" class="sprite-twitter" title="Twitter"></a> 
+                    <a href="https://www.instagram.com/emexbyromtehnochim/" class="sprite-instagram" title="Instagram"></a> 
+                    <a href="https://ro.pinterest.com/romtehnochim/" class="sprite-pinterest" title="Pinterest"></a> 
+                    <a href="https://www.youtube.com/c/EmexRomtehnochim" class="sprite-youtube" title="Youtube"></a> 
                     <a href="https://www.linkedin.com/company/romtehnochim" class="sprite-linkedin" title="LinkedIn"></a>
                 </div>
             </div>

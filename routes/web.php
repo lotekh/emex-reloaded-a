@@ -355,4 +355,11 @@ Route::prefix('/feed')->group(function () {
     Route::get('/merxu', [FeedController::class, 'merxu'])->name('feeds.merxu');
 });
 
+// Error 404 and 500
+Route::get('/404', function () {
+    abort(404);
+});
+Route::get('/500', function () {
+    abort(500);
+});
 
