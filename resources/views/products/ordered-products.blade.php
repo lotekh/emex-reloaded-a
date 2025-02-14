@@ -224,7 +224,7 @@
             <em class="red-mark">Produsele pot fi livrate dupa circa 3 zile lucratoare, necesare procesului tehnologic.</em>
         @endif
       </div>
-      <div class="flex col-md mt-16 gap-xs justify-center align-end">
+      <div class="flex mt-16 gap-xs justify-center align-end">
         <a class="row align-center" href="{{ url('/produse') }}">
           <button class="btn btn-blue rounded-xl medium-width">Continua cumparaturile</button>
         </a>
