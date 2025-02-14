@@ -90,7 +90,7 @@
                                                 <span class="text-red ml-4">Lei&nbsp;/&nbsp;</span>
                                             </p>
                                             
-                                            @if ($product->has_hardener)
+                                            @if ($product->is_package)
                                                 <p class="mb-4">Pachet</p>
                                             @else
                                                 <p class="section-info" id="pret_value">Bidon <span id="packaging{{ $product->id }}">{{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}</span></p>
