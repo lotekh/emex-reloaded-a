@@ -42,8 +42,8 @@
     #header404 img {
         width: 100%;
         max-width: 222px;
-        /* margin-top: -24px;
-    margin-left: 10px; */
+        /* margin-top: 14px; */
+        /* margin-left: 10px; */
     }
 
     #header404 p {
@@ -74,6 +74,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        color: #009;
     }
 
     #content_title404_1 h1 {
@@ -86,12 +87,11 @@
         margin-left: 10px;
     }
 
-    #content_title404_1 img {
-        position: relative;
-        left: 5px;
-        /* top: -27px; */
-    }
-
+    /* #content_title404_1 img {
+    position: relative;
+    left: 5px;
+    top: -27px;
+} */
     #content_title404_1 h1:last-of-type {
         font-size: 5.7em;
         top: 0px;
@@ -174,6 +174,7 @@
     }
 
     .form-control {
+        margin-top: 0px;
         display: block;
         width: 100%;
         height: 34px;
@@ -189,7 +190,6 @@
         -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
         -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
         transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-        margin-top: 0px;
     }
 
     @media (max-width: 620px) {
@@ -274,40 +274,54 @@
         <div class="inner">
             <div id="header404">
                 <p>
-                    <a href="/index" title="Home">
-                        <amp-img src="<?php echo Url::base(); ?>/resources/images/Logo-Emex-404.png" alt="Logo Emex" width="222" height="81"></amp-img>
+                    <a href="{{ route('home') }}" title="Home">
+                        <img src="{{ asset('resources/images/Logo-Emex-404.png') }}" alt="Logo Emex" width="222" height="81">
                     </a>
+                </p>
                 <p style="margin-top: 10px">
                     <span style="margin: 0 10px">-</span>
-                    <a href="/index" title="Site index" class="h-404-txt">www.emex.ro</a>
-                </p>
+                    <a href="{{ route('home') }}" title="Site index" class="h-404-txt">www.emex.ro</a>
                 </p>
             </div>
             <div id="content_title404_1">
                 <h1>Oops...</h1>
-                <span><amp-img width="85" height="73" class="atentie-consum" src="<?php echo Url::base(); ?>/resources/images/emex_warning.png" alt="Atentie"></amp-img></span>
+                <span>
+                    <img width="85" height="73" class="atentie-consum" src="{{ asset('resources/images/emex_warning.png') }}" alt="Atentie">
+                </span>
                 <h1>500</h1>
             </div>
             <div id="content_title404_2">
-                <p><em>Pagina nu poate fi accesata... !</em></p>
-                <p><span class="content-404-small"><em>Te rugam sa folosesti meniul pentru a gasi pagina dorita.</em></span></p>
+                <p><em>Pagina nu poate fi accesată... !</em></p>
+                <p><span class="content-404-small"><em>Te rugăm să folosești meniul pentru a găsi pagina dorită.</em></span></p>
             </div>
             <div id="content_title404_3">
-                <form id="desktop_search_form" target="_top" class="navbar-form navbar-left navbar-search" action="search.php" method="get" title="Cautare Vopsea">
+                <form id="desktop_search_form" target="_top" class="navbar-form navbar-left navbar-search" method="GET" action="{{ url('/search') }}" title="Căutare Vopsea">
                     <div class="input-group">
-                        <input type="text" name="zoom_query" id="zoom_searchbox" class="form-control" placeholder="Cautare rapida">
+                        <input type="text" name="zoom_query" id="zoom_searchbox" class="form-control" placeholder="Căutare rapidă">
                         <div class="input-group-btn">
-                            <button class="btn btn-default" id="btn_404_1" type="submit" aria-label="Cautare"> <em class="sprite-search"></em> </button>
+                            <button class="btn btn-default" id="btn_404_1" type="submit" aria-label="Căutare"> 
+                                <em class="sprite-search"></em> 
+                            </button>
                         </div>
                     </div>
                 </form>
-                <div class="pull-left" id="404_acasa"><a class="btn btn-default" id="btn_404_2" href="https://emex.ro/index">Acasa</a></div>
-                <div class="pull-left" id="404_sitemap"><a href="/sitemap.htm" title="Lista linkuri" class="btn btn-default" id="btn_404_3">Sitemap</a></div>
+                <div class="pull-left" id="404_acasa">
+                    <a class="btn btn-default" id="btn_404_2" href="{{ route('home') }}">Acasă</a>
+                </div>
+                <div class="pull-left" id="404_sitemap">
+                    <a href="{{ route('sitemap') }}" title="Lista linkuri" class="btn btn-default" id="btn_404_3">Sitemap</a>
+                </div>
             </div>
             <div class="clearfix"></div>
             <div id="content_title404_4">
-                <p>Suntem si pe:</p>
-                <div class="social-links text-center"> <a href="https://www.facebook.com/EmexByRomtehnochim/" class="sprite-facebook" title="Facebook"></a> <a href="https://twitter.com/Romtehnochim" class="sprite-twitter" title="Twitter"></a> <a href="https://www.instagram.com/emexbyromtehnochim/" class="sprite-instagram" title="Instagram"></a> <a href="https://ro.pinterest.com/romtehnochim/" class="sprite-pinterest" title="Pinterest"></a> <a href="https://www.youtube.com/c/EmexRomtehnochim" class="sprite-youtube" title="Youtube"></a> <a href="https://www.linkedin.com/company/romtehnochim" class="sprite-linkedin" title="LinkedIn"></a>
+                <p>Suntem și pe:</p>
+                <div class="social-links text-center"> 
+                    <a href="https://www.facebook.com/EmexByRomtehnochim/" class="sprite-facebook" title="Facebook"></a> 
+                    <a href="https://twitter.com/Romtehnochim" class="sprite-twitter" title="Twitter"></a> 
+                    <a href="https://www.instagram.com/emexbyromtehnochim/" class="sprite-instagram" title="Instagram"></a> 
+                    <a href="https://ro.pinterest.com/romtehnochim/" class="sprite-pinterest" title="Pinterest"></a> 
+                    <a href="https://www.youtube.com/c/EmexRomtehnochim" class="sprite-youtube" title="Youtube"></a> 
+                    <a href="https://www.linkedin.com/company/romtehnochim" class="sprite-linkedin" title="LinkedIn"></a>
                 </div>
             </div>
         </div>
