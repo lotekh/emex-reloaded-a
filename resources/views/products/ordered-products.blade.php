@@ -60,7 +60,6 @@
           @php $totalPrice = 0; @endphp
           @foreach ($ordered_products as $ordered_product)
               @php
-              // dd($ordered_product);
                   $totalIndividualPrice = floatval($ordered_product->price) * intval($ordered_product->ordered_quantity);
                   $totalPrice += $totalIndividualPrice;
               @endphp
@@ -88,7 +87,6 @@
                         <button type="submit" aria-label="Scade cantitatea">-</button>
                       </form>
                       <span type="text">{{ $ordered_product->ordered_quantity }}</span>
-                      {{-- {{ $ordered_product->ordered_quantity }} --}}
                       {{-- Up the quantity by 1 --}}
                       <form method="POST" action="{{ route('orders.updateQuantity') }}">
                         @csrfWithoutAutocomplete
@@ -143,12 +141,10 @@
       @php $totalPrice = 0; @endphp
       @foreach ($ordered_products as $ordered_product)
         @php
-          // Calcularea prețului individual și adăugarea la total
           $totalIndividualPrice = floatval($ordered_product->price) * intval($ordered_product->ordered_quantity);
           $totalPrice += $totalIndividualPrice;
           $addon_quantity = '';
     
-          // Procesarea addon_quantity
           if ($ordered_product->addon_quantity) {
             $str = $ordered_product->addon_quantity;
             $str = substr($str, strpos($str, 'Bid.') + 4);
