@@ -163,75 +163,69 @@ class WishlistController extends Controller
     public function toggle(Request $request)
     {
         $user = auth()->user();
-        $productId = $request->input('product_id');
+        $productId = $request->input('product_id'); 
+        $productVariationId = $request->input('product_variation_id'); 
         $removeFromCart = $request->input('remove_from_cart', false); 
 
-        if (!$productId) {
+        if (!$productId || !$productVariationId) {
             return redirect()->back()->with('error', 'Produs invalid.');
         }
 
-        // Logic for user
         if ($user) {
             $existingItem = WishlistItem::where('user_id', $user->id)
                 ->where('product_id', $productId)
                 ->first();
 
             if ($existingItem) {
-                // If the product is in wishlist, remove it
                 $existingItem->delete();
                 return redirect()->back()->with('success', 'Produsul a fost eliminat din favorite.');
             } else {
-                // If the product is not in wishlist, add it in wishlist
                 WishlistItem::create([
                     'user_id' => $user->id,
                     'product_id' => $productId,
                 ]);
 
                 if ($removeFromCart) {
-                    $this->removeFromCart($productId, $user->id);
+                    $this->removeFromCart($productVariationId); 
                 }
+
                 return redirect()->back()->with('success', 'Produsul a fost adăugat la favorite.');
             }
         } else {
-            // Logic for guest - use session
             $wishlist = session()->get('wishlist', []);
 
             if (in_array($productId, $wishlist)) {
-                // If the product is in wishlist, remove it
                 $wishlist = array_diff($wishlist, [$productId]);
                 session()->put('wishlist', $wishlist);
                 return redirect()->back()->with('success', 'Produsul a fost eliminat din favorite.');
             } else {
-                // Add the product on the wishlist if it is not there
                 $wishlist[] = $productId;
                 session()->put('wishlist', $wishlist);
 
                 if ($removeFromCart) {
-                    $this->removeFromCart($productId);
+                    $this->removeFromCart($productVariationId);
                 }
+
                 return redirect()->back()->with('success', 'Produsul a fost adăugat la favorite.');
             }
         }
     }
 
-    private function removeFromCart($productId)
+    private function removeFromCart($productVariationId)
     {
         $cart = session()->get('cart', []);
 
-        // Get all the variations for the product
-        $productVariationIds = \App\Models\ProductVariation::where('product_id', $productId)
-            ->pluck('id')
-            ->toArray();
-
-        // Remove all the variations of the product from the cart
+        // Eliminate that specific product variation, not all the products
         foreach ($cart as $key => $item) {
-            if (in_array($item['product_variation_id'], $productVariationIds)) {
+            if ($item['product_variation_id'] == $productVariationId) {
                 unset($cart[$key]);
+                break; // Stop the loop after the first match
             }
         }
 
         session()->put('cart', $cart);
     }
+
 
 
 

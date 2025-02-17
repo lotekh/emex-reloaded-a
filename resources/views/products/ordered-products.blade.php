@@ -115,12 +115,14 @@
                   <td>
                       @php
                         $productId = $ordered_product->product->id;
+                        $productVariationId = $ordered_product->id;
                         $isInWishlist = app('App\Http\Controllers\WishlistController')->isInWishlist($productId);
                       @endphp
                       <div class="flex align-center">
                         <form method="POST" class="addToWishlistBt" id="product_wish_list_form{{ $productId }}" action="{{ route('wishlist.toggle') }}">
                           @csrfWithoutAutocomplete
                           <input type="hidden" name="product_id" value="{{ $productId }}">
+                          <input type="hidden" name="product_variation_id" value="{{ $productVariationId }}">
                           <input type="hidden" name="remove_from_cart" value="1">
                           <button type="submit" class="wishlist-btn-cos" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
                               <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="Muta la Favorite" alt="wishlist">
