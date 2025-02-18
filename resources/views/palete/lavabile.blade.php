@@ -151,17 +151,15 @@
 
     function updateCuloriContainers() {
         document.querySelectorAll('[class*="culorilavabile-"]').forEach((element) => {
-            // Extragem valoarea lui $incrementing din clasa elementului
             const classList = element.className.split(' ');
             let incrementingValue = null;
 
             classList.forEach(cls => {
                 if (cls.startsWith('culorilavabile-')) {
-                    incrementingValue = parseInt(cls.split('-')[1], 10); // Extragem valoarea lui $incrementing
+                    incrementingValue = parseInt(cls.split('-')[1], 10); 
                 }
             });
 
-            // Comparăm currentTab cu valoarea lui $incrementing
             if (incrementingValue === currentTab) {
                 element.classList.add('culori-container');
                 element.classList.remove('hidden');

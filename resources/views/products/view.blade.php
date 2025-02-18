@@ -45,7 +45,6 @@
 
     <h1 class="mobile-title mt-32">{!! $product->name !!}</h1>
 
-    {{-- Product info --}}
     <div class="w-full product-info-grid">
         <div class="col" id="imagine-produs-3">
             <div class="w-full h-full relative img-container" id="imagine-produs-2">
@@ -202,7 +201,6 @@
                                     <input form="adauga-in-cos" type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
                                     <input form="adauga-in-cos" type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
                                     
-                                    <!-- Quantity field -->
                                     <div class="form-group">
                                         <label id="choose-quantity" class="section-info">Selecteaza cantitate</label>
                                         <input form="adauga-in-cos" class="w-full" aria-labelledby="choose-quantity" min="1" type="number" name="quantity" value="1" />
@@ -212,7 +210,6 @@
                         @endif
                     </div>
 
-                {{-- Adauga in cos, Vizualizeaza cosul, Adauga la favorite --}}
                 <div class="col flex-md gap-xs w-full">
                     <form class="w-full" id="adauga-in-cos" method="GET" action="{{ url('/adauga-produs') }}">
                         <div class="w-full h-full">
@@ -251,7 +248,6 @@
                 </div>
             </div>
 
-            {{-- Fisa tehnica, Calcul Consum, Instructiuni, Paleta Culorio --}}
             <div class="col">
                 <p class="text-center mt-16">
                     @if ($product->price_disclaimer)
@@ -305,7 +301,6 @@
         </div>
     </div>
 
-    {{-- Product tabs -> Descriere, Detalii Utilizare, Caracteristici tehnice --}}
     <div class="mt-16 mt-custom">
         <div class="tabs-selector-row">
             <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid selected" aria-selected="true" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
@@ -324,27 +319,21 @@
                                     );
                 @endphp 
                 {!! $description !!}
-                {{-- Descriere --}}
-                
             </div>
 
             <div id="DetaliiUtilizare" class="tab-content">
                 {!! html_entity_decode($product->usage_details) !!}
-                {{-- Detalii Utilizare --}}
             </div>
 
             <div id="CaracteristiciTehnice" class="tab-content">
                 {!! $product->technical_details !!}
-                {{-- Caracteristici tehnice --}}
             </div>
         </div>
     </div>
 
-    {{-- Similar results(Cautari similare) --}}
     <div class="mt-16"> 
         <div class="cautari">Cautari similare</div>
         <div class="mt-8 grid grid-4 gap-xs">
-            {{-- Am hardcodat sa vina primele 4 produse din Products la cautari similare --}}
             @if ($firstFourProducts && $firstFourProducts->count())
                 @foreach ($firstFourProducts as $ind => $similar_product)
                     <div>
@@ -355,7 +344,6 @@
         </div>
     </div> 
 
-    {{-- Certification images --}}
     <div class="w-full grid grid-3 min-row-height gap-lg mt-16" id="pwgw">
         <div class="badge">
             <div class="relative w-full h-full">

@@ -73,14 +73,12 @@
                         </div>
                     </div>
 
-                    <!-- Disclaimer -->
                     <div class="hidden-xs mt-16 grey text-center bbdo btdo p-8 font-sm">
                         Imaginile prezentate pe site au doar caracter orientativ si nu atrag nici o obligativitate.
                         Acestea pot fi modificate in functie de legislatie, sau necesitatea imbunatatirii designului.
                     </div>
             </div>
                 
-            {{-- Middle part --}}
             <div>
                 <input type="hidden" id="base_url" value="{{ url('/') }}">
                 @if ($currentPage != 3)
@@ -96,7 +94,6 @@
                         <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
                         <input type="hidden" name="consumption_slug" value="{{ $product->consumption_slug }}">
 
-                        <!-- Step 1 -->
                         <div class="consum_content_step">
                             <div class="consum_form_group">
                                 <div class="flex w-full mt-8 mb-8">
@@ -123,7 +120,6 @@
                             </div>
                         </div>
 
-                        <!-- Step 2 -->
                         <div class="consum_content_step">
                             <div class="consum_form_group">
                                 <div class="flex justify-center w-full mt-8 mb-8">
@@ -147,7 +143,6 @@
                             </div>
                         </div>
 
-                        <!-- Step 3 -->
                         <div class="consum_content_step">
                             <div class="consum_form_group">
                                 <div class="flex justify-end w-full mt-8 mb-8">
@@ -164,7 +159,6 @@
                     </form>
                 </div>
 
-                <!-- Step 4 -->
                 <div id="cr" class="{{ $currentPage == 3 ? 'flex' : 'hidden' }}">
                     @if (!empty($result))
                         {!! $result !!}
