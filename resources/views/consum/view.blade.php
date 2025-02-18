@@ -217,7 +217,7 @@
 
             {{-- Right part --}}
             <div class="link_color1">
-                {!! $product->consumption_details !!}
+                {!! $product->description !!}
                 <br>
                 ... [<a href="https://emex.ro/{{ $product->slug }}">citeste mai mult</a>]
             </div>
