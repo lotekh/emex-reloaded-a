@@ -18,14 +18,16 @@ class UserSeeder extends Seeder
             'first_name' => 'Admin',
             'last_name' => 'Admin',
             'email' => 'admin@emex.ro',
-            'password' => Hash::make('admin123')
+            'password' => bcrypt('admin123'),
+            'role' => 'admin',
         ]);
 
         User::firstOrCreate([
             'first_name' => 'Adrian',
             'last_name' => 'Petre',
             'email' => 'adrian.petre@emex.ro',
-            'password' => Hash::make('adrian56')
+            'password' => bcrypt('adrian56'),
+            'role' => 'admin',
         ]);
     }
 }

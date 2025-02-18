@@ -34,6 +34,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('usage_details')->nullable();
             $table->text('technical_details')->nullable();
+            $table->text('consumption_details')->nullable();
 
             $table->boolean('active')->default(0);
             $table->boolean('has_palette')->default(1);
