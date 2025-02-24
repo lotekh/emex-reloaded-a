@@ -160,7 +160,7 @@
                 <table>
                     <tr>
                         <td>
-                            <img id="logo-img" src="{{ public_path('resources/new_design/general/logo.png') }}">
+                            <img id="logo-img" src="{{ public_path('resources/new_design/general/Logo-factura-prof.png') }}">
                         </td>
                     </tr>
                     <tr>
@@ -178,7 +178,8 @@
                     <tr class="col-12">
                         <td class="col-8" style="padding-bottom: 3px">
                             <h2>Proforma</h2>
-                            <p>Data emiterii: {{ \Carbon\Carbon::parse($order['created_at'])->format('d-m-Y') }}</p>
+                            <p>Data emiterii:</p>
+                            <p> {{ \Carbon\Carbon::parse($order['created_at'])->format('d-m-Y') }} </p>
                         </td>
                         <td class="col-6" style="padding-bottom: 5px">
                             <p class="id">{{ 'RTCH-N-' . $order['identifier'] }}</p>

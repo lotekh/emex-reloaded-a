@@ -739,37 +739,6 @@ class OrdersController extends Controller
         return redirect()->route('/despre-noi');
     }
 
-
-        public function showInvoicePage(Request $request, $orderId)
-    {
-        // Obține detaliile comenzii din baza de date
-        $dbOrder = Order::with('productVariations')->findOrFail($orderId);
-        $orders_products = $dbOrder->productVariations()->withPivot('quantity', 'price', 'price_no_vat')->get();
-        
-        $billingCountyName = 'Necunoscut';
-        $billingCountyId = null;
-
-        // Setează numele județului pentru persoana fizică sau juridică
-        if ($dbOrder->billing_type == 0) {  // Persoană fizică
-            $billingCountyId = json_decode($dbOrder->company_information, true)['person_county_id'] ?? null;
-        } elseif ($dbOrder->billing_type == 1) {  // Persoană juridică
-            $billingCountyId = json_decode($dbOrder->company_information, true)['organization_county_id'] ?? null;
-        }
-
-        if ($billingCountyId) {
-            $billingCounty = County::where('id', $billingCountyId)->first();
-            $billingCountyName = $billingCounty ? $billingCounty->name : 'Necunoscut';
-        }
-
-        // Returnează pagina cu factura
-        return view('products.invoice-pdf-22', [
-            'order' => $dbOrder,
-            'orders_products' => $orders_products,
-            'billingCountyName' => $billingCountyName
-        ]);
-    }
-
-
     public function showSummary(Request $request)
     {
         $guid = $request->route('guid');
