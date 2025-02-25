@@ -153,6 +153,7 @@ Route::post('/remove-from-wishlist', [WishlistController::class, 'remove'])->nam
 Route::get('/removee-from-wishlist', [WishlistController::class, 'remove'])->name('wishlist.removee');
 Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
 
+Route::post('/save-tab', [ProductsController::class, 'saveTabSelection'])->name('saveTab');
 Route::post('/get-variation', [ProductsController::class, 'getVariation'])->name('product.getVariation');
 Route::get('/produse', [ProductsController::class, 'index'])->name('products.index');
 

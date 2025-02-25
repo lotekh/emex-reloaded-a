@@ -56,10 +56,17 @@ class ProductsController extends Controller
         return view('products.produse', compact('products', 'totalResults', 'totalPages', 'perPage', 'currentPage', 'filtersString', 'filters'));
     }
 
+    public function saveTabSelection(Request $request)
+    {
+        $request->session()->put('last_active_tab', $request->input('tab'));
+        return response()->json(['status' => 'success']);
+    }
+
     public function showProduct($slug, Request $request)
     {
         $product = Product::where('slug', $slug)->with('largeImage', 'variations', 'reviews')->firstOrFail();
-
+        $activeTab = session('last_active_tab', 'Descriere');
+        // dd($activeTab);
         $categories_products = $product->categories;
 
         $initialPrice = $product->variations->first()->price ?? 0;
@@ -77,8 +84,9 @@ class ProductsController extends Controller
 
         $firstFourProducts = Product::take(4)->get();
 
-        return view('products.view', compact('product', 'firstFourProducts', 'categories_products', 'initialPrice', 'initialPackaging', 'initialColor', 'initialName', 'initialPriceNoTva', 'initialIntaritor', 'initialEan', 'initial_q', 'parsedFullData', 'rating_sum'));
+        return view('products.view', compact('product', 'firstFourProducts', 'categories_products', 'initialPrice', 'initialPackaging', 'initialColor', 'initialName', 'initialPriceNoTva', 'initialIntaritor', 'initialEan', 'initial_q', 'parsedFullData', 'rating_sum', 'activeTab'));
     }
+
 
     public function getVariation(Request $request)
     {
