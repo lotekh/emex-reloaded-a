@@ -65,7 +65,7 @@
                     <img width="120" height="120" src="{{ asset('resources/images/inovatie.png') }}" alt="Inovatie">
                 </div>
                 <p class="marg-left">
-                    <span class="alineat_span"></span>Politica prioritara a companiei noastre este de a urmari in detaliu asigurarea constantei calitatii conform Sistemului de Management Integrat al Calitatii, Mediului si Securitatii Ocupationale ISO 9001, ISO 14001 si respectiv ISO 18001. Totodata urmarim alinierea produselor la standardele europene prin folosirea de noi componente, de ultima generatie, cu continut scazut de compusi organici volatili si grad scazut de toxicitate.
+                    <span class="alineat_span"></span>Politica prioritara a companiei noastre este de a urmari in detaliu asigurarea constantei calitatii conform Sistemului de Management Integrat al Calitatii, Mediului si Securitatii Ocupationale ISO 9001, ISO 14001 si respectiv ISO 45001. Totodata urmarim alinierea produselor la standardele europene prin folosirea de noi componente, de ultima generatie, cu continut scazut de compusi organici volatili si grad scazut de toxicitate.
                     <div class="spaces-despre-noi">
                         <br> <br> 
                     </div>

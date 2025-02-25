@@ -16,7 +16,7 @@
                 <span class="alineat_span"></span>
                 Calitatea incontestabila si lipsita de compromis a produselor este confirmata si de Certificarea
                 Sistemului Integrat de Management al Calitatii, Mediului si Securitatii Ocupationale implementate
-                conform ISO 9001, ISO14001 si respectiv ISO18001.
+                conform ISO 9001, ISO14001 si respectiv ISO45001.
             </p>
         </div>
         <div class="section-tech relative">
