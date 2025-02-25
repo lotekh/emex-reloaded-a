@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\ProductCategoryFilter;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 class CategoryFiltersSeeder extends Seeder
 {
@@ -16,12 +17,18 @@ class CategoryFiltersSeeder extends Seeder
      */
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
+        CategoryFilterProduct::truncate();
+        CategoryFilter::truncate();
+        Schema::enableForeignKeyConstraints();
+
         $files = [
             'tip_liant.csv' => 'Tip liant',
             'sistem.csv' => 'Sistem',
             'solventare.csv' => 'Solventare',
             'exploatare.csv' => 'Exploatare',
-            'tip.csv' => 'Tip produs'
+            'tip.csv' => 'Tip produs',
+            'utilizare.csv' => 'Utilizare',
         ];
 
         echo '<pre>';
@@ -37,10 +44,8 @@ class CategoryFiltersSeeder extends Seeder
                 $handler = fopen($csv, "r");
 
                 $row = 0;
-                $filters = [];
 
                 //check if categoryfilter exists and if not, create it
-                $messages[] = '?????';
                 $categoryFilter = CategoryFilter::where('name', $categoryFilterName)->first();
                 if(!$categoryFilter) {
                     $categoryFilter = new CategoryFilter();

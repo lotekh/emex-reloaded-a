@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             SettingsSeeder::class,
-            // CountryAndCountySeeder::class,
             MeasurementUnitSeeder::class,
             CategorySeeder::class,
             ProductSeeder::class,
@@ -25,6 +24,7 @@ class DatabaseSeeder extends Seeder
             BlogSeeder::class,
             PopupSeeder::class,
             ReviewSeeder::class,
+            CountySeeder::class,
         ]);
     }
 }
