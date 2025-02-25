@@ -388,54 +388,39 @@
             }).catch(error => console.error("Eroare salvare tab:", error));
         }
     
-        // Funcție pentru schimbarea tab-ului activ
+        // Change the active tab
         window.openTab = function (evt, tabName) {
-            // Ascundem toate tab-urile și eliminăm "selected" de la butoane
             tabContents.forEach(tab => tab.classList.remove("active"));
             tabButtons.forEach(btn => {
                 btn.classList.remove("selected");
                 btn.setAttribute("aria-selected", "false");
             });
     
-            // Activăm tab-ul selectat și butonul corespunzător
             const currentTab = document.getElementById(tabName);
             if (currentTab) {
                 currentTab.classList.add("active");
+                evt.currentTarget.classList.add("selected");
+                evt.currentTarget.setAttribute("aria-selected", "true");
     
-                // Găsim butonul corespunzător și îl activăm
-                const activeButton = document.querySelector(`.tabs-selector-row .btn[onclick="openTab(event, '${tabName}')"]`);
-                if (activeButton) {
-                    activeButton.classList.add("selected");
-                    activeButton.setAttribute("aria-selected", "true");
-                }
-    
-                // Salvăm selecția tab-ului
                 saveTabSelection(tabName);
             } else {
                 console.error(`Tab-ul ${tabName} nu a fost găsit.`);
             }
         };
     
-        // Restaurăm tab-ul activ la încărcarea paginii
-        let activeTab = "{{ $activeTab }}"; // Valoare trimisă din backend
-        if (activeTab) {
-            openTab({ currentTarget: document.querySelector(`.tabs-selector-row .btn[onclick="openTab(event, '${activeTab}')"]`) }, activeTab);
-        } else {
-            // Setăm primul tab ca activ implicit
-            const defaultTab = tabContents[0];
-            if (defaultTab) {
-                defaultTab.classList.add("active");
-                const defaultButton = tabButtons[0];
-                if (defaultButton) {
-                    defaultButton.classList.add("selected");
-                    defaultButton.setAttribute("aria-selected", "true");
-                }
-            }
-        }
+        // Reset activeTab on reload
+        let activeTab = "{{ $activeTab ?? 'Descriere' }}"; 
+        tabContents.forEach(tab => {
+            tab.classList.toggle("active", tab.id === activeTab);
+        });
+    
+        tabButtons.forEach(button => {
+            const tabName = button.getAttribute('onclick').match(/'([^']+)'/)[1];
+            const isSelected = tabName === activeTab;
+            button.classList.toggle("selected", isSelected);
+            button.setAttribute("aria-selected", isSelected ? "true" : "false");
+        });
     });
     </script>
-    
-    
-
 
 @endsection
