@@ -430,21 +430,28 @@ class OrdersController extends Controller
                 $companyCityId = $companyInformationArray['organization_city_id'];
             }
 
-            $dbOrder->transport_price_no_tva = $dbOrder->transport_price;
-            $dbOrder->transport_price = 1.19 * $dbOrder->transport_price_no_tva;
-            $dbOrder->total = $dbOrder->total + $dbOrder->transport_price;
-            $dbOrder->total_no_tva = $dbOrder->total * 0.81;
 
+            // dd($dbOrder->total);
+            $dbOrder->total_no_tva = $dbOrder->total * 0.81;
             // Calculate rambursValue if delivery_type is 0 (curier)
             $rambursValue = 0;
             $rambursTva = 0;
             if ($request->input('delivery_type') == 0 && $request->input('payment_method') == 'ramburs') {
                 // rambursValue is 3% of the order value(value of the products+transport price) without TVA, so it is 3% of of $dbOrder->total_no_tva
-                $rambursValue = ($dbOrder->total_no_tva) * 3 / 100;
+                $rambursValue = ($dbOrder->total_no_tva + $dbOrder->transport_price) * 3 / 100;
                 $rambursTva = ($rambursValue * 19) / 100;
                 // Add the cost of ramburs(rambursValue+rambursTva) to the total
                 $dbOrder->total += $rambursValue + $rambursTva;
+                $dbOrder->total_no_tva += $rambursValue;
             }
+
+            $dbOrder->transport_price_no_tva = $dbOrder->transport_price;
+            $dbOrder->transport_price = 1.19 * $dbOrder->transport_price_no_tva;
+            $dbOrder->total = $dbOrder->total + $dbOrder->transport_price;
+            $dbOrder->total_no_tva += $dbOrder->transport_price_no_tva;
+            // dd($dbOrder->total, $dbOrder->total_no_tva, $dbOrder->transport_price, $dbOrder->transport_price_no_tva);
+
+            
 
             $deliveryInformation = null;
             $deliveryInformationArray = null;
