@@ -29,6 +29,13 @@
         @yield('images')
     </div>
 
+    <div id="global-lightbox" class="lightbox hidden">
+        <div class="lightbox-content">
+            <span class="close-btn" style=" background-image: url('{{ asset('resources/images/sprite.png') }}');" onclick="closeServiciiLightbox()"></span>
+            <img id="global-lightbox-image" src="{{ asset('images/landing/stb/mici/Pardoseala-cuartz-epoxdica-depozit-legume.jpg') }}" alt="global-lightbox image" title="Global Lightbox Image">
+        </div>
+    </div>
+
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         window.openTab = function(evt, tabName) {
@@ -50,6 +57,27 @@
             evt.currentTarget.setAttribute("aria-selected", "true");
         };
     });
+
+    function openImageLightbox(image) {
+        const lightbox = document.getElementById('global-lightbox');
+        const lightboxImage = document.getElementById('global-lightbox-image');
+
+        // Set the attributes for the image
+        lightboxImage.src = image.getAttribute('data-lightbox-src');
+        lightboxImage.alt = image.getAttribute('data-lightbox-alt') || '';
+        lightboxImage.title = image.getAttribute('data-lightbox-title') || '';
+
+        // Show the lightbox
+        lightbox.classList.remove('hidden');
+    }
+
+    function closeServiciiLightbox() {
+        const lightbox = document.getElementById('global-lightbox');
+
+        // Hide the lightbox
+        lightbox.classList.add('hidden');
+    }
+
     </script>
 
 @include('components.sidebar-contact', ['secondary_title' =>  isset($secondary_title) ? $secondary_title : 'Aplicarea Vopselelor Lavabile “Emex”'])

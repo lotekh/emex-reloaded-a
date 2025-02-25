@@ -308,18 +308,18 @@
                                         $product->description
                                     );
                 @endphp 
-                {!! $description !!}
+                {!! Blade::render($description) !!}
                 {{-- Descriere --}}
                 
             </div>
 
             <div id="DetaliiUtilizare" class="tab-content">
-                {!! html_entity_decode($product->usage_details) !!}
+                {!! Blade::render(html_entity_decode($product->usage_details) ) !!}
                 {{-- Detalii Utilizare --}}
             </div>
 
             <div id="CaracteristiciTehnice" class="tab-content">
-                {!! $product->technical_details !!}
+                {!! Blade::render($product->technical_details ) !!}
                 {{-- Caracteristici tehnice --}}
             </div>
         </div>
