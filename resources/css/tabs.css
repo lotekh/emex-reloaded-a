@@ -68,7 +68,7 @@ amp-selector [option][selected] {
 
 @media screen and (min-width: 380px) {
   .tabs-selector-row .btn {
-    font-size: 11px;
+    font-size: 14px;
   }
 }
 
@@ -128,7 +128,7 @@ amp-selector [option][selected] {
   color: #ff9800;
 }
 
-#pagina-4-termeni-conditii h2{
+#pagina-4-termeni-conditii h2 {
   color: #1976d2;
 }
 

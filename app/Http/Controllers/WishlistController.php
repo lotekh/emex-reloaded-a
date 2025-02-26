@@ -160,6 +160,80 @@ class WishlistController extends Controller
         }
     }
 
+    public function toggle(Request $request)
+    {
+        $user = auth()->user();
+        $productId = $request->input('product_id'); 
+        $productVariationId = $request->input('product_variation_id'); 
+        $removeFromCart = $request->input('remove_from_cart', false); 
+
+        if (!$productId || !$productVariationId) {
+            return redirect()->back()->with('error', 'Produs invalid.');
+        }
+
+        if ($user) {
+            $existingItem = WishlistItem::where('user_id', $user->id)
+                ->where('product_id', $productId)
+                ->first();
+
+            if ($existingItem) {
+                $existingItem->delete();
+                return redirect()->back()->with('success', 'Produsul a fost eliminat din favorite.');
+            } else {
+                WishlistItem::create([
+                    'user_id' => $user->id,
+                    'product_id' => $productId,
+                ]);
+
+                if ($removeFromCart) {
+                    $this->removeFromCart($productVariationId); 
+                }
+
+                return redirect()->back()->with('success', 'Produsul a fost adăugat la favorite.');
+            }
+        } else {
+            $wishlist = session()->get('wishlist', []);
+
+            if (in_array($productId, $wishlist)) {
+                $wishlist = array_diff($wishlist, [$productId]);
+                session()->put('wishlist', $wishlist);
+                return redirect()->back()->with('success', 'Produsul a fost eliminat din favorite.');
+            } else {
+                $wishlist[] = $productId;
+                session()->put('wishlist', $wishlist);
+
+                if ($removeFromCart) {
+                    $this->removeFromCart($productVariationId);
+                }
+
+                return redirect()->back()->with('success', 'Produsul a fost adăugat la favorite.');
+            }
+        }
+    }
+
+    private function removeFromCart($productVariationId)
+    {
+        $cart = session()->get('cart', []);
+
+        // Eliminate that specific product variation, not all the products
+        foreach ($cart as $key => $item) {
+            if ($item['product_variation_id'] == $productVariationId) {
+                unset($cart[$key]);
+                break; // Stop the loop after the first match
+            }
+        }
+
+        session()->put('cart', $cart);
+    }
+
+
+
+
+
+
+
+
+
 
 
 

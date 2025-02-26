@@ -1,5 +1,7 @@
 .consum-container {
   gap: 32px;
+  display: grid;
+  grid-template-columns: 3fr 4fr 3fr;
 }
 
 .consum_content_step {
@@ -163,10 +165,27 @@
   }
 }
 
-#consum_page form input, #consum_page form select, #consum_page form textarea {
-  padding: 8px 16px;
-  border-radius: 8px;
-  background-color: var(--white);
-  color: cornflowerblue;
+.select-consum {
   border: 1px solid #00a7d0;
+  color: cornflowerblue;
+}
+
+.titlu-tip-consum {
+  color: #009;
+}
+
+.btn-light-blue {
+  background-color: #00a7d0;
+  color: #ffffff;
+}
+
+.consum-step4-box {
+  background-color: azure;
+  margin-top: 20px;
+  border: 1px solid #c4c4c4;
+  border-radius: 12px;
+  margin-left: 15px;
+  margin-right: 15px;
+  width: 100%;
+  padding: 20px;
 }

@@ -50,7 +50,6 @@
                          <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}">
                             <img class="w-full" src="{{ $blogImageUrl }}" alt="">
                         </a>
-                        {{-- <img class="w-full" src="{{ $blogImageUrl}}" alt=""> --}}
                     </div>
                     <div class="col-span-2 pl-16 flex col justify-center">
                         <span>
@@ -69,7 +68,6 @@
             <h2 class="mt-16"> Nu au fost găsite articole. </h2>
         @endif
 
-        <!-- Pagination -->
         <ul class="row align-center justify-center pagination gap-md">
             <li>
                 <form method="get" action="{{ url()->current() }}">

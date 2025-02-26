@@ -151,6 +151,9 @@ Route::post('/add-to-wishlist', [WishlistController::class, 'store'])->name('wis
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('products.wishlist');
 Route::post('/remove-from-wishlist', [WishlistController::class, 'remove'])->name('wishlist.remove');
 Route::get('/removee-from-wishlist', [WishlistController::class, 'remove'])->name('wishlist.removee');
+Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
+
+Route::post('/save-tab', [ProductsController::class, 'saveTabSelection'])->name('saveTab');
 Route::post('/get-variation', [ProductsController::class, 'getVariation'])->name('product.getVariation');
 Route::get('/produse', [ProductsController::class, 'index'])->name('products.index');
 
@@ -353,4 +356,11 @@ Route::prefix('/feed')->group(function () {
     Route::get('/merxu', [FeedController::class, 'merxu'])->name('feeds.merxu');
 });
 
+// Error 404 and 500
+Route::get('/404', function () {
+    abort(404);
+});
+Route::get('/500', function () {
+    abort(500);
+});
 

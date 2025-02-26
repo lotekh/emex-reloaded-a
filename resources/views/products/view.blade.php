@@ -45,7 +45,6 @@
 
     <h1 class="mobile-title mt-32">{!! $product->name !!}</h1>
 
-    {{-- Product info --}}
     <div class="w-full product-info-grid">
         <div class="col" id="imagine-produs-3">
             <div class="w-full h-full relative img-container" id="imagine-produs-2">
@@ -90,19 +89,33 @@
                                                 <span class="text-red ml-4">Lei&nbsp;/&nbsp;</span>
                                             </p>
                                             
-                                            @if ($product->has_hardener)
+                                            @if ($product->is_package)
                                                 <p class="mb-4">Pachet</p>
                                             @else
-                                                <p class="section-info" id="pret_value">Bidon <span id="packaging{{ $product->id }}">{{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}</span></p>
+                                                <p class="section-info" id="pret_value">Bidon  <span id="packaging{{ $product->id }}">
+                                                    {{ fmod($initialVariation->quantity, 1) != 0 ? number_format($initialVariation->quantity, 2) : $initialVariation->quantity }}
+                                                    {{ $initialVariation->measurementUnit->name }}
+                                                </span></p>
                                             @endif
                                         </div>
 
                                         @if ($product->has_hardener)
                                             <div class="row items-baseline price-container">
                                                 <p class="section-info text-blue-009">
-                                                    Contine: Vopsea {{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}
+                                                    Contine: 
+                                                    @if (Str::contains(Str::lower($product->name), 'lac'))
+                                                        Lac
+                                                    @elseif (Str::contains(Str::lower($product->name), 'membran'))
+                                                        Membrană
+                                                    @else
+                                                        Vopsea
+                                                    @endif
+                                                    {{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}
                                                 </p>
-                                                <p class="section-info text-blue-009">&nbsp;+ Bid. 0.90 Kg Intaritor</p>
+                                                
+                                                
+                                                <p class="section-info text-blue-009">&nbsp;{{ $initialVariation->addon_text }}</p>
+
                                             </div>
                                         @endif
 
@@ -171,9 +184,10 @@
                                         <label class="section-info" id="choose-type">Selecteaza ambalare</label>
                                         <select form="adauga-in-cos" aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
                                             @foreach ($product->variations->unique('quantity') as $variation)
-                                                <option value="{{ $variation->quantity }}">
-                                                    {{ $variation->quantity }} {{ $variation->measurementUnit->name }}
-                                                </option>
+                                            <option value="{{ $variation->quantity }}">
+                                                {{ fmod($variation->quantity, 1) != 0 ? number_format($variation->quantity, 2) : $variation->quantity }}
+                                                {{ $variation->measurementUnit->name }}
+                                            </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -187,7 +201,6 @@
                                     <input form="adauga-in-cos" type="hidden" name="ean" id="eanInput" value="{{ $initialVariation->ean }}">
                                     <input form="adauga-in-cos" type="hidden" name="addon_quantity" id="addonQuantityInput" value="{{ $initialVariation->intaritor }}">
                                     
-                                    <!-- Quantity field -->
                                     <div class="form-group">
                                         <label id="choose-quantity" class="section-info">Selecteaza cantitate</label>
                                         <input form="adauga-in-cos" class="w-full" aria-labelledby="choose-quantity" min="1" type="number" name="quantity" value="1" />
@@ -197,7 +210,6 @@
                         @endif
                     </div>
 
-                {{-- Adauga in cos, Vizualizeaza cosul, Adauga la favorite --}}
                 <div class="col flex-md gap-xs w-full">
                     <form class="w-full" id="adauga-in-cos" method="GET" action="{{ url('/adauga-produs') }}">
                         <div class="w-full h-full">
@@ -236,7 +248,6 @@
                 </div>
             </div>
 
-            {{-- Fisa tehnica, Calcul Consum, Instructiuni, Paleta Culorio --}}
             <div class="col">
                 <p class="text-center mt-16">
                     @if ($product->price_disclaimer)
@@ -290,17 +301,16 @@
         </div>
     </div>
 
-    {{-- Product tabs -> Descriere, Detalii Utilizare, Caracteristici tehnice --}}
     <div class="mt-16 mt-custom">
         <div class="tabs-selector-row">
-            <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid selected" aria-selected="true" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
+            <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid" aria-selected="true" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
             <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid" aria-selected="false" tabindex="0" onclick="openTab(event, 'DetaliiUtilizare')"><span>Detalii de utilizare</span></button>
             <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid" aria-selected="false" tabindex="0" onclick="openTab(event, 'CaracteristiciTehnice')"><span>Caracteristici Tehnice</span></button>
         </div>
 
         <div class="tab-content-container">
 
-            <div id="Descriere" class="tab-content active">
+            <div id="Descriere" class="tab-content {{ $activeTab == 'Descriere' ? 'active' : '' }}">
                 @php
                     $description = str_replace(
                                         ['<amp-img', '</amp-img>', 'layout="responsive"', 'fallback'], 
@@ -309,27 +319,21 @@
                                     );
                 @endphp 
                 {!! $description !!}
-                {{-- Descriere --}}
-                
             </div>
 
-            <div id="DetaliiUtilizare" class="tab-content">
+            <div id="DetaliiUtilizare" class="tab-content {{ $activeTab == 'Descriere' ? 'active' : '' }}">
                 {!! html_entity_decode($product->usage_details) !!}
-                {{-- Detalii Utilizare --}}
             </div>
 
-            <div id="CaracteristiciTehnice" class="tab-content">
+            <div id="CaracteristiciTehnice" class="tab-content {{ $activeTab == 'Descriere' ? 'active' : '' }}">
                 {!! $product->technical_details !!}
-                {{-- Caracteristici tehnice --}}
             </div>
         </div>
     </div>
 
-    {{-- Similar results(Cautari similare) --}}
     <div class="mt-16"> 
         <div class="cautari">Cautari similare</div>
         <div class="mt-8 grid grid-4 gap-xs">
-            {{-- Am hardcodat sa vina primele 4 produse din Products la cautari similare --}}
             @if ($firstFourProducts && $firstFourProducts->count())
                 @foreach ($firstFourProducts as $ind => $similar_product)
                     <div>
@@ -340,7 +344,6 @@
         </div>
     </div> 
 
-    {{-- Certification images --}}
     <div class="w-full grid grid-3 min-row-height gap-lg mt-16" id="pwgw">
         <div class="badge">
             <div class="relative w-full h-full">
@@ -370,84 +373,54 @@
 
 
 <script>
-
-document.addEventListener('DOMContentLoaded', function () {
-    const packagingSelect = document.getElementById('packagingSelect{{ $product->id }}');
-    const colorSelect = document.getElementById('colorSelect{{ $product->id }}');
-    const priceDisplay = document.getElementById('price{{ $product->id }}');
-    const priceInput = document.getElementById('priceInput{{ $product->id }}');
-    const variationInput = document.getElementById('variationInput{{ $product->id }}');
-
-    // Preload all product variations into JavaScript
-    const variations = @json($product->variations);
-
-    // If the product is available, update the variations
-    function updateVariation() {
-        if (!packagingSelect || !colorSelect || !variations.length) {
-            console.warn('Variations, packaging, or color select not available.');
-            return;
-        }
-
-        const selectedPackaging = packagingSelect.value;
-        const selectedColor = colorSelect.value;
-
-        // Găsim variația corectă
-        const variation = variations.find(variation => 
-            variation.quantity == selectedPackaging && variation.colour == selectedColor
-        );
-
-        if (variation) {
-            priceDisplay.textContent = variation.price.toFixed(2);
-            priceInput.value = variation.price;
-            variationInput.value = variation.id;
-        } else {
-            console.error('No matching variation found.');
-        }
-    }
+    document.addEventListener('DOMContentLoaded', function () {
+        const tabButtons = document.querySelectorAll(".tabs-selector-row .btn");
+        const tabContents = document.querySelectorAll(".tab-content");
     
-    if (packagingSelect) packagingSelect.addEventListener('change', updateVariation);
-    if (colorSelect) colorSelect.addEventListener('change', updateVariation);
-
-    // Logic for tabs
-    window.openTab = function(evt, tabName) {
-        var i, tabcontent, tablinks;
-
-        // Hide all tab content
-        tabcontent = document.getElementsByClassName("tab-content");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].classList.remove("active");
+        function saveTabSelection(tabName) {
+            fetch("{{ route('saveTab') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({ tab: tabName })
+            }).catch(error => console.error("Eroare salvare tab:", error));
         }
-
-        // Remove 'selected' and 'aria-selected' classes from all buttons
-        tablinks = document.getElementsByClassName("btn");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].classList.remove("selected");
-            tablinks[i].setAttribute("aria-selected", "false");
-        }
-
-        // Show the selected tab and add the necessary classes
-        const currentTab = document.getElementById(tabName);
-        if (currentTab) {
-            currentTab.classList.add("active");
-            evt.currentTarget.classList.add("selected");
-            evt.currentTarget.setAttribute("aria-selected", "true");
-        } else {
-            console.error(`Tab-ul ${tabName} nu a fost găsit.`);
-        }
-    };
-
-    const defaultTab = document.querySelector('.tab-content');
-    if (defaultTab) {
-        defaultTab.classList.add('active');
-        const defaultButton = document.querySelector('.tabs-selector-row .btn');
-        if (defaultButton) {
-            defaultButton.classList.add('selected');
-            defaultButton.setAttribute('aria-selected', 'true');
-        }
-    }
-});
-
-</script>
-
+    
+        // Change the active tab
+        window.openTab = function (evt, tabName) {
+            tabContents.forEach(tab => tab.classList.remove("active"));
+            tabButtons.forEach(btn => {
+                btn.classList.remove("selected");
+                btn.setAttribute("aria-selected", "false");
+            });
+    
+            const currentTab = document.getElementById(tabName);
+            if (currentTab) {
+                currentTab.classList.add("active");
+                evt.currentTarget.classList.add("selected");
+                evt.currentTarget.setAttribute("aria-selected", "true");
+    
+                saveTabSelection(tabName);
+            } else {
+                console.error(`Tab-ul ${tabName} nu a fost găsit.`);
+            }
+        };
+    
+        // Reset activeTab on reload
+        let activeTab = "{{ $activeTab ?? 'Descriere' }}"; 
+        tabContents.forEach(tab => {
+            tab.classList.toggle("active", tab.id === activeTab);
+        });
+    
+        tabButtons.forEach(button => {
+            const tabName = button.getAttribute('onclick').match(/'([^']+)'/)[1];
+            const isSelected = tabName === activeTab;
+            button.classList.toggle("selected", isSelected);
+            button.setAttribute("aria-selected", isSelected ? "true" : "false");
+        });
+    });
+    </script>
 
 @endsection

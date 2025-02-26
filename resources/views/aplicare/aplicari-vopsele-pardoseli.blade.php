@@ -26,6 +26,7 @@
 
 @section('css')
   <link rel="stylesheet" href="{{ asset('css/bundled/aplicare.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bundled/servicii.min.css') }}">
 @endsection
 
 @section('breadcrumbs')
@@ -35,164 +36,178 @@
 @section('content')
 <div class="aplicari relative w-full">
   <div class="header_img_bg col justify-center align-center" id="aplicari_vopsele_pardoseli_paralax_img" style="background-image: url('resources/images/aplicari-vopsele-pardoseli/Vopsire-epoxidica-hala-industriala-servicii.jpg');">
-    <h1 class="z-10">Vopsiri Decorative si Industriale de Pardoseala</h1>
+    <h1 class="z-10" id="h1-aplicare-bg">Vopsiri Decorative si Industriale de Pardoseala</h1>
   </div>
 </div>
 
-<div class="main-container aplicari mt-32" id="main">
-  <h2 class="section-title text-center" id="aplicare_produs">EXEMPLE DE VOPSIRI DE PARDOSELI DIN BETON</h2>
+<div class="main-container servicii mt-32" id="landing_sixth_row">
   
-  <div class="grid grid-3" id="main_container_despre_noi_row">
-    <div class="aplicari_img_thumbnail">
-      <x-lightbox 
-        id="produs-lightbox1"
-        class="cover cursor-pointer"
-        url="{{ asset('resources/aplicari-vopsele-pardoseli/Epoxidica-Hala-Productie.jpg') }}"
-        lightboxSrc="{{ asset('resources/aplicari-vopsele-pardoseli/Epoxidica-Hala-Productie.jpg') }}"
-        alt="Hala Productie"
-        title="Hala Productie"
-        width="355"
-        height="265"
-        layout="responsive"
-        lightboxWidth="400"
-        lightboxHeight="300"
-      />
+    <h2 class="section-title text-center" id="aplicare_produs">
+      EXEMPLE DE VOPSIRI DE PARDOSELI DIN BETON
+    </h2>
+
+    <div class="grid grid-4 gap-lg mt-32" id="landing_carousel_wrapper">
+      
+      <div>
+        <x-lightbox 
+            id="prod-lightbox1"
+            class="cover cursor-pointer"
+            url="{{ asset('images/landing/autonivelanta/mici/Pardoseala-autonivelanta-epoxidica-restaurant.jpg') }}"
+            lightboxSrc="{{ asset('images/landing/autonivelanta/mari/Pardoseala-epoxidica-autonivelanta-club.jpg') }}"
+            alt="Pardoseala epoxidica executata de Romtehnochim"
+            title="Pardoseala epoxidica executata de Romtehnochim"
+            width="268"
+            height="173"
+            layout="responsive"
+            lightboxWidth="600"
+            lightboxHeight="450"
+        />
+      </div>
+    
+      <div>
+          <x-lightbox 
+              id="prod-lightbox2"
+              class="cover cursor-pointer"
+              url="{{ asset('images/landing/autonivelanta/mici/Pardoseala-autonivelanta-epoxidica-tipografie.jpg') }}"
+              lightboxSrc="{{ asset('images/landing/autonivelanta/mari/Pardoseala-epoxidica-tipografie.jpg') }}"
+              alt="Pardoseala epoxidica aplicata de Romtehnochim"
+              title="Pardoseala epoxidica aplicata de Romtehnochim"
+              width="268"
+              height="173"
+              layout="responsive"
+              lightboxWidth="600"
+              lightboxHeight="450"
+          />
+      </div>
+      
+      <div>
+          <x-lightbox 
+              id="prod-lightbox3"
+              class="cover cursor-pointer"
+              url="{{ asset('images/landing/autonivelanta/mici/Pardoseala-epoxidica-autonivelanta-crama.jpg') }}"
+              lightboxSrc="{{ asset('images/landing/autonivelanta/mari/Pardoseala-autonivelanta-crama.jpg') }}"
+              alt="Romtehnochim - Turnare pardoseala epoxidica autonivelanta"
+              title="Romtehnochim - Turnare pardoseala epoxidica autonivelanta"
+              width="268"
+              height="173"
+              layout="responsive"
+              lightboxWidth="600"
+              lightboxHeight="450"
+          />
+      </div>
+      
+      <div>
+          <x-lightbox 
+              id="prod-lightbox5"
+              class="cover cursor-pointer"
+              url="{{ asset('images/landing/autonivelanta/mici/Pardoseala-epoxidica-living.jpg') }}"
+              lightboxSrc="{{ asset('images/landing/autonivelanta/mari/Pardoseala-living-vila.jpg') }}"
+              alt="Turnare epoxidica autonivelanta executata de Romtehnochim"
+              title="Turnare epoxidica autonivelanta executata de Romtehnochim"
+              width="268"
+              height="173"
+              layout="responsive"
+              lightboxWidth="600"
+              lightboxHeight="450"
+          />
+      </div>
+      
+      <div>
+          <x-lightbox 
+              id="prod-lightbox8"
+              class="cover cursor-pointer"
+              url="{{ asset('images/landing/autonivelanta/mici/Pardoseala-epoxidica-trafic-gara.jpg') }}"
+              lightboxSrc="{{ asset('images/landing/autonivelanta/mari/Pardoseala-autonivelanta-gara.jpg') }}"
+              alt="Spatiu cu trafic intens - pardoseala epoxidica"
+              title="Spatiu cu trafic intens - pardoseala epoxidica"
+              width="268"
+              height="173"
+              layout="responsive"
+              lightboxWidth="600"
+              lightboxHeight="450"
+          />
+      </div>
+      
+      <div>
+          <x-lightbox 
+              id="prod-lightbox9"
+              class="cover cursor-pointer"
+              url="{{ asset('images/landing/autonivelanta/mici/Pardoseala-industriala-autonivelanta-hala-productie.jpg') }}"
+              lightboxSrc="{{ asset('images/landing/autonivelanta/mari/Pardoseala-autonivelanta-industriala.jpg') }}"
+              alt="Autonivelanta epoxidica aplicata de Romtehnochim"
+              title="Autonivelanta epoxidica aplicata de Romtehnochim"
+              width="268"
+              height="173"
+              layout="responsive"
+              lightboxWidth="600"
+              lightboxHeight="450"
+          />
+      </div>
+      
+      <div>
+          <x-lightbox 
+              id="prod-lightbox10"
+              class="cover cursor-pointer"
+              url="{{ asset('images/landing/autonivelanta/mici/Salon-medical-pardoseala-epoxidica.jpg') }}"
+              lightboxSrc="{{ asset('images/landing/autonivelanta/mari/Epoxidica-autonivelanta-sala-radiografie.jpg') }}"
+              alt="Salon medical protejat cu pardoseala epoxidica"
+              title="Salon medical protejat cu pardoseala epoxidica"
+              width="268"
+              height="173"
+              layout="responsive"
+              lightboxWidth="600"
+              lightboxHeight="450"
+          />
+      </div>
+      
+      <div>
+          <x-lightbox 
+              id="prod-lightbox11"
+              class="cover cursor-pointer"
+              url="{{ asset('images/landing/autonivelanta/mici/Pardoseala-industriala-epoxidica.jpg') }}"
+              lightboxSrc="{{ asset('images/landing/autonivelanta/mari/Pardoseala-autonivelanta-hala-productie.jpg') }}"
+              alt="Autonivelanta epoxidica industriala - executie Romtehnochim"
+              title="Autonivelanta epoxidica industriala - executie Romtehnochim"
+              width="268"
+              height="173"
+              layout="responsive"
+              lightboxWidth="600"
+              lightboxHeight="450"
+          />
+      </div>
+
     </div>
-
-    <div class="aplicari_img_thumbnail">
-      <x-lightbox 
-        id="produs-lightbox2"
-        class="cover cursor-pointer"
-        url="{{ asset('resources/aplicari-vopsele-pardoseli/Epoxidica-Service-Auto.jpg') }}"
-        lightboxSrc="{{ asset('resources/aplicari-vopsele-pardoseli/Epoxidica-Service-Auto.jpg') }}"
-        alt="Service Auto"
-        title="Service Auto"
-        width="355"
-        height="265"
-        layout="responsive"
-        lightboxWidth="400"
-        lightboxHeight="300"
-      />
-    </div>
-
-    <div class="aplicari_img_thumbnail">
-      <x-lightbox 
-        id="produs-lightbox3"
-        class="cover cursor-pointer"
-        url="{{ asset('resources/aplicari-vopsele-pardoseli/Membrana-Poliuretanica-Hidroizolanta.jpg') }}"
-        lightboxSrc="{{ asset('resources/aplicari-vopsele-pardoseli/Membrana-Poliuretanica-Hidroizolanta.jpg') }}"
-        alt="Membrana Poliuretanica Hidroizolanta"
-        title="Membrana Poliuretanica Hidroizolanta"
-        width="355"
-        height="265"
-        layout="responsive"
-        lightboxWidth="400"
-        lightboxHeight="300"
-      />
-    </div>
-
-    <!-- Adaugă restul de imagini în același mod -->
-    <div class="aplicari_img_thumbnail">
-      <x-lightbox 
-        id="produs-lightbox4"
-        class="cover cursor-pointer"
-        url="{{ asset('resources/aplicari-vopsele-pardoseli/Vopsea-Epoxidica-Scari.jpg') }}"
-        lightboxSrc="{{ asset('resources/aplicari-vopsele-pardoseli/Vopsea-Epoxidica-Scari.jpg') }}"
-        alt="Vopsea Epoxidica Scari"
-        title="Vopsea Epoxidica Scari"
-        width="355"
-        height="265"
-        layout="responsive"
-        lightboxWidth="400"
-        lightboxHeight="300"
-      />
-    </div>
-
-    <div class="aplicari_img_thumbnail">
-      <x-lightbox 
-        id="produs-lightbox5"
-        class="cover cursor-pointer"
-        url="{{ asset('resources/aplicari-vopsele-pardoseli/Vopsire-Epoxidica-Hala.jpg') }}"
-        lightboxSrc="{{ asset('resources/aplicari-vopsele-pardoseli/Vopsire-Epoxidica-Hala.jpg') }}"
-        alt="Vopsire Epoxidica Hala"
-        title="Vopsire Epoxidica Hala"
-        width="355"
-        height="265"
-        layout="responsive"
-        lightboxWidth="400"
-        lightboxHeight="300"
-      />
-    </div>
-
-    <div class="aplicari_img_thumbnail">
-      <x-lightbox 
-          id="produs-lightbox6"
-          class="cover cursor-pointer"
-          url="{{ asset('resources/aplicari-vopsele-pardoseli/Vopsire-Epoxidica-Pardoseala-Bar.jpg') }}"
-          lightboxSrc="{{ asset('resources/aplicari-vopsele-pardoseli/Vopsire-Epoxidica-Pardoseala-Bar.jpg') }}"
-          alt="Vopsire Epoxidica Pardoseala Bar"
-          title="Vopsire Epoxidica Pardoseala Bar"
-          width="355"
-          height="265"
-          layout="responsive"
-          lightboxWidth="400"
-          lightboxHeight="300"
-      />
-  </div>
-  
-  <div class="aplicari_img_thumbnail">
-      <x-lightbox 
-          id="produs-lightbox7"
-          class="cover cursor-pointer"
-          url="{{ asset('resources/aplicari-vopsele-pardoseli/Vopsire-Hala-Productie.jpg') }}"
-          lightboxSrc="{{ asset('resources/aplicari-vopsele-pardoseli/Vopsire-Hala-Productie.jpg') }}"
-          alt="Vopsire Hala Productie"
-          title="Vopsire Hala Productie"
-          width="355"
-          height="265"
-          layout="responsive"
-          lightboxWidth="400"
-          lightboxHeight="300"
-      />
-  </div>
-  
-  <div class="aplicari_img_thumbnail">
-      <x-lightbox 
-          id="produs-lightbox8"
-          class="cover cursor-pointer"
-          url="{{ asset('resources/aplicari-vopsele-pardoseli/Vopsire-Poliuretanica-Alei.jpg') }}"
-          lightboxSrc="{{ asset('resources/aplicari-vopsele-pardoseli/Vopsire-Poliuretanica-Alei.jpg') }}"
-          alt="Vopsire Poliuretanica Alei"
-          title="Vopsire Poliuretanica Alei"
-          width="355"
-          height="265"
-          layout="responsive"
-          lightboxWidth="400"
-          lightboxHeight="300"
-      />
-  </div>
-  
-  <div class="aplicari_img_thumbnail">
-      <x-lightbox 
-          id="produs-lightbox9"
-          class="cover cursor-pointer"
-          url="{{ asset('resources/aplicari-vopsele-pardoseli/Vopsire-Poliuretanica-Hala.jpg') }}"
-          lightboxSrc="{{ asset('resources/aplicari-vopsele-pardoseli/Vopsire-Poliuretanica-Hala.jpg') }}"
-          alt="Vopsire Poliuretanica Hala"
-          title="Vopsire Poliuretanica Hala"
-          width="355"
-          height="265"
-          layout="responsive"
-          lightboxWidth="400"
-          lightboxHeight="300"
-      />
-  </div>
-  
-
-  </div>
-
-  <div class="row justify-center mt-32">
-    <img src="{{ asset('resources/images/general/End-of-page.png') }}" alt="Emex by Romtehnochim - Incheiere pagina" width="216" height="20">
-  </div>
 </div>
+
+<div id="global-lightbox" class="lightbox hidden">
+    <div class="lightbox-content">
+        <span class="close-btn-servicii" style=" background-image: url('{{ asset('resources/images/sprite.png') }}');" onclick="closeServiciiLightbox()"></span>
+        <img id="global-lightbox-image" src="{{ asset('images/landing/stb/mici/Pardoseala-cuartz-epoxdica-depozit-legume.jpg') }}" alt="global-lightbox image" title="Global Lightbox Image">
+    </div>
+</div>
+
+<script>
+
+  function openServiciiLightbox(image) {
+      const lightbox = document.getElementById('global-lightbox');
+      const lightboxImage = document.getElementById('global-lightbox-image');
+
+      // Set the attributes for the image
+      lightboxImage.src = image.getAttribute('data-lightbox-src');
+      lightboxImage.alt = image.getAttribute('data-lightbox-alt') || '';
+      lightboxImage.title = image.getAttribute('data-lightbox-title') || '';
+
+      // Show the lightbox
+      lightbox.classList.remove('hidden');
+  }
+
+  function closeServiciiLightbox() {
+      const lightbox = document.getElementById('global-lightbox');
+
+      // Hide the lightbox
+      lightbox.classList.add('hidden');
+  }
+
+</script>
+
 @endsection
