@@ -25,7 +25,7 @@
 @endsection
 
 @section('breadcrumbs')
-<ul class="flex gap-xs"><li class="font-xs"><a href="{{ url($category->slug) }}">{{ $category->name }}</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="{{ url($product->slug) }}">{{ html_entity_decode($product->sub_title) }}</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Calcul consum</li></ul>
+<ul class="flex gap-xs"><li><a href="{{ url($category->slug) }}">{{ $category->name }}</a></li><li class="separator">/</li><li class="-ml-4"><a href="{{ url($product->slug) }}">{{ html_entity_decode($product->sub_title) }}</a></li><li class="separator">/</li><li class="-ml-4 ellipsis">Calcul consum</li></ul>
 @endsection
 
 @section('css')

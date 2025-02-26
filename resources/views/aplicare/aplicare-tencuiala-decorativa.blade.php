@@ -24,7 +24,7 @@ APLICARE TENCUIELI <br> DECORATIVE “EMEX”
 @endsection
 
 @section('breadcrumbs')
-<ul class="flex gap-xs"><li class="font-xs"><a href="/produse">Toate Produsele</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="/tencuieli-decorative">Tencuieli Decorative</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Aplicare Tencuieli Decorative</li></ul>
+<ul class="flex gap-xs"><li><a href="/produse">Toate Produsele</a></li><li>/</li><li class="-ml-4"><a href="/tencuieli-decorative">Tencuieli Decorative</a></li><li class="separator">/</li><li class="-ml-4 ellipsis">Aplicare Tencuieli Decorative</li></ul>
 @endsection
 
 @section('tab-buttons')

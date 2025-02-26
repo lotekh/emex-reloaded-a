@@ -29,7 +29,7 @@
 @endsection
 
 @section('breadcrumbs')
-<ul class="flex gap-xs"><li class="font-xs ellipsis"><a href="/">Acasa</a></li></ul>
+<ul class="flex gap-xs"><li class="ellipsis"><a href="/">Acasa</a></li></ul>
 @endsection
 
 

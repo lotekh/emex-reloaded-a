@@ -19,7 +19,7 @@
 @endsection
 
 @section('breadcrumbs')
-<ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="/produse">Produse</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Contact</li></ul>
+<ul class="flex gap-xs"><li><a href="/">Acasa</a></li><li class="separator">/</li><li class=" -ml-4"><a href="/produse">Produse</a></li><li class="separator">/</li><li class="-ml-4 ellipsis">Contact</li></ul>
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('breadcrumbs')
-<ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis"><a href="/">404</a></li></ul>
+<ul class="flex gap-xs"><li><a href="/">Acasa</a></li><li class="separator">/</li><li class="-ml-4 ellipsis"><a href="/">404</a></li></ul>
 @endsection
 
 @section('content')
