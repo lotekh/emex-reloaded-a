@@ -17,8 +17,9 @@ class Lightbox extends Component
     public $lightboxSrc;
     public $lightboxWidth;
     public $lightboxHeight;
+    public $text;
 
-    public function __construct($id, $url, $class = '', $alt = '', $title = '', $width = '600', $height = '450', $layout = '', $lightboxSrc = null, $lightboxWidth = null, $lightboxHeight = null)
+    public function __construct($id, $url, $class = '', $alt = '', $title = '', $width = '600', $height = '450', $layout = '', $lightboxSrc = null, $lightboxWidth = null, $lightboxHeight = null, $text = null)
     {
         $this->id = $id;
         $this->url = $url;
@@ -31,6 +32,7 @@ class Lightbox extends Component
         $this->lightboxSrc = $lightboxSrc ?? $url;
         $this->lightboxWidth = $lightboxWidth ?? $width;
         $this->lightboxHeight = $lightboxHeight ?? $height;
+        $this->text = $text;
     }
 
     public function render()

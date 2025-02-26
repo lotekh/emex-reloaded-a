@@ -1,8 +1,9 @@
-﻿Sistem,Denumire,slug
+Sistem,Denumire,slug
 Monocomponent,Email Alchidic Premium “Emex Gold”,email-emex-gold
 ,Email Alchidic “Emex Extracolor”,email-alchidic-emex
 ,Email Alchidic “Emex Dual Protect”,emex-dual-protect
 ,Email Alchido-Stirenic “Emex EQS”,vopsea-metal-alchido-stirenica
+,Email Alchido-Melaminic “Emex”,vopsea-utilaje
 ,Email Bronz Aluminiu “Emex”,email-bronz-aluminiu
 ,Email Alchido-Uretanizat “Emex Code”,vopsea-uretanizata-metal-exterior
 ,Vopsea Satinata Alchidica Baza Apa “Emcolor”,vopsea-satinata-emcolor
@@ -32,10 +33,13 @@ Monocomponent,Email Alchidic Premium “Emex Gold”,email-emex-gold
 ,Vopsea Lavabila Siliconica Exterior “Emex”,lavabila-siliconica-exterior
 ,Vopsea Siliconica Termorezistenta “Emex”,vopsea-termorezistenta-siliconica
 ,Vopsea Lavabila Silicatica Interior “Emex”,lavabila-silicatica-interior
+,Vopsea Lavabila Anticondens “Emex Ceramic”,lavabila-ceramica-baie-bucatarie
 ,Vopsea Lavabila Silicatica Exterior “Emex”,lavabila-silicatica-exterior
 ,Tencuiala Decorativa “Emex Quartz Dekor”,tencuiala-decorativa-acrilica
 ,Tencuiala Decorativa “Emex Aqua Protect”,tencuiala-decorativa-impermeabila
 ,Tencuiala Decorativa Siliconica “Emex”,tencuiala-decorativa-siliconica
+,Tencuiala Decorativa “Emex GF-Mesh”,tencuiala-decorativa-fibra-sticla
+,Vopsea Decorativa Texturata “Emex” ,vopsea-texturata-emex
 ,Tencuiala Decorativa Periata “Emex”,tencuiala-decorativa-periata
 ,Tencuiala Decorativa Bob de Orez “Emex”,tencuiala-decorativa-praf-piatra
 ,Tencuiala Decorativa Silicatica “Emex”,tencuiala-decorativa-silicatica
@@ -43,15 +47,31 @@ Monocomponent,Email Alchidic Premium “Emex Gold”,email-emex-gold
 ,Vopsea Clorcauciuc de Piscina “Emex Swim”,vopsea-clorcauciuc-piscine
 ,Email Clorcauciuc “Emex”,vopsea-clorcauciuc
 ,Vopsea Clorcauciuc Pardoseala “Emex”,vopsea-clorcauciuc-pardoseli
+,Email Nitro-Combinat “Emex QN-212” ,email-nitro-combinat
+,Email Acrilo-Stirenic “Emex Panel”,email-panouri-sandwich
+,Vopsea Epoxy-Ester 3 in 1 “Emex Q3-Guard”,vopsea-3-in-1-anticoroziva-epoxi-ester
+,Vopsea Acrilica 3 in 1 Anticoroziva “Emex Aegis G3”,vopsea-acrilica-3-in-1-anticoroziva
+,Membrana Cauciucata Hidroizolanta “Supra MX”,membrana-cauciucata-elastomerica
 ,Vopsea Elastomerica Exterior “Emex Flexio”,vopsea-elastomerica-tencuieli-exterior
 ,Grund Alchidic Anticoroziv “Emex”,grund-alchidic-anticoroziv
 ,Grund Anticoroziv Hidrosolubil “Emex AQ Eco”,grund-solubil-apa
+,Grund Siliconic de Amorsare cu Cuartz Tencuieli “Emex”,grund-amorsa-tencuiala-siliconica
+,Grund Silicatic de Amorsare cu Cuartz Tencuieli “Emex”,grund-amorsa-tencuiala-silicatica
+,Masa de Spaclu pentru Reparatii “Emex LQ”,masa-spaclu
+,Adeziv tip Aracet pentru Constructii “Emex” ,adeziv-constructii
+,Grund de Egalizare si Umplere Pori “Emex”,grund-umplere-pori
+,Grund Acrilic de Amorsare cu Cuartz Tencuieli “Emex”,grund-amorsa-quartz
 ,Grund Termorezistent Siliconic “Emex HTP”,grund-termorezistent-siliconic
 ,Grund de Amorsare Clorcauciuc “Emex”,amorsa-clorcauciuc-impregnare
 ,Grund Anticoroziv Clorcauciuc “Emex”,grund-clorcauciuc
 ,Grund Anticoroziv Epoxi-Ester “Emex”,grund-epoxidic-monocomponent-epoxi-ester
 ,Grund Anticoroziv Alchido-Melaminic “Emex”,grund-auto-utilaje
+,Impregnant Hidrofobizare Beton “Emex Concrete” ,impregnant-hidrofobizare
+,Convertor de Rugina “Emex Oxifer”,convertor-rugina
+,Solutie Antimucegai de Sanitizare “Emex Forte”,solutie-anti-mucegai
+,Grund Anticoroziv Nitro-Combinat “Emex FZ-214”,grund-nitro-combinat-anticoroziv
 ,Grund Anticoroziv Alchido-Stirenic “Emex”,grund-anticoroziv-alchido-stirenic
+,Grund Alchidic Binale “Emex”,grund-binale
 ,Grund Alchido-Melaminic de Cuptor “Emex”,grund-alchido-melaminic-cuptor
 ,Lac Alchidic pentru Lemn “Emex”,lac-alchidic
 ,Lac Parchet Alchido-Uretanizat “Emex”,lac-parchet
@@ -63,11 +83,27 @@ Monocomponent,Email Alchidic Premium “Emex Gold”,email-emex-gold
 ,Lac Protectie Metal “Emex Bliss”,lac-protectie-metal-aluminiu
 ,Lac Acrilic pentru Mobila “Emex”,lac-acrilic-mobila
 ,Lac Beton Amprentat “Emex LS Patio”,lac-beton-amprentat
+,Solutie Antirugina “EMEX” Curatare Rugina,solutie-anti-rugina
+,Decapant Vopsea Veche “EMEX CM Cleaner”,decapant-vopsea-lemn-metal
+,Grund Anticoroziv Acrilo-Stirenic “Emex MZ-801”,grund-acrilo-stirenic-zinc-microfibra
+,Grund nitro anticoroziv “Emex FZ-214”,grund-nitro-combinat-anticoroziv
+,Email Nitro-Combinat “Emex QN-212”,email-nitro-combinat
 ,,
 Bicomponent,Email Epoxidic “Emex”,vopsea-epoxidica
 ,Email Epoxidic cu Microfulgi “Emex EFS-323” ,email-epoxidic-medii-agresive
 ,Vopsea Intermediara Epoxy-Poliamidica “Emex Spark”,vopsea-intermediara-epoxy-poliamidica-cu-micaceu
+,Email Epoxidic Placi Ceramice “Emex QSF-3E” ,email-epoxidic-pentru-gresie-si-faianta
+,Amorsa Epoxidica Emulsionata “Emex”,amorsa-epoxidica-baza-apa
+,Lac Epoxidic Solvent-Free “Emex Epoxy Contact”,lac-epoxidic-sigilare
+,Lac Epoxidic Solventat “Emex Epoxy Coat”,lac-epoxidic-solventat
+,Lac Poliuretanic Beton Amprentat “Emex PU Stamp”,lac-poliuretanic-beton-amprentat
+,Pachet Lac Poliuretanic “Emex UV Shield”,lac-poliuretanic-protectie-radiatii
+,Grund Epoxidic Amorsare Solventat “Emex”,amorsa-epoxidica-impregnare
+,Vopsea Bicomponenta Marcaj Rutier “Emex Trafic” ,vopsea-marcaj-rutier-bicomponenta
+,Membrana Acrilica Hidroizolanta 2k “Emex HyPro”,membrana-acrilica-hidroizolanta-2k
+,Pachet Covor Poliuretanic de Piatra “Emex Pebble”,pardoseala-poliuretanica-exterior-covor-de-piatra
 ,Vopsea Epoxidica Pardoseala cu Microfulgi “Emex MFS-331”,vopsea-epoxidica-pardoseli-microfulgi
+,Lac Poliuretanic pentru Mobila “Emex”,lac-poliuretanic-mobila
 ,Vopsea Epoxidica Pardoseala “Emex”,vopsea-epoxidica-pardoseli
 ,Amorsa Epoxidica Solventata “Emex”,amorsa-epoxidica-lemn-fibra-sticla
 ,Pardoseala Epoxidica Autonivelanta “Emex”,pardoseala-epoxidica
@@ -95,7 +131,10 @@ Bicomponent,Email Epoxidic “Emex”,vopsea-epoxidica
 ,Grund cu Zinc Epoxy-Poliamidic “Emex PZ-302”,grund-epoxi-poliamidic-cu-zinc
 ,Grund Epoxidic Emulsionat “Emex WD-AE”,grund-epoxidic-solubil-apa
 ,Grund Poliuretanic Anticoroziv “Emex”,grund-poliuretanic
+,Grund Epoxidic Impregnare Solvent-Free “Emex”,amorsa-impregnare-pardoseli-epoxidice
 ,Grund Poliuretanic Impregnare Solvent-Free “Emex”,amorsa-poliuretanica-nesolventata-pardoseli
 ,Grund Poliuretanic Amorsare Solventat “Emex”,amorsa-poliuretanica-impregnare
 ,Grund Poliesteric Anticoroziv “Emex”,grund-poliesteric
-,,
+,Rasina Epoxidica de Turnare “Emex Topcast”,rasina-epoxidica-turnare-strat-gros
+,Lac Poliuretanic pe baza de Apa “Emex Polimat”,lac-poliuretanic-protectie-pardoseli-polimat
+,Vopsea poliaspartica “Emex P31-AS”,vopsea-poliaspartica-pardoseli-rapide

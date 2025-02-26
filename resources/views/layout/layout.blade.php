@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- SEO -->
     <meta name="Author" content="Emex by Romtehnochim">
     <meta name="rating" content="General">
     <meta name="geo.region" content="RO-IF">
@@ -36,11 +35,8 @@
 
     
     <header class="w-full bg-white-gray">
-        <!-- first layer -->
         <div class="main-container row justify-between align-center desktop-header gap-lg">
-            <!-- empty div -->
             <div></div>
-            <!-- contact data -->
             <div id="header_social_media" class="row align-center">
                 <a href="mailto:vanzari@emex.ro" class="row align-center" title="mail">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.7 20" width="25.7" height="20">
@@ -68,7 +64,7 @@
                     </span>
                 </a>
             </div>
-            <!-- contul meu -->
+
             <div class="dropdown" id="header_login_actions_wrapper">
                 <div class="dropdown-header row align-center justify-end">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.5 23.5" width="20" height="20">
@@ -126,7 +122,6 @@
             </div>
         </div>
 
-        <!-- second layer -->
         <div class="desktop-header bg-white">
             <div class="main-container row second-layer">
                 <a id="logo" href="{{ empty($base_url) ? '/' : $base_url }}" title="acasa">
@@ -177,7 +172,6 @@
             </div>
         </div>
 
-        <!-- third layer -->
         <div class="main-container row justify-between align-center desktop-header">
             <div class="breadcrumbs-container">
                 <div class="breadcrumbs_wrapper ">
@@ -193,7 +187,6 @@
             </div>
         </div>
 
-        <!-- mobile -->
         @include('mobile-menu')
 
         <div id="breadcrumbsContainerMobile" class="breadcrumbs-mobile-container">
@@ -410,7 +403,6 @@
             
             <div>
                 <div class="grid grid-2" id="footer-links-news">
-                    <!-- links -->
                     <div class="col">
                         <p class="title">LINKURI UTILE</p>
                         <div class="link-section">
@@ -453,7 +445,6 @@
                         </div>
                     </div> 
         
-                    <!-- stiri -->
                     <div class="col" id="recent-news">
                         <div class="footer_news_area">
                             <h3 class="title">Stiri recente</h3>
@@ -464,8 +455,6 @@
                                 @foreach ($blogArticles as $blogArticle)
                                     <li>
                                         <div class="news_row mb-16">
-                                            {{-- <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}" class="link">Vezi mai mult</a> --}}
-                                            {{-- <h4 class="news-title"><a href="{{ url('/blog/article', ['id' => $blogArticle->id]) }}">{{ $blogArticle->title }}</a></h4> --}}
                                             <h4 class="news-title">
                                                 <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}">{{ $blogArticle->title }}</a>
                                             </h4>                                            
@@ -670,10 +659,6 @@
         </div>
     @endif
 
-
-
-    
-
     {{-- Sidebar Mobile --}}
     <div id="sidebar-left" class="sidebar hidden bg-white">
         <nav class="col">
@@ -687,8 +672,6 @@
             </section>
             <div class="categorii" id="cine-suntem" onclick="toggleAccordion('cine-suntem')">
                 <div class="categorii-mobile">
-                    {{-- Cine suntem
-                    <span class="arrow">&#9662;</span> --}}
                     <li class="menu-item">
                         Cine suntem
                         <span class="arrow-menu">▼</span>
@@ -820,10 +803,12 @@
 
     <div id="mobile-sidebar-open-backdrop" class="hidden"></div>
 
-    
-
-
-
+    <div id="global-lightbox" class="lightbox hidden">
+        <div class="lightbox-content">
+            <span class="close-btn" style=" background-image: url('{{ asset('resources/images/sprite.png') }}');" onclick="closeServiciiLightbox()"></span>
+            <img id="global-lightbox-image" src="{{ asset('images/landing/stb/mici/Pardoseala-cuartz-epoxdica-depozit-legume.jpg') }}" alt="global-lightbox image" title="Global Lightbox Image">
+        </div>
+    </div>
 <script>
 
     function toggleSidebar() {
@@ -1016,6 +1001,28 @@
             }
         }
     });
+
+    function openImageLightbox(image) {
+        const lightbox = document.getElementById('global-lightbox');
+        const lightboxImage = document.getElementById('global-lightbox-image');
+
+        // Set the attributes for the image
+        lightboxImage.src = image.getAttribute('data-lightbox-src');
+        lightboxImage.alt = image.getAttribute('data-lightbox-alt') || '';
+        lightboxImage.title = image.getAttribute('data-lightbox-title') || '';
+
+        // Show the lightbox
+        lightbox.classList.remove('hidden');
+    }
+
+    function closeServiciiLightbox() {
+        const lightbox = document.getElementById('global-lightbox');
+
+        // Hide the lightbox
+        lightbox.classList.add('hidden');
+    }
+
+</script>
 
 
 

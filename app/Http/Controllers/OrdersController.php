@@ -430,21 +430,25 @@ class OrdersController extends Controller
                 $companyCityId = $companyInformationArray['organization_city_id'];
             }
 
-            $dbOrder->transport_price_no_tva = $dbOrder->transport_price;
-            $dbOrder->transport_price = 1.19 * $dbOrder->transport_price_no_tva;
-            $dbOrder->total = $dbOrder->total + $dbOrder->transport_price;
-            $dbOrder->total_no_tva = $dbOrder->total * 0.81;
-
+            $dbOrder->total_no_tva = floor($dbOrder->total * 0.81 * 100) / 100;
             // Calculate rambursValue if delivery_type is 0 (curier)
             $rambursValue = 0;
             $rambursTva = 0;
             if ($request->input('delivery_type') == 0 && $request->input('payment_method') == 'ramburs') {
                 // rambursValue is 3% of the order value(value of the products+transport price) without TVA, so it is 3% of of $dbOrder->total_no_tva
-                $rambursValue = ($dbOrder->total_no_tva) * 3 / 100;
-                $rambursTva = ($rambursValue * 19) / 100;
+                $rambursValue = floor((($dbOrder->total_no_tva + $dbOrder->transport_price) * 3 / 100) * 100) / 100;
+                $rambursTva = floor(($rambursValue * 19 / 100) * 100) / 100;
                 // Add the cost of ramburs(rambursValue+rambursTva) to the total
-                $dbOrder->total += $rambursValue + $rambursTva;
+                $dbOrder->total += floor(($rambursValue + $rambursTva) * 100) / 100;
+                $dbOrder->total_no_tva += $rambursValue;
             }
+
+            $dbOrder->transport_price_no_tva = $dbOrder->transport_price;
+            $dbOrder->transport_price = floor((1.19 * $dbOrder->transport_price_no_tva) * 100) / 100;
+            $dbOrder->total = floor(($dbOrder->total + $dbOrder->transport_price) * 100) / 100;
+            $dbOrder->total_no_tva += $dbOrder->transport_price_no_tva;
+
+            
 
             $deliveryInformation = null;
             $deliveryInformationArray = null;
@@ -738,37 +742,6 @@ class OrdersController extends Controller
 
         return redirect()->route('/despre-noi');
     }
-
-
-        public function showInvoicePage(Request $request, $orderId)
-    {
-        // Obține detaliile comenzii din baza de date
-        $dbOrder = Order::with('productVariations')->findOrFail($orderId);
-        $orders_products = $dbOrder->productVariations()->withPivot('quantity', 'price', 'price_no_vat')->get();
-        
-        $billingCountyName = 'Necunoscut';
-        $billingCountyId = null;
-
-        // Setează numele județului pentru persoana fizică sau juridică
-        if ($dbOrder->billing_type == 0) {  // Persoană fizică
-            $billingCountyId = json_decode($dbOrder->company_information, true)['person_county_id'] ?? null;
-        } elseif ($dbOrder->billing_type == 1) {  // Persoană juridică
-            $billingCountyId = json_decode($dbOrder->company_information, true)['organization_county_id'] ?? null;
-        }
-
-        if ($billingCountyId) {
-            $billingCounty = County::where('id', $billingCountyId)->first();
-            $billingCountyName = $billingCounty ? $billingCounty->name : 'Necunoscut';
-        }
-
-        // Returnează pagina cu factura
-        return view('products.invoice-pdf-22', [
-            'order' => $dbOrder,
-            'orders_products' => $orders_products,
-            'billingCountyName' => $billingCountyName
-        ]);
-    }
-
 
     public function showSummary(Request $request)
     {

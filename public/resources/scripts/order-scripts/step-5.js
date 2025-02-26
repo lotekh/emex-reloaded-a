@@ -71,25 +71,20 @@ var summaryDeliveryAddressContainer = document.getElementById(
 
 var summaryPaymentType = document.getElementById("summary_payment_method");
 
-// Initializăm elementele necesare
 var orderForm = document.getElementById("order_form");
 var agreement = document.getElementById("agreement");
 var finalize = document.getElementById("finalize");
 var backToStep4 = document.getElementById("back-to-step-4");
 
-// Ascultă evenimentul de click pe butonul de "agreement"
 agreement.addEventListener("click", agree);
 backToStep4.addEventListener("click", returnToStep4);
 
-// La încărcarea paginii, setăm starea inițială a butonului finalize
 document.addEventListener("DOMContentLoaded", function () {
-  // Inițializează starea butonului în funcție de starea checkbox-ului
   initializeFinalizeButton();
 
-  // Prevenim submit-ul dacă butonul este dezactivat
   orderForm.addEventListener("submit", function (e) {
     if (finalize.disabled) {
-      e.preventDefault(); // Blochează trimiterea formularului
+      e.preventDefault();
     } else {
     }
   });
@@ -135,7 +130,6 @@ function populateSummary() {
     summaryBillingType.innerHTML = "Persoana fizica";
     summaryBillingName.innerHTML =
       personFirstName.value + " " + personLastName.value;
-    // var personFirstName = document.getElementById("person_first_name");
     summaryBillingPhone.innerHTML = personPhone.value;
     summaryBillingEmail.innerHTML = personEmail.value;
     summaryBillingCounty.innerHTML =
@@ -259,8 +253,6 @@ var transportUnitary = document.getElementById("transport_unitary");
 var totalGeneral = document.getElementById("total_general");
 var globalSelectedPayment = "card";
 var orderId = document.getElementById("orderr_id").value;
-// console.log("Numarul Comenzii = " + orderId);
-// console.log(county_id);
 
 function getTransportPrice(county_id) {
   var xmlhttp = new XMLHttpRequest();
@@ -285,11 +277,8 @@ function getTransportPrice(county_id) {
             rambursUnitary.textContent = "-";
             rambursTvaTd.textContent = "-";
 
-            // totalGeneral.textContent = totalPriceWithTransport;
-            // Adaugă transportul la totalul produselor
             totalGeneral.textContent = Number(
-              parseFloat(totalPrice) + // total produse
-                1.19 * parseFloat(transportValuePrice) // total transport cu TVA
+              parseFloat(totalPrice) + 1.19 * parseFloat(transportValuePrice)
             ).toFixed(2);
           }
         } else if (xmlhttp.status == 400) {

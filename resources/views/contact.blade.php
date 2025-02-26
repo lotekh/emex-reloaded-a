@@ -84,7 +84,6 @@
                     <div class="form-group">
                         <label for="contact_page_nume">Nume<span class="text-red">*</span></label>
                         <div class="flex row w-full gap-md align-center">
-                            <!-- Icon -->
                             <svg viewBox="0 0 24 24" width="24" height="24">
                                 <path fill="#ff9c4d" d="M17.4 6c0 1.5-.5 2.8-1.6 3.9s-2.4 1.6-3.9 1.6S9.1 11 8 9.9 6.4 7.5 6.4 6 6.9 3.2 8 2.1 10.4.5 11.9.5s2.8.5 3.9 1.6c1 1.1 1.6 2.4 1.6 3.9z" />
                                 <path fill="#1976d3" d="M21.6 19.9c0 1.1-.4 2-1.1 2.6-.7.6-1.7 1-2.9 1H6.4c-1.2 0-2.2-.3-2.9-1-.8-.7-1.1-1.5-1.1-2.6v-1.2c0-.4.1-.9.2-1.3.1-.5.2-.9.4-1.3.1-.4.4-.8.6-1.2.3-.4.6-.8.9-1.1.4-.3.8-.6 1.3-.7.5-.2 1.1-.3 1.7-.3.2 0 .5.1.9.3l.9.6c.3.2.7.3 1.2.5.4.1.9.2 1.3.2h.1c.5 0 1-.1 1.5-.2s.9-.3 1.2-.5c.4-.2.7-.4.9-.6.4-.3.7-.3.9-.3.6 0 1.2.1 1.7.3s.9.4 1.3.7c.3.3.6.7.9 1.1.2.4.5.8.6 1.2s.3.9.4 1.3c.1.5.2.9.2 1.3.1.3.1.8.1 1.2z" />
@@ -95,7 +94,6 @@
                     <div class="form-group">
                         <label for="contact_page_email">E-mail<span class="text-red">*</span></label>
                         <div class="flex row w-full gap-md align-center">
-                            <!-- Icon -->
                             <svg viewBox="0 0 24 24" width="24" height="24">
                                 <switch>
                                     <g fill="#1976d3">
@@ -110,7 +108,6 @@
                     <div class="form-group">
                         <label for="contact_page_telefon">Telefon<span class="text-red">*</span></label>
                         <div class="flex row w-full gap-md align-center">
-                            <!-- Icon -->
                             <svg viewBox="0 0 24 24" width="24" height="24">
                                 <switch>
                                     <g>
@@ -126,7 +123,6 @@
                     <div class="form-group">
                         <label for="contact_page_societate">Societate</label>
                         <div class="flex row w-full gap-md align-center">
-                            <!-- Icon -->
                             <svg viewBox="0 0 24 24" width="24" height="24" fill="#1976d3">
                                 <path d="M7.2 3.4H4.5c-.1 0-.2.1-.2.3v3.8c0 .2.1.3.2.3h2.7c.1 0 .2-.1.2-.3V3.8c0-.2-.1-.4-.2-.4zM7 7.2H4.7V3.9H7v3.3zm4.3-3.8H8.6c-.1 0-.2.1-.2.3v3.8c0 .2.1.3.2.3h2.7c.1 0 .2-.1.2-.3V3.8c0-.2-.1-.4-.2-.4zm-.2 3.8H8.8V3.9h2.3v3.3zm4.4-3.8h-2.7c-.1 0-.2.1-.2.3v3.8c0 .2.1.3.2.3h2.7c.1 0 .2-.1.2-.3V3.8c-.1-.2-.1-.4-.2-.4zm-.2 3.8H13V3.9h2.3v3.3zm4.3-3.8h-2.7c-.1 0-.2.1-.2.3v3.8c0 .2.1.3.2.3h2.7c.1 0 .2-.1.2-.3V3.8c0-.2-.1-.4-.2-.4zm-.2 3.8h-2.3V3.9h2.3v3.3zm-12.2 2H4.5c-.1 0-.2.1-.2.3v3.8c0 .2.1.3.2.3h2.7c.1 0 .2-.1.2-.3V9.6c0-.3-.1-.4-.2-.4zM7 13.1H4.7V9.8H7v3.3zm4.3-3.9H8.6c-.1 0-.2.1-.2.3v3.8c0 .2.1.3.2.3h2.7c.1 0 .2-.1.2-.3V9.6c0-.3-.1-.4-.2-.4zm-.2 3.9H8.8V9.8h2.3v3.3zm4.4-3.9h-2.7c-.1 0-.2.1-.2.3v3.8c0 .2.1.3.2.3h2.7c.1 0 .2-.1.2-.3V9.6c-.1-.3-.1-.4-.2-.4zm-.2 3.9H13V9.8h2.3v3.3zm4.3-3.9h-2.7c-.1 0-.2.1-.2.3v3.8c0 .2.1.3.2.3h2.7c.1 0 .2-.1.2-.3V9.6c0-.3-.1-.4-.2-.4zm-.2 3.9h-2.3V9.8h2.3v3.3zm-12.2 2H4.5c-.1 0-.2.1-.2.3v3.8c0 .2.1.3.2.3h2.7c.1 0 .2-.1.2-.3v-3.8c0-.3-.1-.3-.2-.3zM7 18.8H4.7v-3.3H7v3.3zm12.6-3.7h-2.7c-.1 0-.2.1-.2.3v3.8c0 .2.1.3.2.3h2.7c.1 0 .2-.1.2-.3v-3.8c0-.3-.1-.3-.2-.3zm-.2 3.7h-2.3v-3.3h2.3v3.3z" />
                                 <path d="M1.8.4c-.1 0-.2.1-.2.3v22.2H.7c-.1 0-.2.1-.2.3s.1.3.2.3h22.6c.1 0 .2-.1.2-.3s-.1-.3-.2-.3h-.9V.8c0-.2-.1-.3-.2-.3H1.8zm11.1 0h-1.8M8.5 22.8H2v-1.5h6.5v1.5zm6.8.1h-3v-4.5c0-.2-.1-.3-.2-.3s-.2.1-.2.3v4.5h-3v-7.3h3v.8c0 .2.1.3.2.3s.2-.1.2-.3v-.8h3v7.3zm6.8-2.1h-2.5c-.1 0-.2.1-.2.3s.1.3.2.3h2.5v1.5h-6.5v-1.5h4.5c.1 0 .2-.1.2-.3s-.1-.3-.2-.3h-4.5v-5.5c0-.2-.1-.3-.2-.3H8.6c-.1 0-.2.1-.2.3v5.6H1.9V.9H22l.1 19.9z" />
@@ -139,7 +135,6 @@
                 <div class="form-group mt-16">
                     <label for="contact_page_mesaj">Mesaj<span class="text-red">*</span></label>
                     <div class="flex row w-full gap-md">
-                        <!-- Icon -->
                         <svg viewbox="0 0 24 24" width="24" height="24" fill="#1976d3">
                             <switch>
                                 <g>

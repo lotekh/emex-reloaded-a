@@ -8,7 +8,6 @@
 
     <div class="aplicari relative w-full">
         <div class="header_img_bg col justify-center align-center" style="background-image:url('@yield('header_image_source')');">
-            {{-- <h1 class="z-10" id="h1-aplicare-bg">{!! @yield('header_title') !!}</h1> --}}
             <h1 class="z-10" id="h1-aplicare-bg">@yield('header_title')</h1>
         </div>
     </div>
@@ -27,6 +26,13 @@
 
     <div class="main-container grid grid-3 gap-lg align-center mt-32" id="aspd">
         @yield('images')
+    </div>
+
+    <div id="global-lightbox" class="lightbox hidden">
+        <div class="lightbox-content">
+            <span class="close-btn" style=" background-image: url('{{ asset('resources/images/sprite.png') }}');" onclick="closeServiciiLightbox()"></span>
+            <img id="global-lightbox-image" src="{{ asset('images/landing/stb/mici/Pardoseala-cuartz-epoxdica-depozit-legume.jpg') }}" alt="global-lightbox image" title="Global Lightbox Image">
+        </div>
     </div>
 
     <script>
@@ -50,6 +56,27 @@
             evt.currentTarget.setAttribute("aria-selected", "true");
         };
     });
+
+    function openImageLightbox(image) {
+        const lightbox = document.getElementById('global-lightbox');
+        const lightboxImage = document.getElementById('global-lightbox-image');
+
+        // Set the attributes for the image
+        lightboxImage.src = image.getAttribute('data-lightbox-src');
+        lightboxImage.alt = image.getAttribute('data-lightbox-alt') || '';
+        lightboxImage.title = image.getAttribute('data-lightbox-title') || '';
+
+        // Show the lightbox
+        lightbox.classList.remove('hidden');
+    }
+
+    function closeServiciiLightbox() {
+        const lightbox = document.getElementById('global-lightbox');
+
+        // Hide the lightbox
+        lightbox.classList.add('hidden');
+    }
+
     </script>
 
 @include('components.sidebar-contact', ['secondary_title' =>  isset($secondary_title) ? $secondary_title : 'Aplicarea Vopselelor Lavabile “Emex”'])
