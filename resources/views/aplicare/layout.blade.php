@@ -8,7 +8,6 @@
 
     <div class="aplicari relative w-full">
         <div class="header_img_bg col justify-center align-center" style="background-image:url('@yield('header_image_source')');">
-            {{-- <h1 class="z-10" id="h1-aplicare-bg">{!! @yield('header_title') !!}</h1> --}}
             <h1 class="z-10" id="h1-aplicare-bg">@yield('header_title')</h1>
         </div>
     </div>

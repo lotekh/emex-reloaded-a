@@ -60,7 +60,6 @@
           @php $totalPrice = 0; @endphp
           @foreach ($ordered_products as $ordered_product)
               @php
-              // dd($ordered_product);
                   $totalIndividualPrice = floatval($ordered_product->price) * intval($ordered_product->ordered_quantity);
                   $totalPrice += $totalIndividualPrice;
               @endphp
@@ -88,7 +87,6 @@
                         <button type="submit" aria-label="Scade cantitatea">-</button>
                       </form>
                       <span type="text">{{ $ordered_product->ordered_quantity }}</span>
-                      {{-- {{ $ordered_product->ordered_quantity }} --}}
                       {{-- Up the quantity by 1 --}}
                       <form method="POST" action="{{ route('orders.updateQuantity') }}">
                         @csrfWithoutAutocomplete
@@ -112,6 +110,25 @@
                               <button aria-label="Sterge produsul"><img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="18" height="18"></button>
                           </form>
                       </div>
+                  <td>
+                      @php
+                        $productId = $ordered_product->product->id;
+                        $productVariationId = $ordered_product->id;
+                        $isInWishlist = app('App\Http\Controllers\WishlistController')->isInWishlist($productId);
+                      @endphp
+                      <div class="flex align-center">
+                        <form method="POST" class="addToWishlistBt" id="product_wish_list_form{{ $productId }}" action="{{ route('wishlist.toggle') }}">
+                          @csrfWithoutAutocomplete
+                          <input type="hidden" name="product_id" value="{{ $productId }}">
+                          <input type="hidden" name="product_variation_id" value="{{ $productVariationId }}">
+                          <input type="hidden" name="remove_from_cart" value="1">
+                          <button type="submit" class="wishlist-btn-cos" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
+                              <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="Muta la Favorite" alt="wishlist">
+                          </button>
+                        </form>
+                      </div>
+                  </td>
+                      
                   </td>
               </tr>
           @endforeach
@@ -124,12 +141,10 @@
       @php $totalPrice = 0; @endphp
       @foreach ($ordered_products as $ordered_product)
         @php
-          // Calcularea prețului individual și adăugarea la total
           $totalIndividualPrice = floatval($ordered_product->price) * intval($ordered_product->ordered_quantity);
           $totalPrice += $totalIndividualPrice;
           $addon_quantity = '';
     
-          // Procesarea addon_quantity
           if ($ordered_product->addon_quantity) {
             $str = $ordered_product->addon_quantity;
             $str = substr($str, strpos($str, 'Bid.') + 4);
@@ -207,7 +222,7 @@
             <em class="red-mark">Produsele pot fi livrate dupa circa 3 zile lucratoare, necesare procesului tehnologic.</em>
         @endif
       </div>
-      <div class="flex col-md mt-16 gap-xs justify-center align-end">
+      <div class="flex mt-16 gap-xs justify-center align-end">
         <a class="row align-center" href="{{ url('/produse') }}">
           <button class="btn btn-blue rounded-xl medium-width">Continua cumparaturile</button>
         </a>

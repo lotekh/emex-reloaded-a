@@ -57,7 +57,6 @@ $base_url = url('/');
                 <strong>{{ $total_results }}</strong> produse gasite
             </p>
 
-            <!-- pagination -->
             <ul class="row align-center justify-center pagination gap-md">
                 <li>
                     <form method="get" action="{{ url()->current() }}">
@@ -115,7 +114,6 @@ $base_url = url('/');
         @endforeach
     </div>
 
-    <!-- pagination -->
     <ul class="row align-center justify-center pagination gap-md">
         <li>
             <form method="get" action="{{ url()->current() }}">

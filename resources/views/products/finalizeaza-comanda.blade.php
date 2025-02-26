@@ -684,19 +684,10 @@
     // var userDeliveryLocalityId = '{{ $order->delivery_information->delivery_locality ?? '' }}';
 </script>
 
-<!-- Step 1 -->
 <script src="{{ asset('resources/scripts/order-scripts/step-1.js') }}"></script>
-
-<!-- Step 2 -->
 <script src="{{ asset('resources/scripts/order-scripts/step-2.js') }}"></script>
-
-<!-- Step 3 -->
 <script src="{{ asset('resources/scripts/order-scripts/step-3.js') }}"></script>
-
-<!-- Step 4 -->
 <script src="{{ asset('resources/scripts/order-scripts/step-4.js') }}"></script>
-
-<!-- Step 5 -->
 <script src="{{ asset('resources/scripts/order-scripts/step-5.js') }}"></script>
 
 

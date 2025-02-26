@@ -3606,4 +3606,7 @@ video:hover::-webkit-media-controls {
   background-position: 261px 2px;
   cursor: pointer;
   z-index: 1;
+/* Make the breacrumbs bigger, remove all font-xs from breadcrumbs */
+.breadcrumbs_wrapper .font-xs {
+  font-size: inherit !important;
 }

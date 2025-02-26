@@ -61,7 +61,6 @@
             <h2 class="mt-16">Nu au fost găsite articole.</h2>
         @endif
 
-        <!-- Paginare -->
         {{ $blogArticles->links() }}
     </div>
 </div>

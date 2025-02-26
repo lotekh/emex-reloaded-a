@@ -398,3 +398,12 @@ h2.aplicare_tab_content_title {
 .aplicari p {
   margin-bottom: 10px;
 }
+@media (max-width: 768px) {
+  .aplicari.relative.w-full {
+    display: none;
+  }
+
+  #product_container {
+    margin-top: 0px !important;
+  }
+}

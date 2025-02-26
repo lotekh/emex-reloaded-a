@@ -455,3 +455,17 @@ input[type="search"] {
 .article-blog {
   color: #009;
 }
+
+.tags-container {
+  margin-top: 20px;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag-item {
+  color: #000099 !important;
+  font-size: 14px;
+}
