@@ -3562,3 +3562,51 @@ video:hover::-webkit-media-controls {
 .menu-item.open .arrow-menu {
   transform: rotate(180deg);
 }
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox.hidden {
+  display: none;
+}
+
+.lightbox-content {
+  position: relative;
+  padding: 8px;
+  border: 1px solid var(--gray);
+  background-color: var(--white);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.lightbox-content img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.lightbox .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  background-position: 261px 2px;
+  cursor: pointer;
+  z-index: 1;
+/* Make the breacrumbs bigger, remove all font-xs from breadcrumbs */
+.breadcrumbs_wrapper .font-xs {
+  font-size: inherit !important;
+}

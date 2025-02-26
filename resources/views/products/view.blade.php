@@ -309,7 +309,6 @@
         </div>
 
         <div class="tab-content-container">
-
             <div id="Descriere" class="tab-content {{ $activeTab == 'Descriere' ? 'active' : '' }}">
                 @php
                     $description = str_replace(
@@ -318,15 +317,20 @@
                                         $product->description
                                     );
                 @endphp 
-                {!! $description !!}
+                {!! Blade::render($description) !!}
+                {{-- Descriere --}}
+                
             </div>
 
             <div id="DetaliiUtilizare" class="tab-content {{ $activeTab == 'Descriere' ? 'active' : '' }}">
-                {!! html_entity_decode($product->usage_details) !!}
+                {!! Blade::render(html_entity_decode($product->usage_details) ) !!}
+                {{-- Detalii Utilizare --}}
             </div>
 
             <div id="CaracteristiciTehnice" class="tab-content {{ $activeTab == 'Descriere' ? 'active' : '' }}">
-                {!! $product->technical_details !!}
+                {!! Blade::render($product->technical_details ) !!}
+                {{-- Caracteristici tehnice --}}
+                {!! $description !!}
             </div>
         </div>
     </div>
