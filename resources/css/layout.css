@@ -3562,8 +3562,3 @@ video:hover::-webkit-media-controls {
 .menu-item.open .arrow-menu {
   transform: rotate(180deg);
 }
-
-/* Make the breacrumbs bigger, remove all font-xs from breadcrumbs */
-.breadcrumbs_wrapper .font-xs {
-  font-size: inherit !important;
-}
