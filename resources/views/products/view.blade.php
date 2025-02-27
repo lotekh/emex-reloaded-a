@@ -378,9 +378,45 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        // Logic for product variations
+        const packagingSelect = document.getElementById('packagingSelect{{ $product->id }}');
+        const colorSelect = document.getElementById('colorSelect{{ $product->id }}');
+        const priceDisplay = document.getElementById('price{{ $product->id }}');
+        const priceInput = document.getElementById('priceInput{{ $product->id }}');
+        const variationInput = document.getElementById('variationInput{{ $product->id }}');
+
+        // Preload all product variations into JavaScript
+        const variations = @json($product->variations);
+
+        // If the product is available, update the variations
+        function updateVariation() {
+            if (!packagingSelect || !colorSelect || !variations.length) {
+                console.warn('Variations, packaging, or color select not available.');
+                return;
+            }
+
+            const selectedPackaging = packagingSelect.value;
+            const selectedColor = colorSelect.value;
+
+            // Găsim variația corectă
+            const variation = variations.find(variation => 
+                variation.quantity == selectedPackaging && variation.colour == selectedColor
+            );
+
+            if (variation) {
+                priceDisplay.textContent = variation.price.toFixed(2);
+                priceInput.value = variation.price;
+                variationInput.value = variation.id;
+            } else {
+                console.error('No matching variation found.');
+            }
+        }
+        if (packagingSelect) packagingSelect.addEventListener('change', updateVariation);
+        if (colorSelect) colorSelect.addEventListener('change', updateVariation);
+
+        // Logic for tabs
         const tabButtons = document.querySelectorAll(".tabs-selector-row .btn");
         const tabContents = document.querySelectorAll(".tab-content");
-    
         function saveTabSelection(tabName) {
             fetch("{{ route('saveTab') }}", {
                 method: "POST",
