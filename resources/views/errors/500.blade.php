@@ -275,7 +275,7 @@
             <div id="header404">
                 <p>
                     <a href="{{ route('home') }}" title="Home">
-                        <img src="{{ asset('resources/images/Logo-Emex-404.png') }}" alt="Logo Emex" width="222" height="81">
+                        <img src="{{ asset('resources/new_design/general/Logo-factura-prof.png') }}" class="mt-16" alt="Logo Emex" width="222" height="81">
                     </a>
                 </p>
                 <p style="margin-top: 10px">
