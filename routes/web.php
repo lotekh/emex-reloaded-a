@@ -338,7 +338,7 @@ Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle'
 // Consum
 Route::get('/consum/{category}', [ConsumController::class, 'index'])->name('consum.index');
 Route::get('/{consumption_slug}', [ConsumController::class, 'show'])->name('consum.show');
-Route::get('/{consumption_slug}', [ConsumController::class, 'calculate'])->name('consum.calculate');
+// Route::get('/{consumption_slug}', [ConsumController::class, 'calculate'])->name('consum.calculate');
 
 Route::post('/consum/store', [ConsumController::class, 'store'])->name('consum.store');
 

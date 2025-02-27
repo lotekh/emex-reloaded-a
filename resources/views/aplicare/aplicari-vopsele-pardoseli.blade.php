@@ -42,7 +42,7 @@
 
 <div class="main-container servicii mt-32" id="landing_sixth_row">
   
-    <h2 class="section-title text-center" id="aplicare_produs">
+    <h2 class="section-title text-center" id="aplicare_produs_pardoseli">
       EXEMPLE DE VOPSIRI DE PARDOSELI DIN BETON
     </h2>
 
@@ -181,7 +181,7 @@
 
 <div id="global-lightbox" class="lightbox hidden">
     <div class="lightbox-content">
-        <span class="close-btn-servicii" style=" background-image: url('{{ asset('resources/images/sprite.png') }}');" onclick="closeServiciiLightbox()"></span>
+        <span class="close-btn" style=" background-image: url('{{ asset('resources/images/sprite.png') }}');" onclick="closeServiciiLightbox()"></span>
         <img id="global-lightbox-image" src="{{ asset('images/landing/stb/mici/Pardoseala-cuartz-epoxdica-depozit-legume.jpg') }}" alt="global-lightbox image" title="Global Lightbox Image">
     </div>
 </div>

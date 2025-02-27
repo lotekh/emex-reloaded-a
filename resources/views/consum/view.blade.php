@@ -88,20 +88,11 @@
                 @endif
 
                 <div class="steps_content">
-                    {{-- <form action="{{ route('consum.store') }}" method="POST" id="consum_form"> --}}
-                    <form action="{{ route('consum.calculate', ['consumption_slug' => $product->consumption_slug]) }}" method="GET" id="consum_form">
+                    <form action="{{ route('consum.store') }}" method="POST" id="consum_form">
                         @csrfWithoutAutocomplete
-                        {{-- <input type="hidden" name="calculate" value="1">
-                        <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
-                        <input type="hidden" name="consumption_slug" value="{{ $product->consumption_slug }}"> --}}
-
                         <input type="hidden" name="calculate" value="1">
-    <input type="hidden" name="product_id" value="{{ $product->id }}">
-    <input type="hidden" name="TipProdus" value="{{ old('TipProdus', $product->name) }}">
-    <input type="hidden" name="TipSuprafata" value="{{ old('TipSuprafata') }}">
-    <input type="hidden" name="Suprafata" value="{{ old('Suprafata') }}">
-
-
+                        <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
+                        <input type="hidden" name="consumption_slug" value="{{ $product->consumption_slug }}">
 
                         <div class="consum_content_step">
                             <div class="consum_form_group">
@@ -298,5 +289,4 @@
      
 
 @endsection
-
 
