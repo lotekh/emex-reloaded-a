@@ -9,10 +9,12 @@ class CustomPathGenerator implements PathGenerator
     public function getPath(?string $baseDir = null): string
     {
         // Default base directory
-        $baseDir = $baseDir ?? 'uploads';
+        // $baseDir = $baseDir ?? 'uploads';
 
         // Get file extension (Filament Curator will handle file processing)
         $extension = request()->file('file')?->getClientOriginalExtension();
+
+        dd('request file', request()->file('file'), 'extension', $extension);
 
         // Define folders based on file extension
         $folders = [
@@ -29,6 +31,6 @@ class CustomPathGenerator implements PathGenerator
         $folder = $folders[strtolower($extension)] ?? 'others';
 
         // Return the full path (e.g., "uploads/images/2025/02")
-        return "{$baseDir}/{$folder}/" . date('Y/m');
+        return "{$baseDir}/{$folder}";
     }
 }
