@@ -42,25 +42,28 @@ class ConsumController extends Controller
     // Pregătește alte date necesare pentru pagina de consum
     $consumData = $this->getConsumDataByProduct($product);
 
+    // Verifică dacă este pagina `/calculate`
+    $isCalculatePage = str_contains($request->url(), '/calculate');
+
+    // Setăm currentPage la 3 doar dacă suntem pe o pagină de calcul
+    $currentPage = $isCalculatePage ? 3 : $request->input('currentPage', 0);
+
     // Verifică dacă există datele necesare în request pentru a calcula consumul
     $result = null;
-    $currentPage = $request->input('currentPage', 0); // Setează default 0 dacă nu există în request
-
-    if ($request->has(['calculate', 'product_id', 'TipProdus', 'TipSuprafata', 'Suprafata'])) {
+    if ($isCalculatePage || $request->has(['calculate', 'product_id', 'TipProdus', 'TipSuprafata', 'Suprafata'])) {
         $calculationData = $request->all();
         $result = $this->calculateConsumption($calculationData);
-        $currentPage = 3; // Dacă s-a făcut un calcul, mergem la pagina 3
     }
 
-    // Returnează vizualizarea pentru consum cu datele necesare
     return view('consum.view', [
         'product' => $product,
         'category' => $category,
         'consumData' => $consumData,
-        'currentPage' => $currentPage, // Trimite currentPage către view
+        'currentPage' => $currentPage, // Trimitem currentPage către view
         'result' => $result,
     ]);
 }
+
 
 
 

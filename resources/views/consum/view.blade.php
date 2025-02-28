@@ -160,11 +160,6 @@
                     </form>
                 </div>
 
-
-                @php
-                dd($currentPage);
-                @endphp
-
                 <div id="cr" class="{{ $currentPage == 3 ? 'flex' : 'hidden' }}">
                     @if (!empty($result))
                         {!! $result !!}
