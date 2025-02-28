@@ -20,6 +20,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Awcodes\Curator\Components\Forms\Uploader;
 use Awcodes\Curator\Resources\MediaResource;
+use Filament\Forms\Components\Select;
 
 class OrganizedMediaResource extends Resource
 {
@@ -36,6 +37,11 @@ class OrganizedMediaResource extends Resource
                         Forms\Components\Section::make(trans('curator::forms.sections.file'))
                             ->hiddenOn('edit')
                             ->schema([
+                                Select::make('type')
+                                ->options([
+                                    'images' => 'Image',
+                                    'technical-files' => 'Technical file',
+                                ]),
                                 MediaResource::getUploaderField()
                                     ->required(),
                             ]),
