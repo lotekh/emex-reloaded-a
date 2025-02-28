@@ -11,12 +11,12 @@ class EditOrganizedMedia extends EditMedia
 {
     protected static string $resource = OrganizedMediaResource::class;
 
-    // protected function getHeaderActions(): array
-    // {
-    //     return [
-    //         Actions\DeleteAction::make(),
-    //     ];
-    // }
+    public function getHeaderActions(): array
+    {
+        return [
+            Actions\DeleteAction::make(),
+        ];
+    }
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
