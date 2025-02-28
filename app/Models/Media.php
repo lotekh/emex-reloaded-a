@@ -23,5 +23,9 @@ class Media extends \Awcodes\Curator\Models\Media
         'duration',
         'created_at',
         'updated_at',
+        'alt',
+        'title',
+        'description',
+        'caption',
     ];
 }
