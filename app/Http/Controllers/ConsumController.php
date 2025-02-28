@@ -30,50 +30,49 @@ class ConsumController extends Controller
     }
 
     public function show($consumption_slug, Request $request)
-{
-    // Găsește produsul după consumption_slug
-    $product = Product::where('consumption_slug', $consumption_slug)
-        ->with(['categories', 'largeImage', 'variations', 'reviews', 'technicalFile'])
-        ->firstOrFail();
-
-    // Obține categoria principală a produsului (dacă există)
-    $category = $product->categories->first();
-
-    // Pregătește alte date necesare pentru pagina de consum
-    $consumData = $this->getConsumDataByProduct($product);
-
-    // Verifică dacă este pagina `/calculate`
-    $isCalculatePage = str_contains($request->url(), '/calculate');
-
-    // Setăm currentPage la 3 doar dacă suntem pe o pagină de calcul
-    $currentPage = $isCalculatePage ? 3 : $request->input('currentPage', 0);
-
-    // Verifică dacă există datele necesare în request pentru a calcula consumul
-    $result = null;
-    if ($isCalculatePage || $request->has(['calculate', 'product_id', 'TipProdus', 'TipSuprafata', 'Suprafata'])) {
-        $calculationData = $request->all();
-        $result = $this->calculateConsumption($calculationData);
+    {
+        // Găsește produsul după consumption_slug
+        $product = Product::where('consumption_slug', $consumption_slug)
+            ->with(['categories', 'largeImage', 'variations', 'reviews', 'technicalFile'])
+            ->firstOrFail();
+    
+        // Obține categoria principală a produsului (dacă există)
+        $category = $product->categories->first();
+    
+        // Pregătește alte date necesare pentru pagina de consum
+        $consumData = $this->getConsumDataByProduct($product);
+    
+        // Verifică dacă este pagina `/calculate`
+        $isCalculatePage = str_contains($request->url(), '/calculate');
+    
+        // Setăm currentPage la 3 doar dacă suntem pe o pagină de calcul
+        $currentPage = $isCalculatePage ? 3 : $request->input('currentPage', 0);
+    
+        // Verifică dacă există datele necesare în request pentru a calcula consumul
+        $result = null;
+        if ($isCalculatePage || $request->has(['calculate', 'product_id', 'TipProdus', 'TipSuprafata', 'Suprafata'])) {
+            $calculationData = $request->all();
+            $result = $this->calculateConsumption($calculationData);
+        }
+    
+        return view('consum.view', [
+            'product' => $product,
+            'category' => $category,
+            'consumData' => $consumData,
+            'currentPage' => $currentPage, // Trimitem currentPage către view
+            'result' => $result,
+        ]);
     }
-
-    return view('consum.view', [
-        'product' => $product,
-        'category' => $category,
-        'consumData' => $consumData,
-        'currentPage' => $currentPage, // Trimitem currentPage către view
-        'result' => $result,
-    ]);
-}
-
-
-
+    
 
     public function store(Request $request)
     {
-        $data = $request->except('_token');
+        $data = $request->except(['_token', 'consumption_slug']); // Eliminăm `_token` și `consumption_slug`
 
-        // Construiește URL-ul corect cu parametri
-        return redirect()->to(url($request->input('consumption_slug') . '/calculate') . '?' . http_build_query($data));
+        // Construiește URL-ul corect fără `consumption_slug`
+        return redirect()->to(url($request->input('product_id') . '/calculate') . '?' . http_build_query($data));
     }
+
 
 
     public function calculateConsumption($data)
