@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\OrganizedMediaResource\Pages;
+use App\Filament\Resources\OrganizedMediaResource\Pages\CreateOrganizedMedia;
 use App\Models\Media;
 use App\Models\Product;
 use Awcodes\Curator\Components\Forms\CuratorEditor;
@@ -101,7 +102,7 @@ class OrganizedMediaResource extends Resource
     {
         return [
             'index' => Pages\ListOrganizedMedia::route('/'),
-            'create' => CreateMedia::route('/create'),
+            'create' => CreateOrganizedMedia::route('/create'),
             'edit' => Pages\EditOrganizedMedia::route('/{record}/edit'),
         ];
     }

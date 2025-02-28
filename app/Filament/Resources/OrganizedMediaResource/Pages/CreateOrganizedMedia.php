@@ -3,10 +3,11 @@
 namespace App\Filament\Resources\OrganizedMediaResource\Pages;
 
 use App\Filament\Resources\OrganizedMediaResource;
+use Awcodes\Curator\Resources\MediaResource\CreateMedia;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
-class CreateOrganizedMedia extends CreateRecord
+class CreateOrganizedMedia extends CreateMedia
 {
     protected static string $resource = OrganizedMediaResource::class;
 
@@ -14,10 +15,10 @@ class CreateOrganizedMedia extends CreateRecord
     {
         // dd($data);
         $data['path'] = 'media/' . $data['type'] . '/' . $data['name'] . '.' . $data['file']['ext'];
-        unset($data['file']['name']);
-        unset($data['file']['path']);
-        $data = array_merge($data, $data['file']);
-        unset($data['file']);
+        // unset($data['file']['name']);
+        // unset($data['file']['path']);
+        // $data = array_merge($data, $data['file']);
+        // unset($data['file']);
 
         return $data;
     }
