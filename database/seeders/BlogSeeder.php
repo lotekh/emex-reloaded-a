@@ -153,7 +153,7 @@ class BlogSeeder extends Seeder
                             $path = 'media/technical-files/' . $article->slug;
                         }
                         else {
-                            $path = 'media/images/' . $article->slug;
+                            $path = 'media/blog';
                         }
                         $image =  '/' . $path . '/' . $filename;
 

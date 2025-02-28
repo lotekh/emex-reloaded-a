@@ -113,7 +113,7 @@ class ImagesSeeder extends Seeder
                     $filenameWithoutExtension = explode('.', $filename)[0];
 
                     if ($extension == 'pdf') {
-                        $path = 'media/technical-files/';
+                        $path = 'media/technical-files';
                     } else {
                         $path = 'media/images';
                     }
