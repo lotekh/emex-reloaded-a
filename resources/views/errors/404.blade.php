@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('breadcrumbs')
-<ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis"><a href="/">404</a></li></ul>
+<ul class="flex gap-xs"><li><a href="/">Acasa</a></li><li class="separator">/</li><li class="-ml-4 ellipsis"><a href="/">404</a></li></ul>
 @endsection
 
 @section('content')
@@ -275,7 +275,7 @@
             <div id="header404">
                 <p>
                     <a href="{{ route('home') }}" title="Home">
-                        <img src="{{ asset('resources/images/Logo-Emex-404.png') }}" alt="Logo Emex" width="222" height="81">
+                        <img src="{{ asset('resources/new_design/general/Logo-factura-prof.png') }}" class="mt-16" alt="Logo Emex" width="222" height="81">
                     </a>
                 </p>
                 <p style="margin-top: 10px">

@@ -23,7 +23,7 @@
 @endsection
 
 @section('breadcrumbs')
-<ul style="padding: 0px;" class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Solicita cotatie aplicare</li></ul>
+<ul style="padding: 0px;" class="flex gap-xs"><li><a href="/">Acasa</a></li><li class="separator">/</li><li class="-ml-4 ellipsis">Solicita cotatie aplicare</li></ul>
 @endsection
 
 @section('content')

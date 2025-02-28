@@ -27,8 +27,8 @@ $baseUrl = url('/');
             @yield('section_1_text')
         </p>
         <div class="row align-center justify-between mt-32">
-            <a href="@yield('link_vezi_produsul')" class="btn btn-blue-outline rounded-sm font-700">Vezi Produsul</a>
-            <a href="@yield('link_fisa_tehnica')" class="btn btn-blue rounded-sm font-700">Fisa Tehnica</a>
+            <a href="{{ trim($__env->yieldContent('link_vezi_produsul')) }}" class="btn btn-blue-outline rounded-sm font-700">Vezi Produsul</a>
+            <a href="{{ trim($__env->yieldContent('link_fisa_tehnica')) }}" class="btn btn-blue rounded-sm font-700">Fisa Tehnica</a>
         </div>
     </div>
 

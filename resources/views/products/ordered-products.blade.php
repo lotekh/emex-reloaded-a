@@ -11,7 +11,7 @@
 @endsection
 
 @section('breadcrumbs')
-<ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="/produse">Produse</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis"><a href="#">Produse adaugate</a></li></ul>
+<ul class="flex gap-xs"><li><a href="/">Acasa</a></li><li class="separator">/</li><li class="-ml-4"><a href="/produse">Produse</a></li><li class="separator">/</li><li class="-ml-4 ellipsis"><a href="#">Produse adaugate</a></li></ul>
 @endsection
 
 @section('content')
@@ -186,14 +186,14 @@
               </div>
               
     
-              <p class="mt-8"><span class="bold">Ambalare: </span>{{ $ordered_product->quantity }} {{ $ordered_product->measurementUnit->name }}
+              <p class="mt-8"><span class="bold">Ambalare:</span> &nbsp; {{ $ordered_product->quantity }} {{ $ordered_product->measurementUnit->name }}
                 @if ($ordered_product->addon_quantity)
                   + {{ $addon_quantity }} Kg
                 @endif
               </p>
-              <p class="mt-8"><span class="bold">Culoare: </span>{{ $ordered_product->colour }}</p>
-              <p class="mt-8"><span class="bold">Pret unitar: </span>{{ number_format($ordered_product->price, 2) }} Lei (TVA inclus)</p>
-              <p class="mb-8 mt-8"><span class="bold">Cost: </span>{{ number_format($totalIndividualPrice, 2) }} Lei (TVA inclus)</p>
+              <p class="mt-8"><span class="bold">Culoare:</span> &nbsp; {{ $ordered_product->colour }}</p>
+              <p class="mt-8"><span class="bold">Pret unitar: </span> &nbsp; {{ number_format($ordered_product->price, 2) }} Lei (TVA inclus)</p>
+              <p class="mb-8 mt-8"><span class="bold">Cost: </span> &nbsp; {{ number_format($totalIndividualPrice, 2) }} Lei (TVA inclus)</p>
             </div>
     
             <div class="p-16 flex align-end">
