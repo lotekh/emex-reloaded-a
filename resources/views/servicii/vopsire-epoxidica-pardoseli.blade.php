@@ -5,7 +5,7 @@ $baseUrl = url('/');
 ?>
 
 @section('breadcrumbs')
-<ul class="flex gap-xs"><li class="font-xs"><a href="/vopsele-trafic-pardoseala">Vopsele Trafic si Pardoseli</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="/servicii">Servicii</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Vopsire Pardoseala</li></ul>
+<ul class="flex gap-xs"><li><a href="/vopsele-trafic-pardoseala">Vopsele Trafic si Pardoseli</a></li><li class="separator">/</li><li class="-ml-4"><a href="/servicii">Servicii</a></li><li class="separator">/</li><li class="-ml-4 ellipsis">Vopsire Pardoseala</li></ul>
 @endsection
 
 @section('header_background', 'resources/images/vopsire-epoxidica-pardoseli-landing.jpg')

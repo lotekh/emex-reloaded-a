@@ -3,18 +3,6 @@ $tipsuprafata = $_GET[ 'TipSuprafata' ];
 $suprafata = $_GET[ 'Suprafata' ];
 $tipvopsea = $_GET[ 'TipProdus' ];
 
-// dd($tipsuprafata, $suprafata, $tipvopsea);
-
-// $tipsuprafata = $data['Tip_Suprafață'];
-// $suprafata = $data['Suprafață'];
-// $tipvopsea = $data['TipProdus'];
-
-// $tipsuprafata = 0;
-// $suprafata = 1;
-// $tipvopsea = 2;
-// $consum_vopsea = 0;
-
-
 if ( $tipsuprafata == "Zidarie" ) {
   $consum_vopsea = $suprafata * 0.75;
   $amorsa = $suprafata * 0.20;

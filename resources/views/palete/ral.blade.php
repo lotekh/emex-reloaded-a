@@ -30,7 +30,7 @@
 @endsection
 
 @section('breadcrumbs')
-<ul class="flex gap-xs"><li class="font-xs"><a href="/">Acasa</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="/produse">Toate Produsele</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Cartela Paletar de Culori RAL Vopsele</li></ul>
+<ul class="flex gap-xs"><li><a href="/">Acasa</a></li><li class="separator">/</li><li class=" -ml-4"><a href="/produse">Toate Produsele</a></li><li class="separator">/</li><li class="-ml-4 ellipsis">Cartela Paletar de Culori RAL Vopsele</li></ul>
 @endsection
 
 @section('content')

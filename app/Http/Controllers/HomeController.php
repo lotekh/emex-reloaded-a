@@ -30,9 +30,15 @@ class HomeController extends Controller
         }
 
         // Verifiy if the slug is for consum page
-        $consumptionSlugproduct = Product::where('consumption_slug', $slug)->first();
-        if ($consumptionSlugproduct) {
+        $consumptionProduct = Product::where('consumption_slug', $slug)->first();
+        if ($consumptionProduct) {
             $request->merge(['is_consum_page' => true]);
+
+            // If the url has `calculate=1`, redirect to the calculate route
+            if ($request->has('calculate')) {
+                return redirect()->route('consum.calculate', $request->query());
+            }
+
             return app(ConsumController::class)->show($slug, $request);
         }
 

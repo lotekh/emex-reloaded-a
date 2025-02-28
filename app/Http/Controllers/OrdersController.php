@@ -448,8 +448,6 @@ class OrdersController extends Controller
             $dbOrder->total = floor(($dbOrder->total + $dbOrder->transport_price) * 100) / 100;
             $dbOrder->total_no_tva += $dbOrder->transport_price_no_tva;
 
-            
-
             $deliveryInformation = null;
             $deliveryInformationArray = null;
             // Copy the billing data(company_information) in the delivery data, if that option is checked

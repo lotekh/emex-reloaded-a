@@ -25,7 +25,7 @@
 @endsection
 
 @section('breadcrumbs')
-<ul class="flex gap-xs"><li class="font-xs"><a href="{{ url($category->slug) }}">{{ $category->name }}</a></li><li class="separator">/</li><li class="font-xs -ml-4"><a href="{{ url($product->slug) }}">{{ html_entity_decode($product->sub_title) }}</a></li><li class="separator">/</li><li class="font-xs -ml-4 ellipsis">Calcul consum</li></ul>
+<ul class="flex gap-xs"><li><a href="{{ url($category->slug) }}">{{ $category->name }}</a></li><li class="separator">/</li><li class="-ml-4"><a href="{{ url($product->slug) }}">{{ html_entity_decode($product->sub_title) }}</a></li><li class="separator">/</li><li class="-ml-4 ellipsis">Calcul consum</li></ul>
 @endsection
 
 @section('css')
@@ -88,11 +88,12 @@
                 @endif
 
                 <div class="steps_content">
-                    <form action="{{ route('consum.store') }}" method="POST" id="consum_form">
-                        @csrfWithoutAutocomplete
+                    {{-- <form action="{{ route('consum.store') }}" method="POST" id="consum_form"> --}}
+                    <form action="{{ url($product->consumption_slug . '/calculate') }}" method="GET">
+                        {{-- @csrfWithoutAutocomplete --}}
                         <input type="hidden" name="calculate" value="1">
                         <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
-                        <input type="hidden" name="consumption_slug" value="{{ $product->consumption_slug }}">
+                        {{-- <input type="hidden" name="consumption_slug" value="{{ $product->consumption_slug }}"> --}}
 
                         <div class="consum_content_step">
                             <div class="consum_form_group">
@@ -289,5 +290,4 @@
      
 
 @endsection
-
 
