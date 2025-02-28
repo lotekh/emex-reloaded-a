@@ -13,11 +13,8 @@ class CreateOrganizedMedia extends CreateMedia
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $data = $data['file'];
-        // unset($data['file']['name']);
-        // unset($data['file']['path']);
-        // $data = array_merge($data, $data['file']);
-        // unset($data['file']);
+        $data = array_merge($data, $data['file']);
+        unset($data['file']);
 
         return $data;
     }
