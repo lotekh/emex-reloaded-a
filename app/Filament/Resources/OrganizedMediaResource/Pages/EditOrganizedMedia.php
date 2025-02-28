@@ -14,12 +14,8 @@ class EditOrganizedMedia extends EditMedia
     public function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\DeleteAction::make()
+            ->redirect(route('filament.resources.organized-media.index')),
         ];
-    }
-
-    protected function mutateFormDataBeforeSave(array $data): array
-    {
-        return $data;
     }
 }
