@@ -20,8 +20,6 @@ class CustomPathGenerator implements PathGenerator
 
         $extension = pathinfo($temporaryFileName, PATHINFO_EXTENSION);
 
-        dd('request file', $temporaryFileName, 'extension', $extension);
-
         // Define folders based on file extension
         $folders = [
             'jpg'  => 'images',
