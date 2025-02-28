@@ -44,4 +44,9 @@ class MediaResource extends \Awcodes\Curator\Resources\MediaResource
 
         return $table;
     }
+
+    public static function shouldRegisterNavigation(): bool
+{
+    return false;
+}
 }
