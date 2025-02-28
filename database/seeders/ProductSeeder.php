@@ -23,7 +23,7 @@ class ProductSeeder extends Seeder
         CategoryProduct::truncate();
         Schema::enableForeignKeyConstraints();
 
-        $jsonFile = resource_path('json/productsImport3.json');
+        $jsonFile = resource_path('json/productsImport4.json');
         $products = array_values((array)json_decode(file_get_contents($jsonFile), true))[2]['data'];
 
         foreach ($products as $product) {

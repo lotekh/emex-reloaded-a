@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             PopupSeeder::class,
             ReviewSeeder::class,
             CountySeeder::class,
+            CitySeeder::class,
         ]);
     }
 }
