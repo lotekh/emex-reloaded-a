@@ -98,6 +98,12 @@ class OrganizedMediaResource extends Resource
         ];
     }
 
+    public static function getRedirectUrl(): ?string
+    {
+        // Redirect to a specific route after deleting the resource
+        return route('filament.resources.organized-media.index');  // Redirect to the index page of posts
+    }
+
     public static function getPages(): array
     {
         return [
