@@ -34,7 +34,7 @@ class HomeController extends Controller
         if ($consumptionProduct) {
             $request->merge(['is_consum_page' => true]);
 
-            // Dacă URL-ul are `calculate=1`, redirecționează către ruta cu parametri
+            // If the url has `calculate=1`, redirect to the calculate route
             if ($request->has('calculate')) {
                 return redirect()->route('consum.calculate', $request->query());
             }

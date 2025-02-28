@@ -10,7 +10,6 @@ class ConsumController extends Controller
 {
     public function index($categorySlug)
     {
-        // Găsește categoria după slug
         $category = Category::where('slug', $categorySlug)->firstOrFail();
 
         // Get the first product from that category which has a valid consumption_slug
@@ -21,34 +20,24 @@ class ConsumController extends Controller
             ->first();
 
         if ($firstProduct) {
-            // Redirecționează către URL-ul consumului folosind `consumption_slug`
             return redirect()->route('consum.show', ['consumption_slug' => $firstProduct->consumption_slug]);
         }
 
-        // Dacă nu există produse în acea categorie, arată un mesaj sau redirecționează
         return redirect()->back()->with('error', 'Nu există produse în această categorie.');
     }
 
     public function show($consumption_slug, Request $request)
     {
-        // Găsește produsul după consumption_slug
         $product = Product::where('consumption_slug', $consumption_slug)
             ->with(['categories', 'largeImage', 'variations', 'reviews', 'technicalFile'])
             ->firstOrFail();
     
-        // Obține categoria principală a produsului (dacă există)
         $category = $product->categories->first();
-    
-        // Pregătește alte date necesare pentru pagina de consum
         $consumData = $this->getConsumDataByProduct($product);
-    
-        // Verifică dacă este pagina `/calculate`
         $isCalculatePage = str_contains($request->url(), '/calculate');
-    
-        // Setăm currentPage la 3 doar dacă suntem pe o pagină de calcul
         $currentPage = $isCalculatePage ? 3 : $request->input('currentPage', 0);
     
-        // Verifică dacă există datele necesare în request pentru a calcula consumul
+        // Verify if there is data in the request to calculate the consumption
         $result = null;
         if ($isCalculatePage || $request->has(['calculate', 'product_id', 'TipProdus', 'TipSuprafata', 'Suprafata'])) {
             $calculationData = $request->all();
@@ -59,7 +48,7 @@ class ConsumController extends Controller
             'product' => $product,
             'category' => $category,
             'consumData' => $consumData,
-            'currentPage' => $currentPage, // Trimitem currentPage către view
+            'currentPage' => $currentPage, 
             'result' => $result,
         ]);
     }
@@ -67,40 +56,31 @@ class ConsumController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->except(['_token', 'consumption_slug']); // Eliminăm `_token` și `consumption_slug`
+        $data = $request->except(['_token', 'consumption_slug']); 
 
-        // Construiește URL-ul corect fără `consumption_slug`
         return redirect()->to(url($request->input('product_id') . '/calculate') . '?' . http_build_query($data));
     }
 
 
-
     public function calculateConsumption($data)
     {
-        // Prelucrează datele și execută scriptul corespunzător
         $product_id = $data['product_id'];
         $product = Product::find($product_id);
         $consum_data = $this->getConsumDataByProduct($product);
 
-         // Setează variabilele $_GET în funcție de datele din $data
         $_GET['TipSuprafata'] = $data[$consum_data['suprafata_type_name']];
         $_GET['Suprafata'] = $data[$consum_data['suprafata_name']];
         $_GET['TipProdus'] = $consum_data['vopsea_type'];
 
-        // Verifică dacă $_GET are datele așteptate
-        // dd($_GET);
 
         $script_name = $product->consumption_slug . '.php';
         $script_path = app_path('Http/Controllers/consumuri_scripts/' . $script_name);
 
         if (file_exists($script_path)) {
-            // Bufferizarea output-ului pentru a captura rezultatul
             ob_start();
 
-            // Include fișierul de script și execută-l
             include $script_path;
 
-            // Capturează și returnează output-ul HTML generat de script
             $html_result = ob_get_clean();
             return $html_result;
         } else {
@@ -110,7 +90,6 @@ class ConsumController extends Controller
 
     private function getConsumDataByProduct($product)
     {
-        // Specificăm calea către fișierul CSV din directorul public
         $consumuri_csv = public_path('data/consumuri.csv');
         $handler = fopen($consumuri_csv, "r");
         $row = 0;
