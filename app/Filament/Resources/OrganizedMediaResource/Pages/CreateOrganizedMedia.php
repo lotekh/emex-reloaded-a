@@ -13,7 +13,7 @@ class CreateOrganizedMedia extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         // dd($data);
-        $data['path'] = 'media/' . $data['type'] . '/' . $data['name'];
+        $data['path'] = 'media/' . $data['type'] . '/' . $data['name'] . '.' . $data['file']['ext'];
         unset($data['file']['name']);
         unset($data['file']['path']);
         $data = array_merge($data, $data['file']);
