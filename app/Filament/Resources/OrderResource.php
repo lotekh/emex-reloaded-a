@@ -36,6 +36,9 @@ class OrderResource extends Resource
                     ->searchable(isIndividual: true),
                 Tables\Columns\TextColumn::make('user')
                     ->state(function (Model $record) {
+                        if($record->user === null) {
+                            return 'Guest';
+                        }
                         return $record->user->first_name . ' ' . $record->user->last_name;
                     })
                     ->searchable(isIndividual: true)
