@@ -269,6 +269,7 @@ class OrderResource extends Resource
                         Infolists\Components\TextEntry::make('transport_price_no_tva'),
                         Infolists\Components\TextEntry::make('total_no_tva'),
                         Infolists\Components\TextEntry::make('total'),
+                        Infolists\Components\TextEntry::make('payment_method'),
                     ])
                     ->columnSpanFull(),
             ]);
