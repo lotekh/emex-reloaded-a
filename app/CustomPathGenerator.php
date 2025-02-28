@@ -16,7 +16,7 @@ class CustomPathGenerator implements PathGenerator
 
         $snapshot = json_decode(request()->components[0]['snapshot']);
 
-        $temporaryFileName = $snapshot->data->data[0]->file[0];
+        $temporaryFileName = (array)$snapshot->data->data[0]->file[0];
 
         dd('request file', $temporaryFileName, 'extension', $extension);
 
