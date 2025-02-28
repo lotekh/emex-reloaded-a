@@ -152,19 +152,22 @@ class OrganizedMediaResource extends Resource
                         ->label('Product slug')
                         ->searchable()
                         ->query(function (Builder $query, array $data): Builder {
-                            $product = Product::find($data['value']);
-                            $files = [
-                                $product->og_image_id,
-                                $product->consumption_og_image_id,
-                                $product->twitter_image_id,
-                                $product->consumption_twitter_image_id,
-                                $product->small_image_id,
-                                $product->large_image_id,
-                                $product->technical_file_id,
-                                $product->png_small_image_id,
-                                $product->png_large_image_id,
-                            ];
-                            return $query->whereIn('id', $files);
+                            if($data['value']) {
+                                $product = Product::find($data['value']);
+                                $files = [
+                                    $product->og_image_id,
+                                    $product->consumption_og_image_id,
+                                    $product->twitter_image_id,
+                                    $product->consumption_twitter_image_id,
+                                    $product->small_image_id,
+                                    $product->large_image_id,
+                                    $product->technical_file_id,
+                                    $product->png_small_image_id,
+                                    $product->png_large_image_id,
+                                ];
+                                return $query->whereIn('id', $files);
+                            }
+                            return $query;
                         }),
                 ], layout: FiltersLayout::AboveContent)
             ->actions([
