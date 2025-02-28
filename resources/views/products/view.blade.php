@@ -417,6 +417,9 @@
         // Logic for tabs
         const tabButtons = document.querySelectorAll(".tabs-selector-row .btn");
         const tabContents = document.querySelectorAll(".tab-content");
+
+        const productId = "{{ $product->id }}";
+
         function saveTabSelection(tabName) {
             fetch("{{ route('saveTab') }}", {
                 method: "POST",
@@ -424,10 +427,10 @@
                     "Content-Type": "application/json",
                     "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 },
-                body: JSON.stringify({ tab: tabName })
+                body: JSON.stringify({ product_id: productId, tab: tabName })
             }).catch(error => console.error("Eroare salvare tab:", error));
         }
-    
+
         // Change the active tab
         window.openTab = function (evt, tabName) {
             tabContents.forEach(tab => tab.classList.remove("active"));
@@ -435,25 +438,25 @@
                 btn.classList.remove("selected");
                 btn.setAttribute("aria-selected", "false");
             });
-    
+
             const currentTab = document.getElementById(tabName);
             if (currentTab) {
                 currentTab.classList.add("active");
                 evt.currentTarget.classList.add("selected");
                 evt.currentTarget.setAttribute("aria-selected", "true");
-    
+
                 saveTabSelection(tabName);
             } else {
                 console.error(`Tab-ul ${tabName} nu a fost găsit.`);
             }
         };
-    
+
         // Reset activeTab on reload
-        let activeTab = "{{ $activeTab ?? 'Descriere' }}"; 
+        let activeTab = "{{ session("last_active_tab_{$product->id}", 'Descriere') }}"; 
         tabContents.forEach(tab => {
             tab.classList.toggle("active", tab.id === activeTab);
         });
-    
+
         tabButtons.forEach(button => {
             const tabName = button.getAttribute('onclick').match(/'([^']+)'/)[1];
             const isSelected = tabName === activeTab;
@@ -461,6 +464,7 @@
             button.setAttribute("aria-selected", isSelected ? "true" : "false");
         });
     });
-    </script>
+</script>
+
 
 @endsection

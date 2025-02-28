@@ -58,15 +58,22 @@ class ProductsController extends Controller
 
     public function saveTabSelection(Request $request)
     {
-        $request->session()->put('last_active_tab', $request->input('tab'));
+        $productId = $request->input('product_id');
+        $tab = $request->input('tab');
+
+        if ($productId) {
+            session()->put("last_active_tab_{$productId}", $tab);
+        }
+
         return response()->json(['status' => 'success']);
     }
+
 
     public function showProduct($slug, Request $request)
     {
         $product = Product::where('slug', $slug)->with('largeImage', 'variations', 'reviews')->firstOrFail();
-        $activeTab = session('last_active_tab', 'Descriere');
-        // dd($activeTab);
+        $productId = $product->id;
+        $activeTab = session("last_active_tab_{$productId}", 'Descriere');
         $categories_products = $product->categories;
 
         $initialPrice = $product->variations->first()->price ?? 0;
