@@ -35,6 +35,8 @@ class CustomPathGenerator implements PathGenerator
         $folder = $folders[strtolower($extension)] ?? 'others';
 
         // Return the full path (e.g., "uploads/images/2025/02")
+
+        dd("{$baseDir}/{$folder}");
         return "{$baseDir}/{$folder}";
     }
 }
