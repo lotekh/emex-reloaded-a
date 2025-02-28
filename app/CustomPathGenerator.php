@@ -14,7 +14,7 @@ class CustomPathGenerator implements PathGenerator
         // Get file extension (Filament Curator will handle file processing)
         $extension = request()->file('file')?->getClientOriginalExtension();
 
-        dd('request file', request()->all(), 'extension', $extension);
+        dd('request file', request()->components[0]['snapshot'], 'extension', $extension);
 
         // Define folders based on file extension
         $folders = [
