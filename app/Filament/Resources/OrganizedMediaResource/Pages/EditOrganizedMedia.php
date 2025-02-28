@@ -15,7 +15,10 @@ class EditOrganizedMedia extends EditMedia
     {
         return [
             Actions\DeleteAction::make()
-            ->redirect(route('filament.resources.organized-media.index')),
+            ->after(function ($record) {
+                // After the delete action, you can redirect to a custom URL.
+                return redirect()->route('filament.admin.resources.organized-media.index');
+            }),
         ];
     }
 }
