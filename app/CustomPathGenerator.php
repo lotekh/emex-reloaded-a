@@ -36,7 +36,7 @@ class CustomPathGenerator implements PathGenerator
 
         // Return the full path (e.g., "uploads/images/2025/02")
 
-        return 'images';
+        return 'media/images';
 
         return "{$baseDir}/{$folder}";
     }
