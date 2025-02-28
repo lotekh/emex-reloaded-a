@@ -18,6 +18,8 @@ class CustomPathGenerator implements PathGenerator
 
         $temporaryFileName = array_values((array)$snapshot->data->data[0]->file[0])[0][0];
 
+        $extension = pathinfo($temporaryFileName, PATHINFO_EXTENSION);
+
         dd('request file', $temporaryFileName, 'extension', $extension);
 
         // Define folders based on file extension
