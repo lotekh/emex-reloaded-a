@@ -331,14 +331,22 @@ Route::get('/cookies', function () {
 Route::post('/accept-cookies', [CookieController::class, 'acceptCookies'])->name('accept.cookies');
 
 
-
+// Ruta pentru calculul consumului cu parametri în URL
+Route::get('/{consumption_slug}/calculate', [ConsumController::class, 'show'])
+    ->where('consumption_slug', '.*')
+    ->name('consum.calculate');
 // Routes for slugs
 Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
 
 // Consum
 Route::get('/consum/{category}', [ConsumController::class, 'index'])->name('consum.index');
-Route::get('/{consumption_slug}', [ConsumController::class, 'show'])->name('consum.show');
-// Route::get('/{consumption_slug}', [ConsumController::class, 'calculate'])->name('consum.calculate');
+// Ruta pentru pagina de consum fără parametri (currentPage=0)
+Route::get('/{consumption_slug}', [ConsumController::class, 'show'])
+    ->where('consumption_slug', '.*')
+    ->name('consum.show');
+
+
+
 
 Route::post('/consum/store', [ConsumController::class, 'store'])->name('consum.store');
 
