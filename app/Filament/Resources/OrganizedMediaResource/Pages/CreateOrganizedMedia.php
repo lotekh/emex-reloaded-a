@@ -14,6 +14,8 @@ class CreateOrganizedMedia extends CreateRecord
     {
         // dd($data);
         $data['path'] = 'media/' . $data['type'] . '/' . $data['name'];
+        unset($data['file']['name']);
+        unset($data['file']['path']);
         $data = array_merge($data, $data['file']);
         unset($data['file']);
 
