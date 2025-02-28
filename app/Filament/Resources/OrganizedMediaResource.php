@@ -41,7 +41,8 @@ class OrganizedMediaResource extends Resource
                                 ->options([
                                     'images' => 'Image',
                                     'technical-files' => 'Technical file',
-                                ]),
+                                ])
+                                ->required(),
                                 MediaResource::getUploaderField()
                                     ->required(),
                             ]),
