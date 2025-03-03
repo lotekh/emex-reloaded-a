@@ -70,7 +70,7 @@ class OrdersController extends Controller
             $cart[$productVariationId] = [
                 'quantity' => $quantity,
                 'price' => $productVariation->price,
-                'price_no_vat' => $productVariation->price * 0.81,
+                'price_no_vat' => round($productVariation->price * 100 / 119, 2),
                 'product_variation_id' => $productVariationId,
             ];
         }
@@ -430,7 +430,7 @@ class OrdersController extends Controller
                 $companyCityId = $companyInformationArray['organization_city_id'];
             }
 
-            $dbOrder->total_no_tva = floor($dbOrder->total * 0.81 * 100) / 100;
+            $dbOrder->total_no_tva = floor($dbOrder->total * (100 / 119) * 100) / 100;
             // Calculate rambursValue if delivery_type is 0 (curier)
             $rambursValue = 0;
             $rambursTva = 0;
