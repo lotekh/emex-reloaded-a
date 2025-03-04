@@ -35,7 +35,7 @@
 @section('content')
 <div class="main-container" id="all-products-page">
     <div class="grid grid-4 mt-32 gap-lg">
-        <div class="filters mb-16" id="filters-div">
+        <div class="filters mb-16">
             <div id="accordion-menu-desktop" class="col">
                 <form method="GET" action="{{ route('products.index') }}">
                     <div class="flex w-full col">
@@ -76,6 +76,56 @@
                     @endif
                 </form>
             </div>
+
+            <div id="accordion-menu-mobile">
+                <div class="accordion-menu w-full">
+                    <section>
+
+                        <h4 class="accordion-header m-0">
+                            <div class="flex w-full justify-between">
+                                <h4 class="m-0">Filtre</h4>
+                            </div>
+                        </h4>
+                        
+                        <form method="GET" action="{{ route('products.index') }}">
+                            <div class="mobile-produse-buttons">
+                                <button class="btn btn-blue-outline rounded-sm mr-8" type="button" onclick="window.location.href='{{ url('/produse') }}'">
+                                    Sterge filtre
+                                </button>
+                                
+                                <button class="btn btn-blue rounded-sm" type="submit">
+                                    Aplica filtre
+                                </button>
+                            </div>
+                        
+                            <input type="hidden" name="per_page" value="{{ $perPage }}">
+                        
+                            @if(count($filters))
+                                <div class="accordion-menu mb-32" id="mobile-menu-produse">
+                                    @foreach ($filters as $filterCategory)
+                                        <div class="accordion-item">
+                                            <h4 class="accordion-header marginbottom-0 paddintop-0">{{ $filterCategory->name }}</h4>
+                                            <div class="filter-list">
+                                                @foreach ($filterCategory->children as $subFilter)
+                                                    <div>
+                                                        <label class="custom-checkbox">
+                                                            <span class="filter">{{ $subFilter->name }}</span>
+                                                            <input type="checkbox" name="category{{ $subFilter->id }}" {{ request()->has('category'.$subFilter->id) ? 'checked' : '' }}>
+                                                            {{-- <input type="checkbox" name="category{{ $subFilter->id }}" value="on" {{ request()->has('category'.$subFilter->id) ? 'checked' : '' }}> --}}
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+                        </form>
+                    </section>
+                </div>
+            </div>
+            
             
         </div>
 
@@ -140,7 +190,7 @@
                     </button>
                 @endif
             </div>
-            
+
         </div>
     </div>
 </div>
