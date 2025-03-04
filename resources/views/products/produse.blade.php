@@ -41,11 +41,6 @@
                     <div class="flex w-full col">
                         <h4 class="m-0 mb-8">Filtre</h4>
                         <div class="flex gap-md">
-                            {{-- <a href="{{ url('/produse') }}">
-                                <button class="btn btn-blue-outline rounded-sm" type="button">
-                                    Sterge filtre
-                                </button>
-                            </a> --}}
                             <button class="btn btn-blue-outline rounded-sm" type="button" onclick="window.location.href='{{ url('/produse') }}'">
                                 Sterge filtre
                             </button>
@@ -69,6 +64,7 @@
                                                 <label class="custom-checkbox">
                                                     <span class="filter">{{ $subFilter->name }}</span>
                                                     <input type="checkbox" name="category{{ $subFilter->id }}" {{ request()->has('category'.$subFilter->id) ? 'checked' : '' }}>
+                                                    {{-- <input type="checkbox" name="category{{ $subFilter->id }}" value="on" {{ request()->has('category'.$subFilter->id) ? 'checked' : '' }}> --}}
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
@@ -118,7 +114,7 @@
 
             <div class="row align-center justify-center pagination gap-md mt-32">
                 @if ($currentPage > 1)
-                <form method="get" action="{{ url()->current() . $filtersString }}">
+                <form method="get" action="{{ url()->current() }}{{ $filtersString }}">
                     @csrfWithoutAutocomplete
                     <input type="hidden" name="per_page" value="{{ $perPage }}" />
                     <button aria-label="Inapoi" type="submit" {{ $currentPage <= 1 ? 'disabled' : '' }} value="{{ $currentPage - 1 }}" name="current_page_number">
@@ -130,7 +126,7 @@
                 @endif
 
                 @for ($i = max(1, $currentPage - 2); $i <= min($totalPages, $currentPage + 3); $i++)
-                    <form method="get" action="{{ url()->current() }}">
+                    <form method="get" action="{{ url()->current() }}{{ $filtersString }}">
                         @csrfWithoutAutocomplete
                         <input type="hidden" name="per_page" value="{{ $perPage }}" />
                         <button class="{{ $i == $currentPage ? 'active' : '' }}" type="submit" value="{{ $i }}" name="current_page_number" aria-label="Pagina {{ $i }}">
@@ -142,7 +138,7 @@
                 <p class="all-pages">din {{ $totalPages }}</p>
 
                 @if ($currentPage < $totalPages)
-                    <form method="get" action="{{ url()->current() . $filtersString }}">
+                    <form method="get" action="{{ url()->current() }}{{ $filtersString }}">
                         @csrfWithoutAutocomplete
                         <input type="hidden" name="per_page" value="{{ $perPage }}" />
                         <button aria-label="Inainte" type="submit" {{ $currentPage >= $totalPages ? 'disabled' : '' }} value="{{ $currentPage + 1 }}" name="current_page_number">
