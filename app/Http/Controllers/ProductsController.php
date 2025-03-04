@@ -19,10 +19,10 @@ class ProductsController extends Controller
 
         // $queryParams = array_merge($filters, ['per_page' => $perPage, 'current_page_number' => $currentPage]);
         // $filtersString = '?' . http_build_query($queryParams);
-        $filters = $request->except(['per_page', 'current_page_number', '_token']);
+
         // $filtersString = $filters ? '&' . http_build_query($filters) : '';
-        $filtersString = count($filters) ? '&' . http_build_query($filters) : '';
-        // $filtersString = count($filters) ? '?' . http_build_query($filters) : '';
+        // $filtersString = count($filters) ? '&' . http_build_query($filters) : '';
+        $filtersString = count($filters) ? '?' . http_build_query($filters) : '';
 
 
 
@@ -59,7 +59,8 @@ class ProductsController extends Controller
         }
 
         // $products = $productsQuery->paginate($perPage, ['*'], 'page', $currentPage);
-        $products = $productsQuery->paginate($perPage, ['*'], 'current_page_number', $currentPage)->appends($filters);
+        // $products = $productsQuery->paginate($perPage, ['*'], 'current_page_number', $currentPage)->appends($filters);
+        $products = $productsQuery->paginate($perPage)->appends(request()->query());
         $totalResults = $products->total();
         $totalPages = $products->lastPage();
 
