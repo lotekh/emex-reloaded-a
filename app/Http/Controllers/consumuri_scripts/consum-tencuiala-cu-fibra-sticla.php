@@ -37,21 +37,21 @@ if ( $granulatie == "2.2 - 3 mm" ) {
 <p>
 <?php
 if ( $granulatie == "1.2 - 1.8 mm" ) {
-  echo "<strong>Consumul Mediu</strong> de <span class='RaspunsEchoBold'>Tencuiala Decorativa cu Fibra de Sticla â€œEmex GF-Meshâ€</span> cu<br />";
+  echo "<strong>Consumul Mediu</strong> de <span class='RaspunsEchoBold'>Tencuiala Decorativa cu Fibra de Sticla “Emex GF-Mesh”</span> cu<br />";
   echo "granulatia de <span class='RaspunsEchoBold'>$granulatie</span> pentru o suprafata de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br /> va fi de <span class='RaspunsEchoBold'>aprox. $consum_tencuiala Kg</span> produs.<br />";
   echo "<span id='consumurile_indirecte'>Consumuri indirecte</span>:<br />";
   echo "Grund de amorsare cu cuart (valoare medie): <span class='RaspunsEchoBold'>$grund Kg</span>.<br />";
   echo "Apa total (tencuiala + amorsa): <span class='RaspunsEchoBold'>cca. $apa l</span>.";
 }
 if ( $granulatie == "1.5 - 2.3 mm" ) {
-  echo "<strong>Consumul Mediu</strong> de <span class='RaspunsEchoBold'>Tencuiala Decorativa cu Fibra de Sticla â€œEmex GF-Meshâ€</span> cu<br />";
+  echo "<strong>Consumul Mediu</strong> de <span class='RaspunsEchoBold'>Tencuiala Decorativa cu Fibra de Sticla “Emex GF-Mesh”</span> cu<br />";
   echo "granulatia de <span class='RaspunsEchoBold'>$granulatie</span> pentru o suprafata de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br /> va fi de <span class='RaspunsEchoBold'>aprox. $consum_tencuiala Kg</span> produs.<br />";
   echo "<span id='consumurile_indirecte'>Consumuri indirecte</span>:<br />";
   echo "Grund de amorsare cu cuart (valoare medie): <span class='RaspunsEchoBold'>$grund Kg</span>.<br />";
   echo "Apa total (tencuiala + amorsa): <span class='RaspunsEchoBold'>cca. $apa l</span>.";
 }
 if ( $granulatie == "2.2 - 3 mm" ) {
-  echo "<strong>Consumul Mediu</strong> de <span class='RaspunsEchoBold'>Tencuiala Decorativa cu Fibra de Sticla â€œEmex GF-Meshâ€</span> cu<br />";
+  echo "<strong>Consumul Mediu</strong> de <span class='RaspunsEchoBold'>Tencuiala Decorativa cu Fibra de Sticla “Emex GF-Mesh”</span> cu<br />";
   echo "granulatia de <span class='RaspunsEchoBold'>$granulatie</span> pentru o suprafata de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br /> va fi de <span class='RaspunsEchoBold'>aprox. $consum_tencuiala Kg</span> produs.<br />";
   echo "<span id='consumurile_indirecte'>Consumuri indirecte</span>:<br />";
   echo "Grund de amorsare cu cuart (valoare medie): <span class='RaspunsEchoBold'>$grund Kg</span>.<br />";
