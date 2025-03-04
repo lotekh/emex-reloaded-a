@@ -81,13 +81,13 @@
                 <div class="accordion-menu w-full">
                     <section>
 
-                        <h4 class="accordion-header m-0">
+                        <h4 class="accordion-header m-0" onclick="toggleMobileFilters()">
                             <div class="flex w-full justify-between">
                                 <h4 class="m-0">Filtre</h4>
                             </div>
                         </h4>
                         
-                        <form method="GET" action="{{ route('products.index') }}">
+                        <form method="GET" action="{{ route('products.index') }}" id="mobile-produse-filters-form" class="hidden">
                             <div class="mobile-produse-buttons">
                                 <button class="btn btn-blue-outline rounded-sm mr-8" type="button" onclick="window.location.href='{{ url('/produse') }}'">
                                     Sterge filtre
@@ -194,4 +194,17 @@
         </div>
     </div>
 </div>
+
+<script>
+    function toggleMobileFilters() {
+    var form = document.getElementById("mobile-produse-filters-form");
+    
+    if (form.classList.contains("hidden")) {
+        form.classList.remove("hidden");
+    } else {
+        form.classList.add("hidden");
+    }
+}
+
+</script>
 @endsection
