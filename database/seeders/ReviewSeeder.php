@@ -20,13 +20,16 @@ class ReviewSeeder extends Seeder
         foreach ($reviews as $review) {
             $product = Product::where('slug', substr($review['url'], 1))->first();
             if($product) {
-                Review::firstOrCreate([
+                Review::create([
                     'user_id' => 2,
                     'product_id' => $product->id,
                     'rating' => $review['rating'],
                     'review' => $review['review'],
                     'approved' => $review['approved']
                 ]);
+            }
+            else {
+                print_r($review['url'] . ' not found as products so review was not created' . PHP_EOL);
             }
         }
     }

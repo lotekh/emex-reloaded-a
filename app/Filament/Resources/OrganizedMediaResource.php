@@ -39,6 +39,8 @@ class OrganizedMediaResource extends Resource
                 ->height(100)
                 ->label('Preview'),
                 TextColumn::make('path'),
+                TextColumn::make('width'),
+                TextColumn::make('height'),
             ])
             ->filters([
                     SelectFilter::make('ext')
