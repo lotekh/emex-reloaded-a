@@ -14,8 +14,8 @@ class ProductsController extends Controller
     {
         $perPage = $request->get('per_page', 9);
         $currentPage = $request->get('current_page_number', 1);
-        $filters = $request->except(['per_page', 'current_page_number']);
-        $filtersString = '?' . http_build_query($filters);
+        $filters = $request->except(['per_page', 'current_page_number', '_token']);
+        $filtersString = count($filters) ? '?' . http_build_query($filters) : '';
 
         // Query for active products
         $productsQuery = Product::select('products.*')
@@ -47,7 +47,7 @@ class ProductsController extends Controller
             });
         }
 
-        $products = $productsQuery->paginate($perPage, ['*'], 'page', $currentPage);
+        $products = $productsQuery->paginate($perPage)->appends(request()->query());
         $totalResults = $products->total();
         $totalPages = $products->lastPage();
 
