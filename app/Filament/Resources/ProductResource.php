@@ -49,19 +49,6 @@ class ProductResource extends Resource
                                     ->columnSpanFull(),
                                 MarkdownEditor::make('technical_details')
                                     ->columnSpanFull(),
-                                Forms\Components\Grid::make(2)
-                                    ->schema([
-                                        CuratorPicker::make('large_image_id')
-                                            ->label('Large Image')
-                                            ->relationship('largeImage', 'large_image_id')
-                                            ->pathGenerator(DefaultPathGenerator::class)
-                                            ->preserveFilenames(),
-                                        CuratorPicker::make('small_image_id')
-                                            ->label('Small Image')
-                                            ->relationship('smallImage', 'small_image_id')
-                                            ->pathGenerator(DefaultPathGenerator::class)
-                                            ->preserveFilenames(),
-                                    ]),
                                 Forms\Components\Grid::make(3)
                                     ->schema([
                                         Forms\Components\Toggle::make('has_palette')
@@ -81,6 +68,32 @@ class ProductResource extends Resource
                                     ->columnSpan(1),
                             ])
                             ->columns(2),
+                        Tabs\Tab::make('Images')
+                        ->schema([
+                            Forms\Components\Grid::make(2)
+                            ->schema([
+                                CuratorPicker::make('large_image_id')
+                                    ->label('Webp Large Image')
+                                    ->relationship('largeImage', 'large_image_id')
+                                    ->pathGenerator(DefaultPathGenerator::class)
+                                    ->preserveFilenames(),
+                                CuratorPicker::make('small_image_id')
+                                    ->label('Webp Small Image')
+                                    ->relationship('smallImage', 'small_image_id')
+                                    ->pathGenerator(DefaultPathGenerator::class)
+                                    ->preserveFilenames(),
+                                    CuratorPicker::make('png_large_image_id')
+                                    ->label('Png Large Image')
+                                    ->relationship('pngLargeImage', 'png_large_image_id')
+                                    ->pathGenerator(DefaultPathGenerator::class)
+                                    ->preserveFilenames(),
+                                CuratorPicker::make('png_small_image_id')
+                                    ->label('Png Small Image')
+                                    ->relationship('pngSmallImage', 'png_small_image_id')
+                                    ->pathGenerator(DefaultPathGenerator::class)
+                                    ->preserveFilenames(),
+                            ]),
+                        ]),
                         Tabs\Tab::make('Category')
                             ->columns(2)
                             ->schema([
@@ -128,18 +141,6 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('category_page_link_title')
                     ->searchable(),
                 Tables\Columns\IconColumn::make('active')
-                    ->boolean(),
-                Tables\Columns\IconColumn::make('has_palette')
-                    ->boolean(),
-                Tables\Columns\IconColumn::make('has_instructions')
-                    ->boolean(),
-                Tables\Columns\IconColumn::make('has_calculus')
-                    ->boolean(),
-                Tables\Columns\IconColumn::make('has_technical_file')
-                    ->boolean(),
-                Tables\Columns\IconColumn::make('has_hardener')
-                    ->boolean(),
-                Tables\Columns\IconColumn::make('is_package')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
