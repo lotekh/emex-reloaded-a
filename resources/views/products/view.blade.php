@@ -463,6 +463,38 @@
             button.classList.toggle("selected", isSelected);
             button.setAttribute("aria-selected", isSelected ? "true" : "false");
         });
+
+        var videoLinks = document.querySelectorAll('a[href$=".mp4"]');
+        console.log('video: ' , videoLinks);
+
+        videoLinks.forEach(function (link) {
+            var videoUrl = link.getAttribute('href');
+            console.log('videoURL:', videoUrl);
+
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                openLightboxWithVideo(videoUrl, link.innerText || "Vizualizare Video");
+            });
+
+            link.classList.add("cursor-pointer");
+
+        });
+
+        function openLightboxWithVideo(videoUrl, title) {
+            console.log(11);
+            var lightboxContent = document.getElementById("lightbox-content");
+            lightboxContent.innerHTML = ''; // Clear previous content
+
+            var video = document.createElement("video");
+            video.src = videoUrl;
+            video.controls = true;
+            video.autoplay = true;
+            video.className = "video";
+
+            lightboxContent.appendChild(video);
+
+            document.getElementById("lightbox-container").style.display = "block";
+        }
     });
 </script>
 
