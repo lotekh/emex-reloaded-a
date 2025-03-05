@@ -436,8 +436,8 @@ class OrdersController extends Controller
             $rambursTva = 0;
             if ($request->input('delivery_type') == 0 && $request->input('payment_method') == 'ramburs') {
                 // rambursValue is 3% of the order value(value of the products+transport price) without TVA, so it is 3% of of $dbOrder->total_no_tva
-                $rambursValue = floor((($dbOrder->total_no_tva + $dbOrder->transport_price) * 3 / 100) * 100) / 100;
-                $rambursTva = floor(($rambursValue * 19 / 100) * 100) / 100;
+                $rambursValue = round(($dbOrder->total_no_tva + $dbOrder->transport_price) * 3 / 100, 2);
+                $rambursTva = round($rambursValue * 19 / 100, 2);
                 // Add the cost of ramburs(rambursValue+rambursTva) to the total
                 $dbOrder->total += floor(($rambursValue + $rambursTva) * 100) / 100;
                 $dbOrder->total_no_tva += $rambursValue;

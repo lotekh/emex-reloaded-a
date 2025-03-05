@@ -17,10 +17,6 @@ class ProductsController extends Controller
         $filters = $request->except(['per_page', 'current_page_number', '_token']);
         $filtersString = count($filters) ? '?' . http_build_query($filters) : '';
 
-
-
-
-
         // Query for active products
         $productsQuery = Product::select('products.*')
             ->join('categories_products', 'products.id', '=', 'categories_products.product_id')
