@@ -29,7 +29,7 @@ if ( $tipsuprafata == "Metal" ) {
 <p>
 <?php
 if ( $tipsuprafata == "Lemn" ) {
-  echo "<strong>Consumul Total</strong> <span class='strat mark'>la 2 straturi</span> de <span class='RaspunsEchoBold'>Email Nitro-Combinat â€œEmex QN-212â€</span> pentru<br />";
+  echo "<strong>Consumul Total</strong> <span class='strat mark'>la 2 straturi</span> de <span class='RaspunsEchoBold'>Email Nitro-Combinat “Emex QN-212”</span> pentru<br />";
   echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br />va fi de aprox. <span class='RaspunsEchoBold'>$consum_vopsea Kg</span> produs.<br />";
   echo "<span id='consumurile_indirecte'>Consum indirect</span>:<br />";
   echo "Grund Imbibare: <span class='RaspunsEchoBold'>$grund Kg</span>.<br />";
@@ -37,7 +37,7 @@ if ( $tipsuprafata == "Lemn" ) {
   echo "Solvent cca.: <span class='RaspunsEchoBold'>$diluant L</span>.<br />";
 }
 if ( $tipsuprafata == "Metal" ) {
-  echo "<strong>Consumul Total</strong> <span class='strat mark'>la 2 straturi</span> de <span class='RaspunsEchoBold'>Email Nitro-Combinat â€œEmex QN-212â€</span> pentru<br />";
+  echo "<strong>Consumul Total</strong> <span class='strat mark'>la 2 straturi</span> de <span class='RaspunsEchoBold'>Email Nitro-Combinat “Emex QN-212”</span> pentru<br />";
   echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br />va fi de aprox. <span class='RaspunsEchoBold'>$consum_vopsea Kg</span> produs.<br />";
   echo "<span id='consumurile_indirecte'>Consum indirect</span>:<br />";
   echo "Grund Anticoroziv: <span class='RaspunsEchoBold'>$grund Kg</span>.<br />";

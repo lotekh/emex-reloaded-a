@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers;
+use App\Models\City;
 use App\Models\Order;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
+use Filament\Infolists\Widgets\InfolistItem;
 
 class OrderResource extends Resource
 {
@@ -36,31 +38,27 @@ class OrderResource extends Resource
                     ->searchable(isIndividual: true),
                 Tables\Columns\TextColumn::make('user')
                     ->state(function (Model $record) {
+                        if($record->user === null) {
+                            return 'Guest';
+                        }
                         return $record->user->first_name . ' ' . $record->user->last_name;
                     })
                     ->searchable(isIndividual: true)
                     ->sortable(),
-                Tables\Columns\TextColumn::make('delivery_info')
+                Tables\Columns\TextColumn::make('delivery_last_name')
                     ->toggleable(isToggledHiddenByDefault: false)
-                    ->state(function (Model $record) {
-                        return
-                            $record->delivery_last_name . ' ' .
-                            $record->delivery_first_name . ', ' .
-                            $record->delivery_phone . ', ' .
-                            $record->delivery_email . ', ' .
-                            $record->delivery_address;
-                    }),
-                Tables\Columns\TextColumn::make('billing_info')
+                    ->state(function (Order $record) {
+                        $delivery_info = json_decode($record->delivery_information);
+                        return implode(',', (array)$delivery_info);
+                    })
+                    ->label('Delivery info'),
+                Tables\Columns\TextColumn::make('billing_type')
                     ->toggleable(isToggledHiddenByDefault: false)
-                    ->state(function (Model $record) {
-                        return
-                            $record->person_last_name . ' ' .
-                            $record->person_first_name . ', ' .
-                            $record->person_email . ', ' .
-                            $record->person_phone . ', ' .
-                            $record->person_address . ', ' .
-                            $record->delivery_address;
-                    }),
+                    ->state(function (Order $record) {
+                        $billing_info = json_decode($record->company_information);
+                        return implode(',', (array)$billing_info);
+                    })
+                    ->label('Billing info'),
                 Tables\Columns\TextColumn::make('company_info')
                     ->toggleable(isToggledHiddenByDefault: true)
                     ->state(function (Model $record) {
@@ -106,7 +104,7 @@ class OrderResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                // Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -135,39 +133,132 @@ class OrderResource extends Resource
             ->schema([
                 Infolists\Components\Section::make('Delivery Information')
                     ->schema([
-                        Infolists\Components\TextEntry::make('delivery_first_name'),
-                        Infolists\Components\TextEntry::make('delivery_last_name'),
-                        Infolists\Components\TextEntry::make('delivery_phone'),
-                        Infolists\Components\TextEntry::make('delivery_email'),
-                        Infolists\Components\TextEntry::make('delivery_city'),
-                        Infolists\Components\TextEntry::make('delivery_address'),
+                        Infolists\Components\TextEntry::make('delivery_first_name')
+                        ->state(function (Order $record) {
+                            $delivery_info = json_decode($record->delivery_information);
+                            return $delivery_info->delivery_first_name ?? '';
+                        }),
+                        Infolists\Components\TextEntry::make('delivery_last_name')
+                        ->state(function (Order $record) {
+                            $delivery_info = json_decode($record->delivery_information);
+                            return $delivery_info->delivery_last_name ?? '';
+                        }),
+                        Infolists\Components\TextEntry::make('delivery_phone')
+                        ->state(function (Order $record) {
+                            $delivery_info = json_decode($record->delivery_information);
+                            return $delivery_info->delivery_phone ?? '';
+                        }),
+                        Infolists\Components\TextEntry::make('delivery_email')
+                        ->state(function (Order $record) {
+                            $delivery_info = json_decode($record->delivery_information);
+                            return $delivery_info->delivery_email ?? '';
+                        }),
+                        Infolists\Components\TextEntry::make('delivery_city')
+                        ->state(function (Order $record) {
+                            $delivery_info = json_decode($record->delivery_information);
+                            if(!isset($delivery_info->delivery_city_id)) {
+                                return '';
+                            }
+                            return City::find($delivery_info->delivery_city_id)->name;
+                        }),
+                        Infolists\Components\TextEntry::make('delivery_address')
+                        ->state(function (Order $record) {
+                            $delivery_info = json_decode($record->delivery_information);
+                            return $delivery_info->delivery_address ?? '';
+                        }),
                     ])
+                    ->columns(2)
                     ->columnSpanFull(),
 
                 Infolists\Components\Section::make('Billing Information')
                     ->columns(2)
                     ->schema([
-                        Infolists\Components\TextEntry::make('person_first_name'),
-                        Infolists\Components\TextEntry::make('person_last_name'),
-                        Infolists\Components\TextEntry::make('person_email'),
-                        Infolists\Components\TextEntry::make('person_address'),
-                        Infolists\Components\TextEntry::make('payment_method'),
+                        Infolists\Components\TextEntry::make('person_first_name')
+                        ->state(function (Order $record) {
+                            $billing_info = json_decode($record->company_information);
+                            return $billing_info->person_first_name ?? '';
+                        }),
+                        Infolists\Components\TextEntry::make('person_last_name')
+                        ->state(function (Order $record) {
+                            $billing_info = json_decode($record->company_information);
+                            return $billing_info->person_last_name ?? '';
+                        }),
+                        Infolists\Components\TextEntry::make('person_email')
+                        ->state(function (Order $record) {
+                            $billing_info = json_decode($record->company_information);
+                            return $billing_info->person_email ?? '';
+                        }),
+                        Infolists\Components\TextEntry::make('person_address')
+                        ->state(function (Order $record) {
+                            $billing_info = json_decode($record->company_information);
+                            return $billing_info->person_address ?? '';
+                        }),
                     ])
+                    ->hidden(fn (Order $record) => $record->billingType == 1)
                     ->columnSpanFull(),
 
                 Infolists\Components\Section::make('Company Information')
                     ->columns(2)
                     ->schema([
-                        Infolists\Components\TextEntry::make('organization_name'),
-                        Infolists\Components\TextEntry::make('organization_vat_code'),
-                        Infolists\Components\TextEntry::make('organization_bank'),
-                        Infolists\Components\TextEntry::make('organization_bank_account'),
-                        Infolists\Components\TextEntry::make('organization_city'),
-                        Infolists\Components\TextEntry::make('organization_address'),
-                        Infolists\Components\TextEntry::make('organization_phone'),
-                        Infolists\Components\TextEntry::make('organization_email'),
+                        Infolists\Components\TextEntry::make('organization_name')
+                        ->state(function (Order $record) {
+                            $billing_info = json_decode($record->company_information);
+                            return $billing_info->organization_name ?? '';
+                        }),
+                        Infolists\Components\TextEntry::make('organization_vat_code')
+                        ->state(function (Order $record) {
+                            $billing_info = json_decode($record->company_information);
+                            return $billing_info->organization_vat_code ?? '';
+                        }),
+                        Infolists\Components\TextEntry::make('organization_bank')
+                        ->state(function (Order $record) {
+                            $billing_info = json_decode($record->company_information);
+                            return $billing_info->organization_bank ?? '';
+                        }),
+                        Infolists\Components\TextEntry::make('organization_bank_account')
+                        ->state(function (Order $record) {
+                            $billing_info = json_decode($record->company_information);
+                            return $billing_info->organization_bank_account ?? '';
+                        }),
+                        Infolists\Components\TextEntry::make('organization_city')
+                        ->state(function (Order $record) {
+                            $billing_info = json_decode($record->company_information);
+                            if(!isset($billing_info->organization_city_id)) {
+                                return '';
+                            }
+                            return City::find($billing_info->organization_city_id)->name;
+                        }),
+                        Infolists\Components\TextEntry::make('organization_address')
+                        ->state(function (Order $record) {
+                            $billing_info = json_decode($record->company_information);
+                            return $billing_info->organization_address ?? '';
+                        }),
+                        Infolists\Components\TextEntry::make('organization_phone')
+                        ->state(function (Order $record) {
+                            $billing_info = json_decode($record->company_information);
+                            return $billing_info->organization_phone ?? '';
+                        }),
+                        Infolists\Components\TextEntry::make('organization_email')
+                        ->state(function (Order $record) {
+                            $billing_info = json_decode($record->company_information);
+                            return $billing_info->organization_email ?? '';
+                        }),
                     ])
+                    ->hidden(fn (Order $record) => $record->billingType == 0)
                     ->columnSpanFull(),
+
+                    Infolists\Components\Section::make('Products')
+                    ->schema([
+                        Infolists\Components\TextEntry::make('product_info')
+                        ->state(function (Order $record) {
+                            $products = '';
+                            foreach($record->productVariations as $productVariation) {
+                                $products .= $productVariation->name . '  /  ' . $productVariation->pivot->quantity . ' BUC /  ' . $productVariation->pivot->price . ' RON' . PHP_EOL;
+                            }
+
+                            return $products;
+                        }),
+                    ]),
 
                 Infolists\Components\Section::make('General Information')
                     ->columns(2)
@@ -178,6 +269,7 @@ class OrderResource extends Resource
                         Infolists\Components\TextEntry::make('transport_price_no_tva'),
                         Infolists\Components\TextEntry::make('total_no_tva'),
                         Infolists\Components\TextEntry::make('total'),
+                        Infolists\Components\TextEntry::make('payment_method'),
                     ])
                     ->columnSpanFull(),
             ]);

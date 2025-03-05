@@ -19,3 +19,11 @@ main.fi-main {
 .fi-wi-stats-overview-stat {
     color: red;
 }
+
+aside {
+    width: 250px !important;
+}
+
+.fi-ta-image img {
+    height: 100px
+}

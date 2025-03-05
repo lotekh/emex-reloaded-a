@@ -43,7 +43,7 @@ return [
     'max_size' => 5000,
     'model' => Media::class,
     'min_size' => 0,
-    'path_generator' => null,
+    'path_generator' => \App\CustomPathGenerator::class,
     'resources' => [
         'label' => 'Media',
         'plural_label' => 'Media',
@@ -55,7 +55,7 @@ return [
         'navigation_count_badge' => false,
         'resource' => MediaResource::class,
     ],
-    'should_preserve_filenames' => false,
+    'should_preserve_filenames' => true,
     'should_register_navigation' => true,
     'should_check_exists' => true,
     'visibility' => 'public',

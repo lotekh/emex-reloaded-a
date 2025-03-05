@@ -23,7 +23,7 @@ class ProductSeeder extends Seeder
         CategoryProduct::truncate();
         Schema::enableForeignKeyConstraints();
 
-        $jsonFile = resource_path('json/productsImport3.json');
+        $jsonFile = resource_path('json/productsImport4.json');
         $products = array_values((array)json_decode(file_get_contents($jsonFile), true))[2]['data'];
 
         foreach ($products as $product) {
@@ -148,10 +148,10 @@ class ProductSeeder extends Seeder
                         $filenameWithoutExtension = explode('.', $filename)[0];
 
                         if($extension == 'pdf') {
-                            $path = 'media/technical-files/' . $dbProduct->slug;
+                            $path = 'media/technical-files';
                         }
                         else {
-                            $path = 'media/images/' . $dbProduct->slug;
+                            $path = 'media/images';
                         }
                         $image =  '/' . $path . '/' . $filename;
 
