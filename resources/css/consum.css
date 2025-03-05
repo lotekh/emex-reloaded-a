@@ -1,7 +1,7 @@
 .consum-container {
   gap: 32px;
   display: grid;
-  grid-template-columns: 3fr 4fr 3fr;
+  grid-template-columns: 3fr 4fr 4fr;
 }
 
 .consum_content_step {
@@ -29,6 +29,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  padding: 0 60px;
 
   -ms-flex-direction: column;
   flex-direction: column;
@@ -96,6 +97,15 @@
   .hidden-xs {
     display: none;
   }
+
+  .consum-container {
+    gap: 32px;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .consum_form_group {
+    padding: 0 20px;
 }
 
 .iso,
