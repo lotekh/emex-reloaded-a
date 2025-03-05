@@ -38,3 +38,15 @@
 .pagination .all-pages {
   color: var(--grey);
 }
+
+.mobile-produse-buttons {
+  margin-top: -50px;
+  float: right;
+  display: inline-flex;
+  position: fixed;
+  right: 0;
+}
+
+#mobile-menu-produse {
+  margin-top: -10px;
+}

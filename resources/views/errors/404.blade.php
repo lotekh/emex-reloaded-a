@@ -261,12 +261,29 @@
             display: table;
             border-collapse: separate;
         }
+
+        #header404 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        }
+
+        #header404 p {
+            margin: 5px 0;
+        }
+
+        #header404 p a {
+            display: inline-block;
+        }
     }
 
     #err_minus,
     #err_link {
         font-size: 36px;
     }
+
+
 </style>
 
 <div class="outer">

@@ -70,7 +70,7 @@ class OrdersController extends Controller
             $cart[$productVariationId] = [
                 'quantity' => $quantity,
                 'price' => $productVariation->price,
-                'price_no_vat' => $productVariation->price * 0.81,
+                'price_no_vat' => round($productVariation->price * 100 / 119, 2),
                 'product_variation_id' => $productVariationId,
             ];
         }
@@ -430,14 +430,14 @@ class OrdersController extends Controller
                 $companyCityId = $companyInformationArray['organization_city_id'];
             }
 
-            $dbOrder->total_no_tva = floor($dbOrder->total * 0.81 * 100) / 100;
+            $dbOrder->total_no_tva = floor($dbOrder->total * (100 / 119) * 100) / 100;
             // Calculate rambursValue if delivery_type is 0 (curier)
             $rambursValue = 0;
             $rambursTva = 0;
             if ($request->input('delivery_type') == 0 && $request->input('payment_method') == 'ramburs') {
                 // rambursValue is 3% of the order value(value of the products+transport price) without TVA, so it is 3% of of $dbOrder->total_no_tva
-                $rambursValue = floor((($dbOrder->total_no_tva + $dbOrder->transport_price) * 3 / 100) * 100) / 100;
-                $rambursTva = floor(($rambursValue * 19 / 100) * 100) / 100;
+                $rambursValue = round(($dbOrder->total_no_tva + $dbOrder->transport_price) * 3 / 100, 2);
+                $rambursTva = round($rambursValue * 19 / 100, 2);
                 // Add the cost of ramburs(rambursValue+rambursTva) to the total
                 $dbOrder->total += floor(($rambursValue + $rambursTva) * 100) / 100;
                 $dbOrder->total_no_tva += $rambursValue;
@@ -676,12 +676,20 @@ class OrdersController extends Controller
                 // Create the email content
                 $emailContent = "S-au comandat urmatoarele produse:\n\n";
                 foreach ($orders_products as $product) {
-                    $emailContent .= "Produs: " . $product->name . " - " . $product->quantity . " \n";
-                    $emailContent .= "Culoare: " . ($product->color ?? 'Alb') . "\n";
+                    $emailContent .= "Produs: " . $product->name . " \n";
+                    $emailContent .= "Culoare: " . ($product->colour ?? 'Alb') . "\n";
                     $emailContent .= "Cantitate: " . $product->pivot->quantity . "\n";
-                    $emailContent .= "Pret cu TVA: " . number_format($product->pivot->price, 2) . "\n\n";
+                    $emailContent .= "Pret produs (cu TVA): " . number_format($product->pivot->price, 2) . "\n\n";
                 }
-                $emailContent .= "Total inclusiv TVA: " . number_format($dbOrder->total, 2) . "\n";
+
+                if ($dbOrder->transport_price > 0) {
+                    $emailContent .= "Cost transport: " . number_format($dbOrder->transport_price, 2) . " lei (cu TVA)\n";
+                }
+                
+                if ($rambursValue > 0) {
+                    $emailContent .= "Cost ramburs: " . number_format($rambursValue + $rambursTva, 2) . " lei (cu TVA)\n";
+                }
+                $emailContent .= "Total plata inclusiv TVA: " . number_format($dbOrder->total, 2) . "\n";
                 $emailContent .= "Detalii facturare:\n";
                 $emailContent .= "Tip: " . ($dbOrder->billing_type == 0 ? 'Persoana fizica' : 'Persoana juridica') . "\n";
                 $emailContent .= "Nume: " . ($dbOrder->billing_type == 0 
@@ -692,10 +700,22 @@ class OrdersController extends Controller
                 $emailContent .= "Adresa: " . ($dbOrder->billing_type == 0 
                     ? json_decode($dbOrder->company_information, true)['person_address'] 
                     : json_decode($dbOrder->company_information, true)['organization_address']) . "\n\n";
+                
                 $emailContent .= "Detalii livrare:\n";
-                $emailContent .= "Tip: Ridicare personala\n";
-                $emailContent .= "Detalii plata:\n";
-                $emailContent .= "Tip: ordin de plata\n";
+                $emailContent .= "Tip: " . ($dbOrder->delivery_type == 0 ? "Livrare prin curier" : "Ridicare personală") . "\n";
+                
+                $emailContent .= "Detalii plată:\n";
+                $emailContent .= "Tip: ";
+                if ($dbOrder->payment_method == "card") {
+                    $emailContent .= "Card bancar\n";
+                } elseif ($dbOrder->payment_method == "ordin de plata") {
+                    $emailContent .= "Ordin de plată\n";
+                } elseif ($dbOrder->payment_method == "transfer bancar") {
+                    $emailContent .= "Transfer bancar\n";
+                } elseif ($dbOrder->payment_method == "ramburs") {
+                    $emailContent .= "Ramburs\n";
+                }
+                    
 
                 // Send the email to the client
                 Mail::raw($emailContent, function ($message) use ($clientEmail, $dbOrder, $filePath) {
