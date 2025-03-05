@@ -88,12 +88,10 @@
                 @endif
 
                 <div class="steps_content">
-                    {{-- <form action="{{ route('consum.store') }}" method="POST" id="consum_form"> --}}
                     <form action="{{ url($product->consumption_slug . '/calculate') }}" method="GET">
                         {{-- @csrfWithoutAutocomplete --}}
                         <input type="hidden" name="calculate" value="1">
                         <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
-                        {{-- <input type="hidden" name="consumption_slug" value="{{ $product->consumption_slug }}"> --}}
 
                         <div class="consum_content_step">
                             <div class="consum_form_group">
@@ -151,7 +149,11 @@
                                 </div>
                                 <input type="text" id="surface" class="form-control mb-16 select-consum" name="{{ $consumData['suprafata_name'] }}" required>
                             </div>
-                            <div class="consum_wizard_back_next_div">
+                            <div class="flex mb-32">
+                                <button type="button" tabindex="1" onclick="showPreviousStep(1)" class="btn btn-light-blue rounded-sm mb-16 mr-8">
+                                    <img class="icon-reversed" src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
+                                    INAPOI
+                                </button>
                                 <button type="submit" class="btn btn-light-blue rounded-sm mb-16">CALCULEAZA
                                     <img src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
                                 </button>

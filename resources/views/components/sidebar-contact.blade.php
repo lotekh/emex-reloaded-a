@@ -47,12 +47,6 @@
                     @endif
                 </h2>
 
-                @if(session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
                 <form id="formular-sidebar-contact" class="col w-full" method="POST" action="{{ route('contact.store') }}">
                     @csrfWithoutAutocomplete
                     <div class="form-group w-full">
