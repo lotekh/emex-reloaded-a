@@ -20,7 +20,12 @@ class UserSeeder extends Seeder
 
         foreach ($users as $user) {
             $newUser = array();
-            $newUser['role'] = 'user';
+            if($user['role'] == '22') {
+                $newUser['role'] = 'admin';
+            }
+            else {
+                $newUser['role'] = 'user';
+            }
             $newUser['password'] = $user['password_hash'];
             $newUser['first_name'] = $user['first_name'];
             $newUser['last_name'] = $user['last_name'];
