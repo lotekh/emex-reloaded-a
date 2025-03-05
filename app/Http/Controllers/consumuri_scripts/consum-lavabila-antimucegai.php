@@ -6,32 +6,36 @@ if ( $tipsuprafata == "Zidarie" ) {
   $consum_vopsea = $suprafata * 0.32;
   $amorsa = $suprafata * 0.14;
   $apa = ( $consum_vopsea + $amorsa ) * 0.1;
+  $grund = $suprafata * 0.16;
   $consum_vopsea = number_format( $consum_vopsea, 2, ",", "." );
   $amorsa = number_format( $amorsa, 2, ",", "." );
   $apa = number_format( $apa, 2, ",", "." );
+  $grund = number_format( $grund, 2, ",", "." );
 }
 if ( $tipsuprafata == "Tencuiala driscuita" ) {
   $consum_vopsea = $suprafata * 0.28;
   $amorsa = $suprafata * 0.14;
-  $apa = ( $consum_vopsea + $amorsa ) * 0.1;
+  $apa = ( $consum_vopsea + $amorsa ) * 0.10;
+  $grund = $suprafata * 0.16;
   $consum_vopsea = number_format( $consum_vopsea, 2, ",", "." );
   $amorsa = number_format( $amorsa, 2, ",", "." );
   $apa = number_format( $apa, 2, ",", "." );
+  $grund = number_format( $grund, 2, ",", "." );
 }
-if ( $tipsuprafata == "Glet de ipsos" ) {
+if ( $tipsuprafata == "Glet de Ipsos" ) {
   $consum_vopsea = $suprafata * 0.26;
   $amorsa = $suprafata * 0.11;
-  $apa = ( $consum_vopsea + $amorsa ) * 0.1;
-  $grund = $suprafata * 0.14;
+  $apa = ( $consum_vopsea + $amorsa ) * 0.10;
+  $grund = $suprafata * 0.12;
   $consum_vopsea = number_format( $consum_vopsea, 2, ",", "." );
-  $grund = number_format( $grund, 2, ",", "." );
   $amorsa = number_format( $amorsa, 2, ",", "." );
   $apa = number_format( $apa, 2, ",", "." );
+  $grund = number_format( $grund, 2, ",", "." );
 }
 if ( $tipsuprafata == "Rigips" ) {
   $consum_vopsea = $suprafata * 0.26;
   $amorsa = $suprafata * 0.12;
-  $apa = ( $consum_vopsea + $amorsa ) * 0.1;
+  $apa = ( $consum_vopsea + $amorsa ) * 0.10;
   $grund = $suprafata * 0.12;
   $consum_vopsea = number_format( $consum_vopsea, 2, ",", "." );
   $grund = number_format( $grund, 2, ",", "." );
@@ -41,7 +45,7 @@ if ( $tipsuprafata == "Rigips" ) {
 if ( $tipsuprafata == "Revopsita" ) {
   $consum_vopsea = $suprafata * 0.24;
   $amorsa = $suprafata * 0.08;
-  $apa = ( $consum_vopsea + $amorsa ) * 0.1;
+  $apa = ( $consum_vopsea + $amorsa ) * 0.10;
   $consum_vopsea = number_format( $consum_vopsea, 2, ",", "." );
   $amorsa = number_format( $amorsa, 2, ",", "." );
   $apa = number_format( $apa, 2, ",", "." );
@@ -76,7 +80,7 @@ if ( $tipsuprafata == "Tencuiala driscuita" ) {
   echo "Amorsa (valoare medie): <span class='RaspunsEchoBold'>$amorsa Kg</span>.<br />";
   echo "Apa (valoare medie): <span class='RaspunsEchoBold'>$apa l</span>.<br />";
 }
-if ( $tipsuprafata == "Glet de ipsos" ) {
+if ( $tipsuprafata == "Glet de Ipsos" ) {
   echo "<strong>Consumul Total</strong> <span class='strat mark'>la 2 straturi</span> de <span class='RaspunsEchoBold'>Vopsea Lavabila Antimucegai “Emex”</span> pentru<br />";
   echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br />va fi de aprox. <span class='RaspunsEchoBold'>$consum_vopsea Kg</span> produs.<br />";
   echo "<span id='consumurile_indirecte'>Consumuri indirecte</span>:<br />";
