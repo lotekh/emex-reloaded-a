@@ -1,1 +1,1 @@
-{{ $results }}
+{!! Blade::render($results) !!}
