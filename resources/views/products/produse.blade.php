@@ -36,6 +36,7 @@
 <div class="main-container" id="all-products-page">
     <div class="grid grid-4 mt-32 gap-lg">
         <div class="filters mb-16">
+
             <div id="accordion-menu-desktop" class="col">
                 <form method="GET" action="{{ route('products.index') }}">
                     <div class="flex w-full col">
@@ -57,14 +58,14 @@
                         <div class="accordion-menu mb-32">
                             @foreach ($filters as $filterCategory)
                                 <div class="accordion-item">
-                                    <h4 class="accordion-header marginbottom-0 paddintop-0">{{ $filterCategory->name }}</h4>
-                                    <div class="filter-list">
+                                    <h4 class="accordion-header header-produse marginbottom-0 paddintop-0" onclick="toggleProduseMenu('{{ $filterCategory->id }}')">{{ $filterCategory->name }} <span class="arrow-menu">▼</span></h4>
+                                    
+                                    <div class="filter-list filter-list-desktop hidden" id="filter-{{ $filterCategory->id }}">
                                         @foreach ($filterCategory->children as $subFilter)
                                             <div>
                                                 <label class="custom-checkbox">
                                                     <span class="filter">{{ $subFilter->name }}</span>
                                                     <input type="checkbox" name="category{{ $subFilter->id }}" {{ request()->has('category'.$subFilter->id) ? 'checked' : '' }}>
-                                                    {{-- <input type="checkbox" name="category{{ $subFilter->id }}" value="on" {{ request()->has('category'.$subFilter->id) ? 'checked' : '' }}> --}}
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
@@ -76,7 +77,7 @@
                     @endif
                 </form>
             </div>
-
+            
             <div id="accordion-menu-mobile">
                 <div class="accordion-menu w-full">
                     <section>
@@ -111,7 +112,6 @@
                                                         <label class="custom-checkbox">
                                                             <span class="filter">{{ $subFilter->name }}</span>
                                                             <input type="checkbox" name="category{{ $subFilter->id }}" {{ request()->has('category'.$subFilter->id) ? 'checked' : '' }}>
-                                                            {{-- <input type="checkbox" name="category{{ $subFilter->id }}" value="on" {{ request()->has('category'.$subFilter->id) ? 'checked' : '' }}> --}}
                                                             <span class="checkmark"></span>
                                                         </label>
                                                     </div>
@@ -196,15 +196,47 @@
 </div>
 
 <script>
+
     function toggleMobileFilters() {
-    var form = document.getElementById("mobile-produse-filters-form");
-    
-    if (form.classList.contains("hidden")) {
-        form.classList.remove("hidden");
-    } else {
-        form.classList.add("hidden");
+        var form = document.getElementById("mobile-produse-filters-form");
+        console.log(1);
+        
+        if (form.classList.contains("hidden")) {
+            form.classList.remove("hidden");
+        } else {
+            form.classList.add("hidden");
+        }
     }
-}
+
+    function toggleProduseMenu(id) {
+        var allFilters = document.querySelectorAll(".filter-list-desktop");
+        var allHeaders = document.querySelectorAll(".header-produse .arrow-menu");
+        var selectedFilter = document.getElementById("filter-" + id);
+        var selectedHeader = document.querySelector(".header-produse[onclick*='" + id + "'] .arrow-menu");
+
+        allFilters.forEach(function(filter) {
+            if (filter !== selectedFilter) {
+                filter.classList.add("hidden");
+            }
+        });
+
+        allHeaders.forEach(function(arrow) {
+            if (arrow !== selectedHeader) {
+                arrow.textContent = "▼"; // 
+            }
+        });
+
+        
+        if (selectedFilter.classList.contains("hidden")) {
+            selectedFilter.classList.remove("hidden");
+            selectedHeader.textContent = "▲"; 
+        } else {
+            selectedFilter.classList.add("hidden");
+            selectedHeader.textContent = "▼"; 
+        }
+    }
+
 
 </script>
+
 @endsection
