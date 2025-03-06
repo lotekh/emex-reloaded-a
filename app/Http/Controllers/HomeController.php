@@ -5,12 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
     public function index()
     {
         return view('homepage');
+    }
+
+    public function search() 
+    {
+        $search_url = url('search-script/search.php') . '?' . http_build_query($_GET);
+        $results = file_get_contents($search_url);
+        
+        return view('search', ['results' => json_decode($results)]);        
     }
 
     public function handleSlug($slug, Request $request)
