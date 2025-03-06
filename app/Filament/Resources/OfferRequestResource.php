@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Components\UpdatedCuratorPicker;
 use App\Filament\Resources\OfferRequestResource\Pages;
 use App\Filament\Resources\OfferRequestResource\RelationManagers;
 use App\Models\OfferRequest;
@@ -47,7 +48,7 @@ class OfferRequestResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('city')
                     ->maxLength(255),
-                CuratorPicker::make('file_id')
+                UpdatedCuratorPicker::make('file_id')
                     ->label('File')
                     ->relationship('file', 'file_id')
                     // ->pathGenerator(DefaultPathGenerator::class)
