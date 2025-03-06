@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Models\Media;
 use App\Models\Product;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
@@ -44,9 +45,4 @@ class MediaResource extends \Awcodes\Curator\Resources\MediaResource
 
         return $table;
     }
-
-    public static function shouldRegisterNavigation(): bool
-{
-    return false;
-}
 }

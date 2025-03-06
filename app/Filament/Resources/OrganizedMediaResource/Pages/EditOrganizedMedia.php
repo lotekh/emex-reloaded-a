@@ -15,10 +15,18 @@ class EditOrganizedMedia extends EditMedia
     {
         return [
             Actions\DeleteAction::make()
-            ->after(function ($record) {
-                // After the delete action, you can redirect to a custom URL.
-                return redirect()->route('filament.admin.resources.organized-media.index');
-            }),
+                ->after(function ($record) {
+                    // After the delete action, you can redirect to a custom URL.
+                    return redirect()->route('filament.admin.resources.organized-media.index');
+                }),
         ];
+    }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $data = array_merge($data, $data['file']);
+        unset($data['file']);
+
+        return $data;
     }
 }

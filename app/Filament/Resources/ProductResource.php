@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Components\UpdatedCuratorPicker;
 use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Helpers\JSONLD;
 use App\Helpers\SeoForm;
 use App\Models\Product;
@@ -16,6 +16,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Forms\Components\Actions\Action;
 
 class ProductResource extends Resource
 {
@@ -69,31 +70,31 @@ class ProductResource extends Resource
                             ])
                             ->columns(2),
                         Tabs\Tab::make('Images')
-                        ->schema([
-                            Forms\Components\Grid::make(2)
                             ->schema([
-                                CuratorPicker::make('large_image_id')
-                                    ->label('Webp Large Image')
-                                    ->relationship('largeImage', 'large_image_id')
-                                    ->pathGenerator(DefaultPathGenerator::class)
-                                    ->preserveFilenames(),
-                                CuratorPicker::make('small_image_id')
-                                    ->label('Webp Small Image')
-                                    ->relationship('smallImage', 'small_image_id')
-                                    ->pathGenerator(DefaultPathGenerator::class)
-                                    ->preserveFilenames(),
-                                    CuratorPicker::make('png_large_image_id')
-                                    ->label('Png Large Image')
-                                    ->relationship('pngLargeImage', 'png_large_image_id')
-                                    ->pathGenerator(DefaultPathGenerator::class)
-                                    ->preserveFilenames(),
-                                CuratorPicker::make('png_small_image_id')
-                                    ->label('Png Small Image')
-                                    ->relationship('pngSmallImage', 'png_small_image_id')
-                                    ->pathGenerator(DefaultPathGenerator::class)
-                                    ->preserveFilenames(),
+                                Forms\Components\Grid::make(2)
+                                    ->schema([
+                                        UpdatedCuratorPicker::make('large_image_id')
+                                            ->label('Webp Large Image')
+                                            ->relationship('largeImage', 'large_image_id')
+                                            ->pathGenerator(DefaultPathGenerator::class)
+                                            ->preserveFilenames(),
+                                        UpdatedCuratorPicker::make('small_image_id')
+                                            ->label('Webp Small Image')
+                                            ->relationship('smallImage', 'small_image_id')
+                                            ->pathGenerator(DefaultPathGenerator::class)
+                                            ->preserveFilenames(),
+                                        UpdatedCuratorPicker::make('png_large_image_id')
+                                            ->label('Png Large Image')
+                                            ->relationship('pngLargeImage', 'png_large_image_id')
+                                            ->pathGenerator(DefaultPathGenerator::class)
+                                            ->preserveFilenames(),
+                                        UpdatedCuratorPicker::make('png_small_image_id')
+                                            ->label('Png Small Image')
+                                            ->relationship('pngSmallImage', 'png_small_image_id')
+                                            ->pathGenerator(DefaultPathGenerator::class)
+                                            ->preserveFilenames(),
+                                    ]),
                             ]),
-                        ]),
                         Tabs\Tab::make('Category')
                             ->columns(2)
                             ->schema([
@@ -117,9 +118,9 @@ class ProductResource extends Resource
                             ->schema(JSONLD::make()),
                         Tabs\Tab::make('Consumption')
                             ->schema([
-                                        Forms\Components\TextInput::make('consumption.surface_name'),
-                                        Forms\Components\TextInput::make('consumption.surface_types'),
-                                        Forms\Components\TextInput::make('consumption.surface_type_name')
+                                Forms\Components\TextInput::make('consumption.surface_name'),
+                                Forms\Components\TextInput::make('consumption.surface_types'),
+                                Forms\Components\TextInput::make('consumption.surface_type_name')
                             ]),
 
                         Tabs\Tab::make('Consumption SEO')

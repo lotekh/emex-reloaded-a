@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Components\UpdatedCuratorPicker;
 use App\Filament\Resources\BlogArticleResource\Pages;
 use App\Filament\Resources\BlogArticleResource\RelationManagers;
 use App\Helpers\JSONLD;
@@ -59,7 +60,7 @@ class BlogArticleResource extends Resource
                                 MarkdownEditor::make('body')
                                     ->required()
                                     ->columnSpanFull(),
-                                CuratorPicker::make('featured_image_id')
+                                UpdatedCuratorPicker::make('featured_image_id')
                                     ->relationship('featuredImage', 'id')
                                     ->pathGenerator(UserPathGenerator::class)
                                     ->tenantAware(false)
