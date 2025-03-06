@@ -373,6 +373,16 @@
     </div>
 </div>
 
+<div id="global-lightbox-video" class="lightbox hidden">
+    <div class="lightbox-content">
+        <span class="close-btn" style=" background-image: url('{{ asset('resources/images/sprite.png') }}');" onclick="closeVideoLightbox()"></span>
+        <video id="global-lightbox-video-element" controls>
+            <source src="" type="video/mp4">
+            Browserul tău nu suportă elementul video.
+        </video>
+    </div>
+</div>
+
 @include('components.sidebar-contact', ['secondary_title' => $product->name ?? 'Produs necunoscut'])
 
 
@@ -482,7 +492,8 @@
 
         function openLightboxWithVideo(videoUrl, title) {
             console.log(11);
-            var lightboxContent = document.getElementById("lightbox-content");
+            console.log(videoUrl, title);
+            var lightboxContent = document.getElementsByClassName("lightbox_container");
             lightboxContent.innerHTML = ''; // Clear previous content
 
             var video = document.createElement("video");
@@ -494,6 +505,26 @@
             lightboxContent.appendChild(video);
 
             document.getElementById("lightbox-container").style.display = "block";
+        }
+
+        function openVideoLightbox(image) {
+            const lightbox = document.getElementById('global-lightbox-video');
+            const lightboxImage = document.getElementById('global-lightbox-image');
+
+            // Set the attributes for the image
+            lightboxImage.src = image.getAttribute('data-lightbox-src');
+            lightboxImage.alt = image.getAttribute('data-lightbox-alt') || '';
+            lightboxImage.title = image.getAttribute('data-lightbox-title') || '';
+
+            // Show the lightbox
+            lightbox.classList.remove('hidden');
+        }
+
+        function closeVideoLightbox() {
+            const lightbox = document.getElementById('global-lightbox');
+
+            // Hide the lightbox
+            lightbox.classList.add('hidden');
         }
     });
 </script>
