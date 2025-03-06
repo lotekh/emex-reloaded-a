@@ -13,6 +13,7 @@ public/hot
 public/css/*
 public/js/*
 public/vendor
+# public/search-script/logs/*
 
 storage/*.key
 .env
