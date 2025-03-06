@@ -408,7 +408,7 @@
             const selectedPackaging = packagingSelect.value;
             const selectedColor = colorSelect.value;
 
-            // Găsim variația corectă
+            // Find the right variation
             const variation = variations.find(variation => 
                 variation.quantity == selectedPackaging && variation.colour == selectedColor
             );
@@ -474,57 +474,40 @@
             button.setAttribute("aria-selected", isSelected ? "true" : "false");
         });
 
+        // Video Lightbox logic
         var videoLinks = document.querySelectorAll('a[href$=".mp4"]');
-        console.log('video: ' , videoLinks);
-
         videoLinks.forEach(function (link) {
-            var videoUrl = link.getAttribute('href');
-            console.log('videoURL:', videoUrl);
-
             link.addEventListener("click", function (event) {
                 event.preventDefault();
-                openLightboxWithVideo(videoUrl, link.innerText || "Vizualizare Video");
+                var videoUrl = link.getAttribute("href");
+                openLightboxWithVideo(videoUrl);
             });
 
             link.classList.add("cursor-pointer");
-
         });
 
-        function openLightboxWithVideo(videoUrl, title) {
-            console.log(11);
-            console.log(videoUrl, title);
-            var lightboxContent = document.getElementsByClassName("lightbox_container");
-            lightboxContent.innerHTML = ''; // Clear previous content
+        function openLightboxWithVideo(videoUrl) {
+            var lightbox = document.getElementById("global-lightbox-video");
+            var videoElement = document.getElementById("global-lightbox-video-element");
 
-            var video = document.createElement("video");
-            video.src = videoUrl;
-            video.controls = true;
-            video.autoplay = true;
-            video.className = "video";
-
-            lightboxContent.appendChild(video);
-
-            document.getElementById("lightbox-container").style.display = "block";
-        }
-
-        function openVideoLightbox(image) {
-            const lightbox = document.getElementById('global-lightbox-video');
-            const lightboxImage = document.getElementById('global-lightbox-image');
-
-            // Set the attributes for the image
-            lightboxImage.src = image.getAttribute('data-lightbox-src');
-            lightboxImage.alt = image.getAttribute('data-lightbox-alt') || '';
-            lightboxImage.title = image.getAttribute('data-lightbox-title') || '';
+            videoElement.src = videoUrl;
+            videoElement.load(); 
+            videoElement.play(); 
 
             // Show the lightbox
-            lightbox.classList.remove('hidden');
+            lightbox.classList.remove("hidden");
         }
 
         function closeVideoLightbox() {
-            const lightbox = document.getElementById('global-lightbox');
+            var lightbox = document.getElementById("global-lightbox-video");
+            var videoElement = document.getElementById("global-lightbox-video-element");
+
+            // Pause video and clear source when closing
+            videoElement.pause();
+            videoElement.src = "";
 
             // Hide the lightbox
-            lightbox.classList.add('hidden');
+            lightbox.classList.add("hidden");
         }
     });
 </script>
