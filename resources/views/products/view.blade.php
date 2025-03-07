@@ -375,7 +375,7 @@
 
 <div id="global-lightbox-video" class="lightbox hidden">
     <div class="lightbox-content">
-        <span class="close-btn" style=" background-image: url('{{ asset('resources/images/sprite.png') }}');" onclick="closeVideoLightbox"></span>
+        <span class="close-btn" style=" background-image: url('{{ asset('resources/images/sprite.png') }}')" onclick="closeVideoLightbox()"></span>
         <video id="global-lightbox-video-element" controls>
             <source src="" type="video/mp4">
             Browserul tău nu suportă elementul video.
@@ -462,7 +462,8 @@
         };
 
         // Reset activeTab on reload
-        let activeTab = "{{ session("last_active_tab_{$product->id}", 'Descriere') }}"; 
+        // let activeTab = "{{ session('last_active_tab_{$product->id}', 'Descriere') }}"; 
+        let activeTab = 'Descriere';
         tabContents.forEach(tab => {
             tab.classList.toggle("active", tab.id === activeTab);
         });
@@ -498,20 +499,20 @@
             // Show the lightbox
             lightbox.classList.remove("hidden");
         }
-
-        function closeVideoLightbox() {
-            console.log(1);
-            var lightbox = document.getElementById("global-lightbox-video");
-            var videoElement = document.getElementById("global-lightbox-video-element");
-
-            // Pause video and clear source when closing
-            videoElement.pause();
-            videoElement.src = "";
-
-            // Hide the lightbox
-            lightbox.classList.add("hidden");
-        }
     });
+
+    function closeVideoLightbox() {
+        console.log(1);
+        var lightbox = document.getElementById("global-lightbox-video");
+        var videoElement = document.getElementById("global-lightbox-video-element");
+
+        // Pause video and clear source when closing
+        videoElement.pause();
+        videoElement.src = "";
+
+        // Hide the lightbox
+        lightbox.classList.add("hidden");
+    }
 </script>
 
 
