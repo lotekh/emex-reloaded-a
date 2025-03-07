@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Filament\Components\UpdatedCuratorPicker;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -60,7 +61,7 @@ class SeoForm
                                 ->label('OG Description')
                                 ->rows(3)
                                 ->columnSpan(3),
-                            CuratorPicker::make('og_image_id')
+                            UpdatedCuratorPicker::make('og_image_id')
                                 ->label('OG Image')
                                 ->relationship('seoOgImage', 'og_image_id')
                                 ->pathGenerator(DefaultPathGenerator::class)
@@ -106,11 +107,10 @@ class SeoForm
                                 ->label('Twitter Description')
                                 ->rows(3)
                                 ->columnSpan(3),
-                            CuratorPicker::make($prefix . 'twitter_image_id')
+                            UpdatedCuratorPicker::make($prefix . 'twitter_image_id')
                                 ->label('Twitter Image')
                                 ->relationship($prefix ? str_replace($prefix, '_', '').'SeoTwitterImage' : 'seoTwitterImage', 'id')
                                 ->pathGenerator(DefaultPathGenerator::class)
-                                // ->tenantAware(false)
                                 ->preserveFilenames()
                                 ->columnSpan(3),
                             TextInput::make($prefix . 'seo.twitter_image_alt')
