@@ -106,7 +106,11 @@
                                                     @if (Str::contains(Str::lower($product->name), 'lac'))
                                                         Lac
                                                     @elseif (Str::contains(Str::lower($product->name), 'membran'))
-                                                        Membrană
+                                                        Bază
+                                                    @elseif (Str::contains(Str::lower($product->name), 'sapa'))
+                                                        Sapa
+                                                    @elseif (Str::contains(Str::lower($product->name), 'covor') || Str::contains(Str::lower($product->name), 'quartz'))
+                                                        Cuartz
                                                     @else
                                                         Vopsea
                                                     @endif
@@ -114,7 +118,7 @@
                                                 </p>
                                                 
                                                 
-                                                <p class="section-info text-blue-009">&nbsp;{{ $initialVariation->addon_text }}</p>
+                                                <p class="section-info text-blue-009 ml-4">- {{ $initialVariation->addon_text }}</p>
 
                                             </div>
                                         @endif
