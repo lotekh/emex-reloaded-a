@@ -373,6 +373,16 @@
     </div>
 </div>
 
+<div id="global-lightbox-video" class="lightbox hidden">
+    <div class="lightbox-content">
+        <span class="close-btn" style=" background-image: url('{{ asset('resources/images/sprite.png') }}');" onclick="closeVideoLightbox"></span>
+        <video id="global-lightbox-video-element" controls>
+            <source src="" type="video/mp4">
+            Browserul tău nu suportă elementul video.
+        </video>
+    </div>
+</div>
+
 @include('components.sidebar-contact', ['secondary_title' => $product->name ?? 'Produs necunoscut'])
 
 
@@ -398,7 +408,7 @@
             const selectedPackaging = packagingSelect.value;
             const selectedColor = colorSelect.value;
 
-            // Găsim variația corectă
+            // Find the right variation
             const variation = variations.find(variation => 
                 variation.quantity == selectedPackaging && variation.colour == selectedColor
             );
@@ -463,6 +473,44 @@
             button.classList.toggle("selected", isSelected);
             button.setAttribute("aria-selected", isSelected ? "true" : "false");
         });
+
+        // Video Lightbox logic
+        var videoLinks = document.querySelectorAll('a[href$=".mp4"]');
+        videoLinks.forEach(function (link) {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                var videoUrl = link.getAttribute("href");
+                openLightboxWithVideo(videoUrl);
+            });
+
+            link.classList.add("cursor-pointer");
+        });
+
+        function openLightboxWithVideo(videoUrl) {
+            console.log(12);
+            var lightbox = document.getElementById("global-lightbox-video");
+            var videoElement = document.getElementById("global-lightbox-video-element");
+
+            videoElement.src = videoUrl;
+            videoElement.load(); 
+            videoElement.play(); 
+
+            // Show the lightbox
+            lightbox.classList.remove("hidden");
+        }
+
+        function closeVideoLightbox() {
+            console.log(1);
+            var lightbox = document.getElementById("global-lightbox-video");
+            var videoElement = document.getElementById("global-lightbox-video-element");
+
+            // Pause video and clear source when closing
+            videoElement.pause();
+            videoElement.src = "";
+
+            // Hide the lightbox
+            lightbox.classList.add("hidden");
+        }
     });
 </script>
 
