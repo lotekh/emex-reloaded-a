@@ -89,7 +89,7 @@
                                                 <span class="text-red ml-4">Lei&nbsp;/&nbsp;</span>
                                             </p>
                                             
-                                            @if ($product->is_package)
+                                            @if ($initialVariation->addon_text)
                                                 <p class="mb-4">Pachet</p>
                                             @else
                                                 <p class="section-info" id="pret_value">Bidon  <span id="packaging{{ $product->id }}">
