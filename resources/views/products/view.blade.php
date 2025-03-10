@@ -118,7 +118,7 @@
                                                 </p>
                                                 
                                                 
-                                                <p class="section-info text-blue-009 ml-4">- {{ $initialVariation->addon_text }}</p>
+                                                <p class="section-info text-blue-009 ml-4">{{ $initialVariation->addon_text }}</p>
 
                                             </div>
                                         @endif
