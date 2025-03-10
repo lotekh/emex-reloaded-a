@@ -589,17 +589,31 @@ class OrdersController extends Controller
             $billingCountyId = null;
             $billingCountyName = 'Necunoscut';
 
-            // Get county_id based on billing_type
+            // Billing County
             if ($dbOrder->billing_type == 0) {  // Persoană fizică
                 $billingCountyId = json_decode($dbOrder->company_information, true)['person_county_id'] ?? null;
             } elseif ($dbOrder->billing_type == 1) {  // Persoană juridică
                 $billingCountyId = json_decode($dbOrder->company_information, true)['organization_county_id'] ?? null;
             }
-
             if ($billingCountyId) {
                 $billingCounty = County::where('id', $billingCountyId)->first();
                 $billingCountyName = $billingCounty ? $billingCounty->name : 'Necunoscut';
             }
+
+            // Billing City
+            if ($dbOrder->billing_type == 0) {  // Persoană fizică
+                $billingCityId = json_decode($dbOrder->company_information, true)['person_city_id'] ?? null;
+            } elseif ($dbOrder->billing_type == 1) {  // Persoană juridică
+                $billingCityId = json_decode($dbOrder->company_information, true)['organization_city_id'] ?? null;
+            }
+            $billingCity = $billingCityId ? City::find($billingCityId) : null;
+
+            // Delivery County and City
+            $deliveryInfo = json_decode($dbOrder->delivery_information, true);
+            $deliveryCountyId = $deliveryInfo['delivery_county_id'] ?? null;
+            $deliveryCityId = $deliveryInfo['delivery_city_id'] ?? null;
+            $deliveryCounty = $deliveryCountyId ? County::find($deliveryCountyId) : null;
+            $deliveryCity = $deliveryCityId ? City::find($deliveryCityId) : null;
 
             // Generate the PDF for proforma
             $pdf = PDF::loadView('products.invoice-pdf', [
@@ -679,30 +693,45 @@ class OrdersController extends Controller
                     $emailContent .= "Produs: " . $product->name . " \n";
                     $emailContent .= "Culoare: " . ($product->colour ?? 'Alb') . "\n";
                     $emailContent .= "Cantitate: " . $product->pivot->quantity . "\n";
-                    $emailContent .= "Pret produs (cu TVA): " . number_format($product->pivot->price, 2) . "\n\n";
+                    $emailContent .= "Pret cu TVA: " . number_format($product->pivot->price, 2) . "\n\n";
                 }
 
                 if ($dbOrder->transport_price > 0) {
-                    $emailContent .= "Cost transport: " . number_format($dbOrder->transport_price, 2) . " lei (cu TVA)\n";
+                    $emailContent .= "Transport:\n" . "Cantitate: 1\n" . "Pret cu TVA: " . number_format($dbOrder->transport_price, 2) . " lei (cu TVA)\n\n";
                 }
                 
                 if ($rambursValue > 0) {
-                    $emailContent .= "Cost ramburs: " . number_format($rambursValue + $rambursTva, 2) . " lei (cu TVA)\n";
+                    $emailContent .= "Cost Ramburs:\n" . "Cantitate: 1\n" . "Pret cu TVA: " . number_format($rambursValue + $rambursTva, 2) . " lei (cu TVA)\n\n";
                 }
-                $emailContent .= "Total plata inclusiv TVA: " . number_format($dbOrder->total, 2) . "\n";
+
+                $emailContent .= "Total inclusiv TVA: " . number_format($dbOrder->total, 2) . "\n";
+
                 $emailContent .= "Detalii facturare:\n";
                 $emailContent .= "Tip: " . ($dbOrder->billing_type == 0 ? 'Persoana fizica' : 'Persoana juridica') . "\n";
                 $emailContent .= "Nume: " . ($dbOrder->billing_type == 0 
                     ? json_decode($dbOrder->company_information, true)['person_first_name'] . ' ' . json_decode($dbOrder->company_information, true)['person_last_name'] 
                     : json_decode($dbOrder->company_information, true)['organization_name']) . "\n";
-                $emailContent .= "Numar de telefon: " . json_decode($dbOrder->company_information, true)['person_phone'] . "\n";
+                $emailContent .= "Numar de telefon: " . ($dbOrder->billing_type == 0 
+                    ? json_decode($dbOrder->company_information, true)['person_phone'] ?? '-' 
+                    : json_decode($dbOrder->company_information, true)['organization_phone'] ?? '-') . "\n";
                 $emailContent .= "Adresa de email: " . $clientEmail . "\n";
+                $emailContent .= "Județ: " . ($billingCounty ? $billingCounty->name : 'Necunoscut') . "\n";
+                $emailContent .= "Localitate: " . ($billingCity ? $billingCity->name : 'Necunoscut') . "\n";
                 $emailContent .= "Adresa: " . ($dbOrder->billing_type == 0 
                     ? json_decode($dbOrder->company_information, true)['person_address'] 
                     : json_decode($dbOrder->company_information, true)['organization_address']) . "\n\n";
                 
                 $emailContent .= "Detalii livrare:\n";
                 $emailContent .= "Tip: " . ($dbOrder->delivery_type == 0 ? "Livrare prin curier" : "Ridicare personală") . "\n";
+                if($dbOrder->delivery_type == 0){
+                    $emailContent .= "Nume: " . ($deliveryInfo['delivery_first_name'] ?? '-') . " " . ($deliveryInfo['delivery_last_name'] ?? '-') . "\n";
+                    $emailContent .= "Telefon: " . ($deliveryInfo['delivery_phone'] ?? '-') . "\n";
+                    $emailContent .= "Email: " . ($deliveryInfo['delivery_email'] ?? '-') . "\n";
+                    $emailContent .= "Județ: " . ($deliveryCounty ? $deliveryCounty->name : 'Necunoscut') . "\n";
+                    $emailContent .= "Localitate: " . ($deliveryCity ? $deliveryCity->name : 'Necunoscut') . "\n";
+                    $emailContent .= "Adresă: " . ($deliveryInfo['delivery_address'] ?? '-') . "\n";
+                }
+                 $emailContent .= "\n";
                 
                 $emailContent .= "Detalii plată:\n";
                 $emailContent .= "Tip: ";
@@ -779,7 +808,7 @@ class OrdersController extends Controller
         $countyName = 0;
         $city = 0;
 
-        //livrare prin curier
+        // Livrare prin curier
         if ($order->delivery_type == 0) {  
             // $county = $order->deliveryCounty->name ;
             $county = County::where('id', $order->delivery_county_id)->first();
