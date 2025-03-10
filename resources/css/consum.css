@@ -1,7 +1,15 @@
 .consum-container {
   gap: 32px;
   display: grid;
-  grid-template-columns: 3fr 4fr 4fr;
+  grid-template-columns: repeat(11, minmax(0, 1fr));
+}
+
+.col-span-3 {
+  grid-column: span 3;
+}
+
+.col-span-4 {
+  grid-column: span 4;
 }
 
 .consum_content_step {

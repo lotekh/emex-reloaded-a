@@ -106,7 +106,9 @@
                                                     @if (Str::contains(Str::lower($product->name), 'lac'))
                                                         Lac
                                                     @elseif (Str::contains(Str::lower($product->name), 'membran'))
-                                                        Bază
+                                                        Baza
+                                                    @elseif (Str::contains(Str::lower($product->name), 'grund'))
+                                                        Grund
                                                     @elseif (Str::contains(Str::lower($product->name), 'sapa'))
                                                         Sapa
                                                     @elseif (Str::contains(Str::lower($product->name), 'covor') || Str::contains(Str::lower($product->name), 'quartz'))
