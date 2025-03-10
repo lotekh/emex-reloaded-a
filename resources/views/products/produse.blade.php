@@ -58,7 +58,7 @@
                         <div class="accordion-menu mb-32">
                             @foreach ($filters as $filterCategory)
                                 <div class="accordion-item">
-                                    <h4 class="accordion-header header-produse marginbottom-0 paddintop-0" onclick="toggleProduseMenu('{{ $filterCategory->id }}')">{{ $filterCategory->name }} <span class="arrow-menu">▼</span></h4>
+                                    <h4 class="accordion-header header-produse marginbottom-0 paddintop-0" onclick="toggleProduseMenu('{{ $filterCategory->id }}')">{{ $filterCategory->name }} <span class="arrow-menu-produse">▼</span></h4>
                                     
                                     <div class="filter-list filter-list-desktop hidden" id="filter-{{ $filterCategory->id }}">
                                         @foreach ($filterCategory->children as $subFilter)
@@ -105,7 +105,7 @@
                                 <div class="accordion-menu mb-32" id="mobile-menu-produse">
                                     @foreach ($filters as $filterCategory)
                                         <div class="accordion-item">
-                                            <h4 class="accordion-header marginbottom-0 paddintop-0">{{ $filterCategory->name }}</h4>
+                                            <h4 class="accordion-header marginbottom-0 paddintop-0">{{ $filterCategory->name }} </h4>
                                             <div class="filter-list">
                                                 @foreach ($filterCategory->children as $subFilter)
                                                     <div>
@@ -210,9 +210,9 @@
 
     function toggleProduseMenu(id) {
         var allFilters = document.querySelectorAll(".filter-list-desktop");
-        var allHeaders = document.querySelectorAll(".header-produse .arrow-menu");
+        var allHeaders = document.querySelectorAll(".header-produse .arrow-menu-produse");
         var selectedFilter = document.getElementById("filter-" + id);
-        var selectedHeader = document.querySelector(".header-produse[onclick*='" + id + "'] .arrow-menu");
+        var selectedHeader = document.querySelector(".header-produse[onclick*='" + id + "'] .arrow-menu-produse");
 
         allFilters.forEach(function(filter) {
             if (filter !== selectedFilter) {

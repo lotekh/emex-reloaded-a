@@ -1834,3 +1834,18 @@ amp-lightbox {
   border-bottom: 1px solid #0b26a5;
   padding-bottom: 3px;
 }
+
+.arrow-menu-produse {
+  font-size: 20px;
+  color: gray;
+  right: 2px;
+  position: absolute;
+}
+
+#accordion-menu-desktop {
+  position: relative;
+}
+
+#accordion-menu-mobile {
+  position: relative;
+}
