@@ -300,7 +300,7 @@
 .product-details-container .top-container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
+  gap: 16px;
 }
 
 .product-details-container .subtitle {
