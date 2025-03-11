@@ -178,3 +178,20 @@
 .product-rating-pl {
   padding-left: 9px;
 }
+
+.header-produse {
+  display: flex;
+  align-items: center;
+}
+
+.header-produse-mobile {
+  display: flex;
+  align-items: center;
+}
+
+.arrow-menu-produse-mobile {
+  font-size: 20px;
+  color: gray;
+  right: 2px;
+  position: absolute;
+}
