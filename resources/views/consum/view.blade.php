@@ -41,9 +41,9 @@
             <h2 class="text-center dark-blue">CALCULATOR CONSUM {!! $product->name !!}</h2>
         </div>
 
-        <div class="consum-container">
+        <div class="consum-container grid-cols-11">
             {{-- Left part --}}
-            <div>
+            <div class="col-span-3">
                 <div class="consum-product-image mb-16" id="div_img_consum">
                     @php
                         $smallImageUrl = $product->smallImage ? asset('storage/' .$product->smallImage->path) : $baseUrl . '/images/default-placeholder.png';
@@ -79,7 +79,7 @@
                     </div>
             </div>
                 
-            <div>
+            <div class="col-span-4">
                 <input type="hidden" id="base_url" value="{{ url('/') }}">
                 @if ($currentPage != 3)
                     <div class="steps clearfix mb-8">
@@ -219,7 +219,7 @@
             </div>
 
             {{-- Right part --}}
-            <div class="link_color1">
+            <div class="link_color1 col-span-4">
                 {!! $product->consumption_details !!}
                 <br>
                 ... [<a href="https://emex.ro/{{ $product->slug }}">citeste mai mult</a>]

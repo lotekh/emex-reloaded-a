@@ -73,7 +73,7 @@
                             </picture>
                           </div>
                           {{-- Get the product name until the first '-' sign --}}
-                          <h3 class="normal-weight">{{ \Illuminate\Support\Str::before($ordered_product->name, ' -') }}</h3>
+                          <h3 class="normal-weight ml-32">{{ \Illuminate\Support\Str::before($ordered_product->name, ' -') }}</h3>
                       </a>
                   </td>
 

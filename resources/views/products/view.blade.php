@@ -89,7 +89,7 @@
                                                 <span class="text-red ml-4">Lei&nbsp;/&nbsp;</span>
                                             </p>
                                             
-                                            @if ($product->is_package)
+                                            @if ($initialVariation->addon_text)
                                                 <p class="mb-4">Pachet</p>
                                             @else
                                                 <p class="section-info" id="pret_value">Bidon  <span id="packaging{{ $product->id }}">
@@ -106,7 +106,13 @@
                                                     @if (Str::contains(Str::lower($product->name), 'lac'))
                                                         Lac
                                                     @elseif (Str::contains(Str::lower($product->name), 'membran'))
-                                                        Membrană
+                                                        Baza
+                                                    @elseif (Str::contains(Str::lower($product->name), 'grund'))
+                                                        Grund
+                                                    @elseif (Str::contains(Str::lower($product->name), 'sapa'))
+                                                        Sapa
+                                                    @elseif (Str::contains(Str::lower($product->name), 'covor') || Str::contains(Str::lower($product->name), 'quartz'))
+                                                        Cuartz
                                                     @else
                                                         Vopsea
                                                     @endif
@@ -114,7 +120,7 @@
                                                 </p>
                                                 
                                                 
-                                                <p class="section-info text-blue-009">&nbsp;{{ $initialVariation->addon_text }}</p>
+                                                <p class="section-info text-blue-009 ml-4">{{ $initialVariation->addon_text }}</p>
 
                                             </div>
                                         @endif
@@ -375,7 +381,7 @@
 
 <div id="global-lightbox-video" class="lightbox hidden">
     <div class="lightbox-content">
-        <span class="close-btn" style=" background-image: url('{{ asset('resources/images/sprite.png') }}');" onclick="closeVideoLightbox"></span>
+        <span class="close-btn" style=" background-image: url('{{ asset('resources/images/sprite.png') }}')" onclick="closeVideoLightbox()"></span>
         <video id="global-lightbox-video-element" controls>
             <source src="" type="video/mp4">
             Browserul tău nu suportă elementul video.
@@ -462,7 +468,8 @@
         };
 
         // Reset activeTab on reload
-        let activeTab = "{{ session("last_active_tab_{$product->id}", 'Descriere') }}"; 
+        // let activeTab = "{{ session('last_active_tab_{$product->id}', 'Descriere') }}"; 
+        let activeTab = 'Descriere';
         tabContents.forEach(tab => {
             tab.classList.toggle("active", tab.id === activeTab);
         });
@@ -498,20 +505,20 @@
             // Show the lightbox
             lightbox.classList.remove("hidden");
         }
-
-        function closeVideoLightbox() {
-            console.log(1);
-            var lightbox = document.getElementById("global-lightbox-video");
-            var videoElement = document.getElementById("global-lightbox-video-element");
-
-            // Pause video and clear source when closing
-            videoElement.pause();
-            videoElement.src = "";
-
-            // Hide the lightbox
-            lightbox.classList.add("hidden");
-        }
     });
+
+    function closeVideoLightbox() {
+        console.log(1);
+        var lightbox = document.getElementById("global-lightbox-video");
+        var videoElement = document.getElementById("global-lightbox-video-element");
+
+        // Pause video and clear source when closing
+        videoElement.pause();
+        videoElement.src = "";
+
+        // Hide the lightbox
+        lightbox.classList.add("hidden");
+    }
 </script>
 
 
