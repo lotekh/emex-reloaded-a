@@ -7,6 +7,7 @@ use App\Models\Media;
 use App\Models\Tag;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -145,6 +146,8 @@ class BlogSeeder extends Seeder
 
                 if (strpos($header[0], '404') === false) {
                     $imageContent = file_get_contents($fileUrl);
+                    $size = File::size($fileUrl);
+
                     if ($imageContent) {
                         $extension = explode('.', $filename)[1];
                         $filenameWithoutExtension = explode('.', $filename)[0];
@@ -200,7 +203,8 @@ class BlogSeeder extends Seeder
                             'type' => $type,
                             'ext' => $extension,
                             'alt' => $alt,
-                            'title' => $title
+                            'title' => $title,
+                            'size' => $size
                         ]);
 
                         $article->$column = $media->id;
