@@ -13,4 +13,3 @@
         {!! Blade::render($results) !!}
     </div>
 @endsection
-{{-- {!! Blade::render($results) !!} --}}

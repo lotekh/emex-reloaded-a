@@ -3655,3 +3655,15 @@ video:hover::-webkit-media-controls {
   border: 1px solid #ddd;
   margin-top: 4px;
 }
+
+#search_results2 {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 0px;
+  padding-bottom: 5px;
+}
+
+#search_results_row2 {
+  background-color: #ffffff;
+  padding: 15px;
+}
