@@ -30,8 +30,8 @@ class OrganizedMediaResource extends Resource
         return $table
             ->columns([
                 CuratorColumn::make('url')
-                // ->width(100)
-                // ->height(100)
+                ->width(100)
+                ->height(100)
                 ->label('Preview'),
                 // ->formatStateUsing(function ($state, $record) {
                 //     if($state) {
