@@ -202,7 +202,7 @@
               <p class="mb-8 mt-8"><span class="bold">Cost: </span> &nbsp; {{ number_format($totalIndividualPrice, 2) }} Lei (TVA inclus)</p>
             </div>
     
-            <div class="p-16 pr-8 flex align-end gap-md">
+            <div class="p-8 flex align-end gap-md">
               {{-- Remove Product button --}}
               <form method="POST" action="{{ route('orders.removeProduct') }}">
                 @csrfWithoutAutocomplete
