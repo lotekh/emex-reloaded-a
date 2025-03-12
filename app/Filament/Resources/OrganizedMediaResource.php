@@ -34,10 +34,17 @@ class OrganizedMediaResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('url')
-                ->width(100)
-                ->height(100)
-                ->label('Preview'),
+                TextColumn::make('url')
+                // ->width(100)
+                // ->height(100)
+                ->label('Preview')
+                ->formatStateUsing(function ($state) {
+                    if($state) {
+                        return "<img src='{$state}' style='width: 100px; height: 100px; object-fit: cover;'>";
+                    }
+                    return null;
+                })
+                ->html(),
                 TextColumn::make('path'),
                 TextColumn::make('width'),
                 TextColumn::make('height'),
