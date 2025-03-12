@@ -18,6 +18,7 @@ use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Storage;
 
 class OrganizedMediaResource extends Resource
 {
@@ -29,17 +30,24 @@ class OrganizedMediaResource extends Resource
     {
         return $table
             ->columns([
-                CuratorColumn::make('url')
-                ->width(100)
-                ->height(100)
-                ->label('Preview'),
-                // ->formatStateUsing(function ($state, $record) {
-                //     if($state) {
-                //         return "<img src='{$state}' style='width: 100px; height: 100px; object-fit: cover;'>";
-                //     }
-                //     return null;
-                // })
-                // ->html(),
+                // CuratorColumn::make('url')
+                // ->width(100)
+                // ->height(100)
+                // ->label('Preview'),
+                TextColumn::make('url')
+                ->formatStateUsing(function ($state, $record) {
+                    if($state) {
+                        $state = $record->getSignedUrl([
+                            'w' => 100,
+                            'h' => 100,
+                            'fit' => 'crop',
+                            'fm' => 'webp'
+                        ]);
+                        return "<img src='{$state}' style='width: 100px; height: 100px; object-fit: cover;'>";
+                    }
+                    return null;
+                })
+                ->html(),
 
                 TextColumn::make('path'),
                 TextColumn::make('width'),
