@@ -111,6 +111,8 @@
                                                         Grund
                                                     @elseif (Str::contains(Str::lower($product->name), 'sapa'))
                                                         Sapa
+                                                    @elseif(Str::contains(Str::lower($product->name), 'amors'))
+                                                        Amorsa
                                                     @elseif (Str::contains(Str::lower($product->name), 'covor') || Str::contains(Str::lower($product->name), 'quartz'))
                                                         Cuartz
                                                     @else
