@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use \Awcodes\Curator\Models\Media as CuratorMedia;
 
-class Media extends \Awcodes\Curator\Models\Media
+class Media extends CuratorMedia
 {
-    use HasFactory;
-
     protected $fillable = [
         'url',
         'ext',

@@ -11,15 +11,15 @@ use Illuminate\Support\Facades\App;
 class UpdatedCuratorPicker extends CuratorPicker {
     public function getEditAction(): Action
     {
-        return Action::make('edit')
-            ->label(trans('curator::views.picker.edit'))
-            ->icon('heroicon-s-pencil')
-            ->color('gray')
-            ->hidden(fn (CuratorPicker $component): bool => $component->isDisabled())
-            ->url(function (array $arguments): string {
-                return App::make(OrganizedMediaResource::class)
-                    ->getUrl('edit', ['record' => $arguments['id']]);
-            }, true);
+        // return Action::make('edit')
+        //     ->label(trans('curator::views.picker.edit'))
+        //     ->icon('heroicon-s-pencil')
+        //     ->color('gray')
+        //     ->hidden(fn (CuratorPicker $component): bool => $component->isDisabled())
+        //     ->url(function (array $arguments): string {
+        //         return App::make(OrganizedMediaResource::class)
+        //             ->getUrl('edit', ['record' => $arguments['id']]);
+        //     }, true);
     }
 }
 
