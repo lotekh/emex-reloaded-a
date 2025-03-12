@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\OrganizedMediaResource\Pages;
 
 use App\Filament\Resources\OrganizedMediaResource;
+use App\Models\Media;
 use Awcodes\Curator\Resources\MediaResource\EditMedia;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
