@@ -116,7 +116,10 @@
                                                     @else
                                                         Vopsea
                                                     @endif
-                                                    {{ $initialVariation->quantity }} {{ $initialVariation->measurementUnit->name }}
+                                                    <span id="product-quantity" class="text-blue-009">
+                                                        {{ $initialVariation->quantity }} 
+                                                        {{ $initialVariation->measurementUnit->name }}
+                                                    </span>
                                                 </p>
                                                 
                                                 
@@ -400,6 +403,7 @@
         const priceDisplay = document.getElementById('price{{ $product->id }}');
         const priceInput = document.getElementById('priceInput{{ $product->id }}');
         const variationInput = document.getElementById('variationInput{{ $product->id }}');
+        const quantityDisplay = document.getElementById('product-quantity');
 
         // Preload all product variations into JavaScript
         const variations = @json($product->variations);
@@ -423,10 +427,12 @@
                 priceDisplay.textContent = variation.price.toFixed(2);
                 priceInput.value = variation.price;
                 variationInput.value = variation.id;
+                quantityDisplay.textContent = `${variation.quantity} ${variation.measurement_unit.name}`;
             } else {
                 console.error('No matching variation found.');
             }
         }
+
         if (packagingSelect) packagingSelect.addEventListener('change', updateVariation);
         if (colorSelect) colorSelect.addEventListener('change', updateVariation);
 
