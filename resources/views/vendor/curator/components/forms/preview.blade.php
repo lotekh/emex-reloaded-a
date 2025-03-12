@@ -6,8 +6,8 @@
     @if (str($record->type)->contains('image'))
         <img
             src="{{ $record->getSignedUrl([
-                            'w' => 100,
-                            'h' => 100,
+                            'w' => 300,
+                            'h' => 300,
                             'fit' => 'crop',
                             'fm' => 'webp'
                         ]); }}"
