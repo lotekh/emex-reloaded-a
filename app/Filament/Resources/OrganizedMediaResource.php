@@ -6,10 +6,9 @@ use App\Filament\Resources\OrganizedMediaResource\Pages;
 use App\Filament\Resources\OrganizedMediaResource\Pages\CreateOrganizedMedia;
 use App\Models\Media;
 use App\Models\Product;
-use Awcodes\Curator\Components\Forms\CuratorEditor;
-use Filament\Forms;
+use Awcodes\Curator\Components\Tables\CuratorColumn;
+use Awcodes\Curator\PathGenerators\DefaultPathGenerator;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
@@ -19,10 +18,6 @@ use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Awcodes\Curator\Components\Forms\Uploader;
-use Awcodes\Curator\Resources\MediaResource;
-use Awcodes\Curator\Resources\MediaResource\CreateMedia;
-use Filament\Forms\Components\Select;
 
 class OrganizedMediaResource extends Resource
 {
@@ -34,17 +29,18 @@ class OrganizedMediaResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('url')
+                CuratorColumn::make('url')
                 // ->width(100)
                 // ->height(100)
-                ->label('Preview')
-                ->formatStateUsing(function ($state) {
-                    if($state) {
-                        return "<img src='{$state}' style='width: 100px; height: 100px; object-fit: cover;'>";
-                    }
-                    return null;
-                })
-                ->html(),
+                ->label('Preview'),
+                // ->formatStateUsing(function ($state, $record) {
+                //     if($state) {
+                //         return "<img src='{$state}' style='width: 100px; height: 100px; object-fit: cover;'>";
+                //     }
+                //     return null;
+                // })
+                // ->html(),
+
                 TextColumn::make('path'),
                 TextColumn::make('width'),
                 TextColumn::make('height'),
