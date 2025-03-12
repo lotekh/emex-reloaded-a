@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Media;
 use App\Models\Product;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -108,6 +109,8 @@ class ImagesSeeder extends Seeder
         if ($fileUrl) {
             try {
                 $imageContent = file_get_contents($fileUrl);
+
+                $size = File::size($fileUrl);
                 if ($imageContent) {
                     $extension = explode('.', $filename)[1];
                     $filenameWithoutExtension = explode('.', $filename)[0];
@@ -162,7 +165,8 @@ class ImagesSeeder extends Seeder
                         'type' => $type,
                         'ext' => $extension,
                         'alt' => $alt,
-                        'title' => $title
+                        'title' => $title,
+                        'size' => $size,
                     ]);
 
                     $dbProduct->$column = $media->id;
