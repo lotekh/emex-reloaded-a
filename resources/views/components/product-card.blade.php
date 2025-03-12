@@ -1,6 +1,6 @@
 @php
-  $averageRating = $product->reviews->avg('rating') ?? 0;
-  $reviewCount = $product->reviews->count() ?? 0;
+  $averageRating = $product->reviews->avg('rating') ?? 5;
+  $reviewCount = ($product->reviews->count() === 0) ? 1 : $product->reviews->count();
   $variations = $product->variations;
   $initialVariation = $variations->first();
   $baseUrl = url('/');
