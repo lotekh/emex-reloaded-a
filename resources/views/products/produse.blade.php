@@ -58,7 +58,10 @@
                         <div class="accordion-menu mb-32">
                             @foreach ($filters as $filterCategory)
                                 <div class="accordion-item">
-                                    <h4 class="accordion-header header-produse marginbottom-0 paddintop-0" onclick="toggleProduseMenu('{{ $filterCategory->id }}')">{{ $filterCategory->name }} <span class="arrow-menu">▼</span></h4>
+                                    <h4 class="accordion-header header-produse marginbottom-0 paddintop-0" onclick="toggleProduseMenu('{{ $filterCategory->id }}')">
+                                        {{ $filterCategory->name }} 
+                                        <span class="arrow-menu-produse">▼</span>
+                                    </h4>
                                     
                                     <div class="filter-list filter-list-desktop hidden" id="filter-{{ $filterCategory->id }}">
                                         @foreach ($filterCategory->children as $subFilter)
@@ -105,8 +108,11 @@
                                 <div class="accordion-menu mb-32" id="mobile-menu-produse">
                                     @foreach ($filters as $filterCategory)
                                         <div class="accordion-item">
-                                            <h4 class="accordion-header marginbottom-0 paddintop-0">{{ $filterCategory->name }}</h4>
-                                            <div class="filter-list">
+                                            <h4 class="accordion-header header-produse-mobile marginbottom-0 paddintop-0" onclick="toggleProduseMenuMobile('{{ $filterCategory->id }}')">
+                                                {{ $filterCategory->name }}
+                                                <span class="arrow-menu-produse-mobile">▼</span>
+                                             </h4>
+                                            <div class="filter-list filter-list-mobile hidden" id="filter-mobile{{ $filterCategory->id }}">
                                                 @foreach ($filterCategory->children as $subFilter)
                                                     <div>
                                                         <label class="custom-checkbox">
@@ -210,9 +216,37 @@
 
     function toggleProduseMenu(id) {
         var allFilters = document.querySelectorAll(".filter-list-desktop");
-        var allHeaders = document.querySelectorAll(".header-produse .arrow-menu");
+        var allHeaders = document.querySelectorAll(".header-produse .arrow-menu-produse");
         var selectedFilter = document.getElementById("filter-" + id);
-        var selectedHeader = document.querySelector(".header-produse[onclick*='" + id + "'] .arrow-menu");
+        var selectedHeader = document.querySelector(".header-produse[onclick*='" + id + "'] .arrow-menu-produse");
+
+        allFilters.forEach(function(filter) {
+            if (filter !== selectedFilter) {
+                filter.classList.add("hidden");
+            }
+        });
+
+        allHeaders.forEach(function(arrow) {
+            if (arrow !== selectedHeader) {
+                arrow.textContent = "▼"; // 
+            }
+        });
+
+        
+        if (selectedFilter.classList.contains("hidden")) {
+            selectedFilter.classList.remove("hidden");
+            selectedHeader.textContent = "▲"; 
+        } else {
+            selectedFilter.classList.add("hidden");
+            selectedHeader.textContent = "▼"; 
+        }
+    }
+
+    function toggleProduseMenuMobile(id) {
+        var allFilters = document.querySelectorAll(".filter-list-mobile");
+        var allHeaders = document.querySelectorAll(".header-produse-mobile .arrow-menu-produse-mobile");
+        var selectedFilter = document.getElementById("filter-mobile" + id);
+        var selectedHeader = document.querySelector(".header-produse-mobile[onclick*='" + id + "'] .arrow-menu-produse-mobile");
 
         allFilters.forEach(function(filter) {
             if (filter !== selectedFilter) {
