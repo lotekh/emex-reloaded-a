@@ -8,6 +8,8 @@ use App\Models\Product;
 use App\Models\Review;
 use Filament\Forms;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -26,10 +28,14 @@ class ReviewResource extends Resource
     {
         return $form
             ->schema([
+                TextInput::make('count')
+                ->numeric()
+                ->default(1)
+                ->label('Number of reviews to create'),
                 Forms\Components\Select::make('product_id')
                     ->searchable()
-                    ->label('Product')
-                    ->getSearchResultsUsing(fn (string $search): array => Product::where('name', 'like', "{$search}%")->limit(10)->pluck('name', 'id')->toArray())
+                    ->label('Product slug')
+                    ->getSearchResultsUsing(fn (string $search): array => Product::where('slug', 'like', "{$search}%")->limit(10)->pluck('slug', 'id')->toArray())
                     ->required(),
                 Forms\Components\TextInput::make('rating')
                     ->required()
@@ -37,12 +43,13 @@ class ReviewResource extends Resource
                     ->minValue(1)
                     ->maxValue(5),
                 Forms\Components\Textarea::make('review')
-                    ->required()
                     ->columnSpanFull(),
                 Forms\Components\Toggle::make('approved')
-                    ->required(),
+                    ->required()
+                    ->default(true),
                 Hidden::make('user_id')->default(fn (): int => Auth::user()->id),
-            ]);
+            ])
+            ->columns(3);
     }
 
     public static function table(Table $table): Table
@@ -52,7 +59,7 @@ class ReviewResource extends Resource
                 Tables\Columns\TextColumn::make('user.first_name')
                     ->searchable(isIndividual: true)
                     ->sortable(),
-                Tables\Columns\TextColumn::make('product.name')
+                Tables\Columns\TextColumn::make('product.slug')
                     ->searchable(isIndividual: true)
                     ->sortable(),
                 Tables\Columns\TextColumn::make('rating')
@@ -79,7 +86,8 @@ class ReviewResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array
