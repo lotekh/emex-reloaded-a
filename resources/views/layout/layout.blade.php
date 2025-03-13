@@ -32,7 +32,6 @@
 
 
 <body class="m-0" id="main_body">
-
     
     <header class="w-full bg-white-gray">
         <div class="main-container row justify-between align-center desktop-header gap-lg">

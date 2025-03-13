@@ -14,12 +14,8 @@
     $pngSmallImageUrl = $product->pngSmallImage ? asset('storage/' . $product->pngSmallImage->path) : $baseUrl . '/images/default-placeholder.png';
 
     // Calculate the average rating safely
-    $rating_sum = 0;
-    $reviewCount = $product->reviews->count();
-
-    if ($reviewCount > 0) {
-        $rating_sum = $product->reviews->sum('rating') / $reviewCount;
-    }
+    $rating_sum = $product->reviews->avg('rating') ?? 5;
+    $reviewCount = ($product->reviews->count() === 0) ? 1 : $product->reviews->count();
 @endphp
 
 <form method="GET" action="{{ url('/adauga-produs') }}">
