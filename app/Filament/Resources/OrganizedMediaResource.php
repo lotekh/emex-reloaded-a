@@ -41,7 +41,7 @@ class OrganizedMediaResource extends Resource
                             'w' => 100,
                             'h' => 100,
                             'fit' => 'crop',
-                            'fm' => 'webp'
+                            // 'fm' => 'webp'
                         ]);
                         return "<img src='{$state}' style='width: 100px; height: 100px; object-fit: cover;'>";
                     }
