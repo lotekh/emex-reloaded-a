@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use App\Models\OrdersProductVariation;
 
 class OrdersController extends Controller
 {
@@ -887,6 +888,30 @@ class OrdersController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function saveMention(Request $request)
+    {
+        $request->validate([
+            'order_id' => 'required|exists:orders,id',
+            'product_variation_id' => 'required|exists:product_variations,id',
+            'mention' => 'nullable|string|max:255'
+        ]);
+
+        $order = Order::findOrFail($request->order_id);
+
+        // Verify if the product is in the order
+        if (!$order->productVariations()->where('product_variations.id', $request->product_variation_id)->exists()) {
+            return response()->json(['success' => false, 'message' => 'Produsul nu este asociat cu această comandă.'], 404);
+        }
+
+        // Update 'mentions'
+        $order->productVariations()->updateExistingPivot($request->product_variation_id, [
+            'mentions' => $request->mention
+        ]);
+
+        return response()->json(['success' => true, 'message' => 'Mențiunea a fost salvată cu succes!']);
+    }
+
 
 
 }

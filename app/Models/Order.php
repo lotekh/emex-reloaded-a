@@ -91,7 +91,7 @@ class Order extends Model
     public function productVariations(): BelongsToMany
     {
         return $this->belongsToMany(ProductVariation::class, 'orders_product_variations')
-                    ->withPivot('id', 'quantity', 'price', 'price_no_vat');
+                    ->withPivot('id', 'quantity', 'price', 'price_no_vat', 'mentions');
     }
 
     public function user(): BelongsTo
