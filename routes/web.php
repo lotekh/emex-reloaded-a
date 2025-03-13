@@ -167,7 +167,8 @@ Route::post('/actualizeaza-cantitatea', [OrdersController::class, 'updateQuantit
 Route::post('/sterge-produs', [OrdersController::class, 'removeProduct'])->name('orders.removeProduct');
 Route::post('/goleste-cosul', [OrdersController::class, 'emptyCart'])->name('orders.empty');
 Route::get('/invoice/{orderId}', [OrdersController::class, 'showInvoicePage'])->name('invoice.page');
-Route::post('/orders/save-mention', [OrdersController::class, 'saveMention'])->name('orders.saveMention');
+Route::post('/orders/update-mention', [OrdersController::class, 'updateMention'])->name('orders.updateMention');
+
 
 
 
