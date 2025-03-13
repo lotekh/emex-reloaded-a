@@ -177,7 +177,7 @@ class BlogSeeder extends Seeder
                                 $type = 'image/webp';
                                 break;
                             case 'jpg':
-                                $type = 'image/jpg';
+                                $type = 'image/jpeg';
                                 break;
                             case 'pdf':
                                 $type = 'application/pdf';
