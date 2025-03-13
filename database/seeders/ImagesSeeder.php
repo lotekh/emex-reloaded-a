@@ -110,7 +110,6 @@ class ImagesSeeder extends Seeder
             try {
                 $imageContent = file_get_contents($fileUrl);
 
-                $size = File::size($fileUrl);
                 if ($imageContent) {
                     $extension = explode('.', $filename)[1];
                     $filenameWithoutExtension = explode('.', $filename)[0];
@@ -126,6 +125,7 @@ class ImagesSeeder extends Seeder
                     $filePath = public_path('storage' . $image);
 
                     $data = getimagesize($filePath);
+                    $size = File::size($filePath);
                     if ($data) {
                         $width = $data[0];
                         $height = $data[1];
@@ -139,7 +139,7 @@ class ImagesSeeder extends Seeder
                             $type = 'image/webp';
                             break;
                         case 'jpg':
-                            $type = 'image/jpg';
+                            $type = 'image/jpeg';
                             break;
                         case 'pdf':
                             $type = 'application/pdf';

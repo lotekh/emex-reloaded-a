@@ -72,7 +72,6 @@ class CategorySeeder extends Seeder
         if ($fileUrl) {
             try {
                 $header = get_headers($fileUrl);
-                $size = File::size($fileUrl);
 
                 if (strpos($header[0], '404') === false) {
                     $imageContent = file_get_contents($fileUrl);
@@ -92,6 +91,7 @@ class CategorySeeder extends Seeder
                         $filePath = public_path('storage' . $image);
 
                         $data = getimagesize($filePath);
+                        $size = File::size($filePath);
                         if ($data) {
                             $width = $data[0];
                             $height = $data[1];
@@ -105,7 +105,7 @@ class CategorySeeder extends Seeder
                                 $type = 'image/webp';
                                 break;
                             case 'jpg':
-                                $type = 'image/jpg';
+                                $type = 'image/jpeg';
                                 break;
                             case 'pdf':
                                 $type = 'application/pdf';
