@@ -122,10 +122,14 @@
                                                         {{ $initialVariation->quantity }} 
                                                         {{ $initialVariation->measurementUnit->name }}
                                                     </span>
+                                                    
                                                 </p>
                                                 
                                                 
-                                                <p class="section-info text-blue-009 ml-4">{{ $initialVariation->addon_text }}</p>
+                                                <p class="section-info text-blue-009 ml-4">
+                                                    <span id="addon-text">{{ $initialVariation->addon_text }}</span>
+                                                </p>
+                                                
 
                                             </div>
                                         @endif
@@ -406,6 +410,7 @@
         const priceInput = document.getElementById('priceInput{{ $product->id }}');
         const variationInput = document.getElementById('variationInput{{ $product->id }}');
         const quantityDisplay = document.getElementById('product-quantity');
+        const addonTextDisplay = document.getElementById('addon-text');
 
         // Preload all product variations into JavaScript
         const variations = @json($product->variations);
@@ -430,6 +435,7 @@
                 priceInput.value = variation.price;
                 variationInput.value = variation.id;
                 quantityDisplay.textContent = `${variation.quantity} ${variation.measurement_unit.name}`;
+                addonTextDisplay.textContent = variation.addon_text ? variation.addon_text : "";
             } else {
                 console.error('No matching variation found.');
             }
