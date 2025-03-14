@@ -324,9 +324,6 @@
         </div>
 
         <div class="tab-content-container">
-            {{-- @php
-                dd($activeTab) ;
-            @endphp --}}
             <div id="Descriere" class="tab-content {{ $activeTab == 'Descriere' ? 'active' : '' }}">
                 @php
                     $description = str_replace(
