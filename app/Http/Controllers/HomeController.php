@@ -16,11 +16,8 @@ class HomeController extends Controller
 
     public function search()
     {
-        $search_script = base_path('search.php');
-        $query_string = http_build_query($_GET);
-        $escaped_query_string = '"' . $query_string . '"';
-        $php_code = 'error_reporting(E_ALL & ~E_WARNING); parse_str(' . $escaped_query_string . ', $_GET); include("' . $search_script . '");';
-        $results = shell_exec("php -r '$php_code'");
+        $search_url = url('search-script/search.php') . '?' . http_build_query($_GET);
+        $results = file_get_contents($search_url);
 
         return view('search', ['results' => $results]);
     }
