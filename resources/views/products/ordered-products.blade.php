@@ -327,6 +327,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
+                    document.querySelector(`.mention-btn[data-product-id="${productId}"]`).setAttribute('data-current-mention', mention);
                     modal.classList.add('hidden-important');
                 }
             })
