@@ -2266,7 +2266,7 @@ header {
 }
 
 .dropdown-menu {
-  position: absolute;
+  position: absolute !important;
   top: 100%;
   display: none;
   margin: 0;
@@ -3565,14 +3565,10 @@ video:hover::-webkit-media-controls {
 
 .lightbox {
   position: fixed;
-  /* top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.8) !important;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -71,7 +71,10 @@ class ProductsController extends Controller
 
     public function showProduct($slug, Request $request)
     {
-        $product = Product::where('slug', $slug)->with('largeImage', 'variations', 'reviews')->firstOrFail();
+        // $product = Product::where('slug', $slug)->with('largeImage', 'variations', 'reviews')->firstOrFail();
+        $product = Product::where('slug', $slug)
+        ->with(['largeImage', 'variations.measurementUnit', 'reviews']) 
+        ->firstOrFail();
         $productId = $product->id;
         $activeTab = session("last_active_tab_{$productId}", 'Descriere');
         $categories_products = $product->categories;

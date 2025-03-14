@@ -276,8 +276,8 @@
   @endif
 </div>
 
-<div id="mentionModal" class="hidden">
-  <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+<div id="mentionModal" class="lightbox-container hidden-important">
+  <div class="bg-white p-8 shadow-lg w-96">
       <h2 class="text-lg font-bold mb-4">Mențiune pentru produs</h2>
       <textarea id="mentionText" class="w-full p-2 border rounded" rows="3" maxlength="255"></textarea>
       <input type="hidden" id="mentionProductId">
@@ -301,12 +301,12 @@
             button.addEventListener('click', function () {
                 mentionProductId.value = this.getAttribute('data-product-id');
                 mentionText.value = this.getAttribute('data-current-mention') || '';
-                modal.classList.remove('hidden');
+                modal.classList.remove('hidden-important');
             });
         });
     
         closeMentionModal.addEventListener('click', function () {
-            modal.classList.add('hidden');
+            modal.classList.add('hidden-important');
         });
     
         saveMention.addEventListener('click', function () {
@@ -327,7 +327,8 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    modal.classList.add('hidden');
+                    document.querySelector(`.mention-btn[data-product-id="${productId}"]`).setAttribute('data-current-mention', mention);
+                    modal.classList.add('hidden-important');
                 }
             })
             .catch(error => console.error('Eroare:', error));
