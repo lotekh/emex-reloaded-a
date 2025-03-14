@@ -14,12 +14,12 @@ class HomeController extends Controller
         return view('homepage');
     }
 
-    public function search() 
+    public function search()
     {
         $search_url = url('search-script/search.php') . '?' . http_build_query($_GET);
         $results = file_get_contents($search_url);
 
-        return view('search', ['results' => $results]);        
+        return view('search', ['results' => $results]);
     }
 
     public function handleSlug($slug, Request $request)

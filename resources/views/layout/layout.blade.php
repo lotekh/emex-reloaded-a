@@ -24,6 +24,8 @@
     @else 
         <link rel="stylesheet" href="{{ asset('css/bundled/layout.min.css') }}">
     @endif
+
+    <script src="{{ asset('search-script/zoom_autocomplete.js') }}"></script>
 </head>
 
 @php
@@ -463,12 +465,6 @@
                                 @endforeach
                             </ul>
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-certifications">
-                    <div class="certification-item certification-item-1">
-                    <img src="{{ asset('resources/images/general/Romtehnochim-certificat-de-excelenta.png') }}" alt="Certificat Excelenta" class="certification-image">
                     </div>
                 </div>
             </div>

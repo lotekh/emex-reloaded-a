@@ -469,3 +469,10 @@ input[type="search"] {
   color: #000099 !important;
   font-size: 14px;
 }
+
+
+/* ADRIAN */
+.link_color1 {
+  text-decoration: none;
+  color: #009;
+}
