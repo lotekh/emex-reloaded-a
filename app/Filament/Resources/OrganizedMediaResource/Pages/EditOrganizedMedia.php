@@ -28,11 +28,10 @@ class EditOrganizedMedia extends EditMedia
     {
         //Save initial name and remove it from data
         $initialName = $data['name'];
+        $extension = $data['file']['ext'];
         unset($data['name']);
 
-        $mediaFiles = Media::where('name', $initialName)->get();
-
-        dd($data);
+        $mediaFiles = Media::where('name', $initialName)->where('ext', $extension)->get();
 
         //Decide what kind of file the new one is
         if($data['file']['ext'] == 'pdf') {
