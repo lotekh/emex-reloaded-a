@@ -24,6 +24,8 @@
     @else 
         <link rel="stylesheet" href="{{ asset('css/bundled/layout.min.css') }}">
     @endif
+
+    <script src="{{ asset('search-script/zoom_autocomplete.js') }}"></script>
 </head>
 
 @php
