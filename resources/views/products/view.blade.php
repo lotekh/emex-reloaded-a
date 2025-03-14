@@ -122,10 +122,14 @@
                                                         {{ $initialVariation->quantity }} 
                                                         {{ $initialVariation->measurementUnit->name }}
                                                     </span>
+                                                    
                                                 </p>
                                                 
                                                 
-                                                <p class="section-info text-blue-009 ml-4">{{ $initialVariation->addon_text }}</p>
+                                                <p class="section-info text-blue-009 ml-4">
+                                                    <span id="addon-text">{{ $initialVariation->addon_text }}</span>
+                                                </p>
+                                                
 
                                             </div>
                                         @endif
@@ -314,9 +318,9 @@
 
     <div class="mt-16 mt-custom">
         <div class="tabs-selector-row">
-            <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid" aria-selected="true" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
-            <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid" aria-selected="false" tabindex="0" onclick="openTab(event, 'DetaliiUtilizare')"><span>Detalii de utilizare</span></button>
-            <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid" aria-selected="false" tabindex="0" onclick="openTab(event, 'CaracteristiciTehnice')"><span>Caracteristici Tehnice</span></button>
+            <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid {{ $activeTab == 'Descriere' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'Descriere' ? 'true' : '' }}" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
+            <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid {{ $activeTab == 'DetaliiUtilizare' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'DetaliiUtilizare' ? 'true' : '' }}" tabindex="0" onclick="openTab(event, 'DetaliiUtilizare')"><span>Detalii de utilizare</span></button>
+            <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid {{ $activeTab == 'CaracteristiciTehnice' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'CaracteristiciTehnice' ? 'true' : '' }}" tabindex="0" onclick="openTab(event, 'CaracteristiciTehnice')"><span>Caracteristici Tehnice</span></button>
         </div>
 
         <div class="tab-content-container">
@@ -333,12 +337,12 @@
                 
             </div>
 
-            <div id="DetaliiUtilizare" class="tab-content {{ $activeTab == 'Descriere' ? 'active' : '' }}">
+            <div id="DetaliiUtilizare" class="tab-content {{ $activeTab == 'DetaliiUtilizare' ? 'active' : '' }}">
                 {!! Blade::render(html_entity_decode($product->usage_details) ) !!}
                 {{-- Detalii Utilizare --}}
             </div>
 
-            <div id="CaracteristiciTehnice" class="tab-content {{ $activeTab == 'Descriere' ? 'active' : '' }}">
+            <div id="CaracteristiciTehnice" class="tab-content {{ $activeTab == 'CaracteristiciTehnice' ? 'active' : '' }}">
                 {!! Blade::render($product->technical_details ) !!}
                 {{-- Caracteristici tehnice --}}
                 {!! $description !!}
@@ -406,6 +410,7 @@
         const priceInput = document.getElementById('priceInput{{ $product->id }}');
         const variationInput = document.getElementById('variationInput{{ $product->id }}');
         const quantityDisplay = document.getElementById('product-quantity');
+        const addonTextDisplay = document.getElementById('addon-text');
 
         // Preload all product variations into JavaScript
         const variations = @json($product->variations);
@@ -430,6 +435,7 @@
                 priceInput.value = variation.price;
                 variationInput.value = variation.id;
                 quantityDisplay.textContent = `${variation.quantity} ${variation.measurement_unit.name}`;
+                addonTextDisplay.textContent = variation.addon_text ? variation.addon_text : "";
             } else {
                 console.error('No matching variation found.');
             }
@@ -477,7 +483,7 @@
 
         // Reset activeTab on reload
         // let activeTab = "{{ session('last_active_tab_{$product->id}', 'Descriere') }}"; 
-        let activeTab = 'Descriere';
+        // let activeTab = 'Descriere';
         tabContents.forEach(tab => {
             tab.classList.toggle("active", tab.id === activeTab);
         });
