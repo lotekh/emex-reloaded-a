@@ -14,12 +14,15 @@ class HomeController extends Controller
         return view('homepage');
     }
 
-    public function search() 
+    public function search()
     {
-        $search_url = url('search-script/search.php') . '?' . http_build_query($_GET);
-        $results = file_get_contents($search_url);
+        $search_script = base_path('search.php');
+        $query_string = http_build_query($_GET);
+        $escaped_query_string = '"' . $query_string . '"';
+        $php_code = 'parse_str(' . $escaped_query_string . ', $_GET); include("' . $search_script . '");';
+        $results = shell_exec("php -r '$php_code'");
 
-        return view('search', ['results' => $results]);        
+        return view('search', ['results' => $results]);
     }
 
     public function handleSlug($slug, Request $request)
