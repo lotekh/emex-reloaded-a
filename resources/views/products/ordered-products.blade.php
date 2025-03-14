@@ -306,7 +306,7 @@
         errorMsg.style.fontSize = "14px";
         errorMsg.style.marginTop = "5px";
         errorMsg.style.display = "none";
-        errorMsg.innerText = "Textul este prea lung. Maxim 255 de caractere.";
+        errorMsg.innerText = "Textul este prea lung. Maxim 190 de caractere.";
         mentionText.parentNode.appendChild(errorMsg);
     }
 
