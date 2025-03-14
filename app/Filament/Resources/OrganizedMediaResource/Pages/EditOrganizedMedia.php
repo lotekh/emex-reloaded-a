@@ -32,6 +32,8 @@ class EditOrganizedMedia extends EditMedia
 
         $mediaFiles = Media::where('name', $initialName)->get();
 
+        dd($data);
+
         //Decide what kind of file the new one is
         if($data['file']['ext'] == 'pdf') {
             $folder = 'technical-files';
