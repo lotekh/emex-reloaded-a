@@ -13,7 +13,7 @@
 
     <div class="hidden-xs">
         <div class="top_header_image_bg">
-            <div class="col justify-center align-center" id="blog_header" style="background: url('{{ asset('resources/images/blog/blog-background.jpg') }}'); height: 146px;">
+            <div class="col justify-center align-center" id="blog_header" style="background: url('{{ asset('resources/images/blog/blog-background.jpg') }}');">
                 <h1 class="z-10">
                     EMEX BLOG
                 </h1>

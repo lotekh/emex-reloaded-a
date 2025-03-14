@@ -23,6 +23,10 @@
   font-size: 12px;
 }
 
+#blog_header {
+  height: 500px;
+}
+
 #blog_header h1 {
   position: relative;
   padding: 24px 40px;
@@ -469,7 +473,6 @@ input[type="search"] {
   color: #000099 !important;
   font-size: 14px;
 }
-
 
 /* ADRIAN */
 .link_color1 {

@@ -695,7 +695,8 @@ class OrdersController extends Controller
                     $emailContent .= "Produs: " . $product->name . " \n";
                     $emailContent .= "Culoare: " . ($product->colour ?? 'Alb') . "\n";
                     $emailContent .= "Cantitate: " . $product->pivot->quantity . "\n";
-                    $emailContent .= "Pret cu TVA: " . number_format($product->pivot->price, 2) . "\n\n";
+                    $emailContent .= "Pret cu TVA: " . number_format($product->pivot->price, 2) . "\n";
+                    $emailContent .= "Mentiuni: " . $product->pivot->mentions . "\n\n";
                 }
 
                 if ($dbOrder->transport_price > 0) {
