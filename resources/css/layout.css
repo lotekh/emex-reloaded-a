@@ -2266,7 +2266,7 @@ header {
 }
 
 .dropdown-menu {
-  position: absolute;
+  position: absolute !important;
   top: 100%;
   display: none;
   margin: 0;
