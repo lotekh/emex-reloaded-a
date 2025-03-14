@@ -899,7 +899,7 @@ class OrdersController extends Controller
 
         // If the product exists, update the mention
         if (isset($cart[$productVariationId])) {
-            $cart[$productVariationId]['mentions'] = substr($mention, 0, 255); 
+            $cart[$productVariationId]['mentions'] = $mention; 
         }
 
         // Save the updated cart in session
