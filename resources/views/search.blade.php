@@ -9,7 +9,6 @@
 @endsection
 
 @section('content')
-error_reporting(E_ALL & ~E_WARNING);
     <div id="main" class="search_results_main">
         {!! Blade::render($results) !!}
     </div>

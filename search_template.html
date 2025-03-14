@@ -1,0 +1,174 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+This is the search template file (search_template.html) which contains the layout
+to your search page. 
+
+Note that you can not access the search function from this page. Instead, 
+you should open or link to the search script, which is a file named "search.php", 
+"search.asp", or "search.cgi".
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>Example Zoom search template page</title>
+	<!-- 
+	You can change the fonts, colors, and styles of your search results with the CSS below.
+	For some examples and more information on Cascading Style Sheets (CSS), visit our support page at:
+	http://www.wrensoft.com/zoom/support/css.html
+	-->
+	<style type="text/css">
+		.searchheading {
+			font-size: 18px;
+			height: 25px;
+		}
+
+		.summary {
+			color: #FF9800;
+		}
+
+		.suggestion {
+			font-size: 100%;
+		}
+
+		.results {
+			padding: 0 16px;
+		}
+
+		.category {
+			color: #999999;
+		}
+
+		.sorting {
+			text-align: right;
+		}
+
+		.context {
+			font-size: 100%;
+		}
+
+		.zoom_searchform {
+			font-size: 100%;
+		}
+
+		.zoom_results_per_page {
+			font-size: 80%;
+			margin-left: 10px;
+		}
+
+		.zoom_match {
+			font-size: 80%;
+			margin-left: 10px;
+		}
+
+		.zoom_categories {
+			font-size: 80%;
+		}
+
+		.zoom_categories ul {
+			display: inline;
+			margin: 0px;
+			padding: 0px;
+		}
+
+		.zoom_categories li {
+			display: inline;
+			margin-left: 15px;
+			list-style-type: none;
+		}
+
+		.cat_summary ul {
+			margin: 0px;
+			padding: 0px;
+			display: inline;
+		}
+
+		.cat_summary li {
+			display: inline;
+			margin-left: 15px;
+			list-style-type: none;
+		}
+
+		input.zoom_button {}
+
+		input.zoom_searchbox {}
+
+		.result_image {
+			float: left;
+			display: block;
+		}
+
+		.result_image img {
+			margin: 10px;
+			width: 80px;
+			border: 0px;
+		}
+
+		.result_pages {
+			margin-top: 15px;
+			font-size: 16px;
+			color: #FF9800;
+		}
+
+		.result_pagescount {
+			margin-top: -20px;
+			margin-bottom: 15px;
+		}
+
+		.searchtime {
+			font-size: 80%;
+		}
+
+		.recommend_image {
+			float: left;
+			display: block;
+		}
+
+		.recommend_image img {
+			margin: 10px;
+			width: 80px;
+			border: 0px;
+		}
+
+		a:hover,
+		a:visited,
+		a:link,
+		a:active {
+			text-decoration: none;
+		}
+
+		.search_results_main a {
+			color: #337ab7;
+		}
+
+		.search_results_main .result_title b {
+			color: #FF9800;
+		}
+	</style>
+</head>
+
+<body onload="if (document.getElementById('zoom_searchbox')) {document.getElementById('zoom_searchbox').focus();}">
+	<!-- 
+	The ZOOMSEARCH tag below marks the place where your search form and search results
+	will be inserted when you run the search script. By default, you do not need to place a 
+	search form here, the search script will generate one and display it before the search 
+	results. 
+	
+	There are other tags you can add to this page to show/remove different elements from
+	the search results. See "Advanced template options" in the Users Guide or Help file
+	for more information.
+	-->
+
+	<div class="container">
+		<h1 id="pt">Rezultatele <span class="text-gold">Cautarii</span></h1>
+	</div>
+
+	<div class="container" id="search_results2">
+		<div id="search_results_row2">
+			<!--ZOOMSEARCH-->
+		</div>
+	</div>
+</body>
+
+</html>
