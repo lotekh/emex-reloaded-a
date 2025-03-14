@@ -279,7 +279,7 @@
 <div id="mentionModal" class="lightbox-container hidden-important">
   <div class="bg-white p-8 shadow-lg w-96">
       <h2 class="text-lg font-bold mb-4">Mențiune pentru produs</h2>
-      <textarea id="mentionText" class="w-full p-2 border rounded" rows="3" maxlength="255"></textarea>
+      <textarea id="mentionText" class="w-full p-2 border rounded" rows="3"></textarea>
       <input type="hidden" id="mentionProductId">
       <div class="flex justify-end gap-4 mt-4">
           <button id="closeMentionModal" class="px-4 py-2 bg-gray-300 rounded">Anulează</button>
@@ -290,50 +290,69 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const modal = document.getElementById('mentionModal');
-        const mentionText = document.getElementById('mentionText');
-        const mentionProductId = document.getElementById('mentionProductId');
-        const closeMentionModal = document.getElementById('closeMentionModal');
-        const saveMention = document.getElementById('saveMention');
-    
-        document.querySelectorAll('.mention-btn').forEach(button => {
-            button.addEventListener('click', function () {
-                mentionProductId.value = this.getAttribute('data-product-id');
-                mentionText.value = this.getAttribute('data-current-mention') || '';
-                modal.classList.remove('hidden-important');
-            });
-        });
-    
-        closeMentionModal.addEventListener('click', function () {
-            modal.classList.add('hidden-important');
-        });
-    
-        saveMention.addEventListener('click', function () {
-            const productId = mentionProductId.value;
-            const mention = mentionText.value.trim();
-    
-            fetch("{{ route('orders.updateMention') }}", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                },
-                body: JSON.stringify({
-                    product_variation_id: productId,
-                    mention: mention
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    document.querySelector(`.mention-btn[data-product-id="${productId}"]`).setAttribute('data-current-mention', mention);
-                    modal.classList.add('hidden-important');
-                }
-            })
-            .catch(error => console.error('Eroare:', error));
-        });
-    });
+  document.addEventListener('DOMContentLoaded', function () {
+      const modal = document.getElementById('mentionModal');
+      const mentionText = document.getElementById('mentionText');
+      const mentionProductId = document.getElementById('mentionProductId');
+      const closeMentionModal = document.getElementById('closeMentionModal');
+      const saveMention = document.getElementById('saveMention');
+
+      // Error message
+      let errorMsg = document.createElement("div");
+      errorMsg.id = "mentionError";
+      errorMsg.style.color = "red";
+      errorMsg.style.fontSize = "14px";
+      errorMsg.style.marginTop = "5px";
+      errorMsg.style.display = "none";
+      errorMsg.innerText = "Textul este prea lung. Maxim 255 de caractere.";
+      mentionText.parentNode.appendChild(errorMsg);
+  
+      document.querySelectorAll('.mention-btn').forEach(button => {
+          button.addEventListener('click', function () {
+              mentionProductId.value = this.getAttribute('data-product-id');
+              mentionText.value = this.getAttribute('data-current-mention') || '';
+              modal.classList.remove('hidden-important');
+              // validateMentionLength();
+               // Reset the error message and save button
+              errorMsg.style.display = "none";
+              saveMention.disabled = false;
+          });
+      });
+  
+      closeMentionModal.addEventListener('click', function () {
+          modal.classList.add('hidden-important');
+      });
+  
+      saveMention.addEventListener('click', function () {
+          if (mentionText.value.length > 255) {
+            errorMsg.style.display = "block";  
+            saveMention.disabled = true; 
+            return; 
+          }
+          const productId = mentionProductId.value;
+          const mention = mentionText.value.trim();
+  
+          fetch("{{ route('orders.updateMention') }}", {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRF-TOKEN': "{{ csrf_token() }}"
+              },
+              body: JSON.stringify({
+                  product_variation_id: productId,
+                  mention: mention
+              })
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  document.querySelector(`.mention-btn[data-product-id="${productId}"]`).setAttribute('data-current-mention', mention);
+                  modal.classList.add('hidden-important');
+              }
+          })
+          .catch(error => console.error('Eroare:', error));
+      });
+  });
 </script>
     
   
