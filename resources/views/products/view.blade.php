@@ -318,12 +318,15 @@
 
     <div class="mt-16 mt-custom">
         <div class="tabs-selector-row">
-            <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid" aria-selected="true" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
-            <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid" aria-selected="false" tabindex="0" onclick="openTab(event, 'DetaliiUtilizare')"><span>Detalii de utilizare</span></button>
-            <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid" aria-selected="false" tabindex="0" onclick="openTab(event, 'CaracteristiciTehnice')"><span>Caracteristici Tehnice</span></button>
+            <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid {{ $activeTab == 'Descriere' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'Descriere' ? 'true' : '' }}" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
+            <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid {{ $activeTab == 'DetaliiUtilizare' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'DetaliiUtilizare' ? 'true' : '' }}" tabindex="0" onclick="openTab(event, 'DetaliiUtilizare')"><span>Detalii de utilizare</span></button>
+            <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid {{ $activeTab == 'CaracteristiciTehnice' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'CaracteristiciTehnice' ? 'true' : '' }}" tabindex="0" onclick="openTab(event, 'CaracteristiciTehnice')"><span>Caracteristici Tehnice</span></button>
         </div>
 
         <div class="tab-content-container">
+            {{-- @php
+                dd($activeTab) ;
+            @endphp --}}
             <div id="Descriere" class="tab-content {{ $activeTab == 'Descriere' ? 'active' : '' }}">
                 @php
                     $description = str_replace(
@@ -337,12 +340,12 @@
                 
             </div>
 
-            <div id="DetaliiUtilizare" class="tab-content {{ $activeTab == 'Descriere' ? 'active' : '' }}">
+            <div id="DetaliiUtilizare" class="tab-content {{ $activeTab == 'DetaliiUtilizare' ? 'active' : '' }}">
                 {!! Blade::render(html_entity_decode($product->usage_details) ) !!}
                 {{-- Detalii Utilizare --}}
             </div>
 
-            <div id="CaracteristiciTehnice" class="tab-content {{ $activeTab == 'Descriere' ? 'active' : '' }}">
+            <div id="CaracteristiciTehnice" class="tab-content {{ $activeTab == 'CaracteristiciTehnice' ? 'active' : '' }}">
                 {!! Blade::render($product->technical_details ) !!}
                 {{-- Caracteristici tehnice --}}
                 {!! $description !!}
@@ -483,7 +486,7 @@
 
         // Reset activeTab on reload
         // let activeTab = "{{ session('last_active_tab_{$product->id}', 'Descriere') }}"; 
-        let activeTab = 'Descriere';
+        // let activeTab = 'Descriere';
         tabContents.forEach(tab => {
             tab.classList.toggle("active", tab.id === activeTab);
         });
