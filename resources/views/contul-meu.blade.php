@@ -342,12 +342,8 @@
                                 <div class="flex ml-8 mt-16 mb-16">
                                     @php
                                     $proformaPath = $order->proforma ? $order->proforma->path : null;
-                                    // $proformaUrl = asset('storage/' . $proformaPath);
                                     $proformaUrl = $proformaPath && file_exists(storage_path('app/public/' . $proformaPath)) ? asset('storage/' . $proformaPath) : null;
                                     @endphp
-                                    {{-- <a href="{{$proformaUrl}}" target="_blank">
-                                        <button class="btn btn-blue-outline rounded-sm">Descarcă proforma</button>
-                                    </a> --}}
                                     @if ($proformaUrl)
                                         <a href="{{ $proformaUrl }}" target="_blank">
                                             <button class="btn btn-blue-outline rounded-sm">Descarcă proforma</button>
