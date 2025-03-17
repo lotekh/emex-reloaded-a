@@ -345,7 +345,6 @@
             <div id="CaracteristiciTehnice" class="tab-content {{ $activeTab == 'CaracteristiciTehnice' ? 'active' : '' }}">
                 {!! Blade::render($product->technical_details ) !!}
                 {{-- Caracteristici tehnice --}}
-                {!! $description !!}
             </div>
         </div>
     </div>
