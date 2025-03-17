@@ -84,9 +84,9 @@
     <div class="w-full col justify-end">
       <div class="price row align-center product-price-pl">
         @if($initialVariation)
-          <p>
-            <span>Pret:&nbsp;</span>
-            <span class="value" id="price{{$product->id}}">{{ $initialVariation->price }}</span>
+          <p class="flex align-end">
+            <span class="mb-4">Pret:&nbsp;</span>
+            <span class="value mr-4" id="price{{$product->id}}">{{ $initialVariation->price }}</span>
             <span class="value">Lei</span>
           </p>
         @else
