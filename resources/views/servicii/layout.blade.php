@@ -82,13 +82,6 @@ $baseUrl = url('/');
     </div>
 </div>
 
-{{-- <div id="global-lightbox" class="lightbox hidden">
-    <div class="lightbox-content">
-        <span class="close-btn" style=" background-image: url('{{ asset('resources/images/sprite.png') }}');" onclick="closeServiciiLightbox()"></span>
-        <img id="global-lightbox-image" src="{{ asset('images/landing/stb/mici/Pardoseala-cuartz-epoxdica-depozit-legume.jpg') }}" alt="global-lightbox image" title="Global Lightbox Image">
-    </div>
-</div> --}}
-
 <script>
 
     function openImageLightbox(image) {
