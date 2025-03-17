@@ -695,7 +695,8 @@ class OrdersController extends Controller
                     $emailContent .= "Produs: " . $product->name . " \n";
                     $emailContent .= "Culoare: " . ($product->colour ?? 'Alb') . "\n";
                     $emailContent .= "Cantitate: " . $product->pivot->quantity . "\n";
-                    $emailContent .= "Pret cu TVA: " . number_format($product->pivot->price, 2) . "\n\n";
+                    $emailContent .= "Pret cu TVA: " . number_format($product->pivot->price, 2) . "\n";
+                    $emailContent .= "Mentiuni: " . $product->pivot->mentions . "\n\n";
                 }
 
                 if ($dbOrder->transport_price > 0) {
@@ -898,7 +899,7 @@ class OrdersController extends Controller
 
         // If the product exists, update the mention
         if (isset($cart[$productVariationId])) {
-            $cart[$productVariationId]['mentions'] = substr($mention, 0, 255); 
+            $cart[$productVariationId]['mentions'] = $mention; 
         }
 
         // Save the updated cart in session
