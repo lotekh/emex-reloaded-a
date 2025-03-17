@@ -664,10 +664,10 @@
             </section>
             <div class="categorii" id="cine-suntem" onclick="toggleAccordion('cine-suntem')">
                 <div class="categorii-mobile">
-                    <li class="menu-item">
+                    <div class="menu-item">
                         Cine suntem
                         <span class="arrow-menu">▼</span>
-                    </li>
+                    </div>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="cine-suntem-menu">
                     <li><a href="{{ url('/despre-noi') }}" title="Despre noi">Despre noi</a></li>
@@ -680,10 +680,10 @@
             </div>
             <div class="categorii" id="produse" onclick="toggleAccordion('produse')">
                 <div class="categorii-mobile">
-                    <li class="menu-item">
+                    <div class="menu-item">
                         Produse
                         <span class="arrow-menu">▼</span>
-                    </li>
+                    </div>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="produse-menu">
                     <li id="apmim_mob"><a href="{{ url('/produse') }}" title="toate produsele">Toate Produsele</a></li>
@@ -700,10 +700,10 @@
             </div>
             <div class="categorii" id="aplicare" onclick="toggleAccordion('aplicare')">
                 <div class="categorii-mobile">
-                    <li class="menu-item">
+                    <div class="menu-item">
                         Aplicare
                         <span class="arrow-menu">▼</span>
-                    </li>
+                    </div>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="aplicare-menu">
                     <li><a href="{{ url('/aplicare-vopsele-lavabile') }}" title="Vopsele Lavabile">Vopsele Lavabile</a></li>
@@ -720,10 +720,10 @@
             </div>
             <div class="categorii" id="consum" onclick="toggleAccordion('consum')">
                 <div class="categorii-mobile">
-                    <li class="menu-item">
+                    <div class="menu-item">
                         Consum
                         <span class="arrow-menu">▼</span>
-                    </li>
+                    </div>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="consum-menu">
                     @foreach ($categories as $ind => $category)
@@ -737,10 +737,10 @@
             </div>
             <div class="categorii" id="servicii" onclick="toggleAccordion('servicii')">
                 <div class="categorii-mobile">
-                    <li class="menu-item">
+                    <div class="menu-item">
                         Servicii
                         <span class="arrow-menu">▼</span>
-                    </li>
+                    </div>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="servicii-menu">
                     <li><a href="{{ url('/aplicare-covor-epoxidic-stb') }}" title="Pardoseli Cuartz">Pardoseli Cuartz Epoxi</a></li>
@@ -751,10 +751,10 @@
             </div>
             <div class="categorii" id="culori" onclick="toggleAccordion('culori')">
                 <div class="categorii-mobile">
-                    <li class="menu-item">
+                    <div class="menu-item">
                         Culori
                         <span class="arrow-menu">▼</span>
-                    </li>
+                    </div>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="culori-menu">
                     <li><a href="{{ url('/cartela-culori-ral-vopsele') }}" title="Cartela RAL">Cartela RAL - Emailuri</a></li>
