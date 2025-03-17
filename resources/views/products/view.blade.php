@@ -92,10 +92,12 @@
                                             @if ($initialVariation->addon_text)
                                                 <p class="mb-4">Pachet</p>
                                             @else
-                                                <p class="section-info" id="pret_value">Bidon  <span id="packaging{{ $product->id }}">
-                                                    {{ fmod($initialVariation->quantity, 1) != 0 ? number_format($initialVariation->quantity, 2) : $initialVariation->quantity }}
-                                                    {{ $initialVariation->measurementUnit->name }}
-                                                </span></p>
+                                                <p class="section-info" id="pret_value">Bidon  
+                                                    <span id="packaging{{ $product->id }}">
+                                                        {{ fmod($initialVariation->quantity, 1) != 0 ? number_format($initialVariation->quantity, 2) : $initialVariation->quantity }}
+                                                        {{ $initialVariation->measurementUnit->name }}
+                                                    </span>
+                                                </p>
                                             @endif
                                         </div>
 
@@ -411,6 +413,7 @@
         const variationInput = document.getElementById('variationInput{{ $product->id }}');
         const quantityDisplay = document.getElementById('product-quantity');
         const addonTextDisplay = document.getElementById('addon-text');
+        const packagingDisplay = document.getElementById('packaging{{ $product->id }}');
 
         // Preload all product variations into JavaScript
         const variations = @json($product->variations);
@@ -434,8 +437,15 @@
                 priceDisplay.textContent = variation.price.toFixed(2);
                 priceInput.value = variation.price;
                 variationInput.value = variation.id;
-                quantityDisplay.textContent = `${variation.quantity} ${variation.measurement_unit.name}`;
-                addonTextDisplay.textContent = variation.addon_text ? variation.addon_text : "";
+                if (quantityDisplay) {
+                    quantityDisplay.textContent = `${variation.quantity} ${variation.measurement_unit.name}`;
+                }
+                if (addonTextDisplay) {
+                    addonTextDisplay.textContent = variation.addon_text ? variation.addon_text : "";
+                }
+                if (packagingDisplay){
+                    packagingDisplay.textContent = `${variation.quantity} ${variation.measurement_unit.name}`;
+                }
             } else {
                 console.error('No matching variation found.');
             }
@@ -481,9 +491,6 @@
             }
         };
 
-        // Reset activeTab on reload
-        // let activeTab = "{{ session('last_active_tab_{$product->id}', 'Descriere') }}"; 
-        // let activeTab = 'Descriere';
         tabContents.forEach(tab => {
             tab.classList.toggle("active", tab.id === activeTab);
         });
