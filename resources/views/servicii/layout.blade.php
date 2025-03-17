@@ -57,6 +57,7 @@ $baseUrl = url('/');
     </div>
     <div id="landing_video_wrapper">
         @yield('video')
+        {{-- {!! trim($__env->yieldContent('video')) !!} --}}
     </div>
 </div>
 
