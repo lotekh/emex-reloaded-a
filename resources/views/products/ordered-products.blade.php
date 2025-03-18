@@ -350,8 +350,8 @@
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                document.querySelector(`.mention-btn[data-product-id="${productId}"]`)
-                    .setAttribute('data-current-mention', mention);
+                document.querySelectorAll(`.mention-btn[data-product-id="${productId}"]`)
+                .forEach(button => button.setAttribute('data-current-mention', mention));
                 modal.classList.add('hidden-important');
             }
         })
