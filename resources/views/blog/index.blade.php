@@ -45,7 +45,7 @@
                 <div class="flex grid grid-3">
                     <div class="flex justify-center hide-mobile pr-32">
                         @php
-                            $blogImageUrl = $blogArticle->featuredImage ? asset('storage/' .$blogArticle->featuredImage->path) : $baseUrl . '/images/default-placeholder.png';
+                            $blogImageUrl = $blogArticle->featuredImage ? asset('storage/' .$blogArticle->featuredImage->path) : url('/images/default-placeholder.png');
                         @endphp
                          <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}">
                             <img class="w-full" src="{{ $blogImageUrl }}" alt="">
