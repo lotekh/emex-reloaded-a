@@ -452,18 +452,18 @@
                             @php
                             $blogArticles = \App\Models\BlogArticle::latest()->limit(3)->get();
                             @endphp
-                            <ul class="col" id="recent-news-list">
+                            <div class="col" id="recent-news-list">
                                 @foreach ($blogArticles as $blogArticle)
-                                    <li>
+                                    <div>
                                         <div class="news_row mb-16">
                                             <h4 class="news-title">
                                                 <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}">{{ $blogArticle->title }}</a>
                                             </h4>                                            
                                             <p>{{ $blogArticle->created_at->format('j.m.Y') }}</p>
                                         </div>
-                                    </li>
+                                    </div>
                                 @endforeach
-                            </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
