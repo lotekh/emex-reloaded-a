@@ -27,7 +27,7 @@
                 <div></div>
                 <img class="logo-footer" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}" alt="Logo Footer">
                 <button onclick="closeLightbox()" role="button" tabindex="0" class="close-btn" aria-label="Inchide">
-                    <img width="32" height="32" src="{{ asset('resources/new_design/icons/close.svg') }}" alt="close">
+                    <img width="32" height="32" src="{{ asset('resources/new_design/icons/close.svg') }}" alt="Close Auth Lightbox">
                 </button>
             </div>
             <div class="col align-center content">
