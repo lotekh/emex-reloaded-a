@@ -211,3 +211,7 @@
 .hidden-important {
   display: none !important;
 }
+
+#mention-modal-box {
+  max-width: 70%;
+}
