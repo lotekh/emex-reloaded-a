@@ -130,7 +130,7 @@
                 </a>
                 <form class="relative flex align-center w-full justify-end" method="GET" action="{{ url('/search') }}">
                     <div class="flex align-center">
-                        <img width="18" height="18" src="{{ asset('resources/new_design/icons/search.svg') }}" id="search-icon" alt="search-icon" title="search-icon">
+                        <img width="18" height="18" src="{{ asset('resources/new_design/icons/search.svg') }}" id="search-icon" alt="Search Icon" title="search-icon">
                     </div>
                     <input id="search-input-desktop" type="text" name="zoom_query" class="form-control w-full" placeholder="Cauta dupa nume produs sau cod SKU">
                 </form>
@@ -222,7 +222,7 @@
                         <img class="logo-footer" alt="Emex - un brand de incredere" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
                         <button onclick="closeModal('auth-lightbox')" role="button" tabindex="0" class="close-btn" aria-label="Inchide">
                             <span class="flex align-center">
-                                <img src="{{ asset('resources/new_design/icons/close.svg') }}" alt="close" width="32" height="32">
+                                <img src="{{ asset('resources/new_design/icons/close.svg') }}" alt="Close Auth Lightbox" width="32" height="32">
                             </span>
                         </button>
                     </div>
@@ -240,7 +240,7 @@
                             <div class="form-group w-full relative">
                                 <label for="form-login-password">Parola<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-login-password" type="password" name="password" required>
-                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" alt="eye-solid-icon" class="password-toggle-icon" id="toggle-login-password-visibility"  onclick="togglePasswordVisibility('form-login-password', 'toggle-login-password-visibility')" >
+                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" alt="eye-solid-icon" width="20px" height="18px" class="password-toggle-icon" id="toggle-login-password-visibility"  onclick="togglePasswordVisibility('form-login-password', 'toggle-login-password-visibility')" >
                             </div>
                             <div class="w-full flex justify-center">
                                 <button type="submit" class="w-fit btn rounded-lg px-16 mt-32">Autentifica-te</button>
@@ -258,7 +258,7 @@
                         <img class="logo-footer" alt="Emex - un brand de incredere" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
                         <button onclick="closeModal('register-lightbox')" role="button" tabindex="0" class="close-btn" aria-label="Inchide">
                             <span class="flex align-center">
-                                <img src="{{ asset('resources/new_design/icons/close.svg') }}" alt="close" width="32" height="32">
+                                <img src="{{ asset('resources/new_design/icons/close.svg') }}" alt="Close Auth Lightbox" width="32" height="32">
                             </span>
                         </button>
                     </div>
@@ -318,7 +318,7 @@
                         <img class="logo-footer" alt="Emex - un brand de incredere" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
                         <button onclick="closeModal('recover-password-lightbox')" role="button" tabindex="0" class="close-btn" aria-label="Recupereaza parola">
                             <span class="flex align-center">
-                                <img src="{{ asset('resources/new_design/icons/close.svg') }}" alt="close" width="32" height="32">
+                                <img src="{{ asset('resources/new_design/icons/close.svg') }}" alt="Close Auth Lightbox" width="32" height="32">
                             </span>
                         </button>
                     </div>
@@ -664,10 +664,10 @@
             </section>
             <div class="categorii" id="cine-suntem" onclick="toggleAccordion('cine-suntem')">
                 <div class="categorii-mobile">
-                    <li class="menu-item">
+                    <div class="menu-item">
                         Cine suntem
                         <span class="arrow-menu">▼</span>
-                    </li>
+                    </div>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="cine-suntem-menu">
                     <li><a href="{{ url('/despre-noi') }}" title="Despre noi">Despre noi</a></li>
@@ -680,10 +680,10 @@
             </div>
             <div class="categorii" id="produse" onclick="toggleAccordion('produse')">
                 <div class="categorii-mobile">
-                    <li class="menu-item">
+                    <div class="menu-item">
                         Produse
                         <span class="arrow-menu">▼</span>
-                    </li>
+                    </div>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="produse-menu">
                     <li id="apmim_mob"><a href="{{ url('/produse') }}" title="toate produsele">Toate Produsele</a></li>
@@ -700,10 +700,10 @@
             </div>
             <div class="categorii" id="aplicare" onclick="toggleAccordion('aplicare')">
                 <div class="categorii-mobile">
-                    <li class="menu-item">
+                    <div class="menu-item">
                         Aplicare
                         <span class="arrow-menu">▼</span>
-                    </li>
+                    </div>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="aplicare-menu">
                     <li><a href="{{ url('/aplicare-vopsele-lavabile') }}" title="Vopsele Lavabile">Vopsele Lavabile</a></li>
@@ -720,10 +720,10 @@
             </div>
             <div class="categorii" id="consum" onclick="toggleAccordion('consum')">
                 <div class="categorii-mobile">
-                    <li class="menu-item">
+                    <div class="menu-item">
                         Consum
                         <span class="arrow-menu">▼</span>
-                    </li>
+                    </div>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="consum-menu">
                     @foreach ($categories as $ind => $category)
@@ -737,10 +737,10 @@
             </div>
             <div class="categorii" id="servicii" onclick="toggleAccordion('servicii')">
                 <div class="categorii-mobile">
-                    <li class="menu-item">
+                    <div class="menu-item">
                         Servicii
                         <span class="arrow-menu">▼</span>
-                    </li>
+                    </div>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="servicii-menu">
                     <li><a href="{{ url('/aplicare-covor-epoxidic-stb') }}" title="Pardoseli Cuartz">Pardoseli Cuartz Epoxi</a></li>
@@ -751,10 +751,10 @@
             </div>
             <div class="categorii" id="culori" onclick="toggleAccordion('culori')">
                 <div class="categorii-mobile">
-                    <li class="menu-item">
+                    <div class="menu-item">
                         Culori
                         <span class="arrow-menu">▼</span>
-                    </li>
+                    </div>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="culori-menu">
                     <li><a href="{{ url('/cartela-culori-ral-vopsele') }}" title="Cartela RAL">Cartela RAL - Emailuri</a></li>

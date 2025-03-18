@@ -16,11 +16,6 @@
 <meta property="og:url" content="https://emex.ro/aplicare-vopsea-marcaj-rutier">
 <meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
 <meta property="og:type" content="website" />
-<meta name="rating" content="General">
-<meta name="geo.region" content="RO-IF">
-<meta name="geo.placename" content="Jilava">
-<meta name="geo.position" content="44.328689;26.067273">
-<meta name="ICBM" content="44.328689,26.067273">
 @endsection
 
 @section('header_image_source', asset('resources/images/aplicare/Aplicare-trafic-rutier.jpg'))
