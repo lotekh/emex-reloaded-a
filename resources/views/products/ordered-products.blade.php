@@ -271,11 +271,11 @@
 <div id="mentionModal" class="lightbox-container hidden-important">
   <div class="bg-white p-8" id="mention-modal-box">
       <h2 class="text-lg font-bold mb-4 text-center default-blue">Mentiuni</h2>
-      <textarea id="mentionText" class="w-full p-2 border rounded" rows="3"></textarea>
+      <textarea id="mentionText" class="w-full p-2 border rounded" rows="3" placeholder="Adaugati date despre produsul dorit, utilizare, suport sau cod Promo, daca acestea exista."></textarea>
       <input type="hidden" id="mentionProductId">
       <div class="flex justify-end gap-4 mt-4">
           <button id="closeMentionModal" class="px-4 py-2 bg-gray-300 rounded">Anulează</button>
-          <button id="saveMention" class="px-4 py-2 bg-blue-500 text-white rounded">Salvează</button>
+          <button id="saveMention" class="px-4 py-2 bg-blue-500 text-white rounded">Trimite</button>
       </div>
   </div>
 </div>
