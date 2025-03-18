@@ -2345,6 +2345,10 @@ header {
   font-size: 1em;
 }
 
+.default-blue {
+  color: var(--default-blue);
+}
+
 #header_social_media a span {
   margin-left: 8px;
 }
