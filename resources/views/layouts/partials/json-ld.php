@@ -54,10 +54,6 @@ if (request()->routeIs('blog.article.show')) {
     }
 }
 
-
-
-
-
 // JSON-LD Static
 $currentUrl = request()->path() ?: 'homepage';
 $jsonFile = resource_path('views/layouts/partials/json-lds/' . $currentUrl . '.json-ld');
@@ -73,8 +69,6 @@ if (file_exists($jsonFile)) {
     }
 }
 $big_json = '[' . $big_json . ']';
-// dd(($big_json[0]));
-// var_dump($big_json); die();
 ?>
 
 
