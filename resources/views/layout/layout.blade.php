@@ -291,9 +291,9 @@
                                 <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" alt="eye-solid-icon" class="password-toggle-icon" id="toggle-register-password-visibility"  onclick="togglePasswordVisibility('form-register-password', 'toggle-register-password-visibility')" >
                             </div>
                             <div class="row align-center">
-                                <input type="checkbox" class="hidden" name="terms" id="tc" required checked>
+                                <input type="checkbox" class="hidden" name="terms" id="tc" value="1" required checked>
                                 <label class="switch">
-                                    <input type="checkbox" name="gdpr" id="gdpr" required>
+                                    <input type="checkbox" name="gdpr" id="gdpr" name="gdpr" value="1" required>
                                     <i></i>
                                 </label>
                                 <span>
