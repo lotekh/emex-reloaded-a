@@ -109,7 +109,7 @@ Performante covor epoxidic decorativ
 
 @section('video')
 <video controls width="250" height="168" class="responsive" poster="https://vopsele.xyz/videos/Filmare-covor-epoxidic-cuartz-stb.jpg">
-    <source src="https://vopsele.xyz/videos/Pardoseala-covor-de-cuart-epoxidic.mp4" type="video/mp4">
+    <source src="https://vopsele.xyz/videos/Pardoseala-covor-de-cuart-epoxidic.mp4" type="video/mp4"/>
     Vopsire cu sisteme epoxidice pentru pardoseli industriale, hale, zone cu circulatie intensa, hypermarket-uri, etc.
 </video>
 @endsection
