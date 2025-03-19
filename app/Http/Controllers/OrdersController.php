@@ -271,10 +271,15 @@ class OrdersController extends Controller
             session()->put('order_id', $order_id);
         }
 
+        do {
+            $identifier = str_pad(mt_rand(1, 9999999), 7, '0', STR_PAD_LEFT);
+        } while (Order::where('identifier', $identifier)->exists());
+        
+
         // Initialize or get the data from the session for our current order 
         $order = session()->get('order', [
             'guid' => \Illuminate\Support\Str::uuid(),
-            'identifier' => strtoupper(\Illuminate\Support\Str::random(10)),
+            'identifier' => $identifier,
             'total' => array_sum(array_map(function ($item) {
                 return $item['quantity'] * $item['price'];
             }, $cart)),
