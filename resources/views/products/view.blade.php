@@ -178,7 +178,7 @@
                                                         Vopsea
                                                     @endif
                                                     <span id="product-quantity" class="text-blue-009">
-                                                        {{ $initialVariation->quantity }} 
+                                                        {{ fmod($initialVariation->quantity, 1) == 0 ? $initialVariation->quantity : number_format($initialVariation->quantity, 2) }} 
                                                         {{ $initialVariation->measurementUnit->name }}
                                                     </span>
                                                     
@@ -493,8 +493,11 @@
                 priceDisplay.textContent = variation.price.toFixed(2);
                 priceInput.value = variation.price;
                 variationInput.value = variation.id;
+                if(variation.quantity % 1 != 0) {
+                    variation.quantity = variation.quantity.toFixed(2);
+                }
                 if (quantityDisplay) {
-                    quantityDisplay.textContent = `${variation.quantity} ${variation.measurement_unit.name}`;
+                    quantityDisplay.textContent = variation.quantity + ' ' + variation.measurement_unit.name;
                 }
                 if (addonTextDisplay) {
                     addonTextDisplay.textContent = variation.addon_text ? variation.addon_text : "";
