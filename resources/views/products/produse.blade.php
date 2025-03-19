@@ -68,7 +68,7 @@
                                             <div>
                                                 <label class="custom-checkbox">
                                                     <span class="filter">{{ $subFilter->name }}</span>
-                                                    <input type="checkbox" name="category{{ $subFilter->id }}" {{ request()->has('category'.$subFilter->id) ? 'checked' : '' }}>
+                                                    <input type="checkbox" value="1" name="category{{ $subFilter->id }}" {{ request()->has('category'.$subFilter->id) ? 'checked' : '' }}>
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
@@ -117,7 +117,7 @@
                                                     <div>
                                                         <label class="custom-checkbox">
                                                             <span class="filter">{{ $subFilter->name }}</span>
-                                                            <input type="checkbox" name="category{{ $subFilter->id }}" {{ request()->has('category'.$subFilter->id) ? 'checked' : '' }}>
+                                                            <input type="checkbox" value="1" name="category{{ $subFilter->id }}" {{ request()->has('category'.$subFilter->id) ? 'checked' : '' }}>
                                                             <span class="checkmark"></span>
                                                         </label>
                                                     </div>

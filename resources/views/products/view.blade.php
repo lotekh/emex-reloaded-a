@@ -377,9 +377,9 @@
 
     <div class="mt-16 mt-custom">
         <div class="tabs-selector-row">
-            <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid {{ $activeTab == 'Descriere' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'Descriere' ? 'true' : '' }}" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
-            <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid {{ $activeTab == 'DetaliiUtilizare' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'DetaliiUtilizare' ? 'true' : '' }}" tabindex="0" onclick="openTab(event, 'DetaliiUtilizare')"><span>Detalii de utilizare</span></button>
-            <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid {{ $activeTab == 'CaracteristiciTehnice' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'CaracteristiciTehnice' ? 'true' : '' }}" tabindex="0" onclick="openTab(event, 'CaracteristiciTehnice')"><span>Caracteristici Tehnice</span></button>
+            <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid {{ $activeTab == 'Descriere' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'Descriere' ? 'true' : 'false' }}" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
+            <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid {{ $activeTab == 'DetaliiUtilizare' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'DetaliiUtilizare' ? 'true' : 'false' }}" tabindex="0" onclick="openTab(event, 'DetaliiUtilizare')"><span>Detalii de utilizare</span></button>
+            <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid {{ $activeTab == 'CaracteristiciTehnice' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'CaracteristiciTehnice' ? 'true' : 'false' }}" tabindex="0" onclick="openTab(event, 'CaracteristiciTehnice')"><span>Caracteristici Tehnice</span></button>
         </div>
 
         <div class="tab-content-container">
@@ -450,7 +450,7 @@
     <div class="lightbox-content">
         <span class="close-btn" style=" background-image: url('{{ asset('resources/images/sprite.png') }}')" onclick="closeVideoLightbox()"></span>
         <video id="global-lightbox-video-element" controls>
-            <source src="" type="video/mp4">
+            <source src="https://vopsele.xyz/videos/Pardoseala-covor-de-cuart-epoxidic.mp4" type="video/mp4">
             Browserul tău nu suportă elementul video.
         </video>
     </div>

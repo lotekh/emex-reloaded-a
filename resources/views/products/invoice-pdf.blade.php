@@ -5,8 +5,8 @@
 <style>
     @page {
      margin: 0px;
-     margin-header: 0; /* <any of the usual CSS values for margins> */
-	 margin-footer: 0; /* <any of the usual CSS values for margins> */
+     margin-header: 0; 
+	 margin-footer: 0; 
     }
 
     body { 
@@ -48,6 +48,12 @@
         padding-bottom: 10px;
         color: white;
     }
+
+    .blue-table td {
+        white-space: nowrap; 
+        overflow: auto; 
+    }
+
 
     .blue {
         background-color: #001d4d;
@@ -195,8 +201,8 @@
                                     <td class="blue-table col-12" style="line-height: 1;">
                                         <table class="col-12">
                                             <tr class="col-12">
-                                                <td class="col-8 blue pad-top-bot-0">TOTAL PLATA</td>
-                                                <td class="col-this-4 blue pad-top-bot-0">{{ number_format($order['total'], 2, '.', ',') }} lei</td>
+                                                <td class="col-6 blue pad-top-bot-0">TOTAL PLATA</td>
+                                                <td class="col-6 blue pad-top-bot-0">{{ number_format($order['total'], 2, '.', ',') }} lei</td>
                                             </tr>
                                         </table>
                                     </td>

@@ -254,13 +254,13 @@
       </div>
       <div class="flex mt-16 gap-xs justify-center align-end">
         <a class="row align-center" href="{{ url('/produse') }}">
-          <button class="btn btn-blue rounded-xl medium-width">Continua cumparaturile</button>
+          <button class="btn btn-blue rounded-xl medium-width height-43px">Continua cumparaturile</button>
         </a>
         @if($totalPrice < 200)
             {{-- no 'Finalizeaza Comanda' button --}}
         @else
           <a class="row align-center" href="{{ route('checkout.form') }}">
-            <button class="btn btn-blue rounded-xl medium-width">Finalizeaza comanda</button>
+            <button class="btn btn-blue rounded-xl medium-width height-43px">Finalizeaza comanda</button>
           </a>
         @endif
       </div>

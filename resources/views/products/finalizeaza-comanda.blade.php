@@ -302,7 +302,7 @@
                     <div id="curier-container" class="hidden mt-32">
                         <div class="flex justify-center align-center mb-16">
                             <label class="switch">
-                                <input type="checkbox" id="delivery-same-as-billing" name="delivery_data_same_as_billing">
+                                <input type="checkbox" id="delivery-same-as-billing" name="delivery_data_same_as_billing" value="1">
                                 <i></i>
                             </label>
                             <p class="italic ml-4">
@@ -393,7 +393,7 @@
                 <div class="inputs mb-32">
                     <div class="flex justify-center align-center mb-16">
                         <label class="switch">
-                            <input type="checkbox" id="create-account" name="create_account">
+                            <input type="checkbox" id="create-account" name="create_account" value="1">
                             <i></i>
                         </label>
                         <p class="italic ml-4">Vreau cont</p>
@@ -409,7 +409,7 @@
                             <div class="form-group mt-16">
                                 <label for="form-order-password">Parola</label>
                                 <input class="form-control w-full" type="password" id="form-order-password" name="password">
-                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" alt="eye-solid-icon" class="password-toggle-icon" id="toggle-order-password-visibility"  onclick="togglePasswordVisibility('form-order-password', 'toggle-order-password-visibility')" >
+                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" width="20" height="18" alt="eye-solid-icon" class="password-toggle-icon" id="toggle-order-password-visibility"  onclick="togglePasswordVisibility('form-order-password', 'toggle-order-password-visibility')" >
                             </div>
                             <span class="hidden" id="create-account-password"></span>
                         </div>
@@ -655,7 +655,7 @@
                     </table>
                     <div class="flex justify-end align-center mb-16">
                         <label class="switch mr-4">
-                            <input type="checkbox" id="agreement">
+                            <input type="checkbox" id="agreement" name="Agreement" value="1">
                             <i></i>
                         </label>
                         <p>Sunt de acord cu <a href="{{ url('/confidentialitate-gdpr') }}" target="_blank"><em class="link_color1">politica de confidentialitate</em></a> si <a href="{{ url('/termeni-si-conditii') }}" target="_blank"><em class="link_color1">termeni si conditii</em>.</a></p>
