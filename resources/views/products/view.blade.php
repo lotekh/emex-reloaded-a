@@ -6,26 +6,83 @@
 
 @section('seo')
     <title>{{ $product->seo['title'] }}</title>
-    <meta name="keywords" content="{{ $product->seo['meta_keywords'] }}">
-    <meta name="description" content="{{ $product->seo['meta_description'] }}">
-    <meta property="fb:app_id" content="{{ $product->seo['fb_app_id'] }}">
+    @if($product->seo['meta_keywords'])
+        <meta name="keywords" content="{{ $product->seo['meta_keywords'] }}">
+    @endif
+
+    @if($product->seo['meta_description'])
+        <meta name="description" content="{{ $product->seo['meta_description'] }}">
+    @endif
+
+    @if($product->seo['fb_app_id'])
+        <meta property="fb:app_id" content="{{ $product->seo['fb_app_id'] }}">
+    @endif
+
     <meta property="og:locale" content="ro_RO">
-    <meta property="og:title" content="{{ $product->seo['og_title'] }}">
-    <meta property="og:image" content="{{  $product->seoOgImage ? $product->seoOgImage->url : '' }}">
-    <meta property="og:image:secure_url" content="{{ $product->seoOgImage ? $product->seoOgImage->url : '' }}" />
-    <meta property="og:image:width" content="{{ $product->seo['og_image_width'] }}" />
-    <meta property="og:image:height" content="{{ $product->seo['og_image_height'] }}" />
-    <meta property="og:image:alt" content="{{ $product->seo['og_image_alt'] }}" />
-    <meta property="og:description" content="{{ $product->seo['og_description'] }}">
-    <meta property="og:url" content="{{ $product->seo['og_url'] }}">
-    <meta property="og:site_name" content="{{ $product->seo['og_site_name'] }}">
-    <meta property="og:type" content="{{ $product->seo['og_type'] }}" />
-    <meta name="twitter:card" content="{{ $product->seo['twitter_card'] }}">
-    <meta name="twitter:site" content="{{ $product->seo['twitter_site'] }}">
-    <meta name="twitter:image" content="{{ $product->seoTwitterImage ? $product->seoTwitterImage->url : '' }}">
-    <meta name="twitter:title" content="{{ $product->seo['twitter_title'] }}">
-    <meta name="twitter:description" content="{{ $product->seo['twitter_description'] }}">
-    <meta name="twitter:url" content="{{ $product->seo['twitter_url'] }}">
+
+    @if($product->seo['og_title'])
+        <meta property="og:title" content="{{ $product->seo['og_title'] }}">
+    @endif
+
+    @if($product->seoOgImage)
+        <meta property="og:image" content="{{ $product->seoOgImage ? $product->seoOgImage->url : '' }}">
+    @endif
+
+    @if($product->seoOgImage)
+        <meta property="og:image:secure_url" content="{{ $product->seoOgImage ? $product->seoOgImage->url : '' }}" />
+    @endif
+
+    @if($product->seo['og_image_width'])
+        <meta property="og:image:width" content="{{ $product->seo['og_image_width'] }}" />
+    @endif
+
+    @if($product->seo['og_image_height'])
+        <meta property="og:image:height" content="{{ $product->seo['og_image_height'] }}" />
+    @endif
+
+    @if($product->seo['og_image_alt'])
+        <meta property="og:image:alt" content="{{ $product->seo['og_image_alt'] }}" />
+    @endif
+
+    @if($product->seo['og_description'])
+        <meta property="og:description" content="{{ $product->seo['og_description'] }}">
+    @endif
+
+    @if($product->seo['og_url'])
+        <meta property="og:url" content="{{ $product->seo['og_url'] }}">
+    @endif
+
+    @if($product->seo['og_site_name'])
+        <meta property="og:site_name" content="{{ $product->seo['og_site_name'] }}">
+    @endif
+
+    @if($product->seo['og_type'])
+        <meta property="og:type" content="{{ $product->seo['og_type'] }}" />
+    @endif
+
+    @if($product->seo['twitter_card'])
+        <meta name="twitter:card" content="{{ $product->seo['twitter_card'] }}">
+    @endif
+
+    @if($product->seo['twitter_site'])
+        <meta name="twitter:site" content="{{ $product->seo['twitter_site'] }}">
+    @endif
+
+    @if($product->seoTwitterImage)
+        <meta name="twitter:image" content="{{ $product->seoTwitterImage ? $product->seoTwitterImage->url : '' }}">
+    @endif
+
+    @if($product->seo['twitter_title'])
+        <meta name="twitter:title" content="{{ $product->seo['twitter_title'] }}">
+    @endif
+
+    @if($product->seo['twitter_description'])
+        <meta name="twitter:description" content="{{ $product->seo['twitter_description'] }}">
+    @endif
+
+    @if($product->seo['twitter_url'])
+        <meta name="twitter:url" content="{{ $product->seo['twitter_url'] }}">
+    @endif
 @endsection
 
 @section('breadcrumbs')
@@ -320,9 +377,9 @@
 
     <div class="mt-16 mt-custom">
         <div class="tabs-selector-row">
-            <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid {{ $activeTab == 'Descriere' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'Descriere' ? 'true' : '' }}" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
-            <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid {{ $activeTab == 'DetaliiUtilizare' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'DetaliiUtilizare' ? 'true' : '' }}" tabindex="0" onclick="openTab(event, 'DetaliiUtilizare')"><span>Detalii de utilizare</span></button>
-            <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid {{ $activeTab == 'CaracteristiciTehnice' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'CaracteristiciTehnice' ? 'true' : '' }}" tabindex="0" onclick="openTab(event, 'CaracteristiciTehnice')"><span>Caracteristici Tehnice</span></button>
+            <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid {{ $activeTab == 'Descriere' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'Descriere' ? 'true' : 'false' }}" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
+            <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid {{ $activeTab == 'DetaliiUtilizare' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'DetaliiUtilizare' ? 'true' : 'false' }}" tabindex="0" onclick="openTab(event, 'DetaliiUtilizare')"><span>Detalii de utilizare</span></button>
+            <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid {{ $activeTab == 'CaracteristiciTehnice' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'CaracteristiciTehnice' ? 'true' : 'false' }}" tabindex="0" onclick="openTab(event, 'CaracteristiciTehnice')"><span>Caracteristici Tehnice</span></button>
         </div>
 
         <div class="tab-content-container">
@@ -393,7 +450,7 @@
     <div class="lightbox-content">
         <span class="close-btn" style=" background-image: url('{{ asset('resources/images/sprite.png') }}')" onclick="closeVideoLightbox()"></span>
         <video id="global-lightbox-video-element" controls>
-            <source src="" type="video/mp4">
+            <source src="https://vopsele.xyz/videos/Pardoseala-covor-de-cuart-epoxidic.mp4" type="video/mp4">
             Browserul tău nu suportă elementul video.
         </video>
     </div>

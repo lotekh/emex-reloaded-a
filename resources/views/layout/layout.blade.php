@@ -240,7 +240,7 @@
                             <div class="form-group w-full relative">
                                 <label for="form-login-password">Parola<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-login-password" type="password" name="password" required>
-                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" alt="eye-solid-icon" width="20px" height="18px" class="password-toggle-icon" id="toggle-login-password-visibility"  onclick="togglePasswordVisibility('form-login-password', 'toggle-login-password-visibility')" >
+                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" alt="eye-solid-icon" width="20" height="18" class="password-toggle-icon" id="toggle-login-password-visibility"  onclick="togglePasswordVisibility('form-login-password', 'toggle-login-password-visibility')" >
                             </div>
                             <div class="w-full flex justify-center">
                                 <button type="submit" class="w-fit btn rounded-lg px-16 mt-32">Autentifica-te</button>
@@ -288,12 +288,12 @@
                             <div class="form-group w-full">
                                 <label for="form-register-password">Parola<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-register-password" type="password" name="password" required>
-                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" alt="eye-solid-icon" class="password-toggle-icon" id="toggle-register-password-visibility"  onclick="togglePasswordVisibility('form-register-password', 'toggle-register-password-visibility')" >
+                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" alt="eye-solid-icon" width="20" height="18" class="password-toggle-icon" id="toggle-register-password-visibility"  onclick="togglePasswordVisibility('form-register-password', 'toggle-register-password-visibility')" >
                             </div>
                             <div class="row align-center">
-                                <input type="checkbox" class="hidden" name="terms" id="tc" required checked>
+                                <input type="checkbox" class="hidden" name="terms" id="tc" value="1" required checked>
                                 <label class="switch">
-                                    <input type="checkbox" name="gdpr" id="gdpr" required>
+                                    <input type="checkbox" name="gdpr" id="gdpr" name="gdpr" value="1" required>
                                     <i></i>
                                 </label>
                                 <span>
@@ -452,18 +452,18 @@
                             @php
                             $blogArticles = \App\Models\BlogArticle::latest()->limit(3)->get();
                             @endphp
-                            <ul class="col" id="recent-news-list">
+                            <div class="col" id="recent-news-list">
                                 @foreach ($blogArticles as $blogArticle)
-                                    <li>
+                                    <div>
                                         <div class="news_row mb-16">
                                             <h4 class="news-title">
                                                 <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}">{{ $blogArticle->title }}</a>
                                             </h4>                                            
                                             <p>{{ $blogArticle->created_at->format('j.m.Y') }}</p>
                                         </div>
-                                    </li>
+                                    </div>
                                 @endforeach
-                            </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

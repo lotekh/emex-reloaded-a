@@ -86,7 +86,7 @@
 
                     <div class="row align-center">
                         <label class="switch">
-                            <input type="checkbox" name="consent" id="consent-checkbox" tabindex="0">
+                            <input type="checkbox" name="consent" id="consent-checkbox" value="1" tabindex="0">
                             <i></i>
                         </label>
                         <span class="disclaimer">
