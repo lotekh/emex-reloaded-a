@@ -2345,6 +2345,10 @@ header {
   font-size: 1em;
 }
 
+.default-blue {
+  color: var(--default-blue);
+}
+
 #header_social_media a span {
   margin-left: 8px;
 }
@@ -3002,11 +3006,11 @@ select {
   padding: 0 10px;
 }
 
-input::placeholder,
+/* input::placeholder,
 textarea::placeholder {
   font-size: 14px;
   color: red;
-}
+} */
 
 input:focus,
 select:focus {

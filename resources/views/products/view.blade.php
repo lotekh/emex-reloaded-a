@@ -443,7 +443,7 @@
                     addonTextDisplay.textContent = variation.addon_text ? variation.addon_text : "";
                 }
                 if (packagingDisplay){
-                    packagingDisplay.textContent = `${variation.quantity} ${variation.measurement_unit.name}`;
+                    packagingDisplay.textContent = variation.quantity + ' ' + variation.measurement_unit.name;
                 }
             } else {
                 console.error('No matching variation found.');

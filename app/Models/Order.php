@@ -32,6 +32,7 @@ class Order extends Model
         'contact_information',
         'delivery_information',
         'company_information',
+        'created_at'
     ];
 
     protected $casts = [
