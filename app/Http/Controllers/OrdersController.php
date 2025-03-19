@@ -267,7 +267,7 @@ class OrdersController extends Controller
         
         // If there isn't one, generate a new one and save it in the session
         if (!$order_id) {
-            $order_id = Str::uuid(); // Poți folosi un UUID sau alt mecanism pentru generare
+            $order_id = Str::uuid(); 
             session()->put('order_id', $order_id);
         }
 
