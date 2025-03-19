@@ -25,7 +25,7 @@
             <div class="relative image-container z-0" style="text-align: center;">
                 <a href="{{ url($product->slug) }}">
                     <picture>
-                        <source type="image/webp" srcset="{{ $smallImageUrl }}">
+                        <source type="image/webp" srcset="{{ $smallImageUrl }}"/>
                         <img style="height: 180px; max-width: 230px;" src="{{ $pngSmallImageUrl }}" alt="{{ $product->pngSmallImage ? $product->pngSmallImage->alt : 'imagine'}}" title="{{ $product->pngSmallImage ? $product->pngSmallImage->title : 'imagineprodus'}}">
                     </picture>
                 </a>

@@ -111,7 +111,7 @@
                 @endphp
 
                 <picture>
-                    <source type="image/webp" srcset="{{ $largeImageUrl }}">
+                    <source type="image/webp" srcset="{{ $largeImageUrl }}"/>
                     <img class="featured-image-1" id="imagine-produs" src="{{ $pngLargeImageUrl }}" alt="{{ $product->pngLargeImage ? $product->pngLargeImage->alt : ''}}" title="{{ $product->pngLargeImage ? $product->pngLargeImage->title : ''}}">
                 </picture>
             </div>
@@ -450,7 +450,7 @@
     <div class="lightbox-content">
         <span class="close-btn" style=" background-image: url('{{ asset('resources/images/sprite.png') }}')" onclick="closeVideoLightbox()"></span>
         <video id="global-lightbox-video-element" controls>
-            <source src="https://vopsele.xyz/videos/Pardoseala-covor-de-cuart-epoxidic.mp4" type="video/mp4">
+            <source src="https://vopsele.xyz/videos/Pardoseala-covor-de-cuart-epoxidic.mp4" type="video/mp4"/>
             Browserul tău nu suportă elementul video.
         </video>
     </div>

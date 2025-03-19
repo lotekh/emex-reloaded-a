@@ -17,7 +17,7 @@
     @yield('title')
     <link rel="icon" type="image/x-icon" href="{{ asset('resources/emex-favicon.ico') }}">
 
-    @php require_once '../resources/views/layouts/partials/json-ld.php'; @endphp
+    @include('layouts.partials.json-ld')
     
     @hasSection('css')
         @yield('css')
