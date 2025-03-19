@@ -494,7 +494,7 @@
                 priceInput.value = variation.price;
                 variationInput.value = variation.id;
                 if (quantityDisplay) {
-                    quantityDisplay.textContent = `${variation.quantity} ${variation.measurement_unit.name}`;
+                    quantityDisplay.textContent = variation.quantity + ' ' + variation.measurement_unit.name;
                 }
                 if (addonTextDisplay) {
                     addonTextDisplay.textContent = variation.addon_text ? variation.addon_text : "";
