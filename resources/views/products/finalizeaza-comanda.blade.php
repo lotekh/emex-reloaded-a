@@ -409,7 +409,7 @@
                             <div class="form-group mt-16">
                                 <label for="form-order-password">Parola</label>
                                 <input class="form-control w-full" type="password" id="form-order-password" name="password">
-                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" alt="eye-solid-icon" class="password-toggle-icon" id="toggle-order-password-visibility"  onclick="togglePasswordVisibility('form-order-password', 'toggle-order-password-visibility')" >
+                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" width="20" height="18" alt="eye-solid-icon" class="password-toggle-icon" id="toggle-order-password-visibility"  onclick="togglePasswordVisibility('form-order-password', 'toggle-order-password-visibility')" >
                             </div>
                             <span class="hidden" id="create-account-password"></span>
                         </div>
