@@ -2,26 +2,78 @@
 
 @section('seo')
     <title>{{ $model->title }}</title>
-    <meta name="keywords" content="{{ $model->seo['meta_keywords'] ?? '' }}">
-    <meta name="description" content="{{ $model->seo['meta_description'] ?? '' }}">
-    <meta property="fb:app_id" content="{{ $model->seo['fb_app_id'] ?? '' }}">
+    @if($model->seo['meta_keywords'])
+        <meta name="keywords" content="{{ $model->seo['meta_keywords'] ?? '' }}">
+    @endif
+
+    @if($model->seo['meta_description'])
+        <meta name="description" content="{{ $model->seo['meta_description'] ?? '' }}">
+    @endif
+
+    @if($model->seo['fb_app_id'])
+        <meta property="fb:app_id" content="{{ $model->seo['fb_app_id'] ?? '' }}">
+    @endif
     <meta property="og:locale" content="ro_RO">
-    <meta property="og:title" content="{{ $model->seo['og_title'] ?? '' }}">
-    <meta property="og:image" content="{{ $model->seoOgImage ? $model->seoOgImage->url : '' }}">
-    <meta property="og:image:secure_url" content="{{ $model->seoOgImage ? $model->seoOgImage->url : '' }}" />
-    <meta property="og:image:width" content="{{ $model->seo['og_image_width'] ?? '' }}" />
-    <meta property="og:image:height" content="{{ $model->seo['og_image_height'] ?? '' }}" />
-    <meta property="og:image:alt" content="{{ $model->seo['og_alt'] ?? '' }}" />
-    <meta property="og:description" content="{{ $model->seo['og_description'] ?? '' }}">
-    <meta property="og:url" content="{{ $model->seo['og_url'] ?? '' }}">
-    <meta property="og:site_name" content="{{ $model->seo['og_site_name'] ?? '' }}">
-    <meta property="og:type" content="{{ $model->seo['og_type'] ?? '' }}" />
-    <meta name="twitter:card" content="{{ $model->seo['twitter_card'] ?? '' }}">
-    <meta name="twitter:site" content="{{ $model->seo['twitter_site'] ?? '' }}">
-    <meta name="twitter:image" content="{{ $model->seoTwitterImage ? $model->seoTwitterImage->url : '' }}">
-    <meta name="twitter:title" content="{{ $model->seo['twitter_title'] ?? '' }}">
-    <meta name="twitter:description" content="{{ $model->seo['twitter_description'] ?? '' }}">
-    <meta name="twitter:url" content="{{ $model->seo['twitter_url'] ?? '' }}">
+
+    @if($model->seo['og_title'])
+        <meta property="og:title" content="{{ $model->seo['og_title'] ?? '' }}">
+    @endif
+
+    @if($model->seoOgImage)
+        <meta property="og:image" content="{{ $model->seoOgImage ? $model->seoOgImage->url : '' }}">
+    @endif
+
+    @if($model->seo['og_image_width'])
+        <meta property="og:image:width" content="{{ $model->seo['og_image_width'] ?? '' }}" />
+    @endif
+
+    @if($model->seo['og_image_height'])
+        <meta property="og:image:height" content="{{ $model->seo['og_image_height'] ?? '' }}" />
+    @endif
+
+    @if($model->seo['og_alt'])
+        <meta property="og:image:alt" content="{{ $model->seo['og_alt'] ?? '' }}" />
+    @endif
+
+    @if($model->seo['og_description'])
+        <meta property="og:description" content="{{ $model->seo['og_description'] ?? '' }}">
+    @endif
+
+    @if($model->seo['og_url'])
+        <meta property="og:url" content="{{ $model->seo['og_url'] ?? '' }}">
+    @endif
+
+    @if($model->seo['og_site_name'])
+        <meta property="og:site_name" content="{{ $model->seo['og_site_name'] ?? '' }}">
+    @endif
+
+    @if($model->seo['og_type'])
+        <meta property="og:type" content="{{ $model->seo['og_type'] ?? '' }}" />
+    @endif
+
+    @if($model->seo['twitter_card'])
+        <meta name="twitter:card" content="{{ $model->seo['twitter_card'] ?? '' }}">
+    @endif
+
+    @if($model->seo['twitter_site'])
+        <meta name="twitter:site" content="{{ $model->seo['twitter_site'] ?? '' }}">
+    @endif
+
+    @if($model->seoTwitterImage)
+        <meta name="twitter:image" content="{{ $model->seoTwitterImage ? $model->seoTwitterImage->url : '' }}">
+    @endif
+
+    @if($model->seo['twitter_title'])
+        <meta name="twitter:title" content="{{ $model->seo['twitter_title'] ?? '' }}">
+    @endif
+
+    @if($model->seo['twitter_description'])
+        <meta name="twitter:description" content="{{ $model->seo['twitter_description'] ?? '' }}">
+    @endif
+
+    @if($model->seo['twitter_url'])
+        <meta name="twitter:url" content="{{ $model->seo['twitter_url'] ?? '' }}">
+    @endif
 @endsection
 
 @section('css')

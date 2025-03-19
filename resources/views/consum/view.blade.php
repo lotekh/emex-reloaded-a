@@ -2,26 +2,81 @@
 
 @section('seo')
     <title>{{ $product->consumption_seo['title'] }}</title>
-    <meta name="keywords" content="{{ $product->consumption_seo['meta_keywords'] }}">
-    <meta name="description" content="{{ $product->consumption_seo['meta_description'] }}">
-    <meta property="fb:app_id" content="{{ $product->consumption_seo['fb_app_id'] }}">
+
+    @if($product->consumption_seo['meta_keywords'])
+        <meta name="keywords" content="{{ $product->consumption_seo['meta_keywords'] }}">
+    @endif
+
+    @if($product->consumption_seo['meta_description'])
+        <meta name="description" content="{{ $product->consumption_seo['meta_description'] }}">
+    @endif
+
+    @if($product->consumption_seo['fb_app_id'])
+        <meta property="fb:app_id" content="{{ $product->consumption_seo['fb_app_id'] }}">
+    @endif
+
     <meta property="og:locale" content="ro_RO">
-    <meta property="og:title" content="{{ $product->consumption_seo['og_title'] }}">
-    <meta property="og:image" content="{{ $product->seoOgImage ? $product->seoOgImage->url : '' }}">
-    <meta property="og:image:secure_url" content="{{ $product->seoOgImage ? $product->seoOgImage->url : '' }}" />
-    <meta property="og:image:width" content="{{ $product->consumption_seo['og_image_width'] }}" />
-    <meta property="og:image:height" content="{{ $product->consumption_seo['og_image_height'] }}" />
-    <meta property="og:image:alt" content="{{ $product->consumption_seo['og_image_alt'] }}" />
-    <meta property="og:description" content="{{ $product->consumption_seo['og_description'] }}">
-    <meta property="og:url" content="{{ $product->consumption_seo['og_url'] }}">
-    <meta property="og:site_name" content="{{ $product->consumption_seo['og_site_name'] }}">
-    <meta property="og:type" content="{{ $product->consumption_seo['og_type'] }}" />
-    <meta name="twitter:card" content="{{ $product->consumption_seo['twitter_card'] }}">
-    <meta name="twitter:site" content="{{ $product->consumption_seo['twitter_site'] }}">
-    <meta name="twitter:image" content="{{ $product->consumptionSeoTwitterImage ? $product->consumptionSeoTwitterImage->url : ''}}">
-    <meta name="twitter:title" content="{{ $product->consumption_seo['twitter_title'] }}">
-    <meta name="twitter:description" content="{{ $product->consumption_seo['twitter_description'] }}">
-    <meta name="twitter:url" content="{{ $product->consumption_seo['twitter_url'] }}">
+
+    @if($product->consumption_seo['og_title'])
+        <meta property="og:title" content="{{ $product->consumption_seo['og_title'] }}">
+    @endif
+
+    @if($product->seoOgImage)
+        <meta property="og:image" content="{{ $product->seoOgImage ? $product->seoOgImage->url : '' }}">
+        <meta property="og:image:secure_url" content="{{ $product->seoOgImage ? $product->seoOgImage->url : '' }}" />
+    @endif
+
+    @if($product->consumption_seo['og_image_width'])
+        <meta property="og:image:width" content="{{ $product->consumption_seo['og_image_width'] }}" />
+    @endif
+
+    @if($product->consumption_seo['og_image_height'])
+        <meta property="og:image:height" content="{{ $product->consumption_seo['og_image_height'] }}" />
+    @endif
+
+    @if($product->consumption_seo['og_image_alt'])
+        <meta property="og:image:alt" content="{{ $product->consumption_seo['og_image_alt'] }}" />
+    @endif
+
+    @if($product->consumption_seo['og_description'])
+        <meta property="og:description" content="{{ $product->consumption_seo['og_description'] }}">
+    @endif
+
+    @if($product->consumption_seo['og_url'])
+        <meta property="og:url" content="{{ $product->consumption_seo['og_url'] }}">
+    @endif
+
+    @if($product->consumption_seo['og_site_name'])
+        <meta property="og:site_name" content="{{ $product->consumption_seo['og_site_name'] }}">
+    @endif
+
+    @if($product->consumption_seo['og_type'])
+        <meta property="og:type" content="{{ $product->consumption_seo['og_type'] }}" />
+    @endif
+
+    @if($product->consumption_seo['twitter_card'])
+        <meta name="twitter:card" content="{{ $product->consumption_seo['twitter_card'] }}">
+    @endif
+
+    @if($product->consumption_seo['twitter_site'])
+        <meta name="twitter:site" content="{{ $product->consumption_seo['twitter_site'] }}">
+    @endif
+
+    @if($product->consumptionSeoTwitterImage)
+        <meta name="twitter:image" content="{{ $product->consumptionSeoTwitterImage->url }}">
+    @endif
+
+    @if($product->consumption_seo['twitter_title'])
+        <meta name="twitter:title" content="{{ $product->consumption_seo['twitter_title'] }}">
+    @endif
+
+    @if($product->consumption_seo['twitter_description'])
+        <meta name="twitter:description" content="{{ $product->consumption_seo['twitter_description'] }}">
+    @endif
+
+    @if($product->consumption_seo['twitter_url'])
+        <meta name="twitter:url" content="{{ $product->consumption_seo['twitter_url'] }}">
+    @endif
 @endsection
 
 @section('breadcrumbs')
