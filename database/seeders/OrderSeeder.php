@@ -18,18 +18,8 @@ class OrderSeeder extends Seeder
         $file1 = resource_path('json/orders1.json');
         $orders = array_values((array)json_decode(file_get_contents($file1), true))[2]['data'];
 
-        // $file2 = resource_path('json/orders2.json');
-        // $file2Orders = array_values((array)json_decode(file_get_contents($file2), true))[2]['data'];
-
-        // $file3 = resource_path('json/orders2.json');
-        // $file3Orders = array_values((array)json_decode(file_get_contents($file3), true))[2]['data'];
-
-        // $orders = array_merge($file1Orders, $file2Orders, $file3Orders);
-
         $importedOrders = array();
         foreach ($orders as $order) {
-            // dd($order);
-
             if(!isset($importedOrders[$order['id']])) {
                 $user = $order['email'] ? User::where('email', $order['email'])->first() : null;
                 $userId = $user ? $user->id : null;
