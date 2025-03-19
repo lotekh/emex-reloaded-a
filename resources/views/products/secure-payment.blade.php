@@ -128,7 +128,7 @@
 
                                     <a href="{{ url($ordered_product->product->slug) }}" class="flex align-center">
                                         <picture>
-                                            <source type="image/webp" srcset="{{ $imageUrl }}">
+                                            <source type="image/webp" srcset="{{ $imageUrl }}"/>
                                             <img src="{{ $pngSmallImageUrl }}" width="90" height="90" alt="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->alt : '' }}" title="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->title : '' }}" id="image-cart-secure-payment">
                                         </picture>
                                         <h3 class="normal-weight ml-8">{{ $ordered_product->name }}</h3>
