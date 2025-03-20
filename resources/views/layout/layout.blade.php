@@ -293,7 +293,7 @@
                             <div class="row align-center">
                                 <input type="checkbox" class="hidden" name="terms" id="tc" value="1" required checked>
                                 <label class="switch">
-                                    <input type="checkbox" name="gdpr" id="gdpr" name="gdpr" value="1" required>
+                                    <input type="checkbox" name="gdpr" id="gdpr" value="1" required>
                                     <i></i>
                                 </label>
                                 <span>
