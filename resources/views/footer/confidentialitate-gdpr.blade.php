@@ -177,28 +177,27 @@
     </div>
 </div>
 
-@endsection
-
-
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        window.openTab = function(evt, tabName) {
-            var i, tabcontent, tablinks;
+  document.addEventListener('DOMContentLoaded', function () {
+      window.openTab = function(evt, tabName) {
+          var i, tabcontent, tablinks;
 
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("active");
-            }
+          tabcontent = document.getElementsByClassName("tab-content");
+          for (i = 0; i < tabcontent.length; i++) {
+              tabcontent[i].classList.remove("active");
+          }
 
-            tablinks = document.getElementsByClassName("btn");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("selected");
-                tablinks[i].setAttribute("aria-selected", "false");
-            }
+          tablinks = document.getElementsByClassName("btn");
+          for (i = 0; i < tablinks.length; i++) {
+              tablinks[i].classList.remove("selected");
+              tablinks[i].setAttribute("aria-selected", "false");
+          }
 
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("selected");
-            evt.currentTarget.setAttribute("aria-selected", "true");
-        };
-    });
-    </script>
+          document.getElementById(tabName).classList.add("active");
+          evt.currentTarget.classList.add("selected");
+          evt.currentTarget.setAttribute("aria-selected", "true");
+      };
+  });
+</script>
+
+@endsection
