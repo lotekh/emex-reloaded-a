@@ -2,26 +2,81 @@
 
 @section('seo')
     <title>{{ $category->seo['title'] }}</title>
-    <meta name="keywords" content="{{ $category->seo['meta_keywords'] }}">
-    <meta name="description" content="{{ $category->seo['meta_description'] }}">
-    <meta property="fb:app_id" content="{{ $category->seo['fb_app_id'] }}">
+
+    @if($category->seo['meta_keywords'])
+        <meta name="keywords" content="{{ $category->seo['meta_keywords'] }}">
+    @endif
+
+    @if($category->seo['meta_description'])
+        <meta name="description" content="{{ $category->seo['meta_description'] }}">
+    @endif
+
+    @if($category->seo['fb_app_id'])
+        <meta property="fb:app_id" content="{{ $category->seo['fb_app_id'] }}">
+    @endif
+
     <meta property="og:locale" content="ro_RO">
-    <meta property="og:title" content="{{ $category->seo['og_title'] }}">
+
+    @if($category->seo['og_title'])
+        <meta property="og:title" content="{{ $category->seo['og_title'] }}">
+    @endif
+
+    @if($category->seoOgImage)
     <meta property="og:image" content="{{ $category->seoOgImage ? $category->seoOgImage->url : '' }}">
     <meta property="og:image:secure_url" content="{{ $category->seoOgImage ? $category->seoOgImage->url : '' }}" />
-    <meta property="og:image:width" content="{{ $category->seo['og_image_width'] }}" />
-    <meta property="og:image:height" content="{{ $category->seo['og_image_height'] }}" />
-    <meta property="og:image:alt" content="{{ $category->seo['og_image_alt'] }}" />
-    <meta property="og:description" content="{{ $category->seo['og_description'] }}">
-    <meta property="og:url" content="{{ $category->seo['og_url'] }}">
-    <meta property="og:site_name" content="{{ $category->seo['og_site_name'] }}">
-    <meta property="og:type" content="{{ $category->seo['og_type'] }}" />
-    <meta name="twitter:card" content="{{ $category->seo['twitter_card'] }}">
-    <meta name="twitter:site" content="{{ $category->seo['twitter_site'] }}">
+    @endif
+
+    @if($category->seo['og_image_width'])
+        <meta property="og:image:width" content="{{ $category->seo['og_image_width'] }}" />
+    @endif
+
+    @if($category->seo['og_image_height'])
+        <meta property="og:image:height" content="{{ $category->seo['og_image_height'] }}" />
+    @endif
+
+    @if($category->seo['og_image_alt'])
+        <meta property="og:image:alt" content="{{ $category->seo['og_image_alt'] }}" />
+    @endif
+
+    @if($category->seo['og_description'])
+        <meta property="og:description" content="{{ $category->seo['og_description'] }}">
+    @endif
+
+    @if($category->seo['og_url'])
+        <meta property="og:url" content="{{ $category->seo['og_url'] }}">
+    @endif
+
+    @if($category->seo['og_site_name'])
+        <meta property="og:site_name" content="{{ $category->seo['og_site_name'] }}">
+    @endif
+
+    @if($category->seo['og_type'])
+        <meta property="og:type" content="{{ $category->seo['og_type'] }}">
+    @endif
+
+    @if($category->seo['twitter_card'])
+        <meta name="twitter:card" content="{{ $category->seo['twitter_card'] }}">
+    @endif
+
+    @if($category->seo['twitter_site'])
+        <meta name="twitter:site" content="{{ $category->seo['twitter_site'] }}">
+    @endif
+
+    @if($category->seoTwitterImage)
     <meta name="twitter:image" content="{{ $category->seoTwitterImage ? $category->seoTwitterImage->url : '' }}">
-    <meta name="twitter:title" content="{{ $category->seo['twitter_title'] }}">
-    <meta name="twitter:description" content="{{ $category->seo['twitter_description'] }}">
-    <meta name="twitter:url" content="{{ $category->seo['twitter_url'] }}">
+    @endif
+
+    @if($category->seo['twitter_title'])
+        <meta name="twitter:title" content="{{ $category->seo['twitter_title'] }}">
+    @endif
+
+    @if($category->seo['twitter_description'])
+        <meta name="twitter:description" content="{{ $category->seo['twitter_description'] }}">
+    @endif
+
+    @if($category->seo['twitter_url'])
+        <meta name="twitter:url" content="{{ $category->seo['twitter_url'] }}">
+    @endif
 @endsection
 
 @section('css')
