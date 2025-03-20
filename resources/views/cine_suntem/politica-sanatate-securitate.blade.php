@@ -191,8 +191,6 @@
     </div>
 </div>
 
-@endsection
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -215,4 +213,9 @@
             evt.currentTarget.setAttribute("aria-selected", "true");
         };
     });
-    </script>
+</script>
+
+
+@endsection
+
+
