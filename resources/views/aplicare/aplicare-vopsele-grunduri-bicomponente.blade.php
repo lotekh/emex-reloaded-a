@@ -96,7 +96,7 @@ APLICARI VOPSELE SI GRUNDURI <br> BICOMPONENTE “EMEX”
     </div>
 
     <div id="PregatireLemn" class="tab-content">
-        <div class="col" id="tab_technical_chars2">
+        <div class="col">
             <h2 class="aplicare_tab_content_title aplicare_c_green">Pregatirea pentru vopsire a suprafetelor din lemn</h2>
             <div class="aplicare_title_separator aplicare_separator_green"></div>
             <div class="descript_par">

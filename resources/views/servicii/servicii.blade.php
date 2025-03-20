@@ -35,7 +35,7 @@
   </h1>
 </div>
 
-<div class="servicii main-container mt-32 " id="main">
+<div class="servicii main-container mt-32">
     <div class="col" id="mcdnr">
         <h2 class="text-center" id="ap">SERVICII EXECUTATE DE ROMTEHNOCHIM</h2>
         <div class="col" id="despre_noi_content_wrapper">
