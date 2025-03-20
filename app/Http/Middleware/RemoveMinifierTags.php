@@ -22,6 +22,7 @@ class RemoveMinifierTags
             $content = $response->getContent();
             $content = preg_replace('/<\/source>/i', '', $content);
             $content = preg_replace('/<source(?![^>]*\/)>/', '<source$1 />', $content);
+            $content = preg_replace('/<\/source>/i', '', $content);
             $response->setContent($content);
         }
 
