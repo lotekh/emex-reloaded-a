@@ -71,7 +71,6 @@
 
 
 </div>
-@endsection
 
 
 <script>
@@ -104,9 +103,10 @@
         document.querySelector('.next').addEventListener('click', nextSlide);
         document.querySelector('.prev').addEventListener('click', prevSlide);
 
-        // Auto-slide functionality (Optional) -> Slide every 3 seconds
-        // setInterval(() => {
-        //     nextSlide();
-        // }, 3000); 
     });
 </script>
+
+@endsection
+
+
+
