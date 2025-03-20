@@ -237,7 +237,7 @@
                                 @endphp
                                     @if(!empty($categoryProduct->consumption_slug))
                                     <option value="{{ route('consum.show', ['consumption_slug' => $categoryProduct->consumption_slug]) }}" {{ $product->id == $categoryProduct->id ? 'selected' : '' }}>
-                                        {!! $productName !!}
+                                        {{ html_entity_decode(strip_tags($productName)) }}
                                     </option>
                                     @else
                                         <option disabled>
