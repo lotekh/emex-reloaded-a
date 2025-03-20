@@ -15,15 +15,16 @@ class RemoveMinifierTags
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // return $next($request);
         $response = $next($request);
 
-        if (str_contains($response->headers->get('Content-Type'), 'text/html')) {
+        if ($response instanceof Response && str_contains($response->headers->get('Content-Type'), 'text/html')) {
             $content = $response->getContent();
-            $content = preg_replace('/<\/source>/i', '', $content);
-            $content = preg_replace('/<source(?![^>]*\/)>/', '<source$1 />', $content);
-            $content = preg_replace('/<\/source>/i', '', $content);
-            $response->setContent($content);
+
+            if (!empty($content)) {
+                $content = preg_replace('/<source(?![^>]*\/)>/', '<source$1 />', $content);
+                $content = preg_replace('/<\/source>/i', '', $content);
+                $response->setContent($content);
+            }
         }
 
         return $response;
