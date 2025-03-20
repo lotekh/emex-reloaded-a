@@ -340,7 +340,14 @@
             </div>
 
             <div id="DetaliiUtilizare" class="tab-content {{ $activeTab == 'DetaliiUtilizare' ? 'active' : '' }}">
-                {!! Blade::render(html_entity_decode($product->usage_details) ) !!}
+                @php
+                    $usageDetails = str_replace(
+                                        ['<amp-img', '</amp-img>', 'layout="responsive"', 'fallback'], 
+                                        ['<img', '', '', ''], 
+                                        html_entity_decode($product->usage_details)
+                                    );
+                @endphp
+                {!! Blade::render($usageDetails) !!}
                 {{-- Detalii Utilizare --}}
             </div>
 
