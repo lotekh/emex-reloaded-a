@@ -85,11 +85,11 @@
                 <div class="accordion-menu w-full">
                     <section>
 
-                        <h4 class="accordion-header m-0" onclick="toggleMobileFilters()">
+                        <div class="accordion-header m-0" onclick="toggleMobileFilters()">
                             <div class="flex w-full justify-between">
                                 <h4 class="m-0">Filtre</h4>
                             </div>
-                        </h4>
+                        </div>
                         
                         <form method="GET" action="{{ route('products.index') }}" id="mobile-produse-filters-form" class="hidden">
                             <div class="mobile-produse-buttons">
