@@ -71,9 +71,11 @@ if (file_exists($jsonFile)) {
 $big_json = '[' . $big_json . ']';
 ?>
 
+<script>
+    var jsonLdData = @json($big_json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 
-<script type="application/ld+json" ignore--minify>
-<?php
-    echo "$big_json";
-?>
+    let script = document.createElement('script');
+    script.type = "application/ld+json";
+    script.textContent = jsonLdData;
+    document.head.appendChild(script);
 </script>
