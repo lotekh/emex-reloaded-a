@@ -174,6 +174,8 @@
                                                         Amorsa
                                                     @elseif(Str::contains(Str::lower($product->name), 'rasina'))
                                                         Rasina
+                                                    @elseif(Str::contains(Str::lower($product->name), 'mortar'))
+                                                        Mortar
                                                     @elseif (Str::contains(Str::lower($product->name), 'covor') || Str::contains(Str::lower($product->name), 'quartz'))
                                                         Cuartz
                                                     @else
