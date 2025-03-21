@@ -2349,6 +2349,10 @@ header {
   color: var(--default-blue);
 }
 
+.grey-standard {
+  color: var(--grey-standard);
+}
+
 #header_social_media a span {
   margin-left: 8px;
 }
@@ -2912,6 +2916,7 @@ header {
   --darkblue: #001d4d;
   --default-blue: #009;
   --oceanblue: #336fc0;
+  --grey-standard: #777;
 }
 
 ::-webkit-scrollbar-track {

@@ -329,7 +329,7 @@
             </div>
 
             <div class="col">
-                <p class="text-center mt-16">
+                <p class="text-center mt-16 grey-standard font-sm">
                     @if ($product->price_disclaimer)
                         {!! $product->price_disclaimer !!}
                     @else
