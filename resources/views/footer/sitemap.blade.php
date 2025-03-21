@@ -1,4 +1,4 @@
-<!doctype html><html ⚡ lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link href="https://emex.ro/sitemap.htm" rel="canonical"/><link href="https://emex.ro/sitemap.htm" rel="amphtml"/><link href="https://emex.ro/sitemap.htm" hreflang="ro-RO" rel="alternate"/><link href="https://emex.ro/sitemap.htm" hreflang="x-default" rel="alternate"/><title>Sitemap Emex - vopsele | tencuieli | grunduri | pardoseli</title><meta name="keywords" content="sitemap, Emex by Romtehnochim, navigare prin site" /><meta name="description" content="Sitemap-ul Emex by Romtehnochim permite navigarea directa prin site - link-uri catre produsele marca Emex fabricate de Romtehnochim" /><link href="https://emex.ro/sitemap.xml" title="General Site Map" rel="sitemap"><link href="/favicon.ico" rel="icon" type="image/x-icon"/><meta name="robots" content="index, follow"><meta name="Author" content="Emex by Romtehnochim"><meta name="rating" content="General"><meta name="geo.region" content="RO-IF"><meta name="geo.placename" content="Jilava"><meta name="geo.position" content="44.328689;26.067273"><meta name="ICBM" content="44.328689,26.067273"><style amp-boilerplate>
+<!doctype html><html ⚡ lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link href="https://emex.ro/sitemap.htm" rel="canonical"/><link href="https://emex.ro/sitemap.htm" rel="amphtml"/><link href="https://emex.ro/sitemap.htm" hreflang="ro-RO" rel="alternate"/><link href="https://emex.ro/sitemap.htm" hreflang="x-default" rel="alternate"/><title>Sitemap Emex - vopsele | tencuieli | grunduri | pardoseli</title><meta name="keywords" content="sitemap, Emex by Romtehnochim, navigare prin site" /><meta name="description" content="Sitemap-ul Emex by Romtehnochim permite navigarea directa prin site - link-uri catre produsele marca Emex fabricate de Romtehnochim" /><link href="https://emex.ro/sitemap.xml" title="General Site Map" rel="sitemap"><link href="/favicon.ico" rel="icon" type="image/x-icon"/><meta name="robots" content="index, follow"><meta name="Author" content="Emex by Romtehnochim"><meta name="rating" content="General"><meta name="geo.region" content="RO-IF"><meta name="geo.placename" content="Jilava"><meta name="geo.position" content="44.328689;26.067273"><meta name="ICBM" content="44.328689,26.067273"><style>
     body {
         -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
         -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
@@ -45,14 +45,14 @@
     visibility:visible
     }
     }
-    </style><noscript><style amp-boilerplate>
+    </style><noscript><style>
     body {
         -webkit-animation: none;
         -moz-animation: none;
         -ms-animation: none;
         animation: none
     }
-    </style></noscript><style amp-custom>
+    </style></noscript><style>
     body {
         background: #f7f5ed url(/images/Menu/Dots.png) repeat
     }

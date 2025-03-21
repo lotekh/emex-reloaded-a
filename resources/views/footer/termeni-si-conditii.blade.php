@@ -209,9 +209,6 @@
     </div>
 </div>
 
-@endsection
-
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         window.openTab = function(evt, tabName) {
@@ -233,4 +230,8 @@
             evt.currentTarget.setAttribute("aria-selected", "true");
         };
     });
-    </script>
+</script>
+
+@endsection
+
+
