@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\City;
+use App\Models\County;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -15,7 +17,7 @@ class OrderSeeder extends Seeder
      */
     public function run(): void
     {
-        $file1 = resource_path('json/orders1.json');
+        $file1 = resource_path('json/orders3.json');
         $orders = array_values((array)json_decode(file_get_contents($file1), true))[2]['data'];
 
         $importedOrders = array();
@@ -23,7 +25,45 @@ class OrderSeeder extends Seeder
             if(!isset($importedOrders[$order['id']])) {
                 $user = $order['email'] ? User::where('email', $order['email'])->first() : null;
                 $userId = $user ? $user->id : null;
-            
+
+                $deliveryCounty = County::where('name', $order['delivery_county'])->first();
+                $deliveryLocality = City::where('name', $order['delivery_locality'])->first();
+
+            // Persoană fizică
+            if ($order['billing_type'] == 0) { 
+                $county = County::where('name', $order['person_county'])->first();
+                if(isset($order['person_city'])) {
+                    $locality = City::where('name', $order['person_city'])->first();
+                }
+                else {
+                    $locality = null;
+                }
+                $companyInformationArray = [
+                    'person_last_name' => $order['person_last_name'],
+                    'person_first_name' => $order['person_first_name'],
+                    'person_phone' => $order['person_phone'],
+                    'person_email' => $order['person_email'],
+                    'person_county_id' => $county ? $county->id : null,
+                    'person_city_id' => $locality ? $locality->id : null,
+                    'person_address' => $order['person_address'],
+                ];
+            // Persoană juridică
+            } elseif ($order['billing_type'] == 1) { 
+                $county = County::where('name', $order['organization_county'])->first();
+                $locality = City::where('name', $order['organization_locality'])->first();
+                $companyInformationArray = [
+                    'organization_name' => $order['organization_name'],
+                    'organization_cui' => $order['organization_cui'],
+                    'organization_phone' => $order['organization_phone'],
+                    'organization_email' => $order['organization_email'],
+                    'organization_bank' => $order['organization_bank'],
+                    'organization_bank_account' => $order['organization_bank_account'],
+                    'organization_county_id' => $county ? $county->id : null,
+                    'organization_city_id' => $locality ? $locality->id : null,
+                    'organization_address' => $order['organization_address'],
+                ];
+            }
+
                 try {
                     $dbOrder = Order::create([
                         'user_id' => $userId,
@@ -38,6 +78,15 @@ class OrderSeeder extends Seeder
                         'payment_method' => $order['payment_method'],
                         'delivery_type' => $order['delivery_type'],
                         'billing_type' => $order['billing_type'],
+                        'delivery_information' => json_encode([
+                            'delivery_type' => $order['delivery_type'],
+                            'delivery_first_name' => $order['delivery_first_name'],
+                            'delivery_last_name' => $order['delivery_last_name'],
+                            'delivery_phone' => $order['delivery_phone'],
+                            'delivery_county' => $deliveryCounty ? $deliveryCounty->id : null,
+                            'delivery_locality' => $deliveryLocality ? $deliveryLocality->id : null,
+                        ]),
+                        'company_information' => json_encode($companyInformationArray),
                     ]);
                 }
                 catch(\Throwable $e) {
