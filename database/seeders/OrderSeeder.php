@@ -17,7 +17,7 @@ class OrderSeeder extends Seeder
      */
     public function run(): void
     {
-        $file1 = resource_path('json/orders2.json');
+        $file1 = resource_path('json/orders1.json');
         $orders = array_values((array)json_decode(file_get_contents($file1), true))[2]['data'];
 
         $importedOrders = array();
@@ -34,6 +34,9 @@ class OrderSeeder extends Seeder
                 $county = County::where('name', $order['person_county'])->first();
                 if(isset($order['person_city'])) {
                     $locality = City::where('name', $order['person_city'])->first();
+                }
+                else {
+                    $locality = null;
                 }
                 $companyInformationArray = [
                     'person_last_name' => $order['person_last_name'],
