@@ -636,13 +636,9 @@ class OrdersController extends Controller
                     'identifier' => $dbOrder->identifier,
                 ]);
 
-                // Get the maximum id in media table
-                $maxId = Media::max('id');
-                $newId = $maxId + 1;
-
                 // File and path of the PDF file
                 $fileName = 'proforma_RTCH-N-' . $dbOrder->identifier . '.pdf';
-                $filePath = 'media/' . $newId . '/' . $fileName;
+                $filePath = 'media/proforma-invoices/' . $fileName;
 
                 Storage::disk('public')->put($filePath, $pdf->output());
 
@@ -653,10 +649,10 @@ class OrdersController extends Controller
                 // Save the file info on media
                 $media = Media::create([
                     'disk' => 'public',
-                    'directory' => 'media/' . $newId,
+                    'directory' => 'media/proforma-invoices',
                     'visibility' => 'public',
                     'name' => $fileName,
-                    'path' => 'media/' . $newId . '/' . $fileName,
+                    'path' => 'media/proforma-invoices/' . $fileName,
                     'type' => 'application/pdf',
                     'ext' => 'pdf',
                 ]);
