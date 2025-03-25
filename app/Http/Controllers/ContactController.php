@@ -53,7 +53,7 @@ class ContactController extends Controller
             // Send the email to the client
             Mail::raw($emailContent, function ($message) use ($clientEmail, $fromEmail) {
                 $message->to($clientEmail)
-                    ->from($fromEmail, 'Emex Contact')
+                    ->from($fromEmail, 'Romtehnochim')
                     ->subject('Mesajul a fost trimis');
             });
 
