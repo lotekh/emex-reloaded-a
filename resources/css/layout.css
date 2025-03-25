@@ -3677,3 +3677,57 @@ video:hover::-webkit-media-controls {
   background-color: #ffffff;
   padding: 15px;
 }
+
+/* Thank-you page */
+#plata_main_row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+#Fond-plata {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@media (min-width: 768px) {
+  #Fond-plata {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+.success {
+  margin-top: 80px;
+  border: 1px solid #5b647f;
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  background: #ffffff;
+  color: #5b647f;
+  font-size: 14px;
+}
+
+.mail-sent {
+  color: #008000;
+  text-align: center;
+  margin-top: 10px !important;
+}
+
+.paragraph-thank-you {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.link_color1 {
+  text-decoration: none;
+  color: #009;
+}
