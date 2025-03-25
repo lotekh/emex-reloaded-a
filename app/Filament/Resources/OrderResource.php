@@ -45,7 +45,7 @@ class OrderResource extends Resource
                     })
                     ->searchable(isIndividual: true)
                     ->sortable(),
-                Tables\Columns\TextColumn::make('delivery_last_name')
+                Tables\Columns\TextColumn::make('delivery_address')
                     ->toggleable(isToggledHiddenByDefault: false)
                     ->state(function (Order $record) {
                         $delivery_info = json_decode($record->delivery_information);
@@ -99,6 +99,7 @@ class OrderResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
