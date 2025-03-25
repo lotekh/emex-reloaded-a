@@ -43,21 +43,6 @@
                         <a href="{{$proformaUrl}}" target="_blank">
                             <button id="descarca_proforma" class="btn btn-blue rounded-sm">Exporta ca PDF</button>
                         </a>
-                        
-                        
-                        
-                        @if ($order->payment_method != 'ramburs')
-                            <a href="{{ route('secure-payment', [
-                                'guid' => $order->guid,
-                                'firstName' => $order->contact_person_first_name,
-                                'lastName' => $order->contact_person_last_name,
-                                'email' => $order->organization_email,
-                                'orderNo' => $order->identifier,
-                                'amount' => $order->total
-                            ]) }}">
-                                <button id="pay_now_btn" class="btn btn-blue rounded-sm" style="background-color: #19AE0C">PLATESTE ACUM</button>
-                            </a>
-                        @endif
                     </div>
                     <div id="summary_bill_container" style="width: 900px; height: 1200px; border: 1px solid lightgrey;">
                         @include('products.invoice2', [
