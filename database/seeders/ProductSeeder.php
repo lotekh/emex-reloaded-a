@@ -6,6 +6,7 @@ use App\Models\CategoryProduct;
 use App\Models\Media;
 use App\Models\Product;
 use DOMDocument;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
@@ -22,6 +23,7 @@ class ProductSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
         Product::truncate();
         CategoryProduct::truncate();
+        DB::table('similar_products')->truncate();
         Schema::enableForeignKeyConstraints();
 
         $jsonFile = resource_path('json/productsImport4.json');
@@ -65,12 +67,8 @@ class ProductSeeder extends Seeder
 
             $dbProduct->categories()->attach($product['category_id'], ['order' => $product['sort_priority']]);
 
-            // $largeImageUrl = self::constructImageUrl($product, 'large_image_path');
-            // $smallImageUrl = self::constructImageUrl($product, 'small_image_path');
             $technicalFileUrl = self::constructTechnicalFileUrl($product);
 
-            // self::uploadFile($largeImageUrl, $dbProduct, 'large_image_id', (array)json_decode($product['large_image_metadata']));
-            // self::uploadFile($smallImageUrl, $dbProduct, 'small_image_id', (array)json_decode($product['small_image_metadata']));
             self::uploadFile($product['seo_og_image'], $dbProduct, 'og_image_id');
             self::uploadFile($product['consum_seo_og_image'], $dbProduct, 'consumption_og_image_id');
             self::uploadFile($product['seo_twitter_image'], $dbProduct, 'twitter_image_id');
@@ -108,6 +106,45 @@ class ProductSeeder extends Seeder
                 $newUsageDetails = str_replace('&acirc;&#128;&#157;', '&#x201D;', $newUsageDetails);
                 $dbProduct->usage_details = $newUsageDetails;
                 $dbProduct->save();
+            }
+        }
+
+        foreach($products as $product) {
+            $similarProductsOldIds = explode(',', $product['similar_products']);
+
+            $mainProduct = Product::where('slug', $product['slug'])->first();
+
+            if($mainProduct) {
+                foreach($similarProductsOldIds as $order => $oldId) {
+                    $importSimilarProduct = array_filter($products, function($product) use ($oldId) {
+                        return $product['id'] == $oldId;
+                    });
+
+                    if(count($importSimilarProduct)) {
+                        $importSimilarProduct = array_values($importSimilarProduct)[0];
+                    }
+                    else {
+                        $importSimilarProduct = null;
+                    }
+
+                    if($importSimilarProduct) {
+                        $similarProduct = Product::where('slug', $importSimilarProduct['slug'])->first();
+                        if($similarProduct) {
+                            $mainProduct->similarProducts()->attach($similarProduct->id, [
+                                'order' => $order
+                            ]);
+                        }
+                        else {
+                            Log::info('Could not import similar product with slug ' . $importSimilarProduct['slug'] . ' for product with slug ' . $product['slug'] . ' as similar product does not exist.');
+                        }
+                    }
+                    else {
+                        Log::info('Could not import similar product with id' . $oldId . ' for product with slug ' . $product['slug'] . ' as similar product does not exist in the import file.');
+                    }
+                }
+            }
+            else {
+                Log::info('Could not import similar product for product with slug ' . $product['slug'] . ' as main product does not exist.');
             }
         }
     }
