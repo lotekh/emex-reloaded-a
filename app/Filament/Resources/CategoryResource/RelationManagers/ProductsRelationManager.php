@@ -27,7 +27,10 @@ class ProductsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('plain_name')
             ->columns([
-                Tables\Columns\TextColumn::make('plain_name'),
+                Tables\Columns\TextColumn::make('plain_name')
+                ->formatStateUsing(function ($state) {
+                    return html_entity_decode($state);
+                }),
                 Tables\Columns\TextColumn::make('order'),
             ])
             ->defaultSort('order')
