@@ -38,8 +38,9 @@ class ContactController extends Controller
         ]);
 
         try {
-            $fromEmail = 'info@emex.ro'; 
+            $emexEmail = 'info@emex.ro'; 
             $clientEmail = $contact->email;
+            $clientName = $contact->name;
 
             // Create the email content
             $emailContent = "Nume: {$contact->name}\n";
@@ -51,14 +52,24 @@ class ContactController extends Controller
             $emailContent .= "URL: {$contact->page_url}\n";
 
             // Send the email to the client
-            Mail::raw($emailContent, function ($message) use ($clientEmail, $fromEmail) {
+            Mail::raw($emailContent, function ($message) use ($clientEmail, $emexEmail) {
                 $message->to($clientEmail)
-                    ->from($fromEmail, 'Romtehnochim')
+                    ->from($emexEmail, 'Romtehnochim')
                     ->subject('Mesajul a fost trimis');
             });
-
             Log::info('Email trimis cu succes către client:', [
                 'email' => $clientEmail,
+                'contact_id' => $contact->id,
+            ]);
+
+            // Send the email to Emex
+            Mail::raw($emailContent, function ($message) use ($emexEmail, $clientEmail, $clientName) {
+                $message->to($emexEmail)
+                    ->from($clientEmail, $clientName)
+                    ->subject('Mesajul a fost trimis');
+            });
+            Log::info('Email trimis cu succes către Emex:', [
+                'email' => $emexEmail,
                 'contact_id' => $contact->id,
             ]);
 
