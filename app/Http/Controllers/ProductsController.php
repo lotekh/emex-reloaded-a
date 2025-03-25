@@ -16,6 +16,7 @@ class ProductsController extends Controller
         $currentPage = $request->get('current_page_number', 1);
         $filters = $request->except(['per_page', 'current_page_number', '_token']);
         $filtersString = count($filters) ? '?' . http_build_query($filters) : '';
+        // dd($filters, $filtersString);
 
         // Query for active products
         $productsQuery = Product::select('products.*')
@@ -28,7 +29,7 @@ class ProductsController extends Controller
         $filtersSelected = [];
         foreach ($filters as $key => $value) {
             // Verify if the filter is a checkbox
-            if (strpos($key, 'category') === 0 && $value === 'on') {
+            if (strpos($key, 'category') === 0) {
                 $filterId = str_replace('category', '', $key);
                 $filtersSelected[] = $filterId;
             }
@@ -45,7 +46,7 @@ class ProductsController extends Controller
                 $filterIds = $filterGroup->pluck('id');
                 $query->whereIn('category_filters.id', $filterIds);
             });
-        }
+        } 
 
         $products = $productsQuery->paginate($perPage)->appends(request()->query());
         $totalResults = $products->total();
@@ -92,7 +93,7 @@ class ProductsController extends Controller
 
         $rating_sum = $product->reviews->avg('rating') ?? 0;
 
-        $firstFourProducts = Product::take(4)->get();
+        $firstFourProducts = $product->similarProducts()->orderBy('order', 'asc')->take(4)->get();
 
         return view('products.view', compact('product', 'firstFourProducts', 'categories_products', 'initialPrice', 'initialPackaging', 'initialColor', 'initialName', 'initialPriceNoTva', 'initialIntaritor', 'initialEan', 'initial_q', 'parsedFullData', 'rating_sum', 'activeTab'));
     }

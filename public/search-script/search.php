@@ -218,6 +218,8 @@ else
 if (strchr($SelfURL, '?'))
 	$LinkBackJoinChar = "&amp;";
 
+$SelfURL = '/search';
+
 // init. link target string
 $zoom_target = "";
 if ($UseLinkTarget == 1 && isset($LinkTarget))

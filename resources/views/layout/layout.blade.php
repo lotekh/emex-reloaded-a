@@ -128,9 +128,9 @@
                 <a id="logo" href="{{ empty($base_url) ? '/' : $base_url }}" title="acasa">
                     <img src="{{ asset('resources/new_design/general/logo.png') }}" height="84" width="252" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim">
                 </a>
-                <form class="relative flex align-center w-full justify-end" method="GET" action="{{ url('/search') }}">
+                <form id="search-form-desktop" class="relative flex align-center w-full justify-end" method="GET" action="{{ url('/search') }}">
                     <div class="flex align-center">
-                        <img width="18" height="18" src="{{ asset('resources/new_design/icons/search.svg') }}" id="search-icon" alt="Search Icon" title="search-icon">
+                        <img width="18" height="18" src="{{ asset('resources/new_design/icons/search.svg') }}" id="search-icon" alt="Search Icon" title="search-icon" style="cursor:pointer;">
                     </div>
                     <input id="search-input-desktop" type="text" name="zoom_query" class="form-control w-full" placeholder="Cauta dupa nume produs sau cod SKU">
                 </form>
@@ -1013,6 +1013,10 @@
         // Hide the lightbox
         lightbox.classList.add('hidden');
     }
+
+    document.getElementById('search-icon').addEventListener('click', function() {
+        document.getElementById('search-form-desktop').submit();
+    });
 
 </script>
     

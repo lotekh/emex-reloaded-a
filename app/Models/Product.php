@@ -152,6 +152,10 @@ class Product extends Model
         return $this->belongsTo(Media::class, 'consumption_twitter_image_id', 'id');
     }
 
+    public function similarProducts() {
+        return $this->belongsToMany(Product::class, 'similar_products', 'product_id', 'similar_product_id')->withPivot('order');
+    }
+
 
     public function getIsInWishlistAttribute()
     {
