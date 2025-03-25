@@ -50,6 +50,11 @@ class ProductResource extends Resource
                                     ->columnSpanFull(),
                                 MarkdownEditor::make('technical_details')
                                     ->columnSpanFull(),
+                                UpdatedCuratorPicker::make('technical_file_id')
+                                    ->label('Technical file')
+                                    ->relationship('technicalFile', 'technical_file_id')
+                                    ->pathGenerator(DefaultPathGenerator::class)
+                                    ->preserveFilenames(),
                                 Forms\Components\Grid::make(3)
                                     ->schema([
                                         Forms\Components\Toggle::make('has_palette')
