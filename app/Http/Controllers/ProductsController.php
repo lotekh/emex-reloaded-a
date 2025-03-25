@@ -93,7 +93,7 @@ class ProductsController extends Controller
 
         $rating_sum = $product->reviews->avg('rating') ?? 0;
 
-        $firstFourProducts = Product::take(4)->get();
+        $firstFourProducts = $product->similarProducts()->orderBy('order', 'asc')->take(4)->get();
 
         return view('products.view', compact('product', 'firstFourProducts', 'categories_products', 'initialPrice', 'initialPackaging', 'initialColor', 'initialName', 'initialPriceNoTva', 'initialIntaritor', 'initialEan', 'initial_q', 'parsedFullData', 'rating_sum', 'activeTab'));
     }

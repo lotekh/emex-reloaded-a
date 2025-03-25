@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Components\UpdatedCuratorPicker;
 use App\Filament\Resources\ProductResource\Pages;
+use App\Filament\Resources\ProductResource\RelationManagers\SimilarProductsRelationManager;
 use App\Helpers\JSONLD;
 use App\Helpers\SeoForm;
 use App\Models\Product;
@@ -182,7 +183,7 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            SimilarProductsRelationManager::class,
         ];
     }
 
