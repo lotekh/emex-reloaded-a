@@ -165,7 +165,7 @@
                                                     @if (Str::contains(Str::lower($product->name), 'lac'))
                                                         Lac
                                                     @elseif (Str::contains(Str::lower($product->name), 'membran'))
-                                                        Baza
+                                                        Membrana
                                                     @elseif (Str::contains(Str::lower($product->name), 'grund'))
                                                         Grund
                                                     @elseif (Str::contains(Str::lower($product->name), 'sapa'))
@@ -176,10 +176,8 @@
                                                         Rasina
                                                     @elseif(Str::contains(Str::lower($product->name), 'mortar'))
                                                         Mortar
-                                                    @elseif(Str::contains(Str::lower($product->name), 'masa'))
+                                                    @elseif(Str::contains(Str::lower($product->name), 'masa') || Str::contains(Str::lower($product->name), 'covor') || Str::contains(Str::lower($product->name), 'quartz'))
                                                         Baza
-                                                    @elseif (Str::contains(Str::lower($product->name), 'covor') || Str::contains(Str::lower($product->name), 'quartz'))
-                                                        Cuartz
                                                     @else
                                                         Vopsea
                                                     @endif
