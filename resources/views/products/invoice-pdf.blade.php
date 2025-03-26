@@ -365,16 +365,4 @@
 
     <br>
 
-    @if($order['payment_method'] != 'ramburs')
-        <a href="https://www.google.com/?hl=ro"></a>
-    @endif
-        
-    <div style="float: right; margin-top: 7px; padding-right: 35px; max-width:200px;">
-        @if($order['payment_method'] != 'ramburs')
-            <a href="/secure-payment?guid={{$order->guid}}&orderNo={{$order->identifier}}&firstName={{$order->contact_person_first_name}}&lastName={{$order->contact_person_last_name}}&email={{$order->organization_email}}&amount={{$order->total}}">
-                <img src="{{ public_path('resources/images/Buton-Plata-Online.png') }}">
-            </a>
-        @endif
-    </div>
-
 </div>
