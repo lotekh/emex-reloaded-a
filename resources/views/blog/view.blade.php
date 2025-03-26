@@ -2,32 +2,32 @@
 
 @section('seo')
     <title>{{ $model->title }}</title>
-    @if($model->seo['meta_keywords'])
+    @if(isset($model->seo['meta_keywords']))
         <meta name="keywords" content="{{ $model->seo['meta_keywords'] ?? '' }}">
     @endif
 
-    @if($model->seo['meta_description'])
+    @if(isset($model->seo['meta_description']))
         <meta name="description" content="{{ $model->seo['meta_description'] ?? '' }}">
     @endif
 
-    @if($model->seo['fb_app_id'])
+    @if(isset($model->seo['fb_app_id']))
         <meta property="fb:app_id" content="{{ $model->seo['fb_app_id'] ?? '' }}">
     @endif
     <meta property="og:locale" content="ro_RO">
 
-    @if($model->seo['og_title'])
+    @if(isset($model->seo['og_title']))
         <meta property="og:title" content="{{ $model->seo['og_title'] ?? '' }}">
     @endif
 
-    @if($model->seoOgImage)
+    @if(isset($model->seoOgImage))
         <meta property="og:image" content="{{ $model->seoOgImage ? str_replace('https://', 'https://www.', $model->seoOgImage->url) : '' }}">
     @endif
 
-    @if($model->seo['og_image_width'])
+    @if(isset($model->seo['og_image_width']))
         <meta property="og:image:width" content="{{ $model->seo['og_image_width'] ?? '' }}" />
     @endif
 
-    @if($model->seo['og_image_height'])
+    @if(isset($model->seo['og_image_height']))
         <meta property="og:image:height" content="{{ $model->seo['og_image_height'] ?? '' }}" />
     @endif
 
@@ -35,23 +35,23 @@
         <meta property="og:image:alt" content="{{ $model->seo['og_alt'] ?? '' }}" />
     @endif
 
-    @if($model->seo['og_description'])
+    @if(isset($model->seo['og_description']))
         <meta property="og:description" content="{{ $model->seo['og_description'] ?? '' }}">
     @endif
 
-    @if($model->seo['og_url'])
+    @if(isset($model->seo['og_url']))
         <meta property="og:url" content="{{ $model->seo['og_url'] ?? '' }}">
     @endif
 
-    @if($model->seo['og_site_name'])
+    @if(isset($model->seo['og_site_name']))
         <meta property="og:site_name" content="{{ $model->seo['og_site_name'] ?? '' }}">
     @endif
 
-    @if($model->seo['og_type'])
+    @if(isset($model->seo['og_type']))
         <meta property="og:type" content="{{ $model->seo['og_type'] ?? '' }}" />
     @endif
 
-    @if($model->seo['twitter_card'])
+    @if(isset($model->seo['twitter_card']))
         <meta name="twitter:card" content="{{ $model->seo['twitter_card'] ?? '' }}">
     @endif
 
@@ -59,19 +59,19 @@
         <meta name="twitter:site" content="{{ isset($model->seo['twitter_site']) ? $model->seo['twitter_site'] : '' }}">
     @endif
 
-    @if($model->seoTwitterImage)
+    @if(isset($model->seoTwitterImage))
         <meta name="twitter:image" content="{{ $model->seoTwitterImage ? str_replace('https://', 'https://www.', $model->seoTwitterImage->url) : '' }}">
     @endif
 
-    @if($model->seo['twitter_title'])
+    @if(isset($model->seo['twitter_title']))
         <meta name="twitter:title" content="{{ $model->seo['twitter_title'] ?? '' }}">
     @endif
 
-    @if($model->seo['twitter_description'])
+    @if(isset($model->seo['twitter_description']))
         <meta name="twitter:description" content="{{ $model->seo['twitter_description'] ?? '' }}">
     @endif
 
-    @if($model->seo['twitter_url'])
+    @if(isset($model->seo['twitter_url']))
         <meta name="twitter:url" content="{{ $model->seo['twitter_url'] ?? '' }}">
     @endif
 @endsection
@@ -99,9 +99,6 @@
     <div class="article col-span-3">
         <h1>{{ $model->title }}</h1>
         <div class="flex mb-16 align-center">
-            {{-- @foreach ($model->tags as $tag)
-                <span class="tag mr-8">{{ $tag->name }}</span>
-            @endforeach --}}
             <span class="publish-date">publicat pe {{ \Carbon\Carbon::parse($model->created_at)->format('j.m.Y') }}</span>
         </div>
 
