@@ -45,14 +45,14 @@
                     <h2 class="font-xl-red text-center">POLITICA DE RETURNARE A PRODUSELOR</h2>
                     <h2 class="h2-style">1. GENERALITATI</h2>
                     <p><span class="alineat_span"></span>Produsele “Emex” sunt destinate utilizarii profesionale. Orice abatere de la conditiile si metodele de aplicare, depozitare sau pregatire a produsului sau suprafetei poate influenta negativ performantele produselor puse in opera.</p>
-                    <p><span class="alineat_span"></span>“Romtehnochim” s.r.l. nu-si asuma responsabilitatea pentru posibila degradare a produsului, urmare folosirii acestuia in afara recomandarilor sale. Toate produsele sunt realizate in sistemul de Management Integrat al Calitatii ISO 9001:2008, ISO 14001:2004; OHSAS 45001:2018. <em class="green-mark">Toate informatiile necesare obtinerii celor mai bune rezultate cu produsele “Emex”, marca inregistrata a “Romtehnochim” s.r.l., se gasesc in <strong>Fisa Tehnica</strong> a fiecarui produs si trebuiesc respectate ca atare, in totalitate</em>.</p>
+                    <p><span class="alineat_span"></span>“Romtehnochim” s.r.l. nu-si asuma responsabilitatea pentru posibila degradare a produsului, urmare folosirii acestuia in afara recomandarilor sale. Toate produsele sunt realizate in sistemul de Management Integrat al Calitatii ISO 9001:2015, ISO 14001:2015; ISO 45001:2018. <em class="green-mark">Toate informatiile necesare obtinerii celor mai bune rezultate cu produsele “Emex”, marca inregistrata a “Romtehnochim” s.r.l., se gasesc in <strong>Fisa Tehnica</strong> a fiecarui produs si trebuiesc respectate ca atare, in totalitate</em>.</p>
                     <p><span class="alineat_span"></span>In cazul in care, datorita unor factori inafara controlului producatorului sau independenti de vointa sa, se constata abateri de la normele de calitate (defect de fabricatie, produs livrat gresit, deteriorare in timpul transportului, etc.), conform OUG34/2014 si OG 9 din 27 ianuarie 2016 in completarea Legii nr. 449/2003:</p>
                     <ul>
                         <li>Produsele se pot returna in ambalajul original si in aceeasi stare in care au fost receptionate, in termen de 14 zile de la achizitie, fara penalitati si fara invocarea vreunui motiv;</li>
                         <li>Conform OUG nr 34/2014 privind regimul juridic al contractelor la distanta, un client, persoana fizica, poate renunta la cumparare (prin denuntare unilaterala a contractului) in termen de 14 zile de la achizitia produsului comandat. In acest caz, costurile de retur si de transport sunt suportate de catre cumparator;</li>
                         <li>Cumparatorul poate solicita returnarea produsului achizitionat pentru a fi inlocuit cu un alt produs sau poate opta pentru rambursarea integrala a contravalorii. Daca se agreeaza inlocuirea cu un produs de o valoare mai mare, cumparatorul va plati diferenta. Daca valoarea produsului inlocuitor este mai mica, cumparatorul va primi o rambursare partiala pana la valoarea produsului inlocuitor;</li>
                         <li>Costurile de retur si de transport pentru produsul inlocuitor, daca neconformitatile constatate sunt din culpa producatorului, vor fi suportate de catre S.C “Romtehnochim” SRL;</li>
-                        <li>Daca un anumit produs nu poate fi inlocuit cu un altul de catre producator, atunci se va restitui contravaloarea acestuia. SC “Romtehnochim” srl va inapoia contravaloarea comenzii in cel mult 10 de zile de la data la care produsul a ajuns in posesia sa.</li>
+                        <li>Daca un anumit produs nu poate fi inlocuit cu un altul de catre producator, atunci vi se va restitui contravaloarea acestuia. “Romtehnochim” S.R.L. va inapoia contravaloarea comenzii in cel mult 14 zile de la data la care produsul a ajuns in posesia sa.</li>
                     </ul>
                     <h2 class="h2-style">2. CONDITII DE RETURNARE</h2>
                     <ul>
@@ -68,7 +68,7 @@
                         <li>Produsele returnate vor fi in mod obligatoriu aferente lotului din care au fost livrate. Pentru aceasta este recomandat ca eticheta cu datele de lot sa fie pastrata in starea initiala.</li>
                     </ul>
                     <h2 class="h2-style">3. RESTITUIREA SUMELOR PROVENITE DIN RETUR</h2>
-                    <p><span class="alineat_span"></span>Acestea vor fi achitate in cel mult 10 de zile de la data la care produsul a ajuns in posesia producatorului, astfel:</p>
+                    <p><span class="alineat_span"></span>Acestea vor fi achitate in cel mult 14 zile de la data la care produsul a ajuns in posesia producatorului, astfel:</p>
                     <ul>
                         <li>In numerar, pentru sumele platite in numerar, la sediul vanzatorului, in baza unei programari;</li>
                         <li>Prin virament bancar, pentru platile efectuate prin banca (O.P.), inclusiv cele achitate prin card bancar (in cazul solicitarii returului la o data ulterioara vanzarii);</li>
