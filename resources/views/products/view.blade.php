@@ -25,9 +25,7 @@
     @endif
 
     @if($product->seoOgImage)
-        <!-- <meta property="og:image" content="{{ $product->seoOgImage ? $product->seoOgImage->url : '' }}"> -->
-        <meta property="og:image" content="https://www.vopsealavabila.ro/storage/media/images/Elastomerica-de-exterior-tencuiala-fatada-sm.jpg">
-
+        <meta property="og:image" content="{{ $product->seoOgImage ? $product->seoOgImage->url : '' }}">
     @endif
 
     @if($product->seoOgImage)
