@@ -174,7 +174,7 @@
                     </td>
                 </tr>
             </table>
-            <table style="width: 95%; padding-left:10px; padding-right:10px;">
+            <table style="width: 95%;">
                 <tr class="col-12">
                     <td class="col-12">
                         <table class="col-12">
