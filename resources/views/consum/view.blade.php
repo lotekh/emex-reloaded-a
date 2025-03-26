@@ -281,6 +281,10 @@
             </div>
         </div>
 
+    </div>
+
+    @include('components.sidebar-contact', ['secondary_title' => 'Consum'])
+
     <script>
         // Initialize currentPage with the value from server
         let currentPage = {{ $currentPage }}; 
