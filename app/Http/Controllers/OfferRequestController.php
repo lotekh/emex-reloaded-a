@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\OfferRequest;
 use App\Models\Media;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class OfferRequestController extends Controller
 {
@@ -70,6 +72,64 @@ class OfferRequestController extends Controller
             'message' => $validated['message'] ?? null,
             'file_id' => $fileId,
         ]);
+
+        // Email logic
+        try {
+            $emexEmail = 'info@emex.ro';
+            $clientEmail = $validated['email'];
+            $clientName = $validated['name'];
+
+            // Email content
+            $emailContent = "S-a solicitat oferta de pret pentru:\n";
+            $emailContent .= "Sistem: {$validated['application']}\n";
+            $emailContent .= "Utilizare: {$validated['usage']}\n";
+            $emailContent .= "Suprafata totala: {$validated['surface']}\n";
+            $emailContent .= "Zonă: " . ($validated['interior_exterior'] == 1 ? 'Interior' : 'Exterior') . "\n";
+            $emailContent .= "Mesaj: {$validated['message']}\n\n";
+            $emailContent .= "Detalii:\n";
+            $emailContent .= "Nume sau firma: {$validated['name']}\n";
+            $emailContent .= "Adresa de email: {$validated['email']}\n";
+            $emailContent .= "Numar de telefon: {$validated['phone']}\n";
+            $emailContent .= "Adresa completa: " . ($validated['address'] ?? '-') . "\n";
+            $emailContent .= "Localitate: " . ($validated['city'] ?? '-') . "\n";
+
+            // Email to client
+            Mail::raw($emailContent, function ($message) use ($emexEmail, $clientEmail, $clientName, $path) {
+                $message->to($clientEmail)
+                    ->from($emexEmail, 'Romtehnochim')
+                    ->subject('Cerere de oferta');
+                
+                if ($path) {
+                    $message->attach(Storage::disk('public')->path($path));
+                }
+            });
+            Log::info('Email de confirmare trimis către client:', [
+                'email' => $clientEmail,
+                'offer_request_id' => $offerRequest->id,
+            ]);
+
+            // Email to Emex
+            Mail::raw($emailContent, function ($message) use ($emexEmail, $clientEmail, $clientName, $path) {
+                $message->to($emexEmail)
+                    ->from($clientEmail, $clientName)
+                    ->subject('Cerere de oferta');
+
+                if ($path) {
+                    $message->attach(Storage::disk('public')->path($path));
+                }
+            });
+            Log::info('Email trimis către Emex:', [
+                'email' => $emexEmail,
+                'offer_request_id' => $offerRequest->id,
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error('Eroare la trimiterea emailului:', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+        }
+
 
         return redirect('/solicita-cotatie')->with('success', 'Solicitarea a fost trimisă cu succes!');
     }
