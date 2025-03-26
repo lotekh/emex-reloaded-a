@@ -37,9 +37,7 @@
 </IfModule>
 
 # Settings to hide index.php and ensure pretty urls
-RewriteEngine On 
-RewriteRule ^$ public/index.php [L]
-RewriteRule ^((?!public/).*)$ public/$1 [L,NC]
+RewriteEngine on
 
 # if a directory or a file exists, use it directly
 RewriteCond %{REQUEST_FILENAME} !-f
