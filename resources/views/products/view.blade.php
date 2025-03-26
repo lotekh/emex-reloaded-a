@@ -25,11 +25,11 @@
     @endif
 
     @if($product->seoOgImage)
-        <meta property="og:image" content="{{ $product->seoOgImage ? $product->seoOgImage->url : '' }}">
+        <meta property="og:image" content="{{ $product->seoOgImage ? str_replace('https://', 'https://www.', $product->seoOgImage->url) : '' }}">
     @endif
 
     @if($product->seoOgImage)
-        <meta property="og:image:secure_url" content="{{ $product->seoOgImage ? $product->seoOgImage->url : '' }}" />
+        <meta property="og:image:secure_url" content="{{ $product->seoOgImage ? str_replace('https://', 'https://www.', $product->seoOgImage->url) : '' }}" />
     @endif
 
     @if($product->seo['og_image_width'])
@@ -69,7 +69,7 @@
     @endif
 
     @if($product->seoTwitterImage)
-        <meta name="twitter:image" content="{{ $product->seoTwitterImage ? $product->seoTwitterImage->url : '' }}">
+        <meta name="twitter:image" content="{{ $product->seoTwitterImage ? str_replace('https://', 'https://www.', $product->seoTwitterImage->url) : '' }}">
     @endif
 
     @if($product->seo['twitter_title'])
