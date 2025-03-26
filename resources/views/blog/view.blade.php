@@ -31,7 +31,7 @@
         <meta property="og:image:height" content="{{ $model->seo['og_image_height'] ?? '' }}" />
     @endif
 
-    @if($model->seo['og_alt'])
+    @if(isset($model->seo['og_alt']))
         <meta property="og:image:alt" content="{{ $model->seo['og_alt'] ?? '' }}" />
     @endif
 
@@ -55,8 +55,8 @@
         <meta name="twitter:card" content="{{ $model->seo['twitter_card'] ?? '' }}">
     @endif
 
-    @if($model->seo['twitter_site'])
-        <meta name="twitter:site" content="{{ $model->seo['twitter_site'] ?? '' }}">
+    @if(isset($model->seo['twitter_site']))
+        <meta name="twitter:site" content="{{ isset($model->seo['twitter_site']) ? $model->seo['twitter_site'] : '' }}">
     @endif
 
     @if($model->seoTwitterImage)
