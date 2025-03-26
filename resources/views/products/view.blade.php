@@ -25,7 +25,8 @@
     @endif
 
     @if($product->seoOgImage)
-        <meta property="og:image" content="{{ $product->seoOgImage ? $product->seoOgImage->url : '' }}">
+        <!-- <meta property="og:image" content="{{ $product->seoOgImage ? $product->seoOgImage->url : '' }}"> -->
+        <meta property="og:image" content="https://emex.ro/images/social/Vopsea-alchidica-pentru-lemn-si-metal-sm.jpg">
     @endif
 
     @if($product->seoOgImage)
