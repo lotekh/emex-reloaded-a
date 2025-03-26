@@ -4,7 +4,7 @@
 
 <div class="w-full mobile-header">
     <div class="main-container row justify-between align-center gap-md">
-        <button role="menu" title="open-menu" aria-label="Meniu" onclick="toggleSidebar()">
+        <button title="open-menu" aria-label="Meniu" onclick="toggleSidebar()">
             <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <line x1="0.65" y1="1.35" x2="15.35" y2="1.35" stroke="black" stroke-width="1.3" stroke-linecap="round" />
                 <line x1="0.65" y1="7.35" x2="11.35" y2="7.35" stroke="black" stroke-width="1.3" stroke-linecap="round" />
