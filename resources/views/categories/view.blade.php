@@ -22,8 +22,8 @@
     @endif
 
     @if($category->seoOgImage)
-    <meta property="og:image" content="{{ $category->seoOgImage ? $category->seoOgImage->url : '' }}">
-    <meta property="og:image:secure_url" content="{{ $category->seoOgImage ? $category->seoOgImage->url : '' }}" />
+    <meta property="og:image" content="{{ $category->seoOgImage ? str_replace('https://', 'https://www.', $category->seoOgImage->url)  : '' }}">
+    <meta property="og:image:secure_url" content="{{ $category->seoOgImage ? str_replace('https://', 'https://www.', $category->seoOgImage->url)  : '' }}" />
     @endif
 
     @if($category->seo['og_image_width'])
@@ -63,7 +63,7 @@
     @endif
 
     @if($category->seoTwitterImage)
-    <meta name="twitter:image" content="{{ $category->seoTwitterImage ? $category->seoTwitterImage->url : '' }}">
+    <meta name="twitter:image" content="{{ $category->seoTwitterImage ? str_replace('https://', 'https://www.', $category->seoTwitterImage->url) : '' }}">
     @endif
 
     @if($category->seo['twitter_title'])

@@ -20,7 +20,7 @@
     @endif
 
     @if($model->seoOgImage)
-        <meta property="og:image" content="{{ $model->seoOgImage ? $model->seoOgImage->url : '' }}">
+        <meta property="og:image" content="{{ $model->seoOgImage ? str_replace('https://', 'https://www.', $model->seoOgImage->url) : '' }}">
     @endif
 
     @if($model->seo['og_image_width'])
@@ -60,7 +60,7 @@
     @endif
 
     @if($model->seoTwitterImage)
-        <meta name="twitter:image" content="{{ $model->seoTwitterImage ? $model->seoTwitterImage->url : '' }}">
+        <meta name="twitter:image" content="{{ $model->seoTwitterImage ? str_replace('https://', 'https://www.', $model->seoTwitterImage->url) : '' }}">
     @endif
 
     @if($model->seo['twitter_title'])

@@ -21,9 +21,9 @@
         <meta property="og:title" content="{{ $product->consumption_seo['og_title'] }}">
     @endif
 
-    @if($product->seoOgImage)
-        <meta property="og:image" content="{{ $product->seoOgImage ? $product->seoOgImage->url : '' }}">
-        <meta property="og:image:secure_url" content="{{ $product->seoOgImage ? $product->seoOgImage->url : '' }}" />
+    @if($product->consumptionSeoOgImage)
+        <meta property="og:image" content="{{ $product->consumptionSeoOgImage ? str_replace('https://', 'https://www.', $product->consumptionSeoOgImage->url)  : '' }}">
+        <meta property="og:image:secure_url" content="{{ $product->consumptionSeoOgImage ? str_replace('https://', 'https://www.', $product->consumptionSeoOgImage->url)  : '' }}" />
     @endif
 
     @if($product->consumption_seo['og_image_width'])
@@ -63,7 +63,7 @@
     @endif
 
     @if($product->consumptionSeoTwitterImage)
-        <meta name="twitter:image" content="{{ $product->consumptionSeoTwitterImage->url }}">
+        <meta name="twitter:image" content="{{ str_replace('https://', 'https://www.', $product->consumptionSeoTwitterImage->url) }}">
     @endif
 
     @if($product->consumption_seo['twitter_title'])
