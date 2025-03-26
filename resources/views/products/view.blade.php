@@ -380,7 +380,7 @@
     </div>
 
     <div class="mt-16 mt-custom">
-        <div class="tabs-selector-row">
+        <div class="tabs-selector-row" role="tablist">
             <button type="button" name="current_tab" value="0" role="tab" class="btn user-valid valid {{ $activeTab == 'Descriere' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'Descriere' ? 'true' : 'false' }}" tabindex="0" onclick="openTab(event, 'Descriere')"><span>Descriere</span></button>
             <button type="button" name="current_tab" value="1" role="tab" class="btn user-valid valid {{ $activeTab == 'DetaliiUtilizare' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'DetaliiUtilizare' ? 'true' : 'false' }}" tabindex="0" onclick="openTab(event, 'DetaliiUtilizare')"><span>Detalii de utilizare</span></button>
             <button type="button" name="current_tab" value="2" role="tab" class="btn user-valid valid {{ $activeTab == 'CaracteristiciTehnice' ? 'selected' : '' }}" aria-selected="{{ $activeTab == 'CaracteristiciTehnice' ? 'true' : 'false' }}" tabindex="0" onclick="openTab(event, 'CaracteristiciTehnice')"><span>Caracteristici Tehnice</span></button>
