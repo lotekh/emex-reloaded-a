@@ -253,13 +253,6 @@ class ProductSeeder extends Seeder
         }
     }
 
-    public static function constructImageUrl($product, $param)
-    {
-        $site = 'https://emex.ro/images/';
-
-        return $site . $product[$param];
-    }
-
     public static function constructTechnicalFileUrl($product)
     {
         $site = 'https://emex.ro/';
