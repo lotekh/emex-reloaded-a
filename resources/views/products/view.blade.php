@@ -561,17 +561,6 @@
             }
         };
 
-        tabContents.forEach(tab => {
-            tab.classList.toggle("active", tab.id === activeTab);
-        });
-
-        tabButtons.forEach(button => {
-            const tabName = button.getAttribute('onclick').match(/'([^']+)'/)[1];
-            const isSelected = tabName === activeTab;
-            button.classList.toggle("selected", isSelected);
-            button.setAttribute("aria-selected", isSelected ? "true" : "false");
-        });
-
         // Video Lightbox logic
         var videoLinks = document.querySelectorAll('a[href$=".mp4"]');
         videoLinks.forEach(function (link) {

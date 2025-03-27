@@ -202,7 +202,7 @@
                                 <div class="flex justify-end w-full mt-8 mb-8">
                                     <label class="titlu-tip-consum" for='surface'>Suprafata in mp*</label>
                                 </div>
-                                <input type="text" id="surface" class="form-control mb-16 select-consum" name="{{ $consumData['suprafata_name'] }}" required>
+                                <input type="number" min="0" id="surface" class="form-control mb-16 select-consum" name="{{ $consumData['suprafata_name'] }}" required>
                             </div>
                             <div class="flex mb-32">
                                 <button type="button" tabindex="1" onclick="showPreviousStep(1)" class="btn btn-light-blue rounded-sm mb-16 mr-8">
@@ -280,6 +280,10 @@
                 ... [<a href="https://emex.ro/{{ $product->slug }}">citeste mai mult</a>]
             </div>
         </div>
+
+    </div>
+
+    @include('components.sidebar-contact', ['secondary_title' => 'Consum'])
 
     <script>
         // Initialize currentPage with the value from server

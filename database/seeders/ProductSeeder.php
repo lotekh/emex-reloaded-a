@@ -76,37 +76,37 @@ class ProductSeeder extends Seeder
             self::uploadFile($technicalFileUrl, $dbProduct, 'technical_file_id');
 
             //Fix technical file link in the usage details
-            if($dbProduct->technicalFile) {
-                $usageDetails = $dbProduct->usage_details;
-                $document = new DOMDocument();
-                libxml_use_internal_errors(true);
-                $document->loadHTML($usageDetails);
-                libxml_use_internal_errors(false);
+            // if($dbProduct->technicalFile) {
+            //     $usageDetails = $dbProduct->usage_details;
+            //     $document = new DOMDocument();
+            //     libxml_use_internal_errors(true);
+            //     $document->loadHTML($usageDetails);
+            //     libxml_use_internal_errors(false);
     
-                $strong = $document->getElementsByTagName('strong');
-                $contents = [];
-                foreach($strong as $strongElement) {
-                    $contents[] = $strongElement->textContent;
+            //     $strong = $document->getElementsByTagName('strong');
+            //     $contents = [];
+            //     foreach($strong as $strongElement) {
+            //         $contents[] = $strongElement->textContent;
     
-                    if($strongElement->textContent == 'Fisa Tehnica') {
-                        $newHref = $dbProduct->technicalFile->url;
-                        $strongElement->parentElement->setAttribute('href', $newHref);
-                    }
-                }
-                $nodes = $document->getElementsByTagName('div');
-                foreach($nodes as $node) {
-                    if($node->className == 'descript_par') {
-                        $newUsageDetails = $document->saveHTML($node);
-                    }
-                }
-                if(!isset($newUsageDetails)) {
-                    $newUsageDetails = $document->saveHTML();
-                }
-                $newUsageDetails = str_replace('&acirc;&#128;&#156;', '&#x201C;', $newUsageDetails);
-                $newUsageDetails = str_replace('&acirc;&#128;&#157;', '&#x201D;', $newUsageDetails);
-                $dbProduct->usage_details = $newUsageDetails;
-                $dbProduct->save();
-            }
+            //         if($strongElement->textContent == 'Fisa Tehnica') {
+            //             $newHref = $dbProduct->technicalFile->url;
+            //             $strongElement->parentElement->setAttribute('href', $newHref);
+            //         }
+            //     }
+            //     $nodes = $document->getElementsByTagName('div');
+            //     foreach($nodes as $node) {
+            //         if($node->className == 'descript_par') {
+            //             $newUsageDetails = $document->saveHTML($node);
+            //         }
+            //     }
+            //     if(!isset($newUsageDetails)) {
+            //         $newUsageDetails = $document->saveHTML();
+            //     }
+            //     $newUsageDetails = str_replace('&acirc;&#128;&#156;', '&#x201C;', $newUsageDetails);
+            //     $newUsageDetails = str_replace('&acirc;&#128;&#157;', '&#x201D;', $newUsageDetails);
+            //     $dbProduct->usage_details = $newUsageDetails;
+            //     $dbProduct->save();
+            // }
         }
 
         foreach($products as $product) {
