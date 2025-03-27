@@ -56,7 +56,7 @@
                         <ul>
                             <li>Produsul se conditioneaza la temperatura de aplicare minim 24 ore inainte de aplicare.</li>
                             <li>Inainte de deschiderea ambalajului se indeparteaza de pe acesta praful sau alte urme de murdarie pentru a nu contamina produsul.</li>
-                            <li>Se omogenizeaza bine produsul in ambalajul original, folosind un amestecator mecanic, in vederea redispersarii eventualului sediment.</li>
+                            <li>Produsul se omogenizează bine în ambalajul original, folosind un amestecator mecanic, in vederea redispersarii eventualului sediment.</li>
                             <li>In functie de modul de aplicare se face reglarea vascozitatii, prin adaugarea de apa.</li>
                             <li>In cazul in care se foloseste vopsea lavabila pentru aplicarea prin pulverizare cu instalatii air-less, produsul se va filtra inainte de aplicare.</li>
                             <li>Aplicarea se poate face cu pensula, trafaletul sau prin pulverizare air-less.</li>
@@ -73,7 +73,7 @@
                             <li>Produsele nu se vor aplica pe timp de ceata, ploaie, ninsoare, vant, in prezenta prafului, sau cand exista pelicula de apa sau gheata pe suprafata - suport.</li>
                             <li>Vopselele lavabile nu se vor utiliza sau depozita la temperaturi de sub 5&deg;C.</li>
                             <li>Aplicarea la temperaturi negative nu este recomandata, pentru ca rezultatele se pot situa sub limitele de calitate acceptabile.</li>
-                            <li>De asemeni, nu se recomanda aplicarea la temperaturi mai mari de 35&deg;C in aer, datorita faptului ca peste aceasta temperatura pot aparea fenomene de uscare fortata, care, si in acest caz va diminua calitatea finala a peliculei.</li>
+                            <li>De asemenea, nu se recomanda aplicarea la temperaturi mai mari de 35&deg;C in aer, datorita faptului ca peste aceasta temperatura pot aparea fenomene de uscare fortata, care, si in acest caz va diminua calitatea finala a peliculei.</li>
                         </ul>
                         <p class="text-center"><em><span class="subs-attn">Pentru obtinerea de rezultate optime este obligatorie consultarea <strong>Fisei Tehnice</strong></span>.</em></p>
                     </div>
