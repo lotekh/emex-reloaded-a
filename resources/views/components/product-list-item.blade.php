@@ -89,7 +89,7 @@
 
                     <div class="form-group quantity-form-group">
                         <label class="section-info">Cantitate</label>
-                        <input class="w-full pr-8" type="number" min="0" pattern="[0-9]+" name="quantity" value="{{ $initial_q }}" />
+                        <input class="w-full pr-8" type="number" min="1" step="1" pattern="[0-9]+" name="quantity" value="{{ $initial_q }}" />
                     </div>
                 </div>
 
