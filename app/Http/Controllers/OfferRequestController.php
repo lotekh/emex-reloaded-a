@@ -30,6 +30,7 @@ class OfferRequestController extends Controller
 
         // Handle file upload
         $fileId = null;
+        $path = null;
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $path = $file->store('media/offer_requests/files', 'public');
@@ -75,6 +76,7 @@ class OfferRequestController extends Controller
 
         // Email logic
         try {
+            // dd(1);
             $emexEmail = 'info@emex.ro';
             $clientEmail = $validated['email'];
             $clientName = $validated['name'];
