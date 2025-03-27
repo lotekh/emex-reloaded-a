@@ -2,6 +2,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/bundled/angajari.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bundled/aplicare.min.css') }}">
 @endsection
 
 @section('breadcrumbs')
@@ -11,14 +12,15 @@
 @section('content')
 
 <style>
-    #header_img_bg {
+    #header_img_bg_angajari {
         background-image: url("{{ asset('resources/Angajari-Romtehnochim.jpg') }}");
+        display: flex;
     }
 </style>
 
-<div class="angajari relative w-full">
-    <div class="header_img_bg col justify-center align-center" id="header_img_bg">
-        <h1 class="z-10" id="angajari_header">
+<div class="aplicari relative w-full">
+    <div class="header_img_bg col justify-center align-center" id="header_img_bg_angajari">
+        <h1 class="z-10">
             Emex by Romtehnochim <br>
             Te invita alaturi de noi
         </h1>
