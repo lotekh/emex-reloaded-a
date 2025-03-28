@@ -381,9 +381,6 @@ input[type="search"] {
   font-size: 20px;
 }
 
-.left {
-  text-align: left;
-}
 .center {
   text-align: center;
 }
@@ -445,6 +442,14 @@ input[type="search"] {
 .article img {
   display: block;
   margin: 0 auto;
+}
+
+.left{
+  text-align: left;
+}
+
+.left img {
+  margin: unset;
 }
 
 @media screen and (max-width: 767px) {
