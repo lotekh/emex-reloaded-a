@@ -7,17 +7,12 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    // Cheia și ID-ul merchantului de la EuPlatesc (ar trebui să fie configurate din .env)
 
     public function securePayment(Request $request)
 {
-    // Găsim comanda în baza de date după GUID
     $order = Order::where('guid', $request->input('guid'))->firstOrFail();
-
-    // Obținem datele de facturare din `company_information`
     $companyInfo = json_decode($order->company_information, true);
 
-    // Verificăm tipul de facturare (0 pentru persoană fizică, 1 pentru persoană juridică)
     if ($order->billing_type == 0) { // Persoană fizică
         $firstName = $companyInfo['person_first_name'];
         $lastName = $companyInfo['person_last_name'];
@@ -34,7 +29,7 @@ class PaymentController extends Controller
     // Denumirea companiei sau persoanei fizice
     $string = $firstName . ' - ' . $lastName;
 
-    // Datele pentru procesatorul de plăți EuPlatesc
+    // Data for EuPlatesc
     $dataAll = [
         'amount' => number_format((float) $request->input('amount'), 2, '.', ''),
         'curr' => 'RON',
@@ -45,13 +40,13 @@ class PaymentController extends Controller
         'nonce' => md5(microtime() . mt_rand()),
     ];
 
-    // Generăm hash-ul pentru semnătură
+    // Generate the hash for EuPlatesc
     $dataAll['fp_hash'] = strtoupper($this->euplatesc_mac($dataAll, env('EUPLATESC_KEY')));
     $dataAll['email'] = $email;
     $dataAll['fname'] = $firstName;
     $dataAll['lname'] = $lastName;
 
-    if ($order->billing_type == 1) { // Dacă este persoană juridică, adăugăm și numele companiei
+    if ($order->billing_type == 1) { // If it is 'persoana juridica', add organization name
         $dataAll['company'] = $companyInfo['organization_name'];
     }
 
@@ -61,7 +56,7 @@ class PaymentController extends Controller
 }
 
 
-    // Funcție pentru validarea câmpurilor de plată
+    // Function for validation
     private function validatePayment($data)
     {
         $errors = [];
