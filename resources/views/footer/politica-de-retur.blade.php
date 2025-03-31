@@ -45,14 +45,14 @@
                     <h2 class="font-xl-red text-center">POLITICA DE RETURNARE A PRODUSELOR</h2>
                     <h2 class="h2-style">1. GENERALITATI</h2>
                     <p><span class="alineat_span"></span>Produsele “Emex” sunt destinate utilizarii profesionale. Orice abatere de la conditiile si metodele de aplicare, depozitare sau pregatire a produsului sau suprafetei poate influenta negativ performantele produselor puse in opera.</p>
-                    <p><span class="alineat_span"></span>“Romtehnochim” s.r.l. nu-si asuma responsabilitatea pentru posibila degradare a produsului, urmare folosirii acestuia in afara recomandarilor sale. Toate produsele sunt realizate in sistemul de Management Integrat al Calitatii ISO 9001:2015, ISO 14001:2015; ISO 45001:2018. <em class="green-mark">Toate informatiile necesare obtinerii celor mai bune rezultate cu produsele “Emex”, marca inregistrata a “Romtehnochim” s.r.l., se gasesc in <strong>Fisa Tehnica</strong> a fiecarui produs si trebuiesc respectate ca atare, in totalitate</em>.</p>
-                    <p><span class="alineat_span"></span>In cazul in care, datorita unor factori inafara controlului producatorului sau independenti de vointa sa, se constata abateri de la normele de calitate (defect de fabricatie, produs livrat gresit, deteriorare in timpul transportului, etc.), conform OUG34/2014 si OG 9 din 27 ianuarie 2016 in completarea Legii nr. 449/2003:</p>
+                    <p><span class="alineat_span"></span>“Romtehnochim” s.r.l. nu-si asuma responsabilitatea pentru posibila degradare a produsului, urmare folosirii acestuia in afara recomandarilor sale. Toate produsele sunt realizate in sistemul de Management Integrat al Calitatii ISO 9001:2015, ISO 14001:2015; ISO 45001:2018. <em class="green-mark">Toate informatiile necesare obtinerii celor mai bune rezultate cu produsele “Emex”, marca inregistrata a “Romtehnochim” s.r.l., se gasesc in <strong>Fisa Tehnica</strong> a fiecarui produs si trebuie respectate ca atare, in totalitate</em>.</p>
+                    <!--p><span class="alineat_span"></span>In cazul in care, datorita unor factori in afara controlului producatorului sau independenti de vointa sa, se constata abateri de la normele de calitate (defect de fabricatie, produs livrat gresit, deteriorare in timpul transportului, etc.), conform OUG34/2014 si OG 9 din 27 ianuarie 2016 in completarea Legii nr. 449/2003:</p-->
                     <ul>
                         <li>Produsele se pot returna in ambalajul original si in aceeasi stare in care au fost receptionate, in termen de 14 zile de la achizitie, fara penalitati si fara invocarea vreunui motiv;</li>
-                        <li>Conform OUG nr 34/2014 privind regimul juridic al contractelor la distanta, un client, persoana fizica, poate renunta la cumparare (prin denuntare unilaterala a contractului) in termen de 14 zile de la achizitia produsului comandat. In acest caz, costurile de retur si de transport sunt suportate de catre cumparator;</li>
+                        <li>In conformitate cu OUG nr. 34/2014 privind regimul juridic al contractelor la distanta, un client, persoana fizica, poate renunta la cumparare (prin denuntare unilaterala a contractului) in termen de 14 zile de la achizitia produsului comandat. In acest caz, costurile de retur si de transport sunt suportate de catre cumparator;</li>
                         <li>Cumparatorul poate solicita returnarea produsului achizitionat pentru a fi inlocuit cu un alt produs sau poate opta pentru rambursarea integrala a contravalorii. Daca se agreeaza inlocuirea cu un produs de o valoare mai mare, cumparatorul va plati diferenta. Daca valoarea produsului inlocuitor este mai mica, cumparatorul va primi o rambursare partiala pana la valoarea produsului inlocuitor;</li>
-                        <li>Costurile de retur si de transport pentru produsul inlocuitor, daca neconformitatile constatate sunt din culpa producatorului, vor fi suportate de catre S.C “Romtehnochim” SRL;</li>
-                        <li>Daca un anumit produs nu poate fi inlocuit cu un altul de catre producator, atunci vi se va restitui contravaloarea acestuia. “Romtehnochim” S.R.L. va inapoia contravaloarea comenzii in cel mult 14 zile de la data la care produsul a ajuns in posesia sa.</li>
+                        <li>Costurile de retur si de transport pentru produsul inlocuitor, daca neconformitatile constatate sunt din culpa producatorului, vor fi suportate de catre S.C “Romtehnochim” s.r.l.;</li>
+                        <li>Daca un anumit produs nu poate fi inlocuit cu un altul de catre producator, atunci vi se va restitui contravaloarea acestuia. “Romtehnochim” s.r.l. va inapoia contravaloarea comenzii in cel mult 14 zile de la data la care produsul a ajuns in posesia sa.</li>
                     </ul>
                     <h2 class="h2-style">2. CONDITII DE RETURNARE</h2>
                     <ul>
@@ -62,7 +62,7 @@
                     </ul>
                     <p><span class="alineat_span"></span>Vor trebui indeplinite urmatoarele conditii:</p>
                     <ul>
-                        <li>Produsele se returneaza in maximum 14 zile de la achizitie;</li>
+                        <li>Produsele se returneaza in maximum 14 zile de la data achizitiei;</li>
                         <li>Este prezentat in original documentul fiscal (factura/ bonul fiscal) care dovedeste achizitionarea produselor in cauza, si documentele insotitoare;</li>
                         <li><strong class="mark">Produsele sunt obligatoriu returnate in ambalajul original, in care au fost achizitionate, fara urme de utilizare sau alterare a continutului. Cantitatea returnata trebuie sa corespunda cantitatii achizitionate</strong>;</li>
                         <li>Produsele returnate vor fi in mod obligatoriu aferente lotului din care au fost livrate. Pentru aceasta este recomandat ca eticheta cu datele de lot sa fie pastrata in starea initiala.</li>
@@ -78,16 +78,16 @@
                     <ul>
                         <li>NU se returneaza si NU se inlocuiesc pe motive de judecata de valoare (ex.: culoare nu mai este agreata din motive ce nu tin de producator, a fost gasit un produs similar la un pret mai mic, a fost gasita o alta rezolvare a necesitatii initiale, etc.);</li>
                         <li>NU se returneaza si NU se inlocuiesc produse ce nu se afla recipientul original;</li>
-                        <li>NU se returneaza si NU se inlocuiesc produse personalizate la cererea si dupa specificatiile clientului (ex: mixturi, amestecuri de vopsele, culori personalizate la cerere, etc.), inafara cazurilor de neconformitate dovedita si probata;</li>
+                        <li>NU se returneaza si NU se inlocuiesc produse personalizate la cererea si dupa specificatiile clientului (ex: mixturi, amestecuri de vopsele, culori personalizate la cerere, etc.), in afara cazurilor de neconformitate dovedita si probata;</li>
                         <li>NU se returneaza si NU se inlocuiesc produse partial folosite, sau asupra carora au fost efectuate modificari neautorizate.</li>
                     </ul>
                     <h2 class="h2-style">5. PRELUCRAREA DATELOR CU CARACTER PERSONAL</h2>
-                    <p><span class="alineat_span"></span>“Romtehnochim” prelucreaza date cu caracter personal in conformitate cu prevederile legale pentru:</p>
+                    <p><span class="alineat_span"></span>“Romtehnochim” s.r.l. prelucreaza date cu caracter personal in conformitate cu prevederile legale pentru:</p>
                     <ul>
                         <li>executarea contractului incheiat cu dumneavoastra, care include si returnarea produselor/ restituirea sumelor ca urmare a acceptarii serviciului de retur, conform prevederilor legale/ conditiilor mentionate mai sus;</li>
                         <li>pentru conformarea cu normele si reglementarile legale.</li>
                     </ul>
-                    <p><span class="alineat_span"></span>In cazul in care exista neconformitati iar produsele indeplinesc toate conditiile de retur mentionate mai sus, angajatii “Romtehnochim” SRL vor proceda la intocmirea documentelor financiar-contabile aplicabile, in conformitate cu prevederile legale (factura de retur/ avans, dispozitie de compensare, dispozitie de plata, chitanta);</p>
+                    <p><span class="alineat_span"></span>In cazul in care exista neconformitati iar produsele indeplinesc toate conditiile de retur mentionate mai sus, angajatii “Romtehnochim” s.r.l. vor proceda la intocmirea documentelor financiar-contabile aplicabile, in conformitate cu prevederile legale (factura de retur/ avans, dispozitie de compensare, dispozitie de plata, chitanta);</p>
                     <p><span class="alineat_span"></span>Datele necesare intocmirii documentelor mai sus mentionate fac referire la: nume, prenume, domiciliu, cont bancar, dupa caz. Vom folosi datele cu caracter personal in scopul intocmirii documentelor financiar-contabile, conform dispozitiilor legale in vigoare;</p>
                     <p><span class="alineat_span"></span>In cazul in care dumneavoastra nu doriti sa furnizati aceste date, returnarea produselor nu este posibila chiar daca se incadreaza in conditiile de retur mai sus prezentate, intrucat nu ne putem conforma legislatiei din domeniul fiscal.</p>
                     <p><span class="alineat_span"></span>Pentru mai multe detalii va invitam sa consultati informatiile publicate pe site-ul nostru, sectiunea Protectia datelor, accesand pagina: <a href="{{ url('/confidentialitate-gdpr') }}"><span class="link_color1"><em>Politica de confidentialitate si prelucrarea datelor personale.</em></span></a></p>
