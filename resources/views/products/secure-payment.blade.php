@@ -38,10 +38,6 @@
                             <input type="hidden" name="{{ $key }}" value="{{ $value }}">
                         @endforeach
 
-                        @php
-                            dd($dataAll);
-                        @endphp
-
                         {{-- <input type="hidden" name="amount" value="{{ $dataAll['amount'] }}">
                         <input type="hidden" name="curr" value="{{ $dataAll['curr'] }}">
                         <input type="hidden" name="invoice_id" value="{{ $dataAll['invoice_id'] }}">
