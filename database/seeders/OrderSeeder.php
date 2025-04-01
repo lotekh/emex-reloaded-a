@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\City;
 use App\Models\County;
+use App\Models\Media;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -157,7 +158,7 @@ class OrderSeeder extends Seeder
                     $filePath = public_path('storage' . $image);
 
                     $data = getimagesize($filePath);
-                    $size = File::size($filePath);
+                    $size = filesize($filePath);
 
                     if ($data) {
                         $width = $data[0];
