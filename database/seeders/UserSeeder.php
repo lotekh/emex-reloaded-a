@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $jsonFile = resource_path('json/user.json');
-        $users = array_values((array)json_decode(file_get_contents($jsonFile), true))[2]['data'];
+        $users = array_values((array)json_decode(file_get_contents($jsonFile), true))[1]['data'];
 
         foreach ($users as $user) {
             $newUser = array();
@@ -63,7 +63,7 @@ class UserSeeder extends Seeder
                 $createdUser = User::create($newUser);
             }
             catch(\Throwable $e) {
-                print_r('Cannot import user with email address ' . $user['email'] . PHP_EOL);
+                print_r('Cannot import user with email address ' . $user['email'] . $e->getMessage() . PHP_EOL);
             }
         }
     }
