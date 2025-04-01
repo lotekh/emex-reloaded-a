@@ -143,6 +143,7 @@ class OrderSeeder extends Seeder
 
         if ($fileUrl) {
             try {
+                dd($fileUrl);
                 $imageContent = file_get_contents($fileUrl);
 
                 if ($imageContent) {
