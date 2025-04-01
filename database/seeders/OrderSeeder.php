@@ -20,7 +20,7 @@ class OrderSeeder extends Seeder
      */
     public function run(): void
     {
-        $file1 = resource_path('json/orders2.json');
+        $file1 = resource_path('json/orders3.json');
         $orders = array_values((array)json_decode(file_get_contents($file1), true))[2]['data'];
 
         $importedOrders = array();
