@@ -91,7 +91,7 @@ class OrderSeeder extends Seeder
                     ]);
 
                     $initialBillPath = explode('/', $order['initial_bill']);
-                    $initialBillPath = public_path($initialBillPath[4] . '/' . $initialBillPath[5] . '/' . $initialBillPath[6]);
+                    $initialBillPath = public_path($initialBillPath[5] . '/' . $initialBillPath[6]);
                     self::uploadFile($initialBillPath, $dbOrder, 'proforma_id');
                 } catch (\Throwable $e) {
                     print_r('Could not create order with id: ' . $order['id'] . '-' . $e->getMessage() . PHP_EOL);
