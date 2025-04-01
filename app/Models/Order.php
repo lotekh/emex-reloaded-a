@@ -32,7 +32,8 @@ class Order extends Model
         'contact_information',
         'delivery_information',
         'company_information',
-        'created_at'
+        'created_at',
+        'proforma_id',
     ];
 
     protected $casts = [
