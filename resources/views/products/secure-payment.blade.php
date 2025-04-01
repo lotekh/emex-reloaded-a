@@ -37,6 +37,20 @@
                         @foreach ($dataAll as $key => $value)
                             <input type="hidden" name="{{ $key }}" value="{{ $value }}">
                         @endforeach
+
+                        @php
+                            dd($dataAll);
+                        @endphp
+
+                        {{-- <input type="hidden" name="amount" value="{{ $dataAll['amount'] }}">
+                        <input type="hidden" name="curr" value="{{ $dataAll['curr'] }}">
+                        <input type="hidden" name="invoice_id" value="{{ $dataAll['invoice_id'] }}">
+                        <input type="hidden" name="order_desc" value="{{ $dataAll['order_desc'] }}">
+                        <input type="hidden" name="merch_id" value="{{ $dataAll['merch_id'] }}">
+                        <input type="hidden" name="timestamp" value="{{ $dataAll['timestamp'] }}">
+                        <input type="hidden" name="nonce" value="{{ $dataAll['nonce'] }}">
+                        <input type="hidden" name="fp_hash" value="{{ $dataAll['fp_hash'] }}"> --}}
+
                         <input type="hidden" name="guid" value="{{ $order->guid }}">
             
                         <div class="flex gap-md w-full">
@@ -47,6 +61,12 @@
                                 @error('last_name')
                                     <p class="error_message">{{ $message }}</p>
                                 @enderror
+                                {{-- <label for="lname">Nume</label>
+                                <input type="text" name="lname" class="form-control @error('lname') red_input @enderror" 
+                                    value="{{ old('lname', $lastName) }}" required>
+                                @error('lname')
+                                    <p class="error_message">{{ $message }}</p>
+                                @enderror --}}
                             </div>
                             <div class="form-group mb-16">
                                 <label for="first_name">Prenume</label>
@@ -55,6 +75,12 @@
                                 @error('first_name')
                                     <p class="error_message">{{ $message }}</p>
                                 @enderror
+                                {{-- <label for="fname">Prenume</label>
+                                <input type="text" name="fname" class="form-control @error('fname') red_input @enderror" 
+                                    value="{{ old('fname', $firstName) }}" required>
+                                @error('fname')
+                                    <p class="error_message">{{ $message }}</p>
+                                @enderror --}}
                             </div>
                         </div>
             
