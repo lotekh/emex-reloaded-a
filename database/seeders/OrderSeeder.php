@@ -19,7 +19,7 @@ class OrderSeeder extends Seeder
      */
     public function run(): void
     {
-        $file1 = resource_path('json/orders4.json');
+        $file1 = resource_path('json/orders1.json');
         $orders = array_values((array)json_decode(file_get_contents($file1), true))[2]['data'];
 
         $importedOrders = array();
@@ -91,7 +91,7 @@ class OrderSeeder extends Seeder
                     ]);
 
                     $initialBillPath = explode('/', $order['initial_bill']);
-                    $initialBillPath = public_path($initialBillPath[4] . '/' . $initialBillPath[5]);
+                    $initialBillPath = public_path($initialBillPath[4] . '/' . $initialBillPath[5] . '/' . $initialBillPath[6]);
                     self::uploadFile($initialBillPath, $dbOrder, 'proforma_id');
                 } catch (\Throwable $e) {
                     print_r('Could not create order with id: ' . $order['id'] . '-' . $e->getMessage() . PHP_EOL);
@@ -143,7 +143,6 @@ class OrderSeeder extends Seeder
 
         if ($fileUrl) {
             try {
-                dd($fileUrl);
                 $imageContent = file_get_contents($fileUrl);
 
                 if ($imageContent) {
