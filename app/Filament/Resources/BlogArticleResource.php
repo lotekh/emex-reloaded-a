@@ -10,6 +10,7 @@ use App\Helpers\SeoForm;
 use App\Models\BlogArticle;
 use App\Models\Tag;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\PathGenerators\DefaultPathGenerator;
 use Awcodes\Curator\PathGenerators\UserPathGenerator;
 use Filament\Forms;
 use Filament\Forms\Components\MarkdownEditor;
@@ -61,9 +62,8 @@ class BlogArticleResource extends Resource
                                     ->required()
                                     ->columnSpanFull(),
                                 UpdatedCuratorPicker::make('featured_image_id')
-                                    ->relationship('featuredImage', 'id')
-                                    ->pathGenerator(UserPathGenerator::class)
-                                    ->tenantAware(false)
+                                    ->relationship('featuredImage', 'featured_image_id')
+                                    ->pathGenerator(DefaultPathGenerator::class)
                                     ->preserveFilenames()
                             ]),
                         Tabs\Tab::make('SEO')

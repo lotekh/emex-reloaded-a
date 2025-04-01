@@ -26,7 +26,7 @@ class ProductSeeder extends Seeder
         DB::table('similar_products')->truncate();
         Schema::enableForeignKeyConstraints();
 
-        $jsonFile = resource_path('json/productsImport4.json');
+        $jsonFile = resource_path('json/productsImport.json');
         $products = array_values((array)json_decode(file_get_contents($jsonFile), true))[2]['data'];
 
         foreach ($products as $product) {
@@ -251,13 +251,6 @@ class ProductSeeder extends Seeder
                 Log::error($e);
             }
         }
-    }
-
-    public static function constructImageUrl($product, $param)
-    {
-        $site = 'https://emex.ro/images/';
-
-        return $site . $product[$param];
     }
 
     public static function constructTechnicalFileUrl($product)
