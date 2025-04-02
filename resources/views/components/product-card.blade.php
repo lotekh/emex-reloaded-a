@@ -86,7 +86,7 @@
         @if($initialVariation)
           <p class="flex align-end">
             <span class="mb-4">Pret:&nbsp;</span>
-            <span class="value mr-4" id="price{{$product->id}}">{{ $initialVariation->price }}</span>
+            <span class="value mr-4" id="price{{$product->id}}">{{ number_format($initialVariation->price, 2) }}</span>
             <span class="value">Lei</span>
           </p>
         @else
@@ -103,13 +103,6 @@
         <input type="hidden" name="ean" id="eanInput{{$product->id}}" value="{{ $initialVariation->ean }}">
         <input type="hidden" name="addon_quantity" id="addonQuantityInput{{$product->id}}" value="{{ $initialVariation->intaritor }}">
         <input type="hidden" name="quantity" value="1">
-
-        {{-- <input type="hidden" name="product_variation_id" value="{{ $initialVariation->id }}">
-        <input type="hidden" name="quantity" value="1">
-        <input type="hidden" name="ambalare" value="{{ $initialVariation->quantity }}">
-        <input type="hidden" name="color" value="{{ $initialVariation->colour }}">
-        <input type="hidden" name="price" value="{{ $initialVariation->price }}">
-        <input type="hidden" name="price_no_tva" value="{{ $initialVariation->price_no_tva }}"> --}}
         
         <div class="row no-wrap w-full gap-xs">
           <div class="relative row w-full">
