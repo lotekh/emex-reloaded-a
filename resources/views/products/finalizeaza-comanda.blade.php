@@ -90,19 +90,9 @@
                                 <img src="{{ asset('resources/new_design/icons/persoana-fizica.svg') }}">
                             </button>
                         </div>
-                        {{-- <input type="hidden" name="billing_type" value="{{ $order->billing_type }}"> --}}
                         <input type="hidden" name="billing_type" value="{{ auth()->check() ? optional(auth()->user())->billing_type : 0 }}">
 
                     </div>
-
-                    {{-- @if ($isGuest)
-                        <div class="guest-row">
-                            Ai deja cont?
-                            <button id="auth_lightbox_trigger" class="link" on="tap:auth-lightbox" role="button" tabindex="0" type="button">
-                                Autentificare
-                            </button>
-                        </div>
-                    @endif --}}
 
                     @if ($isGuest)
                         <div class="guest-row">
@@ -140,8 +130,6 @@
                             $organizationAddress = optional($companyInfo)->organization_address;
                         @endphp
                     @endif
-
-
 
                     {{-- Persoana fizica --}}
                     <div id="person-billing-container" class="mt-32 {{ optional(auth()->user())->billing_type == 0 ? '' : 'hidden' }}">
@@ -229,11 +217,11 @@
                         </div>
                         <div class="grid grid-2 gap-lg p-8">
                             <div class="form-group">
-                                <label>Nume persoana de contact</label>
+                                <label>Nume persoana de contact <span class="text-red">*</span></label>
                                 <input class="form-control w-full" type="text" id="contact_person_last_name" name="contact_person_last_name" value="{{ $organizationContactLastName ?? ''}}">
                             </div>
                             <div class="form-group">
-                                <label>Prenume persoana de contact</label>
+                                <label>Prenume persoana de contact <span class="text-red">*</span></label>
                                 <input class="form-control w-full" type="text" id="contact_person_first_name" name="contact_person_first_name" value="{{ $organizationContactFirstName ?? ''}}">
                             </div>
                         </div>
