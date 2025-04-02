@@ -78,10 +78,10 @@ function initializeBillingType() {
     organizationPhone.required = true;
     organizationEmail.required = true;
 
-    // organizationContactPersonFirstName.required = true;
-    // organizationContactPersonLastName.required = true;
-    organizationContactPersonFirstName.required = false;
-    organizationContactPersonLastName.required = false;
+    organizationContactPersonFirstName.required = true;
+    organizationContactPersonLastName.required = true;
+    // organizationContactPersonFirstName.required = false;
+    // organizationContactPersonLastName.required = false;
 
     billingType.value = 1;
   } else {
@@ -143,10 +143,10 @@ function changeBillingType() {
       organizationAddress.required = true;
       organizationPhone.required = true;
       organizationEmail.required = true;
-      // organizationContactPersonFirstName.required = true;
-      // organizationContactPersonLastName.required = true;
-      organizationContactPersonFirstName.required = false;
-      organizationContactPersonLastName.required = false;
+      organizationContactPersonFirstName.required = true;
+      organizationContactPersonLastName.required = true;
+      // organizationContactPersonFirstName.required = false;
+      // organizationContactPersonLastName.required = false;
 
       if (goToStep2.classList.contains("btn-disabled")) {
         goToStep2.classList.remove("btn-disabled");
