@@ -9,25 +9,6 @@
   color: var(--white);
 }
 
-/* .angajari h1::before {
-  border-image-width: 8px;
-  content: "";
-  position: absolute;
-  inset: 0;
-  padding: 8px;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 25%,
-    rgba(255, 255, 255, 0) 75%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-} */
-
 .angajari h1::before {
   content: "";
   position: absolute;
@@ -46,6 +27,17 @@
   mask-composite: exclude;
   border: 8px solid transparent;
   box-sizing: border-box;
+}
+
+.angajari_blade h1::before {
+  border-image-width: 8px;
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 8px;
+    background: linear-gradient(90deg, #fff 0, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0) 75%, #fff 100%);
+    mask: linear-gradient(to bottom, #fff 0%, #fff 100%) content-box, linear-gradient(to bottom, #fff 0%, #fff 100%);
+    mask-composite: exclude;
 }
 
 #header_img_bg {

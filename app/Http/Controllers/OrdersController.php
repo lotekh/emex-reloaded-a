@@ -53,8 +53,6 @@ class OrdersController extends Controller
     }
 
 
-
-
     public function addProduct(Request $request)
     {
         $productVariationId = $request->input('product_variation_id');
@@ -87,7 +85,7 @@ class OrdersController extends Controller
     public function updateQuantity(Request $request)
     {
         $productVariationId = $request->input('product_variation_id');
-        $quantity = $request->input('quantity', 1);  // Implicit cantitatea e 1
+        $quantity = $request->input('quantity', 1);  
 
         // Get the cart from session
         $cart = session()->get('cart', []);
@@ -723,7 +721,14 @@ class OrdersController extends Controller
                 $emailContent .= "Localitate: " . ($billingCity ? $billingCity->name : 'Necunoscut') . "\n";
                 $emailContent .= "Adresa: " . ($dbOrder->billing_type == 0 
                     ? json_decode($dbOrder->company_information, true)['person_address'] 
-                    : json_decode($dbOrder->company_information, true)['organization_address']) . "\n\n";
+                    : json_decode($dbOrder->company_information, true)['organization_address']) . "\n";
+                if ($dbOrder->billing_type == 1) {
+                    $emailContent .= "CUI: " . json_decode($dbOrder->company_information, true)['organization_cui'] . "\n";
+                    $emailContent .= "Persoană de contact: " . 
+                        json_decode($dbOrder->company_information, true)['contact_person_first_name'] . ' ' . 
+                        json_decode($dbOrder->company_information, true)['contact_person_last_name'] . "\n";
+                }
+                $emailContent .= "\n";
                 
                 $emailContent .= "Detalii livrare:\n";
                 $emailContent .= "Tip: " . ($dbOrder->delivery_type == 0 ? "Livrare prin curier" : "Ridicare personală") . "\n";
@@ -735,7 +740,7 @@ class OrdersController extends Controller
                     $emailContent .= "Localitate: " . ($deliveryCity ? $deliveryCity->name : 'Necunoscut') . "\n";
                     $emailContent .= "Adresă: " . ($deliveryInfo['delivery_address'] ?? '-') . "\n";
                 }
-                 $emailContent .= "\n";
+                $emailContent .= "\n";
                 
                 $emailContent .= "Detalii plată:\n";
                 $emailContent .= "Tip: ";

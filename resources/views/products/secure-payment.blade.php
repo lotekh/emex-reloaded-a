@@ -26,12 +26,12 @@
             };
         </script>
     @else
-        <h1 class="text-center">Plată online securizată</h1>
+        <h1 class="text-center">Plata online securizata</h1>
         <div class="flex grid grid-5 gap-lg">
             <div class="flex section payment-container col-span-2">
                 <div class="card flex col p-16 align-center rounded-xs">
-                    <h2 class="m-0 mb-8 mt-16">Detalii tranzacție</h2>
-                    <p class="text-center mb-32">Plata se poate face doar în baza facturii proforma emise de Romtehnochim, prin pagina securizată a băncii procesatoare.</p>
+                    <h2 class="m-0 mb-8 mt-16">Detalii tranzactie</h2>
+                    <p class="text-center mb-32">Plata se poate face doar in baza facturii proforma emise de Romtehnochim, prin pagina securizata a bancii procesatoare.</p>
                     <form action="https://secure.euplatesc.ro/tdsprocess/tranzactd.php" method="post" class="flex col align-center w-full">
                         @csrfWithoutAutocomplete
                         @foreach ($dataAll as $key => $value)
@@ -43,6 +43,7 @@
                                 <input type="hidden" name="{{ $key }}" value="{{ $value }}">
                             @endif
                         @endforeach
+
                         <input type="hidden" name="guid" value="{{ $order->guid }}">
             
                         <div class="flex gap-md w-full">
@@ -109,7 +110,7 @@
             
 
             <div class="flex col section px-16 align-center col-span-3">
-                <h2 class="m-0 mb-8 mt-32">Sumar comandă</h2>
+                <h2 class="m-0 mb-8 mt-32">Sumar comanda</h2>
                 <div class="w-full scrollable-x">
                     <table class="mb-8 styled desktop-cart w-full" id="cart-secure-payment">
                         <thead>
@@ -162,8 +163,8 @@
                     <span class="blue bold total ml-8">{{ number_format($order->total, 2) }} Ron</span>
                 </div>
                 <div class="info mb-16">
-                    După efectuarea plății, veți primi un email de confirmare, iar comanda va fi procesată în cel mai scurt timp.<br>
-                    Vă mulțumim!
+                    Dupa efectuarea platii, veti primi un email de confirmare, iar comanda va fi procesata in cel mai scurt timp.<br>
+                    Va multumim!
                 </div>
             </div>
         </div>
