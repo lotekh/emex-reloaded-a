@@ -51,6 +51,13 @@ class PaymentController extends Controller
     $dataAll['fname'] = $firstName;
     $dataAll['lname'] = $lastName;
 
+    //Redirect urls
+    $dataAll['ExtraData']['ep_method'] = 'get';
+    $dataAll['ExtraData']['backtosite_method'] = 'get';
+    $dataAll['ExtraData']['backtosite'] = env('APP_URL');
+    $dataAll['ExtraData']['failedurl'] = env('APP_URL');
+    $dataAll['ExtraData']['successurl'] = env('APP_URL');
+
     if ($order->billing_type == 1) { // Dacă este persoană juridică, adăugăm și numele companiei
         $dataAll['company'] = $companyInfo['organization_name'];
     }
