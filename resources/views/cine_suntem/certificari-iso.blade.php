@@ -58,6 +58,12 @@
                         </div>
                     </div>
                     <div class="certificate-slide">
+                        <img src="{{ asset('iso/ISO-45001.webp') }}" width="246" height="348" alt="ISO 45001" class="responsive-img">
+                        <div class="text-center mt-16">
+                            <label class="cert_third">ISO-45001</label>
+                        </div>
+                    </div>
+                    <div class="certificate-slide">
                         <img src="{{ asset('iso/ISO-20671.webp') }}" width="246" height="348" alt="ISO 20671" class="responsive-img">
                         <div class="text-center mt-16">
                             <label class="cert_third">ISO-20671</label>
@@ -67,12 +73,6 @@
                         <img src="{{ asset('iso/ISO-27001.webp') }}" width="246" height="348" alt="ISO 27001" class="responsive-img">
                         <div class="text-center mt-16">
                             <label class="cert_third">ISO-27001</label>
-                        </div>
-                    </div>
-                    <div class="certificate-slide">
-                        <img src="{{ asset('iso/ISO-45001.webp') }}" width="246" height="348" alt="ISO 45001" class="responsive-img">
-                        <div class="text-center mt-16">
-                            <label class="cert_third">ISO-45001</label>
                         </div>
                     </div>
                 </div>
