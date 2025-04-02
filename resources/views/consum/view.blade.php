@@ -118,12 +118,12 @@
                         </div>
                         <div class="badge flex justify-center">
                             <div class="relative w-full h-full">
-                                <img src="{{ asset('resources/images/iso.png') }}" alt="Romtehnochim asigura garantia calitatii" title="Emex - produse certificate ISO" />
+                                <img src="{{ asset('resources/images/ISO-consum.png') }}" alt="Romtehnochim asigura garantia calitatii" title="Emex - produse certificate ISO" />
                             </div>
                         </div>
                         <div class="badge flex justify-center">
                             <a class="excelent-img col" href="https://excellent-sme-plus-romania.safesigned.com/romtehnochim-srl/" title="Certificat excelenta in afaceri">
-                                <img src="{{ asset('resources/general/Romtehnochim-certificat-de-excelenta.png') }}" alt="Verificare certificat Coface Camera de Comert" title="Certificat excelenta in afaceri" width="363" height="68">
+                                <img src="{{ asset('resources/images/excelenta-consum.png') }}" alt="Verificare certificat Coface Camera de Comert" title="Certificat excelenta in afaceri" width="363" height="68">
                             </a>
                         </div>
                     </div>
