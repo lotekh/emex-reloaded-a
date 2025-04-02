@@ -38,11 +38,18 @@ class PaymentController extends Controller
             'nonce' => md5(microtime() . mt_rand()),
         ];
 
-        // Generate the hash for EuPlatesc
-        $dataAll['fp_hash'] = strtoupper($this->euplatesc_mac($dataAll, env('EUPLATESC_KEY')));
-        $dataAll['email'] = $email;
-        $dataAll['fname'] = $firstName;
-        $dataAll['lname'] = $lastName;
+    // Generăm hash-ul pentru semnătură
+    $dataAll['fp_hash'] = strtoupper($this->euplatesc_mac($dataAll, env('EUPLATESC_KEY')));
+    $dataAll['email'] = $email;
+    $dataAll['fname'] = $firstName;
+    $dataAll['lname'] = $lastName;
+
+    //Redirect urls
+    $dataAll['ExtraData']['ep_method'] = 'get';
+    $dataAll['ExtraData']['backtosite_method'] = 'get';
+    $dataAll['ExtraData']['backtosite'] = env('APP_URL');
+    $dataAll['ExtraData']['failedurl'] = env('APP_URL');
+    $dataAll['ExtraData']['successurl'] = env('APP_URL');
 
         if ($order->billing_type == 1) { // If it is 'persoana juridica', add organization name
             $dataAll['company'] = $companyInfo['organization_name'];

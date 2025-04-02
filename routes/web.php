@@ -31,6 +31,10 @@ require __DIR__.'/auth.php';
 Route::middleware([RemoveMinifierTags::class])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
+    Route::post('/', function() {
+        redirect()->route('home');
+    });
+
     Route::get('/search', [HomeController::class, 'search'])->name('search');
     
     Route::get('/dashboard', function () {

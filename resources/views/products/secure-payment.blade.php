@@ -35,7 +35,13 @@
                     <form action="https://secure.euplatesc.ro/tdsprocess/tranzactd.php" method="post" class="flex col align-center w-full">
                         @csrfWithoutAutocomplete
                         @foreach ($dataAll as $key => $value)
-                            <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                            @if(gettype($value) == 'array') 
+                                @foreach ($value as $k => $v)
+                                    <input type="hidden" name="{{ $key }}[{{ $k }}]" value="{{ $v }}">
+                                @endforeach
+                            @else
+                                <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                            @endif
                         @endforeach
 
                         {{-- <input type="hidden" name="amount" value="{{ $dataAll['amount'] }}">
