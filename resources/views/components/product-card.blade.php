@@ -160,7 +160,7 @@
           );
   
           if (variation) {
-              priceDisplay.textContent = variation.price;
+              priceDisplay.textContent = parseFloat(variation.price).toFixed(2);
               priceInput.value = variation.price;
               variationInput.value = variation.id; // Set variation ID
           } else {
