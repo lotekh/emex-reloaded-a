@@ -64,7 +64,8 @@ class ReviewResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('rating')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->default(5),
                 Tables\Columns\IconColumn::make('approved')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')

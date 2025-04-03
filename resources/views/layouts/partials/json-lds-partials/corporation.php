@@ -21,7 +21,7 @@ $corporation_json = <<<js
      "addressLocality":"Jilava",
      "addressRegion":"Ilfov",
      "postalCode":"77120",
-     "addressCountry":"Romania"
+     "addressCountry":"Ro"
   },
   "contactPoint":{
      "@type":"ContactPoint",
