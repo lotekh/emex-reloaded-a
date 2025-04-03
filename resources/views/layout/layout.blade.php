@@ -11,6 +11,17 @@
     <meta name="geo.position" content="44.328689;26.067273">
     <meta name="ICBM" content="44.328689,26.067273">
 
+    <link href="{{ env('APP_URL') }}" rel="canonical"  />
+    <link href="{{ env('APP_URL') }}" hreflang="ro-RO" rel="alternate"/>
+    <link href="{{ env('APP_URL') }}" hreflang="x-default" rel="alternate"/>
+    <link href="{{ env('APP_URL') }}/sitemap.xml" title="General Site Map" rel="sitemap">
+    <link href="{{ asset('favicon.ico') }}" rel="icon" type="image/x-icon"/>
+
+    <meta name="Classification" content="Business">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="robots" content="index, follow">
+
+
     <meta name="csrf-token" content="{{csrf_token()}}">
 
     @yield('seo')
