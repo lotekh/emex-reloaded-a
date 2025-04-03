@@ -346,18 +346,7 @@ Route::middleware([RemoveMinifierTags::class])->group(function () {
     Route::get('/{consumption_slug}/calculate', [ConsumController::class, 'show'])
         ->where('consumption_slug', '.*')
         ->name('consum.calculate');
-    
-    // Routes for slugs
-    Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
-    
-    // Consum
-    Route::get('/consum/{category}', [ConsumController::class, 'index'])->name('consum.index');
-    // Route for consum page without parameters (currentPage=0)
-    Route::get('/{consumption_slug}', [ConsumController::class, 'show'])
-        ->where('consumption_slug', '.*')
-        ->name('consum.show');
-    Route::post('/consum/store', [ConsumController::class, 'store'])->name('consum.store');
-    
+
     Route::prefix('/feed')->group(function () {
         Route::get('/bizoo-v2', [FeedController::class, 'bizooV2'])->name('feeds.bizoo.v2');
     
@@ -373,6 +362,17 @@ Route::middleware([RemoveMinifierTags::class])->group(function () {
     
         Route::get('/merxu', [FeedController::class, 'merxu'])->name('feeds.merxu');
     });
+    
+    // Routes for slugs
+    Route::get('/{slug}', [HomeController::class, 'handleSlug'])->name('slug.handle');
+    
+    // Consum
+    Route::get('/consum/{category}', [ConsumController::class, 'index'])->name('consum.index');
+    // Route for consum page without parameters (currentPage=0)
+    Route::get('/{consumption_slug}', [ConsumController::class, 'show'])
+        ->where('consumption_slug', '.*')
+        ->name('consum.show');
+    Route::post('/consum/store', [ConsumController::class, 'store'])->name('consum.store');
     
     // Error 404 and 500
     Route::get('/404', function () {
