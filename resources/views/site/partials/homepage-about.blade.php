@@ -18,6 +18,10 @@
                 Sistemului Integrat de Management al Calitatii, Mediului si Securitatii Ocupationale implementate
                 conform ISO 9001, ISO 14001 si respectiv ISO 45001.
             </p>
+			<p>
+                <span class="alineat_span"></span>
+                Emex by Romtehnochim, ca simbol al excelentei, primeste recunoastere europeana si devine Marca Europeana Certificata, sub Nr. UE 018280232 din 19.09.2022
+            </p>
         </div>
         <div class="section-tech relative">
             <div class="image-description-card ">

@@ -4,8 +4,8 @@ if (!isset($model)) {
     return false; 
 }
 
-$created_at = $model->created_at->format('Y-m-d');
-$updated_at = $model->updated_at->format('Y-m-d');
+$created_at = $model->created_at->format('Y-m-d\TH:i:sP');
+$updated_at = $model->updated_at->format('Y-m-d\TH:i:sP');
 $seoKeywords = $model->seo_meta_keywords ?? '';
 $body = strip_tags($model->body); // Eliminăm orice HTML din conținut
 $description = $model->jsonld_description ?? $model->seo_meta_description;
