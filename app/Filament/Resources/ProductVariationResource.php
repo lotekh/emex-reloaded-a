@@ -41,6 +41,8 @@ class ProductVariationResource extends Resource
                 TextColumn::make('addon_text'),
                 TextColumn::make('ean')
                 ->searchable(),
+                TextColumn::make('sku')
+                ->searchable(),
                 TextColumn::make('price')
                 ->label('Price (RON)')
             ])

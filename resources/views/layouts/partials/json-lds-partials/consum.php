@@ -35,11 +35,6 @@ $consum_json = [
     'sku' => $sku,
     'mpn' => $mpn,
     'gtin' => $gtin,
-    'aggregateRating' => [
-        '@type' => 'AggregateRating',
-        'ratingValue' => $avgRating,
-        'reviewCount' => $ratingCount,
-    ],
     'offers' => [
         '@type' => 'Offer',
         'priceCurrency' => 'RON',

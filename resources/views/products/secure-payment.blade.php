@@ -12,7 +12,7 @@
 @section('content')
 <div class="main-container flex col align-center payment">
     @if (!isset($dataAll))
-        <h3 class="redirect">Vă rugăm să așteptați. Sunteți redirecționat către pagina securizată de plată ...</h3>
+        <h3 class="redirect">Va rugam sa asteptati. Sunteti redirectionat catre pagina securizata de plata ...</h3>
         <form action="https://secure.euplatesc.ro/tdsprocess/tranzactd.php" method="post" id="payment">
             @foreach ($dataAll as $key => $value)
                 <input name="{{ $key }}" value="{{ $value }}" type="hidden">
@@ -67,7 +67,7 @@
             
                         @if ($order->billing_type == 1)
                         <div class="form-group mb-16">
-                            <label for="company_name">Firmă</label>
+                            <label for="company_name">Firma</label>
                             <input type="text" name="company_name" class="form-control @error('company_name') red_input @enderror" 
                                 value="{{ old('company_name', json_decode($order->company_information, true)['organization_name'] ?? '') }}">
                             @error('company_name')
@@ -86,7 +86,7 @@
                         </div>
             
                         <div class="form-group mb-16">
-                            <label for="ORDER">Nr Factură</label>
+                            <label for="ORDER">Nr Factura</label>
                             <input type="text" name="ORDER" class="form-control @error('orderNo') red_input @enderror" 
                                 value="{{ old('orderNo', $order->identifier) }}" required>
                             @error('orderNo')
