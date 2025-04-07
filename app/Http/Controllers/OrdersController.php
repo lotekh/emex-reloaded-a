@@ -267,12 +267,7 @@ class OrdersController extends Controller
         if (!$order_id) {
             $order_id = Str::uuid(); 
             session()->put('order_id', $order_id);
-        }
-
-        // $lastOrder = Order::whereBetween('identifier', [20111, 999999])
-        //     ->orderBy('identifier', 'desc')
-        //     ->first();
-        // $identifier = $lastOrder ? $lastOrder->identifier + 1 : 20111;   
+        } 
         
         $lastOrder = Order::whereRaw('CAST(identifier AS UNSIGNED) >= 20111')
             ->whereRaw('CAST(identifier AS UNSIGNED) < 99999') 
