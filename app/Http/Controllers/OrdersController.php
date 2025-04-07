@@ -269,10 +269,18 @@ class OrdersController extends Controller
             session()->put('order_id', $order_id);
         }
 
-        do {
-            $identifier = str_pad(mt_rand(1, 9999999), 7, '0', STR_PAD_LEFT);
-        } while (Order::where('identifier', $identifier)->exists());
+        // $lastOrder = Order::whereBetween('identifier', [20111, 999999])
+        //     ->orderBy('identifier', 'desc')
+        //     ->first();
+        // $identifier = $lastOrder ? $lastOrder->identifier + 1 : 20111;   
         
+        $lastOrder = Order::whereRaw('CAST(identifier AS UNSIGNED) >= 20111')
+            ->whereRaw('CAST(identifier AS UNSIGNED) < 99999') 
+            ->whereRaw('LENGTH(identifier) <= 5') // exclude previous numbers like 0021345
+            ->orderByRaw('CAST(identifier AS UNSIGNED) DESC')
+            ->first();
+        $identifier = $lastOrder ? ((int) $lastOrder->identifier + 1) : 20111;
+
 
         // Initialize or get the data from the session for our current order 
         $order = session()->get('order', [
