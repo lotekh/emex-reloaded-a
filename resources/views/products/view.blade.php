@@ -159,10 +159,14 @@
                                         </div>
 
                                         @if ($product->has_hardener)
-                                            <div class="row items-baseline price-container">
+                                            <div class="lg:row items-baseline price-container">
                                                 <p class="section-info text-blue-009">
                                                     Contine: 
-                                                    @if (Str::contains(Str::lower($product->name), 'lac'))
+                                                </p>
+                                                
+                                                
+                                                <p class="section-info text-blue-009">
+                                                @if (Str::contains(Str::lower($product->name), 'lac'))
                                                         Lac
                                                     @elseif (Str::contains(Str::lower($product->name), 'membran'))
                                                         Membrana
@@ -185,15 +189,8 @@
                                                         {{ fmod($initialVariation->quantity, 1) == 0 ? $initialVariation->quantity : number_format($initialVariation->quantity, 2) }} 
                                                         {{ $initialVariation->measurementUnit->name }}
                                                     </span>
-                                                    
+                                                    <span id="addon-text" class="ml-4">{{ $initialVariation->addon_text }}</span>
                                                 </p>
-                                                
-                                                
-                                                <p class="section-info text-blue-009 ml-4">
-                                                    <span id="addon-text">{{ $initialVariation->addon_text }}</span>
-                                                </p>
-                                                
-
                                             </div>
                                         @endif
 
@@ -219,7 +216,9 @@
                                             <img src="{{ asset('resources/new_design/icons/error-outline.svg') }}" alt="error-icon" title="error-icon" width="24" height="24">
                                         </div>
                                         <p>Indisponibil</p>
-                                        Disponibil din data {{ $product->disponibil_din_data }}
+                                        @if($product->available_since) 
+                                            Disponibil din data {{ $product->available_since }}
+                                        @endif
                                     </div>
                                 @endif
 

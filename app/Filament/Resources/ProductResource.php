@@ -11,6 +11,7 @@ use App\Models\Product;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\PathGenerators\DefaultPathGenerator;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Form;
@@ -56,6 +57,10 @@ class ProductResource extends Resource
                                     ->relationship('technicalFile', 'technical_file_id')
                                     ->pathGenerator(DefaultPathGenerator::class)
                                     ->preserveFilenames(),
+                                DatePicker::make('available_since')
+                                    ->label('Available since')
+                                    ->placeholder('Select a date')
+                                    ->displayFormat('Y-m-d'),
                                 Forms\Components\Grid::make(3)
                                     ->schema([
                                         Forms\Components\Toggle::make('has_palette')
