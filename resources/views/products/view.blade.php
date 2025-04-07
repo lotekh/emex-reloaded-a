@@ -457,15 +457,17 @@
     </div>
 </div>
 
-<div id="global-lightbox-video" class="lightbox hidden">
-    <div class="lightbox-content">
-        <span class="close-btn" style=" background-image: url('{{ asset('resources/images/sprite.png') }}')" onclick="closeVideoLightbox()"></span>
-        <video id="global-lightbox-video-element" controls>
-            <source src="https://vopsele.xyz/videos/Pardoseala-covor-de-cuart-epoxidic.mp4" type="video/mp4"/>
-            Browserul tău nu suportă elementul video.
-        </video>
+@if (Str::contains($usageDetails, '.mp4'))
+    <div id="global-lightbox-video" class="lightbox hidden">
+        <div class="lightbox-content">
+            <span class="close-btn" style=" background-image: url('{{ asset('resources/images/sprite.png') }}')" onclick="closeVideoLightbox()"></span>
+            <video id="global-lightbox-video-element" controls>
+                <source src="https://vopsele.xyz/videos/Pardoseala-covor-de-cuart-epoxidic.mp4" type="video/mp4"/>
+                Browserul tău nu suportă elementul video.
+            </video>
+        </div>
     </div>
-</div>
+@endif
 
 @include('components.sidebar-contact', ['secondary_title' => $product->name ?? 'Produs necunoscut'])
 
