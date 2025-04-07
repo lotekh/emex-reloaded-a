@@ -21,8 +21,8 @@
 			<p>
                 <span class="alineat_span"></span>
                 “Emex”, etalon al calitatii în industrie, este marca inregistrata a companiei “Romtehnochim”:<br>
-- la nivel national prin OSIM sub Nr. 088368 din 17.10.2006;<br>
-- la nivel europen prin EUIPO sub Nr. 018280232 din 19.09.2022
+                <span class="alineat_span"></span>- la nivel national prin OSIM sub Nr. 088368 din 17.10.2006;<br>
+                <span class="alineat_span"></span>- la nivel europen prin EUIPO sub Nr. 018280232 din 19.09.2022
             </p>
         </div>
         <div class="section-tech relative">
