@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ro">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,11 +12,11 @@
     <meta name="geo.position" content="44.328689;26.067273">
     <meta name="ICBM" content="44.328689,26.067273">
 
-    <link href="{{ env('APP_URL') }}" rel="canonical"  />
-    <link href="{{ env('APP_URL') }}" hreflang="ro-RO" rel="alternate"/>
-    <link href="{{ env('APP_URL') }}" hreflang="x-default" rel="alternate"/>
+    <link href="{{ url()->current() }}" rel="canonical" />
+    <link href="{{ env('APP_URL') }}" hreflang="ro-RO" rel="alternate" />
+    <link href="{{ env('APP_URL') }}" hreflang="x-default" rel="alternate" />
     <link href="{{ env('APP_URL') }}/sitemap.xml" title="General Site Map" rel="sitemap">
-    <link href="{{ asset('favicon.ico') }}" rel="icon" type="image/x-icon"/>
+    <link href="{{ asset('favicon.ico') }}" rel="icon" type="image/x-icon" />
 
     <meta name="Classification" content="Business">
     <meta name="HandheldFriendly" content="True">
@@ -24,28 +25,50 @@
 
     <meta name="csrf-token" content="{{csrf_token()}}">
 
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-57FHTGR');
+    </script>
+    <!-- End Google Tag Manager -->
+
     @yield('seo')
     @yield('title')
     <link rel="icon" type="image/x-icon" href="{{ asset('resources/emex-favicon.ico') }}">
 
     @include('layouts.partials.json-ld')
-    
+
     @hasSection('css')
-        @yield('css')
-    @else 
-        <link rel="stylesheet" href="{{ asset('css/bundled/layout.min.css') }}">
+    @yield('css')
+    @else
+    <link rel="stylesheet" href="{{ asset('css/bundled/layout.min.css') }}">
     @endif
 
     <script src="{{ asset('search-script/zoom_autocomplete.js') }}"></script>
 </head>
 
 @php
-    use App\Models\Order;
+use App\Models\Order;
 @endphp
 
 
 <body class="m-0" id="main_body">
-    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-57FHTGR"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <header class="w-full bg-white-gray">
         <div class="main-container row justify-between align-center desktop-header gap-lg">
             <div></div>
@@ -91,44 +114,44 @@
                         <circle fill="none" cx="11.75" cy="11.75" r="11.25" stroke="#203471" stroke-miterlimit="10"></circle>
                     </svg>
                     @auth
-                        <span>
-                            {{ Auth::user()->last_name }} {{ Auth::user()->first_name }}
-                        </span>
+                    <span>
+                        {{ Auth::user()->last_name }} {{ Auth::user()->first_name }}
+                    </span>
                     @else
-                        <span>
-                            Contul meu
-                        </span>
+                    <span>
+                        Contul meu
+                    </span>
                     @endauth
                     <img src="{{ asset('resources/new_design/icons/expand_more.svg') }}" height="24" width="24" alt="See more arrow" title="See more">
                 </div>
                 <div class="col dropdown-menu">
                     @auth
-                        <a href="{{ url('/contul-meu') }}" title="Setari cont">
-                            Setari cont
-                        </a>
-                        <a href="{{ url('/wishlist') }}" title="Favorite">
-                            Favorite
-                        </a>
-                        <a href="{{ url('/contul-meu') }}#istoric" title="Istoric">Istoric</a>
-                        <a href="{{ url('/contul-meu') }}#facturare" title="Facturare">Facturare</a>
+                    <a href="{{ url('/contul-meu') }}" title="Setari cont">
+                        Setari cont
+                    </a>
+                    <a href="{{ url('/wishlist') }}" title="Favorite">
+                        Favorite
+                    </a>
+                    <a href="{{ url('/contul-meu') }}#istoric" title="Istoric">Istoric</a>
+                    <a href="{{ url('/contul-meu') }}#facturare" title="Facturare">Facturare</a>
 
 
 
-                        <a href="{{ route('logout') }}" id="logoutButton" title="Iesire din cont"
+                    <a href="{{ route('logout') }}" id="logoutButton" title="Iesire din cont"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                         Iesire din cont
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrfWithoutAutocomplete
-                        </form>
-                     
+                        Iesire din cont
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrfWithoutAutocomplete
+                    </form>
 
 
-                       
+
+
                     @else
-                        <button id="auth_lightbox_trigger" class="auth" type="button" role="button" tabindex="0" aria-label="Autentificare">
-                            Autentificare
-                        </button>
+                    <button id="auth_lightbox_trigger" class="auth" type="button" role="button" tabindex="0" aria-label="Autentificare">
+                        Autentificare
+                    </button>
                     @endauth
                 </div>
             </div>
@@ -148,7 +171,7 @@
                 <div class="row align-center gap-md" id="favorites-cart">
                     <a href="{{ url('/wishlist') }}" title="produse favorite">
                         @php
-                            $wishlist_products_count = Auth::check() ? App\Models\WishlistItem::where('user_id', Auth::id())->count() : 0;
+                        $wishlist_products_count = Auth::check() ? App\Models\WishlistItem::where('user_id', Auth::id())->count() : 0;
                         @endphp
                         <div class="flex align-center">
                             <svg width="20" height="19" viewBox="0 0 14 13" fill="#1071FF" xmlns="http://www.w3.org/2000/svg">
@@ -160,7 +183,7 @@
                         </div>
                         <span class="label">Favorite</span>
                     </a>
-                    
+
                     <a href="{{ url('/produse-adaugate') }}" title="cos">
                         <div class="flex align-center">
                             <svg width="20" height="19" viewBox="0 0 15 14" fill="#1071FF" xmlns="http://www.w3.org/2000/svg">
@@ -168,8 +191,8 @@
                             </svg>
                         </div>
                         @php
-                            use App\Http\Controllers\OrdersController;
-                            $preorder_count = (new OrdersController())->getCartProductVariationCount();
+                        use App\Http\Controllers\OrdersController;
+                        $preorder_count = (new OrdersController())->getCartProductVariationCount();
                         @endphp
 
                         <div class="circle flex justify-center align-center">
@@ -178,7 +201,7 @@
 
                         <span class="label">Cos</span>
                     </a>
-                    
+
 
                 </div>
             </div>
@@ -190,7 +213,7 @@
                     <div class="breadcrumbs pull-left">
                         @yield('breadcrumbs')
                     </div>
-                </div>                
+                </div>
             </div>
             <div id="navigation_wrapper">
                 <div id="navigation">
@@ -206,7 +229,7 @@
                 <div class="breadcrumbs pull-left">
                     @yield('breadcrumbs')
                 </div>
-            </div>                
+            </div>
         </div>
 
 
@@ -214,14 +237,14 @@
 
 
     @if($popup)
-        <div class="popups" id="popupContainer">
-            <div id="popup9" class="popup">
-                <div class="text">
-                    {!! $popup->message !!}
-                </div>
-                <img alt="close-line-red" src="{{ asset('resources/images/close-line-red.png') }}" role="button" tabindex="0" onclick="document.getElementById('popupContainer').style.display = 'none'">
+    <div class="popups" id="popupContainer">
+        <div id="popup9" class="popup">
+            <div class="text">
+                {!! $popup->message !!}
             </div>
+            <img alt="close-line-red" src="{{ asset('resources/images/close-line-red.png') }}" role="button" tabindex="0" onclick="document.getElementById('popupContainer').style.display = 'none'">
         </div>
+    </div>
     @endif
 
     <div class="autentificare-1">
@@ -251,7 +274,7 @@
                             <div class="form-group w-full relative">
                                 <label for="form-login-password">Parola<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-login-password" type="password" name="password" required>
-                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" alt="eye-solid-icon" width="20" height="18" class="password-toggle-icon" id="toggle-login-password-visibility"  onclick="togglePasswordVisibility('form-login-password', 'toggle-login-password-visibility')" >
+                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" alt="eye-solid-icon" width="20" height="18" class="password-toggle-icon" id="toggle-login-password-visibility" onclick="togglePasswordVisibility('form-login-password', 'toggle-login-password-visibility')">
                             </div>
                             <div class="w-full flex justify-center">
                                 <button type="submit" class="w-fit btn rounded-lg px-16 mt-32">Autentifica-te</button>
@@ -261,7 +284,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div id="register-lightbox" class="w-full h-screen flex justify-center align-center modal">
                 <div class="modal-container">
                     <div class="relative header row justify-between align-center">
@@ -299,7 +322,7 @@
                             <div class="form-group w-full">
                                 <label for="form-register-password">Parola<span class="text-red">*</span></label>
                                 <input class="w-full" id="form-register-password" type="password" name="password" required>
-                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" alt="eye-solid-icon" width="20" height="18" class="password-toggle-icon" id="toggle-register-password-visibility"  onclick="togglePasswordVisibility('form-register-password', 'toggle-register-password-visibility')" >
+                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" alt="eye-solid-icon" width="20" height="18" class="password-toggle-icon" id="toggle-register-password-visibility" onclick="togglePasswordVisibility('form-register-password', 'toggle-register-password-visibility')">
                             </div>
                             <div class="row align-center">
                                 <input type="checkbox" class="hidden" name="terms" id="tc" value="1" required checked>
@@ -321,7 +344,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div id="recover-password-lightbox" class="w-full h-screen flex justify-center align-center modal">
                 <div class="modal-container">
                     <div class="relative header row justify-between align-center">
@@ -412,7 +435,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div>
                 <div class="grid grid-2" id="footer-links-news">
                     <div class="col">
@@ -436,7 +459,7 @@
                                         <a href="{{ url('/certificari-iso') }}" rel="noopener noreferrer">Certificari</a>
                                     </li>
                                 </ul>
-                                <ul class="one-half" id="one-half-right">  
+                                <ul class="one-half" id="one-half-right">
                                     <li>
                                         <a href="{{ url('/cartela-culori-ral-vopsele') }}" rel="noopener noreferrer">Paleta Culori RAL</a>
                                     </li>
@@ -455,8 +478,8 @@
                                 </ul>
                             </div>
                         </div>
-                    </div> 
-        
+                    </div>
+
                     <div class="col" id="recent-news">
                         <div class="footer_news_area">
                             <h3 class="title">Stiri recente</h3>
@@ -465,21 +488,21 @@
                             @endphp
                             <div class="col" id="recent-news-list">
                                 @foreach ($blogArticles as $blogArticle)
-                                    <div>
-                                        <div class="news_row mb-16">
-                                            <h4 class="news-title">
-                                                <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}">{{ $blogArticle->title }}</a>
-                                            </h4>                                            
-                                            <p>{{ $blogArticle->created_at->format('j.m.Y') }}</p>
-                                        </div>
+                                <div>
+                                    <div class="news_row mb-16">
+                                        <h4 class="news-title">
+                                            <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}">{{ $blogArticle->title }}</a>
+                                        </h4>
+                                        <p>{{ $blogArticle->created_at->format('j.m.Y') }}</p>
                                     </div>
+                                </div>
                                 @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-    
+
             <div class="newsletter-section">
                 <div class="title">Newsletter</div>
                 <p>
@@ -492,36 +515,36 @@
                     <input type="submit" class="btn btn-blue w-full mt-8" id="nfs_btn" value="Aboneaza-te">
                     <div id="subscribe-msg">
                         @if(session('success'))
-                            <p>{{ session('success') }}</p>
+                        <p>{{ session('success') }}</p>
                         @endif
                     </div>
                 </form>
             </div>
-            
+
         </div>
-    
+
         <div class="main-container">
             <p id="tags_h4">
                 <?php
-                    $tags = [];
-                    $currentUrl = trim(request()->path(), '/');
-                    $currentUrl = explode('/', $currentUrl);
-                    $currentUrl = end($currentUrl);
+                $tags = [];
+                $currentUrl = trim(request()->path(), '/');
+                $currentUrl = explode('/', $currentUrl);
+                $currentUrl = end($currentUrl);
 
-                    $filePath = public_path('tags/tags.csv');
+                $filePath = public_path('tags/tags.csv');
 
-                    if (file_exists($filePath) && ($handle = fopen($filePath, 'r')) !== false) {
-                        while (($data = fgetcsv($handle, 1000, ",")) !== false) {
-                            $tags[$data[0]] = $data[1];
-                        }
-                        fclose($handle);
+                if (file_exists($filePath) && ($handle = fopen($filePath, 'r')) !== false) {
+                    while (($data = fgetcsv($handle, 1000, ",")) !== false) {
+                        $tags[$data[0]] = $data[1];
                     }
+                    fclose($handle);
+                }
 
-                    echo !empty($tags[$currentUrl]) ? $tags[$currentUrl] : '';
+                echo !empty($tags[$currentUrl]) ? $tags[$currentUrl] : '';
                 ?>
             </p>
         </div>
-    
+
         <div class="bottom-section main-container" id="ftr">
             <div id="fc" class="row align-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -553,7 +576,7 @@
                     <li><a href="{{ url('/contact') }}" class="b-0">Contact</a></li>
                 </ul>
             </div>
-    
+
             <div id="fsm" class="sprites">
                 <span>
                     <a href="{{ url('/blog') }}" title="Blog Emex by Romtehnochim" aria-label="Accesează Blogul Emex">
@@ -644,22 +667,22 @@
     @endif
 
     @if (!Cookie::get('cookies_accepted'))
-        <div id="cookie_notifier" class="cookie-notifier">
-            <div class="main-container">
-                <form class="row align-center justify-between wrap gap-md" id="cookieForm" method="POST" action="{{ route('accept.cookies') }}">
-                    @csrfWithoutAutocomplete
-                    <p class="text-white">
-                        Cookie-urile ne ajuta sa va oferim servicii mai bune. Prin folosirea site-ului, acceptati folosirea acestora. &nbsp;
-                    </p>
-                    <div class="cookie-btn-container">
-                        <a href="{{ url('/cookies') }}" title="Politica de folosire a cookies" class="info">
-                            Detalii
-                        </a>
-                        <button type="button" class="cookie-btn" aria-label="Ok" onclick="acceptCookies()">Ok</button>
-                    </div>
-                </form>
-            </div>
+    <div id="cookie_notifier" class="cookie-notifier">
+        <div class="main-container">
+            <form class="row align-center justify-between wrap gap-md" id="cookieForm" method="POST" action="{{ route('accept.cookies') }}">
+                @csrfWithoutAutocomplete
+                <p class="text-white">
+                    Cookie-urile ne ajuta sa va oferim servicii mai bune. Prin folosirea site-ului, acceptati folosirea acestora. &nbsp;
+                </p>
+                <div class="cookie-btn-container">
+                    <a href="{{ url('/cookies') }}" title="Politica de folosire a cookies" class="info">
+                        Detalii
+                    </a>
+                    <button type="button" class="cookie-btn" aria-label="Ok" onclick="acceptCookies()">Ok</button>
+                </div>
+            </form>
         </div>
+    </div>
     @endif
 
     {{-- Sidebar Mobile --}}
@@ -700,11 +723,11 @@
                     <li id="apmim_mob"><a href="{{ url('/produse') }}" title="toate produsele">Toate Produsele</a></li>
 
                     @foreach ($categories as $ind => $category)
-                        <li>
-                            <a href="{{ url($category->slug) }}">
-                                {{ $category->name }}
-                            </a>
-                        </li>
+                    <li>
+                        <a href="{{ url($category->slug) }}">
+                            {{ $category->name }}
+                        </a>
+                    </li>
                     @endforeach
 
                 </ul>
@@ -738,12 +761,12 @@
                 </div>
                 <ul class="dropdown-menu dropdown-menu-mobile" id="consum-menu">
                     @foreach ($categories as $ind => $category)
-                        <li>
-                            <a href="{{ route('consum.index', ['category' => $category->slug]) }}">
-                                {{ $category->name }}
-                            </a>
-                        </li>
-                    @endforeach   
+                    <li>
+                        <a href="{{ route('consum.index', ['category' => $category->slug]) }}">
+                            {{ $category->name }}
+                        </a>
+                    </li>
+                    @endforeach
                 </ul>
             </div>
             <div class="categorii" id="servicii" onclick="toggleAccordion('servicii')">
@@ -784,21 +807,21 @@
             </section>
             <div class="contul_meu">
                 @if (Auth::check())
-                    <a href="{{ url('/contul-meu') }}" title="Setari cont">Setari cont</a>
-                    <a href="{{ url('/wishlist') }}" title="Favorite">Favorite</a>
-                    <a href="{{ url('/contul-meu') }}" title="Istoric">Istoric</a>
-                    <a href="{{ url('/contul-meu') }}" title="Facturare">Facturare</a>
-                    <a href="{{ route('logout') }}" id="logoutButtonMobile" title="Iesire"
-                        onclick="event.preventDefault(); document.getElementById('logout-form-mobil').submit();">
-                         Iesire din cont
-                    </a>
-                    <form id="logout-form-mobil" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrfWithoutAutocomplete
-                    </form>
+                <a href="{{ url('/contul-meu') }}" title="Setari cont">Setari cont</a>
+                <a href="{{ url('/wishlist') }}" title="Favorite">Favorite</a>
+                <a href="{{ url('/contul-meu') }}" title="Istoric">Istoric</a>
+                <a href="{{ url('/contul-meu') }}" title="Facturare">Facturare</a>
+                <a href="{{ route('logout') }}" id="logoutButtonMobile" title="Iesire"
+                    onclick="event.preventDefault(); document.getElementById('logout-form-mobil').submit();">
+                    Iesire din cont
+                </a>
+                <form id="logout-form-mobil" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrfWithoutAutocomplete
+                </form>
                 @else
-                    <button id="auth_lightbox_trigger_mobile" type="button" class="btn btn-blue" onclick="toggleSidebar()" role="button" aria-label="Autentificare">
-                        Autentificare
-                    </button>
+                <button id="auth_lightbox_trigger_mobile" type="button" class="btn btn-blue" onclick="toggleSidebar()" role="button" aria-label="Autentificare">
+                    Autentificare
+                </button>
                 @endif
             </div>
         </nav>
@@ -812,227 +835,225 @@
             <img id="global-lightbox-image" src="{{ asset('images/landing/stb/mici/Pardoseala-cuartz-epoxdica-depozit-legume.jpg') }}" alt="global-lightbox image" title="Global Lightbox Image">
         </div>
     </div>
-<script>
-
-    function toggleSidebar() {
-        var sidebar = document.getElementById('sidebar-left');
-        var bodyBackdrop = document.getElementById('mobile-sidebar-open-backdrop');
-        var body = document.getElementsByTagName('body')[0];
-        var content_wrapper = document.getElementById('content_wrapper');
-        if (sidebar.classList.contains('hidden')) {
-            sidebar.classList.remove('hidden');
-            bodyBackdrop.classList.remove('hidden');
-            body.classList.add('overflow-y-hidden');
-            content_wrapper.classList.add('overflow-y-hidden');
-            // Adaugă un event listener pentru a ascunde sidebar-ul când se face click în afara lui, dar cu un mic delay
-            setTimeout(function() {
-                document.addEventListener('click', handleClickOutsideSidebar);
-            }, 100); // Adăugăm un delay mic de 100ms
-        } else {
-            sidebar.classList.add('hidden');
-            bodyBackdrop.classList.add('hidden');
-            body.classList.remove('overflow-y-hidden');
-            content_wrapper.classList.remove('overflow-y-hidden');
-            document.removeEventListener('click', handleClickOutsideSidebar);
-        }
-    }
-
-    function handleClickOutsideSidebar(event) {
-        var sidebar = document.getElementById('sidebar-left');
-        var bodyBackdrop = document.getElementById('mobile-sidebar-open-backdrop');
-        var body = document.getElementsByTagName('body')[0];
-        var content_wrapper = document.getElementById('content_wrapper');
-        if (!sidebar.contains(event.target) && event.target.id !== 'toggleSidebarButton') {
-            // Dacă click-ul a avut loc în afara sidebar-ului, îl ascundem
-            sidebar.classList.add('hidden');
-            bodyBackdrop.classList.add('hidden');
-            body.classList.remove('overflow-y-hidden');
-            content_wrapper.classList.remove('overflow-y-hidden');
-            // Eliminăm event listener-ul, deoarece nu mai este necesar
-            document.removeEventListener('click', handleClickOutsideSidebar);
-        }
-    }
-
-
-    function acceptCookies() {
-        console.log('Accept Cookies button clicked');
-        const form = document.getElementById('cookieForm');
-        const formData = new FormData(form); // Get the data from the form (including CSRF token)
-
-        fetch(form.action, {
-            method: 'POST',
-            body: formData, // Send the form data
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest' // Header for AJAX requests
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Hide the div after the cookie is set
-                document.getElementById('cookie_notifier').style.display = 'none';
-            }
-        })
-        .catch(error => {
-            console.error('Eroare la acceptarea cookie-urilor:', error);
-        });
-    }
-
-    function toggleAccordion(id) {
-        var openedMenus = document.querySelectorAll(".dropdown-menu-mobile");
-        var allMenuItems = document.querySelectorAll(".menu-item");
-
-        // Close all the menus and reset the arrows
-        openedMenus.forEach(function(menu) {
-            if (menu.id !== id + "-menu") {
-                menu.style.display = "none";
-            }
-        });
-
-        allMenuItems.forEach(function(item) {
-            if (item.id !== id) {
-                item.classList.remove("open"); 
-            }
-        });
-
-        // Select the menu and the parent item
-        var menu = document.getElementById(id + "-menu");
-        var parentItem = document.getElementById(id).querySelector(".menu-item");
-
-        // Open/Close the menu and rotate the arrow(add/remove 'open' class)
-        if (menu.style.display === "none" || menu.style.display === "") {
-            menu.style.display = "block";
-            parentItem.classList.add("open"); 
-        } else {
-            menu.style.display = "none";
-            parentItem.classList.remove("open"); 
-        }
-    }
-
-
-
-    function closeModal(modalId) {
-        document.getElementById(modalId).style.display = 'none';
-
-        // Hide the container when closing the modal
-        var authContainer = document.querySelector('.autentificare-1');
-        authContainer.style.opacity = '0';
-        authContainer.style.display = 'none';
-    }
-
-    function switchModal(currentModalId, targetModalId) {
-        document.getElementById(currentModalId).style.display = 'none';
-        document.getElementById(targetModalId).style.display = 'flex';
-    }
-
-    function openRecoverPasswordModal() {
-        // Hide the other modals
-        document.getElementById('auth-lightbox').style.display = 'none';
-        document.getElementById('register-lightbox').style.display = 'none';
-
-        // Show the recover password modal
-        document.getElementById('recover-password-lightbox').style.display = 'flex';
-    }
-
-
-    document.getElementById('auth_lightbox_trigger').addEventListener('click', function() {
-        var authContainer = document.querySelector('.autentificare-1');
-        authContainer.style.opacity = '1';
-        authContainer.style.display = 'inline-block';
-        document.getElementById('auth-lightbox').style.display = 'flex';
-    });
-
-    document.getElementById('auth_lightbox_trigger_mobile').addEventListener('click', function() {
-        var authContainer = document.querySelector('.autentificare-1');
-        authContainer.style.opacity = '1';
-        authContainer.style.display = 'inline-block';
-        document.getElementById('auth-lightbox').style.display = 'flex';
-    });
-
-    function closeFlashMessage(button) {
-        // Close the flash message
-        const messageElement = button.closest('.alert-message');
-        messageElement.style.display = 'none';
-
-        // Check if there are other visibile messages
-        const container = document.querySelector('.flash-messages-container');
-        const remainingMessages = container.querySelectorAll('.alert-message');
-        
-        let visibleMessages = Array.from(remainingMessages).filter(function(message) {
-            return message.style.display !== 'none';
-        });
-
-        // If all messagges are closed, hide the container
-        if (visibleMessages.length === 0) {
-            container.style.display = 'none';
-        }
-    }
-
-    function togglePasswordVisibility(inputId, iconId) {
-        const passwordField = document.getElementById(inputId);
-        const toggleIcon = document.getElementById(iconId);
-        if (passwordField.type === 'password') {
-            passwordField.type = 'text';
-            // Closed eye icon
-            toggleIcon.src = "{{ asset('resources/new_design/icons/eye-slash-solid.svg') }}"; 
-        } else {
-            passwordField.type = 'password';
-            // Open eye icon
-            toggleIcon.src = "{{ asset('resources/new_design/icons/eye-solid.svg') }}"; 
-        }
-    }
-
-    document.addEventListener('scroll', function () {
-        // Overlays are only on mobile, so when the width is <=767px
-        if (window.innerWidth <= 767) {
-            const footer = document.getElementById('page-footer');
-            const phoneOverlay = document.getElementById('phone-overlay');
-            const emailOverlay = document.getElementById('contact_email_small_devices');
-
-            // Get the position of footer based on the viewport
-            const footerRect = footer.getBoundingClientRect();
-
-            // If the footer is visible in viewport
-            if (footerRect.top <= window.innerHeight && footerRect.bottom >= 0) {
-                // Hide the overlays
-                phoneOverlay.style.display = 'none';
-                emailOverlay.style.display = 'none';
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar-left');
+            var bodyBackdrop = document.getElementById('mobile-sidebar-open-backdrop');
+            var body = document.getElementsByTagName('body')[0];
+            var content_wrapper = document.getElementById('content_wrapper');
+            if (sidebar.classList.contains('hidden')) {
+                sidebar.classList.remove('hidden');
+                bodyBackdrop.classList.remove('hidden');
+                body.classList.add('overflow-y-hidden');
+                content_wrapper.classList.add('overflow-y-hidden');
+                // Adaugă un event listener pentru a ascunde sidebar-ul când se face click în afara lui, dar cu un mic delay
+                setTimeout(function() {
+                    document.addEventListener('click', handleClickOutsideSidebar);
+                }, 100); // Adăugăm un delay mic de 100ms
             } else {
-                // Show the overlays
-                phoneOverlay.style.display = 'block';
-                emailOverlay.style.display = 'block';
+                sidebar.classList.add('hidden');
+                bodyBackdrop.classList.add('hidden');
+                body.classList.remove('overflow-y-hidden');
+                content_wrapper.classList.remove('overflow-y-hidden');
+                document.removeEventListener('click', handleClickOutsideSidebar);
             }
         }
-    });
 
-    function openImageLightbox(image) {
-        const lightbox = document.getElementById('global-lightbox');
-        const lightboxImage = document.getElementById('global-lightbox-image');
+        function handleClickOutsideSidebar(event) {
+            var sidebar = document.getElementById('sidebar-left');
+            var bodyBackdrop = document.getElementById('mobile-sidebar-open-backdrop');
+            var body = document.getElementsByTagName('body')[0];
+            var content_wrapper = document.getElementById('content_wrapper');
+            if (!sidebar.contains(event.target) && event.target.id !== 'toggleSidebarButton') {
+                // Dacă click-ul a avut loc în afara sidebar-ului, îl ascundem
+                sidebar.classList.add('hidden');
+                bodyBackdrop.classList.add('hidden');
+                body.classList.remove('overflow-y-hidden');
+                content_wrapper.classList.remove('overflow-y-hidden');
+                // Eliminăm event listener-ul, deoarece nu mai este necesar
+                document.removeEventListener('click', handleClickOutsideSidebar);
+            }
+        }
 
-        // Set the attributes for the image
-        lightboxImage.src = image.getAttribute('data-lightbox-src');
-        lightboxImage.alt = image.getAttribute('data-lightbox-alt') || '';
-        lightboxImage.title = image.getAttribute('data-lightbox-title') || '';
 
-        // Show the lightbox
-        lightbox.classList.remove('hidden');
-    }
+        function acceptCookies() {
+            console.log('Accept Cookies button clicked');
+            const form = document.getElementById('cookieForm');
+            const formData = new FormData(form); // Get the data from the form (including CSRF token)
 
-    function closeServiciiLightbox() {
-        const lightbox = document.getElementById('global-lightbox');
+            fetch(form.action, {
+                    method: 'POST',
+                    body: formData, // Send the form data
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest' // Header for AJAX requests
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Hide the div after the cookie is set
+                        document.getElementById('cookie_notifier').style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    console.error('Eroare la acceptarea cookie-urilor:', error);
+                });
+        }
 
-        // Hide the lightbox
-        lightbox.classList.add('hidden');
-    }
+        function toggleAccordion(id) {
+            var openedMenus = document.querySelectorAll(".dropdown-menu-mobile");
+            var allMenuItems = document.querySelectorAll(".menu-item");
 
-    document.getElementById('search-icon').addEventListener('click', function() {
-        document.getElementById('search-form-desktop').submit();
-    });
+            // Close all the menus and reset the arrows
+            openedMenus.forEach(function(menu) {
+                if (menu.id !== id + "-menu") {
+                    menu.style.display = "none";
+                }
+            });
 
-</script>
-    
-    
-    
+            allMenuItems.forEach(function(item) {
+                if (item.id !== id) {
+                    item.classList.remove("open");
+                }
+            });
+
+            // Select the menu and the parent item
+            var menu = document.getElementById(id + "-menu");
+            var parentItem = document.getElementById(id).querySelector(".menu-item");
+
+            // Open/Close the menu and rotate the arrow(add/remove 'open' class)
+            if (menu.style.display === "none" || menu.style.display === "") {
+                menu.style.display = "block";
+                parentItem.classList.add("open");
+            } else {
+                menu.style.display = "none";
+                parentItem.classList.remove("open");
+            }
+        }
+
+
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+
+            // Hide the container when closing the modal
+            var authContainer = document.querySelector('.autentificare-1');
+            authContainer.style.opacity = '0';
+            authContainer.style.display = 'none';
+        }
+
+        function switchModal(currentModalId, targetModalId) {
+            document.getElementById(currentModalId).style.display = 'none';
+            document.getElementById(targetModalId).style.display = 'flex';
+        }
+
+        function openRecoverPasswordModal() {
+            // Hide the other modals
+            document.getElementById('auth-lightbox').style.display = 'none';
+            document.getElementById('register-lightbox').style.display = 'none';
+
+            // Show the recover password modal
+            document.getElementById('recover-password-lightbox').style.display = 'flex';
+        }
+
+
+        document.getElementById('auth_lightbox_trigger').addEventListener('click', function() {
+            var authContainer = document.querySelector('.autentificare-1');
+            authContainer.style.opacity = '1';
+            authContainer.style.display = 'inline-block';
+            document.getElementById('auth-lightbox').style.display = 'flex';
+        });
+
+        document.getElementById('auth_lightbox_trigger_mobile').addEventListener('click', function() {
+            var authContainer = document.querySelector('.autentificare-1');
+            authContainer.style.opacity = '1';
+            authContainer.style.display = 'inline-block';
+            document.getElementById('auth-lightbox').style.display = 'flex';
+        });
+
+        function closeFlashMessage(button) {
+            // Close the flash message
+            const messageElement = button.closest('.alert-message');
+            messageElement.style.display = 'none';
+
+            // Check if there are other visibile messages
+            const container = document.querySelector('.flash-messages-container');
+            const remainingMessages = container.querySelectorAll('.alert-message');
+
+            let visibleMessages = Array.from(remainingMessages).filter(function(message) {
+                return message.style.display !== 'none';
+            });
+
+            // If all messagges are closed, hide the container
+            if (visibleMessages.length === 0) {
+                container.style.display = 'none';
+            }
+        }
+
+        function togglePasswordVisibility(inputId, iconId) {
+            const passwordField = document.getElementById(inputId);
+            const toggleIcon = document.getElementById(iconId);
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                // Closed eye icon
+                toggleIcon.src = "{{ asset('resources/new_design/icons/eye-slash-solid.svg') }}";
+            } else {
+                passwordField.type = 'password';
+                // Open eye icon
+                toggleIcon.src = "{{ asset('resources/new_design/icons/eye-solid.svg') }}";
+            }
+        }
+
+        document.addEventListener('scroll', function() {
+            // Overlays are only on mobile, so when the width is <=767px
+            if (window.innerWidth <= 767) {
+                const footer = document.getElementById('page-footer');
+                const phoneOverlay = document.getElementById('phone-overlay');
+                const emailOverlay = document.getElementById('contact_email_small_devices');
+
+                // Get the position of footer based on the viewport
+                const footerRect = footer.getBoundingClientRect();
+
+                // If the footer is visible in viewport
+                if (footerRect.top <= window.innerHeight && footerRect.bottom >= 0) {
+                    // Hide the overlays
+                    phoneOverlay.style.display = 'none';
+                    emailOverlay.style.display = 'none';
+                } else {
+                    // Show the overlays
+                    phoneOverlay.style.display = 'block';
+                    emailOverlay.style.display = 'block';
+                }
+            }
+        });
+
+        function openImageLightbox(image) {
+            const lightbox = document.getElementById('global-lightbox');
+            const lightboxImage = document.getElementById('global-lightbox-image');
+
+            // Set the attributes for the image
+            lightboxImage.src = image.getAttribute('data-lightbox-src');
+            lightboxImage.alt = image.getAttribute('data-lightbox-alt') || '';
+            lightboxImage.title = image.getAttribute('data-lightbox-title') || '';
+
+            // Show the lightbox
+            lightbox.classList.remove('hidden');
+        }
+
+        function closeServiciiLightbox() {
+            const lightbox = document.getElementById('global-lightbox');
+
+            // Hide the lightbox
+            lightbox.classList.add('hidden');
+        }
+
+        document.getElementById('search-icon').addEventListener('click', function() {
+            document.getElementById('search-form-desktop').submit();
+        });
+    </script>
+
+
+
 
 
 </body>
