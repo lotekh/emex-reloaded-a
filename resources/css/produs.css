@@ -1757,11 +1757,6 @@ a:active {
   max-height: 68px;
 }
 
-@media screen and (min-width: 768px) {
-  .excelent-img {
-    margin-right: 10%;
-  }
-}
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .produs-logo {

@@ -27,7 +27,8 @@ $organization_json = <<<js
      "https://romtehnochim.blogspot.com/"
   ],
   "address":{
-     "addressCountry":"Romania",
+     "addressCountry":"Ro",
+     "addressLocality":"Jilava",
      "postalCode":"77120",
      "streetAddress":"Steaua Sudului Nr. 22",
      "addressRegion":"Jilava",

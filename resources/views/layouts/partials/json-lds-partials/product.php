@@ -36,7 +36,7 @@ $product_json = [
     'offers' => [
         '@type' => 'Offer',
         'priceCurrency' => 'RON',
-        'price' => number_format($first_price, 2),
+        'price' => number_format($first_price, 2, '.', ''),
         'availability' => 'https://schema.org/InStock',
     ],
 ];
