@@ -216,7 +216,9 @@
                                             <img src="{{ asset('resources/new_design/icons/error-outline.svg') }}" alt="error-icon" title="error-icon" width="24" height="24">
                                         </div>
                                         <p>Indisponibil</p>
-                                        Disponibil din data {{ $product->disponibil_din_data }}
+                                        @if($product->available_since) 
+                                            Disponibil din data {{ $product->available_since }}
+                                        @endif
                                     </div>
                                 @endif
 
