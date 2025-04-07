@@ -20,7 +20,9 @@
             </p>
 			<p>
                 <span class="alineat_span"></span>
-                Emex by Romtehnochim, ca simbol al excelentei, primeste recunoastere europeana si devine Marca Europeana Certificata, sub Nr. UE 018280232 din 19.09.2022
+                “Emex”, etalon al calitatii în industrie, este marca inregistrata a companiei “Romtehnochim”:<br>
+- la nivel national prin OSIM sub Nr. 088368 din 17.10.2006;<br>
+- la nivel europen prin EUIPO sub Nr. 018280232 din 19.09.2022
             </p>
         </div>
         <div class="section-tech relative">
