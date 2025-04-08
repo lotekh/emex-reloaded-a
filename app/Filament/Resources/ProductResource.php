@@ -46,6 +46,12 @@ class ProductResource extends Resource
                                     ->maxLength(255),
                                 Forms\Components\TextInput::make('sub_title')
                                     ->maxLength(255),
+                                Forms\Components\TextInput::make('ean')
+                                    ->maxLength(13),
+                                Forms\Components\TextInput::make('sku')
+                                    ->maxLength(30),
+                                Forms\Components\TextInput::make('mpn')
+                                    ->maxLength(20),
                                 MarkdownEditor::make('description')
                                     ->columnSpanFull(),
                                 MarkdownEditor::make('usage_details')
