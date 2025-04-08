@@ -318,7 +318,6 @@ use App\Models\Order;
                                     <a href="{{ url('/termeni-si-conditii') }}"><em class="link_color1">termeni si conditii</em>.</a>
                                 </span>
                             </div>
-                            {{-- <p class="form-validation">Bifează caseta dacă vrei să continui.</p> --}}
                             <div class="w-full flex justify-center">
                                 <button type="submit" class="w-fit btn btn-blue rounded-lg px-16 mt-16">Creeaza Cont</button>
                             </div>
@@ -345,7 +344,6 @@ use App\Models\Order;
                             <div class="form-group w-full">
                                 <label for="form-recover-password" class="form-label">E-mail</label>
                                 <input class="w-full" id="form-recover-password" type="email" name="email" required>
-                                {{-- <p class="form-validation">Completează acest câmp.</p> --}}
                             </div>
                             <button type="submit" class="w-fit btn btn-blue rounded-lg px-16 mt-64">Recupereaza Parola</button>
                         </form>
@@ -665,7 +663,6 @@ use App\Models\Order;
     </div>
     @endif
 
-    {{-- Sidebar Mobile --}}
     <div id="sidebar-left" class="sidebar hidden bg-white">
         <nav class="col">
             <a href="{{ url('/') }}" class="mb-32" title="acasa">
@@ -851,7 +848,6 @@ use App\Models\Order;
         }
 
         function acceptCookies() {
-            console.log('Accept Cookies button clicked');
             const form = document.getElementById('cookieForm');
             const formData = new FormData(form); 
 
@@ -983,22 +979,6 @@ use App\Models\Order;
                 }
             }
         });
-
-        function openImageLightbox(image) {
-            const lightbox = document.getElementById('global-lightbox');
-            const lightboxImage = document.getElementById('global-lightbox-image');
-
-            lightboxImage.src = image.getAttribute('data-lightbox-src');
-            lightboxImage.alt = image.getAttribute('data-lightbox-alt') || '';
-            lightboxImage.title = image.getAttribute('data-lightbox-title') || '';
-
-            lightbox.classList.remove('hidden');
-        }
-
-        function closeServiciiLightbox() {
-            const lightbox = document.getElementById('global-lightbox');
-            lightbox.classList.add('hidden');
-        }
 
         document.getElementById('search-icon').addEventListener('click', function() {
             document.getElementById('search-form-desktop').submit();
