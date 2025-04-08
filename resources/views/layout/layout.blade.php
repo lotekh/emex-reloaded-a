@@ -925,7 +925,7 @@ use App\Models\Order;
             authModalListener(authLightboxTrigger);
         }
 
-        let authLightboxTriggerMobile = document.getElementById('auth_lightbox_trigger_mobile')
+        let authLightboxTriggerMobile = document.getElementById('auth_lightbox_trigger_mobile');
         if (authLightboxTriggerMobile) {
             authModalListener(authLightboxTriggerMobile);
         }
