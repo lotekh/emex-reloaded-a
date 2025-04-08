@@ -9,9 +9,9 @@ if (!$product) {
 $sub_title = $product->sub_title;
 $lightBoxImageUrl = $product->largeImage->url ?? '';
 $json_ld_description = strip_tags($product->description);
-$sku = $product->sku;
-$mpn = $product->variations->first()->mpn ?? '';
-$gtin = $product->variations->first()->ean ?? '';
+$sku = $product->sku ?? '';
+$mpn = $product->mpn ?? '';
+$gtin = $product->ean ?? '';
 $first_price = $product->variations->first()->price ?? 0;
 $ambalare = $product->variations->first()->packaging ?? '';
 $measurementUnit = 'LTR'; // Example

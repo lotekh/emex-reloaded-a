@@ -50,7 +50,10 @@ class Product extends Model
         'consumption_seo',
         'consumption_jsonld',
         'consumption_details',
-        'available_since'
+        'available_since',
+        'ean',
+        'sku',
+        'mpn',
     ];
 
     protected $casts = [
