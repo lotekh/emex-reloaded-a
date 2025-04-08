@@ -22,10 +22,8 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="robots" content="index, follow">
 
-
     <meta name="csrf-token" content="{{csrf_token()}}">
 
-    <!-- Google Tag Manager -->
     <script>
         (function(w, d, s, l, i) {
             w[l] = w[l] || [];
@@ -42,7 +40,6 @@
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-57FHTGR');
     </script>
-    <!-- End Google Tag Manager -->
 
     @yield('seo')
     @yield('title')
@@ -51,9 +48,9 @@
     @include('layouts.partials.json-ld')
 
     @hasSection('css')
-    @yield('css')
+        @yield('css')
     @else
-    <link rel="stylesheet" href="{{ asset('css/bundled/layout.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/bundled/layout.min.css') }}">
     @endif
 
     <script src="{{ asset('search-script/zoom_autocomplete.js') }}"></script>
@@ -63,12 +60,9 @@
 use App\Models\Order;
 @endphp
 
-
 <body class="m-0" id="main_body">
-    <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-57FHTGR"
             height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <header class="w-full bg-white-gray">
         <div class="main-container row justify-between align-center desktop-header gap-lg">
             <div></div>
@@ -134,9 +128,6 @@ use App\Models\Order;
                     </a>
                     <a href="{{ url('/contul-meu') }}#istoric" title="Istoric">Istoric</a>
                     <a href="{{ url('/contul-meu') }}#facturare" title="Facturare">Facturare</a>
-
-
-
                     <a href="{{ route('logout') }}" id="logoutButton" title="Iesire din cont"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Iesire din cont
@@ -144,10 +135,6 @@ use App\Models\Order;
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrfWithoutAutocomplete
                     </form>
-
-
-
-
                     @else
                     <button id="auth_lightbox_trigger" class="auth" type="button" role="button" tabindex="0" aria-label="Autentificare">
                         Autentificare
@@ -201,8 +188,6 @@ use App\Models\Order;
 
                         <span class="label">Cos</span>
                     </a>
-
-
                 </div>
             </div>
         </div>
@@ -231,10 +216,7 @@ use App\Models\Order;
                 </div>
             </div>
         </div>
-
-
     </header>
-
 
     @if($popup)
     <div class="popups" id="popupContainer">
@@ -372,7 +354,6 @@ use App\Models\Order;
             </div>
         </div>
     </div>
-
 
     <div class="phone-icon" id="phone-overlay">
         <a href="tel:+40724509552">
@@ -520,7 +501,6 @@ use App\Models\Order;
                     </div>
                 </form>
             </div>
-
         </div>
 
         <div class="main-container">
@@ -836,62 +816,54 @@ use App\Models\Order;
         </div>
     </div>
     <script>
+        var sidebar = document.getElementById('sidebar-left');
+        var bodyBackdrop = document.getElementById('mobile-sidebar-open-backdrop');
+        var body = document.getElementsByTagName('body')[0];
+        var content_wrapper = document.getElementById('content_wrapper');
+        
         function toggleSidebar() {
-            var sidebar = document.getElementById('sidebar-left');
-            var bodyBackdrop = document.getElementById('mobile-sidebar-open-backdrop');
-            var body = document.getElementsByTagName('body')[0];
-            var content_wrapper = document.getElementById('content_wrapper');
             if (sidebar.classList.contains('hidden')) {
                 sidebar.classList.remove('hidden');
                 bodyBackdrop.classList.remove('hidden');
                 body.classList.add('overflow-y-hidden');
                 content_wrapper.classList.add('overflow-y-hidden');
-                // Adaugă un event listener pentru a ascunde sidebar-ul când se face click în afara lui, dar cu un mic delay
                 setTimeout(function() {
                     document.addEventListener('click', handleClickOutsideSidebar);
-                }, 100); // Adăugăm un delay mic de 100ms
+                }, 100);
             } else {
-                sidebar.classList.add('hidden');
-                bodyBackdrop.classList.add('hidden');
-                body.classList.remove('overflow-y-hidden');
-                content_wrapper.classList.remove('overflow-y-hidden');
-                document.removeEventListener('click', handleClickOutsideSidebar);
+                hideSidebar();
             }
         }
 
         function handleClickOutsideSidebar(event) {
-            var sidebar = document.getElementById('sidebar-left');
-            var bodyBackdrop = document.getElementById('mobile-sidebar-open-backdrop');
-            var body = document.getElementsByTagName('body')[0];
-            var content_wrapper = document.getElementById('content_wrapper');
             if (!sidebar.contains(event.target) && event.target.id !== 'toggleSidebarButton') {
-                // Dacă click-ul a avut loc în afara sidebar-ului, îl ascundem
-                sidebar.classList.add('hidden');
-                bodyBackdrop.classList.add('hidden');
-                body.classList.remove('overflow-y-hidden');
-                content_wrapper.classList.remove('overflow-y-hidden');
-                // Eliminăm event listener-ul, deoarece nu mai este necesar
-                document.removeEventListener('click', handleClickOutsideSidebar);
+                hideSidebar();
             }
         }
 
+        function hideSidebar() {
+            sidebar.classList.add('hidden');
+            bodyBackdrop.classList.add('hidden');
+            body.classList.remove('overflow-y-hidden');
+            content_wrapper.classList.remove('overflow-y-hidden');
+            document.removeEventListener('click', handleClickOutsideSidebar);
+        }
 
         function acceptCookies() {
             console.log('Accept Cookies button clicked');
             const form = document.getElementById('cookieForm');
-            const formData = new FormData(form); // Get the data from the form (including CSRF token)
+            const formData = new FormData(form); 
 
             fetch(form.action, {
                     method: 'POST',
-                    body: formData, // Send the form data
+                    body: formData,
                     headers: {
-                        'X-Requested-With': 'XMLHttpRequest' // Header for AJAX requests
+                        'X-Requested-With': 'XMLHttpRequest'
                     }
                 })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Hide the div after the cookie is set
                         document.getElementById('cookie_notifier').style.display = 'none';
                     }
                 })
@@ -904,7 +876,6 @@ use App\Models\Order;
             var openedMenus = document.querySelectorAll(".dropdown-menu-mobile");
             var allMenuItems = document.querySelectorAll(".menu-item");
 
-            // Close all the menus and reset the arrows
             openedMenus.forEach(function(menu) {
                 if (menu.id !== id + "-menu") {
                     menu.style.display = "none";
@@ -917,11 +888,9 @@ use App\Models\Order;
                 }
             });
 
-            // Select the menu and the parent item
             var menu = document.getElementById(id + "-menu");
             var parentItem = document.getElementById(id).querySelector(".menu-item");
 
-            // Open/Close the menu and rotate the arrow(add/remove 'open' class)
             if (menu.style.display === "none" || menu.style.display === "") {
                 menu.style.display = "block";
                 parentItem.classList.add("open");
@@ -931,13 +900,10 @@ use App\Models\Order;
             }
         }
 
-
+        var authContainer = document.querySelector('.autentificare-1');
 
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = 'none';
-
-            // Hide the container when closing the modal
-            var authContainer = document.querySelector('.autentificare-1');
             authContainer.style.opacity = '0';
             authContainer.style.display = 'none';
         }
@@ -948,35 +914,33 @@ use App\Models\Order;
         }
 
         function openRecoverPasswordModal() {
-            // Hide the other modals
             document.getElementById('auth-lightbox').style.display = 'none';
             document.getElementById('register-lightbox').style.display = 'none';
-
-            // Show the recover password modal
             document.getElementById('recover-password-lightbox').style.display = 'flex';
         }
 
+        let authLightboxTrigger = document.getElementById('auth_lightbox_trigger');
+        if (authLightboxTrigger) {
+            authModalListener(authLightboxTrigger);
+        }
 
-        document.getElementById('auth_lightbox_trigger').addEventListener('click', function() {
-            var authContainer = document.querySelector('.autentificare-1');
-            authContainer.style.opacity = '1';
-            authContainer.style.display = 'inline-block';
-            document.getElementById('auth-lightbox').style.display = 'flex';
-        });
+        let authLightboxTriggerMobile = document.getElementById('auth_lightbox_trigger_mobile')
+        if (authLightboxTriggerMobile) {
+            authModalListener(authLightboxTriggerMobile);
+        }
 
-        document.getElementById('auth_lightbox_trigger_mobile').addEventListener('click', function() {
-            var authContainer = document.querySelector('.autentificare-1');
-            authContainer.style.opacity = '1';
-            authContainer.style.display = 'inline-block';
-            document.getElementById('auth-lightbox').style.display = 'flex';
-        });
+        function authModalListener(trigger) {
+            trigger.addEventListener('click', function() {
+                authContainer.style.opacity = '1';
+                authContainer.style.display = 'inline-block';
+                document.getElementById('auth-lightbox').style.display = 'flex';
+            });
+        }
 
         function closeFlashMessage(button) {
-            // Close the flash message
             const messageElement = button.closest('.alert-message');
             messageElement.style.display = 'none';
 
-            // Check if there are other visibile messages
             const container = document.querySelector('.flash-messages-container');
             const remainingMessages = container.querySelectorAll('.alert-message');
 
@@ -984,7 +948,6 @@ use App\Models\Order;
                 return message.style.display !== 'none';
             });
 
-            // If all messagges are closed, hide the container
             if (visibleMessages.length === 0) {
                 container.style.display = 'none';
             }
@@ -995,32 +958,25 @@ use App\Models\Order;
             const toggleIcon = document.getElementById(iconId);
             if (passwordField.type === 'password') {
                 passwordField.type = 'text';
-                // Closed eye icon
                 toggleIcon.src = "{{ asset('resources/new_design/icons/eye-slash-solid.svg') }}";
             } else {
                 passwordField.type = 'password';
-                // Open eye icon
                 toggleIcon.src = "{{ asset('resources/new_design/icons/eye-solid.svg') }}";
             }
         }
 
         document.addEventListener('scroll', function() {
-            // Overlays are only on mobile, so when the width is <=767px
             if (window.innerWidth <= 767) {
                 const footer = document.getElementById('page-footer');
                 const phoneOverlay = document.getElementById('phone-overlay');
                 const emailOverlay = document.getElementById('contact_email_small_devices');
 
-                // Get the position of footer based on the viewport
                 const footerRect = footer.getBoundingClientRect();
 
-                // If the footer is visible in viewport
                 if (footerRect.top <= window.innerHeight && footerRect.bottom >= 0) {
-                    // Hide the overlays
                     phoneOverlay.style.display = 'none';
                     emailOverlay.style.display = 'none';
                 } else {
-                    // Show the overlays
                     phoneOverlay.style.display = 'block';
                     emailOverlay.style.display = 'block';
                 }
@@ -1031,19 +987,15 @@ use App\Models\Order;
             const lightbox = document.getElementById('global-lightbox');
             const lightboxImage = document.getElementById('global-lightbox-image');
 
-            // Set the attributes for the image
             lightboxImage.src = image.getAttribute('data-lightbox-src');
             lightboxImage.alt = image.getAttribute('data-lightbox-alt') || '';
             lightboxImage.title = image.getAttribute('data-lightbox-title') || '';
 
-            // Show the lightbox
             lightbox.classList.remove('hidden');
         }
 
         function closeServiciiLightbox() {
             const lightbox = document.getElementById('global-lightbox');
-
-            // Hide the lightbox
             lightbox.classList.add('hidden');
         }
 
@@ -1051,11 +1003,6 @@ use App\Models\Order;
             document.getElementById('search-form-desktop').submit();
         });
     </script>
-
-
-
-
-
 </body>
 
 </html>
