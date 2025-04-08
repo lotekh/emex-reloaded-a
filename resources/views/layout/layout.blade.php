@@ -980,22 +980,6 @@ use App\Models\Order;
             }
         });
 
-        function openImageLightbox(image) {
-            const lightbox = document.getElementById('global-lightbox');
-            const lightboxImage = document.getElementById('global-lightbox-image');
-
-            lightboxImage.src = image.getAttribute('data-lightbox-src');
-            lightboxImage.alt = image.getAttribute('data-lightbox-alt') || '';
-            lightboxImage.title = image.getAttribute('data-lightbox-title') || '';
-
-            lightbox.classList.remove('hidden');
-        }
-
-        function closeServiciiLightbox() {
-            const lightbox = document.getElementById('global-lightbox');
-            lightbox.classList.add('hidden');
-        }
-
         document.getElementById('search-icon').addEventListener('click', function() {
             document.getElementById('search-form-desktop').submit();
         });
