@@ -38,6 +38,16 @@ $product_json = [
         'priceCurrency' => 'RON',
         'price' => number_format($first_price, 2, '.', ''),
         'availability' => 'https://schema.org/InStock',
+        'hasMerchantReturnPolicy' => [
+            "@type" => "MerchantReturnPolicy",
+            "name" => "Politica de Retur",
+            "applicableCountry" => "RO",
+            "returnPolicyCountry" => "RO",
+            "returnPolicyCategory" => "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays" => "14",
+            "inStoreReturnsOffered" => "true",
+            "returnFees" => "https://schema.org/FreeReturn"
+        ]
     ],
 ];
 
