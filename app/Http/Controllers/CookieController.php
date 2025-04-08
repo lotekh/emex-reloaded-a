@@ -9,7 +9,7 @@ class CookieController extends Controller
 {
     // Set the cookie to last for a year
     // 525600 minutes = 1 year
-    $cookie = cookie('cookies_accepted', true, 525600); 
+    $cookie = cookie('cookies_accepted', true, 525600, null, null, null, false); 
 
     return response()->json(['success' => true])->withCookie($cookie);
 }
