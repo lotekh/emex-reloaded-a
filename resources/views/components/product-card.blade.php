@@ -7,7 +7,6 @@
 @endphp
 
 <div class="product-card">
-  <!-- upper -->
   <div class="text-center">
     <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
       <h2 class="title">{!! $product->plain_name !!}</h2>
@@ -147,14 +146,12 @@
       const priceInput = document.getElementById('priceInput{{ $product->id }}');
       const variationInput = document.getElementById('variationInput{{ $product->id }}');
   
-      // Preload all product variations into JavaScript
       const variations = @json($variations);
   
       function updateVariation() {
           const selectedPackaging = ambalareSelect.value;
           const selectedColor = colorSelect.value;
   
-          // Find the correct variation
           const variation = variations.find(variation => 
               variation.quantity == selectedPackaging && variation.colour == selectedColor
           );
@@ -162,7 +159,7 @@
           if (variation) {
               priceDisplay.textContent = parseFloat(variation.price).toFixed(2);
               priceInput.value = variation.price;
-              variationInput.value = variation.id; // Set variation ID
+              variationInput.value = variation.id; 
           } else {
               console.error('No matching variation found.');
           }

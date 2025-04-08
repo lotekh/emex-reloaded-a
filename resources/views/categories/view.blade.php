@@ -158,7 +158,6 @@ $base_url = url('/');
         </div>
     </div>
     
-    {{-- The Products --}}
     <div class="my-32 grid grid-3 gap-xl-categories" id="clw">
         @foreach ($products as $ind => $product)
             @if (!empty($product))

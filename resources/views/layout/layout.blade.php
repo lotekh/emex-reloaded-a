@@ -847,7 +847,6 @@ use App\Models\Order;
         }
 
         function acceptCookies() {
-            console.log('Accept Cookies button clicked');
             const form = document.getElementById('cookieForm');
             const formData = new FormData(form); 
 
