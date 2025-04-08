@@ -72,10 +72,8 @@ $big_json = '[' . $big_json . ']';
 ?>
 
 <script>
-    var jsonLdData = @json($big_json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
-
     let script = document.createElement('script');
     script.type = "application/ld+json";
-    script.textContent = jsonLdData;
+    script.textContent = @json($big_json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
     document.head.appendChild(script);
 </script>
