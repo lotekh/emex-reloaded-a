@@ -24,7 +24,7 @@ return [
     | Default: true
     |
     */
-    'enabled' => env('MINIFY_ENABLED', false),
+    'enabled' => env('MINIFY_ENABLED', true),
 
     /*
     |--------------------------------------------------------------------------
