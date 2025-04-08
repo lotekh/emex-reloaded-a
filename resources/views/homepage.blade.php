@@ -51,7 +51,6 @@
         @include('site.partials.homepage-cards')
     </div>
     
-{{-- secondary title will be empty for homepage in sidebar contact --}}
 @include('components.sidebar-contact', ['secondary_title' => ''])
 
 @endsection

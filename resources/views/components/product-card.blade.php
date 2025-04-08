@@ -4,10 +4,24 @@
   $variations = $product->variations;
   $initialVariation = $variations->first();
   $baseUrl = url('/');
+
+  $compactVariations = $product->variations->map(function($variation) {
+        return [
+            'id' => $variation->id,
+            'quantity' => $variation->quantity,
+            'colour' => $variation->colour,
+            'price' => $variation->price,
+            'price_no_tva' => $variation->price_no_tva,
+            'ean' => $variation->ean,
+            'addon_text' => $variation->addon_text,
+            'measurement_unit' => [
+                'name' => $variation->measurementUnit->name
+            ]
+        ];
+  });
 @endphp
 
 <div class="product-card">
-  <!-- upper -->
   <div class="text-center">
     <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
       <h2 class="title">{!! $product->plain_name !!}</h2>
@@ -147,14 +161,12 @@
       const priceInput = document.getElementById('priceInput{{ $product->id }}');
       const variationInput = document.getElementById('variationInput{{ $product->id }}');
   
-      // Preload all product variations into JavaScript
-      const variations = @json($variations);
+      const variations = @json($compactVariations);
   
       function updateVariation() {
           const selectedPackaging = ambalareSelect.value;
           const selectedColor = colorSelect.value;
   
-          // Find the correct variation
           const variation = variations.find(variation => 
               variation.quantity == selectedPackaging && variation.colour == selectedColor
           );
@@ -162,7 +174,7 @@
           if (variation) {
               priceDisplay.textContent = parseFloat(variation.price).toFixed(2);
               priceInput.value = variation.price;
-              variationInput.value = variation.id; // Set variation ID
+              variationInput.value = variation.id; 
           } else {
               console.error('No matching variation found.');
           }
