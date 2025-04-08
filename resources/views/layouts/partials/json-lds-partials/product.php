@@ -37,7 +37,45 @@ $product_json = [
         '@type' => 'Offer',
         'priceCurrency' => 'RON',
         'price' => number_format($first_price, 2, '.', ''),
+        'priceValidUntil' => '2026-01-01',
         'availability' => 'https://schema.org/InStock',
+        'hasMerchantReturnPolicy' => [
+            "@type" => "MerchantReturnPolicy",
+            "name" => "Politica de Retur",
+            "applicableCountry" => "RO",
+            "returnPolicyCountry" => "RO",
+            "returnPolicyCategory" => "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays" => "14",
+            "inStoreReturnsOffered" => "true",
+            "returnFees" => "https://schema.org/FreeReturn"
+        ],
+        "shippingDetails" => [
+            "@type" => "OfferShippingDetails",
+            "shippingRate" => [
+                "@type" => "MonetaryAmount",
+                "value" => 25,
+                "currency" => "RON"
+            ],
+            "shippingDestination" => [
+                "@type" => "DefinedRegion",
+                "addressCountry" => "RO"
+            ],
+            "deliveryTime" => [
+                "@type" => "ShippingDeliveryTime",
+                "handlingTime" => [
+                    "@type" => "QuantitativeValue",
+                    "minValue" => 1,
+                    "maxValue" => 3,
+                    "unitCode" => "DAY"
+                ],
+                "transitTime" => [
+                    "@type" => "QuantitativeValue",
+                    "minValue" => 1,
+                    "maxValue" => 3,
+                    "unitCode" => "DAY"
+                ]
+            ]
+        ]
     ],
 ];
 
