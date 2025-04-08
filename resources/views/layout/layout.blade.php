@@ -815,6 +815,7 @@ use App\Models\Order;
             <img id="global-lightbox-image" src="{{ asset('images/landing/stb/mici/Pardoseala-cuartz-epoxdica-depozit-legume.jpg') }}" alt="global-lightbox image" title="Global Lightbox Image">
         </div>
     </div>
+    
     <script>
         var sidebar = document.getElementById('sidebar-left');
         var bodyBackdrop = document.getElementById('mobile-sidebar-open-backdrop');
