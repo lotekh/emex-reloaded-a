@@ -4,6 +4,21 @@
   $variations = $product->variations;
   $initialVariation = $variations->first();
   $baseUrl = url('/');
+
+  $compactVariations = $product->variations->map(function($variation) {
+        return [
+            'id' => $variation->id,
+            'quantity' => $variation->quantity,
+            'colour' => $variation->colour,
+            'price' => $variation->price,
+            'price_no_tva' => $variation->price_no_tva,
+            'ean' => $variation->ean,
+            'addon_text' => $variation->addon_text,
+            'measurement_unit' => [
+                'name' => $variation->measurementUnit->name
+            ]
+        ];
+  });
 @endphp
 
 <div class="product-card">
@@ -146,7 +161,7 @@
       const priceInput = document.getElementById('priceInput{{ $product->id }}');
       const variationInput = document.getElementById('variationInput{{ $product->id }}');
   
-      const variations = @json($variations);
+      const variations = @json($compactVariations);
   
       function updateVariation() {
           const selectedPackaging = ambalareSelect.value;
