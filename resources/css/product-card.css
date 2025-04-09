@@ -12,14 +12,16 @@
 
 .product-card .title {
   font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
+  font-weight: normal;
+  font-size: 20px;
   margin-top: 10px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   color: #009;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all .3s ease-in-out;
   padding: 0 24px;
+  font-variant-caps: all-petite-caps;
+  line-height: normal;
 }
 .product-card .title:hover {
   color: var(--red);
