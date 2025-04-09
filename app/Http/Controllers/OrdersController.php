@@ -178,7 +178,6 @@ class OrdersController extends Controller
             }
         }
 
-
         // Calculate TVA
         $tva = $price * 0.19;
 
@@ -199,7 +198,6 @@ class OrdersController extends Controller
             'total' => number_format($price + $tva, 2, '.', '')
         ]);
     }
-
 
     public function emptyCart()
     {
@@ -268,19 +266,10 @@ class OrdersController extends Controller
             $order_id = Str::uuid(); 
             session()->put('order_id', $order_id);
         } 
-        
-        $lastOrder = Order::whereRaw('CAST(identifier AS UNSIGNED) >= 20111')
-            ->whereRaw('CAST(identifier AS UNSIGNED) < 99999') 
-            ->whereRaw('LENGTH(identifier) <= 5') // exclude previous numbers like 0021345
-            ->orderByRaw('CAST(identifier AS UNSIGNED) DESC')
-            ->first();
-        $identifier = $lastOrder ? ((int) $lastOrder->identifier + 1) : 20111;
-
 
         // Initialize or get the data from the session for our current order 
         $order = session()->get('order', [
             'guid' => \Illuminate\Support\Str::uuid(),
-            'identifier' => $identifier,
             'total' => array_sum(array_map(function ($item) {
                 return $item['quantity'] * $item['price'];
             }, $cart)),
@@ -367,11 +356,14 @@ class OrdersController extends Controller
             Session::flash('success', 'Contul a fost creat și utilizatorul a fost autentificat cu succes!');
         }
 
+        $lastOrder = Order::orderBy('id', 'desc')->first();
+        $identifier = $lastOrder->identifier + 1;
+
         $dbOrder = Order::firstOrCreate(
             ['guid' => $order['guid']],
             [
                 'user_id' => $userId,
-                'identifier' => $order['identifier'],
+                'identifier' => $identifier,
                 'billing_type' => $request->input('billing_type'),
                 'delivery_type' => $request->input('delivery_type'),
                 'payment_method' => $request->input('payment_method'),
