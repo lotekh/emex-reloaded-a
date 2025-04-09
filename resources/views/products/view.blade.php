@@ -579,7 +579,6 @@
         });
 
         function openLightboxWithVideo(videoUrl) {
-            console.log(12);
             var lightbox = document.getElementById("global-lightbox-video");
             var videoElement = document.getElementById("global-lightbox-video-element");
 
@@ -593,7 +592,6 @@
     });
 
     function closeVideoLightbox() {
-        console.log(1);
         var lightbox = document.getElementById("global-lightbox-video");
         var videoElement = document.getElementById("global-lightbox-video-element");
 
