@@ -57,10 +57,48 @@ class OrderProductVariationExporter extends Exporter
                         }
                     }
                 }),
-            ExportColumn::make('order.user.email')
-                ->label('Email'),
-            ExportColumn::make('order.user.phone')
-                ->label('Telefon'),
+            ExportColumn::make('productVariation.name')
+                ->label('Email')
+                ->formatStateUsing(function ($state, $record) {
+                    $user = $record->order->user;
+
+                    if($user) {
+                        return $user->email;
+                    }
+                    else {
+                        $billingInfo = json_decode($record->order->company_information, true);
+
+                        if($billingInfo && isset($billingInfo['person_email'])) {
+                            return $billingInfo['person_email'];
+                        } else if($billingInfo && isset($billingInfo['organization_email'])) {
+                            return $billingInfo['organization_email'];
+                        }
+                        else {
+                            return '';
+                        }
+                    }
+                }),
+            ExportColumn::make('productVariation.ean')
+                ->label('Telefon')
+                ->formatStateUsing(function ($state, $record) {
+                    $user = $record->order->user;
+
+                    if($user) {
+                        return $user->phone;
+                    }
+                    else {
+                        $billingInfo = json_decode($record->order->company_information, true);
+
+                        if($billingInfo && isset($billingInfo['person_phone'])) {
+                            return $billingInfo['person_phone'];
+                        } else if($billingInfo && isset($billingInfo['organization_phone'])) {
+                            return $billingInfo['organization_phone'];
+                        }
+                        else {
+                            return '';
+                        }
+                    }
+                }),
             ExportColumn::make('order.company_information')
                 ->label('Adresa de facturare')
                 ->formatStateUsing(function ($state) {
