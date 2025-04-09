@@ -12,7 +12,7 @@
 <div class="main-container" id="order-page">
     <form method="POST" action="{{ url('/save-order') }}" id="order_form">
         @csrfWithoutAutocomplete
-         <input type="hidden" id="orderr_id" name="order_id" value="{{ $order_id }}">
+         {{-- <input type="hidden" id="order_guid" name="order_guid" value="{{ $order_guid }}"> --}}
         @foreach ($ordered_products as $key => $value)
             <input type="hidden" name="product{{ $key }}_id" value="{{ $value->product_id }}">
             <input type="hidden" name="product{{ $key }}_quantity" value="{{ $value->ordered_quantity }}"> 

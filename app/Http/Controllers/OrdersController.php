@@ -260,27 +260,13 @@ class OrdersController extends Controller
             }
         }
 
-        // Verify if there is already an 'order_id' in session
-        $order_id = session()->get('order_id', null);
-        
-        // If there isn't one, generate a new one and save it in the session
-        if (!$order_id) {
-            $order_id = Str::uuid(); 
-            session()->put('order_id', $order_id);
-        } 
-        
-        $lastOrder = Order::whereRaw('CAST(identifier AS UNSIGNED) >= 20111')
-            ->whereRaw('CAST(identifier AS UNSIGNED) < 99999') 
-            ->whereRaw('LENGTH(identifier) <= 5') // exclude previous numbers like 0021345
-            ->orderByRaw('CAST(identifier AS UNSIGNED) DESC')
-            ->first();
-        $identifier = $lastOrder ? ((int) $lastOrder->identifier + 1) : 20111;
-
+        do {
+            $order_guid = Str::uuid()->toString();
+        } while (Order::where('guid', $order_guid)->exists());
 
         // Initialize or get the data from the session for our current order 
         $order = session()->get('order', [
-            'guid' => \Illuminate\Support\Str::uuid(),
-            'identifier' => $identifier,
+            'guid' => $order_guid,
             'total' => array_sum(array_map(function ($item) {
                 return $item['quantity'] * $item['price'];
             }, $cart)),
@@ -309,7 +295,7 @@ class OrdersController extends Controller
         $counties = County::orderBy('name', 'asc')->get();
         $cities = City::orderBy('name', 'asc')->get();
 
-        return view('products.finalizeaza-comanda', compact('user', 'order', 'cities', 'counties', 'ordered_products', 'isGuest', 'order_id'));
+        return view('products.finalizeaza-comanda', compact('user', 'order', 'cities', 'counties', 'ordered_products', 'isGuest'));
     }
 
 
@@ -331,6 +317,16 @@ class OrdersController extends Controller
     
         if (!$order) {
             return redirect()->route('orders.index')->with('error', 'Comanda nu a fost găsită.');
+        }
+
+        $lastOrder = Order::whereRaw('CAST(identifier AS UNSIGNED) >= 20111')
+        ->whereRaw('CAST(identifier AS UNSIGNED) < 99999')
+        ->whereRaw('LENGTH(identifier) <= 5')
+        ->orderByRaw('CAST(identifier AS UNSIGNED) DESC')
+        ->first();
+        $identifier = $lastOrder ? ((int) $lastOrder->identifier + 1) : 20111;
+        while (Order::where('identifier', $identifier)->exists()) {
+            $identifier++;
         }
 
         // If the guest has opted to create account, then create the account and log him in
@@ -371,7 +367,7 @@ class OrdersController extends Controller
             ['guid' => $order['guid']],
             [
                 'user_id' => $userId,
-                'identifier' => $order['identifier'],
+                'identifier' => $identifier,
                 'billing_type' => $request->input('billing_type'),
                 'delivery_type' => $request->input('delivery_type'),
                 'payment_method' => $request->input('payment_method'),
