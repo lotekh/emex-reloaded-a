@@ -176,10 +176,14 @@
                                                         Sapa
                                                     @elseif(Str::contains(Str::lower($product->name), 'amors'))
                                                         Amorsa
+                                                    @elseif(Str::contains(Str::lower($product->name), 'rasina') && Str::contains(Str::lower($product->name), 'vopsea'))
+                                                        Vopsea
                                                     @elseif(Str::contains(Str::lower($product->name), 'rasina'))
                                                         Rasina
                                                     @elseif(Str::contains(Str::lower($product->name), 'mortar'))
                                                         Mortar
+                                                    @elseif(Str::contains(Str::lower($product->name), 'pardoseal'))
+                                                        Pardoseala
                                                     @elseif(Str::contains(Str::lower($product->name), 'masa') || Str::contains(Str::lower($product->name), 'covor') || Str::contains(Str::lower($product->name), 'quartz'))
                                                         Baza
                                                     @else
@@ -435,21 +439,21 @@
         <div class="badge">
             <div class="relative w-full h-full">
                 <div class="produs-logo">
-                    <img width="363" height="68" src="{{ asset('resources/images/Fabricat-in-Romania.png') }}" alt="Produs fabricat in Romania" title="Produs de fabricatie romaneasca">
+                    <img width="363" height="68" src="{{ asset('resources/images/Fabricat-in-Romania.webp') }}" alt="Produs fabricat in Romania" title="Produs de fabricatie romaneasca">
                 </div>
             </div>
         </div>
         <div class="badge">
             <div class="relative w-full h-full">
                 <div class="produs-logo">
-                    <img width="363" height="68" src="{{ asset('resources/images/iso.png') }}" alt="Romtehnochim asigura garantia calitatii" title="Emex - produse certificate ISO">
+                    <img width="363" height="68" src="{{ asset('resources/images/iso.webp') }}" alt="Romtehnochim asigura garantia calitatii" title="Emex - produse certificate ISO">
                 </div>
             </div>
         </div>
         <div class="badge">
             <div class="produs-logo">
                 <a class="excelent-img col justify-center" href="https://excellent-sme-plus-romania.safesigned.com/romtehnochim-srl/" title="Certificat excelenta in afaceri">
-                    <img width="363" height="68" src="{{ asset('resources/general/Romtehnochim-certificat-de-excelenta.png') }}" alt="Verificare certificat Coface Camera de Comert" title="Certificat excelenta in afaceri">
+                    <img width="363" height="68" src="{{ asset('resources/images/Romtehnochim-certificat-de-excelenta.webp') }}" alt="Verificare certificat Coface Camera de Comert" title="Certificat excelenta in afaceri">
                 </a>
             </div>
         </div>

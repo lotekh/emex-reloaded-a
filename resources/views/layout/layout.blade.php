@@ -147,7 +147,7 @@ use App\Models\Order;
         <div class="desktop-header bg-white">
             <div class="main-container row second-layer">
                 <a id="logo" href="{{ empty($base_url) ? '/' : $base_url }}" title="acasa">
-                    <img src="{{ asset('resources/new_design/general/logo.png') }}" height="84" width="252" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim">
+                    <img src="{{ asset('resources/new_design/general/logo.webp') }}" alt="Emex - un brand de incredere" title="Emex - brand al companiei Romtehnochim">
                 </a>
                 <form id="search-form-desktop" class="relative flex align-center w-full justify-end" method="GET" action="{{ url('/search') }}">
                     <div class="flex align-center">
@@ -235,7 +235,7 @@ use App\Models\Order;
                 <div class="modal-container">
                     <div class="relative header row justify-between align-center">
                         <div></div>
-                        <img class="logo-footer" alt="Emex - un brand de incredere" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
+                        <img class="logo-footer" alt="Emex - un brand de incredere" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.webp') }}">
                         <button onclick="closeModal('auth-lightbox')" role="button" tabindex="0" class="close-btn" aria-label="Inchide">
                             <span class="flex align-center">
                                 <img src="{{ asset('resources/new_design/icons/close.svg') }}" alt="Close Auth Lightbox" width="32" height="32">
@@ -271,7 +271,7 @@ use App\Models\Order;
                 <div class="modal-container">
                     <div class="relative header row justify-between align-center">
                         <div></div>
-                        <img class="logo-footer" alt="Emex - un brand de incredere" width="201" height="72" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
+                        <img class="logo-footer" alt="Emex - un brand de incredere" src="{{ asset('resources/new_design/general/logo-footer.png') }}">
                         <button onclick="closeModal('register-lightbox')" role="button" tabindex="0" class="close-btn" aria-label="Inchide">
                             <span class="flex align-center">
                                 <img src="{{ asset('resources/new_design/icons/close.svg') }}" alt="Close Auth Lightbox" width="32" height="32">

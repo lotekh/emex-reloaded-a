@@ -2,21 +2,25 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\OrderProductVariationExporter;
 use App\Filament\Resources\OrderResource\Pages;
-use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Models\City;
 use App\Models\Order;
-use Filament\Forms;
+use App\Models\OrderProductVariation;
+use Filament\Actions\Exports\Enums\ExportFormat;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
-use Filament\Infolists\Widgets\InfolistItem;
+use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Filters\Filter;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Grid;
+use Filament\Tables\Enums\FiltersLayout;
 
 class OrderResource extends Resource
 {
@@ -101,8 +105,28 @@ class OrderResource extends Resource
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([
-                //
-            ])
+                Filter::make('created_at')
+                ->form([
+                    Grid::make()
+                        ->columns(2)
+                        ->schema([
+                            DatePicker::make('start_date'),
+                            DatePicker::make('end_date'),
+                        ])
+                ])
+                ->query(function (Builder $query, array $data): Builder {
+                    return $query
+                        ->when(
+                            $data['start_date'],
+                            fn(Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                        )
+                        ->when(
+                            $data['end_date'],
+                            fn(Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                        );
+                })->columnSpan(2),
+                ], layout: FiltersLayout::AboveContent)
+            ->filtersFormColumns(4)
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 // Tables\Actions\EditAction::make(),
@@ -111,6 +135,18 @@ class OrderResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+            ])
+            ->headerActions([
+                ExportAction::make()
+                    ->exporter(OrderProductVariationExporter::class)
+                    ->formats([
+                        ExportFormat::Xlsx,
+                    ])
+                    ->label('Export order products')
+                    ->modifyQueryUsing(function (Builder $query) {
+                        return OrderProductVariation::query()->with('order')->with('productVariation')
+                            ->whereIn('order_id', $query->pluck('id'));
+                    }),
             ]);
     }
 
@@ -254,11 +290,11 @@ class OrderResource extends Resource
                         ->state(function (Order $record) {
                             $products = '';
                             foreach($record->productVariations as $productVariation) {
-                                $products .= $productVariation->name . '  /  ' . $productVariation->pivot->quantity . ' BUC /  ' . $productVariation->pivot->price . ' RON' . PHP_EOL;
+                                $products .= '<p>' . $productVariation->name . '  /  ' . $productVariation->pivot->quantity . ' BUC /  ' . $productVariation->pivot->price . ' RON' . '</p>';
                             }
 
                             return $products;
-                        }),
+                        })->html(),
                     ]),
 
                 Infolists\Components\Section::make('General Information')
