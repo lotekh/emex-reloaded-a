@@ -19,3 +19,17 @@ RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+RewriteEngine On
+RewriteRule ^doc/(.*)$ /public/storage/media/technical-files/$1 [L,R=301]
+RewriteRule ^Doc/(.*)$ /public/storage/media/technical-files/$1 [L,R=301]
+
+
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST}  ^emex\.ro$ [NC]
+RewriteCond %{QUERY_STRING}  ^$
+RewriteCond %{HTTPS} =on
+RewriteRule ^Doc/Lavabila-cuartz-profesioanala-Emex-QT\.pdf$ https://emex.ro/public/storage/media/technical-files/lavabila-cuartz-profesionala-emex-qt.pdf? [R=301,NE,NC,L]
+
+
