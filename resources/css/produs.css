@@ -1781,9 +1781,13 @@ a:active {
 
 @media screen and (min-width: 1400px) {
   .produs-logo {
-    width: 368px;
+    width: 363px;
     height: 68px;
   }
+}
+
+.produs-logo {
+  justify-self: center;
 }
 
 amp-img,
