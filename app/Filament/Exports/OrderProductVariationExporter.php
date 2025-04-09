@@ -153,6 +153,8 @@ class OrderProductVariationExporter extends Exporter
                 ->label('Numar proforma'),
             ExportColumn::make('order.payment_method')
                 ->label('Metoda de plata'),
+            ExportColumn::make('order.created_at')
+                ->label('Data plasarii')
         ];
     }
 
