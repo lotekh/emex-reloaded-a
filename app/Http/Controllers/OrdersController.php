@@ -178,7 +178,6 @@ class OrdersController extends Controller
             }
         }
 
-
         // Calculate TVA
         $tva = $price * 0.19;
 
@@ -199,7 +198,6 @@ class OrdersController extends Controller
             'total' => number_format($price + $tva, 2, '.', '')
         ]);
     }
-
 
     public function emptyCart()
     {
@@ -363,10 +361,14 @@ class OrdersController extends Controller
             Session::flash('success', 'Contul a fost creat și utilizatorul a fost autentificat cu succes!');
         }
 
+        $lastOrder = Order::orderBy('id', 'desc')->first();
+        $identifier = $lastOrder->identifier + 1;
+
         $dbOrder = Order::firstOrCreate(
             ['guid' => $order['guid']],
             [
                 'user_id' => $userId,
+                'identifier' => $identifier,
                 'identifier' => $identifier,
                 'billing_type' => $request->input('billing_type'),
                 'delivery_type' => $request->input('delivery_type'),

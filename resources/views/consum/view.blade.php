@@ -112,18 +112,18 @@
 
                     <div class="w-full" id="pwgw">
                         <div class="badge flex justify-center">
-                            <div class="relative w-full h-full">
-                                <img src="{{ asset('resources/images/Fabricat-in-Romania.png') }}" alt="Produs fabricat in Romania" title="Produs de fabricatie romaneasca" />
+                            <div class="relative w-full">
+                                <img src="{{ asset('resources/images/Fabricat-in-Romania-cons.webp') }}" alt="Produs fabricat in Romania" title="Produs de fabricatie romaneasca" />
                             </div>
                         </div>
                         <div class="badge flex justify-center">
-                            <div class="relative w-full h-full">
-                                <img src="{{ asset('resources/images/ISO-consum.png') }}" alt="Romtehnochim asigura garantia calitatii" title="Emex - produse certificate ISO" />
+                            <div class="relative w-full">
+                                <img src="{{ asset('resources/images/ISO-consum.webp') }}" alt="Romtehnochim asigura garantia calitatii" title="Emex - produse certificate ISO" />
                             </div>
                         </div>
                         <div class="badge flex justify-center">
                             <a class="excelent-img col" href="https://excellent-sme-plus-romania.safesigned.com/romtehnochim-srl/" title="Certificat excelenta in afaceri">
-                                <img src="{{ asset('resources/images/excelenta-consum.png') }}" alt="Verificare certificat Coface Camera de Comert" title="Certificat excelenta in afaceri" width="363" height="68">
+                                <img src="{{ asset('resources/images/excelenta-consum.webp') }}" alt="Verificare certificat Coface Camera de Comert" title="Certificat excelenta in afaceri">
                             </a>
                         </div>
                     </div>

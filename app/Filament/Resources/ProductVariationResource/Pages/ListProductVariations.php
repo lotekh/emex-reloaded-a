@@ -38,6 +38,8 @@ class ListProductVariations extends ListRecords
 
                 Excel::import(new ProductVariationImport, Storage::disk('local')->path($data['file']));
             }),
+            Action::make('Update feeds')
+            ->url(route('feeds.update'), true)
         ];
     }
 }

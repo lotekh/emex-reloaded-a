@@ -63,7 +63,7 @@ class FeedController extends Controller
                     </details>
                     <pictures>
                         <picture>
-                            <![CDATA[' . $product['image_link'] . ']]>
+                            <![CDATA[' . $db_product->largeImage->url . ']]>
                         </picture>
                     </pictures>
                     <currency>
