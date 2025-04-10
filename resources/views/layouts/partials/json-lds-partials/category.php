@@ -1,7 +1,7 @@
 <?php
 
 if (!isset($category) || !isset($products)) {
-    return false; 
+    return false;
 }
 
 $productsList = [];
@@ -11,8 +11,8 @@ foreach ($products as $index => $product) {
         'position' => $index + 1,
         'url' => url($product->slug),
         'name' => $product->sub_title,
-        'image' => $product->largeImage->url ?? '', 
-        'description' => strip_tags($product->description), 
+        'image' => $product->largeImage->url ?? '',
+        'description' => strip_tags($product->description),
     ];
 }
 $productsListJson = json_encode($productsList, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
@@ -20,15 +20,16 @@ $productsListJson = json_encode($productsList, JSON_UNESCAPED_SLASHES | JSON_PRE
 $categoryName = $category->name;
 $seoTitle = $category->seo_title ?? $category->name;
 $url = url($category->slug);
-$featuredImageUrl = $category->featured_image_url ?? ''; 
+$featuredImageUrl = $category->featured_image_url ?? '';
 $description = $category->seo_meta_description ?? '';
 
-$category_json = [
+$category_json =
     [
         '@context' => 'https://schema.org',
         '@type' => 'ItemList',
         'itemListElement' => json_decode($productsListJson, true),
-    ],
+    ];
+$webpage_json =
     [
         '@context' => 'http://schema.org',
         '@type' => 'WebPage',
@@ -47,7 +48,10 @@ $category_json = [
                 'url' => 'https://emex.ro/images/general/Emex-logo.png',
             ],
         ],
-    ],
-];
+    ];
 
-return json_encode($category_json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+
+return [
+    json_encode($category_json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT),
+    json_encode($webpage_json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT),
+];
