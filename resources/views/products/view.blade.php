@@ -506,7 +506,11 @@
             );
 
             if (variation) {
-                priceDisplay.textContent = variation.price.toFixed(2);
+                priceDisplay.textContent = variation.price.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+
                 priceInput.value = variation.price;
                 variationInput.value = variation.id;
                 if(variation.quantity % 1 != 0) {

@@ -172,7 +172,11 @@
           );
   
           if (variation) {
-              priceDisplay.textContent = parseFloat(variation.price).toFixed(2);
+              // priceDisplay.textContent = parseFloat(variation.price).toFixed(2);
+              priceDisplay.textContent = variation.price.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
               priceInput.value = variation.price;
               variationInput.value = variation.id; 
           } else {
