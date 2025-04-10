@@ -26,7 +26,7 @@
                 <a href="{{ url($product->slug) }}">
                     <picture>
                         <source type="image/webp" srcset="{{ $smallImageUrl }}"/>
-                        <img style="height: 180px; max-width: 230px;" src="{{ $pngSmallImageUrl }}" alt="{{ $product->pngSmallImage ? $product->pngSmallImage->alt : 'imagine'}}" title="{{ $product->pngSmallImage ? $product->pngSmallImage->title : 'imagineprodus'}}">
+                        <img loading="lazy" style="height: 180px; max-width: 230px;" src="{{ $pngSmallImageUrl }}" alt="{{ $product->pngSmallImage ? $product->pngSmallImage->alt : 'imagine'}}" title="{{ $product->pngSmallImage ? $product->pngSmallImage->title : 'imagineprodus'}}">
                     </picture>
                 </a>
             </div>
@@ -39,9 +39,9 @@
                             @for($i = 0; $i < 5; $i++)
                                 <div>
                                     @if($i + 1 <= $rating_sum)
-                                        <img width="18" height="18" src="{{ asset('resources/new_design/icons/gold-star.svg') }}" title="review-star" alt="review-star">
+                                        <img loading="lazy" width="18" height="18" src="{{ asset('resources/new_design/icons/gold-star.svg') }}" title="review-star" alt="review-star">
                                     @else
-                                        <img width="18" height="18" src="{{ asset('resources/new_design/icons/dark-star.svg') }}" title="review-star" alt="review-star">
+                                        <img loading="lazy" width="18" height="18" src="{{ asset('resources/new_design/icons/dark-star.svg') }}" title="review-star" alt="review-star">
                                     @endif
                                 </div>
                             @endfor
@@ -105,9 +105,6 @@
             </div>
             <div class="col justify-center">
                 <div class="col justify-end gap-md align-center p-16">
-                    {{-- <a href="{{ url('/remove-from-wishlist?product_id=' . $product->id) }}">
-                        <button type="button" class="btn btn-blue-outline rounded-xl">Scoate din wishlist</button>
-                    </a> --}}
                     <a href="{{ route('wishlist.removee', ['product_id' => $product->id]) }}">
                         <button type="button" class="btn btn-blue-outline rounded-xl">Scoate din wishlist</button>
                     </a>
