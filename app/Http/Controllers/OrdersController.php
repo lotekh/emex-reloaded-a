@@ -258,13 +258,8 @@ class OrdersController extends Controller
             }
         }
 
-        do {
-            $order_guid = Str::uuid()->toString();
-        } while (Order::where('guid', $order_guid)->exists());
-
         // Initialize or get the data from the session for our current order 
         $order = session()->get('order', [
-            'guid' => $order_guid,
             'total' => array_sum(array_map(function ($item) {
                 return $item['quantity'] * $item['price'];
             }, $cart)),
@@ -317,16 +312,6 @@ class OrdersController extends Controller
             return redirect()->route('orders.index')->with('error', 'Comanda nu a fost găsită.');
         }
 
-        $lastOrder = Order::whereRaw('CAST(identifier AS UNSIGNED) >= 20111')
-        ->whereRaw('CAST(identifier AS UNSIGNED) < 99999')
-        ->whereRaw('LENGTH(identifier) <= 5')
-        ->orderByRaw('CAST(identifier AS UNSIGNED) DESC')
-        ->first();
-        $identifier = $lastOrder ? ((int) $lastOrder->identifier + 1) : 20111;
-        while (Order::where('identifier', $identifier)->exists()) {
-            $identifier++;
-        }
-
         // If the guest has opted to create account, then create the account and log him in
         if ($request->input('create_account')) {
             $validator = Validator::make($request->all(), [
@@ -364,11 +349,14 @@ class OrdersController extends Controller
         $lastOrder = Order::orderBy('id', 'desc')->first();
         $identifier = $lastOrder->identifier + 1;
 
+        do {
+            $order_guid = Str::uuid()->toString();
+        } while (Order::where('guid', $order_guid)->exists());
+
         $dbOrder = Order::firstOrCreate(
-            ['guid' => $order['guid']],
+            ['guid' => $order_guid],
             [
                 'user_id' => $userId,
-                'identifier' => $identifier,
                 'identifier' => $identifier,
                 'billing_type' => $request->input('billing_type'),
                 'delivery_type' => $request->input('delivery_type'),
