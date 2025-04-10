@@ -40,7 +40,7 @@ $product_json = [
         'priceValidUntil' => '2026-01-01',
         'availability' => 'https://schema.org/InStock',
         'hasMerchantReturnPolicy' => [
-            "@context" => "https =>//schema.org",
+            "@context" => "https://schema.org",
             "@type" => "MerchantReturnPolicy",
             "name" => "Politica de Returnare",
             "returnMethod" => "ReturnByMail",
