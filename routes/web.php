@@ -50,9 +50,6 @@ Route::middleware([RemoveMinifierTags::class])->group(function () {
     
     Route::post('forgot-password', [UserController::class, 'forgotPassword'])->name('password.email');
     
-    
-    
-    
     Route::view('/test-form', 'test-form');
     Route::post('/side-contact', [ContactController::class, 'store'])->name('contact.store');
     
@@ -68,16 +65,11 @@ Route::middleware([RemoveMinifierTags::class])->group(function () {
         return view('autentificare');
     })->name('autentificare');
     
-    
     Route::post('/save-detalii-cont', [UserController::class, 'saveDetaliiCont']);
     Route::post('/save-facturare', [UserController::class, 'saveFacturare']);
     Route::post('/save-livrare', [UserController::class, 'saveLivrare']);
     Route::post('/save-schimba-parola', [UserController::class, 'saveSchimbaParola']);
     Route::get('/get-cities-by-county/{county_id}', [UserController::class, 'getCitiesByCounty']);
-    
-    // Route::get('/counties-by-country/{country}', [UserController::class, 'getCountiesByCountry']);
-    // Route::get('/get-counties-by-country/{country_id}', [CountyController::class, 'getCountiesByCountry']);
-    
     
     Route::get('/angajari', function () {
         return view('angajari');
@@ -92,7 +84,6 @@ Route::middleware([RemoveMinifierTags::class])->group(function () {
     // Palete
     Route::get('/cartela-culori-ral-vopsele', [PaleteController::class, 'ral'])->name('palete.ral');
     Route::get('/cartela-culori-lavabile', [PaleteController::class, 'showLavabile'])->name('lavabile.colors');
-    
     
     // Routes for aplicare
     Route::get('/aplicare-vopsele-lavabile', function () {
@@ -133,9 +124,6 @@ Route::middleware([RemoveMinifierTags::class])->group(function () {
         return view('aplicare.aplicare-pardoseli-epoxidice');
     });
     
-    
-    
-    
     // Routes for servicii
     Route::get('/aplicare-covor-epoxidic-stb', function () {
         return view('servicii.aplicare-covor-epoxidic-stb');
@@ -153,7 +141,6 @@ Route::middleware([RemoveMinifierTags::class])->group(function () {
         return view('servicii.servicii');
     });
     
-    
     // Routes for produse
     Route::post('/add-to-wishlist', [WishlistController::class, 'store'])->name('wishlist.store');
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('products.wishlist');
@@ -165,7 +152,6 @@ Route::middleware([RemoveMinifierTags::class])->group(function () {
     Route::post('/get-variation', [ProductsController::class, 'getVariation'])->name('product.getVariation');
     Route::get('/produse', [ProductsController::class, 'index'])->name('products.index');
     
-    
     // Routes for orders
     Route::get('/produse-adaugate', [OrdersController::class, 'index'])->name('orders.index');
     Route::get('/adauga-produs', [OrdersController::class, 'addProduct'])->name('orders.addProduct');
@@ -175,13 +161,9 @@ Route::middleware([RemoveMinifierTags::class])->group(function () {
     Route::get('/invoice/{orderId}', [OrdersController::class, 'showInvoicePage'])->name('invoice.page');
     Route::post('/orders/update-mention', [OrdersController::class, 'updateMention'])->name('orders.updateMention');
     
-    
-    
-    
     Route::post('/validate-account', [OrdersController::class, 'validateAccount'])->name('checkout.validateAccount');
     
     Route::post('/validate-login', [AuthController::class, 'validateLogin'])->name('auth.validateLogin');
-    
     
     // Routes for checkout
     Route::get('/finalizeaza-comanda', [OrdersController::class, 'showCheckoutForm'])->name('checkout.form');
@@ -192,16 +174,11 @@ Route::middleware([RemoveMinifierTags::class])->group(function () {
     
     Route::get('/secure-payment', [PaymentController::class, 'securePayment'])->name('secure-payment');
     
-    
-    
-    
     // Blog
     Route::get('/blog', [BlogArticleController::class, 'index'])->name('blog.index');
     Route::get('/blog/{slug}', [BlogArticleController::class, 'show'])->name('blog.article.show');
     Route::get('/blog/tag/{tagId}', [BlogArticleController::class, 'searchByTag'])->name('blog.searchByTag');
     Route::get('/blogarchive', [BlogArticleController::class, 'searchByArchive'])->name('blog.search.archive');
-    
-    
     
     // Cine suntem
     Route::get('/despre-noi', function () {
@@ -267,11 +244,6 @@ Route::middleware([RemoveMinifierTags::class])->group(function () {
     
     Route::post('/accept-cookies', [CookieController::class, 'acceptCookies'])->name('accept.cookies');
     
-    // Route for consumption calculation
-    Route::get('/{consumption_slug}/calculate', [ConsumController::class, 'show'])
-        ->where('consumption_slug', '.*')
-        ->name('consum.calculate');
-
     Route::prefix('/feed')->group(function () {
         Route::get('/bizoo-v2', [FeedController::class, 'bizooV2'])->name('feeds.bizoo.v2');
     
@@ -293,10 +265,10 @@ Route::middleware([RemoveMinifierTags::class])->group(function () {
     
     // Consum
     Route::get('/consum/{category}', [ConsumController::class, 'index'])->name('consum.index');
-    // Route for consum page without parameters (currentPage=0)
+
     Route::get('/{consumption_slug}', [ConsumController::class, 'show'])
-        ->where('consumption_slug', '.*')
         ->name('consum.show');
+
     Route::post('/consum/store', [ConsumController::class, 'store'])->name('consum.store');
     
     // Error 404 and 500

@@ -45,10 +45,16 @@ class HomeController extends Controller
 
             // If the url has `calculate=1`, redirect to the calculate route
             if ($request->has('calculate')) {
-                return redirect()->route('consum.calculate', $request->query());
+                $params = $request->query();
+                $params['consumption_slug'] = $slug;
+                return app(ConsumController::class)->show($slug, $params);
+                // return redirect()->route('consum.show', $params);
+                // return app(ConsumController::class)->calculate($slug, $request);
             }
-
-            return app(ConsumController::class)->show($slug, $request);
+            else {
+                $params = $request->query();
+                return app(ConsumController::class)->show($slug, $params);
+            }
         }
 
         abort(404);

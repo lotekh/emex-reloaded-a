@@ -26,22 +26,21 @@ class ConsumController extends Controller
         return redirect()->back()->with('error', 'Nu există produse în această categorie.');
     }
 
-    public function show($consumption_slug, Request $request)
+    public function show($consumption_slug, $request)
     {
         $product = Product::where('consumption_slug', $consumption_slug)
             ->with(['categories', 'largeImage', 'variations', 'reviews', 'technicalFile'])
             ->firstOrFail();
     
+
         $category = $product->categories->first();
         $consumData = $this->getConsumDataByProduct($product);
-        $isCalculatePage = str_contains($request->url(), '/calculate');
-        $currentPage = $isCalculatePage ? 3 : $request->input('currentPage', 0);
-    
-        // Verify if there is data in the request to calculate the consumption
+        $isCalculatePage = isset($request['calculate']) ? true : false;
+        $currentPage = $isCalculatePage ? 3 : (isset($request['currentPage']) ? $request['currentPage'] : 0);
+
         $result = null;
-        if ($isCalculatePage || $request->has(['calculate', 'product_id', 'TipProdus', 'TipSuprafata', 'Suprafata'])) {
-            $calculationData = $request->all();
-            $result = $this->calculateConsumption($calculationData);
+        if ($isCalculatePage) {
+            $result = $this->calculateConsumption($request);
         }
     
         return view('consum.view', [

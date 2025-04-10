@@ -143,7 +143,7 @@
                 @endif
 
                 <div class="steps_content">
-                    <form action="{{ url($product->consumption_slug . '/calculate') }}" method="GET">
+                    <form action="{{ url($product->consumption_slug) }}" method="GET">
                         {{-- @csrfWithoutAutocomplete --}}
                         <input type="hidden" name="calculate" value="1">
                         <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
