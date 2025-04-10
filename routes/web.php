@@ -240,79 +240,6 @@ Route::middleware([RemoveMinifierTags::class])->group(function () {
     Route::get('/sitemap.html', function () {
         return view('footer.sitemap2');
     })->name('sitemap2');
-    Route::get('/sitemap.ror', function () {
-        $path = public_path('resources/other-resources/sitemap.ror'); 
-        return Response::file($path, [
-            'Content-Type' => 'application/xml'
-        ]);
-    });
-    Route::get('/sitemap.rss', function () {
-        $path = public_path('resources/other-resources/sitemap.rss'); 
-        return Response::file($path, [
-            'Content-Type' => 'application/rss+xml'
-        ]);
-    });
-    Route::get('/sitemap.txt', function () {
-        $path = public_path('resources/other-resources/sitemap.txt'); 
-        return Response::file($path, [
-            'Content-Type' => 'text/plain'
-        ]);
-    });
-    Route::get('/sitemap.xml', function () {
-        $path = public_path('resources/other-resources/sitemap.xml'); 
-        return Response::file($path, [
-            'Content-Type' => 'application/xml'
-        ]);
-    });
-    Route::get('/sitemap-base.xml', function () {
-        $path = public_path('resources/other-resources/sitemap-base.xml'); 
-        return Response::file($path, [
-            'Content-Type' => 'application/xml'
-        ]);
-    });
-    Route::get('/Web.sitemap', function () {
-        $path = public_path('resources/other-resources/Web.sitemap.xml'); 
-        return Response::file($path, [
-            'Content-Type' => 'application/xml'
-        ]);
-    });
-    Route::get('/urllist.txt', function () {
-        $path = public_path('resources/other-resources/urllist.txt'); 
-        return Response::file($path, [
-            'Content-Type' => 'text/plain'
-        ]);
-    });
-    Route::get('/sitemap-video.xml', function () {
-        $path = public_path('resources/other-resources/sitemap-video.xml'); 
-        return Response::file($path, [
-            'Content-Type' => 'application/xml'
-        ]);
-    });
-    Route::get('/sitemap-news.xml', function () {
-        $path = public_path('resources/other-resources/sitemap-news.xml'); 
-        return Response::file($path, [
-            'Content-Type' => 'application/xml'
-        ]);
-    });
-    Route::get('/sitemap-code.xml', function () {
-        $path = public_path('resources/other-resources/sitemap-code.xml'); 
-        return Response::file($path, [
-            'Content-Type' => 'application/xml'
-        ]);
-    });
-    Route::get('/sitemap-image.xml', function () {
-        $path = public_path('resources/other-resources/sitemap-image.xml'); 
-        return Response::file($path, [
-            'Content-Type' => 'application/xml'
-        ]);
-    });
-    Route::get('/sitemap-mobile.xml', function () {
-        $path = public_path('resources/other-resources/sitemap-mobile.xml'); 
-        return Response::file($path, [
-            'Content-Type' => 'application/xml'
-        ]);
-    });
-    
     
     Route::get('/doc/ISO-9001.pdf', function () {
         $path = public_path('docs/ISO-9001.pdf'); 
@@ -333,14 +260,12 @@ Route::middleware([RemoveMinifierTags::class])->group(function () {
         ]);
     });
     
-    
     Route::get('/cookies', function () {
         return view('others.cookies');
     })->name('cookies');
     
     
     Route::post('/accept-cookies', [CookieController::class, 'acceptCookies'])->name('accept.cookies');
-    
     
     // Route for consumption calculation
     Route::get('/{consumption_slug}/calculate', [ConsumController::class, 'show'])

@@ -56,7 +56,7 @@ fara necesitatea efectuarii de reconditionari.
 @endsection
 
 @section('link_fisa_tehnica')
-/doc/pardoseala-epoxidica-autonivelanta.pdf
+/storage/media/technical-files/pardoseala-epoxidica-autonivelanta.pdf
 @endsection
 
 @section('section_2_title')

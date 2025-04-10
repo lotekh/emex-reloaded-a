@@ -30,7 +30,7 @@ structural, cat si estetic atunci cand sunt aplicate cu profesionalism, de perso
 @endsection
 
 @section('link_fisa_tehnica')
-/doc/vopsea-epoxidica-pardoseli.pdf
+/storage/media/technical-files/vopsea-epoxidica-pardoseli.pdf
 @endsection
 
 @section('section_2_title')
