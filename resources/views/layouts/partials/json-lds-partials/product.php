@@ -40,14 +40,15 @@ $product_json = [
         'priceValidUntil' => '2026-01-01',
         'availability' => 'https://schema.org/InStock',
         'hasMerchantReturnPolicy' => [
+            "@context" => "https =>//schema.org",
             "@type" => "MerchantReturnPolicy",
-            "name" => "Politica de Retur",
-            "applicableCountry" => "RO",
-            "returnPolicyCountry" => "RO",
-            "returnPolicyCategory" => "https://schema.org/MerchantReturnFiniteReturnWindow",
-            "merchantReturnDays" => "14",
-            "inStoreReturnsOffered" => "true",
-            "returnFees" => "https://schema.org/FreeReturn"
+            "name" => "Politica de Returnare",
+            "returnMethod" => "ReturnByMail",
+            "additionalProperty" => [
+                "@type" => "PropertyValue",
+                "name" => "Metode de returnare",
+                "value" => "prin curier, prin posta sau prin returnarea banilor"
+            ]
         ],
         "shippingDetails" => [
             "@type" => "OfferShippingDetails",
