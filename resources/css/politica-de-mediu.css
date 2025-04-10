@@ -22,15 +22,11 @@
     rgba(255, 255, 255, 0) 75%,
     rgba(255, 255, 255, 1) 100%
   );
-  /* -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor; */
-  /* mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); */
   mask: linear-gradient(to bottom, #fff 0%, #fff 100%) content-box,
     linear-gradient(to bottom, #fff 0%, #fff 100%);
   mask-composite: exclude;
 }
 .header_img_bg {
-  /* height: 500px; */
   display: none;
   width: 100%;
   text-align: center;
