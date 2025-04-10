@@ -106,24 +106,24 @@
                     @endphp
                     <picture>
                         <source type="image/webp" srcset="{{ $smallImageUrl }}"/>
-                        <img class="product-img img-responsive bordered m-16" src="{{ $pngSmallImageUrl }}" alt="{{ $product->smallImage ? $product->smallImage->alt : 'imagine'}}" title="{{ $product->smallImage ? $product->smallImage->title : 'imagineprodus'}}">
+                        <img loading="lazy" class="product-img img-responsive bordered m-16" src="{{ $pngSmallImageUrl }}" alt="{{ $product->smallImage ? $product->smallImage->alt : 'imagine'}}" title="{{ $product->smallImage ? $product->smallImage->title : 'imagineprodus'}}">
                     </picture>
                 </div>
 
                     <div class="w-full" id="pwgw">
                         <div class="badge flex justify-center">
                             <div class="relative w-full">
-                                <img src="{{ asset('resources/images/Fabricat-in-Romania-cons.webp') }}" alt="Produs fabricat in Romania" title="Produs de fabricatie romaneasca" />
+                                <img loading="lazy" src="{{ asset('resources/images/Fabricat-in-Romania-cons.webp') }}" alt="Produs fabricat in Romania" title="Produs de fabricatie romaneasca" />
                             </div>
                         </div>
                         <div class="badge flex justify-center">
                             <div class="relative w-full">
-                                <img src="{{ asset('resources/images/ISO-consum.webp') }}" alt="Romtehnochim asigura garantia calitatii" title="Emex - produse certificate ISO" />
+                                <img loading="lazy" src="{{ asset('resources/images/ISO-consum.webp') }}" alt="Romtehnochim asigura garantia calitatii" title="Emex - produse certificate ISO" />
                             </div>
                         </div>
                         <div class="badge flex justify-center">
                             <a class="excelent-img col" href="https://excellent-sme-plus-romania.safesigned.com/romtehnochim-srl/" title="Certificat excelenta in afaceri">
-                                <img src="{{ asset('resources/images/excelenta-consum.webp') }}" alt="Verificare certificat Coface Camera de Comert" title="Certificat excelenta in afaceri">
+                                <img loading="lazy" src="{{ asset('resources/images/excelenta-consum.webp') }}" alt="Verificare certificat Coface Camera de Comert" title="Certificat excelenta in afaceri">
                             </a>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                 <input type="hidden" id="base_url" value="{{ url('/') }}">
                 @if ($currentPage != 3)
                     <div class="steps clearfix mb-8">
-                        <img src="{{ url('resources/new_design/icons/consum.svg') }}" alt="consum">
+                        <img loading="lazy" src="{{ url('resources/new_design/icons/consum.svg') }}" alt="consum">
                     </div>
                 @endif
 
@@ -169,7 +169,7 @@
                             </div>
                             <div class="consum_wizard_next_div">
                                 <button type="button" tabindex="1" onclick="showNextStep(1)" class="btn btn-light-blue rounded-sm mb-16">INAINTE
-                                    <img src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
+                                    <img loading="lazy" src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
                                 </button>
                             </div>
                         </div>
@@ -188,11 +188,11 @@
                             </div>
                             <div class="flex mb-32">
                                 <button type="button" tabindex="1" onclick="showPreviousStep(0)" class="btn btn-light-blue rounded-sm mr-8">
-                                    <img class="icon-reversed" src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
+                                    <img loading="lazy" class="icon-reversed" src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
                                     INAPOI
                                 </button>
                                 <button type="button" tabindex="1" onclick="showNextStep(2)" class="btn btn-light-blue rounded-sm">INAINTE
-                                    <img src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
+                                    <img loading="lazy" src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
                                 </button>
                             </div>
                         </div>
@@ -206,11 +206,11 @@
                             </div>
                             <div class="flex mb-32">
                                 <button type="button" tabindex="1" onclick="showPreviousStep(1)" class="btn btn-light-blue rounded-sm mb-16 mr-8">
-                                    <img class="icon-reversed" src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
+                                    <img loading="lazy" class="icon-reversed" src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
                                     INAPOI
                                 </button>
                                 <button type="submit" class="btn btn-light-blue rounded-sm mb-16">CALCULEAZA
-                                    <img src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
+                                    <img loading="lazy" src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
                                 </button>
                             </div>
                         </div>
@@ -250,7 +250,7 @@
                         </div>
                         <div class="consum_wizard_next_div flex justify-center">
                             <button type="button" tabindex="0" class="btn btn-light-blue rounded-sm mb-16" onclick="showNextStep(1)">INAINTE
-                                <img src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
+                                <img loading="lazy" src="{{ asset('resources/new_design/icons/chevron-right-w.svg') }}" alt="next">
                             </button>
                         </div>
                     </div>
@@ -260,7 +260,7 @@
 
                 <div class="text-center pad">Calculul este informativ si se refera la consumuri obtinute in conditii experimentale. Pregatirea suportului influenteaza semnificativ aceste consumuri. Nu sunt luate in considerare eventuale pierderi tehnologice sau accidentale, din timpul aplicarii.</div>
                 <div class="flex mt-16 mb-16 atentie-consum-container">
-                    <img width="40" height="34" class="atentie-consum" src="{{ asset('resources/images/general/Atentie-mic.png') }}" alt="Atentie cantitate recomandata">
+                    <img loading="lazy" width="40" height="34" class="atentie-consum" src="{{ asset('resources/images/general/Atentie-mic.png') }}" alt="Atentie cantitate recomandata">
                     <span class="ml-8 red"><em class="green-mark">Cantitatea finala este conditionata si de ambalajul produsului. Nu se pot livra fractii</em>.</span>
                 </div>
                 <p>Pentru obtinerea unor rezultate optime consultati:<br>
@@ -268,7 +268,7 @@
                     </a>
                 </p>
                 <p class="pull-right i-icon mt-16" id="consum_bottom" style="display: flex; align-items: center; flex-wrap: wrap">
-                    <img width="44" height="40" src="{{ asset('resources/consum/Recomandari-icon.png') }}" alt="Relatii despre produs" class="mr-8">
+                    <img loading="lazy" width="44" height="40" src="{{ asset('resources/consum/Recomandari-icon.png') }}" alt="Relatii despre produs" class="mr-8">
                     Pentru recomandari,&nbsp;<a class="dark-blue" href="/contact" title="Contact Emex by Romtehnochim">contactati producatorul !</a>
                 </p>
             </div>
