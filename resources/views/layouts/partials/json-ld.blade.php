@@ -26,9 +26,12 @@ if (request()->get('is_consum_page', false)) {
     }
 }
 if (request()->get('is_category_page', false)) {
-    $category_json = include base_path('resources/views/layouts/partials/json-lds-partials/category.php');
+    [$category_json, $webpage_json] = include base_path('resources/views/layouts/partials/json-lds-partials/category.php');
     if ($category_json) {
         $big_json[] = $category_json;
+    }
+    if($webpage_json) {
+        $big_json[] = $webpage_json;
     }
 }
 

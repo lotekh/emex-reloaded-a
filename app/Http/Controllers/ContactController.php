@@ -26,6 +26,24 @@ class ContactController extends Controller
             return back()->withErrors(['captchaResult' => 'Captcha invalid.']);
         }
 
+        $restrictedPhrases = ['All you need', 'per day', 'passive income', 'Здравствуйте', 'financial independence', 'invest', 'more revenue', 'lucky', 'quite natural', 'sex game', 'Cool website', '>>>>>>', '<<<<<<', 'call me', 'Companie: google', 'eldessyvek'];
+
+        $invalid = 0;
+
+        if (strtolower($request->input('Contact.company')) == 'google') {
+            $invalid = 1;
+        }
+
+        foreach ($restrictedPhrases as $restrictedPhrase) {
+            if (strpos(strtolower($request->input('Contact.message')), strtolower($restrictedPhrase)) !== false) {
+                $invalid = 1;
+            }
+        }
+
+        if($invalid) {
+            return back()->withErrors(['message' => 'Invalid message.']);
+        }
+
         // Save the information in database
         $contact = Contact::create([
             'name' => $request->input('Contact.name'),

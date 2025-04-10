@@ -58,7 +58,7 @@ producator, si pusa in opera de catre personal specializat.
 @endsection
 
 @section('link_fisa_tehnica')
-/doc/pardoseala-epoxidica-decorativa-cuartz-STB.pdf
+/storage/media/technical-files/pardoseala-epoxidica-decorativa-cuartz-STB.pdf
 @endsection
 
 @section('section_2_title')

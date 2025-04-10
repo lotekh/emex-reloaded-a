@@ -15,14 +15,90 @@ class OrderProductVariationExporter extends Exporter
     public static function getColumns(): array
     {
         return [
-            ExportColumn::make('order.user.last_name')
+            ExportColumn::make('order.transport_price_no_tva')
+                ->formatStateUsing(function ($state, $record) {
+                    $user = $record->order->user;
+
+                    if($user) {
+                        return $user->last_name;
+                    }
+                    else {
+                        $billingInfo = json_decode($record->order->company_information, true);
+
+                        if($billingInfo && isset($billingInfo['person_last_name'])) {
+                            return $billingInfo['person_last_name'];
+                        } else if($billingInfo && isset($billingInfo['organization_name'])) {
+                            return $billingInfo['organization_name'];
+                        }
+                        else {
+                            return '';
+                        }
+                    }
+                })
                 ->label('Nume'),
-            ExportColumn::make('order.user.first_name')
-                ->label('Prenume'),
-            ExportColumn::make('order.user.email')
-                ->label('Email'),
-            ExportColumn::make('order.user.phone')
-                ->label('Telefon'),
+            ExportColumn::make('order.total_no_tva')
+                ->label('Prenume')
+                ->formatStateUsing(function ($state, $record) {
+                    $user = $record->order->user;
+
+                    if($user) {
+                        return $user->first_name;
+                    }
+                    else {
+                        $billingInfo = json_decode($record->order->company_information, true);
+
+                        if($billingInfo && isset($billingInfo['person_first_name'])) {
+                            return $billingInfo['person_first_name'];
+                        } else if($billingInfo && isset($billingInfo['organization_name'])) {
+                            return $billingInfo['organization_name'];
+                        }
+                        else {
+                            return '';
+                        }
+                    }
+                }),
+            ExportColumn::make('productVariation.name')
+                ->label('Email')
+                ->formatStateUsing(function ($state, $record) {
+                    $user = $record->order->user;
+
+                    if($user) {
+                        return $user->email;
+                    }
+                    else {
+                        $billingInfo = json_decode($record->order->company_information, true);
+
+                        if($billingInfo && isset($billingInfo['person_email'])) {
+                            return $billingInfo['person_email'];
+                        } else if($billingInfo && isset($billingInfo['organization_email'])) {
+                            return $billingInfo['organization_email'];
+                        }
+                        else {
+                            return '';
+                        }
+                    }
+                }),
+            ExportColumn::make('productVariation.ean')
+                ->label('Telefon')
+                ->formatStateUsing(function ($state, $record) {
+                    $user = $record->order->user;
+
+                    if($user) {
+                        return $user->phone;
+                    }
+                    else {
+                        $billingInfo = json_decode($record->order->company_information, true);
+
+                        if($billingInfo && isset($billingInfo['person_phone'])) {
+                            return $billingInfo['person_phone'];
+                        } else if($billingInfo && isset($billingInfo['organization_phone'])) {
+                            return $billingInfo['organization_phone'];
+                        }
+                        else {
+                            return '';
+                        }
+                    }
+                }),
             ExportColumn::make('order.company_information')
                 ->label('Adresa de facturare')
                 ->formatStateUsing(function ($state) {
@@ -35,12 +111,12 @@ class OrderProductVariationExporter extends Exporter
                     $state = json_decode($state, true);
                     return implode(',', (array)$state);
                 }),
-            ExportColumn::make('order.company_information')
+            ExportColumn::make('order.guid')
                 ->label('CUI')
-                ->formatStateUsing(function ($state) {
-                    $state = json_decode($state, true);
-                    if(isset($state['organization_cui']))
-                        return $state['organization_cui'];
+                ->formatStateUsing(function ($state, $record) {
+                    $organizationInfo = json_decode($record->order->company_information, true);
+                    if(isset($organizationInfo['organization_cui']))
+                        return $organizationInfo['organization_cui'];
                     else {
                         return '';
                     }
@@ -77,6 +153,8 @@ class OrderProductVariationExporter extends Exporter
                 ->label('Numar proforma'),
             ExportColumn::make('order.payment_method')
                 ->label('Metoda de plata'),
+            ExportColumn::make('order.created_at')
+                ->label('Data plasarii')
         ];
     }
 
