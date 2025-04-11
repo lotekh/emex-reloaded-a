@@ -286,7 +286,7 @@ $base_url = url('/');
           <?php endif; ?>
         </div>
         <div class="image <?= $key % 2 == 0 ? "clip" : "clip-reverse" ?>">
-          <img src="{{ $base_url . $json->image->url }}" title="{{ $json->image->title }}" width="450" height="400" alt="{{ $json->image->title }}">
+          <img loading="lazy" src="{{ $base_url . $json->image->url }}" title="{{ $json->image->title }}" width="450" height="400" alt="{{ $json->image->title }}">
         </div>
       </div>
     </div>
