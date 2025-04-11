@@ -588,11 +588,6 @@
                                 <li><a href="/doc/grund-anticoroziv-solubil-apa.pdf" class="SitemapFisa" title="Fisa Tehnica grund anticoroziv solubil in apa &#8220;Emex&#8221;">Fisa Tehnica Grund Anticoroziv Solubil in Apa &#8220;Emex&#8221;</a></li>
                             </ul>
                         </li>
-                        <li><a href="/lac-protectie-rosturi" title="Lac de protectie pentru rosturi pe baza de apa &#8220;Emex&#8221;" class="SitemapList">Lac pentru Rosturi &#8220;Emex&#8221;</a>
-                            <ul class="sitemap-fisa-tehnica">
-                                <li><a href="/doc/lac-protectie-rosturi.pdf" class="SitemapFisa" title="Fisa Tehnica lac de protectie pentru rosturi de gresie si faianta &#8220;Emex&#8221;">Fisa Tehnica Lac de Protectie pentru Rosturi &#8220;Emex&#8221;</a></li>
-                            </ul>
-                        </li>
                         <li><a href="/impregnant-hidrofobizare" title="Solutie de impregnare pentru protejarea betonului &#8220;Emex&#8221;" class="SitemapList">Impregnant pentru Protejarea Betonului &#8220;Emex&#8221;</a>
                             <ul class="sitemap-fisa-tehnica">
                                 <li><a href="/doc/solutie-hidrofobizare-beton.pdf" class="SitemapFisa" title="Fisa Tehnica solutie pentru hidrofobizarea betonului &#8220;Emex&#8221;">Fisa Tehnica Solutie Hidrofobizare Beton &#8220;Emex&#8221;</a></li>
@@ -775,16 +770,6 @@
                 </li>
                 <li><a href="/grunduri-amorse" title="Grunduri si amorse pentru beton zidarie glet" class="SitemapList"><strong><em>Grunduri si Amorse pentru Pereti si Zidarie</em></strong></a>
                     <ul class="sitemap-produs">
-                        <li><a href="/dezinfectant-fara-clor" title="Dezinfectant de suprafete" class="SitemapList">Dezinfectant fara Clor &quot;Emex Bactiguard&quot;</a>
-                            <ul class="sitemap-fisa-tehnica">
-                                <li><a href="/doc/dezinfectant-fara-clor-Bactiguard.pdf" title="Fisa tehnica dezinfectant fara clor" class="SitemapFisa">Fisa Tehnica dezinfectant &quot;Emex Bactiguard&quot;</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="dezinfectant-advanced-klor" title="Dezinfectant cu clor" class="SitemapList">Dezinfectant cu clor &quot;Emex Advanced TS-HS Klor&quot;</a>
-                            <ul>
-                                <li><a href="/doc/dezinfectant-Emex-Advanced-Klor.pdf" title="Dezinfectant cu clor pentru suprafete" class="SitemapFisa">Fisa Tehnica Dezinfectant &quot;Emex Advanced TS-HS Klor&quot;</a></li>
-                            </ul>
-                        </li>
                         <li><a href="/amorsa-perete" title="Amorsa acrilica pentru zugraveli" class="SitemapList">Amorsa Acrilica de Perete &#8220;Emex&#8221;</a>
                             <ul class="sitemap-fisa-tehnica">
                                 <li><a href="/doc/amorsa-acrilica-perete.pdf" class="SitemapFisa" title="Fisa tehnica pentru amorsa acrilica pentru zugraveli">Fisa Tehnica Amorsa de Perete Acrilica &#8220;Emex&#8221;</a></li>
@@ -1051,9 +1036,7 @@
                         <li><a href="/consum-lac-protectie-beton" title="Calcul de consum lac de protectie pentru beton pe baza de apa" class="SitemapList">Calcul de Consum Lac de Protectie pentru Beton &#8220;Emex&#8221;</a></li>
                         <li><a href="/consum-vopsea-antifonica-apa" title="Calcul de consum vopsea antifon pe baza de apa" class="SitemapList">Calcul de Consum Vopsea Insonorizanta &#8220;Emex Antifonic&#8221;</a></li>
                         <li><a href="/grund-solubil-apa" title="Calcul de consum grund pe baza de apa" class="SitemapList">Calcul de Consum Grund Anticoroziv Baza Apa “Emex AQ Eco”</a></li>
-                        <li><a href="/consum-lac-protectie-rosturi" title="Calcul de consum lac de rosturi pentru gresie si faianta" class="SitemapList">Calcul de Consum Lac pentru Rosturi &#8220;Emex&#8221;</a></li>
                         <li><a href="/consum-impregnant-hidrofobizare" title="Calcul de consum solutie hidrofobizare beton" class="SitemapList">Calcul de Consum Solutie de Hidrofobizare Beton &#8220;Emex&#8221;</a></li>
-                        <li><a href="/consum-adeziv-constructii" title="Calcul de consum aracet de constructii" class="SitemapList">Calcul de Consum Adeziv Copnstructii tip Aracet &#8220;Emex&#8221;</a></li>
                     </ul>
                 </li>
                 <li><a href="/consum-pardoseala-epoxidica" title="Consum de pardoseli turnate epoxidice si poliuretanice" class="SitemapListTit"><strong><em>Pardoseli Turnate Epoxidice si Poliuretanice</em></strong></a>
@@ -1087,7 +1070,6 @@
                     <ul class="sitemap-produs">
                         <li><a href="/consum-amorsa-acrilica" title="Calcul de consum amorsa acrilica pentru zugraveala" class="SitemapList">Calcul de Consum Amorsa Acrilica pentru Pereti &#8220;Emex&#8221;</a></li>
                         <li><a href="/consum-amorsa-antimucegai" title="Calcul de consum amorsa antimucegai pentru zugraveala" class="SitemapList">Calcul de Consum Amorsa Antimucegai pentru Pereti &#8220;Emex&#8221;</a></li>
-                        <li><a href="/consum-amorsa-economica" title="Calcul de consum amorsa ieftina pentru zugraveala" class="SitemapList">Calcul de Consum Amorsa Economica pentru Pereti &#8220;Emex&#8221;</a></li>
                         <li><a href="/consum-amorsa-siliconica" title="Calcul de consum amorsa siliconica pentru zugraveala" class="SitemapList">Calcul de Consum Amorsa Siliconica pentru Pereti &#8220;Emex&#8221;</a></li>
                         <li><a href="/consum-amorsa-silicatica" title="Calcul de consum amorsa silicatica pentru zugraveala" class="SitemapList">Calcul de Consum Amorsa Silicatica pentru Pereti &#8220;Emex&#8221;</a></li>
                         <li><a href="/consum-grund-amorsare-pereti" title="Calcul de consum grund de egalizare si umplere pori pentru zugraveala" class="SitemapList">Calcul de Consum Grund de Egalizare si Umplere Pori &#8220;Emex&#8221;</a></li>
