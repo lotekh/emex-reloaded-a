@@ -18,7 +18,8 @@
         <div class="flex col">
             @foreach($products as $ind => $product)
                 @if(!empty($product))
-                    <x-product-list-item :key="$ind" :product="$product" :hideRating="false" />
+                    <x-product-list-item :key="$ind" :product="$product"
+                     :hideRating="false" :lazyloading="$ind >= 3" />
                 @endif
             @endforeach
         </div>
