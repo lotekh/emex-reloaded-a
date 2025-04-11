@@ -3114,10 +3114,8 @@ video:hover::-webkit-media-controls {
 }
 
 .sprite-search, .sprite-heart, .sprite-cart, .sprite-pinterest, .sprite-facebook, .sprite-instagram, .sprite-youtube, .sprite-twitter, .sprite-blog, .sprite-linkedin, .sprite-info, .sprite-paletar, .sprite-calc, .sprite-paint, .sprite-brush, .sprite-file, .sprite-cogs, .sprite-email, .sprite-phone, .sprite-home, .sprite-location, .sprite-user, .sprite-pencil-square, .sprite-phone-square, .sprite-envelope, .sprite-envelope-sm, .sprite-building, .sprite-lightbulb, .sprite-google, .sprite-fb-big, .sprite-email-w, .sprite-phone-w, .sprite-search-w, .star-rating-counter, /*.sprite-exclamation,  .sprite-information, */ .sprite-wood, .sprite-category, .sprite-back, .sprite-cogs2, .sprite-pencil, .sprite-email-new, .sprite-arrow-up, .sprite-arrow-down, .sprite-cart-new, .sprite-phone-square-sm, .sprite-eye, .sprite-wishlist, .sprite-account, .sprite-exit, .sprite-remove-from-cart, /* .sprite-cards, */ .sprite-remove-from-wishlist {
-  /* background-image: url('{{ asset("resources/images/sprite-icons.png") }}'); */
-  /* background-image: url('./resources/images/sprite-icons.png'); */
-  /* background-image: url("../../public/resources/images/sprite-icons.png"); */
-  background-image: url("../../images/sprite-icons.png");
+  background-image: url("../../images/sprite-icons.svg");
+  background-size: 218px 277px;
   display: inline-block;
 }
 .sprite-search,
@@ -3403,19 +3401,16 @@ video:hover::-webkit-media-controls {
   width: 18px;
   height: 20px;
 }
-/* .sprite-information {
-  background-position: 201px -92px;
-} */
 .sprite-wood {
   background-position: -182px -68px;
 }
-.sprite-apl {
-  background-image: url("./resources/images/sprite-icons.png");
+/* .sprite-apl {
+  background-image: url("./resources/images/sprite-icons.svg");
   display: inline-block;
   background-position: 57px 211px;
   width: 24px;
   height: 24px;
-}
+} */
 .fa-bars::after,
 .fa-arrow-left::after,
 .fa-times {
