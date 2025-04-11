@@ -24,13 +24,13 @@
       <form method="POST" action="{{ route('orders.empty') }}" style="display: none;">
         @csrfWithoutAutocomplete
         <button id="delete-all" class="flex align-center grey-button" type="submit">
-            <img loading="lazy" width="18" height="18" src="{{ asset('resources/new_design/icons/bin-grey.svg') }}">
+            <img width="18" height="18" src="{{ asset('resources/new_design/icons/bin-grey.svg') }}">
             <span class="ml-8">Sterge tot</span>
         </button>
       </form>
     
     <button class="flex align-center grey-button" onclick="document.getElementById('delete-all').click();">
-        <img loading="lazy" width="18" height="18" src="{{ asset('resources/new_design/icons/bin-grey.svg') }}">
+        <img width="18" height="18" src="{{ asset('resources/new_design/icons/bin-grey.svg') }}">
         <span class="ml-8" style="font-size: 16px;">Sterge tot</span>
     </button>
     
@@ -58,10 +58,13 @@
         <tbody>
           
           @php $totalPrice = 0; @endphp
-          @foreach ($ordered_products as $ordered_product)
+
+          @foreach ($ordered_products as $ind => $ordered_product)
+
               @php
                   $totalIndividualPrice = floatval($ordered_product->price) * intval($ordered_product->ordered_quantity);
                   $totalPrice += $totalIndividualPrice;
+                  $useLazy = $ind >= 3;
               @endphp
               <tr>
                   <td>
@@ -69,7 +72,10 @@
                           <div>
                             <picture>
                               <source type="image/webp" srcset="{{ $ordered_product->product->smallImage ? asset('storage/' . $ordered_product->product->smallImage->path) : asset('/images/default-placeholder.png') }}"/>
-                              <img loading="lazy" class="image-cart" layout="fixed" src="{{ $ordered_product->product->pngSmallImage ? asset('storage/' . $ordered_product->product->smallImage->path) : asset('/images/default-placeholder.png') }}" alt="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->alt : 'imagine'}}" title="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->title : 'imagineprodus'}}">
+                              <img class="image-cart" layout="fixed" src="{{ $ordered_product->product->pngSmallImage ? asset('storage/' . $ordered_product->product->smallImage->path) : asset('/images/default-placeholder.png') }}"
+                                alt="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->alt : 'imagine'}}"
+                                title="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->title : 'imagineprodus'}}"
+                                @if ($useLazy) loading="lazy" @endif>
                             </picture>
                           </div>
                           {{-- Get the product name until the first '-' sign --}}
@@ -109,7 +115,10 @@
                     <form method="POST" action="{{ route('orders.removeProduct') }}">
                       @csrfWithoutAutocomplete
                       <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
-                      <button aria-label="Sterge produsul"><img loading="lazy" src="{{ asset('resources/new_design/icons/bin.svg') }}" width="18" height="18"></button>
+                      <button aria-label="Sterge produsul">
+                        <img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="18" height="18"
+                          @if ($useLazy) loading="lazy" @endif>
+                      </button>
                     </form>
                   </td>
                   <td>
@@ -125,7 +134,8 @@
                           <input type="hidden" name="product_variation_id" value="{{ $productVariationId }}">
                           <input type="hidden" name="remove_from_cart" value="1">
                           <button type="submit" class="wishlist-btn-cos" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
-                              <img loading="lazy" width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="Muta la Favorite" alt="wishlist">
+                              <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}"
+                               title="Muta la Favorite" alt="wishlist" @if ($useLazy) loading="lazy" @endif>
                           </button>
                         </form>
                       </div>
@@ -149,11 +159,14 @@
 
     <div class="mobile-cart">
       @php $totalPrice = 0; @endphp
-      @foreach ($ordered_products as $ordered_product)
+
+      @foreach ($ordered_products as $ind => $ordered_product)
+
         @php
           $totalIndividualPrice = floatval($ordered_product->price) * intval($ordered_product->ordered_quantity);
           $totalPrice += $totalIndividualPrice;
           $addon_quantity = '';
+          $useLazy = $ind >= 3;
     
           if ($ordered_product->addon_quantity) {
             $str = $ordered_product->addon_quantity;
@@ -212,7 +225,8 @@
                 @csrfWithoutAutocomplete
                 <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
                 <button class="delete" aria-label="Sterge produsul">
-                  <img loading="lazy" src="{{ asset('resources/new_design/icons/bin.svg') }}" width="18" height="18" alt="Sterge produsul">
+                  <img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="18" height="18"
+                   alt="Sterge produsul" @if ($useLazy) loading="lazy" @endif>
                 </button>
               </form>
             
@@ -223,7 +237,8 @@
                 <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
                 <input type="hidden" name="remove_from_cart" value="1">
                 <button class="wishlist-btn-cos" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
-                  <img loading="lazy" width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="Muta la Favorite" alt="wishlist">
+                  <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}"
+                   title="Muta la Favorite" alt="wishlist" @if ($useLazy) loading="lazy" @endif>
                 </button>
               </form>
             

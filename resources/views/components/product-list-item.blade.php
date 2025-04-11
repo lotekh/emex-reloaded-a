@@ -18,6 +18,8 @@
     $reviewCount = ($product->reviews->count() === 0) ? 1 : $product->reviews->count();
 @endphp
 
+@props(['lazyloading' => false])
+
 <form method="GET" action="{{ url('/adauga-produs') }}">
 <div class="relative w-full col">
     <div class="product-list-item mb-16 col w-full">
@@ -26,22 +28,27 @@
                 <a href="{{ url($product->slug) }}">
                     <picture>
                         <source type="image/webp" srcset="{{ $smallImageUrl }}"/>
-                        <img loading="lazy" style="height: 180px; max-width: 230px;" src="{{ $pngSmallImageUrl }}" alt="{{ $product->pngSmallImage ? $product->pngSmallImage->alt : 'imagine'}}" title="{{ $product->pngSmallImage ? $product->pngSmallImage->title : 'imagineprodus'}}">
+                        <img style="height: 180px; max-width: 230px;" src="{{ $pngSmallImageUrl }}"
+                         alt="{{ $product->pngSmallImage ? $product->pngSmallImage->alt : 'imagine'}}"
+                          title="{{ $product->pngSmallImage ? $product->pngSmallImage->title : 'imagineprodus'}}"
+                          @if (!empty($lazyloading)) loading="lazy" @endif
+                        >
                     </picture>
                 </a>
             </div>
             <div class="col w-full justify-between form-container">
                 <div class="col">
-                    {{-- <h5 class="m-0 mt-16 mb-8">{{ html_entity_decode($product->plain_name) }}</h5> --}}
                     <h5 class="m-0 mt-16 mb-8 normal-weight">{{ \Illuminate\Support\Str::before(html_entity_decode($initialVariation->name), ' -') }}</h5>
                     @unless($hideRating)
                         <div class="flex rating mb-16 align-center">
                             @for($i = 0; $i < 5; $i++)
                                 <div>
                                     @if($i + 1 <= $rating_sum)
-                                        <img loading="lazy" width="18" height="18" src="{{ asset('resources/new_design/icons/gold-star.svg') }}" title="review-star" alt="review-star">
+                                        <img width="18" height="18" src="{{ asset('resources/new_design/icons/gold-star.svg') }}" title="review-star"
+                                         alt="review-star" @if (!empty($lazyloading)) loading="lazy" @endif>
                                     @else
-                                        <img loading="lazy" width="18" height="18" src="{{ asset('resources/new_design/icons/dark-star.svg') }}" title="review-star" alt="review-star">
+                                        <img width="18" height="18" src="{{ asset('resources/new_design/icons/dark-star.svg') }}" title="review-star"
+                                         alt="review-star" @if (!empty($lazyloading)) loading="lazy" @endif>
                                     @endif
                                 </div>
                             @endfor
