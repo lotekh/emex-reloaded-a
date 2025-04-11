@@ -355,12 +355,12 @@ use App\Models\Order;
 
     <div class="phone-icon" id="phone-overlay">
         <a href="tel:+40724509552">
-            <img width="50" height="50" src="{{ asset('resources/images/Phone-mobile.png') }}" alt="Phone Emex">
+            <img width="50" height="50" src="{{ asset('images/Phone-mobile.webp') }}" alt="Phone Emex">
         </a>
     </div>
 
     <div id="contact_email_small_devices" class="email-icon" tabindex="0" role="button" onclick="openLightbox()">
-        <img width="50" height="50" src="{{ asset('resources/images/Mail-mobile.png') }}" alt="Email Emex">
+        <img width="50" height="50" src="{{ asset('images/Mail-mobile.webp') }}" alt="Email Emex">
     </div>
 
     <div class="m-0" id="content_wrapper">
