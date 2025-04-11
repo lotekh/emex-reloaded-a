@@ -51,6 +51,18 @@ class BlogArticleController extends Controller
     {
         $year = $request->input('year');
         $month = $request->input('month');
+
+        if (!$year || !$month) {
+            $recent = BlogArticle::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month')
+                                ->orderBy('year', 'desc')
+                                ->orderBy('month', 'desc')
+                                ->first();
+            if ($recent) {
+                $year = $recent->year;
+                $month = $recent->month;
+            }
+        }
+
         $blogArticles = BlogArticle::whereYear('created_at', $year)
                                     ->whereMonth('created_at', $month)
                                     ->with(['tags', 'featuredImage'])
@@ -62,6 +74,7 @@ class BlogArticleController extends Controller
 
         return view('blog.search_results_archive', compact('blogArticles', 'year', 'monthName'));
     }
+
 
     
 }
