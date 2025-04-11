@@ -112,7 +112,7 @@
 
                 <picture>
                     <source type="image/webp" srcset="{{ $largeImageUrl }}"/>
-                    <img loading="lazy" class="featured-image-1" id="imagine-produs" src="{{ $pngLargeImageUrl }}" alt="{{ $product->pngLargeImage ? $product->pngLargeImage->alt : ''}}" title="{{ $product->pngLargeImage ? $product->pngLargeImage->title : ''}}">
+                    <img class="featured-image-1" id="imagine-produs" src="{{ $pngLargeImageUrl }}" alt="{{ $product->pngLargeImage ? $product->pngLargeImage->alt : ''}}" title="{{ $product->pngLargeImage ? $product->pngLargeImage->title : ''}}">
                 </picture>
             </div>
         </div>
@@ -210,14 +210,14 @@
                                 @if ($product->active)
                                     <div class="in-stoc">
                                         <div class="flex align-center">
-                                            <img loading="lazy" src="{{ asset('resources/new_design/icons/check-mark.svg') }}" alt="checkmark-icon" title="checkmark-icon" width="24" height="24">
+                                            <img src="{{ asset('resources/new_design/icons/check-mark.svg') }}" alt="checkmark-icon" title="checkmark-icon" width="24" height="24">
                                         </div>
                                         <p>In stoc</p>
                                     </div>
                                 @else
                                     <div class="in-stoc not">
                                         <div class="flex align-center">
-                                            <img loading="lazy" src="{{ asset('resources/new_design/icons/error-outline.svg') }}" alt="error-icon" title="error-icon" width="24" height="24">
+                                            <img src="{{ asset('resources/new_design/icons/error-outline.svg') }}" alt="error-icon" title="error-icon" width="24" height="24">
                                         </div>
                                         <p>Indisponibil</p>
                                         @if($product->available_since) 
@@ -230,11 +230,11 @@
                                     @for ($i = 0; $i < 5; $i++)
                                         @if ($i < $averageRating)
                                             <div class="flex align-center">
-                                                <img loading="lazy" src="{{ asset('resources/new_design/icons/gold-star.svg') }}" class="review-star-product" width="18" height="18" title="review-star" alt="review-star">
+                                                <img src="{{ asset('resources/new_design/icons/gold-star.svg') }}" class="review-star-product" width="18" height="18" title="review-star" alt="review-star">
                                             </div>
                                         @else
                                             <div class="flex align-center">
-                                                <img loading="lazy" src="{{ asset('resources/new_design/icons/dark-star.svg') }}" class="review-star-product" width="18" height="18" title="review-star" alt="review-star">
+                                                <img src="{{ asset('resources/new_design/icons/dark-star.svg') }}" class="review-star-product" width="18" height="18" title="review-star" alt="review-star">
                                             </div>
                                         @endif
                                     @endfor
@@ -317,9 +317,9 @@
                         <button type="submit" class="flex align-center btn-blue-outline rounded-sm text-nowrap w-full gap-md justify-center h-full font-sm px-16 py-4">
                             <span class="addToWhislistSvgWrapper">
                                 @if ($isInWishlist)
-                                    <img loading="lazy" width="16" height="15" src="{{ asset('resources/new_design/icons/star-fill.svg') }}" title="wishlist" alt="wishlist">
+                                    <img width="16" height="15" src="{{ asset('resources/new_design/icons/star-fill.svg') }}" title="wishlist" alt="wishlist">
                                 @else
-                                    <img loading="lazy" width="16" height="15" src="{{ asset('resources/new_design/icons/star.svg') }}" title="wishlist" alt="wishlist">
+                                    <img width="16" height="15" src="{{ asset('resources/new_design/icons/star.svg') }}" title="wishlist" alt="wishlist">
                                 @endif
                             </span>
                             <span>{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}</span>
@@ -428,7 +428,7 @@
             @if ($firstFourProducts && $firstFourProducts->count())
                 @foreach ($firstFourProducts as $ind => $similar_product)
                     <div>
-                        @include('components.product-card', ['key' => $ind, 'product' => $similar_product])
+                        @include('components.product-card', ['key' => $ind, 'product' => $similar_product, 'lazyloading' => true])
                     </div>
                 @endforeach
             @endif          
