@@ -252,7 +252,6 @@ var transportTVA = document.getElementById("transport_TVA");
 var transportUnitary = document.getElementById("transport_unitary");
 var totalGeneral = document.getElementById("total_general");
 var globalSelectedPayment = "card";
-var orderId = document.getElementById("orderr_id").value;
 
 function getTransportPrice(county_id) {
   var xmlhttp = new XMLHttpRequest();
@@ -288,15 +287,7 @@ function getTransportPrice(county_id) {
         }
       }
     };
-    xmlhttp.open(
-      "GET",
-      baseUrl +
-        "/get-transport-price?county_id=" +
-        county_id +
-        "&order_id=" +
-        orderId,
-      true
-    );
+    xmlhttp.open("GET", baseUrl + "/get-transport-price?county_id=" + county_id, true);
     xmlhttp.send();
   }
 }

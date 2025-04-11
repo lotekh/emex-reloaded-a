@@ -40,7 +40,7 @@
           <input type="hidden" name="product_id" value="{{ $product->id }}">
 
           <button type="submit" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
-              <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="wishlist" alt="wishlist">
+              <img loading="lazy" width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="wishlist" alt="wishlist">
           </button>
       </form>
 
@@ -49,14 +49,14 @@
         @if ($product->active)
           <div class="in-stoc">
             <div class="flex align-center">
-              <img width="18" height="18" src="{{ asset('resources/new_design/icons/check-mark.svg') }}" alt="checkmark-icon" title="checkmark-icon">
+              <img loading="lazy" width="18" height="18" src="{{ asset('resources/new_design/icons/check-mark.svg') }}" alt="checkmark-icon" title="checkmark-icon">
             </div>
             <p>In stoc</p>
           </div>
         @else
           <div class="in-stoc not">
             <div class="flex align-center">
-              <img width="18" height="18" src="{{ asset('resources/new_design/icons/error-outline.svg') }}" alt="error-icon" title="error-icon">
+              <img loading="lazy" width="18" height="18" src="{{ asset('resources/new_design/icons/error-outline.svg') }}" alt="error-icon" title="error-icon">
             </div>
             <p>Indisponibil</p>
           </div>
@@ -71,7 +71,7 @@
       <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
         <picture>
           <source type="image/webp" srcset="{{ $smallImageUrl }}"/>
-          <img src="{{ $pngSmallImageUrl }}" class="w-full" alt="{{ $product->pngSmallImage ? $product->pngSmallImage->alt : 'imagine'}}" title="{{ $product->pngSmallImage ? $product->pngSmallImage->title : 'imagineprodus'}}"> 
+          <img loading="lazy" src="{{ $pngSmallImageUrl }}" class="w-full" alt="{{ $product->pngSmallImage ? $product->pngSmallImage->alt : 'imagine'}}" title="{{ $product->pngSmallImage ? $product->pngSmallImage->title : 'imagineprodus'}}"> 
         </picture>
       </a>
     </div>
@@ -81,11 +81,11 @@
       @for ($i = 0; $i < 5; $i++)
         @if ($i < $averageRating)
           <div class="flex align-center">
-            <img src="{{ asset('resources/new_design/icons/gold-star.svg') }}" title="review-star" alt="review-star" width="18" height="18">
+            <img loading="lazy" src="{{ asset('resources/new_design/icons/gold-star.svg') }}" title="review-star" alt="review-star" width="18" height="18">
           </div>
         @else
           <div class="flex align-center">
-            <img src="{{ asset('resources/new_design/icons/dark-star.svg') }}" title="review-star" alt="review-star" width="18" height="18">
+            <img loading="lazy" src="{{ asset('resources/new_design/icons/dark-star.svg') }}" title="review-star" alt="review-star" width="18" height="18">
           </div>
         @endif
       @endfor
@@ -172,7 +172,11 @@
           );
   
           if (variation) {
-              priceDisplay.textContent = parseFloat(variation.price).toFixed(2);
+              // priceDisplay.textContent = parseFloat(variation.price).toFixed(2);
+              priceDisplay.textContent = variation.price.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
               priceInput.value = variation.price;
               variationInput.value = variation.id; 
           } else {

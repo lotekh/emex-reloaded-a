@@ -258,18 +258,8 @@ class OrdersController extends Controller
             }
         }
 
-        // Verify if there is already an 'order_id' in session
-        $order_id = session()->get('order_id', null);
-        
-        // If there isn't one, generate a new one and save it in the session
-        if (!$order_id) {
-            $order_id = Str::uuid(); 
-            session()->put('order_id', $order_id);
-        } 
-
         // Initialize or get the data from the session for our current order 
         $order = session()->get('order', [
-            'guid' => \Illuminate\Support\Str::uuid(),
             'total' => array_sum(array_map(function ($item) {
                 return $item['quantity'] * $item['price'];
             }, $cart)),
@@ -298,7 +288,7 @@ class OrdersController extends Controller
         $counties = County::orderBy('name', 'asc')->get();
         $cities = City::orderBy('name', 'asc')->get();
 
-        return view('products.finalizeaza-comanda', compact('user', 'order', 'cities', 'counties', 'ordered_products', 'isGuest', 'order_id'));
+        return view('products.finalizeaza-comanda', compact('user', 'order', 'cities', 'counties', 'ordered_products', 'isGuest'));
     }
 
 
@@ -359,8 +349,12 @@ class OrdersController extends Controller
         $lastOrder = Order::orderBy('id', 'desc')->first();
         $identifier = $lastOrder->identifier + 1;
 
+        do {
+            $order_guid = Str::uuid()->toString();
+        } while (Order::where('guid', $order_guid)->exists());
+
         $dbOrder = Order::firstOrCreate(
-            ['guid' => $order['guid']],
+            ['guid' => $order_guid],
             [
                 'user_id' => $userId,
                 'identifier' => $identifier,
