@@ -66,11 +66,9 @@
     <li><a href="https://emex.ro/consum-acrilica-metal">Consum Acrilica Metal</a></li>
     <li><a href="https://emex.ro/consum-acrilica-mobila">Consum Acrilica Mobila</a></li>
     <li><a href="https://emex.ro/consum-acrilica-universala">Consum Acrilica Universala</a></li>
-    <li><a href="https://emex.ro/consum-adeziv-constructii">Consum Adeziv Constructii</a></li>
     <li><a href="https://emex.ro/consum-amorsa-acrilica">Consum Amorsa Acrilica</a></li>
     <li><a href="https://emex.ro/consum-amorsa-antimucegai">Consum Amorsa Antimucegai</a></li>
     <li><a href="https://emex.ro/consum-amorsa-clorcauciuc-impregnare">Consum Amorsa Clorcauciuc Impregnare</a></li>
-    <li><a href="https://emex.ro/consum-amorsa-economica">Consum Amorsa Economica</a></li>
     <li><a href="https://emex.ro/consum-amorsa-epoxidica-baza-apa">Consum Amorsa Epoxidica Baza Apa</a></li>
     <li><a href="https://emex.ro/consum-amorsa-epoxidica-impregnare">Consum Amorsa Epoxidica Impregnare</a></li>
     <li><a href="https://emex.ro/consum-amorsa-epoxidica-lemn-fibra-sticla">Consum Amorsa Epoxidica Lemn Fibra Sticla</a></li>
@@ -199,8 +197,6 @@
     <li><a href="https://emex.ro/decapant-ecologic-vopsele">Decapant Ecologic Vopsele</a></li>
     <li><a href="https://emex.ro/decapant-vopsea-lemn-metal">Decapant Vopsea Lemn Metal</a></li>
     <li><a href="https://emex.ro/despre-noi">Despre Noi</a></li>
-    <li><a href="https://emex.ro/dezinfectant-advanced-klor">Dezinfectant Advanced Klor</a></li>
-    <li><a href="https://emex.ro/dezinfectant-fara-clor">Dezinfectant Fara Clor</a></li>
     <li><a href="https://emex.ro/diluant-alchidic">Diluant Alchidic</a></li>
     <li><a href="https://emex.ro/diluant-clorcauciuc">Diluant Clorcauciuc</a></li>
     <li><a href="https://emex.ro/diluant-epoxidic">Diluant Epoxidic</a></li>
@@ -239,8 +235,6 @@
     <li><a href="https://emex.ro/doc/amorsa-rasini-epoxidice-solventate.pdf">Amorsa Rasini Epoxidice Solventate</a></li>
     <li><a href="https://emex.ro/doc/amorsa-silicatica-perete.pdf">Amorsa Silicatica Perete</a></li>
     <li><a href="https://emex.ro/doc/amorsa-siliconica-vopsele-lavabile.pdf">Amorsa Siliconica Vopsele Lavabile</a></li>
-    <li><a href="https://emex.ro/doc/dezinfectant-Emex-Advanced-Klor.pdf">Dezinfectant Emex Advanced Klor</a></li>
-    <li><a href="https://emex.ro/doc/dezinfectant-fara-clor-Bactiguard.pdf">Dezinfectant Fara Clor Bactiguard</a></li>
     <li><a href="https://emex.ro/doc/diluant-pentru-rasini-poliesterice.pdf">Diluant Pentru Rasini Poliesterice</a></li>
     <li><a href="https://emex.ro/doc/diluant-pentru-vopsele-epoxidice.pdf">Diluant Pentru Vopsele Epoxidice</a></li>
     <li><a href="https://emex.ro/doc/diluant-pentru-vopsele-poliuretanice.pdf">Diluant Pentru Vopsele Poliuretanice</a></li>
@@ -411,7 +405,6 @@
     <li><a href="https://emex.ro/grunduri-amorse">Grunduri Amorse</a></li>
     <li><a href="https://emex.ro/grunduri-anticorozive">Grunduri Anticorozive</a></li>
     <li><a href="https://emex.ro/impregnant-hidrofobizare">Impregnant Hidrofobizare</a></li>
-    <li><a href="https://emex.ro/index">Index</a></li>
     <li><a href="https://emex.ro/intaritor-epoxidice-solventate">Intaritor Epoxidice Solventate</a></li>
     <li><a href="https://emex.ro/intaritor-lacuri-vopsele-poliuretanice">Intaritor Lacuri Vopsele Poliuretanice</a></li>
     <li><a href="https://emex.ro/intaritor-rasini-epoxidice-nesolventate">Intaritor Rasini Epoxidice Nesolventate</a></li>

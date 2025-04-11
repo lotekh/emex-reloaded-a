@@ -40,7 +40,7 @@
           <input type="hidden" name="product_id" value="{{ $product->id }}">
 
           <button type="submit" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
-              <img loading="lazy" width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="wishlist" alt="wishlist">
+              <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}" title="wishlist" alt="wishlist" @if (!empty($lazyloading)) loading="lazy" @endif>
           </button>
       </form>
 
@@ -49,14 +49,14 @@
         @if ($product->active)
           <div class="in-stoc">
             <div class="flex align-center">
-              <img loading="lazy" width="18" height="18" src="{{ asset('resources/new_design/icons/check-mark.svg') }}" alt="checkmark-icon" title="checkmark-icon">
+              <img width="18" height="18" src="{{ asset('resources/new_design/icons/check-mark.svg') }}" alt="checkmark-icon" title="checkmark-icon" @if (!empty($lazyloading)) loading="lazy" @endif>
             </div>
             <p>In stoc</p>
           </div>
         @else
           <div class="in-stoc not">
             <div class="flex align-center">
-              <img loading="lazy" width="18" height="18" src="{{ asset('resources/new_design/icons/error-outline.svg') }}" alt="error-icon" title="error-icon">
+              <img width="18" height="18" src="{{ asset('resources/new_design/icons/error-outline.svg') }}" alt="error-icon" title="error-icon" @if (!empty($lazyloading)) loading="lazy" @endif>
             </div>
             <p>Indisponibil</p>
           </div>
@@ -71,7 +71,7 @@
       <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
         <picture>
           <source type="image/webp" srcset="{{ $smallImageUrl }}"/>
-          <img loading="lazy" src="{{ $pngSmallImageUrl }}" class="w-full" alt="{{ $product->pngSmallImage ? $product->pngSmallImage->alt : 'imagine'}}" title="{{ $product->pngSmallImage ? $product->pngSmallImage->title : 'imagineprodus'}}"> 
+          <img src="{{ $pngSmallImageUrl }}" class="w-full" alt="{{ $product->pngSmallImage ? $product->pngSmallImage->alt : 'imagine'}}" title="{{ $product->pngSmallImage ? $product->pngSmallImage->title : 'imagineprodus'}}" @if (!empty($lazyloading)) loading="lazy" @endif> 
         </picture>
       </a>
     </div>
@@ -81,11 +81,11 @@
       @for ($i = 0; $i < 5; $i++)
         @if ($i < $averageRating)
           <div class="flex align-center">
-            <img loading="lazy" src="{{ asset('resources/new_design/icons/gold-star.svg') }}" title="review-star" alt="review-star" width="18" height="18">
+            <img src="{{ asset('resources/new_design/icons/gold-star.svg') }}" title="review-star" alt="review-star" width="18" height="18" @if (!empty($lazyloading)) loading="lazy" @endif>
           </div>
         @else
           <div class="flex align-center">
-            <img loading="lazy" src="{{ asset('resources/new_design/icons/dark-star.svg') }}" title="review-star" alt="review-star" width="18" height="18">
+            <img src="{{ asset('resources/new_design/icons/dark-star.svg') }}" title="review-star" alt="review-star" width="18" height="18" @if (!empty($lazyloading)) loading="lazy" @endif>
           </div>
         @endif
       @endfor
