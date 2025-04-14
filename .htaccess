@@ -59,3 +59,11 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 # otherwise forward it to index.php
 RewriteRule . index.php
+
+Options +FollowSymLinks
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^emex.ro[nc]
+RewriteRule ^(.*)$ http://www.emex.ro/$1 [r=301,nc]
+
+//301 Redirect Old File
+Redirect 301 /Doc/Lavabila-cuartz-profesioanala-Emex-QT.pdf /public/storage/media/technical-files/lavabila-cuartz-profesionala-emex-qt.pdf
