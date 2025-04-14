@@ -480,6 +480,8 @@ class FeedController extends Controller
     {
         $productVariations = ProductVariation::all();
 
+        echo 'Current script owner: ' . get_current_user();
+
         $csv = resource_path('feeds/feed.csv');
         $newData = [];
         $feedProducts = $this->getFeedProducts();
