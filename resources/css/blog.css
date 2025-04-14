@@ -442,6 +442,7 @@ input[type="search"] {
 .article img {
   display: block;
   margin: 0 auto;
+  margin-top: 20px;
 }
 
 .left{
@@ -464,6 +465,7 @@ input[type="search"] {
 
 .article-blog {
   color: #009;
+  font-style: italic;
 }
 
 .tags-container {
@@ -485,10 +487,13 @@ input[type="search"] {
   text-decoration: none;
   color: #009;
 }
-
 .mark {
   background-color: #f4f3ae;
 }
 .green-mark {
   background-color: #ddfde8;
+}
+.sti{
+  color: #009;
+  font-style: italic;
 }
