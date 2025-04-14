@@ -62,8 +62,8 @@ RewriteRule . index.php
 
 
 RewriteEngine On
-RewriteRule ^doc/(.*)$ /public/storage/media/technical-files/$1 [L,R=301]
-RewriteRule ^Doc/(.*)$ /public/storage/media/technical-files/$1 [L,R=301]
+#RewriteRule ^doc/(.*)$ /public/storage/media/technical-files/$1 [L,R=301]
+#RewriteRule ^Doc/(.*)$ /public/storage/media/technical-files/$1 [L,R=301]
 
 
 	
