@@ -10,7 +10,7 @@ $corporation_json = <<<js
   "logo":"https://emex.ro/images/Logo-json.png",
   "image":{
      "@type":"imageObject",
-     "url":"https://emex.ro/images/general/Fabrica-Emex.jpg",
+     "url":"https://emex.ro/images/general/Fabrica-Emex.webp",
      "width":"1920",
      "height":"1080"
   },
