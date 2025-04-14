@@ -25,21 +25,5 @@ RewriteRule ^doc/(.*)$ /public/storage/media/technical-files/$1 [L,R=301]
 RewriteRule ^Doc/(.*)$ /public/storage/media/technical-files/$1 [L,R=301]
 
 
-Options +FollowSymLinks
-RewriteEngine on
-RewriteCond %{HTTP_HOST} ^emex.ro[nc]
-RewriteRule ^(.*)$ http://www.emex.ro/$1 [r=301,nc]
-
-//301 Redirect Old File
-Redirect 301 /Doc/Lavabila-cuartz-profesioanala-Emex-QT.pdf /public/storage/media/technical-files/lavabila-cuartz-profesionala-emex-qt.pdf
-
-//RewriteEngine On
-//RewriteCond %{HTTP_HOST}  ^emex\.ro$ [NC]
-//RewriteCond %{QUERY_STRING}  ^$
-//RewriteCond %{HTTPS} =on
-#RewriteRule ^Doc/Lavabila-cuartz-profesioanala-Emex-QT\.pdf$ https://emex.ro/public/storage/media/technical-files/lavabila-cuartz-profesionala-emex-qt.pdf?  
-#[R=301,NE,NC,L]
-
-RewriteRule ^Doc/Lavabila\-cuartz\-profesioanala\-Emex\-QT\.pdf$ /storage/media/technical-files/lavabila-cuartz-profesionala-emex-qt.pdf? [L,R=301]
 
 
