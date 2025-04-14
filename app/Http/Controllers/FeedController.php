@@ -89,6 +89,10 @@ class FeedController extends Controller
     {
         $csv = public_path('feed/compari.csv');
 
+        if(!file_exists($csv)) {
+            fopen($csv, 'w');
+        }
+
         $products = $this->getFeedProducts();
 
         $contents = 'category, manufacturer, name, description, price, image_url, product_url, delivery_time, delivery_cost, identifier, ean_code, ' . "\r\n";
@@ -233,6 +237,11 @@ class FeedController extends Controller
     public function clubAfaceri()
     {
         $csv = public_path('feed/club-afaceri.csv');
+
+        if(!file_exists($csv)) {
+            fopen($csv, 'w');
+        }
+
         $contents = '';
 
         $products = Product::all();
@@ -480,8 +489,6 @@ class FeedController extends Controller
     {
         $productVariations = ProductVariation::all();
 
-        echo 'Current script owner: ' . get_current_user();
-
         $csv = resource_path('feeds/feed.csv');
         $newData = [];
         $feedProducts = $this->getFeedProducts();
@@ -675,6 +682,10 @@ class FeedController extends Controller
     public function proiectCasa()
     {
         $csv = public_path('feed/proiect-casa.csv');
+
+        if(!file_exists($csv)) {
+            fopen($csv, 'w');
+        }
 
         $products = $this->getFeedProducts();
 
