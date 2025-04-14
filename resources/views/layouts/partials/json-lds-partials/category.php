@@ -45,7 +45,7 @@ $webpage_json =
             'name' => 'Emex by Romtehnochim',
             'logo' => [
                 '@type' => 'imageObject',
-                'url' => 'https://emex.ro/images/general/Emex-logo.png',
+                'url' => 'https://emex.ro/images/general/Emex-logo.webp',
             ],
         ],
     ];

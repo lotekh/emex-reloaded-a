@@ -44,7 +44,7 @@ $article_json = [
         'url' => 'https://emex.ro',
         'logo' => [
             '@type' => 'ImageObject',
-            'url' => 'https://emex.ro/images/general/Emex-logo.png',
+            'url' => 'https://emex.ro/images/general/Emex-logo.webp',
         ],
     ],
     'mainEntityOfPage' => 'True',
