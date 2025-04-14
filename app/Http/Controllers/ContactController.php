@@ -26,7 +26,7 @@ class ContactController extends Controller
             return back()->withErrors(['captchaResult' => 'Captcha invalid.']);
         }
 
-        $restrictedPhrases = ['All you need', 'per day', 'passive income', 'Здравствуйте', 'financial independence', 'invest', 'more revenue', 'lucky', 'quite natural', 'sex game', 'Cool website', '>>>>>>', '<<<<<<', 'call me', 'Companie: google', 'eldessyvek'];
+        $restrictedPhrases = ['All you need', 'per day', 'passive income', 'Здравствуйте', 'financial independence', 'invest', 'more revenue', 'lucky', 'quite natural', 'sex game', 'Cool website', '>>>>>>', '<<<<<<', 'call me', 'Companie: google', 'eldessyvek', 'Casino', 'jackpot', 'slots'];
 
         $invalid = 0;
 
