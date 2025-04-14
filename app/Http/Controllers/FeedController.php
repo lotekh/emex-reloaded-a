@@ -383,20 +383,18 @@ class FeedController extends Controller
 
     public function merxu() 
     {
-        // header("Content-type: text/csv; charset=utf-8");
+        header("Content-type: text/csv; charset=utf-8");
         
-        // header("Content-Transfer-Encoding: UTF-8");
-        // header("Content-Disposition: attachment; filename=merxu.csv");
-        // header("Pragma: no-cache");
-        // header("Expires: 0");
+        header("Content-Transfer-Encoding: UTF-8");
+        header("Content-Disposition: attachment; filename=merxu.csv");
+        header("Pragma: no-cache");
+        header("Expires: 0");
 
         echo 'supplier_product_id, merxu_category_path, name, description, manufacturer, main_image_url, currency, price, vat' . "\r\n";
 
         $products = Product::all();
 
         $string = '';
-
-        dd($products);
 
         foreach ($products as $product) {
             $description = trim(preg_replace("/\r|\n/", "", str_replace('    ', '', strip_tags(substr($product->description, 0, strpos($product->description, '<p class="Caracteristici">'))))));
@@ -410,7 +408,7 @@ class FeedController extends Controller
             foreach ($products_details as $product_details) {
                 if(!in_array($product_details['ean'], $this->exceptFromPreturiCulori) && !strpos($string, $product_details['ean'])) {
                     $string .= ', ' . $product_details['ean'];
-                    $price = $product_details['price_no_tva'];
+                    $price = number_format($product_details['price'] * 0.81, 2, '.', '');
                     echo $product_details['ean'] . ', ' . $categoryName . ', ' . $product_details['name'] . ',' . $description . ', Romtehnochim SRL, ' . $image_url . ', RON, ' . $price . ', 19' . "\r\n";
                 }
             }
@@ -459,24 +457,24 @@ class FeedController extends Controller
         }
     }
 
-    public function checkSlugs() 
-    {
-        //verifica daca toate slugurile din preturi_culori exista in DB
-        $preturiCuloriProducts = $this->getPreturiCuloriProducts();
+    // public function checkSlugs() 
+    // {
+    //     //verifica daca toate slugurile din preturi_culori exista in DB
+    //     $preturiCuloriProducts = $this->getPreturiCuloriProducts();
 
-        echo '<pre>';
+    //     echo '<pre>';
 
-        $i = 1;
-        foreach($preturiCuloriProducts as $preturiCuloriProduct) {
-            $db_product = Products::find()->where([
-                'slug' => $preturiCuloriProduct['slug']
-            ])->one();
-            if(!$db_product) {
-                var_dump($i, $preturiCuloriProduct['slug']);
-                $i++;
-            }
-        }
-    }
+    //     $i = 1;
+    //     foreach($preturiCuloriProducts as $preturiCuloriProduct) {
+    //         $db_product = Products::find()->where([
+    //             'slug' => $preturiCuloriProduct['slug']
+    //         ])->one();
+    //         if(!$db_product) {
+    //             var_dump($i, $preturiCuloriProduct['slug']);
+    //             $i++;
+    //         }
+    //     }
+    // }
 
     public function updateFeeds()
     {
@@ -584,9 +582,8 @@ class FeedController extends Controller
 
         while (($data = fgetcsv($handler, 1000, ",")) !== FALSE) {
             if ($row > 0) {
-                $produs = [];
-                if($data[2]) {
-                    $produse[] = $data[2];
+                if($data[3]) {
+                    $produse[] = $data[3];
                 }
             }
             $row++;

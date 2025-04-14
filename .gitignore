@@ -14,7 +14,7 @@ public/css/*
 public/js/*
 public/vendor
 public/search-script/logs/*
-public/feed
+public/feed/*
 
 storage/*.key
 .env
