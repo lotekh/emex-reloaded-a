@@ -25,5 +25,9 @@ RewriteRule ^doc/(.*)$ /public/storage/media/technical-files/$1 [L,R=301]
 RewriteRule ^Doc/(.*)$ /public/storage/media/technical-files/$1 [L,R=301]
 
 
+	
+RewriteRule ^Doc/Lavabila\-cuartz\-profesioanala\-Emex\-QT\.pdf$	/storage/media/technical-files/lavabila-cuartz-profesionala-emex-qt.pdf? [L,R=301]
+
+
 
 
