@@ -496,4 +496,5 @@ input[type="search"] {
 .sti{
   color: #009;
   font-style: italic;
+  text-align: left;
 }
