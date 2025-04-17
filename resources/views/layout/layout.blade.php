@@ -644,25 +644,6 @@ use App\Models\Order;
     </div>
     @endif
 
-    @if (!Cookie::get('cookies_accepted'))
-    <div id="cookie_notifier" class="cookie-notifier">
-        <div class="main-container">
-            <form class="row align-center justify-between wrap gap-md" id="cookieForm" method="POST" action="{{ route('accept.cookies') }}">
-                @csrfWithoutAutocomplete
-                <p class="text-white">
-                    Cookie-urile ne ajuta sa va oferim servicii mai bune. Prin folosirea site-ului, acceptati folosirea acestora. &nbsp;
-                </p>
-                <div class="cookie-btn-container">
-                    <a href="{{ url('/cookies') }}" title="Politica de folosire a cookies" class="info">
-                        Detalii
-                    </a>
-                    <button type="button" class="cookie-btn" aria-label="Ok" onclick="acceptCookies()">Ok</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    @endif
-
     <div id="sidebar-left" class="sidebar hidden bg-white">
         <nav class="col">
             <a href="{{ url('/') }}" class="mb-32" title="acasa">
@@ -845,28 +826,6 @@ use App\Models\Order;
             body.classList.remove('overflow-y-hidden');
             content_wrapper.classList.remove('overflow-y-hidden');
             document.removeEventListener('click', handleClickOutsideSidebar);
-        }
-
-        function acceptCookies() {
-            const form = document.getElementById('cookieForm');
-            const formData = new FormData(form); 
-
-            fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        document.getElementById('cookie_notifier').style.display = 'none';
-                    }
-                })
-                .catch(error => {
-                    console.error('Eroare la acceptarea cookie-urilor:', error);
-                });
         }
 
         function toggleAccordion(id) {
