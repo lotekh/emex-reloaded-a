@@ -241,9 +241,6 @@ Route::middleware([RemoveMinifierTags::class])->group(function () {
         return view('others.cookies');
     })->name('cookies');
     
-    
-    Route::post('/accept-cookies', [CookieController::class, 'acceptCookies'])->name('accept.cookies');
-    
     Route::prefix('/feed')->group(function () {
         Route::get('/bizoo-v2', [FeedController::class, 'bizooV2'])->name('feeds.bizoo.v2');
     
