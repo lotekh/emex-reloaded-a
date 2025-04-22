@@ -193,6 +193,9 @@ Route::middleware([RemoveMinifierTags::class])->group(function () {
     Route::get('/politica-sanatate-securitate', function () {
         return view('cine_suntem.politica-sanatate-securitate');
     })->name('politica_sanatate_securitate');
+    Route::get('/politica-de-licentiere', function () {
+        return view('cine_suntem.politica-de-licentiere');
+    })->name('politica_de_licentiere');
     Route::get('/certificari-iso', function () {
         return view('cine_suntem.certificari-iso');
     })->name('certificari-iso');

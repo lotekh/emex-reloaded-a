@@ -11,7 +11,6 @@ class NewsletterController extends Controller
     {
         $request->validate([
             'NewsletterEmails.email' => 'required|email',
-            // 'NewsletterEmails.email' => 'required|email|unique:newsletter_emails,email',
         ]);
 
         if (NewsletterEmail::where('email', $request->input('NewsletterEmails.email'))->exists()) {

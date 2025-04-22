@@ -1,5 +1,30 @@
 @extends('layout.layout')
 
+@section('seo')
+<title>Angajari personal Romtehnochim</title>
+<meta name="keywords" content="angajari operatori chimisti, inginer chimist, specialist pardoseli epoxidice, montatori pardoseli turnate">
+<meta name="description" content="Romtehnochim angajeaza personal calificat pentru vopsiri si aplicari de pardoseli epoxidice si poliuretanice ingineri operatori si tehnologi vopsele">
+<meta property="fb:app_id" content="966242223397117">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:title" content="Veniti in echipa Romtehnochim">
+<meta property="og:image" content="https://emex.ro/images/social/Angajari-sm.jpg">
+<meta property="og:image:secure_url" content="https://emex.ro/images/social/Angajari-sm.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Angajari Romtehnochim" />
+<meta property="og:description" content="Angajam personal calificat pentru vopsiri si aplicari de pardoseli epoxidice si poliuretanice ingineri operatori si tehnologi vopsele.">
+<meta property="og:url" content="https://emex.ro/angajari">
+<meta property="og:site_name" content="Emex by Romtehnochim: vopsele | tencuieli | pardoseli">
+<meta property="og:type" content="website" />
+<!--meta name="Author" content="Emex by Romtehnochim">
+<link href="https://plus.google.com/+EmexRomtehnochim" rel="license">
+<meta name="rating" content="General"-->
+<meta name="geo.region" content="RO-IF">
+<meta name="geo.placename" content="Jilava">
+<meta name="geo.position" content="44.328689;26.067273">
+<meta name="ICBM" content="44.328689,26.067273">
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/bundled/angajari.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bundled/aplicare.min.css') }}">
