@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:codesearch="http://www.google.com/codesearch/schemas/sitemap/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<url><loc>https://emex.ro/sitemap-base.xml</loc><lastmod>2025-04-14T15:19:13+00:00</lastmod><changefreq>monthly</changefreq><priority>0.2</priority><codesearch:codesearch><codesearch:filetype>xml</codesearch:filetype></codesearch:codesearch></url>
+<url><loc>https://emex.ro/sitemap-code.xml</loc><lastmod>2025-04-14T15:19:13+00:00</lastmod><changefreq>monthly</changefreq><priority>0.2</priority><codesearch:codesearch><codesearch:filetype>xml</codesearch:filetype></codesearch:codesearch></url>
+<url><loc>https://emex.ro/sitemap-news.xml</loc><lastmod>2025-04-14T15:19:13+00:00</lastmod><changefreq>monthly</changefreq><priority>0.2</priority><codesearch:codesearch><codesearch:filetype>xml</codesearch:filetype></codesearch:codesearch></url>
+<url><loc>https://emex.ro/sitemap-video.xml</loc><lastmod>2025-04-14T15:19:13+00:00</lastmod><changefreq>monthly</changefreq><priority>0.2</priority><codesearch:codesearch><codesearch:filetype>xml</codesearch:filetype></codesearch:codesearch></url>
 <url><loc>https://emex.ro/sitemap.htm</loc><changefreq>daily</changefreq><priority>0.8</priority><xhtml:link rel="alternate" hreflang="ro-ro" href="https://emex.ro/sitemap.htm" /><xhtml:link rel="alternate" hreflang="x-default" href="https://emex.ro/sitemap.htm" /><codesearch:codesearch><codesearch:filetype>html</codesearch:filetype></codesearch:codesearch></url>
-<url><loc>https://emex.ro/sitemap.html</loc><changefreq>monthly</changefreq><priority>0.1</priority><codesearch:codesearch><codesearch:filetype>html</codesearch:filetype></codesearch:codesearch></url>
-<url><loc>https://emex.ro/sitemap.xml</loc><lastmod>2025-04-07T15:27:36+00:00</lastmod><changefreq>monthly</changefreq><priority>0.1</priority><codesearch:codesearch><codesearch:filetype>xml</codesearch:filetype></codesearch:codesearch></url> 
+<url><loc>https://emex.ro/sitemap.html</loc><lastmod>2025-04-14T15:19:13+00:00</lastmod><changefreq>monthly</changefreq><priority>0.2</priority><codesearch:codesearch><codesearch:filetype>html</codesearch:filetype></codesearch:codesearch></url>
+<url><loc>https://emex.ro/sitemap.xml</loc><lastmod>2025-04-14T15:19:13+00:00</lastmod><changefreq>monthly</changefreq><priority>0.2</priority><codesearch:codesearch><codesearch:filetype>xml</codesearch:filetype></codesearch:codesearch></url> 
 </urlset>
