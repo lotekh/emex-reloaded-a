@@ -477,6 +477,9 @@
 .align-right {
   text-align: right;
 }
+.align-left {
+  text-align: left;
+}
 /* font weight */
 .text-blue {
   color: var(--blue);

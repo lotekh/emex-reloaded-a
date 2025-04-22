@@ -11,6 +11,10 @@
   margin: 16px 0;
 }
 
+.article-view {
+  margin: 0;
+}
+
 .article h1 {
   margin: 0;
 }
@@ -437,12 +441,23 @@ input[type="search"] {
 
 /* Centering the image on blog.index */
 .article {
-  text-align: justify; /* for text */
+  text-align: justify; 
 }
+
+.article-view {
+  padding: 20px;
+  border-left: solid 8px #e6effb;
+  border-right: solid 8px #e6effb;
+  border-bottom: solid 8px #e6effb;
+}
+
 .article img {
   display: block;
   margin: 0 auto;
   margin-top: 20px;
+}
+.main-container {
+  padding: 0 5px;
 }
 
 .left{
@@ -460,6 +475,9 @@ input[type="search"] {
     margin: 0 auto; */
     width: 100%;
     height: auto;
+  }
+  .article {
+    padding: 10px;
   }
 }
 
