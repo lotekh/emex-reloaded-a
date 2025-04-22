@@ -52,7 +52,7 @@ APLICARI LACURI SI VOPSELE SOLUBILE <br> IN APA “EMEX”
                             <li>Produsul se conditioneaza la temperatura de aplicare 24 ore inainte de aplicare.</li>
                             <li>Inainte de deschiderea ambalajului se indeparteaza praful sau alte urme de murdarie.</li>
                             <li>Se omogenizeaza produsul in ambalajul original,folosind un amestecator mecanic, in vederea redispersarii eventualului sediment.</li>
-                            <li>Inainte de utilizare este necesara filtrarea produsului (fac exceptie <a href="/vopsea-hidroizolanta-elastica" title="Vopsea elastica pentru protectii impermeabile" class="link_color1"><em>Vopseaua Hidroizolanta “Emex AQ-Bar”</em></a>, <a href="/vopsea-antifonica" title="Vopsea insonorizanta antifonica pentru caroserii auto" class="link_color1"><em>Vopseaua Antifonica “Emex”</em></a> si <a href="/lac-protectie-rosturi" title="Lac pentru rosturi gresie faianta" class="link_color1"><em>Lacul pentru Rosturi “Emex”</em></a>.</li>
+                            <li>Inainte de utilizare este necesara filtrarea produsului (fac exceptie <a href="/vopsea-hidroizolanta-elastica" title="Vopsea elastica pentru protectii impermeabile" class="link_color1"><em>Vopseaua Hidroizolanta “Emex AQ-Bar”</em></a>, <a href="/vopsea-antifonica" title="Vopsea insonorizanta antifonica pentru caroserii auto" class="link_color1"><em>Vopseaua Antifonica “Emex”</em></a>.</li>
                             <li>In functie de modul de aplicare se face reglarea vascozitatii, prin adaugarea de apa.</li>
                             <li>Este interzisa amestecarea cu alte produse, chiar compatibile, fara acordul producatorului.</li>
                         </ul>
