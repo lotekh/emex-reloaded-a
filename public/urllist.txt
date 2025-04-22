@@ -1275,6 +1275,7 @@ https://emex.ro/sitemap-news.xml
 https://emex.ro/sitemap-video.xml
 https://emex.ro/sitemap.htm
 https://emex.ro/sitemap.html
+https://emex.ro/sitemap.txt
 https://emex.ro/sitemap.xml
 https://emex.ro/solicita-cotatie
 https://emex.ro/solutie-anti-mucegai
