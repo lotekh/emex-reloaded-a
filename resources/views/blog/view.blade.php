@@ -96,8 +96,8 @@
 </div>
 
 <div class="main-container grid grid-4 gap-xl">
-    <div class="article col-span-3">
-        <h1 class="sti">{{ $model->title }}</h1>
+    <div class="article article-view col-span-3">
+        <h1 class="sti align-left">{{ $model->title }}</h1>
         <div class="flex mb-16 align-center">
             <span class="publish-date">publicat pe {{ \Carbon\Carbon::parse($model->created_at)->format('j.m.Y') }}</span>
         </div>
