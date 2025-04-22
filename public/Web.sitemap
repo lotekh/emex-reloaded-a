@@ -1555,6 +1555,8 @@
     <siteMapNode title="Servicii" description="Romtehnochim asigura aplicrea profesionala a vopselelor si pardoselilor si a celorlalte produse realizate sub marca Emex" url="~/servicii" />
     <siteMapNode title="Sitemap Base" description="Sitemap Base" url="~/sitemap-base.xml" />
     <siteMapNode title="Sitemap Code" description="Sitemap Code" url="~/sitemap-code.xml" />
+    <siteMapNode title="Sitemap Image" description="Sitemap Image" url="~/sitemap-image.xml" />
+    <siteMapNode title="Sitemap Mobile" description="Sitemap Mobile" url="~/sitemap-mobile.xml" />
     <siteMapNode title="Sitemap News" description="Sitemap News" url="~/sitemap-news.xml" />
     <siteMapNode title="Sitemap Video" description="Sitemap Video" url="~/sitemap-video.xml" />
     <siteMapNode title="Sitemap" description="Sitemap-ul Emex by Romtehnochim permite navigarea directa prin site - link-uri catre produsele marca Emex fabricate de Romtehnochim" url="~/sitemap.htm" />
