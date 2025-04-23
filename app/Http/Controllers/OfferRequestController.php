@@ -76,7 +76,6 @@ class OfferRequestController extends Controller
 
         // Email logic
         try {
-            // dd(1);
             $emexEmail = 'info@emex.ro';
             $clientEmail = $validated['email'];
             $clientName = $validated['name'];
