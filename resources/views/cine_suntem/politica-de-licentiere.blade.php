@@ -8,9 +8,22 @@
         line-height: 1.6;
         color: #333;
         max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #f8f9fa;
+        /* padding: 20px;
+        background-color: #f8f9fa; */
+        border: #ccc solid 1px;
+        border-radius: 15px;
+        margin: 40px auto 20px auto;
+        padding: 16px;
+        text-align: justify;
+    }
+    .big-div-licentiere ul{
+        display: block;
+        list-style-type: disc !important;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+        padding-inline-start: 40px !important;
     }
     .header-licentiere {
         border-bottom: 1px solid #ddd;
@@ -30,6 +43,7 @@
     }
     h1 {
         color: #0558ce !important;
+        text-align: center;
     }
     h2 {
         color: #0558ce;
@@ -172,12 +186,14 @@
         margin-bottom: 30px;
     }
     .toc ul {
-        list-style-type: none;
+        list-style-type: none !important;
         padding-left: 15px;
     }
     .toc ul li {
         margin-bottom: 8px;
     }
+
+    
     /* .example {
         background-color: #f9f9f9;
         padding: 15px;
@@ -201,8 +217,10 @@
 
 <main>
 <div class="big-div-licentiere">
+
+    <h1>Licență Conținut - Emex.ro</h1>
+
     <div class="header-licentiere">
-        <h1>Licență Conținut - Emex.ro</h1>
         <p>Termeni și condiții pentru utilizarea conținutului și materialelor de pe platforma Emex.ro</p>
     </div>
 
