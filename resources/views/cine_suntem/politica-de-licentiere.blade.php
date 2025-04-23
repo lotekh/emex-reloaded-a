@@ -202,7 +202,9 @@
 </style>
 @endsection
 
-
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/bundled/servicii.min.css') }}">
+@endsection
 
 @section('breadcrumbs')
 <ul class="flex gap-xs"><li><a href="/">Acasa</a></li><li class="separator">/</li><li class="-ml-4"><a href="/despre-noi">Despre noi</a></li><li class="separator">/</li><li class="-ml-4 ellipsis">Politica de Licentiere</li></ul>
@@ -211,8 +213,12 @@
 
 @section('content')
 
+<div class="servicii relative w-full col justify-center align-center header" style="background-image: url('{{ asset('resources/images/Banner-general-Emex-vopsele.jpg') }}');" id="servicii_header">
+    <h1 style="color: #ffffff !important;" class="z-10">
+        POLITICA DE LICENTIERE
+    </h1>
+  </div>
 
-<main>
 <div class="big-div-licentiere">
 
     <h1>Licență Conținut - Emex.ro</h1>
