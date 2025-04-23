@@ -124,7 +124,7 @@
             <h2 class="m-0 mb-8">Postari recente</h2>
             @if (count($recentArticles))
                 @foreach ($recentArticles as $recentArticle)
-                    <a href="{{ route('blog.article.show', ['slug' => $recentArticle->slug]) }}">
+                    <a class="link_color1" href="{{ route('blog.article.show', ['slug' => $recentArticle->slug]) }}">
                         {{ $recentArticle->title }}
                     </a>
                 @endforeach
@@ -133,7 +133,7 @@
             @endif
         </div>
 
-        <div class="flex col mb-32">
+        {{-- <div class="flex col mb-32">
             <h2 class="m-0 mb-8">Arhiva</h2>
             @php
                 $monthNames = ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'];
@@ -146,7 +146,23 @@
                     ({{ $archive['articles_number'] }})
                 </p>
             @endforeach
+        </div> --}}
+
+        <div class="flex col mb-32">
+            <h2 class="m-0 mb-8">Arhiva</h2>
+            @php
+                $archivedArticles = \App\Models\BlogArticle::orderBy('created_at', 'desc')->get();
+            @endphp
+            <div style="max-height: 300px; overflow-y: auto;">
+                @foreach ($archivedArticles as $article)
+                    <a class="link_color1" href="{{ route('blog.article.show', ['slug' => $article->slug]) }}" style="display: block; margin-bottom: 5px;">
+                        {{ $article->title }}
+                    </a>
+                @endforeach
+            </div>
+            
         </div>
+        
 
         @if (count($model->tags))
             <div class="tags-container">

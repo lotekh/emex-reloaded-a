@@ -492,11 +492,6 @@ use App\Models\Order;
                     <input type="hidden" name="current_url" value="{{ request()->url() }}">
                     <input type="email" required class="w-full form-control" name="NewsletterEmails[email]" placeholder="Adauga email..." id="nfi">
                     <input type="submit" class="btn btn-blue w-full mt-8" id="nfs_btn" value="Aboneaza-te">
-                    <div id="subscribe-msg">
-                        @if(session('success'))
-                        <p>{{ session('success') }}</p>
-                        @endif
-                    </div>
                 </form>
             </div>
         </div>
