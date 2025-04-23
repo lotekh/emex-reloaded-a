@@ -42,7 +42,7 @@ class BlogArticleResource extends Resource
                                     ->required()
                                     ->maxLength(255),
                                 Forms\Components\Select::make('tags')
-                                    ->relationship('tags', 'id')
+                                    ->relationship('tags', 'name')
                                     ->columnSpanFull()
                                     ->options(
                                         Tag::query()
