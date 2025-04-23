@@ -4,17 +4,14 @@
 <title>Licență Conținut - Emex.ro</title>
 <style>
     .big-div-licentiere{
-        /* font-family: Arial, sans-serif; */
         line-height: 1.6;
         color: #333;
         max-width: 1200px;
-        /* padding: 20px;
-        background-color: #f8f9fa; */
-        border: #ccc solid 1px;
         border-radius: 15px;
         margin: 40px auto 20px auto;
         padding: 16px;
         text-align: justify;
+        box-shadow: inset 0 0 0 8px #e6effb;
     }
     .big-div-licentiere ul{
         display: block;
