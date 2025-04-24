@@ -38,16 +38,52 @@ $consum_json = [
     'offers' => [
         '@type' => 'Offer',
         'priceCurrency' => 'RON',
-        'price' => $first_price,
-        'priceValidUntil' => '2025-12-31',
+        'price' => number_format($first_price, 2, '.', ''),
+        'priceValidUntil' => '2026-01-01',
         'availability' => 'https://schema.org/InStock',
-        'itemCondition' => 'http://schema.org/NewCondition',
-        'url' => $productUrl,
-        'eligibleQuantity' => [
-            '@type' => 'QuantitativeValue',
-            'name' => "Ambalare: $ambalare",
-            'unitCode' => $measurementUnit,
+        'hasMerchantReturnPolicy' => [
+            "@context" => "https://schema.org",
+            "@type" => "MerchantReturnPolicy",
+            "applicableCountry" => "RO",
+            "returnPolicyCountry" => "RO",
+            "returnPolicyCategory" => "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays" => 14,
+            "name" => "Politica de Returnare",
+            "returnMethod" => "https://schema.org/ReturnByMail",
+            "returnFees" => "https://schema.org/FreeReturn",
+            "additionalProperty" => [
+                "@type" => "PropertyValue",
+                "name" => "Metode de returnare",
+                "value" => "prin curier, prin posta sau prin returnarea banilor"
+            ]
         ],
+        "shippingDetails" => [
+            "@type" => "OfferShippingDetails",
+            "shippingRate" => [
+                "@type" => "MonetaryAmount",
+                "value" => 25,
+                "currency" => "RON"
+            ],
+            "shippingDestination" => [
+                "@type" => "DefinedRegion",
+                "addressCountry" => "RO"
+            ],
+            "deliveryTime" => [
+                "@type" => "ShippingDeliveryTime",
+                "handlingTime" => [
+                    "@type" => "QuantitativeValue",
+                    "minValue" => 1,
+                    "maxValue" => 3,
+                    "unitCode" => "DAY"
+                ],
+                "transitTime" => [
+                    "@type" => "QuantitativeValue",
+                    "minValue" => 1,
+                    "maxValue" => 3,
+                    "unitCode" => "DAY"
+                ]
+            ]
+        ]
     ],
 ];
 
