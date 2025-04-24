@@ -519,3 +519,7 @@ input[type="search"] {
 .mt10 {
   margin-top: 10px;
 }
+.lista-links, .lista-links li {
+    list-style: square;
+    margin-left: 16px;
+	}
