@@ -112,7 +112,7 @@ $base_url = url('/');
                 <strong>{{ $total_results }}</strong> produse gasite
             </p>
 
-            <ul class="row align-center justify-center pagination gap-md">
+            <ul class="row align-center justify-center pagination gap-md p-0">
                 <li>
                     <form method="get" action="{{ url()->current() }}">
                         @csrfWithoutAutocomplete
@@ -169,7 +169,7 @@ $base_url = url('/');
         @endforeach
     </div>
 
-    <ul class="row align-center justify-center pagination gap-md">
+    <ul class="row align-center justify-center pagination gap-md p-0">
         <li>
             <form method="get" action="{{ url()->current() }}">
                 @csrfWithoutAutocomplete

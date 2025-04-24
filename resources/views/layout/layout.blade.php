@@ -470,7 +470,9 @@ use App\Models\Order;
                                 <div>
                                     <div class="news_row mb-16">
                                         <h4 class="news-title">
-                                            <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}">{{ $blogArticle->title }}</a>
+                                            <a href="{{ route('blog.article.show', ['slug' => $blogArticle->slug]) }}">
+                                                <em class="link_color1">{{ $blogArticle->title }}</em>
+                                            </a>
                                         </h4>
                                         <p>{{ $blogArticle->created_at->format('j.m.Y') }}</p>
                                     </div>

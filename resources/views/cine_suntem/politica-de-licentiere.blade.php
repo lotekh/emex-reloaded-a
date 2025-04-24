@@ -3,24 +3,24 @@
 @section('seo')
 <title>Licență Conținut - Emex.ro</title>
 <style>
-    /* body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        color: #333;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #f8f9fa;
-    } */
-
     .big-div-licentiere{
-        font-family: Arial, sans-serif;
         line-height: 1.6;
         color: #333;
         max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #f8f9fa;
+        border-radius: 15px;
+        margin: 40px auto 20px auto;
+        padding: 16px;
+        text-align: justify;
+        box-shadow: inset 0 0 0 8px #e6effb;
+    }
+    .big-div-licentiere ul{
+        display: block;
+        list-style-type: disc !important;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+        padding-inline-start: 40px !important;
     }
     .header-licentiere {
         border-bottom: 1px solid #ddd;
@@ -39,27 +39,17 @@
         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     h1 {
-        color: #1a4977 !important;
-        font-size: 2.2em;
-        margin-bottom: 10px;
+        color: #0558ce !important;
+        text-align: center;
     }
     h2 {
-        color: #1a4977;
-        font-size: 1.8em;
-        margin-top: 35px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #eee;
+        color: #0558ce;
     }
     h3 {
-        color: #1a4977;
-        font-size: 1.3em;
-        margin-top: 25px;
-        margin-bottom: 15px;
+        color: #0558ce;
     }
     h4 {
-        color: #1a4977;
-        font-size: 1.1em;
-        margin-top: 20px;
+        color: #0558ce;
     }
     p, ul, ol {
         margin-bottom: 20px;
@@ -73,7 +63,7 @@
     .highlight {
         background-color: #f0f7ff;
         padding: 20px;
-        border-left: 4px solid #1a4977;
+        border-left: 4px solid #0558ce;
         margin: 25px 0;
         border-radius: 0 8px 8px 0;
     }
@@ -123,7 +113,7 @@
     }
     th {
         background-color: #f0f7ff;
-        color: #1a4977;
+        color: #0558ce;
     }
     tr:nth-child(even) {
         background-color: #f9f9f9;
@@ -165,7 +155,7 @@
         content: "\2796";
     }
     a {
-        color: #1a4977 !important;
+        color: #0558ce !important;
         text-decoration: none;
     }
     a:hover {
@@ -173,7 +163,7 @@
     }
     .button {
         display: inline-block;
-        background-color: #1a4977;
+        background-color: #0558ce;
         color: white;
         padding: 10px 20px;
         text-align: center;
@@ -193,24 +183,28 @@
         margin-bottom: 30px;
     }
     .toc ul {
-        list-style-type: none;
+        list-style-type: none !important;
         padding-left: 15px;
     }
     .toc ul li {
         margin-bottom: 8px;
     }
-    .example {
+
+    
+    /* .example {
         background-color: #f9f9f9;
         padding: 15px;
         border-radius: 5px;
         margin: 15px 0;
         font-family: Consolas, Monaco, 'Andale Mono', monospace;
         font-size: 0.9em;
-    }
+    } */
 </style>
 @endsection
 
-
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/bundled/servicii.min.css') }}">
+@endsection
 
 @section('breadcrumbs')
 <ul class="flex gap-xs"><li><a href="/">Acasa</a></li><li class="separator">/</li><li class="-ml-4"><a href="/despre-noi">Despre noi</a></li><li class="separator">/</li><li class="-ml-4 ellipsis">Politica de Licentiere</li></ul>
@@ -219,11 +213,17 @@
 
 @section('content')
 
+<div class="servicii relative w-full col justify-center align-center header" style="background-image: url('{{ asset('resources/images/Banner-general-Emex-vopsele.jpg') }}');" id="servicii_header">
+    <h1 style="color: #ffffff !important;" class="z-10">
+        POLITICA DE LICENTIERE
+    </h1>
+  </div>
 
-<main>
 <div class="big-div-licentiere">
+
+    <h1>Licență Conținut - Emex.ro</h1>
+
     <div class="header-licentiere">
-        <h1>Licență Conținut - Emex.ro</h1>
         <p>Termeni și condiții pentru utilizarea conținutului și materialelor de pe platforma Emex.ro</p>
     </div>
 
