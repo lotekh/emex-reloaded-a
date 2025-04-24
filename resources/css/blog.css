@@ -6,31 +6,24 @@
   font-size: 12px;
   white-space: nowrap;
 }
-
 .article {
   margin: 16px 0;
 }
-
 .article-view {
   margin: 0;
 }
-
 .article h1 {
   margin: 0;
 }
-
 .header_img_bg h1 {
   height: 30%;
 }
-
 .publish-date {
   font-size: 12px;
 }
-
 #blog_header {
   height: 500px;
 }
-
 #blog_header h1 {
   position: relative;
   padding: 24px 40px;
@@ -40,28 +33,19 @@
   text-shadow: 0px 0px 5px #000000;
   color: var(--white);
 }
-
 #blog_header h1::before {
   border-image-width: 8px;
   content: "";
   position: absolute;
   inset: 0;
   padding: 8px;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 25%,
-    rgba(255, 255, 255, 0) 75%,
-    rgba(255, 255, 255, 1) 100%
-  );
+  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0) 75%, rgba(255, 255, 255, 1) 100%);
   /* -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor; */
   /* mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); */
-  mask: linear-gradient(to bottom, #fff 0%, #fff 100%) content-box,
-    linear-gradient(to bottom, #fff 0%, #fff 100%);
+  mask: linear-gradient(to bottom, #fff 0%, #fff 100%) content-box, linear-gradient(to bottom, #fff 0%, #fff 100%);
   mask-composite: exclude;
 }
-
 .header_img_bg {
   height: 500px;
   display: none;
@@ -70,19 +54,16 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 @media (min-width: 768px) {
   .header_img_bg {
     display: flex;
   }
 }
-
 #blog_content_row {
   padding-left: 60px;
   padding-right: 20px;
 }
-#blog_content_column,
-#blog_sidebar_column {
+#blog_content_column, #blog_sidebar_column {
   background-color: #ffffff;
 }
 .blog_pagination {
@@ -99,15 +80,11 @@
 #secondary h1 {
   font-size: 25px;
 }
-.widget_recent_entries ul,
-.widget_archive ul,
-.widget_categories ul {
+.widget_recent_entries ul, .widget_archive ul, .widget_categories ul {
   padding-left: 0px;
   list-style: none;
 }
-.widget_recent_entries ul li,
-.widget_archive ul li,
-.widget_categories ul li {
+.widget_recent_entries ul li, .widget_archive ul li, .widget_categories ul li {
   text-decoration: none;
 }
 input[type="search"] {
@@ -124,8 +101,7 @@ input[type="search"] {
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out 0.15s,
-    -webkit-box-shadow ease-in-out 0.15s;
+  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
   -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
@@ -180,7 +156,6 @@ input[type="search"] {
   margin-top: 30px;
   margin-bottom: 30px;
 }
-
 @media all and (max-width: 992px) {
   #blog_content_column {
     padding-left: 20px !important;
@@ -192,7 +167,6 @@ input[type="search"] {
     margin-top: 50px;
   }
 }
-
 @media all and (max-width: 767px) {
   .aplicare_title_row {
     background: url(https://blog.emex.ro/wp-content/themes/start/assets/images/general/contact-rapid-txt.png);
@@ -281,11 +255,9 @@ input[type="search"] {
 .index_blog_sidebar_column {
   display: none !important;
 }
-.article_featured_content_with_image,
-.article_featured_content_without_image {
+.article_featured_content_with_image, .article_featured_content_without_image {
   font-size: 16px;
 }
-
 @media all and (max-width: 768px) {
   .article_featured_image img {
     max-width: 421px;
@@ -318,8 +290,7 @@ input[type="search"] {
     text-align: center !important;
   }
 }
-.justify_article,
-.justify {
+.justify_article, .justify {
   text-align: justify;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -384,15 +355,12 @@ input[type="search"] {
   color: #929292;
   font-size: 20px;
 }
-
 .center {
   text-align: center;
 }
-
 .single_header_highlight_span {
   color: #000099 !important;
 }
-
 .widget-title {
   font-family: inherit;
   font-weight: 500;
@@ -401,56 +369,45 @@ input[type="search"] {
   font-size: 25px;
   margin-bottom: 10px;
 }
-
 #secondary aside {
   margin-top: 30px !important;
 }
-
 .article ul {
   list-style: disc;
 }
-
 .article img {
   /* width: 100%; */
   height: auto;
 }
-
 .link {
   color: #0000ff;
   display: block;
 }
-
 .flex.mb-16.align-center {
   flex-wrap: wrap;
 }
-
 .tag {
   max-width: calc(100% - 16px);
   margin-bottom: 8px;
   word-wrap: break-word;
 }
-
 .publish-date {
   width: 100%;
   margin-top: 1px;
 }
-
 #span_search_tags {
   margin-top: 8px;
 }
-
 /* Centering the image on blog.index */
 .article {
-  text-align: justify; 
+  text-align: justify;
 }
-
 .article-view {
   padding: 20px;
   border-left: solid 8px #e6effb;
   border-right: solid 8px #e6effb;
   border-bottom: solid 8px #e6effb;
 }
-
 .article img {
   display: block;
   margin: 0 auto;
@@ -459,16 +416,13 @@ input[type="search"] {
 .main-container {
   padding: 0 5px;
 }
-
-.left{
+.left {
   text-align: left;
 }
-
 .left img {
   margin: unset;
   margin-top: 10px;
 }
-
 @media screen and (max-width: 767px) {
   #description-blog img {
     /* display: block;
@@ -480,26 +434,21 @@ input[type="search"] {
     padding: 10px;
   }
 }
-
 .article-blog {
   color: #009;
   font-style: italic;
 }
-
 .tags-container {
   margin-top: 20px;
 }
-
 .tags-list {
   display: flex;
   flex-wrap: wrap;
 }
-
 .tag-item {
   color: #000099 !important;
   font-size: 14px;
 }
-
 /* ADRIAN */
 .link_color1 {
   text-decoration: none;
@@ -511,7 +460,7 @@ input[type="search"] {
 .green-mark {
   background-color: #ddfde8;
 }
-.sti{
+.sti {
   color: #009;
   font-style: italic;
   text-align: left;
@@ -520,19 +469,21 @@ input[type="search"] {
   margin-top: 10px;
 }
 .lista-links, .lista-links li {
-    list-style: square;
-    margin-left: 16px;
-	}
-.hr-red-b {
-    border-top: solid 1px red;
-    width: 50%;
-    margin-top: 10px;
-    margin-bottom: 12px;
-    margin-left: 25px;
+  list-style: square;
+  margin-left: 16px;
 }
-.head3-new{
-font-size: 17px;
-  color: #009;
-  font-style: italic;
+.hr-red-b {
+  border-top: solid 1px red;
+  width: 50%;
+  margin-top: 10px;
+  margin-bottom: 12px;
+  margin-left: 25px;
+}
+.head3-new {
   text-align: left;
+  margin: 0px;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 1.42857143;
+  text-rendering: optimizeLegibility;
 }
