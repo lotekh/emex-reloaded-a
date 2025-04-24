@@ -213,7 +213,7 @@
 
 @section('content')
 
-<div class="servicii relative w-full col justify-center align-center header" style="background-image: url('{{ asset('resources/images/Banner-general-Emex-vopsele.jpg') }}');" id="servicii_header">
+<div class="servicii relative w-full col justify-center align-center header" style="background-image: url('{{ asset('resources/images/Licentiere-drm.webp') }}');" id="servicii_header">
     <h1 style="color: #ffffff !important;" class="z-10">
         POLITICA DE LICENTIERE
     </h1>
