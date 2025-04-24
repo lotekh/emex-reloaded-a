@@ -124,8 +124,8 @@
             <h2 class="m-0 mb-8">Postari recente</h2>
             @if (count($recentArticles))
                 @foreach ($recentArticles as $recentArticle)
-                    <a class="link_color1" href="{{ route('blog.article.show', ['slug' => $recentArticle->slug]) }}">
-                        {{ $recentArticle->title }}
+                    <a href="{{ route('blog.article.show', ['slug' => $recentArticle->slug]) }}">
+                        <em class="link_color1">{{ $recentArticle->title }}</em>
                     </a>
                 @endforeach
             @else
@@ -155,8 +155,8 @@
             @endphp
             <div style="max-height: 300px; overflow-y: auto;">
                 @foreach ($archivedArticles as $article)
-                    <a class="link_color1" href="{{ route('blog.article.show', ['slug' => $article->slug]) }}" style="display: block; margin-bottom: 5px;">
-                        {{ $article->title }}
+                    <a href="{{ route('blog.article.show', ['slug' => $article->slug]) }}" style="display: block; margin-bottom: 5px;">
+                        <em class="link_color1">{{ $article->title }}</em>
                     </a>
                 @endforeach
             </div>
