@@ -1,11 +1,17 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/bundled/order.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bundled/order.min.css') }}">
 @endsection
 
 @section('breadcrumbs')
-<ul class="flex gap-xs"><li><a href="/">Acasa</a></li><li class="separator">/</li><li class="-ml-4"><a href="/produse">Produse</a></li><li class="separator">/</li><li class="-ml-4 ellipsis"><a href="#">Produse dorite</a></li></ul>
+<ul class="flex gap-xs">
+    <li><a href="/">Acasa</a></li>
+    <li class="separator">/</li>
+    <li class="-ml-4"><a href="/produse">Produse</a></li>
+    <li class="separator">/</li>
+    <li class="-ml-4 ellipsis"><a href="#">Produse dorite</a></li>
+</ul>
 @endsection
 
 @section('content')
@@ -13,13 +19,13 @@
     <form method="POST" action="{{ url('/save-order') }}" id="order_form">
         @csrfWithoutAutocomplete
         @foreach ($ordered_products as $key => $value)
-            <input type="hidden" name="product{{ $key }}_id" value="{{ $value->product_id }}">
-            <input type="hidden" name="product{{ $key }}_quantity" value="{{ $value->ordered_quantity }}"> 
-            <input type="hidden" name="product{{ $key }}_price" value="{{ $value->price }}"> 
-            <input type="hidden" name="product{{ $key }}_price_no_tva" value="{{ $value->price_no_vat }}"> 
-            <input type="hidden" name="product{{ $key }}_name" value="{{ $value->product->name }}">
-            <input type="hidden" name="product{{ $key }}_color" value="{{ $value->product->color }}">
-            <input type="hidden" name="product{{ $key }}_packaging" value="{{ $value->product->ambalare }}">
+        <input type="hidden" name="product{{ $key }}_id" value="{{ $value->product_id }}">
+        <input type="hidden" name="product{{ $key }}_quantity" value="{{ $value->ordered_quantity }}">
+        <input type="hidden" name="product{{ $key }}_price" value="{{ $value->price }}">
+        <input type="hidden" name="product{{ $key }}_price_no_tva" value="{{ $value->price_no_vat }}">
+        <input type="hidden" name="product{{ $key }}_name" value="{{ $value->product->name }}">
+        <input type="hidden" name="product{{ $key }}_color" value="{{ $value->product->color }}">
+        <input type="hidden" name="product{{ $key }}_packaging" value="{{ $value->product->ambalare }}">
         @endforeach
 
 
@@ -44,15 +50,15 @@
                 </div>
                 <div class="divider"></div>
                 @if ($isGuest)
-                    <div class="step flex col align-center" id="header-step3">
-                        <div class="circle flex justify-center align-center">
-                            3
-                        </div>
-                        <div class="step-title">
-                            Creare cont
-                        </div>
+                <div class="step flex col align-center" id="header-step3">
+                    <div class="circle flex justify-center align-center">
+                        3
                     </div>
-                    <div class="divider"></div>
+                    <div class="step-title">
+                        Creare cont
+                    </div>
+                </div>
+                <div class="divider"></div>
                 @endif
                 <div class="step flex col align-center" id="header-step4">
                     <div class="circle flex justify-center align-center">
@@ -94,40 +100,40 @@
                     </div>
 
                     @if ($isGuest)
-                        <div class="guest-row">
-                            Ai deja cont?
-                            <button id="auth_lightbox_trigger2" type="button" class="link" role="button" tabindex="0" aria-label="Autentificare">
-                                Autentificare
-                            </button>
-                        </div>
+                    <div class="guest-row">
+                        Ai deja cont?
+                        <button id="auth_lightbox_trigger2" type="button" class="link" role="button" tabindex="0" aria-label="Autentificare">
+                            Autentificare
+                        </button>
+                    </div>
                     @endif
 
                     @if (!$isGuest)
-                        @php
-                            $companyInfo = auth()->user() && is_string(auth()->user()->company_information) 
-                                ? json_decode(auth()->user()->company_information) 
-                                : auth()->user()->company_information;
+                    @php
+                    $companyInfo = auth()->user() && is_string(auth()->user()->company_information)
+                    ? json_decode(auth()->user()->company_information)
+                    : auth()->user()->company_information;
 
-                            $personLastName = optional($companyInfo)->person_last_name;
-                            $personFirstName = optional($companyInfo)->person_first_name;
-                            $personPhone = optional($companyInfo)->person_phone;
-                            $personEmail = optional($companyInfo)->person_email;
-                            $personCountyId = optional($companyInfo)->person_county_id;
-                            $personCityId = optional($companyInfo)->person_city_id;
-                            $personAddress = optional($companyInfo)->person_address;
+                    $personLastName = optional($companyInfo)->person_last_name;
+                    $personFirstName = optional($companyInfo)->person_first_name;
+                    $personPhone = optional($companyInfo)->person_phone;
+                    $personEmail = optional($companyInfo)->person_email;
+                    $personCountyId = optional($companyInfo)->person_county_id;
+                    $personCityId = optional($companyInfo)->person_city_id;
+                    $personAddress = optional($companyInfo)->person_address;
 
-                            $organizationName = optional($companyInfo)->organization_name;
-                            $organizationCui = optional($companyInfo)->organization_cui;
-                            $organizationPhone = optional($companyInfo)->organization_phone;
-                            $organizationEmail = optional($companyInfo)->organization_email;
-                            $organizationBank = optional($companyInfo)->organization_bank;
-                            $organizationBankAccount = optional($companyInfo)->organization_bank_account;
-                            $organizationContactLastName = optional($companyInfo)->contact_person_last_name;
-                            $organizationContactFirstName = optional($companyInfo)->contact_person_first_name;                     
-                            $organizationCountyId = optional($companyInfo)->organization_county_id;
-                            $organizationCityId = optional($companyInfo)->organization_city_id;
-                            $organizationAddress = optional($companyInfo)->organization_address;
-                        @endphp
+                    $organizationName = optional($companyInfo)->organization_name;
+                    $organizationCui = optional($companyInfo)->organization_cui;
+                    $organizationPhone = optional($companyInfo)->organization_phone;
+                    $organizationEmail = optional($companyInfo)->organization_email;
+                    $organizationBank = optional($companyInfo)->organization_bank;
+                    $organizationBankAccount = optional($companyInfo)->organization_bank_account;
+                    $organizationContactLastName = optional($companyInfo)->contact_person_last_name;
+                    $organizationContactFirstName = optional($companyInfo)->contact_person_first_name;
+                    $organizationCountyId = optional($companyInfo)->organization_county_id;
+                    $organizationCityId = optional($companyInfo)->organization_city_id;
+                    $organizationAddress = optional($companyInfo)->organization_address;
+                    @endphp
                     @endif
 
                     {{-- Persoana fizica --}}
@@ -155,22 +161,22 @@
                             <div class="form-group">
                                 <label>Judet <span class="text-red">*</span></label>
                                 <select class="form-control w-full height-43px" name="company_information[person_county_id]" id="person_county_id">
-                                    <option value="">Selectează județul</option> 
+                                    <option value="">Selectează județul</option>
                                     @foreach ($counties as $county)
-                                        <option value="{{ $county->id }}" {{ ($companyInfo->person_county_id ?? '') == $county->id ? 'selected' : '' }}>
-                                            {{ $county->name }}
-                                        </option>
+                                    <option value="{{ $county->id }}" {{ ($companyInfo->person_county_id ?? '') == $county->id ? 'selected' : '' }}>
+                                        {{ $county->name }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Oras <span class="text-red">*</span></label>
                                 <select class="form-control w-full height-43px" name="company_information[person_city_id]" id="person_city_id">
-                                    <option value="">Selectează orasul</option> 
+                                    <option value="">Selectează orasul</option>
                                     @foreach ($cities as $city)
-                                        <option value="{{ $city->id }}" {{ ($companyInfo->person_city_id ?? '') == $city->id ? 'selected' : '' }}>
-                                            {{ $city->name }}
-                                        </option>
+                                    <option value="{{ $city->id }}" {{ ($companyInfo->person_city_id ?? '') == $city->id ? 'selected' : '' }}>
+                                        {{ $city->name }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -229,29 +235,29 @@
                             <div class="form-group">
                                 <label>Judet <span class="text-red">*</span></label>
                                 <select class="form-control w-full height-43px" name="company_information[organization_county_id]" id="organization_county_id">
-                                    <option value="">Selectează județul</option> 
+                                    <option value="">Selectează județul</option>
                                     @foreach ($counties as $county)
-                                        <option value="{{ $county->id }}" {{ ($companyInfo->organization_county_id ?? '') == $county->id ? 'selected' : '' }}>
-                                            {{ $county->name }}
-                                        </option>
+                                    <option value="{{ $county->id }}" {{ ($companyInfo->organization_county_id ?? '') == $county->id ? 'selected' : '' }}>
+                                        {{ $county->name }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Oras <span class="text-red">*</span></label>
                                 <select class="form-control w-full height-43px" id="organization_city_id" name="company_information[organization_city_id]">
-                                    <option value="">Selectează orasul</option> 
+                                    <option value="">Selectează orasul</option>
                                     @foreach ($cities as $city)
-                                        <option value="{{ $city->id }}" {{ ($companyInfo->organization_city_id ?? '') == $city->id ? 'selected' : '' }}>
-                                            {{ $city->name }}
-                                        </option>
+                                    <option value="{{ $city->id }}" {{ ($companyInfo->organization_city_id ?? '') == $city->id ? 'selected' : '' }}>
+                                        {{ $city->name }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label>Adresa <span class="text-red">*</span></label>
-                                <input class="form-control w-full" type="text" id="organization_address" name="company_information[organization_address]" value="{{ $organizationAddress ?? ''}}" >
+                                <input class="form-control w-full" type="text" id="organization_address" name="company_information[organization_address]" value="{{ $organizationAddress ?? ''}}">
                             </div>
                         </div>
                     </div>
@@ -300,17 +306,17 @@
 
 
                         @if (!$isGuest)
-                            @php
-                                $deliveryInfo = auth()->user() && is_string(auth()->user()->delivery_information) ? json_decode(auth()->user()->delivery_information): auth()->user()->delivery_information;
+                        @php
+                        $deliveryInfo = auth()->user() && is_string(auth()->user()->delivery_information) ? json_decode(auth()->user()->delivery_information): auth()->user()->delivery_information;
 
-                                $deliveryLastName = optional($deliveryInfo)->delivery_last_name;
-                                $deliveryFirstName = optional($deliveryInfo)->delivery_first_name;
-                                $deliveryPhone = optional($deliveryInfo)->delivery_phone;
-                                $deliveryEmail = optional($deliveryInfo)->delivery_email;
-                                $deliveryCountyId = optional($deliveryInfo)->delivery_county_id;
-                                $deliveryCityId = optional($deliveryInfo)->delivery_city_id;
-                                $deliveryAddress = optional($deliveryInfo)->delivery_address;
-                            @endphp
+                        $deliveryLastName = optional($deliveryInfo)->delivery_last_name;
+                        $deliveryFirstName = optional($deliveryInfo)->delivery_first_name;
+                        $deliveryPhone = optional($deliveryInfo)->delivery_phone;
+                        $deliveryEmail = optional($deliveryInfo)->delivery_email;
+                        $deliveryCountyId = optional($deliveryInfo)->delivery_county_id;
+                        $deliveryCityId = optional($deliveryInfo)->delivery_city_id;
+                        $deliveryAddress = optional($deliveryInfo)->delivery_address;
+                        @endphp
                         @endif
 
                         <div id="delivery-inputs">
@@ -332,39 +338,39 @@
                                     <input class="form-control w-full" type="text" id="delivery_email" name="delivery_email" value="{{ $deliveryEmail ?? ''  }}">
                                 </div>
                             </div>
-                        
+
                             <div class="grid grid-4 gap-lg p-8">
 
                                 <div class="form-group">
                                     <label>Judet <span class="text-red">*</span></label>
                                     <select class="form-control w-full height-43px" name="delivery_information[delivery_county_id]" id="delivery_county_id">
-                                        <option value="">Alege județul</option> 
+                                        <option value="">Alege județul</option>
                                         @foreach ($counties as $county)
-                                            <option value="{{ $county->id }}" {{ ($deliveryInfo->delivery_county_id ?? '') == $county->id ? 'selected' : '' }}>
-                                                {{ $county->name }}
-                                            </option>
+                                        <option value="{{ $county->id }}" {{ ($deliveryInfo->delivery_county_id ?? '') == $county->id ? 'selected' : '' }}>
+                                            {{ $county->name }}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Oras <span class="text-red">*</span></label>
                                     <select class="form-control w-full height-43px" id="delivery_city_id" name="delivery_information[delivery_city_id]">
-                                        <option value="">Alege orasul</option> 
+                                        <option value="">Alege orasul</option>
                                         @foreach ($cities as $city)
-                                            <option value="{{ $city->id }}" {{ ($deliveryInfo->delivery_city_id ?? '') == $city->id ? 'selected' : '' }}>
-                                                {{ $city->name }}
-                                            </option>
+                                        <option value="{{ $city->id }}" {{ ($deliveryInfo->delivery_city_id ?? '') == $city->id ? 'selected' : '' }}>
+                                            {{ $city->name }}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label>Adresa <span class="text-red">*</span></label>
                                     <input class="form-control w-full" type="text" id="delivery_address" name="delivery_address" value="{{ $deliveryAddress ?? ''  }}">
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="flex justify-end col flex-md align-center gap-md">
@@ -396,7 +402,7 @@
                             <div class="form-group mt-16">
                                 <label for="form-order-password">Parola</label>
                                 <input class="form-control w-full" type="password" id="form-order-password" name="password">
-                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" width="20" height="18" alt="eye-solid-icon" class="password-toggle-icon" id="toggle-order-password-visibility"  onclick="togglePasswordVisibility('form-order-password', 'toggle-order-password-visibility')" >
+                                <img src="{{ asset('resources/new_design/icons/eye-solid.svg') }}" width="20" height="18" alt="eye-solid-icon" class="password-toggle-icon" id="toggle-order-password-visibility" onclick="togglePasswordVisibility('form-order-password', 'toggle-order-password-visibility')">
                             </div>
                             <span class="hidden" id="create-account-password"></span>
                         </div>
@@ -561,22 +567,22 @@
 
                         <tbody>
                             @php
-                                $total_value = 0;
-                                $total_price = 0;
-                                $total_tva = 0;
+                            $total_value = 0;
+                            $total_price = 0;
+                            $total_tva = 0;
                             @endphp
 
                             @foreach ($ordered_products as $key => $ordered_product)
                             @php
-                                $price = $ordered_product['price'] ?? 0;
-                                $price_no_vat = $ordered_product['price_no_vat'] ?? 0;
-                                $quantity = $ordered_product['ordered_quantity'] ?? 0;
-                                $tva = $price - $price_no_vat;
-                                $value = $price_no_vat * $quantity;
+                            $price = $ordered_product['price'] ?? 0;
+                            $price_no_vat = $ordered_product['price_no_vat'] ?? 0;
+                            $quantity = $ordered_product['ordered_quantity'] ?? 0;
+                            $tva = $price - $price_no_vat;
+                            $value = $price_no_vat * $quantity;
 
-                                $total_value += $value;
-                                $total_tva += $tva * $quantity;
-                                $total_price += $price * $quantity;
+                            $total_value += $value;
+                            $total_tva += $tva * $quantity;
+                            $total_price += $price * $quantity;
                             @endphp
                             <tr>
                                 <td class="ta_l comanda_product_title">{{ $ordered_product['name'] ?? '' }}</td>
@@ -678,13 +684,13 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         // Fetch cities by county
         const countySelects = document.querySelectorAll('select[name*="county_id"]');
-        
+
         countySelects.forEach(countySelect => {
             const citySelect = document.querySelector(`select[name="${countySelect.name.replace('county', 'city')}"]`);
-            
+
             const selectedCounty = countySelect.value;
             const selectedCity = citySelect.value;
 
@@ -703,7 +709,7 @@
                 citySelect.innerHTML = '<option value="">Selectează orasul</option>';
             }
 
-            countySelect.addEventListener('change', function () {
+            countySelect.addEventListener('change', function() {
                 if (this.value === "") {
                     // If a county is selected, reset the dropdown for cities
                     citySelect.innerHTML = '<option value="">Selectează orasul</option>';
@@ -729,6 +735,30 @@
         document.getElementById('auth-lightbox').style.display = 'flex';
     });
 
+    let products = @json($ordered_products);
+    let formattedItems = products.map(item => {
+    return {
+      item_id: item.sku,
+      item_name: item.short_name,
+      price: item.price,
+      quantity: item.quantity
+    };
+  });
+  let sum = products.map(item => [
+    parseFloat(item.price) * parseInt(item.ordered_quantity)
+  ]).flat().reduce((a, b) => a + b);
+
+    dataLayer.push({
+        ecommerce: null
+    }); // Clear the previous ecommerce
+    dataLayer.push({
+        event: "begin_checkout",
+        ecommerce: {
+            currency: "RON",
+            value: sum,
+            items: formattedItems
+        }
+    });
 </script>
 
 @endsection
