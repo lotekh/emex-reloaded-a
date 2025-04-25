@@ -208,21 +208,6 @@ class OrdersController extends Controller
     }
 
 
-    public function checkout()
-    {
-        $user = Auth::user();
-        $order = Order::where('user_id', $user->id)->where('is_paid', false)->first();
-
-        if ($order) {
-            $order->is_paid = true;
-            $order->save();
-
-            return redirect()->route('thank-you');
-        }
-
-        return redirect()->route('orders.index');
-    }
-
     public function getCartProductVariationCount()
     {
         $cart = session()->get('cart', []);
