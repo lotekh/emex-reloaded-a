@@ -30,7 +30,7 @@
 @section('content')
 
 <div class="hidden-xs">
-    <div class="header_img_bg" id="term_cond_header" style="background-image: url('{{ asset('resources/images/Termeni-si-conditii.jpg') }}');">
+    <div class="header_img_bg" id="term_cond_header" style="background-image: url('{{ asset('resources/images/Termeni-si-conditii.webp') }}');">
         <div class="hibc">
             <div class="hibcsc">
                 <h1>

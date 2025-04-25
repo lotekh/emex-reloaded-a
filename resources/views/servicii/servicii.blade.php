@@ -29,7 +29,7 @@
 
 @section('content')
 
-<div class="servicii relative w-full col justify-center align-center header" style="background-image: url('{{ asset('resources/images/Banner-general-Emex-vopsele.jpg') }}');" id="servicii_header">
+<div class="servicii relative w-full col justify-center align-center header background-position-left" style="background-image: url('{{ asset('resources/images/Banner-general-Emex-vopsele.jpg') }}');" id="servicii_header">
   <h1 class="z-10">
       SERVICII DE VOPSIRE - <br>SI APLICARE PARDOSELI
   </h1>
