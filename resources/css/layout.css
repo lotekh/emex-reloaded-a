@@ -3726,3 +3726,7 @@ video:hover::-webkit-media-controls {
   text-decoration: none;
   color: #009;
 }
+
+.background-position-left {
+  background-position: left !important;
+}
