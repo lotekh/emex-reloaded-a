@@ -89,4 +89,30 @@
     </div>
 </div>
 
+<script>
+    let order = @json($order);
+    let orders_products = @json($orders_products);
+    let formattedItems = orders_products.map(item => {
+    return {
+      item_id: item.sku,
+      item_name: item.short_name,
+      price: item.pivot.price,
+      quantity: item.pivot.quantity
+    };
+  });
+    dataLayer.push({
+        ecommerce: null
+    }); // Clear the previous ecommerce object.
+    dataLayer.push({
+        event: "purchase",
+        ecommerce: {
+            transaction_id: order.identifier,
+            value: order.total,
+            currency: "RON",
+            items: formattedItems
+        }
+    });
+</script>
+
+
 @endsection

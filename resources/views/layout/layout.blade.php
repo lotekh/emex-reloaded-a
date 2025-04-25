@@ -25,6 +25,9 @@
     <meta name="csrf-token" content="{{csrf_token()}}">
 
     <script>
+        window.dataLayer = window.dataLayer || [];
+    </script>
+    <script>
         (function(w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
