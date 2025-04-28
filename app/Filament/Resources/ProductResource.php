@@ -125,7 +125,7 @@ class ProductResource extends Resource
                                     ->maxLength(255),
                                 Forms\Components\TextInput::make('price_disclaimer')
                                     ->columnSpanFull()
-                                    ->maxLength(255),
+                                    ->maxLength(500),
                                 MarkdownEditor::make('category_page_description')
                                     ->columnSpanFull(),
                             ]),
