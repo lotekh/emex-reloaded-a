@@ -531,6 +531,7 @@ input[type="search"] {
 @media (max-width: 768px) {
   .lista-table, .lista-table li {
     list-style: square;
+	margin-left: 4px;
   }
 }
 /* END TABLES*/
