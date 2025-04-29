@@ -516,6 +516,9 @@ input[type="search"] {
     color: #333;
     font-size: 14px;
   }
+  .lista-table, .lista-table li {
+      list-style: square;
+}
   @media (max-width: 768px) {
     .aspect {
       font-size: 16px;
@@ -523,3 +526,4 @@ input[type="search"] {
     .field-title, .field-content {
       font-size: 13px;
     }}
+	/* END TABLES*/
