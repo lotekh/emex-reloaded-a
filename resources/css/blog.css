@@ -487,3 +487,39 @@ input[type="search"] {
   line-height: 1.42857143;
   text-rendering: optimizeLegibility;
 }
+/* ADRIAN CARDURI - TABLES*/
+ .card {
+   /* background: #fff;
+    border: 1px solid #ccc;
+	    border-radius: 8px;
+    margin-bottom: 5px;*/
+	border-bottom:1px solid #ccc;
+    padding: 10px 0px 5px 0px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  .aspect {
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  .field {
+    margin-bottom: 5px;
+  }
+  .field-title {
+    color: #009;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .field-content {
+    color: #333;
+    font-size: 14px;
+  }
+  @media (max-width: 768px) {
+    .aspect {
+      font-size: 16px;
+    }
+    .field-title, .field-content {
+      font-size: 13px;
+    }}
