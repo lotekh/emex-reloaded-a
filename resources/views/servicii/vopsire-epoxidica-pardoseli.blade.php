@@ -78,8 +78,8 @@ aplicatorilor, elemente de care depinde realizarea unei vopsiri de efect.
 @endsection
 
 @section('video')
-<video controls width="250" height="168" class="responsive" poster="https://vopsele.xyz/videos/Vopsire-epoxidica.jpg">
-    <source src="https://vopsele.xyz/videos/vopsire-epoxidica.mp4" type="video/mp4">
+<video controls width="250" height="168" class="responsive" poster="https://emex.ro/videos/Vopsire-epoxidica.jpg">
+    <source src="https://emex.ro/videos/vopsire-epoxidica.mp4" type="video/mp4">
         Vopsire cu sisteme epoxidice pentru pardoseli industriale, hale, zone cu circulatie intensa, hypermarket-uri, etc. Etapele aplicarii vopselei epoxidice sunt identice si in cazul aplicarii vopselei poliuretanice.
 </video>
 @endsection
