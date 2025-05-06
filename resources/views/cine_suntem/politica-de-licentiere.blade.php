@@ -4,13 +4,14 @@
 <title>Licență Conținut - Emex.ro</title>
 <style>
     .big-div-licentiere{
-        line-height: 1.6;
+        /*line-height: 1.6;*/
         color: #333;
         max-width: 1200px;
         border-radius: 15px;
-        margin: 40px auto 20px auto;
+        margin: 0px auto 20px auto;
         padding: 16px;
         text-align: justify;
+		margin-top: 0px;
         box-shadow: inset 0 0 0 8px #e6effb;
     }
     .big-div-licentiere ul{
@@ -25,10 +26,10 @@
     .header-licentiere {
         border-bottom: 1px solid #ddd;
         padding-bottom: 20px;
-        margin-bottom: 30px;
+        /*margin-bottom: 30px;*/
         background-color: #fff;
         border-radius: 8px;
-        padding: 25px;
+        padding: 20px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         /* width: 1200px; */
     }
@@ -39,17 +40,18 @@
         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     h1 {
-        color: #0558ce !important;
+        color: #009 !important;
         text-align: center;
+		margin-bottom: -10px;
     }
     h2 {
-        color: #0558ce;
+        color: #009;
     }
     h3 {
-        color: #0558ce;
+        color: #009;
     }
     h4 {
-        color: #0558ce;
+        color: #009;
     }
     p, ul, ol {
         margin-bottom: 20px;
@@ -62,21 +64,21 @@
     }
     .highlight {
         background-color: #f0f7ff;
-        padding: 20px;
-        border-left: 4px solid #0558ce;
-        margin: 25px 0;
+        padding: 10px;
+        border-left: 4px solid #009;
+        margin: 20px 0;
         border-radius: 0 8px 8px 0;
     }
     .warning {
         background-color: #fff8f0;
-        padding: 20px;
+        padding: 10px 0px 10px 20px;
         border-left: 4px solid #e67e22;
         margin: 25px 0;
         border-radius: 0 8px 8px 0;
     }
     .info {
         background-color: #f0feff;
-        padding: 20px;
+        padding: 10px 0px 10px 20px;
         border-left: 4px solid #3498db;
         margin: 25px 0;
         border-radius: 0 8px 8px 0;
@@ -113,7 +115,7 @@
     }
     th {
         background-color: #f0f7ff;
-        color: #0558ce;
+        color: #009;
     }
     tr:nth-child(even) {
         background-color: #f9f9f9;
@@ -155,7 +157,7 @@
         content: "\2796";
     }
     a {
-        color: #0558ce !important;
+        color: #009 !important;
         text-decoration: none;
     }
     a:hover {
@@ -163,7 +165,7 @@
     }
     .button {
         display: inline-block;
-        background-color: #0558ce;
+        background-color: #009;
         color: white !important;
         padding: 10px 20px;
         text-align: center;
@@ -178,7 +180,7 @@
     }
     .toc {
         background-color: #f8f9fa;
-        padding: 20px;
+        padding: 5px 8px 5px 0px;
         border-radius: 8px;
         margin-bottom: 30px;
     }
@@ -189,6 +191,9 @@
     .toc ul li {
         margin-bottom: 8px;
     }
+	.sp-up {
+	margin-top: 8px;
+	}
 
     
     /* .example {
@@ -354,9 +359,9 @@
         </ul>
         
         <div class="highlight">
-            <p>Solicitările pentru permisiunea de utilizare a conținutului pot fi trimise prin:</p>
+            <p class="sp-up">Solicitările pentru permisiunea de utilizare a conținutului pot fi trimise prin:</p>
             <ul>
-                <li><strong>E-mail:</strong> <a href="mailto:licente@emex.ro">licente@emex.ro</a></li>
+                <li><strong>E-mail:</strong><a href="mailto:licente@emex.ro"><em>licente@emex.ro</em></a></li>
                 <li><strong>Formular web:</strong> Disponibil în secțiunea "Contact" a site-ului nostru</li>
                 <li><strong>Poștă:</strong> La adresa sediului nostru social menționată în secțiunea de contact</li>
             </ul>
@@ -546,7 +551,7 @@
             </ul>
             
             <div class="info">
-                <p>Pentru detalii specifice despre fiecare tip de licență, inclusiv tarifele aplicabile și procesul de solicitare, vă rugăm să contactați departamentul nostru de licențiere la <a href="mailto:licente@emex.ro">licente@emex.ro</a>.</p>
+                <p>Pentru detalii specifice despre fiecare tip de licență, inclusiv tarifele aplicabile și procesul de solicitare, vă rugăm să contactați departamentul nostru de licențiere la <a href="mailto:licente@emex.ro"><em>licente@emex.ro</em></a>.</p>
             </div>
         </section>
         
@@ -881,7 +886,7 @@
             <div class="contact">
                 <h3>Departamentul de Licențiere Conținut</h3>
                 <p>
-                    <strong>Email:</strong> <a href="mailto:licente@emex.ro">licente@emex.ro</a><br>
+                    <strong>Email:</strong> <a href="mailto:licente@emex.ro"><em>licente@emex.ro</em></a><br>
                     <strong>Telefon:</strong> +40 XXX XXX XXX<br>
                     <strong>Program:</strong> Luni-Vineri, 09:00-17:00<br>
                     <strong>Adresă:</strong> Strada Exemplului, Nr. 123, București, Sector X, 012345, România
