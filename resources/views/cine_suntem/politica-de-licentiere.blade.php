@@ -1,5 +1,4 @@
 @extends('layout.layout')
-
 @section('seo')
 <title>Licenta Continut - Emex.ro</title>
 <style>
@@ -9,7 +8,7 @@
         max-width: 1200px;
         border-radius: 15px;
         margin: 0px auto 20px auto;
-        padding: 16px;
+        padding: 20px;
         text-align: justify;
 		margin-top: 0px;
         box-shadow: inset 0 0 0 8px #e6effb;
@@ -52,6 +51,7 @@
     }
     h4 {
         color: #009;
+		font-size: 1.17em !important;		
     }
     p, ul, ol {
         margin-bottom: 20px;
@@ -95,7 +95,7 @@
         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     .contact {
-        margin-top: 50px;
+        margin-top: 20px;
         background-color: #f8f9fa;
         padding: 5px 25px 25px 25px;
         border-radius: 8px;
@@ -185,7 +185,7 @@ color: #009;
         background-color: #f8f9fa;
         padding: 5px 8px 5px 0px;
         border-radius: 8px;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
     }
     .toc ul {
         list-style-type: none !important;
@@ -223,8 +223,6 @@ color: #009;
 <li class="-ml-4 ellipsis">Politica de Licentiere</li>
 </ul>
 @endsection
-
-
 @section('content')
 <div class="servicii relative w-full col justify-center align-center header" style="background-image: url('{{ asset('resources/images/Licentiere-drm.webp') }}');" id="servicii_header">
 <h1 style="color: #ffffff !important;" class="z-10"> POLITICA DE LICENTIERE </h1>
@@ -792,18 +790,18 @@ color: #009;
 <p>Pentru orice intrebari, solicitari sau clarificari referitoare la politica noastra de licentiere a continutului, va invitam sa ne contactati folosind urmatoarele modalitati:</p>
 <div class="contact">
 <h3>Departamentul de Licentiere Continut</h3>
-<p> <strong>Email:</strong> <a href="mailto:licente@emex.ro"><em>licente@emex.ro</em></a><br>
-<strong>Telefon:</strong> +40 XXX XXX XXX<br>
-<strong>Program:</strong> Luni-Vineri, 09:00-17:00<br>
-<strong>Adresa:</strong> Strada Exemplului, Nr. 123, Bucuresti, Sector X, 012345, Romania </p>
+<p> <strong>Email:</strong><a href="mailto:licente@emex.ro"><em>licente@emex.ro</em></a><br>
+<strong>Telefon:</strong> +4 021 457 1693<br>
+<strong>Program:</strong> Luni-Vineri, 08:00-16:30<br>
+<strong>Adresa:</strong> Strada Steaua Sudului, Nr. 22, Jilava, Ilfov, 077120, Romania</p>
 <h3>Pentru raportarea incalcarilor drepturilor de autor</h3>
-<p> <strong>Email:</strong> <a href="mailto:copyright@emex.ro">copyright@emex.ro</a><br>
+<p> <strong>Email:</strong> <a href="mailto:copyright@emex.ro"><em>copyright@emex.ro</em></a><br>
 <strong>Telefon:</strong> +40 XXX XXX XXX<br>
-<strong>Formular online:</strong> <a href="https://emex.ro/raportare-incalcare">Formular de raportare</a> </p>
+<strong>Formular online:</strong> <a href="/contact"><em>Formular de raportare</em></a> </p>
 <h3>Pentru parteneriate media si colaborari strategice</h3>
 <p> <strong>Email:</strong> <a href="mailto:parteneriate@emex.ro"><em>parteneriate@emex.ro</em></a><br>
-<strong>Telefon:</strong> +40 XXX XXX XXX </p>
-<a href="https://emex.ro/contact" class="button">Formular de contact complet</a> </div>
+<strong>Telefon:</strong> +4 021 457 1693</p>
+<a href="/contact" class="button"><em>Formular de contact complet</em></a> </div>
 </section>
 <script>
             // Script pentru functionalitatea acordeon (Intrebari frecvente)
