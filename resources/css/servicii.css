@@ -149,7 +149,7 @@
 }
 
 #landing_first_list li::before {
-  content: "≡";
+  content: "U+2261";
   position: relative;
   margin-right: 6px;
   color: #1c9005;
