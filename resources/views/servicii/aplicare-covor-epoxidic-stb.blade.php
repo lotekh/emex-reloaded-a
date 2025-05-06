@@ -67,7 +67,7 @@ Proprietati generale ale Pardoselii Epoxidice “Emex Quartz”
 
 @section('section_2_text')
 <p>
-Principalele proprietati ale <strong>Covorului Epoxidic “Emex Quartz”</strong>, care
+Principalele proprietati ale <strong><em>Covorului Epoxidic “Emex Quartz”</em></strong>, care
 recomanda utilizarea sa in zonele cele mai expuse, pentru aplicatii mai ales industriale, sunt:
 </p>
 @endsection
@@ -98,7 +98,7 @@ Performante covor epoxidic decorativ
 @section('section_3_list')
 <li>
     <strong>Covorul Decorativ Epoxidic</strong> este utilizat la realizarea de pardoseli
-    interioare sau exterioare de mare duritate, in zone cu trafic intens si/sau pentru protectia
+    interioare sau exterioare de mare duritate, in zone cu trafic intens si/ sau pentru protectia
     spatiilor cu trafic intens si/sau de masini grele, ori expuse la factori mecanici extremi.
   </li>
   <li>
