@@ -10,17 +10,7 @@ Sitemap: https://emex.ro/sitemap-image.xml
 User-agent: *
 Disallow: /consum-grund-anticoroziv-economic
 
-# ——— OPENAI ———
-# Permiterea indexării pentru fiecare robot relevant
-
-User-agent: GPTBot          # colectează date pt. antrenarea modelelor
+User-agent: OAI-SearchBot
 Allow: /
-
-User-agent: OAI-SearchBot   # construiește indexul de căutare din ChatGPT
-Allow: /
-
-# Vizite declanşate de utilizatori (linkuri, Browse, GPT Actions)
-User-agent: ChatGPT-User
-Allow: /
-User-agent: ChatGPT-User/2.0
-Allow: /
+User-agent: *
+Disallow: /
