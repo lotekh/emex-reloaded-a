@@ -43,6 +43,28 @@
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-57FHTGR');
     </script>
+    @if(session('success') && session('success') == 'Produsul a fost adăugat în coș.')
+    <script>
+        let product = @json(session('product'));
+
+        dataLayer.push({
+            ecommerce: null
+        }); 
+        dataLayer.push({
+            event: "add_to_cart",
+            ecommerce: {
+                currency: "RON",
+                value: product.price,
+                items: [{
+                    item_id: product.sku,
+                    item_name: product.name,
+                    price: product.price,
+                    quantity: product.quantity,
+                }]
+            }
+        });
+    </script>
+    @endif
 
     @yield('seo')
     @yield('title')
@@ -51,9 +73,9 @@
     @include('layouts.partials.json-ld')
 
     @hasSection('css')
-        @yield('css')
+    @yield('css')
     @else
-        <link rel="stylesheet" href="{{ asset('css/bundled/layout.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bundled/layout.min.css') }}">
     @endif
 
     <script src="{{ asset('search-script/zoom_autocomplete.js') }}"></script>
@@ -793,13 +815,13 @@ use App\Models\Order;
             <img id="global-lightbox-image" src="{{ asset('images/landing/stb/mici/Pardoseala-cuartz-epoxdica-depozit-legume.jpg') }}" alt="global-lightbox image" title="Global Lightbox Image">
         </div>
     </div>
-    
+
     <script>
         var sidebar = document.getElementById('sidebar-left');
         var bodyBackdrop = document.getElementById('mobile-sidebar-open-backdrop');
         var body = document.getElementsByTagName('body')[0];
         var content_wrapper = document.getElementById('content_wrapper');
-        
+
         function toggleSidebar() {
             if (sidebar.classList.contains('hidden')) {
                 sidebar.classList.remove('hidden');

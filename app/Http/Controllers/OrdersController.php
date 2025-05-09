@@ -77,7 +77,13 @@ class OrdersController extends Controller
         // Save the updated cart in session
         session()->put('cart', $cart);
 
-        return redirect()->back()->with('success', 'Produsul a fost adăugat în coș.');
+        return redirect()->back()->with('success', 'Produsul a fost adăugat în coș.')
+        ->with('product', [
+            'quantity' => $quantity,
+            'price' => $productVariation->price,
+            'sku' => $productVariation->sku,
+            'name' => $productVariation->name,
+        ]);
     }
 
     
@@ -107,13 +113,26 @@ class OrdersController extends Controller
         $productVariationId = $request->input('product_variation_id');
         $cart = session()->get('cart', []);
 
+        $quantity = $cart[$productVariationId]['quantity'] ?? 0;
+
         if (isset($cart[$productVariationId])) {
             unset($cart[$productVariationId]);
         }
 
         session()->put('cart', $cart);
 
-        return redirect()->back()->with('success', 'Produsul a fost eliminat din coș.');
+        $productVariation = ProductVariation::find($productVariationId);
+        if($productVariation) {
+            return redirect()->back()->with('success', 'Produsul a fost eliminat din coș.')
+            ->with('product', [
+                'quantity' => $quantity,
+                'price' => $productVariation->price,
+                'sku' => $productVariation->sku,
+                'name' => $productVariation->name,
+            ]);
+        } else {
+            return redirect()->back()->with('success', 'Produsul a fost eliminat din coș.');
+        }
     }
 
     

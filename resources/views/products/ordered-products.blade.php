@@ -29,6 +29,26 @@
     }
   });
 </script>
+
+@if(session('success') && session('success') == 'Produsul a fost eliminat din coș.' && session('product'))
+<script>
+  let product = @json(session('product'));
+
+  dataLayer.push({
+    event: "remove_from_cart",
+    ecommerce: {
+      currency: "RON",
+      value: product.price,
+      items: [{
+        item_id: product.sku,
+        item_name: product.name,
+        price: product.price,
+        quantity: product.quantity,
+      }]
+    }
+  });
+</script>
+@endif
 @endsection
 
 @section('css')
