@@ -5,9 +5,13 @@ User-agent: Googlebot
 Allow: /
 User-agent: Googlebot-image
 Allow: /
-User-agent: OAI-SearchBot
-Allow: /
 Sitemap: https://emex.ro/sitemap.xml
 Sitemap: https://emex.ro/sitemap-image.xml
+
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: *
+Disallow: /
+
 User-agent: *
 Disallow: /consum-grund-anticoroziv-economic
