@@ -1,33 +1,44 @@
+# Laravel .htaccess rules
+# Special rule for validators - add at the top of your file
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
     </IfModule>
+    RewriteEngine On
+#
+    RewriteRule ^/?doc/([^/]+)\.pdf$ /storage/media/technical-files/$1.pdf [R=301,L]
 
-    
-RewriteEngine On 
-    # Handle Authorization Header
-    RewriteCond %{HTTP:Authorization} .
-    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    RewriteRule ^doc/(.*)$ /storage/media/technical-files/$1 [R=301,L]
+    RewriteRule ^Doc/(.*)$ /storage/media/technical-files/$1 [R=301,L]
+    # Redirect /index.php to /something
+    RewriteCond %{THE_REQUEST} \s/index\.php[\s?] [NC]
+    RewriteRule ^index\.php/?$ / [R=301,L]
+
+
+    # Redirect /public/index.php (exactly) to /
+    RewriteCond %{THE_REQUEST} /public/index\.php\ HTTP [NC]
+    RewriteRule ^public/index\.php$ / [R=301,L]
+
+    # Redirect /public/index.php/something to /something
+    RewriteCond %{THE_REQUEST} /public/index\.php/(.*)\ HTTP [NC]
+    RewriteRule ^ /%1 [R=301,L]
+
+    # Redirect /public/something to /something
+    RewriteCond %{THE_REQUEST} /public/(.*)\ HTTP [NC]
+    RewriteRule ^ /%1 [R=301,L]
+
+    # Redirect /public/storage/media/ to /storage/media/
+    RewriteCond %{THE_REQUEST} /public/storage/media/([^\ ]*)\ HTTP [NC]
+    RewriteRule ^ /storage/media/%1 [R=301,L]
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
-    RewriteRule ^ %1 [L,R=301]
+    RewriteRule ^ %1 [R=301,L]
 
     # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
-
-RewriteEngine On
-RewriteRule ^doc/(.*)$ /public/storage/media/technical-files/$1 [L,R=301]
-RewriteRule ^Doc/(.*)$ /public/storage/media/technical-files/$1 [L,R=301]
-
-
-	
-RewriteRule ^Doc/Lavabila\-cuartz\-profesioanala\-Emex\-QT\.pdf$	/storage/media/technical-files/lavabila-cuartz-profesionala-emex-qt.pdf? [L,R=301]
-
-
-
-

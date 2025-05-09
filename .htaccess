@@ -1,70 +1,108 @@
 # ----------------------------------------------------------------------
-# Adds some security for the Apache server configuration for use with
-# yii2-app-practical template.
-# @author Kartik Visweswaran <kartikv2@gmail.com>
-# @see http://demos.krajee.com/app-practical
+# Apache server configuration for a Laravel project
+# Placed in the ROOT directory of the Laravel project.
 # ----------------------------------------------------------------------
 
-       ##HTTPS REDIRECT##
+# Disable directory browsing globally
+Options -Indexes
+
+# Enable symbolic links if you use them (e.g., for storage)
+# Options +FollowSymLinks
+# If your host requires it, you might need Options +SymLinksIfOwnerMatch
+
+# PHP settings (Consider moving these to php.ini or FPM pool config for better practice)
+# If using mod_php and not PHP-FPM. For PHP 7/8, use php_module not php5_module.
+# <IfModule php_module>
+#   php_value session.cookie_httponly true
+#   php_value session.cookie_secure true # Important: Only if site is ALWAYS HTTPS
+# </IfModule>
 
 <IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteCond %{SERVER_PORT} !^443$
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    RewriteEngine On
 
-       ##IMPLEMENT HSTS##
-<IfModule mod_headers.c>
-Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
-</IfModule>
+    ## ----------------------------------------------------------------------
+    ## SECTION 1: Canonicalization (HTTPS, www/non-www) & HSTS
+    ## ----------------------------------------------------------------------
 
-# "-Indexes" will have Apache block users from browsing folders without a default document
-# Usually you should leave this activated, because you shouldn't allow everybody to surf through
-# every folder on your server (which includes rather private places like CMS system folders).
-<IfModule mod_autoindex.c>
-  Options -Indexes
-</IfModule>
+    # Force HTTPS and non-WWW (emex.ro)
+    # Adjust www preference as needed.
+    RewriteCond %{HTTPS} off [OR]
+    RewriteCond %{HTTP_HOST} ^www\. [NC]
+    RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+    RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301,NE]
 
+    # HSTS (Strict Transport Security) - DO NOT enable until HTTPS is fully working
+    # This tells browsers to only access your site via HTTPS for the max-age duration.
+    <IfModule mod_headers.c>
+        Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" env=HTTPS
+    </IfModule>
 
-# Block access to "hidden" directories whose names begin with a period. This
-# includes directories used by version control systems such as Subversion or Git.
-<IfModule mod_rewrite.c>
-  RewriteCond %{SCRIPT_FILENAME} -d
-  RewriteCond %{SCRIPT_FILENAME} -f
-  RewriteRule "(^|/)\." - [F]
-</IfModule>
+    ## ----------------------------------------------------------------------
+    ## SECTION 2: Security - Block direct access to sensitive files/folders
+    ## ----------------------------------------------------------------------
 
+    # Block access to "hidden" directories and files (e.g., .git, .env)
+    # Allow .well-known for SSL certificates (Let's Encrypt)
+    RewriteRule "(^|/)\.(?!well-known(/|$))" - [F,L]
 
-# Block access to backup and source files
-# This files may be left by some text/html editors and
-# pose a great security danger, when someone can access them
-<FilesMatch "(\.(bak|bat|config|sql|fla|md|psd|ini|log|sh|inc|swp|dist)|~|init|composer\.json|composer\.lock)$">
-  Order allow,deny
-  Deny from all
-  Satisfy All
-</FilesMatch>
+    ## ----------------------------------------------------------------------
+    ## SECTION 3: Prevent direct access to /public/ or /public/index.php in URL
+    ## THIS IS KEY TO SOLVING YOUR SPECIFIC PROBLEM
+    ## ----------------------------------------------------------------------
 
-# Increase cookie security
-<IfModule php5_module>
-  php_value session.cookie_httponly true
-</IfModule>
+    # Redirect direct requests for /public/anything to /anything (clean URL)
+    RewriteCond %{THE_REQUEST} \s/public/([^\s?]*) [NC]
+    RewriteRule ^ /%1 [L,R=301,NE]
 
-# Settings to hide index.php and ensure pretty urls
-RewriteEngine On 
+    # Redirect direct requests for /public/index.php/anything to /anything (clean URL)
+    RewriteCond %{THE_REQUEST} \s/public/index\.php/?([^\s?]*) [NC]
+    RewriteRule ^ /%1 [L,R=301,NE]
+
+    ## ----------------------------------------------------------------------
+    ## SECTION 4: Custom Redirects (Place before Laravel's main router)
+    ## ----------------------------------------------------------------------
+
+    # Your specific PDF redirect (example)
+    # Ensure the target path is correct relative to your web server's DocumentRoot
+    # If DocumentRoot is Laravel project root, then /public/storage/... is correct for symlinked storage
+    RewriteRule ^Doc/Lavabila-cuartz-profesioanala-Emex-QT\.pdf$ /public/storage/media/technical-files/lavabila-cuartz-profesionala-emex-qt.pdf [L,R=301,NC,QSD]
+    # NC: NoCase - makes the match case-insensitive
+    # QSD: Query String Discard - removes any query string from the original request
+
+    # Commented out general doc redirects (uncomment and adapt if needed)
+    # RewriteRule ^doc/(.*)$ /public/storage/media/technical-files/$1 [L,R=301,NC,QSD]
+    # RewriteRule ^Doc/(.*)$ /public/storage/media/technical-files/$1 [L,R=301,NC,QSD] # Covered by NC above
+
 RewriteRule ^$ public/index.php [L]
-RewriteRule ^((?!public/).*)$ public/$1 [L,NC]
 
-# if a directory or a file exists, use it directly
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+    ## ----------------------------------------------------------------------
+    ## SECTION 5: Laravel Front Controller (Routing all non-asset requests to public/index.php)
+    ## ----------------------------------------------------------------------
 
-# otherwise forward it to index.php
-RewriteRule . index.php
+    # Handle Authorization Header (needed for API token authentication, etc.)
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
+    # If the request is for an existing file or directory in the 'public' folder,
+    # serve it directly. This allows assets (CSS, JS, images) to be served.
+    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f [OR]
+    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -d
+    RewriteRule ^(.+)$ public/$1 [L]
 
-RewriteEngine On
-#RewriteRule ^doc/(.*)$ /public/storage/media/technical-files/$1 [L,R=301]
-#RewriteRule ^Doc/(.*)$ /public/storage/media/technical-files/$1 [L,R=301]
+    # Otherwise, send the request to Laravel's front controller (public/index.php)
+    # Ensure this condition is met ONLY if it's not an actual file/dir already served
+    # The conditions above should handle assets, so this mostly catches dynamic routes.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/index.php [L,QSA]
+    # QSA: Query String Append - appends any query string from the original request
 
+</IfModule>
 
-	
-RewriteRule ^Doc/Lavabila\-cuartz\-profesioanala\-Emex\-QT\.pdf$	/storage/media/technical-files/lavabila-cuartz-profesionala-emex-qt.pdf? [L,R=301]
+# Block access to specific sensitive file types and names (outside mod_rewrite)
+# This should be a global setting or outside the IfModule block.
+<FilesMatch "(\.(bak|bat|config|dist|fla|inc|ini|log|md|psd|sh|sql|swp)|~|composer\.json|composer\.lock|\.env)$">
+    Order allow,deny
+    Deny from all
+    Satisfy All
+</FilesMatch>
