@@ -10,8 +10,4 @@ Sitemap: https://emex.ro/sitemap-image.xml
 
 User-agent: OAI-SearchBot
 Allow: /
-User-agent: *
-Disallow: /
 
-User-agent: *
-Disallow: /consum-grund-anticoroziv-economic
