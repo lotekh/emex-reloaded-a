@@ -108,8 +108,8 @@ superior, cu luciu intens, persistent.
 @endsection
 
 @section('video')
-<video controls width="250" height="168" class="responsive" poster="https://vopsele.xyz/videos/Filmare-pardoseala-autonivelanta-epoxidica.jpg">
-    <source src="https://vopsele.xyz/videos/Filmare-epoxidica-autonivelanta-Emex.mp4" type="video/mp4">
+<video controls width="250" height="168" class="responsive" poster="https://emex.ro/videos/Filmare-pardoseala-autonivelanta-epoxidica.jpg">
+    <source src="https://emex.ro/videos/Filmare-epoxidica-autonivelanta-Emex.mp4" type="video/mp4">
         Secvente din procesul de aplicare a unei pardoseli autonivelante epoxidice. Procesul se desfasoara dupa pregatirea suprafetei, prin turnarea pardoselii epoxidice si intinderea acesteia cu piepteni speciali, proces urmat de dezaerare. Rezultatul va fi o pardoseala cu duritate superioara si rezistenta la factori agresivi.
 </video>
 @endsection

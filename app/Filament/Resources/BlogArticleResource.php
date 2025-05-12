@@ -69,7 +69,7 @@ class BlogArticleResource extends Resource
                         Tabs\Tab::make('SEO')
                         ->schema(SeoForm::make()),
                         Tabs\Tab::make('JSON-LD')
-                            ->schema(JSONLD::make())
+                            ->schema(JSONLD::make('blog'))
                         ]),
             ]);
     }
