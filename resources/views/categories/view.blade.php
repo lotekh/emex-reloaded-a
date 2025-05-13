@@ -211,7 +211,7 @@ $base_url = url('/');
                 </button>
             </form>
         </li>
-        @for ($i = max(1, $current_page - 2); $i <= min($total_pages, $current_page + 3); $i++)
+        @for ($i = max(1, $current_page - 1); $i <= min($total_pages, $current_page + 2); $i++)
             <li>
             <form method="get" action="{{ url()->current() }}">
                 @csrfWithoutAutocomplete

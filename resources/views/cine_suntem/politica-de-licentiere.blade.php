@@ -606,7 +606,7 @@
             
             <div class="example">
                 <p>Exemplu de atribuire corectă pentru utilizare online:</p>
-                <p>Sursă: <a href="https://www.emex.ro/titlul-articolului">Titlul articolului</a>, Emex.ro, publicat la [data], © Emex.ro 2025</p>
+                <p>Sursă: <a href="/titlul-articolului">Titlul articolului</a>, Emex.ro, publicat la [data], © Emex.ro 2025</p>
                 
                 <p>Exemplu de atribuire corectă pentru materiale tipărite:</p>
                 <p>"Titlul articolului", Emex.ro, publicat la [data], © Emex.ro 2025, disponibil online la www.emex.ro/titlul-articolului</p>
@@ -891,7 +891,7 @@
                 <p>
                     <strong>Email:</strong> <a href="mailto:copyright@emex.ro">copyright@emex.ro</a><br>
                     <strong>Telefon:</strong> +40 XXX XXX XXX<br>
-                    <strong>Formular online:</strong> <a href="https://emex.ro/raportare-incalcare">Formular de raportare</a>
+                    <strong>Formular online:</strong> <a href="/raportare-incalcare">Formular de raportare</a>
                 </p>
                 
                 <h3>Pentru parteneriate media și colaborări strategice</h3>
@@ -900,7 +900,7 @@
                     <strong>Telefon:</strong> +40 XXX XXX XXX
                 </p>
                 
-                <a href="https://emex.ro/contact" class="button">Formular de contact complet</a>
+                <a href="/contact" class="button">Formular de contact complet</a>
             </div>
         </section>
         

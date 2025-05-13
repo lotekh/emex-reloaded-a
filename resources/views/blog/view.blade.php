@@ -133,21 +133,6 @@
             @endif
         </div>
 
-        {{-- <div class="flex col mb-32">
-            <h2 class="m-0 mb-8">Arhiva</h2>
-            @php
-                $monthNames = ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'];
-            @endphp
-            @foreach ($archives as $archive)
-                <p>
-                    <a href="{{ route('blog.search.archive', ['year' => $archive['year'], 'month' => $archive['month']]) }}">
-                        {{ $monthNames[$archive['month'] - 1] }} {{ $archive['year'] }}
-                    </a>
-                    ({{ $archive['articles_number'] }})
-                </p>
-            @endforeach
-        </div> --}}
-
         <div class="flex col mb-32">
             <h2 class="m-0 mb-8">Arhiva</h2>
             @php
@@ -169,13 +154,14 @@
                 <h2 class="m-0 mb-8">Tags</h2>
                 <div class="tags-list">
                     @foreach ($model->tags as $tag)
-                        <a class="tag-item" href="{{ route('blog.searchByTag', ['tagId' => $tag->id]) }}">
-                            <span>{{ $tag->name }}</span>@if(!$loop->last),&nbsp; @endif
-                        </a>
+                        <span class="tag-item">
+                            {{ $tag->name }}{{ !$loop->last ? ', ' : '' }}
+                        </span>
                     @endforeach
                 </div>
             </div>
         @endif
+
 
     </div>
 </div>
