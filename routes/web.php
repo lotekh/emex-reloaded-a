@@ -24,11 +24,11 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Middleware\AuthenticatedOnly;
 use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\CareerContactController;
-use App\Http\Middleware\RemoveMinifierTags;
+use App\Http\Middleware\MinifyHtml;
 
 require __DIR__.'/auth.php';
 
-Route::middleware([RemoveMinifierTags::class])->group(function () {
+Route::middleware([MinifyHtml::class])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::post('/', function() {
@@ -177,7 +177,6 @@ Route::middleware([RemoveMinifierTags::class])->group(function () {
     // Blog
     Route::get('/blog', [BlogArticleController::class, 'index'])->name('blog.index');
     Route::get('/blog/{slug}', [BlogArticleController::class, 'show'])->name('blog.article.show');
-    Route::get('/blog/tag/{tagId}', [BlogArticleController::class, 'searchByTag'])->name('blog.searchByTag');
     Route::get('/blogarchive', [BlogArticleController::class, 'searchByArchive'])->name('blog.search.archive');
     
     // Cine suntem
