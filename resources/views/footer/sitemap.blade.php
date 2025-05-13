@@ -1,6 +1,5 @@
 <!doctype html>
-<html ⚡ lang="ro">
-
+<html lang="ro">  
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +20,7 @@
     <meta name="geo.position" content="44.328689;26.067273">
     <meta name="ICBM" content="44.328689,26.067273">
     <style>
-        body {
+        body {/*
             -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
             -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
             -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
@@ -76,14 +75,14 @@
             to {
                 visibility: visible
             }
-        }
+        }*/
     </style><noscript>
         <style>
-            body {
+            body {/*
                 -webkit-animation: none;
                 -moz-animation: none;
                 -ms-animation: none;
-                animation: none
+                animation: none*/
             }
         </style>
     </noscript>
@@ -149,8 +148,8 @@
             text-align: left
         }
     </style>
-    <link rel="preload" href="https://cdn.ampproject.org/v0.js" as="script">
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <!--link rel="preload" href="https://cdn.ampproject.org/v0.js" as="script">
+    <script async src="https://cdn.ampproject.org/v0.js"></script-->
 </head>
 
 <body>
