@@ -571,6 +571,7 @@ use App\Models\Order;
                         <a class="desktop-terms" href="{{ url('/termeni-si-conditii') }}">Termeni si conditii</a>
                     </li>
                     <li><a href="{{ url('/confidentialitate-gdpr') }}">Protectie date</a></li>
+                    <li><a href="{{ url('/politica-de-licentiere') }}">Licentiere</a></li>
                     <li><a href="{{ url('/politica-de-retur') }}">Retur</a></li>
                     <li><a href="{{ url('/faq') }}">Faq</a></li>
                     <li><a href="{{ url('/contact') }}" class="b-0">Contact</a></li>
