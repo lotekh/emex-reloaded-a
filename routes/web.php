@@ -1,18 +1,13 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContactPageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CountyController;
 use App\Http\Controllers\PaleteController;
-use App\Http\Controllers\CookieController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ConsumController;
@@ -24,11 +19,11 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Middleware\AuthenticatedOnly;
 use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\CareerContactController;
-use App\Http\Middleware\RemoveMinifierTags;
+use App\Http\Middleware\MinifyHtml;
 
 require __DIR__.'/auth.php';
 
-Route::middleware([RemoveMinifierTags::class])->group(function () {
+Route::middleware([MinifyHtml::class])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::post('/', function() {
