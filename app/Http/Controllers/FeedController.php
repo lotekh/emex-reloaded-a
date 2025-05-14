@@ -108,9 +108,7 @@ class FeedController extends Controller
                 $description = '"' . $description . '"';
                 $product['title'] = '"' . $product['title'] . '"';
 
-                $contents .= $product['compari_category'] . ', Romtehnochim SRL,' . $product['title'] . ',' . $description . ', ' . $product['price'] . ', ' . ('https://emex.ro/storage/' . $db_product->largeImage->path).
-                             ', ' . ('https://emex.ro/' . $product['link'])  . ', 3 zile, 50,' . $product['id'] . ', ' . $product['gtin'] . ", \r\n";
-
+                $contents .= $product['compari_category'] . ', Romtehnochim SRL,' . $product['title'] . ',' . $description . ', ' . $product['price'] . ', ' . $product['image_link'] . ', ' . $product['link']  . ', 3 zile, 50,' . $product['gtin'] . ', ' . $product['id'] . ", \r\n";
                 $count++;
             }
         }
