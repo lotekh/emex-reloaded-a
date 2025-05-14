@@ -36,17 +36,6 @@ class BlogArticleController extends Controller
         return view('blog.view', compact('model', 'recentArticles', 'archives', 'monthNames'));
     }
 
-    public function searchByTag($tagId)
-    {
-        $tag = Tag::findOrFail($tagId); 
-        $blogArticles = BlogArticle::whereHas('tags', function ($query) use ($tagId) {
-            $query->where('tags.id', $tagId);
-        })->with(['tags', 'featuredImage'])->paginate(10); 
-
-        return view('blog.search_results_tags', compact('blogArticles', 'tag'));
-    }
-
-
     public function searchByArchive(Request $request)
     {
         $year = $request->input('year');

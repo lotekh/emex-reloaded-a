@@ -557,7 +557,7 @@ color: #009;
 </ul>
 <div class="example">
 <p>Exemplu de atribuire corecta pentru utilizare online:</p>
-<p>Sursa: <a href="https://www.emex.ro/titlul-articolului">Titlul articolului</a>, Emex.ro, publicat la [data], © Emex.ro 2025</p>
+<p>Sursa: <a href="/titlul-articolului">Titlul articolului</a>, Emex.ro, publicat la [data], © Emex.ro 2025</p>
 <p>Exemplu de atribuire corecta pentru materiale tiparite:</p>
 <p>"Titlul articolului", Emex.ro, publicat la [data], © Emex.ro 2025, disponibil online la www.emex.ro/titlul-articolului</p>
 </div>
