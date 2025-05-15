@@ -52,13 +52,18 @@ class ProductsRelationManager extends RelationManager
                     ->required(),
                 ])
                 ->mutateFormDataUsing(function (array $data): array {
-                    $category = Category::where('id', $this->ownerRecord->id)->with('products')->first();
-                    $max = $category->products()->max('categories_products.order');
-                    $data['order'] = $max ? $max + 1 : 1;
-                    $data['category_id'] = $this->ownerRecord->id;
-                    $data['recordId'] = 'product_id';
-
-                    return $data;
+                    $productIdToAttach = $data['product_id'];
+                    $category = Category::find($this->ownerRecord->id); // Use the $record passed to the closure
+            
+                    $currentMaxOrder = $category->products()->max('categories_products.order') ?? 0;
+                    $newOrder = $currentMaxOrder + 1;
+            
+                    $category->products()->attach([
+                        $productIdToAttach => ['order' => $newOrder],
+                    ]);
+            
+                    // Return an empty array to prevent Filament's default attach logic
+                    return ['product_id' => null, 'recordId' => 'product_id'];
                 })
             ])
             ->defaultPaginationPageOption(25)
