@@ -105,7 +105,7 @@
 </script>
 @endsection
 
-<!-- @section('breadcrumbs')
+@section('breadcrumbs')
 <div class="flex gap-xs">
     <div><a href="/produse">Produse</a></div>
     <div class="separator">/</div>
@@ -113,7 +113,7 @@
     <div class="separator">/</div>
     <div class="-ml-4 ellipsis">{{ html_entity_decode($product->sub_title) }}</div>
 </div>
-@endsection -->
+@endsection
 
 @section('content')
 @php
@@ -126,7 +126,7 @@ $baseUrl = url('/');
 
 <div class="main-container product-page" id="product_container">
 
-    <h1 class="mobile-title mt-32">{!! $product->name !!}</h1>
+    <h1 class="mobile-title mt-32">{!! $product->name !!}x</h1>
 
     <div class="w-full product-info-grid">
         <div class="col" id="imagine-produs-3">
