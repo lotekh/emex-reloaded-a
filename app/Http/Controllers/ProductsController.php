@@ -6,7 +6,7 @@ use App\Models\Product;
 use App\Models\ProductVariation;
 use Illuminate\Http\Request;
 use App\Models\CategoryFilter;
-
+use Illuminate\Support\Facades\Log;
 
 class ProductsController extends Controller
 {
@@ -76,9 +76,12 @@ class ProductsController extends Controller
         $product = Product::where('slug', $slug)
         ->with(['largeImage', 'variations.measurementUnit', 'reviews']) 
         ->firstOrFail();
+
+        Log::info(json_encode($product));
         $productId = $product->id;
         $activeTab = session("last_active_tab_{$productId}", 'Descriere');
         $categories_products = $product->categories;
+        Log::info(json_encode($categories_products));
 
         $initialPrice = $product->variations->first()->price ?? 0;
         $initialPackaging = $product->variations->first()->packaging ?? '';
