@@ -105,6 +105,16 @@
 </script>
 @endsection
 
+@section('breadcrumbs')
+<div class="flex gap-xs">
+    <div><a href="/produse">Produse</a></div>
+    <div class="separator">/</div>
+    <div class="-ml-4"><a href="{{$categories_products->unique('id')->first()->slug}}">{{$categories_products->unique('id')->first()->name}}</a></div>
+    <div class="separator">/</div>
+    <div class="-ml-4 ellipsis">{{ html_entity_decode($product->sub_title) }}</div>
+</div>
+@endsection
+
 @section('content')
 @php
 $averageRating = $product->reviews->avg('rating') ?? 5;
