@@ -23,7 +23,7 @@ use App\Http\Middleware\MinifyHtml;
 
 require __DIR__.'/auth.php';
 
-Route::middleware([MinifyHtml::class])->group(function () {
+// Route::middleware([MinifyHtml::class])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::post('/', function() {
@@ -272,5 +272,5 @@ Route::middleware([MinifyHtml::class])->group(function () {
     Route::get('/500', function () {
         abort(500);
     });
-});
+// });
 
