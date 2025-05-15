@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\CategoryResource\RelationManagers;
 
+use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -16,9 +17,11 @@ class ProductsRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('plain_name')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Select::make('product_id')
+                    ->searchable()
+                    ->label('Product slug')
+                    ->getSearchResultsUsing(fn (string $search): array => Product::where('slug', 'like', "{$search}%")->limit(10)->pluck('slug', 'id')->toArray())
+                    ->required(),
             ]);
     }
 
@@ -34,6 +37,9 @@ class ProductsRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('order'),
             ])
             ->defaultSort('order')
+            ->headerActions([
+                Tables\Actions\CreateAction::make(),
+            ])
             ->defaultPaginationPageOption(25)
             ->reorderable('order');
     }
