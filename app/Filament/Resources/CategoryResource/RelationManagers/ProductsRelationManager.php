@@ -2,11 +2,14 @@
 
 namespace App\Filament\Resources\CategoryResource\RelationManagers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Filament\Forms;
+use Filament\Forms\Components\Builder;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
+use Filament\Tables\Actions\AttachAction;
 use Filament\Tables\Table;
 
 class ProductsRelationManager extends RelationManager
@@ -38,7 +41,15 @@ class ProductsRelationManager extends RelationManager
             ])
             ->defaultSort('order')
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\AttachAction::make()
+                ->mutateFormDataUsing(function (array $data): array {
+                
+                    $category = Category::find($this->ownerRecord->id);
+                    $max = $category->products()->max('categories_products.order');
+                    $data['order'] = $max ? $max + 1 : 1;
+                
+                    return $data;
+                })
             ])
             ->defaultPaginationPageOption(25)
             ->reorderable('order');
