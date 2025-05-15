@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ asset('css/bundled/product.min.css') }}">
 @endsection
 
-<!-- @section('seo')
+@section('seo')
 <title>{{ $product->seo['title'] }}</title>
 @if($product->seo['meta_keywords'])
 <meta name="keywords" content="{{ $product->seo['meta_keywords'] }}">
@@ -82,7 +82,7 @@
 
 @if($product->seo['twitter_url'])
 <meta name="twitter:url" content="{{ $product->seo['twitter_url'] }}">
-@endif -->
+@endif
 
 <script>
     let product = @json($product);
