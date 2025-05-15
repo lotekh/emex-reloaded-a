@@ -57,8 +57,6 @@ class ProductsRelationManager extends RelationManager
                     $data['order'] = $max ? $max + 1 : 1;
                     $data['recordId'] = 'product_id';
 
-                    dd($data);
-                
                     return $data;
                 })
             ])
