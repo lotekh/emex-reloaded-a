@@ -126,7 +126,7 @@ $baseUrl = url('/');
 
 <div class="main-container product-page" id="product_container">
 
-    <h1 class="mobile-title mt-32">{!! $product->name !!}x</h1>
+    <h1 class="mobile-title mt-32">{!! $product->name !!}</h1>
 
     <div class="w-full product-info-grid">
         <div class="col" id="imagine-produs-3">
