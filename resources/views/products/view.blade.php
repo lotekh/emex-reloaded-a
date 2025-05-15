@@ -105,7 +105,7 @@
 </script>
 @endsection
 
-@section('breadcrumbs')
+<!-- @section('breadcrumbs')
 <div class="flex gap-xs">
     <div><a href="/produse">Produse</a></div>
     <div class="separator">/</div>
@@ -113,7 +113,7 @@
     <div class="separator">/</div>
     <div class="-ml-4 ellipsis">{{ html_entity_decode($product->sub_title) }}</div>
 </div>
-@endsection
+@endsection -->
 
 @section('content')
 @php
