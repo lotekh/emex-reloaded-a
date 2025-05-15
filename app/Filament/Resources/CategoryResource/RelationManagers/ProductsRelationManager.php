@@ -55,6 +55,7 @@ class ProductsRelationManager extends RelationManager
                     $category = Category::where('id', $this->ownerRecord->id)->with('products')->first();
                     $max = $category->products()->max('categories_products.order');
                     $data['order'] = $max ? $max + 1 : 1;
+                    $data['category_id'] = $this->ownerRecord->id;
                     $data['recordId'] = 'product_id';
 
                     return $data;
