@@ -2,7 +2,7 @@
 
 
 // dd($product);
-if (!$product) {
+if (!isset($product)) {
     return false; 
 }
 
