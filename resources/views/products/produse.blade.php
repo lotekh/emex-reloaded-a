@@ -178,7 +178,7 @@
                     </button>
                 @endif
 
-                @for ($i = max(1, $products->currentPage() - 2); $i <= min($products->lastPage(), $products->currentPage() + 3); $i++)
+                @for ($i = max(1, $products->currentPage() - 1); $i <= min($products->lastPage(), $products->currentPage() + 2); $i++)
 
                         <button class="{{ $i == $products->currentPage() ? 'active' : '' }}"
                             onclick="window.location.href='{{ $products->url($i) }}'" name="current_page_number" aria-label="Pagina {{ $i }}">

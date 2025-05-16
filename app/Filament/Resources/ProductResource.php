@@ -42,6 +42,11 @@ class ProductResource extends Resource
                                     ->required()
                                     ->unique(ignoreRecord: true)
                                     ->maxLength(255),
+                                Forms\Components\TextInput::make('consumption_slug')
+                                    ->unique(ignoreRecord: true)
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('application_slug')
+                                    ->maxLength(255),
                                 Forms\Components\TextInput::make('plain_name')
                                     ->maxLength(255),
                                 Forms\Components\TextInput::make('sub_title')
@@ -57,6 +62,8 @@ class ProductResource extends Resource
                                 MarkdownEditor::make('usage_details')
                                     ->columnSpanFull(),
                                 MarkdownEditor::make('technical_details')
+                                    ->columnSpanFull(),
+                                MarkdownEditor::make('consumption_details')
                                     ->columnSpanFull(),
                                 UpdatedCuratorPicker::make('technical_file_id')
                                     ->label('Technical file')

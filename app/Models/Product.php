@@ -51,6 +51,8 @@ class Product extends Model
         'consumption_jsonld',
         'consumption_details',
         'available_since',
+        'consumption_slug',
+        'application_slug',
         'ean',
         'sku',
         'mpn',
