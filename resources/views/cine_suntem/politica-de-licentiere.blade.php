@@ -257,74 +257,75 @@ color: #009;
 </div>
 <section id="introduction">
 <h2>1. Introducere</h2>
-<p>Prezentul document stabileste termenii si conditiile de utilizare a informatiilor, materialelor si continutului disponibil pe platforma Emex.ro. Acesti termeni se aplica tuturor vizitatorilor, utilizatorilor si celor care acceseaza sau folosesc continutul nostru in orice scop.</p>
-<p>Emex.ro contine o gama larga de materiale originale, inclusiv dar fara a se limita la: texte, articole, studii, analize, imagini, grafice, ilustratii, fotografii, videoclipuri, animatii, baze de date, software, aplicatii, design si alte elemente creative care sunt protejate prin legi nationale si internationale referitoare la proprietatea intelectuala.</p>
+<p><span class="alineat_span"></span>Prezentul document stabileste termenii si conditiile de utilizare a informatiilor, materialelor si continutului disponibil pe platforma Emex.ro. Acesti termeni se aplica tuturor vizitatorilor, utilizatorilor si celor care acceseaza sau folosesc continutul nostru in orice scop.<br>
+<span class="alineat_span"></span>Emex.ro contine o gama larga de materiale originale, inclusiv dar fara a se limita la: texte, articole, studii, analize, imagini, grafice, ilustratii, fotografii, videoclipuri, animatii, baze de date, software, aplicatii, design si alte elemente creative care sunt protejate prin legi nationale si internationale referitoare la proprietatea intelectuala.</p>
 <div class="info">
-<p>Prin accesarea si utilizarea platformei Emex.ro, sunteti de acord sa respectati termenii si conditiile prezentate in aceasta politica de licentiere. Daca nu sunteti de acord cu acesti termeni, va rugam sa nu folositi sau sa distribuiti continutul nostru.</p>
+<p><span class="alineat_span"></span>Prin accesarea si utilizarea platformei Emex.ro, sunteti de acord sa respectati termenii si conditiile prezentate in aceasta politica de licentiere. Daca nu sunteti de acord cu acesti termeni, va rugam sa nu folositi sau sa distribuiti continutul nostru.</p>
 </div>
 </section>
 <section id="definitions">
 <h2>2. Definitii</h2>
 <p>In contextul prezentei politici de licentiere, urmatorii termeni vor avea semnificatiile de mai jos:</p>
 <ul>
-<li><strong>Emex.ro</strong> - platforma online accesibila la adresa www.emex.ro, inclusiv toate subdomeniile si serviciile conexe</li>
-<li><strong>Continut</strong> - orice material disponibil pe platforma, incluzand dar fara a se limita la: texte, articole, imagini, grafice, fotografii, videoclipuri, baze de date, aplicatii, design si alte creatii</li>
-<li><strong>Utilizator</strong> - orice persoana fizica sau juridica care acceseaza sau foloseste platforma sau continutul acesteia</li>
-<li><strong>Licenta</strong> - permisiunea scrisa acordata de Emex.ro pentru utilizarea continutului sau, in conditiile specificate</li>
-<li><strong>Acord scris prealabil</strong> - document oficial emis de Emex.ro care permite utilizarea specifica a continutului, in conditiile agreate</li>
-<li><strong>Utilizare comerciala</strong> - folosirea continutului in orice mod care genereaza direct sau indirect beneficii economice sau avantaje comerciale</li>
-<li><strong>Utilizare necomerciala</strong> - folosirea continutului fara scop lucrativ, in contexte educationale, informative sau personale</li>
-<li><strong>Atribuire</strong> - recunoasterea expresa a Emex.ro ca sursa originala a continutului utilizat</li>
-<li><strong>Opera derivata</strong> - o lucrare bazata pe sau care incorporeaza continut de pe Emex.ro, dar care aduce modificari substantiale sau elemente creative noi</li>
+<li><strong>Emex.ro</strong> - platforma online accesibila la adresa www.emex.ro, inclusiv toate subdomeniile si serviciile conexe;</li>
+<li><strong>Continut</strong> - orice material disponibil pe platforma, incluzand dar fara a se limita la: texte, articole, imagini, grafice, fotografii, videoclipuri, baze de date, aplicatii, design si alte creatii;</li>
+<li><strong>Utilizator</strong> - orice persoana fizica sau juridica care acceseaza sau foloseste platforma sau continutul acesteia;</li>
+<li><strong>Licenta</strong> - permisiunea scrisa acordata de Emex.ro pentru utilizarea continutului sau, in conditiile specificate;</li>
+<li><strong>Acord scris prealabil</strong> - document oficial emis de Emex.ro care permite utilizarea specifica a continutului, in conditiile agreate;</li>
+<li><strong>Utilizare comerciala</strong> - folosirea continutului in orice mod care genereaza direct sau indirect beneficii economice sau avantaje comerciale;</li>
+<li><strong>Utilizare necomerciala</strong> - folosirea continutului fara scop lucrativ, in contexte educationale, informative sau personale;</li>
+<li><strong>Atribuire</strong> - recunoasterea expresa a Emex.ro ca sursa originala a continutului utilizat;</li>
+<li><strong>Opera derivata</strong> - o lucrare bazata pe sau care incorporeaza continut de pe Emex.ro, dar care aduce modificari substantiale sau elemente creative noi.</li>
 </ul>
 </section>
 <section id="ownership">
 <h2>3. Drepturi de autor si proprietate intelectuala</h2>
-<p>Tot continutul disponibil pe Emex.ro este protejat de legislatia nationala si internationala privind drepturile de autor si alte drepturi de proprietate intelectuala. Aceste drepturi includ, dar nu se limiteaza la:</p>
+<p><span class="alineat_span"></span>Tot continutul disponibil pe Emex.ro este protejat de legislatia nationala si internationala privind drepturile de autor si alte drepturi de proprietate intelectuala. Aceste drepturi includ, dar nu se limiteaza la:</p>
 <ul>
-<li>Drepturi de autor pentru toate textele, articolele, si alte opere scrise</li>
-<li>Drepturi asupra bazelor de date si compilatiilor de informatii</li>
-<li>Drepturi asupra marcilor comerciale, logourilor si denumirilor comerciale</li>
-<li>Drepturi asupra designului si aspectului vizual al platformei</li>
-<li>Drepturi asupra fotografiilor, ilustratiilor, graficelor si altor opere vizuale</li>
-<li>Drepturi asupra materialelor video si audio</li>
-<li>Drepturi asupra codului sursa, aplicatiilor si altor elemente software</li>
+<li>Drepturi de autor pentru toate textele, articolele, si alte opere scrise;</li>
+<li>Drepturi asupra bazelor de date si compilatiilor de informatii;</li>
+<li>Drepturi asupra marcilor comerciale, logourilor si denumirilor comerciale;</li>
+<li>Drepturi asupra designului si aspectului vizual al platformei;</li>
+<li>Drepturi asupra fotografiilor, ilustratiilor, graficelor si altor opere vizuale;</li>
+<li>Drepturi asupra materialelor video si audio;</li>
+<li>Drepturi asupra codului sursa, aplicatiilor si altor elemente software.</li>
 </ul>
-<p>Emex.ro este detinatorul exclusiv al drepturilor de autor si al altor drepturi de proprietate intelectuala asupra continutului creat de echipa sa. In cazul continutului furnizat de terti sau de parteneri, Emex.ro detine licentele necesare pentru utilizarea acestuia pe platforma sa.</p>
+<p><span class="alineat_span"></span>Emex.ro este detinatorul exclusiv al drepturilor de autor si al altor drepturi de proprietate intelectuala asupra continutului creat de echipa sa. In cazul continutului furnizat de terti sau de parteneri, Emex.ro detine licentele necesare pentru utilizarea acestuia pe platforma sa.</p>
 <div class="warning">
-<p>Utilizarea neautorizata a continutului Emex.ro reprezinta o incalcare a drepturilor de autor si poate atrage consecinte juridice severe, inclusiv dar fara a se limita la actiuni in instanta pentru recuperarea prejudiciilor.</p>
+<p><span class="alineat_span"></span>Utilizarea neautorizata a continutului Emex.ro reprezinta o incalcare a drepturilor de autor si poate atrage consecinte juridice severe, inclusiv dar fara a se limita la actiuni in instanta pentru recuperarea prejudiciilor.</p>
 </div>
 <h3>3.1 Durata protectiei drepturilor de autor</h3>
-<p>Drepturile de autor pentru materialele originale de pe Emex.ro sunt protejate conform legislatiei in vigoare, pentru intreaga durata prevazuta de lege. In Romania, aceasta protectie se extinde pe toata durata vietii autorului plus 70 de ani dupa decesul acestuia pentru persoane fizice, respectiv 70 de ani de la data primei publicari pentru opere colective sau anonime.</p>
+<p><span class="alineat_span"></span>Drepturile de autor pentru materialele originale de pe Emex.ro sunt protejate conform legislatiei in vigoare, pentru intreaga durata prevazuta de lege. In Romania, aceasta protectie se extinde pe toata durata vietii autorului plus 70 de ani dupa decesul acestuia pentru persoane fizice, respectiv 70 de ani de la data primei publicari pentru opere colective sau anonime.</p>
 <h3>3.2 Informatii de identificare a drepturilor de proprietate</h3>
-<p>Toate paginile si materialele de pe Emex.ro contin informatii de identificare a drepturilor de proprietate, inclusiv mentiuni privind drepturile de autor, logo-uri, marci inregistrate sau alte elemente care identifica Emex.ro ca detinator sau utilizator autorizat. Este strict interzisa indepartarea sau modificarea acestor informatii de identificare.</p>
+<p><span class="alineat_span"></span>Toate paginile si materialele de pe Emex.ro contin informatii de identificare a drepturilor de proprietate, inclusiv mentiuni privind drepturile de autor, logo-uri, marci inregistrate sau alte elemente care identifica Emex.ro ca detinator sau utilizator autorizat.<br>
+<span class="alineat_span"></span>Este strict interzisa indepartarea sau modificarea acestor informatii de identificare.</p>
 </section>
 <section id="usage">
 <h2>4. Conditii generale de utilizare a continutului</h2>
-<p>Utilizarea oricarui continut de pe Emex.ro, indiferent de scop (comercial sau necomercial), inclusiv reproducerea, distribuirea, modificarea, publicarea, afisarea, incorporarea in alte opere sau transmiterea prin orice mijloace, <strong>necesita obtinerea prealabila a unui acord scris</strong> din partea Emex.ro.</p>
-<p>Acest principiu fundamental reflecta valoarea si originalitatea continutului nostru, precum si investitiile semnificative pe care le facem pentru crearea, mentinerea si imbunatatirea platformei si a materialelor disponibile.</p>
+<p><span class="alineat_span"></span>Utilizarea oricarui continut de pe Emex.ro, indiferent de scop (comercial sau necomercial), inclusiv reproducerea, distribuirea, modificarea, publicarea, afisarea, incorporarea in alte opere sau transmiterea prin orice mijloace, <strong><em>necesita obtinerea prealabila a unui acord scris</em></strong> din partea Emex.ro.<br>
+<span class="alineat_span"></span>Acest principiu fundamental reflecta valoarea si originalitatea continutului nostru, precum si investitiile semnificative pe care le facem pentru crearea, mentinerea si imbunatatirea platformei si a materialelor disponibile.</p>
 <h3>4.1 Principii generale</h3>
 <p>Toate solicitarile pentru utilizarea continutului nostru vor fi evaluate pe baza urmatoarelor principii:</p>
 <ul>
-<li>Respectarea integritatii continutului original</li>
-<li>Atribuirea corespunzatoare a sursei</li>
-<li>Utilizarea in contexte adecvate si relevante</li>
-<li>Protejarea valorii si reputatiei brandului Emex.ro</li>
-<li>Respectarea drepturilor tertilor care pot fi implicate</li>
+<li>Respectarea integritatii continutului original;</li>
+<li>Atribuirea corespunzatoare a sursei;</li>
+<li>Utilizarea in contexte adecvate si relevante;</li>
+<li>Protejarea valorii si reputatiei brandului Emex.ro;</li>
+<li>Respectarea drepturilor tertilor care pot fi implicate.</li>
 </ul>
 <h3>4.2 Acorduri personalizate</h3>
-<p>Recunoastem diversitatea nevoilor utilizatorilor nostri si suntem deschisi sa negociem acorduri personalizate pentru utilizarea continutului nostru in functie de specificul fiecarei solicitari. Aceste acorduri pot varia in functie de:</p>
+<p><span class="alineat_span"></span>Recunoastem diversitatea nevoilor utilizatorilor nostri si suntem deschisi sa negociem acorduri personalizate pentru utilizarea continutului nostru in functie de specificul fiecarei solicitari. Aceste acorduri pot varia in functie de:</p>
 <ul>
-<li>Tipul continutului solicitat</li>
-<li>Scopul si contextul utilizarii</li>
-<li>Durata pentru care se solicita dreptul de utilizare</li>
-<li>Audienta tinta si impactul potential</li>
-<li>Beneficiile reciproce pentru ambele parti</li>
+<li>Tipul continutului solicitat;</li>
+<li>Scopul si contextul utilizarii;</li>
+<li>Durata pentru care se solicita dreptul de utilizare;</li>
+<li>Audienta tinta si impactul potential;</li>
+<li>Beneficiile reciproce pentru ambele parti.</li>
 </ul>
 </section>
 <section id="permission">
 <h2>5. Solicitarea permisiunii de utilizare</h2>
-<p>Pentru a obtine permisiunea de a utiliza continutul nostru, va rugam sa urmati procedura de mai jos:</p>
+<p><span class="alineat_span"></span>Pentru a obtine permisiunea de a utiliza continutul nostru, va rugam sa urmati procedura de mai jos:</p>
 <h3>5.1 Formular de solicitare</h3>
 <p>Transmiteti o solicitare scrisa care sa includa urmatoarele informatii:</p>
 <ul>
