@@ -53,25 +53,25 @@ if ( $tipsuprafata == "Rigips" ) {
 <p>
 <?php
 if ( $tipsuprafata == "Zidarie" ) {
-  echo "<strong>Consumul Mediu</strong> <span class='strat mark'>la 1 strat</span> de <span class='RaspunsEchoBold'>Amorsa Acrilica de Perete “Emex”</span> pentru<br/>";
+  echo "<strong>Consumul Mediu</strong> <span class='strat mark'>la 1 strat</span> de <span class='RaspunsEchoBold'>Amorsa Elastomerica Universala “Emex Core-AQX”</span> pentru<br/>";
   echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br/>
 este de minim <span class='RaspunsEchoBold'>$consum_amorsa_min l</span> - la o diluare cu <span class='RaspunsEchoBold'>$consum_apa_max l</span> de apa <br/>
 pana la maxim <span class='RaspunsEchoBold'>$consum_amorsa_max l</span> - la o diluare cu <span class='RaspunsEchoBold'>$consum_apa_min l</span> de apa.<br/><br/>";
 }
 if ( $tipsuprafata == "Tencuiala driscuita" ) {
-  echo "<strong>Consumul Mediu</strong> <span class='strat mark'>la 1 strat</span> de <span class='RaspunsEchoBold'>Amorsa Acrilica de Perete “Emex”</span> pentru<br/>";
+  echo "<strong>Consumul Mediu</strong> <span class='strat mark'>la 1 strat</span> de <span class='RaspunsEchoBold'>Amorsa Elastomerica Universala “Emex Core-AQX”</span> pentru<br/>";
   echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br/>
 este de minim <span class='RaspunsEchoBold'>$consum_amorsa_min l</span> - la o diluare cu <span class='RaspunsEchoBold'>$consum_apa_max l</span> de apa <br/>
 pana la maxim <span class='RaspunsEchoBold'>$consum_amorsa_max l</span> - la o diluare cu <span class='RaspunsEchoBold'>$consum_apa_min l</span> de apa.<br/><br/>";
 }
 if ( $tipsuprafata == "Glet de ipsos" ) {
-  echo "<strong>Consumul Mediu</strong> <span class='strat mark'>la 1 strat</span> de <span class='RaspunsEchoBold'>Amorsa Acrilica de Perete “Emex”</span> pentru<br/>";
+  echo "<strong>Consumul Mediu</strong> <span class='strat mark'>la 1 strat</span> de <span class='RaspunsEchoBold'>Amorsa Elastomerica Universala “Emex Core-AQX”</span> pentru<br/>";
   echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br/>
 este de minim <span class='RaspunsEchoBold'>$consum_amorsa_min l</span> - la o diluare cu <span class='RaspunsEchoBold'>$consum_apa_max l</span> de apa <br/>
 pana la maxim <span class='RaspunsEchoBold'>$consum_amorsa_max l</span> - la o diluare cu <span class='RaspunsEchoBold'>$consum_apa_min l</span> de apa.<br/><br/>";
 }
 if ( $tipsuprafata == "Rigips" ) {
-  echo "<strong>Consumul Mediu</strong> <span class='strat mark'>la 1 strat</span> de <span class='RaspunsEchoBold'>Amorsa Acrilica de Perete “Emex”</span> pentru<br/>";
+  echo "<strong>Consumul Mediu</strong> <span class='strat mark'>la 1 strat</span> de <span class='RaspunsEchoBold'>Amorsa Elastomerica Universala “Emex Core-AQX”</span> pentru<br/>";
   echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br/>
 este de minim <span class='RaspunsEchoBold'>$consum_amorsa_min l</span> - la o diluare cu <span class='RaspunsEchoBold'>$consum_apa_max l</span> de apa <br/>
 pana la maxim <span class='RaspunsEchoBold'>$consum_amorsa_max l</span> - la o diluare cu <span class='RaspunsEchoBold'>$consum_apa_min l</span> de apa.<br/><br/>";
