@@ -63,6 +63,8 @@ class ProductResource extends Resource
                                     ->columnSpanFull(),
                                 MarkdownEditor::make('technical_details')
                                     ->columnSpanFull(),
+                                MarkdownEditor::make('consumption_details')
+                                    ->columnSpanFull(),
                                 UpdatedCuratorPicker::make('technical_file_id')
                                     ->label('Technical file')
                                     ->relationship('technicalFile', 'technical_file_id')
