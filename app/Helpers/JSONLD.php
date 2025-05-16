@@ -10,7 +10,7 @@ class JSONLD
     public static function make($prefix = ''): array
     {
         $fields = [
-            Textarea::make('jsonld.description')
+            Textarea::make($prefix . 'jsonld.description')
                 ->label('JSON-LD description')
                 ->rows(10)
                 ->columnSpan(3),
@@ -18,7 +18,7 @@ class JSONLD
 
         if($prefix == 'blog') {
             $fields = array_merge($fields, [
-                TextInput::make('jsonld.alternativeHeadline')
+                TextInput::make($prefix . 'jsonld.alternativeHeadline')
                     ->label('JSON-LD Alternative Headline')
                     ->columnSpan(3),
             ]);
