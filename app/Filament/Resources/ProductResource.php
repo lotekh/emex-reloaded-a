@@ -46,7 +46,6 @@ class ProductResource extends Resource
                                     ->unique(ignoreRecord: true)
                                     ->maxLength(255),
                                 Forms\Components\TextInput::make('application_slug')
-                                    ->unique(ignoreRecord: true)
                                     ->maxLength(255),
                                 Forms\Components\TextInput::make('plain_name')
                                     ->maxLength(255),
