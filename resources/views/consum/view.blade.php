@@ -93,7 +93,7 @@
     @endphp
     <div class="main-container" id="consum-page">
         <div class="w-full flex justify-center">
-            <h2 class="text-center dark-blue m-0 mt-16">CALCULATOR CONSUM {!! $product->name !!}</h2>
+            <h2 class="text-center dark-blue m-0 mt-16 mb-16">CALCULATOR CONSUM {!! $product->name !!}</h2>
         </div>
 
         <div class="consum-container grid-cols-11">
