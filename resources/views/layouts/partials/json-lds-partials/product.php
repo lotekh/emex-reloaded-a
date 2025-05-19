@@ -8,7 +8,7 @@ if (!isset($product)) {
 
 $sub_title = $product->sub_title;
 $lightBoxImageUrl = $product->largeImage->url ?? '';
-$json_ld_description = strip_tags($product->description);
+$json_ld_description = $product->jsonld['description'];
 $sku = $product->sku ?? '';
 $mpn = $product->mpn ?? '';
 $gtin = $product->ean ?? '';

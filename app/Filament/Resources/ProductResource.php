@@ -8,7 +8,6 @@ use App\Filament\Resources\ProductResource\RelationManagers\SimilarProductsRelat
 use App\Helpers\JSONLD;
 use App\Helpers\SeoForm;
 use App\Models\Product;
-use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\PathGenerators\DefaultPathGenerator;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;

@@ -7,7 +7,7 @@ if (!isset($product)) {
 $slug = $product->slug;
 $sub_title = $product->sub_title;
 $lightBoxImageUrl = $product->largeImage->url ?? '';
-$json_ld_description = strip_tags($product->description);
+$json_ld_description = $product->consumption_jsonld['description'];
 $sku = $product->sku;
 $mpn = $product->variations->first()->mpn ?? '';
 $gtin = $product->variations->first()->ean ?? '';
