@@ -21,22 +21,33 @@
     </p>
 
     <p><strong>Delivery Info:</strong><br>
-        @php 
-            $delivery = json_decode($record->delivery_information, true); 
-        @endphp
+    @php
+        $delivery = json_decode($record->delivery_information, true);
+    @endphp
+
+    @if(is_array($delivery))
         @foreach($delivery as $key => $value)
             {{ ucfirst(str_replace('_', ' ', $key)) }}: {{ $value }}<br>
         @endforeach
+    @else
+        <em>Nu există informații de livrare.</em><br>
+    @endif
     </p>
 
     <p><strong>Billing Info:</strong><br>
-        @php 
-            $billing = json_decode($record->company_information, true); 
-        @endphp
+    @php
+        $billing = json_decode($record->company_information, true);
+    @endphp
+
+    @if(is_array($billing))
         @foreach($billing as $key => $value)
             {{ ucfirst(str_replace('_', ' ', $key)) }}: {{ $value }}<br>
         @endforeach
+    @else
+        <em>Nu există informații de facturare.</em><br>
+    @endif
     </p>
+
 
     <p><strong>Payment Method:</strong> {{ $record->payment_method }}</p>
     <p><strong>Total:</strong> {{ number_format($record->total, 2) }} RON</p>
