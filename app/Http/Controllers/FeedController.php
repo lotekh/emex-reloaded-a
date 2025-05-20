@@ -660,23 +660,7 @@ class FeedController extends Controller
 
     public function getDatabaseProductWithSlug($slug)
     {
-        $product_id = Slugs::find()->where([
-            'type' => 'product',
-            'slug' => $slug
-        ])->one();
-        if ($product_id) {
-            $db_product = Products::find()->where([
-                'id' => $product_id->entity_id
-            ])->one();
-
-            if ($db_product) {
-                return $db_product;
-            } else {
-                return null;
-            }
-        } else {
-            return null;
-        }
+        return Product::where('slug', $slug)->first();
     }
 
     public function proiectCasa()
@@ -901,30 +885,31 @@ class FeedController extends Controller
         echo 'ID Produs, Cod Produs, Nume Produs, Descriere, Pret, Pret vechi, Categorie, Stoc, URL Imagine 1, URL Imagine 2, URL Imagine 3, URL Imagine 4' . "\r\n";
 
         $products = $this->getEmagProducts();
+
         $products = $this->getVariationCorrespondents($products);
-        
-        foreach ($products as $key => $product) {
-            $dbProduct = $this->getDatabaseProductWithSlug($product['slug']);
+
+        foreach ($products as $product) {
+            $dbProduct = $product->product;
 
             if ($dbProduct) {
-                $categories_products = CategoriesProducts::findAll([
-                    'product_id' => $dbProduct->id
-                ]);
-
-                foreach ($categories_products as $category_product) {
-                    $category_name = $category_product->category->name;
-                    break;
-                }
+                $category_name = $dbProduct->categories->first()->name;
 
                 $description = trim(preg_replace("/\r|\n/", "", str_replace('    ', '', strip_tags(substr($dbProduct->description, 0, strpos($dbProduct->description, '<p class="Caracteristici">'))))));
                 $description = str_replace('“', '', $description);
                 $description = str_replace('”', '', $description);
+                $description = str_replace('"', '', $description);
                 $description = '"' . $description . '"';
-                $product_url = 'https://emex.ro/' . $dbProduct->slug;
-                $image_url = $dbProduct->largeImage->url;
-                $fisa_tehnica = 'https://emex.ro' . $dbProduct->fisa_tehnica;
+                // $product_url = 'https://emex.ro/' . $dbProduct->slug; 
+                if($dbProduct->largeImage) {
+                    $image_url = $dbProduct->largeImage->url;
+                }
+                else {
+                    $image_url = '';
+                }
+                // $fisa_tehnica = 'https://emex.ro' . $dbProduct->fisa_tehnica;
 
-                $price = round(floatval($product['price_integer'] . '.' . $product['price_decimals']) * 1.1, 2);
+                // $price = round(floatval($product['price_integer'] . '.' . $product['price_decimals']) * 1.1, 2);
+                $price = number_format(round($product['price'] * 1.1, 2), 2, '.', '');
                 echo $product['sku'] . ', ' . $product['ean'] . ', ' . $product['name'] . ',' . $description . ', ' . $price . ', ,' . $category_name . ', 100,'  . $image_url . ', , ,'. "\r\n";
             }
         }
