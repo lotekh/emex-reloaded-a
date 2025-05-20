@@ -252,6 +252,8 @@ require __DIR__.'/auth.php';
         Route::get('/okazii', [FeedController::class, 'okazii'])->name('feeds.okazii');
     
         Route::get('/merxu', [FeedController::class, 'merxu'])->name('feeds.merxu');
+
+        Route::get('/esell', [FeedController::class, 'esell'])->name('feeds.esell');
     });
     
     // Routes for slugs
