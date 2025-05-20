@@ -55,7 +55,7 @@
 
         @if(is_array($billing))
             @if($record->billing_type == 0)
-                {{-- Persoană fizică --}}
+                {{-- Persoana fizica --}}
                 Nume: {{ $billing['person_first_name'] ?? '' }} {{ $billing['person_last_name'] ?? '' }}<br>
                 Telefon: {{ $billing['person_phone'] ?? '—' }}<br>
                 Email: {{ $billing['person_email'] ?? '—' }}<br>
@@ -65,7 +65,7 @@
                 Localitate:
                     {{ \App\Models\City::find($billing['person_city_id'] ?? null)->name ?? '—' }}<br>
             @else
-                {{-- Persoană juridică --}}
+                {{-- Persoana juridica --}}
                 Nume firmă: {{ $billing['organization_name'] ?? '—' }}<br>
                 CUI: {{ $billing['organization_cui'] ?? '—' }}<br>
                 Telefon: {{ $billing['organization_phone'] ?? '—' }}<br>
@@ -85,18 +85,42 @@
         @endif
     </p>
 
+    {{-- PRODUCT VARIATIONS --}}
+    @if ($record->productVariations->count())
+        <br><strong>Produse comandate:</strong><br>
+        @foreach ($record->productVariations as $prod)
+            <p>
+                <strong>{{ $loop->iteration }}.</strong> {{ $prod->name }}<br>
+                Cantitate: {{ $prod->pivot->quantity }}<br>
+                Preț unitar: {{ number_format($prod->pivot->price, 2) }} RON<br>
+                Valoare totală: {{ number_format($prod->pivot->price * $prod->pivot->quantity, 2) }} RON<br>
+            </p>
+        @endforeach
+    @endif
+
     {{-- PAYMENT & PRICES --}}
+    <br>
+    <p><strong>Tip livrare:</strong>
+        @if ($record->delivery_type === 0)
+            Livrare prin curier
+        @elseif ($record->delivery_type === 1)
+            Ridicare personală
+        @else
+            —
+        @endif
+    </p>
     <p><strong>Metodă de plată:</strong> {{ $record->payment_method ?? '—' }}</p>
     <p><strong>Total:</strong> {{ number_format($record->total ?? 0, 2) }} RON</p>
-    <p><strong>Cost transport:</strong>
-        {{ $record->transport_price ? number_format($record->transport_price, 2) . ' RON' : '—' }}
-    </p>
-    <p><strong>Transport fără TVA:</strong>
-        {{ $record->transport_price_no_tva ? number_format($record->transport_price_no_tva, 2) . ' RON' : '—' }}
-    </p>
     <p><strong>Total fără TVA:</strong>
         {{ $record->total_no_tva ? number_format($record->total_no_tva, 2) . ' RON' : '—' }}
     </p>
+    <p><strong>Cost transport:</strong>
+        {{ $record->transport_price ? number_format($record->transport_price, 2) . ' RON' : '—' }}
+    </p>
+    <p><strong>Cost transport fără TVA:</strong>
+        {{ $record->transport_price_no_tva ? number_format($record->transport_price_no_tva, 2) . ' RON' : '—' }}
+    </p>
     <p><strong>Plătită:</strong> {{ $record->is_paid ? 'DA' : 'NU' }}</p>
+
 </body>
 </html>
