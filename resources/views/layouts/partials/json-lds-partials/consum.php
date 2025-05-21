@@ -13,7 +13,7 @@ $mpn = $product->variations->first()->mpn ?? '';
 $gtin = $product->variations->first()->ean ?? '';
 $first_price = $product->variations->first()->price ?? 0;
 $ambalare = $product->variations->first()->packaging ?? '';
-$measurementUnit = 'LTR'; // Exemplu: poți ajusta dacă ai această informație
+$measurementUnit = 'LTR'; // Example
 $categoryName = $category->name ?? '';
 
 
@@ -35,6 +35,11 @@ $consum_json = [
     'sku' => $sku,
     'mpn' => $mpn,
     'gtin' => $gtin,
+    'aggregateRating' => [
+        '@type' => 'AggregateRating',
+        'ratingValue' => $avgRating,
+        'reviewCount' => $ratingCount,
+    ],
     'offers' => [
         '@type' => 'Offer',
         'priceCurrency' => 'RON',

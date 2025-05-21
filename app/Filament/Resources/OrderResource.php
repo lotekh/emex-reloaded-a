@@ -21,6 +21,9 @@ use Filament\Tables\Filters\Filter;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Grid;
 use Filament\Tables\Enums\FiltersLayout;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Blade;
+// use Filament\Tables\Actions\Action;
 
 class OrderResource extends Resource
 {
@@ -130,6 +133,27 @@ class OrderResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 // Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('pdf')
+                    ->label('PDF')
+                    ->color('success')
+                    ->icon('heroicon-o-arrow-down-tray')
+                    ->action(function (Order $record) {
+                        $billing = json_decode($record->company_information, true);
+
+                        if ($record->billing_type == 1) {
+                            $completeName = $billing['organization_name'] ?? 'client';
+                        } else {
+                            $completeName = trim(($billing['person_first_name'] ?? '') . ' ' . ($billing['person_last_name'] ?? ''));
+                        }
+
+                        $fileName = $record->identifier . '_' . $completeName . '.pdf';
+
+                        return response()->streamDownload(function () use ($record) {
+                            echo Pdf::loadHtml(
+                                Blade::render('pdf.order-admin', ['record' => $record])
+                            )->stream();
+                        }, $fileName);
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
