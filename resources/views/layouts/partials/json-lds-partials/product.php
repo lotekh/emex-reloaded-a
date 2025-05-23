@@ -1,7 +1,5 @@
 <?php
 
-
-// dd($product);
 if (!isset($product)) {
     return false; 
 }
