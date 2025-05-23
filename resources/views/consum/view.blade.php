@@ -1,8 +1,3 @@
-<script type="application/ld+json">
-{!! include(resource_path('views/layouts/partials/json-lds-partials/consum.php')) !!}
-</script>
-
-
 @extends('layout.layout')
 
 @section('seo')

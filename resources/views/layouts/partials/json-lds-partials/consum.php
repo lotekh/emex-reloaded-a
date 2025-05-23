@@ -7,9 +7,7 @@ if (!isset($product)) {
 $slug = $product->slug;
 $sub_title = $product->sub_title;
 $lightBoxImageUrl = $product->largeImage->url ?? '';
-// $json_ld_description = $product->consumption_jsonld['description'];
-$consumptionJsonLd = json_decode($product->consumption_jsonld, true);
-$json_ld_description = $consumptionJsonLd['description'] ?? '';
+$json_ld_description = $product->consumption_jsonld['description'];
 $sku = $product->sku;
 $mpn = $product->variations->first()->mpn ?? '';
 $gtin = $product->variations->first()->ean ?? '';
@@ -20,7 +18,6 @@ $categoryName = $category->name ?? '';
 
 
 $ratingCount = $product->reviews->count() ?: 1;
-// $ratingCount = max($product->reviews->count(), 1);
 $avgRating = $product->reviews->avg('rating') ?: 5;
 
 $productUrl = url($product->slug);
