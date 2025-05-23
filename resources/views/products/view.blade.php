@@ -1,3 +1,7 @@
+<script type="application/ld+json">
+{!! include(resource_path('views/layouts/partials/json-lds-partials/product.php')) !!}
+</script>
+
 @extends('layout.layout')
 
 @section('css')

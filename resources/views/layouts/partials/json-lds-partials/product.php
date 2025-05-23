@@ -1,14 +1,14 @@
 <?php
 
-
-// dd($product);
 if (!isset($product)) {
     return false; 
 }
 
 $sub_title = $product->sub_title;
 $lightBoxImageUrl = $product->largeImage->url ?? '';
-$json_ld_description = $product->jsonld['description'];
+// $json_ld_description = $product->jsonld['description'];
+$jsonLd = json_decode($product->jsonld, true);
+$json_ld_description = $jsonLd['description'] ?? '';
 $sku = $product->sku ?? '';
 $mpn = $product->mpn ?? '';
 $gtin = $product->ean ?? '';
@@ -17,6 +17,7 @@ $ambalare = $product->variations->first()->packaging ?? '';
 $measurementUnit = 'LTR'; // Example
 
 $ratingCount = $product->reviews->count() ?: 1;
+// $ratingCount = max($product->reviews->count(), 1);
 $avgRating = $product->reviews->avg('rating') ?: 5;
 
 $product_json = [
