@@ -690,7 +690,8 @@ use App\Models\Order;
                     <li><a href="{{ url('/politica-de-mediu') }}" title="Politica de Mediu">Politica de Mediu</a></li>
                     <li><a href="{{ url('/politica-sanatate-securitate') }}" title="Politica de Securitate">Politica de Securitate</a></li>
                     <li><a href="{{ url('/certificari-iso') }}" title="Certificari ISO">Certificari ISO</a></li>
-                    <li><a href="https://emex.ro/catalog-emex.pdf" title="Catalog Emex">Catalog “Emex”</a></li>
+                    <li><a href="{{ asset('catalog-emex.pdf') }}" title="Catalog Emex">Catalog “Emex”</a></li>
+
                 </ul>
             </div>
             <div class="categorii" id="produse" onclick="toggleAccordion('produse')">
