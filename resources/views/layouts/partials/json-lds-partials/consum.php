@@ -17,8 +17,8 @@ $measurementUnit = 'LTR'; // Example
 $categoryName = $category->name ?? '';
 
 
-$ratingCount = $product->reviews->count() ?? 1;
-$avgRating = $product->reviews->avg('rating') ?? 5;
+$ratingCount = $product->reviews->count() ?: 1;
+$avgRating = $product->reviews->avg('rating') ?: 5;
 
 $productUrl = url($product->slug);
 
