@@ -1,5 +1,16 @@
 @extends('layout.layout')
 
+@php
+    $consumJson = include resource_path('views/layouts/partials/json-lds-partials/consum.php');
+@endphp
+
+@if($consumJson)
+    <script type="application/ld+json">
+        {!! $consumJson !!}
+    </script>
+@endif
+
+
 @section('seo')
     <title>{{ $product->consumption_seo['title'] }}</title>
 
