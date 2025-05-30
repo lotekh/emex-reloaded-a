@@ -35,19 +35,13 @@ function getEANFromCSV($slug, $color, $price) {
 $slug = $product->slug;
 $sub_title = $product->sub_title;
 $lightBoxImageUrl = $product->largeImage->url ?? '';
-// $json_ld_description = $product->consumption_jsonld['description'];
+$json_ld_description = $product->consumption_jsonld['description'];
 $sku = $product->sku;
 $mpn = $product->variations->first()->mpn ?? '';
 $first_price = $product->variations->first()->price ?? 0;
 $ambalare = $product->variations->first()->packaging ?? '';
 $color = $product->variations->first()->colour ?? '';
 $gtin = getEANFromCSV($slug, $color, $first_price) ?? '';
-dd([
-    'slug' => $slug,
-    'color' => $color,
-    'price' => $first_price,
-    'gtin' => $gtin,
-]);
 
 $measurementUnit = 'LTR'; // Example
 $categoryName = $category->name ?? '';
