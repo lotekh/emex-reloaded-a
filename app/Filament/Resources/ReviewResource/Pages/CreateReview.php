@@ -26,4 +26,10 @@ class CreateReview extends CreateRecord
 
         return $review;
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return static::getResource()::getUrl('create');
+    }
+
 }
