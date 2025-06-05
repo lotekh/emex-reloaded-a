@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use Illuminate\Http\Request;
+use PHPUnit\Event\Runtime\PHP;
 
 class FeedController extends Controller
 {
@@ -89,7 +90,7 @@ class FeedController extends Controller
     {
         $csv = public_path('feed/compari.csv');
 
-        if(!file_exists($csv)) {
+        if (!file_exists($csv)) {
             fopen($csv, 'w');
         }
 
@@ -127,7 +128,7 @@ class FeedController extends Controller
 
         foreach ($products as $product) {
             $categoriesProducts = $product->categories;
-            
+
             foreach ($categoriesProducts as $categoryProduct) {
                 $category_name = $categoryProduct->name;
                 break;
@@ -142,7 +143,7 @@ class FeedController extends Controller
 
             $products_details = $product->variations;
             foreach ($products_details as $product_details) {
-                if(!in_array($product_details['ean'], $this->exceptFromPreturiCulori) && !strpos($string, $product_details['ean'])) {
+                if (!in_array($product_details['ean'], $this->exceptFromPreturiCulori) && !strpos($string, $product_details['ean'])) {
                     $price = $product_details['price_integer'] . '.' . $product_details['price_decimals'];
                     echo '<p style="white-space: nowrap">' . $product_details['ean']  . ' | ' . $category_name . ' | Romtehnochim SRL | ' . $product_details['name'] . ' | ' . $product_details['sku'] . ' | ' . $price . ' | ron | pe stoc | transportul variaza in functie de localitate si de cantitatea comandata | ' . $image_url . ' | ' . $product_url . ' | ' . $description . ' \n </p> ';
                     echo "\r\n";
@@ -183,7 +184,7 @@ class FeedController extends Controller
 
             $products_details = $product->variations;
             foreach ($products_details as $product_details) {
-                if(!in_array($product_details['ean'], $this->exceptFromPreturiCulori) && !strpos($string, $product_details['ean'])) {
+                if (!in_array($product_details['ean'], $this->exceptFromPreturiCulori) && !strpos($string, $product_details['ean'])) {
                     $string .= ', ' . $product_details['ean'];
                     $price = $product_details['price'];
                     $weight = intval($product_details['weight']);
@@ -193,7 +194,7 @@ class FeedController extends Controller
         }
     }
 
-    public function shopmaniaRo() 
+    public function shopmaniaRo()
     {
         $datafeed_separator = '|';
 
@@ -215,19 +216,19 @@ class FeedController extends Controller
                 $image_url = $db_product->largeImage->url;
                 $price = $product['price'];
 
-                $string .= 
-                $product['product_type'] . $datafeed_separator . 
-                'Romtehnochim SRL' . $datafeed_separator . 
-                $product['title'] . $datafeed_separator . 
-                $db_product->sku . $datafeed_separator . 
-                $product['title'] . $datafeed_separator . 
-                $description . $datafeed_separator . 
-                $product_url . $datafeed_separator . 
-                $image_url . $datafeed_separator . 
-                $price . $datafeed_separator . 
-                'RON' . $datafeed_separator . 
-                'In stock' . $datafeed_separator . 
-                $product['gtin'] . "\n";
+                $string .=
+                    $product['product_type'] . $datafeed_separator .
+                    'Romtehnochim SRL' . $datafeed_separator .
+                    $product['title'] . $datafeed_separator .
+                    $db_product->sku . $datafeed_separator .
+                    $product['title'] . $datafeed_separator .
+                    $description . $datafeed_separator .
+                    $product_url . $datafeed_separator .
+                    $image_url . $datafeed_separator .
+                    $price . $datafeed_separator .
+                    'RON' . $datafeed_separator .
+                    'In stock' . $datafeed_separator .
+                    $product['gtin'] . "\n";
             }
         }
 
@@ -238,7 +239,7 @@ class FeedController extends Controller
     {
         $csv = public_path('feed/club-afaceri.csv');
 
-        if(!file_exists($csv)) {
+        if (!file_exists($csv)) {
             fopen($csv, 'w');
         }
 
@@ -266,7 +267,7 @@ class FeedController extends Controller
             $products_details = $product->variations;
 
             foreach ($products_details as $product_details) {
-                if(!in_array($product_details['ean'], $this->exceptFromPreturiCulori) && !strpos($string, $product_details['ean'])) {
+                if (!in_array($product_details['ean'], $this->exceptFromPreturiCulori) && !strpos($string, $product_details['ean'])) {
                     $string .= ' ' . $product_details['ean'];
 
                     $price = round(floatval($product_details['price_integer'] . '.' . $product_details['price_decimals']) * 1.14, 2);
@@ -390,10 +391,10 @@ class FeedController extends Controller
         return response($xml, 200, ['Content-Type' => 'application/xml']);
     }
 
-    public function merxu() 
+    public function merxu()
     {
         header("Content-type: text/csv; charset=utf-8");
-        
+
         header("Content-Transfer-Encoding: UTF-8");
         header("Content-Disposition: attachment; filename=merxu.csv");
         header("Pragma: no-cache");
@@ -415,7 +416,7 @@ class FeedController extends Controller
             $categoryName = 'Materiale și echipamente de construcții/Materiale de finisare/Produse chimice pentru construcții/Vopsele și lacuri';
             $products_details = $product->variations;
             foreach ($products_details as $product_details) {
-                if(!in_array($product_details['ean'], $this->exceptFromPreturiCulori) && !strpos($string, $product_details['ean'])) {
+                if (!in_array($product_details['ean'], $this->exceptFromPreturiCulori) && !strpos($string, $product_details['ean'])) {
                     $string .= ', ' . $product_details['ean'];
                     $price = number_format($product_details['price'] * 0.81, 2, '.', '');
                     echo $product_details['ean'] . ', ' . $categoryName . ', ' . $product_details['name'] . ',' . $description . ', Romtehnochim SRL, ' . $image_url . ', RON, ' . $price . ', 19' . "\r\n";
@@ -427,7 +428,7 @@ class FeedController extends Controller
     public function soline()
     {
         header("Content-type: text/csv; charset=utf-8");
-        
+
         header("Content-Transfer-Encoding: UTF-8");
         header("Content-Disposition: attachment; filename=soline.csv");
         header("Pragma: no-cache");
@@ -457,7 +458,7 @@ class FeedController extends Controller
             $siteController = new SiteController('frontend\controllers\SiteController', '');
             $products_details = $siteController->getProductsColorsPrices($product->slug)['produse'];
             foreach ($products_details as $product_details) {
-                if(!in_array($product_details['ean'], $this->exceptFromPreturiCulori) && !strpos($string, $product_details['ean'])) {
+                if (!in_array($product_details['ean'], $this->exceptFromPreturiCulori) && !strpos($string, $product_details['ean'])) {
                     $string .= ', ' . $product_details['ean'];
                     $price = round(floatval($product_details['price_integer'] . '.' . $product_details['price_decimals']) * 1.18, 2);
                     echo $product_details['sku'] . ', ' . $product_details['name'] . ',' . $description . ', ' . $image_url . ', in stoc, ' . $price . ', ' . $categoryName . ', Romtehnochim SRL' . "\r\n";
@@ -465,25 +466,6 @@ class FeedController extends Controller
             }
         }
     }
-
-    // public function checkSlugs() 
-    // {
-    //     //verifica daca toate slugurile din preturi_culori exista in DB
-    //     $preturiCuloriProducts = $this->getPreturiCuloriProducts();
-
-    //     echo '<pre>';
-
-    //     $i = 1;
-    //     foreach($preturiCuloriProducts as $preturiCuloriProduct) {
-    //         $db_product = Products::find()->where([
-    //             'slug' => $preturiCuloriProduct['slug']
-    //         ])->one();
-    //         if(!$db_product) {
-    //             var_dump($i, $preturiCuloriProduct['slug']);
-    //             $i++;
-    //         }
-    //     }
-    // }
 
     public function updateFeeds()
     {
@@ -495,44 +477,38 @@ class FeedController extends Controller
 
         echo '<pre>';
 
-        foreach($feedProducts as $row => $feedProduct) {
-            if ($row == 0) {
-                $newData[0] = $feedProduct;
+        foreach ($feedProducts as $row => $feedProduct) {
+            $produs = [];
+            $produs['price'] = $feedProduct['price'];
+            $produs['gtin'] = $feedProduct['gtin'];
+
+            $newData[$row] = [];
+            foreach ($feedProduct as $feedProductPiece) {
+                $newData[$row][] = $feedProductPiece;
             }
-            if ($row > 0) {
-                $produs = [];
-                $produs['price'] = $feedProduct['price'];
-                $produs['gtin'] = $feedProduct['gtin'];
 
-                $newData[$row] = [];
-                foreach ($feedProduct as $feedProductPiece) {
-                    $newData[$row][] = $feedProductPiece;
-                }
+            $produs['price'] = str_replace(',', '', $produs['price']);
 
-                $produs['price'] = str_replace(',', '', $produs['price']);
-                
-                $foundProductVariation = false;
+            $foundProductVariation = false;
 
-                foreach ($productVariations as $productVariation) {
-                    if ($productVariation['ean'] == $produs['gtin']) {
-                        $newData[$row][6] = number_format($productVariation['price'], 2) . ' RON';
-                        if ($productVariation['price'] != floatval($produs['price'])) {
-                        }
-                        $foundProductVariation = true;
+            foreach ($productVariations as $productVariation) {
+                if ($productVariation['ean'] == $produs['gtin']) {
+                    $newData[$row][6] = number_format($productVariation['price'], 2) . ' RON';
+                    if ($productVariation['price'] != floatval($produs['price'])) {
                     }
-                }
-                if(!$foundProductVariation) {
-                    echo 'did not find: ' . $produs['gtin'] . "\n";
+                    $foundProductVariation = true;
                 }
             }
-            $row++;
+            if (!$foundProductVariation) {
+                echo 'did not find: ' . $produs['gtin'] . "\n";
+            }
         }
 
         // EXPORT CSV
-        if(!file_exists($csv)) {
+        if (!file_exists($csv)) {
             file_put_contents($csv, '');
         }
-        
+
         $fp = fopen($csv, 'w');
 
         foreach ($newData as $rows) {
@@ -553,29 +529,29 @@ class FeedController extends Controller
         $row = 0;
         $produse = [];
         while (($data = fgetcsv($handler, 1000, ",")) !== FALSE) {
-            if ($row > 0) {
-                $produs = [];
-                $produs['id'] = $data[0];
-                $produs['title'] = $data[1];
-                $produs['description'] = $data[2];
-                $produs['link'] = $data[3];
-                $produs['image_link'] = $data[4];
-                $produs['availability'] = $data[5];
-                $produs['price'] = $data[6];
-                $produs['google_product_category'] = $data[7];
-                $produs['product_type'] = $data[8];
-                $produs['brand'] = $data[9];
-                $produs['gtin'] = $data[10];
-                $produs['material'] = $data[11];
-                $produs['compari_category'] = '' . $data[12] . '';
+            // if ($row > 0) {
+            $produs = [];
+            $produs['id'] = $data[0];
+            $produs['title'] = $data[1];
+            $produs['description'] = $data[2];
+            $produs['link'] = $data[3];
+            $produs['image_link'] = $data[4];
+            $produs['availability'] = $data[5];
+            $produs['price'] = $data[6];
+            $produs['google_product_category'] = $data[7];
+            $produs['product_type'] = $data[8];
+            $produs['brand'] = $data[9];
+            $produs['gtin'] = $data[10];
+            $produs['material'] = $data[11];
+            $produs['compari_category'] = '' . $data[12] . '';
 
-                $produs['price'] = str_replace(',', '', $produs['price']);
-                $produs['price'] = floatval($produs['price']);
-                $produs['price'] = number_format($produs['price'], 2);
-                $produs['price'] = str_replace(',', '', $produs['price']);
+            $produs['price'] = str_replace(',', '', $produs['price']);
+            $produs['price'] = floatval($produs['price']);
+            $produs['price'] = number_format($produs['price'], 2);
+            $produs['price'] = str_replace(',', '', $produs['price']);
 
-                $produse[] = $produs;
-            }
+            $produse[] = $produs;
+            // }
             $row++;
         }
 
@@ -591,7 +567,7 @@ class FeedController extends Controller
 
         while (($data = fgetcsv($handler, 1000, ",")) !== FALSE) {
             if ($row > 0) {
-                if($data[3]) {
+                if ($data[3]) {
                     $produse[] = $data[3];
                 }
             }
@@ -645,7 +621,8 @@ class FeedController extends Controller
         return ProductVariation::whereIn('ean', $products)->get();
     }
 
-    public function generateSlugFromLink($link) {
+    public function generateSlugFromLink($link)
+    {
         $slug = $link;
         $slug = explode('/', $slug);
         $slug = $slug[count($slug) - 1];
@@ -655,7 +632,7 @@ class FeedController extends Controller
 
     public function getDatabaseProduct($link)
     {
-        return Product::where('slug', $link)->first();
+        return Product::where('slug', $link)->with('largeImage')->first();
     }
 
     public function getDatabaseProductWithSlug($slug)
@@ -667,7 +644,7 @@ class FeedController extends Controller
     {
         $csv = public_path('feed/proiect-casa.csv');
 
-        if(!file_exists($csv)) {
+        if (!file_exists($csv)) {
             fopen($csv, 'w');
         }
 
@@ -688,7 +665,7 @@ class FeedController extends Controller
                 $data['widget_name'] = 'Produse Emex.ro';
                 $data['title'] = $product['title'];
                 $data['description'] = $description;
-                $data['price'] = $product['price'].' RON';
+                $data['price'] = $product['price'] . ' RON';
                 $data['category'] = $product['google_product_category'];
                 $data['subcategory'] = '';
                 $data['url'] = $product['link'];
@@ -698,7 +675,7 @@ class FeedController extends Controller
                 $data['model'] = '';
                 $data['dimensiune'] = '';
 
-                $contents .= implode(',', $data)."\r\n";
+                $contents .= implode(',', $data) . "\r\n";
             }
         }
 
@@ -708,7 +685,8 @@ class FeedController extends Controller
         return 0;
     }
 
-    public function findDuplicatesInPreturiCulori() {
+    public function findDuplicatesInPreturiCulori()
+    {
         $csv = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'preturi_culori.csv';
         $handler = fopen($csv, "r");
         $row = 0;
@@ -744,22 +722,22 @@ class FeedController extends Controller
         }
 
         $eans = [];
-        foreach($preturiCuloriProducts as $preturiCuloriProduct) {
-            if(isset($eans[$preturiCuloriProduct['ean']])) {
+        foreach ($preturiCuloriProducts as $preturiCuloriProduct) {
+            if (isset($eans[$preturiCuloriProduct['ean']])) {
                 $eans[$preturiCuloriProduct['ean']]++;
-            }
-            else {
+            } else {
                 $eans[$preturiCuloriProduct['ean']] = 1;
             }
         }
         echo '<pre>';
-        foreach($eans as $key => $ean) {
-            if($ean > 1)
+        foreach ($eans as $key => $ean) {
+            if ($ean > 1)
                 echo $key . '->' . $ean . "\n";
         }
     }
 
-    public function adtob() {
+    public function adtob()
+    {
         // $products = Products::find()->all();
 
         // $string = '';
@@ -793,7 +771,7 @@ class FeedController extends Controller
         //     // $description = '"' . $description . '"';
         //     // var_dump($description);
         //     // die();
-            
+
         //     $product_url = 'https://emex.ro/' . $product->slug;
         //     $image_url = 'https://emex.ro' . $product->largeImage->url;
 
@@ -802,7 +780,7 @@ class FeedController extends Controller
         //         if(!strpos($string, $product_details['ean'])) {
         //             $price = $product_details['price_integer'] . '.' . $product_details['price_decimals'];
         //             // echo $category_name . '| ' . '| ' . 'Emex' . '| ' . '| ' . $product_details['ean'] . '| ' . $product_details['name'] . '|' . $description . '| ' . $image_url . '| ' . $price . '| ' . 'RON' . '| ' . 'curier sau ridicare personala' . '| ' . '| ' . "\r\n";
-                    
+
         //             fputcsv($out, array($category_name, '', 'Emex', '', $product_details['ean'], $product_details['name'],$description, $image_url, $price, 'RON', 'curier sau ridicare personala', ''), '|');
         //             $string .= ' ' . $product_details['ean'];
         //         }
@@ -839,34 +817,33 @@ class FeedController extends Controller
             $description = str_replace('“', '', $description);
             $description = str_replace('”', '', $description);
             $description = '"' . $description . '"';
-            
+
             $product_url = 'https://emex.ro/' . $product->slug;
             $image_url = $product->largeImage->url;
 
 
             $products_details = $siteController->getProductsColorsPrices($product->slug)['produse'];
             foreach ($products_details as $product_details) {
-                if(!in_array($product_details['ean'], $this->exceptFromPreturiCulori) && !strpos($string, $product_details['ean'])) {
+                if (!in_array($product_details['ean'], $this->exceptFromPreturiCulori) && !strpos($string, $product_details['ean'])) {
                     $price = $product_details['price_integer'] . '.' . $product_details['price_decimals'];
                     // echo $category_name . ', ' . ', ' . 'Emex' . ', ' . ', ' . $product_details['ean'] . ', ' . $product_details['name'] . ',' . $description . ', ' . $image_url . ', ' . $price . ', ' . 'RON' . ', ' . 'curier sau ridicare personala' . ', ' . ', ' . "\r\n";
                     $datafeed_separator = '|';
-                    print  
-                    $category_name . $datafeed_separator . 
-                    '' . $datafeed_separator .
-                    'Emex' . $datafeed_separator .
-                    '' . $datafeed_separator .   
-                    $product_details['ean'] . $datafeed_separator . 
-                    $product_details['name'] . $datafeed_separator . 
-                    $description . $datafeed_separator .
-                    $image_url . $datafeed_separator .  
-                    $price . $datafeed_separator .
-                    'RON' . $datafeed_separator .
-                    'curier sau ridicare personala' . $datafeed_separator . 
-                    '' . $datafeed_separator .
-                    ''. "\n";
+                    print
+                        $category_name . $datafeed_separator .
+                        '' . $datafeed_separator .
+                        'Emex' . $datafeed_separator .
+                        '' . $datafeed_separator .
+                        $product_details['ean'] . $datafeed_separator .
+                        $product_details['name'] . $datafeed_separator .
+                        $description . $datafeed_separator .
+                        $image_url . $datafeed_separator .
+                        $price . $datafeed_separator .
+                        'RON' . $datafeed_separator .
+                        'curier sau ridicare personala' . $datafeed_separator .
+                        '' . $datafeed_separator .
+                        '' . "\n";
                     $string .= ' ' . $product_details['ean'];
-                }
-                else {
+                } else {
                     $duplicates[] = $product_details['ean'];
                 }
             }
@@ -875,7 +852,8 @@ class FeedController extends Controller
         // var_dump('duplicates', $duplicates); die();
     }
 
-    public function esell() {
+    public function esell()
+    {
         header("Content-type: text/csv");
         header("Content-Transfer-Encoding: UTF-8");
         header("Content-Disposition: attachment; filename=esell.csv");
@@ -900,22 +878,22 @@ class FeedController extends Controller
                 $description = str_replace('"', '', $description);
                 $description = '"' . $description . '"';
                 // $product_url = 'https://emex.ro/' . $dbProduct->slug; 
-                if($dbProduct->largeImage) {
+                if ($dbProduct->largeImage) {
                     $image_url = $dbProduct->largeImage->url;
-                }
-                else {
+                } else {
                     $image_url = '';
                 }
                 // $fisa_tehnica = 'https://emex.ro' . $dbProduct->fisa_tehnica;
 
                 // $price = round(floatval($product['price_integer'] . '.' . $product['price_decimals']) * 1.1, 2);
                 $price = number_format(round($product['price'] * 1.1, 2), 2, '.', '');
-                echo $product['sku'] . ', ' . $product['ean'] . ', ' . $product['name'] . ',' . $description . ', ' . $price . ', ,' . $category_name . ', 100,'  . $image_url . ', , ,'. "\r\n";
+                echo $product['sku'] . ', ' . $product['ean'] . ', ' . $product['name'] . ',' . $description . ', ' . $price . ', ,' . $category_name . ', 100,'  . $image_url . ', , ,' . "\r\n";
             }
         }
     }
 
-    public function maniaMall() {
+    public function maniaMall()
+    {
         header("Content-type: text/csv");
         header("Content-Transfer-Encoding: UTF-8");
         header("Content-Disposition: attachment; filename=mania-mall.csv");
@@ -926,7 +904,7 @@ class FeedController extends Controller
 
         $products = $this->getEmagProducts();
         $products = $this->getVariationCorrespondents($products);
-        
+
         foreach ($products as $key => $product) {
             $dbProduct = $this->getDatabaseProductWithSlug($product['slug']);
 
@@ -954,7 +932,7 @@ class FeedController extends Controller
         }
     }
 
-    public function anuntulOnline() 
+    public function anuntulOnline()
     {
         $content = new stdClass();
         $content->anunturi = array();
@@ -981,27 +959,27 @@ class FeedController extends Controller
             foreach ($products_details as $product_details) {
                 $product_details = (array) $product_details;
 
-                if(!in_array($product_details['ean'], ['5946143065566', '5946143065573']) && !strpos($string, $product_details['ean'])) {
+                if (!in_array($product_details['ean'], ['5946143065566', '5946143065573']) && !strpos($string, $product_details['ean'])) {
                     $string .= ', ' . $product_details['ean'];
                     $price = $product_details['price_no_tva'];
 
                     $anunt = new StdClass();
                     $anunt->id_anunt_intern = $product_details['ean'];
                     $anunt->categorie = $categoryName;
-                    $anunt->tip_vanzator = 1; 
+                    $anunt->tip_vanzator = 1;
                     $anunt->titlu = $product_details['name'];
                     $anunt->text_anunt = $product_details['name'];
                     $anunt->description = $description;
                     $anunt->pret = $price;
                     $anunt->pret_nou = $price;
-                    $anunt->pana_cand = strtotime('+1 day');  
-                    $anunt->moneda = 3;  
-                    $anunt->imagini = array($image_url); 
-                    $anunt->idjud = 10; 
-                    $anunt->telefon1 = '+40724-509.552';  
-                    $anunt->telefon2 = '+4021-457.1646'; 
-                    $anunt->email = 'vanzari@emex.ro'; 
-                    $anunt->link_produs = 'https://emex.ro/' . $product_details['slug']; 
+                    $anunt->pana_cand = strtotime('+1 day');
+                    $anunt->moneda = 3;
+                    $anunt->imagini = array($image_url);
+                    $anunt->idjud = 10;
+                    $anunt->telefon1 = '+40724-509.552';
+                    $anunt->telefon2 = '+4021-457.1646';
+                    $anunt->email = 'vanzari@emex.ro';
+                    $anunt->link_produs = 'https://emex.ro/' . $product_details['slug'];
 
                     $content->anunturi[] = $anunt;
                 }
@@ -1010,11 +988,12 @@ class FeedController extends Controller
 
         header('Content-Type: text/xml; charset=utf-8');
         echo $this->encodeObj($content);
-        
+
         exit();
     }
 
-    public function teamdeals() {
+    public function teamdeals()
+    {
         header("Content-type: text/csv");
         header("Content-Transfer-Encoding: UTF-8");
         header("Content-Disposition: attachment; filename=teamdeals.csv");
@@ -1026,7 +1005,7 @@ class FeedController extends Controller
 
         $products = $this->getEmagProducts();
         $products = $this->getVariationCorrespondents($products);
-        
+
         foreach ($products as $key => $product) {
             $dbProduct = $this->getDatabaseProductWithSlug($product['slug']);
 
@@ -1054,28 +1033,29 @@ class FeedController extends Controller
         }
     }
 
-    public function practicMagazin() {
-         /* XML string */
-         $xml = "<produse>";
-         $products = $this->getFeedProducts();
- 
-         foreach ($products as $product) {
-             $db_product = $this->getDatabaseProduct($product['link']);
-             if ($db_product) {
-                 $description = $db_product->description . ' ' . $db_product->usage_details;
-                 $description = substr($description, 0, 3950) . '... [mai multe detalii pe site]';
-                 $description = str_replace('–', '', $description);
-                 // $description = str_replace('“','"', $description);
-                 // $description = str_replace('”','"', $description);
- 
-                 $price = substr($product['price'], 0, strpos($product['price'], 'RON') - 1);
-                 if ($product['availability'] == 'in stock') {
-                     $availability = 1;
-                 } else {
-                     $availability = 0;
-                 }
- 
-                 $xml .= '
+    public function practicMagazin()
+    {
+        /* XML string */
+        $xml = "<produse>";
+        $products = $this->getFeedProducts();
+
+        foreach ($products as $product) {
+            $db_product = $this->getDatabaseProduct($product['link']);
+            if ($db_product) {
+                $description = $db_product->description . ' ' . $db_product->usage_details;
+                $description = substr($description, 0, 3950) . '... [mai multe detalii pe site]';
+                $description = str_replace('–', '', $description);
+                // $description = str_replace('“','"', $description);
+                // $description = str_replace('”','"', $description);
+
+                $price = substr($product['price'], 0, strpos($product['price'], 'RON') - 1);
+                if ($product['availability'] == 'in stock') {
+                    $availability = 1;
+                } else {
+                    $availability = 0;
+                }
+
+                $xml .= '
                  <produs>
                      <cod_produs>
                          ' . $product['gtin'] . '
@@ -1099,52 +1079,52 @@ class FeedController extends Controller
                         ' . $product['image_link'] . '
                      </foto>
                  </produs>';
-             }
-         }
- 
-         $xml .= '       
+            }
+        }
+
+        $xml .= '       
          </produse>
          ';
- 
-         $xml = str_replace('&mu', '', $xml);
-         $xml = str_replace('&nbsp', '', $xml);
-         $xml = str_replace('&deg', '', $xml);
-         $xml = str_replace('&', '', $xml);
- 
-         // header('Content-type: text/xml');
-         Yii::$app->response->format = Response::FORMAT_RAW;
-         Yii::$app->response->headers->add('Content-Type', 'text/xml');
-         Yii::$app->response->content = $xml;
-         return Yii::$app->response;
+
+        $xml = str_replace('&mu', '', $xml);
+        $xml = str_replace('&nbsp', '', $xml);
+        $xml = str_replace('&deg', '', $xml);
+        $xml = str_replace('&', '', $xml);
+
+        // header('Content-type: text/xml');
+        Yii::$app->response->format = Response::FORMAT_RAW;
+        Yii::$app->response->headers->add('Content-Type', 'text/xml');
+        Yii::$app->response->content = $xml;
+        return Yii::$app->response;
     }
 
-    public function encodeObj($obj, $root_node = 'root') {
+    public function encodeObj($obj, $root_node = 'root')
+    {
         $xml = '<?xml version="1.0" encoding="utf-8"?>' . PHP_EOL;
         $xml .= self::encode($obj, $root_node, $depth = 0);
         return $xml;
     }
-        
-    private function encode($data, $node, $depth) {
-        if( $depth == 1 ) $node = "anunturi"; 
-        elseif( $depth == 2 ) $node = "anunt"; 
-            
+
+    private function encode($data, $node, $depth)
+    {
+        if ($depth == 1) $node = "anunturi";
+        elseif ($depth == 2) $node = "anunt";
+
         $xml = str_repeat("\t", $depth);
         $xml .= "<{$node}>" . PHP_EOL;
-        
-        foreach($data as $key => $val) {
-            if(is_array($val) || is_object($val)) {
-                if( is_numeric($key) ) {
+
+        foreach ($data as $key => $val) {
+            if (is_array($val) || is_object($val)) {
+                if (is_numeric($key)) {
                     $key = $node;
                 }
-                    
+
                 $xml .= self::encode($val, $key, ($depth + 1));
-            } 
-            else {
+            } else {
                 $xml .= str_repeat("\t", ($depth + 1));
-                if( is_numeric($key) ) {
-                    $xml .= "<camp id=\"".$key."\" value=\"".htmlspecialchars($val)."\" />" . PHP_EOL;
-                }
-                else	  
+                if (is_numeric($key)) {
+                    $xml .= "<camp id=\"" . $key . "\" value=\"" . htmlspecialchars($val) . "\" />" . PHP_EOL;
+                } else
                     $xml .= "<{$key}><![CDATA[" . htmlspecialchars($val) . "]]></{$key}>" . PHP_EOL;
             }
         }
@@ -1153,7 +1133,8 @@ class FeedController extends Controller
         return $xml;
     }
 
-    public function negociat() {
+    public function negociat()
+    {
         header("Content-type: text/csv");
         header("Content-Transfer-Encoding: UTF-8");
         header("Content-Disposition: attachment; filename=negociat.csv");
@@ -1162,7 +1143,7 @@ class FeedController extends Controller
 
         $products = $this->getEmagProducts();
         $products = $this->getVariationCorrespondents($products);
-        
+
         foreach ($products as $key => $product) {
             $dbProduct = $this->getDatabaseProductWithSlug($product['slug']);
 
@@ -1187,7 +1168,7 @@ class FeedController extends Controller
                 $price = round(floatval($product['price_integer'] . '.' . $product['price_decimals']) * 1.21, 2);
                 $higherPrice = $price * 1.05;
                 $higherPrice = round($higherPrice, 2);
-                echo $product['ean'] . '|' . $product['name'] . '|' . $category_name . '|Romtehnochim SRL|' . $price . '|' . $higherPrice . '|' . $description . '|' . $image_url . '|100'. "\r\n";
+                echo $product['ean'] . '|' . $product['name'] . '|' . $category_name . '|Romtehnochim SRL|' . $price . '|' . $higherPrice . '|' . $description . '|' . $image_url . '|100' . "\r\n";
             }
         }
     }
