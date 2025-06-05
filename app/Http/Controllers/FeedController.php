@@ -467,25 +467,6 @@ class FeedController extends Controller
         }
     }
 
-    // public function checkSlugs() 
-    // {
-    //     //verifica daca toate slugurile din preturi_culori exista in DB
-    //     $preturiCuloriProducts = $this->getPreturiCuloriProducts();
-
-    //     echo '<pre>';
-
-    //     $i = 1;
-    //     foreach($preturiCuloriProducts as $preturiCuloriProduct) {
-    //         $db_product = Products::find()->where([
-    //             'slug' => $preturiCuloriProduct['slug']
-    //         ])->one();
-    //         if(!$db_product) {
-    //             var_dump($i, $preturiCuloriProduct['slug']);
-    //             $i++;
-    //         }
-    //     }
-    // }
-
     public function updateFeeds()
     {
         $productVariations = ProductVariation::all();

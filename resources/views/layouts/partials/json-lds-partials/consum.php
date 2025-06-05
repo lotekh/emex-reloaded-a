@@ -1,8 +1,36 @@
 <?php
-
 if (!isset($product)) {
     return false; 
 }
+
+function getEANFromCSV($slug, $color, $price) {
+    $csv = base_path('resources/csv/preturi_culori.csv');
+    if (!file_exists($csv)) return null;
+
+    $handler = fopen($csv, "r");
+    $row = 0;
+    while (($data = fgetcsv($handler, 1000, ",")) !== false) {
+        if ($row > 0 && isset($data[0], $data[2], $data[5], $data[8])) {
+            $csvSlug = strtolower(trim($data[0]));
+            $csvColor = strtolower(trim($data[2]));
+            $csvPrice = floatval(str_replace(',', '', $data[5]));
+
+            $inputSlug = strtolower(trim($slug));
+            $inputColor = strtolower(trim($color));
+            $inputPrice = floatval($price);
+
+            if ($csvSlug === $inputSlug && $csvColor === $inputColor && abs($csvPrice - $inputPrice) < 0.01) {
+                return trim($data[8]);
+            }
+        }
+        $row++;
+    }
+    fclose($handler);
+    return null;
+}
+
+
+
 
 $slug = $product->slug;
 $sub_title = $product->sub_title;
@@ -10,9 +38,11 @@ $lightBoxImageUrl = $product->largeImage->url ?? '';
 $json_ld_description = $product->consumption_jsonld['description'];
 $sku = $product->sku;
 $mpn = $product->variations->first()->mpn ?? '';
-$gtin = $product->variations->first()->ean ?? '';
 $first_price = $product->variations->first()->price ?? 0;
 $ambalare = $product->variations->first()->packaging ?? '';
+$color = $product->variations->first()->colour ?? '';
+$gtin = getEANFromCSV($slug, $color, $first_price) ?? '';
+
 $measurementUnit = 'LTR'; // Example
 $categoryName = $category->name ?? '';
 
