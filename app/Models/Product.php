@@ -88,7 +88,7 @@ class Product extends Model
             return url('/cartela-culori-ral-vopsele');
         }
 
-        switch ($productCategory->category_id) {
+        switch ($productCategory->id) {
             case 1:
             case 3:
                 return url('/cartela-culori-lavabile');
