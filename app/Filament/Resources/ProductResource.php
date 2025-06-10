@@ -18,12 +18,18 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Actions\Action;
+use Illuminate\Support\Facades\Auth;
 
 class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function shouldRegisterNavigation($parameters = []): bool
+    {
+        return Auth::user() && Auth::user()->role === 'admin';
+    }
 
     public static function form(Form $form): Form
     {

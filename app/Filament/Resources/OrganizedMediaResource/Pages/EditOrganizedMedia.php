@@ -7,11 +7,18 @@ use App\Models\Media;
 use Awcodes\Curator\Resources\MediaResource\EditMedia;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class EditOrganizedMedia extends EditMedia
 {
     protected static string $resource = OrganizedMediaResource::class;
+
+    public static function canAccess($parameters = []): bool
+    {
+        return Auth::user() && Auth::user()->role === 'admin';
+    }
+
 
     public function getHeaderActions(): array
     {
