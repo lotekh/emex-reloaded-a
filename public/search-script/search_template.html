@@ -12,7 +12,7 @@ you should open or link to the search script, which is a file named "search.php"
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<title>Example Zoom search template page</title>
+	<title>Search page</title>
 	<!-- 
 	You can change the fonts, colors, and styles of your search results with the CSS below.
 	For some examples and more information on Cascading Style Sheets (CSS), visit our support page at:
@@ -169,6 +169,17 @@ you should open or link to the search script, which is a file named "search.php"
 			<!--ZOOMSEARCH-->
 		</div>
 	</div>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const links = document.querySelectorAll("#search_results2 a");
+			links.forEach(link => {
+				link.setAttribute("target", "_blank");
+				link.setAttribute("rel", "noopener noreferrer");
+			});
+		});
+	</script>
+
 </body>
 
 </html>
