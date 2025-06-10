@@ -10,12 +10,18 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class NewsletterEmailResource extends Resource
 {
     protected static ?string $model = NewsletterEmail::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-envelope-open';
+
+    public static function shouldRegisterNavigation($parameters = []): bool
+    {
+        return Auth::user() && Auth::user()->role === 'admin';
+    }
 
     public static function form(Form $form): Form
     {

@@ -8,12 +8,18 @@ use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 
 class ListTags extends ListRecords
 {
     protected static string $resource = TagResource::class;
+
+    public static function canAccess($parameters = []): bool
+    {
+        return Auth::user() && Auth::user()->role === 'admin';
+    }
 
     protected function getHeaderActions(): array
     {

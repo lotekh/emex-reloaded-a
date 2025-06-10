@@ -20,13 +20,18 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-
+use Illuminate\Support\Facades\Auth;
 
 class BlogArticleResource extends Resource
 {
     protected static ?string $model = BlogArticle::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
+
+    public static function shouldRegisterNavigation($parameters = []): bool
+    {
+        return Auth::user() && Auth::user()->role === 'admin';
+    }
 
     public static function form(Form $form): Form
     {
