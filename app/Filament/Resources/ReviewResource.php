@@ -24,6 +24,11 @@ class ReviewResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-star';
 
+    public static function shouldRegisterNavigation($parameters = []): bool
+    {
+        return Auth::user() && Auth::user()->role === 'admin';
+    }
+
     public static function form(Form $form): Form
     {
         return $form

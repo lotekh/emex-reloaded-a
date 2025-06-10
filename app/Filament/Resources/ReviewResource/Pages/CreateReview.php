@@ -7,10 +7,16 @@ use App\Models\Review;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class CreateReview extends CreateRecord
 {
     protected static string $resource = ReviewResource::class;
+
+    public static function canAccess($parameters = []): bool
+    {
+        return Auth::user() && Auth::user()->role === 'admin';
+    }
 
     protected function handleRecordCreation(array $data): Review
     {

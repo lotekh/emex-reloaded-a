@@ -7,12 +7,18 @@ use App\Imports\ProductVariationImport;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ListProductVariations extends ListRecords
 {
     protected static string $resource = ProductVariationResource::class;
+
+    public static function canAccess($parameters = []): bool
+    {
+        return Auth::user() && Auth::user()->role === 'admin';
+    }
 
     protected function getHeaderActions(): array
     {
