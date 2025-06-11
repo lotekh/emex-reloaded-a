@@ -3460,7 +3460,7 @@ while ($arrayline < $matches && $arrayline < $result_limit)
 			if (strlen($url) > $TruncateShowURL)
 				$url = substr($url, 0, $TruncateShowURL) . "...";
 		}
-		$info_str .= $STR_RESULT_URL . ' <a href="' . htmlspecialchars($url) . '" target="_blank" rel="noopener noreferrer">' . htmlspecialchars($url) . '</a>';
+		$info_str .= $STR_RESULT_URL . ' <a href="' . htmlspecialchars($url) . '">' . htmlspecialchars($url) . '</a>';
 	}
 
 	$OutputResultsBuffer .= "<div class=\"infoline\">";
