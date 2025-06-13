@@ -77,13 +77,7 @@ class OrdersController extends Controller
         // Save the updated cart in session
         session()->put('cart', $cart);
 
-        return redirect()->back()->with('success', 'Produsul a fost adăugat în coș.')
-        ->with('product', [
-            'quantity' => $quantity,
-            'price' => $productVariation->price,
-            'sku' => $productVariation->sku,
-            'name' => $productVariation->name,
-        ]);
+        return redirect()->back()->with('success', 'Produsul a fost adăugat în coș.');
     }
 
     
