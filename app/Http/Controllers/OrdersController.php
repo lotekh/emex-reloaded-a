@@ -820,7 +820,7 @@ class OrdersController extends Controller
         $billingCountyId = null;
         $billingCountyName = 'Necunoscut';
 
-        // Obține ID-ul județului în funcție de billing_type
+        // Get billing city and billing county
         if ($order->billing_type == 0) {  // Persoană fizică
             $billingCountyId = json_decode($order->company_information, true)['person_county_id'] ?? null;
             $billingCityId = json_decode($order->company_information, true)['person_city_id'] ?? null;
@@ -829,7 +829,6 @@ class OrdersController extends Controller
             $billingCityId = json_decode($order->company_information, true)['organization_city_id'] ?? null;
         }
 
-        // Dacă avem un ID de județ, obținem numele județului
         if ($billingCountyId) {
             $billingCounty = County::where('id', $billingCountyId)->first();
             $billingCountyName = $billingCounty ? $billingCounty->name : 'Necunoscut';
@@ -855,7 +854,6 @@ class OrdersController extends Controller
         // Verify if the link is valid
         $valid_link = 1;
 
-        // Returnează pagina de sumar comandă
         return view('products.summary', compact('order', 'orders_products','billingCountyName', 'billingCityName', 'county', 'countyName', 'city', 'valid_link', 'conversion_value'));
     }
     
