@@ -735,30 +735,32 @@
         document.getElementById('auth-lightbox').style.display = 'flex';
     });
 
-    let products = @json($ordered_products);
-    let formattedItems = products.map(item => {
-    return {
-      item_id: item.sku,
-      item_name: item.short_name,
-      price: item.price,
-      quantity: item.quantity
-    };
-  });
-  let sum = products.map(item => [
-    parseFloat(item.price) * parseInt(item.ordered_quantity)
-  ]).flat().reduce((a, b) => a + b);
+    window.onload = function() {
+        let products = @json($ordered_products);
+        let formattedItems = products.map(item => {
+            return {
+                item_id: item.sku,
+                item_name: item.short_name,
+                price: item.price,
+                quantity: item.quantity
+            };
+        });
+        let sum = products.map(item => [
+            parseFloat(item.price) * parseInt(item.ordered_quantity)
+        ]).flat().reduce((a, b) => a + b);
 
-    dataLayer.push({
-        ecommerce: null
-    }); // Clear the previous ecommerce
-    dataLayer.push({
-        event: "begin_checkout",
-        ecommerce: {
-            currency: "RON",
-            value: sum,
-            items: formattedItems
-        }
-    });
+        dataLayer.push({
+            ecommerce: null
+        }); // Clear the previous ecommerce
+        dataLayer.push({
+            event: "begin_checkout",
+            ecommerce: {
+                currency: "RON",
+                value: sum,
+                items: formattedItems
+            }
+        });
+    }
 </script>
 
 @endsection

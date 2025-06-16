@@ -263,21 +263,6 @@
             </td>
         </tr>
 
-        @php
-            $deliveryInformation = json_decode($order->delivery_information, true);
-            $billingInformation = json_decode($order->company_information, true);
-            $billingCityName = '';
-            if ($order['billing_type'] == 0) { // Persoană fizică
-                $billingCityId = $billingInformation['person_city_id'] ?? null;
-            } elseif ($order['billing_type'] == 1) { // Persoană juridică
-                $billingCityId = $billingInformation['organization_city_id'] ?? null;
-            }
-            if (!empty($billingCityId)) {
-                $city = \App\Models\City::find($billingCityId);
-                $billingCityName = $city ? $city->name : 'Necunoscut';
-            }
-        @endphp
-
         <tr class="col-12 small-font">
             <td class="col-6 small-font">
                 <p>CUI: RO4643777</p>
@@ -290,10 +275,10 @@
                 @if ($order['billing_type'] == 0)
                     <p>Judet: {{ $billingCountyName }}</p>
                     <p>Localitate: {{ $billingCityName }}</p>
-                    <p>Adresa: {{ $billingInformation['person_address'] ?? '' }}</p>
+                    <p>Adresa: {{ $address}}</p>
                 @else
                 <p>CUI: {{ $companyInformation['organization_cui'] }}</p>
-                <p>Adresa: {{ $billingInformation['organization_address'] ?? '' }}, {{ $billingCityName }}, jud. {{ $billingCountyName }}</p>
+                <p>Adresa: {{ $address}}, {{ $billingCityName }}, jud. {{ $billingCountyName }}</p>
                 <p>IBAN: {{ strtoupper($companyInformation['organization_bank_account']) }}</p>
                 <p>Banca: {{ $companyInformation['organization_bank'] }}</p>
                 @endif

@@ -85,23 +85,25 @@
 @endif
 
 <script>
-    let product = @json($product);
-    dataLayer.push({
-        ecommerce: null
-    }); // Clear the previous ecommerce
-    dataLayer.push({
-        event: "view_item",
-        ecommerce: {
-            currency: "RON",
-            value: product.variations[0].price,
-            items: [{
-                item_id: product.sku,
-                item_name: product.variations[0].short_name,
-                price: product.variations[0].price,
-                quantity: 1
-            }]
-        }
-    });
+    window.onload = function() {
+        let product = @json($product);
+        dataLayer.push({
+            ecommerce: null
+        }); // Clear the previous ecommerce
+        dataLayer.push({
+            event: "view_item",
+            ecommerce: {
+                currency: "RON",
+                value: product.variations[0].price,
+                items: [{
+                    item_id: product.sku,
+                    item_name: product.variations[0].short_name,
+                    price: product.variations[0].price,
+                    quantity: 1
+                }]
+            }
+        });
+    }
 </script>
 @endsection
 

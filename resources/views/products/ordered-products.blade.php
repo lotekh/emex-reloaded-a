@@ -5,29 +5,31 @@
 <meta name="keywords" content="cosul tau, produse in cos, comanda ta">
 <meta name="description" content="Vezi produsele adaugate in cosul Emex by Romtehnochim - Comanda ta online de vopsele">
 <script>
-  let items = @json($ordered_products);
-  let formattedItems = items.map(item => {
-    return {
-      item_id: item.sku,
-      item_name: item.short_name,
-      price: item.price,
-      quantity: item.ordered_quantity
-    };
-  });
-  let sum = items.map(item => [
-    parseFloat(item.price) * parseInt(item.ordered_quantity)
-  ]).flat().reduce((a, b) => a + b);
-  dataLayer.push({
-    ecommerce: null
-  }); // Clear the previous ecommerce
-  dataLayer.push({
-    event: "view_cart",
-    ecommerce: {
-      currency: "RON",
-      value: sum,
-      items: formattedItems
-    }
-  });
+  window.onload = function() {
+    let items = @json($ordered_products);
+    let formattedItems = items.map(item => {
+      return {
+        item_id: item.sku,
+        item_name: item.short_name,
+        price: item.price,
+        quantity: item.ordered_quantity
+      };
+    });
+    let sum = items.map(item => [
+      parseFloat(item.price) * parseInt(item.ordered_quantity)
+    ]).flat().reduce((a, b) => a + b);
+    dataLayer.push({
+      ecommerce: null
+    }); // Clear the previous ecommerce
+    dataLayer.push({
+      event: "view_cart",
+      ecommerce: {
+        currency: "RON",
+        value: sum,
+        items: formattedItems
+      }
+    });
+  }
 </script>
 
 @if(session('success') && session('success') == 'Produsul a fost eliminat din coș.' && session('product'))
