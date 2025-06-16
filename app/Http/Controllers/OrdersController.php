@@ -603,6 +603,7 @@ class OrdersController extends Controller
                 $billingCityId = json_decode($dbOrder->company_information, true)['organization_city_id'] ?? null;
             }
             $billingCity = $billingCityId ? City::find($billingCityId) : null;
+            $billingCityName = $billingCity ? $billingCity->name : 'Necunoscut';
 
             // Delivery County and City
             $deliveryInfo = json_decode($dbOrder->delivery_information, true);
@@ -611,11 +612,20 @@ class OrdersController extends Controller
             $deliveryCounty = $deliveryCountyId ? County::find($deliveryCountyId) : null;
             $deliveryCity = $deliveryCityId ? City::find($deliveryCityId) : null;
 
+            // Address
+            $address = ($dbOrder->billing_type == 0 
+                    ? json_decode($dbOrder->company_information, true)['person_address'] 
+                    : json_decode($dbOrder->company_information, true)['organization_address']) . "\n";
+
+            // dd($address);
+
             // Generate the PDF for proforma
             $pdf = PDF::loadView('products.invoice-pdf', [
                 'order' => $dbOrder,
                 'orders_products' => $orders_products,
-                'billingCountyName' => $billingCountyName
+                'billingCountyName' => $billingCountyName,
+                'billingCityName' => $billingCityName,
+                'address' => $address,
             ]);
 
             try {
@@ -820,7 +830,7 @@ class OrdersController extends Controller
         $billingCountyId = null;
         $billingCountyName = 'Necunoscut';
 
-        // Obține ID-ul județului în funcție de billing_type
+        // Get billing city and billing county
         if ($order->billing_type == 0) {  // Persoană fizică
             $billingCountyId = json_decode($order->company_information, true)['person_county_id'] ?? null;
             $billingCityId = json_decode($order->company_information, true)['person_city_id'] ?? null;
@@ -829,7 +839,6 @@ class OrdersController extends Controller
             $billingCityId = json_decode($order->company_information, true)['organization_city_id'] ?? null;
         }
 
-        // Dacă avem un ID de județ, obținem numele județului
         if ($billingCountyId) {
             $billingCounty = County::where('id', $billingCountyId)->first();
             $billingCountyName = $billingCounty ? $billingCounty->name : 'Necunoscut';
@@ -855,7 +864,6 @@ class OrdersController extends Controller
         // Verify if the link is valid
         $valid_link = 1;
 
-        // Returnează pagina de sumar comandă
         return view('products.summary', compact('order', 'orders_products','billingCountyName', 'billingCityName', 'county', 'countyName', 'city', 'valid_link', 'conversion_value'));
     }
     

@@ -516,7 +516,7 @@ $baseUrl = url('/');
         const packagingDisplay = document.getElementById('packaging{{ $product->id }}');
 
         // Preload all product variations into JavaScript
-        const variations = @json($product - > variations);
+        const variations = @json($product->variations);
 
         // If the product is available, update the variations
         function updateVariation() {
