@@ -603,6 +603,7 @@ class OrdersController extends Controller
                 $billingCityId = json_decode($dbOrder->company_information, true)['organization_city_id'] ?? null;
             }
             $billingCity = $billingCityId ? City::find($billingCityId) : null;
+            $billingCityName = $billingCity ? $billingCity->name : 'Necunoscut';
 
             // Delivery County and City
             $deliveryInfo = json_decode($dbOrder->delivery_information, true);
@@ -615,7 +616,8 @@ class OrdersController extends Controller
             $pdf = PDF::loadView('products.invoice-pdf', [
                 'order' => $dbOrder,
                 'orders_products' => $orders_products,
-                'billingCountyName' => $billingCountyName
+                'billingCountyName' => $billingCountyName,
+                'billingCityName' => $billingCityName
             ]);
 
             try {
