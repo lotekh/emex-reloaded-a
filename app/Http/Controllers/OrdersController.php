@@ -612,12 +612,20 @@ class OrdersController extends Controller
             $deliveryCounty = $deliveryCountyId ? County::find($deliveryCountyId) : null;
             $deliveryCity = $deliveryCityId ? City::find($deliveryCityId) : null;
 
+            // Address
+            $address = ($dbOrder->billing_type == 0 
+                    ? json_decode($dbOrder->company_information, true)['person_address'] 
+                    : json_decode($dbOrder->company_information, true)['organization_address']) . "\n";
+
+            // dd($address);
+
             // Generate the PDF for proforma
             $pdf = PDF::loadView('products.invoice-pdf', [
                 'order' => $dbOrder,
                 'orders_products' => $orders_products,
                 'billingCountyName' => $billingCountyName,
-                'billingCityName' => $billingCityName
+                'billingCityName' => $billingCityName,
+                'address' => $address,
             ]);
 
             try {

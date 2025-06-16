@@ -275,10 +275,10 @@
                 @if ($order['billing_type'] == 0)
                     <p>Judet: {{ $billingCountyName }}</p>
                     <p>Localitate: {{ $billingCityName }}</p>
-                    <p>Adresa: {{ $billingInformation['person_address'] ?? '' }}</p>
+                    <p>Adresa: {{ $address}}</p>
                 @else
                 <p>CUI: {{ $companyInformation['organization_cui'] }}</p>
-                <p>Adresa: {{ $billingInformation['organization_address'] ?? '' }}, {{ $billingCityName }}, jud. {{ $billingCountyName }}</p>
+                <p>Adresa: {{ $address}}, {{ $billingCityName }}, jud. {{ $billingCountyName }}</p>
                 <p>IBAN: {{ strtoupper($companyInformation['organization_bank_account']) }}</p>
                 <p>Banca: {{ $companyInformation['organization_bank'] }}</p>
                 @endif
