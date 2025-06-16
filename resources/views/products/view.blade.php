@@ -85,23 +85,25 @@
 @endif
 
 <script>
-    let product = @json($product);
-    dataLayer.push({
-        ecommerce: null
-    }); // Clear the previous ecommerce
-    dataLayer.push({
-        event: "view_item",
-        ecommerce: {
-            currency: "RON",
-            value: product.variations[0].price,
-            items: [{
-                item_id: product.sku,
-                item_name: product.variations[0].short_name,
-                price: product.variations[0].price,
-                quantity: 1
-            }]
-        }
-    });
+    window.onload = function() {
+        let product = @json($product);
+        dataLayer.push({
+            ecommerce: null
+        }); // Clear the previous ecommerce
+        dataLayer.push({
+            event: "view_item",
+            ecommerce: {
+                currency: "RON",
+                value: product.variations[0].price,
+                items: [{
+                    item_id: product.sku,
+                    item_name: product.variations[0].short_name,
+                    price: product.variations[0].price,
+                    quantity: 1
+                }]
+            }
+        });
+    }
 </script>
 @endsection
 
@@ -514,7 +516,7 @@ $baseUrl = url('/');
         const packagingDisplay = document.getElementById('packaging{{ $product->id }}');
 
         // Preload all product variations into JavaScript
-        const variations = @json($product->variations);
+        const variations = @json($product - > variations);
 
         // If the product is available, update the variations
         function updateVariation() {

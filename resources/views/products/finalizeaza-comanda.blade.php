@@ -667,13 +667,25 @@
 
 
 <script>
-    var baseUrl = '{{ url('/') }}';
-    var isGuest = {{ $isGuest ? 'true' : 'false' }};
-    var totalPrice = '{{ number_format($total_price, 2, '.', '') }}';
-    var totalValue = '{{ number_format($total_value, 2, '.', '') }}';
-    var totalTva = '{{ number_format($total_tva, 2, '.', '') }}';
-    var userPersonCityId = '{{ $order->company_information->person_city_id ?? '' }}';
-    var userOrganizationCityId = '{{ $order->company_information->organization_city_id ?? '' }}';
+    var baseUrl = '{{ url(' / ') }}';
+    var isGuest = {
+        {
+            $isGuest ? 'true' : 'false'
+        }
+    };
+    var totalPrice = '{{ number_format($total_price, 2, '.
+    ', '
+    ') }}';
+    var totalValue = '{{ number_format($total_value, 2, '.
+    ', '
+    ') }}';
+    var totalTva = '{{ number_format($total_tva, 2, '.
+    ', '
+    ') }}';
+    var userPersonCityId = '{{ $order->company_information->person_city_id ?? '
+    ' }}';
+    var userOrganizationCityId = '{{ $order->company_information->organization_city_id ?? '
+    ' }}';
 </script>
 
 <script src="{{ asset('resources/scripts/order-scripts/step-1.js') }}"></script>
@@ -735,30 +747,32 @@
         document.getElementById('auth-lightbox').style.display = 'flex';
     });
 
-    let products = @json($ordered_products);
-    let formattedItems = products.map(item => {
-    return {
-      item_id: item.sku,
-      item_name: item.short_name,
-      price: item.price,
-      quantity: item.quantity
-    };
-  });
-  let sum = products.map(item => [
-    parseFloat(item.price) * parseInt(item.ordered_quantity)
-  ]).flat().reduce((a, b) => a + b);
+    window.onload = function() {
+        let products = @json($ordered_products);
+        let formattedItems = products.map(item => {
+            return {
+                item_id: item.sku,
+                item_name: item.short_name,
+                price: item.price,
+                quantity: item.quantity
+            };
+        });
+        let sum = products.map(item => [
+            parseFloat(item.price) * parseInt(item.ordered_quantity)
+        ]).flat().reduce((a, b) => a + b);
 
-    dataLayer.push({
-        ecommerce: null
-    }); // Clear the previous ecommerce
-    dataLayer.push({
-        event: "begin_checkout",
-        ecommerce: {
-            currency: "RON",
-            value: sum,
-            items: formattedItems
-        }
-    });
+        dataLayer.push({
+            ecommerce: null
+        }); // Clear the previous ecommerce
+        dataLayer.push({
+            event: "begin_checkout",
+            ecommerce: {
+                currency: "RON",
+                value: sum,
+                items: formattedItems
+            }
+        });
+    }
 </script>
 
 @endsection

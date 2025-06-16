@@ -344,7 +344,12 @@ class OrdersController extends Controller
         }
 
         $lastOrder = Order::orderBy('id', 'desc')->first();
-        $identifier = $lastOrder->identifier + 1;
+        if($lastOrder) {
+            $identifier = $lastOrder->identifier + 1;
+        }
+        else {
+            $identifier = 0;
+        }
 
         do {
             $order_guid = Str::uuid()->toString();
@@ -818,8 +823,10 @@ class OrdersController extends Controller
         // Obține ID-ul județului în funcție de billing_type
         if ($order->billing_type == 0) {  // Persoană fizică
             $billingCountyId = json_decode($order->company_information, true)['person_county_id'] ?? null;
+            $billingCityId = json_decode($order->company_information, true)['person_city_id'] ?? null;
         } elseif ($order->billing_type == 1) {  // Persoană juridică
             $billingCountyId = json_decode($order->company_information, true)['organization_county_id'] ?? null;
+            $billingCityId = json_decode($order->company_information, true)['organization_city_id'] ?? null;
         }
 
         // Dacă avem un ID de județ, obținem numele județului
@@ -828,6 +835,12 @@ class OrdersController extends Controller
             $billingCountyName = $billingCounty ? $billingCounty->name : 'Necunoscut';
         }
 
+        if($billingCityId) {
+            $billingCity = City::find($billingCityId);
+            $billingCityName = $billingCity ? $billingCity->name : 'Necunoscut';
+        } else {
+            $billingCityName = 'Necunoscut';
+        }
 
         // Generate the conversion value
         $conversion_value = 0;
@@ -843,7 +856,7 @@ class OrdersController extends Controller
         $valid_link = 1;
 
         // Returnează pagina de sumar comandă
-        return view('products.summary', compact('order', 'orders_products','billingCountyName', 'county', 'countyName', 'city', 'valid_link', 'conversion_value'));
+        return view('products.summary', compact('order', 'orders_products','billingCountyName', 'billingCityName', 'county', 'countyName', 'city', 'valid_link', 'conversion_value'));
     }
     
     public function validateAccount(Request $request)

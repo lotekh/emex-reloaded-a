@@ -45,6 +45,7 @@
     </script>
     @if(session('success') && session('success') == 'Produsul a fost adăugat în coș.')
     <script>
+    window.onload = function() {
         let product = @json(session('product'));
 
         dataLayer.push({
@@ -63,6 +64,7 @@
                 }]
             }
         });
+    }
     </script>
     @endif
 

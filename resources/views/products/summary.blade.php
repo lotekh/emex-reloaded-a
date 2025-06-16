@@ -90,28 +90,72 @@
 </div>
 
 <script>
-    let order = @json($order);
-    let orders_products = @json($orders_products);
-    let formattedItems = orders_products.map(item => {
-    return {
-      item_id: item.sku,
-      item_name: item.short_name,
-      price: item.pivot.price,
-      quantity: item.pivot.quantity
-    };
-  });
-    dataLayer.push({
-        ecommerce: null
-    }); // Clear the previous ecommerce object.
-    dataLayer.push({
-        event: "purchase",
-        ecommerce: {
-            transaction_id: order.identifier,
-            value: order.total,
-            currency: "RON",
-            items: formattedItems
+    window.onload = function() {
+        let order = @json($order);
+        let orders_products = @json($orders_products);
+        let billingInfo = JSON.parse(order.company_information);
+        let county = @json($billingCountyName);
+        let city = @json($billingCityName);
+
+        if (billingInfo.organization_email) {
+            var email = billingInfo.organization_email;
+        } else {
+            var email = billingInfo.person_email;
         }
-    });
+
+        if (billingInfo.organization_phone) {
+            var phone = billingInfo.organization_phone;
+        } else {
+            var phone = billingInfo.person_phone;
+        }
+
+        if (billingInfo.contact_person_first_name) {
+            var firstName = billingInfo.contact_person_first_name;
+        } else {
+            var firstName = billingInfo.person_first_name;
+        }
+
+        if (billingInfo.contact_person_last_name) {
+            var lastName = billingInfo.contact_person_last_name;
+        } else {
+            var lastName = billingInfo.person_last_name;
+        }
+
+        if (billingInfo.organization_address) {
+            var address = billingInfo.organization_address;
+        } else {
+            var address = billingInfo.person_address;
+        }
+
+        let formattedItems = orders_products.map(item => {
+            return {
+                item_id: item.sku,
+                item_name: item.short_name,
+                price: item.pivot.price,
+                quantity: item.pivot.quantity
+            };
+        });
+        dataLayer.push({
+            ecommerce: null
+        }); // Clear the previous ecommerce object.
+        dataLayer.push({
+            event: "purchase",
+            ecommerce: {
+                transaction_id: order.identifier,
+                value: order.total,
+                currency: "RON",
+                items: formattedItems
+            },
+            email: email,
+            phone: phone,
+            first_name: firstName,
+            last_name: lastName,
+            address: address,
+            county: county,
+            city: city,
+        });
+        console.log(dataLayer);
+    };
 </script>
 
 

@@ -79,26 +79,28 @@
 @endif
 
 <script>
-    let items = @json($products);
-    let formattedItems = items.data.map(item => {
-        return {
-            item_id: item.sku,
-            item_name: item.name,
-            price: item.price,
-            quantity: 1
-        };
-    });
-    dataLayer.push({
-        ecommerce: null
-    }); // Clear the previous ecommerce
-    dataLayer.push({
-        event: "view_item_list",
-        ecommerce: {
-            item_list_id: "{{ $category->id }}",
-            item_list_name: "{{ $category->name }}",
-            items: formattedItems
-        }
-    });
+    window.onload = function() {
+        let items = @json($products);
+        let formattedItems = items.data.map(item => {
+            return {
+                item_id: item.sku,
+                item_name: item.name,
+                price: item.price,
+                quantity: 1
+            };
+        });
+        dataLayer.push({
+            ecommerce: null
+        }); // Clear the previous ecommerce
+        dataLayer.push({
+            event: "view_item_list",
+            ecommerce: {
+                item_list_id: "{{ $category->id }}",
+                item_list_name: "{{ $category->name }}",
+                items: formattedItems
+            }
+        });
+    }
 </script>
 @endsection
 
