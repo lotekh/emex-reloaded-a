@@ -244,6 +244,7 @@
             <td class="col-6 company-name">
                 @php
                 $companyInformation = json_decode($order->company_information, true);
+                $deliveryInformation = json_decode($order->delivery_information, true);
                 @endphp
 
                 @if ($order['billing_type'] == 0)  {{-- Persoană fizică --}}
