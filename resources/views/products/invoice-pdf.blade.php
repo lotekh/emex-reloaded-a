@@ -351,4 +351,12 @@
 
     <br>
 
+    <div style="float: right; margin-top: 7px; padding-right: 35px; max-width:200px;">
+        @if($order['payment_method'] != 'ramburs')
+            <a href="/secure-payment?guid={{$order->guid}}&orderNo={{$order->identifier}}&amount={{$order->total}}">
+                <img src="{{ public_path('resources/images/Buton-Plata-Online.png') }}">
+            </a>
+        @endif
+    </div>
+
 </div>
