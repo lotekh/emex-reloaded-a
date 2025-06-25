@@ -327,9 +327,6 @@
         {{-- Ramburs --}}
         @if ($order->delivery_type == 0 && $order->payment_method == "ramburs") 
             @php $i++; @endphp
-            @php
-                $deliveryInformation = json_decode($order->delivery_information, true);
-            @endphp
             <tr>
                 <td style="padding: 10px 5px" class="ta_c table-borders">{{ $i }}</td>
                 <td style="padding: 5px 20px 5px 8px;" class="ta_l table-borders">Ramburs</td>
