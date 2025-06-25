@@ -326,6 +326,9 @@
         {{-- Ramburs --}}
         @if ($order->delivery_type == 0 && $order->payment_method == "ramburs") 
             @php $i++; @endphp
+            @php
+                $deliveryInformation = json_decode($order->delivery_information, true);
+            @endphp
             <tr>
                 <td style="padding: 10px 5px" class="ta_c table-borders">{{ $i }}</td>
                 <td style="padding: 5px 20px 5px 8px;" class="ta_l table-borders">Ramburs</td>
@@ -352,7 +355,7 @@
 
     <div style="float: right; margin-top: 7px; padding-right: 35px; max-width:200px;">
         @if($order['payment_method'] != 'ramburs')
-            <a href="/secure-payment?guid={{$order->guid}}&orderNo={{$order->identifier}}&firstName={{$order->contact_person_first_name}}&lastName={{$order->contact_person_last_name}}&email={{$order->organization_email}}&amount={{$order->total}}">
+            <a href="/secure-payment?guid={{$order->guid}}&orderNo={{$order->identifier}}&amount={{$order->total}}">
                 <img src="{{ public_path('resources/images/Buton-Plata-Online.png') }}">
             </a>
         @endif
