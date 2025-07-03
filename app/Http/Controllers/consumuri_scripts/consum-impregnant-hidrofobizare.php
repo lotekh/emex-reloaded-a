@@ -13,7 +13,6 @@ if ( $tipsuprafata == "Tencuiala" ) {
 if ( $tipsuprafata == "Zidarie" ) {
   $consum_vopsea = $suprafata * 0.20;
   $consum_vopsea = number_format( $consum_vopsea, 2, ",", "." );
-  $apa = number_format( $apa, 2, ",", "." );
 }
 ?>
 <div class="paint-50 bor-bg">
