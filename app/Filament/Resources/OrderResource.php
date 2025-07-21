@@ -22,6 +22,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Grid;
 use Filament\Tables\Enums\FiltersLayout;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Blade;
 // use Filament\Tables\Actions\Action;
 
@@ -46,7 +47,12 @@ class OrderResource extends Resource
                 Tables\Columns\TextColumn::make('user.last_name')
                     ->state(function (Model $record) {
                         if($record->user === null) {
-                            return 'Guest';
+                            $billing_info = json_decode($record->company_information);
+                            if ($record->billing_type == 1) {
+                                return 'Guest: ' . $billing_info->organization_name ?? 'client';
+                            } else {
+                                return 'Guest: ' . trim(($billing_info->person_first_name ?? '') . ' ' . ($billing_info->person_last_name ?? ''));
+                            }
                         }
                         return $record->user->first_name . ' ' . $record->user->last_name;
                     })
@@ -56,16 +62,23 @@ class OrderResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: false)
                     ->state(function (Order $record) {
                         $delivery_info = json_decode($record->delivery_information);
-                        return implode(',', (array)$delivery_info);
+                        return implode(', ', (array)$delivery_info);
                     })
-                    ->label('Delivery info'),
+                    ->label('Delivery info')
+                    ->wrap()
+                    ->extraAttributes(['class' => 'max-w-sm truncate']),
                 Tables\Columns\TextColumn::make('billing_type')
                     ->toggleable(isToggledHiddenByDefault: false)
                     ->state(function (Order $record) {
                         $billing_info = json_decode($record->company_information);
-                        return implode(',', (array)$billing_info);
+                        return implode(', ', (array)$billing_info);
                     })
-                    ->label('Billing info'),
+                    ->label('Billing info')
+                    ->wrap()
+                    ->extraAttributes(['class' => 'max-w-sm truncate']),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime('d-m-Y H:i', 'Europe/Bucharest')
+                    ->label('Created at'),
                 Tables\Columns\TextColumn::make('company_info')
                     ->toggleable(isToggledHiddenByDefault: true)
                     ->state(function (Model $record) {
@@ -97,10 +110,6 @@ class OrderResource extends Resource
                     ->numeric()
                     ->toggleable(isToggledHiddenByDefault: true)
                     ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
