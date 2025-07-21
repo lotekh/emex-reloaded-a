@@ -386,9 +386,14 @@ class OrdersController extends Controller
 
         if ($dbOrder) {
             // Get transport_price and transport_price_no_tva from session
-            if (isset($order['transport_price']) && isset($order['transport_price_no_tva'])) {
+            if ($request->input('delivery_type') == 0 && isset($order['transport_price']) && isset($order['transport_price_no_tva'])) {
+                // If delivery_type is 0(curier), add transport
                 $dbOrder->transport_price = $order['transport_price'];
                 $dbOrder->transport_price_no_tva = $order['transport_price_no_tva'];
+            } else {
+                // Else, if delivery_type is 1(ridicare personala), transport is 0
+                $dbOrder->transport_price = 0;
+                $dbOrder->transport_price_no_tva = 0;
             }
 
             $personCityId = null;
@@ -820,10 +825,8 @@ class OrdersController extends Controller
 
         // Livrare prin curier
         if ($order->delivery_type == 0) {  
-            // $county = $order->deliveryCounty->name ;
             $county = County::where('id', $order->delivery_county_id)->first();
             $countyName = $county ? $county->name : 'Necunoscut';
-            // Ia localitatea din informațiile de livrare
             $city = $order->delivery_information['delivery_city'] ?? ''; 
         }
 
