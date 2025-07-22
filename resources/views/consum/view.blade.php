@@ -157,11 +157,11 @@
                                     @foreach ($category->products as $categoryProduct)
                                         @php
                                             // Replace <br> with space
-                                            $productName = $categoryProduct->category_page_title;
+                                            $productName = str_replace('<br>', ' ', $categoryProduct->category_page_title);
                                         @endphp
                                         @if(!empty($categoryProduct->consumption_slug))
                                             <option value="{{ route('consum.show', ['consumption_slug' => $categoryProduct->consumption_slug]) }}" {{ $product->id == $categoryProduct->id ? 'selected' : '' }}>
-                                                {{ html_entity_decode($productName) }}
+                                                {{ html_entity_decode(strip_tags($productName)) }}
                                             </option>
                                         @endif
                                     @endforeach
