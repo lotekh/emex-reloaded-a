@@ -4,7 +4,7 @@ $suprafata = $_GET[ 'Suprafata' ];
 $tipvopsea = $_GET[ 'TipProdus' ];
 if ( $tipsuprafata == "Metal" ) {
   $consum_vopsea = $suprafata * 0.16;
-  $diluant = ( $consum_vopsea + $grund ) * 0.1;
+  $diluant = ( $consum_vopsea ) * 0.1;
   $consum_vopsea = number_format( $consum_vopsea, 2, ",", "." );
   $diluant = number_format( $diluant, 2, ",", "." );
 }
