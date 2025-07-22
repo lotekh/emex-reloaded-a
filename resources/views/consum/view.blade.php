@@ -155,9 +155,13 @@
                                 </div>
                                 <select class="form-control mb-16 select-consum" id="product_select" onchange="location = this.value;" required>
                                     @foreach ($category->products as $categoryProduct)
+                                        @php
+                                            // Replace <br> with space
+                                            $productName = $categoryProduct->category_page_title;
+                                        @endphp
                                         @if(!empty($categoryProduct->consumption_slug))
                                             <option value="{{ route('consum.show', ['consumption_slug' => $categoryProduct->consumption_slug]) }}" {{ $product->id == $categoryProduct->id ? 'selected' : '' }}>
-                                                {{ html_entity_decode(strip_tags($productName)) }}
+                                                {{ html_entity_decode($productName) }}
                                             </option>
                                         @endif
                                     @endforeach
