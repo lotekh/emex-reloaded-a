@@ -9,12 +9,22 @@ class JSONLD
 {
     public static function make($prefix = ''): array
     {
-        $fields = [
-            Textarea::make('jsonld.description')
-                ->label('JSON-LD description')
-                ->rows(10)
-                ->columnSpan(3),
-        ];
+        if($prefix == 'consumption_') {
+            $fields = [
+                Textarea::make('consumption_jsonld.description')
+                    ->label('JSON-LD description')
+                    ->rows(10)
+                    ->columnSpan(3),
+            ];
+        }
+        else {
+            $fields = [
+                Textarea::make('jsonld.description')
+                    ->label('JSON-LD description')
+                    ->rows(10)
+                    ->columnSpan(3),
+            ];
+        }
 
         if($prefix == 'blog') {
             $fields = array_merge($fields, [
