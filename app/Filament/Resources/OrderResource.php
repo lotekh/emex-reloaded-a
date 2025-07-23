@@ -47,7 +47,7 @@ class OrderResource extends Resource
                         if ($record->user === null) {
                             $billing_info = json_decode($record->company_information);
                             if ($record->billing_type == 1) {
-                                return 'Guest: ' . $billing_info?->organization_name ?? 'client';
+                                return 'Guest: ' . ($billing_info?->organization_name ?? 'client');
                             } else {
                                 return 'Guest: ' . trim(($billing_info?->person_first_name ?? '') . ' ' . ($billing_info?->person_last_name ?? ''));
                             }
