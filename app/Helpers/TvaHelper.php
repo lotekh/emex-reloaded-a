@@ -12,6 +12,11 @@ class TvaHelper
         return now()->lt($switchDate) ? 19 : 21;
     }
 
+    public static function getPriceWithTvaRate(): int
+    {
+        return 100 + self::getTvaRate();
+    }
+
     public static function getTvaMultiplier(): float
     {
         return self::getTvaRate() / 100;

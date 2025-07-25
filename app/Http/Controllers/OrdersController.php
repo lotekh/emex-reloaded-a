@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use App\Models\OrdersProductVariation;
+use App\Helpers\TvaHelper;
 
 class OrdersController extends Controller
 {
@@ -69,7 +70,7 @@ class OrdersController extends Controller
             $cart[$productVariationId] = [
                 'quantity' => $quantity,
                 'price' => $productVariation->price,
-                'price_no_vat' => round($productVariation->price * 100 / 119, 2),
+                'price_no_vat' => round($productVariation->price * 100 / TvaHelper::getPriceWithTvaRate(), 2),
                 'product_variation_id' => $productVariationId,
             ];
         }
@@ -192,7 +193,7 @@ class OrdersController extends Controller
         }
 
         // Calculate TVA
-        $tva = $price * 0.19;
+        $tva = $price * TvaHelper::getTvaMultiplier();
 
         // Format the price and TVA to have 2 decimals
         $formattedPrice = number_format($price, 2, '.', '');
@@ -431,21 +432,21 @@ class OrdersController extends Controller
                 $companyCityId = $companyInformationArray['organization_city_id'];
             }
 
-            $dbOrder->total_no_tva = floor($dbOrder->total * (100 / 119) * 100) / 100;
+            $dbOrder->total_no_tva = floor($dbOrder->total * (100 / TvaHelper::getPriceWithTvaRate()) * 100) / 100;
             // Calculate rambursValue if delivery_type is 0 (curier)
             $rambursValue = 0;
             $rambursTva = 0;
             if ($request->input('delivery_type') == 0 && $request->input('payment_method') == 'ramburs') {
                 // rambursValue is 3% of the order value(value of the products+transport price) without TVA, so it is 3% of of $dbOrder->total_no_tva
                 $rambursValue = round(($dbOrder->total_no_tva + $dbOrder->transport_price) * 3 / 100, 2);
-                $rambursTva = round($rambursValue * 19 / 100, 2);
+                $rambursTva = round($rambursValue * TvaHelper::getTvaRate() / 100, 2);
                 // Add the cost of ramburs(rambursValue+rambursTva) to the total
                 $dbOrder->total += floor(($rambursValue + $rambursTva) * 100) / 100;
                 $dbOrder->total_no_tva += $rambursValue;
             }
 
             $dbOrder->transport_price_no_tva = $dbOrder->transport_price;
-            $dbOrder->transport_price = floor((1.19 * $dbOrder->transport_price_no_tva) * 100) / 100;
+            $dbOrder->transport_price = floor((TvaHelper::getPriceWithTvaMultiplier() * $dbOrder->transport_price_no_tva) * 100) / 100;
             $dbOrder->total = floor(($dbOrder->total + $dbOrder->transport_price) * 100) / 100;
             $dbOrder->total_no_tva += $dbOrder->transport_price_no_tva;
 
