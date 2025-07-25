@@ -674,6 +674,12 @@
     var totalTva = '{{ number_format($total_tva, 2, '.', '') }}';
     var userPersonCityId = '{{ $order->company_information->person_city_id ?? '' }}';
     var userOrganizationCityId = '{{ $order->company_information->organization_city_id ?? '' }}';
+
+    window.tva = {
+        rate: {{ $tvaRate }},
+        multiplier: {{ $tvaMultiplier }},
+        priceMultiplier: {{ $tvaPriceMultiplier }}
+    };
 </script>
 
 <script src="{{ asset('resources/scripts/order-scripts/step-1.js') }}"></script>

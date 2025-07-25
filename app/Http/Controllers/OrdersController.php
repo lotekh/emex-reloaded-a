@@ -286,7 +286,19 @@ class OrdersController extends Controller
         $counties = County::orderBy('name', 'asc')->get();
         $cities = City::orderBy('name', 'asc')->get();
 
-        return view('products.finalizeaza-comanda', compact('user', 'order', 'cities', 'counties', 'ordered_products', 'isGuest'));
+        // return view('products.finalizeaza-comanda', compact('user', 'order', 'cities', 'counties', 'ordered_products', 'isGuest'));
+        return view('products.finalizeaza-comanda', [
+            'user' => $user,
+            'order' => $order,
+            'cities' => $cities,
+            'counties' => $counties,
+            'ordered_products' => $ordered_products,
+            'isGuest' => $isGuest,
+            'tvaRate' => TvaHelper::getTvaRate(),
+            'tvaMultiplier' => TvaHelper::getTvaMultiplier(),
+            'tvaPriceMultiplier' => TvaHelper::getPriceWithTvaMultiplier(),
+        ]);
+
     }
 
 
