@@ -35,7 +35,7 @@ function getEANFromCSV($slug, $color, $price) {
 $slug = $product->slug;
 $sub_title = $product->sub_title;
 $lightBoxImageUrl = $product->largeImage->url ?? '';
-$json_ld_description = $product->consumption_jsonld['description'];
+$json_ld_description = $product->consumption_jsonld['description'] ?? '';
 $sku = $product->sku;
 $mpn = $product->variations->first()->mpn ?? '';
 $first_price = $product->variations->first()->price ?? 0;
