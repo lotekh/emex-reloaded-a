@@ -9,7 +9,7 @@ class TvaHelper
     public static function getTvaRate(): int
     {
         // $switchDate = Carbon::create(2025, 8, 1, 0, 0, 0, 'Europe/Bucharest');
-        $switchDate = Carbon::create(2025, 7, 29, 11, 0, 0, 'Europe/Bucharest');
+        $switchDate = Carbon::create(2025, 7, 29, 14, 0, 0, 'Europe/Bucharest');
         return now('Europe/Bucharest')->lt($switchDate) ? 19 : 21;
     }
 
