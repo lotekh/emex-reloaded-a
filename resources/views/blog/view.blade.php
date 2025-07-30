@@ -100,6 +100,7 @@
         <h1 class="sti align-left">{{ $model->title }}</h1>
         <div class="flex mb-16 align-center">
             <span class="publish-date">publicat pe {{ \Carbon\Carbon::parse($model->created_at)->format('j.m.Y') }}</span>
+            <span class="publish-date">actualizat ultima oara pe {{ \Carbon\Carbon::parse($model->updated_at)->format('j.m.Y') }}</span>
         </div>
 
         <div class="flex col align-center" id="description-blog">

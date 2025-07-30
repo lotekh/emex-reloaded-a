@@ -41,6 +41,9 @@
                     <div class="publish-date">
                         <span>publicat pe {{ \Carbon\Carbon::parse($blogArticle->created_at)->format('j.m.Y') }}</span>
                     </div>
+                    <div class="publish-date">
+                        <span>actualizat ultima oara pe {{ \Carbon\Carbon::parse($blogArticle->updated_at)->format('j.m.Y') }}</span>
+                    </div>
                 </div>
                 <div class="flex grid grid-3">
                     <div class="flex justify-center hide-mobile pr-32">
