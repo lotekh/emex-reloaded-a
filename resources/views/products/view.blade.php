@@ -226,7 +226,7 @@ $baseUrl = url('/');
                             </div>
                             @endif
 
-                            <p class="section-info tva-label tva-produs">Pret - inclusiv tva</p>
+                            <p class="section-info tva-label tva-produs">Pret - inclusiv <strong>TVA 21%</strong></p>
                             @else
                             <p class="section-info tva-label tva-produs" id="pret_pre">Produs indisponibil</p>
                             @endif
