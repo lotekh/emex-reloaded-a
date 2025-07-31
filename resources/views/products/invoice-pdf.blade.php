@@ -2,6 +2,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 
+@php
+use App\Helpers\TvaHelper;
+@endphp
+
 <style>
     @page {
      margin: 0px;
@@ -189,7 +193,7 @@
                         </td>
                         <td class="col-6" style="padding-bottom: 5px">
                             <p class="id">{{ 'RTCH-N-' . $order['identifier'] }}</p>
-                            <p>Cota TVA: 19%</p>
+                            <p>Cota TVA: {{TvaHelper::getTvaRate()}}%</p>
                         </td>
                     </tr>
                 </table>

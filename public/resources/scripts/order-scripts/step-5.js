@@ -277,7 +277,7 @@ function getTransportPrice(county_id) {
             rambursTvaTd.textContent = "-";
 
             totalGeneral.textContent = Number(
-              parseFloat(totalPrice) + 1.19 * parseFloat(transportValuePrice)
+              parseFloat(totalPrice) + window.tva.priceMultiplier * parseFloat(transportValuePrice)
             ).toFixed(2);
           }
         } else if (xmlhttp.status == 400) {
@@ -303,7 +303,7 @@ function calculateRamburs(transportPrice = 0) {
     let rambursValue = (totalForRamburs * 3) / 100; // ramburs is 3% of total sum(sum of order + transport price)
     rambursValue = rambursValue.toFixed(2);
 
-    let ramburs_TVA = (rambursValue * 19) / 100;
+    let ramburs_TVA = (rambursValue * window.tva.rate) / 100;
     ramburs_TVA = ramburs_TVA.toFixed(2);
 
     rambursValueTd.textContent = rambursValue;
@@ -312,7 +312,7 @@ function calculateRamburs(transportPrice = 0) {
 
     totalGeneral.textContent = Number(
       parseFloat(totalPrice) +
-        1.19 * transportPrice +
+        window.tva.priceMultiplier * transportPrice +
         parseFloat(rambursValue) +
         parseFloat(ramburs_TVA)
     ).toFixed(2);
