@@ -99,7 +99,10 @@
     <div class="article article-view col-span-3">
         <h1 class="sti align-left">{{ $model->title }}</h1>
         <div class="flex mb-16 align-center">
-            <span class="publish-date">publicat pe {{ \Carbon\Carbon::parse($model->created_at)->format('j.m.Y') }}</span>
+            <div class="publish-date">
+                <span>Data publicarii: {{ \Carbon\Carbon::parse($model->created_at)->format('j.m.Y') }}</span>
+                <span style="margin-left: 20px;">Data ultimei actualizari: {{ \Carbon\Carbon::parse($model->updated_at)->format('j.m.Y') }}</span>
+            </div>
         </div>
 
         <div class="flex col align-center" id="description-blog">
