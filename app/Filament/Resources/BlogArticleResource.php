@@ -84,7 +84,8 @@ class BlogArticleResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->defaultSort('updated_at', 'desc')
+            ->reorderable('sort_order')
+            ->defaultSort('sort_order', 'asc')
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(isIndividual: true),
