@@ -9,17 +9,26 @@ use Illuminate\Http\Request;
 class BlogArticleController extends Controller
 {
     // Show the list of articles
-    public function index()
+    public function index(Request $request)
     {
-        $blogArticles = BlogArticle::with(['tags', 'featuredImage'])
-            ->orderBy('updated_at', 'desc')
-            ->paginate(10);
-            
+        $sort = $request->get('sort', 'updated'); // default is updated
+
+        $query = BlogArticle::with(['tags', 'featuredImage']);
+
+        if ($sort === 'relevance') {
+            $query->orderBy('sort_order', 'asc')->orderBy('updated_at', 'desc');
+        } else {
+            $query->orderBy('updated_at', 'desc');
+        }
+
+        $blogArticles = $query->paginate(10);
+
         $archive = null; 
         $tagFilter = null; 
-    
-        return view('blog.index', compact('blogArticles', 'archive', 'tagFilter'));
+
+        return view('blog.index', compact('blogArticles', 'archive', 'tagFilter', 'sort'));
     }
+
 
     // Show a specific article
     public function show($slug)
