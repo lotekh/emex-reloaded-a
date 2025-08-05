@@ -11,8 +11,10 @@ class BlogArticleController extends Controller
     // Show the list of articles
     public function index()
     {
-        $blogArticles = BlogArticle::with(['tags', 'featuredImage'])->orderBy('created_at', 'desc')->paginate(10);
-
+        $blogArticles = BlogArticle::with(['tags', 'featuredImage'])
+            ->orderBy('updated_at', 'desc')
+            ->paginate(10);
+            
         $archive = null; 
         $tagFilter = null; 
     
