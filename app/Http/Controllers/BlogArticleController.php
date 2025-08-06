@@ -11,9 +11,9 @@ class BlogArticleController extends Controller
     // Show the list of articles
     public function index(Request $request)
     {
-        $sort = $request->get('sort', 'updated'); // default is updated
+        $sort = $request->get('sort', 'updated'); // default is 'updated'
 
-        $query = BlogArticle::with(['tags', 'featuredImage']);
+        $query = BlogArticle::with(['tags', 'featuredImage'])->where('is_active', true);
 
         if ($sort === 'relevance') {
             $query->orderBy('sort_order', 'asc')->orderBy('updated_at', 'desc');
