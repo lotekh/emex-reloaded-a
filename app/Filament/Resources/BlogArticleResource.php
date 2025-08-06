@@ -71,7 +71,11 @@ class BlogArticleResource extends Resource
                                 UpdatedCuratorPicker::make('featured_image_id')
                                     ->relationship('featuredImage', 'featured_image_id')
                                     ->pathGenerator(DefaultPathGenerator::class)
-                                    ->preserveFilenames()
+                                    ->preserveFilenames(),
+                                Forms\Components\Toggle::make('is_active')
+                                    ->label('Is_Active')
+                                    ->default(true)
+                                    ->inline(false)
                             ]),
                         Tabs\Tab::make('SEO')
                         ->schema(SeoForm::make()),
@@ -89,6 +93,11 @@ class BlogArticleResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(isIndividual: true),
+                Tables\Columns\IconColumn::make('is_active') 
+                    ->label('Is_Active')
+                    ->boolean()
+                    ->sortable()
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(isIndividual: true),
                 Tables\Columns\TextColumn::make('created_at')
