@@ -16,9 +16,9 @@ class BlogArticleController extends Controller
         $query = BlogArticle::with(['tags', 'featuredImage'])->where('is_active', true);
 
         if ($sort === 'relevance') {
-            $query->orderBy('sort_order', 'asc')->orderBy('updated_at', 'desc');
+            $query->orderBy('sort_order', 'asc')->orderBy('created_at', 'desc');
         } else {
-            $query->orderBy('updated_at', 'desc');
+            $query->orderBy('created_at', 'desc');
         }
 
         $blogArticles = $query->paginate(10);
