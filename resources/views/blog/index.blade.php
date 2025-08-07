@@ -26,7 +26,7 @@
         <form method="GET" action="{{ route('blog.index') }}" class="mt-16">
             <label for="sort">Sortează după:</label>
             <select name="sort" id="sort" onchange="this.form.submit()">
-                <option value="updated" {{ request('sort', 'updated') === 'updated' ? 'selected' : '' }}>Data actualizării</option>
+                <option value="updated" {{ request('sort', 'updated') === 'updated' ? 'selected' : '' }}>Data publicării</option>
                 <option value="relevance" {{ request('sort') === 'relevance' ? 'selected' : '' }}>Relevanță</option>
             </select>
         </form>
