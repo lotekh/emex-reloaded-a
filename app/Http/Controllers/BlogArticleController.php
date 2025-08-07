@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class BlogArticleController extends Controller
 {
     // Show the list of articles
-    public function index(Request $request)
+    public function index()
     {
         $sort = $request->get('sort', 'updated'); // default is 'updated'
 
@@ -25,10 +25,9 @@ class BlogArticleController extends Controller
 
         $archive = null; 
         $tagFilter = null; 
-
-        return view('blog.index', compact('blogArticles', 'archive', 'tagFilter', 'sort'));
+    
+        return view('blog.index', compact('blogArticles', 'archive', 'tagFilter'));
     }
-
 
     // Show a specific article
     public function show($slug)

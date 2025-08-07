@@ -7,6 +7,7 @@
     <siteMapNode title="Amorsa Cuart Silicatica Tencuiala" description="Destinata Restaurarilor⭐ Amorsa cu Cuart pentru Tencuieli Silicatice ✅ are Duritate Superioara si Rezistenta Mare la Factori de Mediu si Imbatranire" url="~/amorsa-cuart-silicatica-tencuiala" />
     <siteMapNode title="Amorsa Cuart Tencuieli Decorative" description="Pentru Aderenta Superioara ⭐ Amorsa cu Cuart pentru Tencuieli Decorative ✅ Creeaza Puncte de Ancora si Mareste Durabilitatea Tencuielii Structurate." url="~/amorsa-cuart-tencuieli-decorative" />
     <siteMapNode title="Amorsa Cuart Tencuieli Siliconice" description="Pentru Aderenta Superioara ⭐ Amorsa cu Cuart pentru Tencuieli Siliconice ✅ Elasticitate Mare Flexibilitate si Rezistenta in Timp - Fixeaza Suportul" url="~/amorsa-cuart-tencuieli-siliconice" />
+    <siteMapNode title="Amorsa Elastomerica Universala" description="Amorsa elastomerica premium pentru protectia suprafetelor cu elasticitate maxima si rezistenta la umiditate si intemperii pentru protectii durabile" url="~/amorsa-elastomerica-universala" />
     <siteMapNode title="Amorsa Epoxidica Baza Apa" description="Primer pe Baza de Apa ⭐ Amorsa Epoxidica Emulsionata pentru Lemn Beton Zidarie ✅ Vopsire cu Vopsele Epoxidice Bicomponente pe Baza de Apa" url="~/amorsa-epoxidica-baza-apa" />
     <siteMapNode title="Amorsa Epoxidica Impregnare" description="Primer pentru Beton ⭐ Grund Epoxidic de Amorsare Pardoseli pentru ✅ Pregatirea Suprafetelor in vederea aplicarii de Pardoseli sau Vopsele Epoxidice" url="~/amorsa-epoxidica-impregnare" />
     <siteMapNode title="Amorsa Epoxidica Lemn Fibra Sticla" description="Primer pentru Lemn si Fibra de Sticla ⭐ Amorsa Epoxidica pentru Pregatirea Suprafetelor de vopsire cu Email Epoxidic, Poliuretanic sau Poliesteric" url="~/amorsa-epoxidica-lemn-fibra-sticla" />
@@ -37,6 +38,7 @@
       <siteMapNode title="Aplicatii Avansate Si Vopsele Inteligente" description="Vopselele inteligente Emex ofera protectie avansata, durabilitate si solutii inovative pentru aplicatii industriale complexe, moderne si industriale" url="~/blog/aplicatii-avansate-si-vopsele-inteligente" />
       <siteMapNode title="Avantajele Utilizarii Vopselelor DTM 3 In 1" description="Emex Aegis G3: Vopsea Acrilica Monocomponenta, Aplicabila Direct pe Metal Ruginit; Protectie Anticoroziva si Finisaj Decorativ, Fara Grund sau Sablare" url="~/blog/avantajele-utilizarii-vopselelor-DTM-3-in-1" />
       <siteMapNode title="Culoarea Ideala Vopsea Lavabila" description="Romtehnochim este producator al unei game vaste de vopsele lavabile. Toate pot fi colorate la cerere, sau pot fi nuantate cu paste de colorare." url="~/blog/culoarea-ideala-vopsea-lavabila" />
+      <siteMapNode title="Email Epoxidic Pentru Protectie Maxima" description="Emailul epoxidic Emex EFS-323 pentru medii agresive ofera protectie superioara suprafetelor metalice expuse la agresiuni chimice sau mecanice" url="~/blog/email-epoxidic-pentru-protectie-maxima" />
       <siteMapNode title="Emailuri Alchidice Vopsele De Uz General" description="Emailurile alchidice sunt produse de uz general pentru protejarea suprafetelor din lemn metal sau zidarie cu putere mare de acoperire si luciu intens" url="~/blog/emailuri-alchidice-vopsele-de-uz-general" />
       <siteMapNode title="Emex Consiliere Specializata Vopsire" description="Pentru reusita unor vopsiri sau aplicari de pardoseala la un nivel calitativ superior este necesar un instructaj privind modalitatile de utilizare." url="~/blog/emex-consiliere-specializata-vopsire" />
       <siteMapNode title="Emex Trs 700 Vopsea Termorezistenta" description="Vopseaua termorezistenta Emex TRS – 700 se remarca prin capacitatea mare de protectie fata de temperaturi ridicate, in special la cuptoare industriale" url="~/blog/emex-trs-700-vopsea-termorezistenta" />
@@ -57,302 +59,13 @@
       <siteMapNode title="Recomandari Clorcauciuc De Pardosela Beton" description="Vopseaua clorcauciuc pentru pardoseli ofera protectie eficienta la un cost accesibil. Flexibila, rezistenta si usor de aplicat in orice spatii" url="~/blog/recomandari-clorcauciuc-de-pardosela-beton" />
       <siteMapNode title="Sistem De Pardoseala Covor Epoxidic Emex" description="Covorul epoxidic de cuartz este probabil cel mai rezistent sistem de pardoseala. Se remarca si prin duritate, aspect decorativ si durabilitate in timp" url="~/blog/sistem-de-pardoseala-covor-epoxidic-emex" />
       <siteMapNode title="Sisteme Vopsire Ecologice Emex" description="Sistemele moderne de vopsire au in vedere in mod prioritar lipsa toxicitatii fata de om sau mediu, fiind realizate pe baza de rasini solubile in apa." url="~/blog/sisteme-vopsire-ecologice-emex" />
-      <siteMapNode title="Tag" description="Tag" url="~/blog/tag/">
-        <siteMapNode title="1" description="1" url="~/blog/tag/1" />
-        <siteMapNode title="10" description="10" url="~/blog/tag/10" />
-        <siteMapNode title="100" description="100" url="~/blog/tag/100" />
-        <siteMapNode title="101" description="101" url="~/blog/tag/101" />
-        <siteMapNode title="102" description="102" url="~/blog/tag/102" />
-        <siteMapNode title="103" description="103" url="~/blog/tag/103" />
-        <siteMapNode title="104" description="104" url="~/blog/tag/104" />
-        <siteMapNode title="105" description="105" url="~/blog/tag/105" />
-        <siteMapNode title="106" description="106" url="~/blog/tag/106" />
-        <siteMapNode title="107" description="107" url="~/blog/tag/107" />
-        <siteMapNode title="108" description="108" url="~/blog/tag/108" />
-        <siteMapNode title="109" description="109" url="~/blog/tag/109" />
-        <siteMapNode title="11" description="11" url="~/blog/tag/11" />
-        <siteMapNode title="110" description="110" url="~/blog/tag/110" />
-        <siteMapNode title="111" description="111" url="~/blog/tag/111" />
-        <siteMapNode title="112" description="112" url="~/blog/tag/112" />
-        <siteMapNode title="113" description="113" url="~/blog/tag/113" />
-        <siteMapNode title="114" description="114" url="~/blog/tag/114" />
-        <siteMapNode title="115" description="115" url="~/blog/tag/115" />
-        <siteMapNode title="116" description="116" url="~/blog/tag/116" />
-        <siteMapNode title="117" description="117" url="~/blog/tag/117" />
-        <siteMapNode title="118" description="118" url="~/blog/tag/118" />
-        <siteMapNode title="119" description="119" url="~/blog/tag/119" />
-        <siteMapNode title="12" description="12" url="~/blog/tag/12" />
-        <siteMapNode title="120" description="120" url="~/blog/tag/120" />
-        <siteMapNode title="121" description="121" url="~/blog/tag/121" />
-        <siteMapNode title="122" description="122" url="~/blog/tag/122" />
-        <siteMapNode title="123" description="123" url="~/blog/tag/123" />
-        <siteMapNode title="124" description="124" url="~/blog/tag/124" />
-        <siteMapNode title="125" description="125" url="~/blog/tag/125" />
-        <siteMapNode title="126" description="126" url="~/blog/tag/126" />
-        <siteMapNode title="127" description="127" url="~/blog/tag/127" />
-        <siteMapNode title="128" description="128" url="~/blog/tag/128" />
-        <siteMapNode title="129" description="129" url="~/blog/tag/129" />
-        <siteMapNode title="13" description="13" url="~/blog/tag/13" />
-        <siteMapNode title="130" description="130" url="~/blog/tag/130" />
-        <siteMapNode title="131" description="131" url="~/blog/tag/131" />
-        <siteMapNode title="132" description="132" url="~/blog/tag/132" />
-        <siteMapNode title="133" description="133" url="~/blog/tag/133" />
-        <siteMapNode title="134" description="134" url="~/blog/tag/134" />
-        <siteMapNode title="135" description="135" url="~/blog/tag/135" />
-        <siteMapNode title="136" description="136" url="~/blog/tag/136" />
-        <siteMapNode title="137" description="137" url="~/blog/tag/137" />
-        <siteMapNode title="138" description="138" url="~/blog/tag/138" />
-        <siteMapNode title="139" description="139" url="~/blog/tag/139" />
-        <siteMapNode title="14" description="14" url="~/blog/tag/14" />
-        <siteMapNode title="140" description="140" url="~/blog/tag/140" />
-        <siteMapNode title="141" description="141" url="~/blog/tag/141" />
-        <siteMapNode title="142" description="142" url="~/blog/tag/142" />
-        <siteMapNode title="143" description="143" url="~/blog/tag/143" />
-        <siteMapNode title="144" description="144" url="~/blog/tag/144" />
-        <siteMapNode title="145" description="145" url="~/blog/tag/145" />
-        <siteMapNode title="146" description="146" url="~/blog/tag/146" />
-        <siteMapNode title="147" description="147" url="~/blog/tag/147" />
-        <siteMapNode title="148" description="148" url="~/blog/tag/148" />
-        <siteMapNode title="149" description="149" url="~/blog/tag/149" />
-        <siteMapNode title="15" description="15" url="~/blog/tag/15" />
-        <siteMapNode title="150" description="150" url="~/blog/tag/150" />
-        <siteMapNode title="151" description="151" url="~/blog/tag/151" />
-        <siteMapNode title="152" description="152" url="~/blog/tag/152" />
-        <siteMapNode title="153" description="153" url="~/blog/tag/153" />
-        <siteMapNode title="154" description="154" url="~/blog/tag/154" />
-        <siteMapNode title="155" description="155" url="~/blog/tag/155" />
-        <siteMapNode title="156" description="156" url="~/blog/tag/156" />
-        <siteMapNode title="157" description="157" url="~/blog/tag/157" />
-        <siteMapNode title="158" description="158" url="~/blog/tag/158" />
-        <siteMapNode title="159" description="159" url="~/blog/tag/159" />
-        <siteMapNode title="16" description="16" url="~/blog/tag/16" />
-        <siteMapNode title="160" description="160" url="~/blog/tag/160" />
-        <siteMapNode title="161" description="161" url="~/blog/tag/161" />
-        <siteMapNode title="162" description="162" url="~/blog/tag/162" />
-        <siteMapNode title="163" description="163" url="~/blog/tag/163" />
-        <siteMapNode title="164" description="164" url="~/blog/tag/164" />
-        <siteMapNode title="165" description="165" url="~/blog/tag/165" />
-        <siteMapNode title="166" description="166" url="~/blog/tag/166" />
-        <siteMapNode title="167" description="167" url="~/blog/tag/167" />
-        <siteMapNode title="168" description="168" url="~/blog/tag/168" />
-        <siteMapNode title="169" description="169" url="~/blog/tag/169" />
-        <siteMapNode title="17" description="17" url="~/blog/tag/17" />
-        <siteMapNode title="170" description="170" url="~/blog/tag/170" />
-        <siteMapNode title="171" description="171" url="~/blog/tag/171" />
-        <siteMapNode title="172" description="172" url="~/blog/tag/172" />
-        <siteMapNode title="173" description="173" url="~/blog/tag/173" />
-        <siteMapNode title="174" description="174" url="~/blog/tag/174" />
-        <siteMapNode title="175" description="175" url="~/blog/tag/175" />
-        <siteMapNode title="176" description="176" url="~/blog/tag/176" />
-        <siteMapNode title="177" description="177" url="~/blog/tag/177" />
-        <siteMapNode title="178" description="178" url="~/blog/tag/178" />
-        <siteMapNode title="179" description="179" url="~/blog/tag/179" />
-        <siteMapNode title="18" description="18" url="~/blog/tag/18" />
-        <siteMapNode title="180" description="180" url="~/blog/tag/180" />
-        <siteMapNode title="181" description="181" url="~/blog/tag/181" />
-        <siteMapNode title="182" description="182" url="~/blog/tag/182" />
-        <siteMapNode title="183" description="183" url="~/blog/tag/183" />
-        <siteMapNode title="184" description="184" url="~/blog/tag/184" />
-        <siteMapNode title="185" description="185" url="~/blog/tag/185" />
-        <siteMapNode title="186" description="186" url="~/blog/tag/186" />
-        <siteMapNode title="187" description="187" url="~/blog/tag/187" />
-        <siteMapNode title="188" description="188" url="~/blog/tag/188" />
-        <siteMapNode title="189" description="189" url="~/blog/tag/189" />
-        <siteMapNode title="19" description="19" url="~/blog/tag/19" />
-        <siteMapNode title="190" description="190" url="~/blog/tag/190" />
-        <siteMapNode title="191" description="191" url="~/blog/tag/191" />
-        <siteMapNode title="192" description="192" url="~/blog/tag/192" />
-        <siteMapNode title="193" description="193" url="~/blog/tag/193" />
-        <siteMapNode title="194" description="194" url="~/blog/tag/194" />
-        <siteMapNode title="195" description="195" url="~/blog/tag/195" />
-        <siteMapNode title="196" description="196" url="~/blog/tag/196" />
-        <siteMapNode title="197" description="197" url="~/blog/tag/197" />
-        <siteMapNode title="198" description="198" url="~/blog/tag/198" />
-        <siteMapNode title="199" description="199" url="~/blog/tag/199" />
-        <siteMapNode title="2" description="2" url="~/blog/tag/2" />
-        <siteMapNode title="20" description="20" url="~/blog/tag/20" />
-        <siteMapNode title="200" description="200" url="~/blog/tag/200" />
-        <siteMapNode title="201" description="201" url="~/blog/tag/201" />
-        <siteMapNode title="202" description="202" url="~/blog/tag/202" />
-        <siteMapNode title="203" description="203" url="~/blog/tag/203" />
-        <siteMapNode title="204" description="204" url="~/blog/tag/204" />
-        <siteMapNode title="205" description="205" url="~/blog/tag/205" />
-        <siteMapNode title="206" description="206" url="~/blog/tag/206" />
-        <siteMapNode title="207" description="207" url="~/blog/tag/207" />
-        <siteMapNode title="208" description="208" url="~/blog/tag/208" />
-        <siteMapNode title="209" description="209" url="~/blog/tag/209" />
-        <siteMapNode title="21" description="21" url="~/blog/tag/21" />
-        <siteMapNode title="210" description="210" url="~/blog/tag/210" />
-        <siteMapNode title="211" description="211" url="~/blog/tag/211" />
-        <siteMapNode title="212" description="212" url="~/blog/tag/212" />
-        <siteMapNode title="213" description="213" url="~/blog/tag/213" />
-        <siteMapNode title="214" description="214" url="~/blog/tag/214" />
-        <siteMapNode title="215" description="215" url="~/blog/tag/215" />
-        <siteMapNode title="216" description="216" url="~/blog/tag/216" />
-        <siteMapNode title="217" description="217" url="~/blog/tag/217" />
-        <siteMapNode title="218" description="218" url="~/blog/tag/218" />
-        <siteMapNode title="219" description="219" url="~/blog/tag/219" />
-        <siteMapNode title="22" description="22" url="~/blog/tag/22" />
-        <siteMapNode title="220" description="220" url="~/blog/tag/220" />
-        <siteMapNode title="221" description="221" url="~/blog/tag/221" />
-        <siteMapNode title="222" description="222" url="~/blog/tag/222" />
-        <siteMapNode title="223" description="223" url="~/blog/tag/223" />
-        <siteMapNode title="224" description="224" url="~/blog/tag/224" />
-        <siteMapNode title="225" description="225" url="~/blog/tag/225" />
-        <siteMapNode title="226" description="226" url="~/blog/tag/226" />
-        <siteMapNode title="227" description="227" url="~/blog/tag/227" />
-        <siteMapNode title="228" description="228" url="~/blog/tag/228" />
-        <siteMapNode title="229" description="229" url="~/blog/tag/229" />
-        <siteMapNode title="23" description="23" url="~/blog/tag/23" />
-        <siteMapNode title="230" description="230" url="~/blog/tag/230" />
-        <siteMapNode title="231" description="231" url="~/blog/tag/231" />
-        <siteMapNode title="232" description="232" url="~/blog/tag/232" />
-        <siteMapNode title="233" description="233" url="~/blog/tag/233" />
-        <siteMapNode title="234" description="234" url="~/blog/tag/234" />
-        <siteMapNode title="235" description="235" url="~/blog/tag/235" />
-        <siteMapNode title="236" description="236" url="~/blog/tag/236" />
-        <siteMapNode title="237" description="237" url="~/blog/tag/237" />
-        <siteMapNode title="238" description="238" url="~/blog/tag/238" />
-        <siteMapNode title="239" description="239" url="~/blog/tag/239" />
-        <siteMapNode title="24" description="24" url="~/blog/tag/24" />
-        <siteMapNode title="240" description="240" url="~/blog/tag/240" />
-        <siteMapNode title="241" description="241" url="~/blog/tag/241" />
-        <siteMapNode title="242" description="242" url="~/blog/tag/242" />
-        <siteMapNode title="243" description="243" url="~/blog/tag/243" />
-        <siteMapNode title="244" description="244" url="~/blog/tag/244" />
-        <siteMapNode title="245" description="245" url="~/blog/tag/245" />
-        <siteMapNode title="246" description="246" url="~/blog/tag/246" />
-        <siteMapNode title="247" description="247" url="~/blog/tag/247" />
-        <siteMapNode title="248" description="248" url="~/blog/tag/248" />
-        <siteMapNode title="249" description="249" url="~/blog/tag/249" />
-        <siteMapNode title="25" description="25" url="~/blog/tag/25" />
-        <siteMapNode title="250" description="250" url="~/blog/tag/250" />
-        <siteMapNode title="251" description="251" url="~/blog/tag/251" />
-        <siteMapNode title="252" description="252" url="~/blog/tag/252" />
-        <siteMapNode title="253" description="253" url="~/blog/tag/253" />
-        <siteMapNode title="254" description="254" url="~/blog/tag/254" />
-        <siteMapNode title="255" description="255" url="~/blog/tag/255" />
-        <siteMapNode title="256" description="256" url="~/blog/tag/256" />
-        <siteMapNode title="257" description="257" url="~/blog/tag/257" />
-        <siteMapNode title="258" description="258" url="~/blog/tag/258" />
-        <siteMapNode title="259" description="259" url="~/blog/tag/259" />
-        <siteMapNode title="26" description="26" url="~/blog/tag/26" />
-        <siteMapNode title="260" description="260" url="~/blog/tag/260" />
-        <siteMapNode title="261" description="261" url="~/blog/tag/261" />
-        <siteMapNode title="262" description="262" url="~/blog/tag/262" />
-        <siteMapNode title="263" description="263" url="~/blog/tag/263" />
-        <siteMapNode title="264" description="264" url="~/blog/tag/264" />
-        <siteMapNode title="265" description="265" url="~/blog/tag/265" />
-        <siteMapNode title="266" description="266" url="~/blog/tag/266" />
-        <siteMapNode title="267" description="267" url="~/blog/tag/267" />
-        <siteMapNode title="268" description="268" url="~/blog/tag/268" />
-        <siteMapNode title="269" description="269" url="~/blog/tag/269" />
-        <siteMapNode title="27" description="27" url="~/blog/tag/27" />
-        <siteMapNode title="273" description="273" url="~/blog/tag/273" />
-        <siteMapNode title="275" description="275" url="~/blog/tag/275" />
-        <siteMapNode title="276" description="276" url="~/blog/tag/276" />
-        <siteMapNode title="277" description="277" url="~/blog/tag/277" />
-        <siteMapNode title="278" description="278" url="~/blog/tag/278" />
-        <siteMapNode title="279" description="279" url="~/blog/tag/279" />
-        <siteMapNode title="28" description="28" url="~/blog/tag/28" />
-        <siteMapNode title="280" description="280" url="~/blog/tag/280" />
-        <siteMapNode title="283" description="283" url="~/blog/tag/283" />
-        <siteMapNode title="284" description="284" url="~/blog/tag/284" />
-        <siteMapNode title="285" description="285" url="~/blog/tag/285" />
-        <siteMapNode title="287" description="287" url="~/blog/tag/287" />
-        <siteMapNode title="29" description="29" url="~/blog/tag/29" />
-        <siteMapNode title="290" description="290" url="~/blog/tag/290" />
-        <siteMapNode title="292" description="292" url="~/blog/tag/292" />
-        <siteMapNode title="293" description="293" url="~/blog/tag/293" />
-        <siteMapNode title="294" description="294" url="~/blog/tag/294" />
-        <siteMapNode title="295" description="295" url="~/blog/tag/295" />
-        <siteMapNode title="296" description="296" url="~/blog/tag/296" />
-        <siteMapNode title="297" description="297" url="~/blog/tag/297" />
-        <siteMapNode title="298" description="298" url="~/blog/tag/298" />
-        <siteMapNode title="3" description="3" url="~/blog/tag/3" />
-        <siteMapNode title="30" description="30" url="~/blog/tag/30" />
-        <siteMapNode title="31" description="31" url="~/blog/tag/31" />
-        <siteMapNode title="32" description="32" url="~/blog/tag/32" />
-        <siteMapNode title="33" description="33" url="~/blog/tag/33" />
-        <siteMapNode title="34" description="34" url="~/blog/tag/34" />
-        <siteMapNode title="35" description="35" url="~/blog/tag/35" />
-        <siteMapNode title="36" description="36" url="~/blog/tag/36" />
-        <siteMapNode title="37" description="37" url="~/blog/tag/37" />
-        <siteMapNode title="38" description="38" url="~/blog/tag/38" />
-        <siteMapNode title="39" description="39" url="~/blog/tag/39" />
-        <siteMapNode title="4" description="4" url="~/blog/tag/4" />
-        <siteMapNode title="40" description="40" url="~/blog/tag/40" />
-        <siteMapNode title="41" description="41" url="~/blog/tag/41" />
-        <siteMapNode title="42" description="42" url="~/blog/tag/42" />
-        <siteMapNode title="43" description="43" url="~/blog/tag/43" />
-        <siteMapNode title="44" description="44" url="~/blog/tag/44" />
-        <siteMapNode title="45" description="45" url="~/blog/tag/45" />
-        <siteMapNode title="46" description="46" url="~/blog/tag/46" />
-        <siteMapNode title="47" description="47" url="~/blog/tag/47" />
-        <siteMapNode title="48" description="48" url="~/blog/tag/48" />
-        <siteMapNode title="49" description="49" url="~/blog/tag/49" />
-        <siteMapNode title="5" description="5" url="~/blog/tag/5" />
-        <siteMapNode title="50" description="50" url="~/blog/tag/50" />
-        <siteMapNode title="51" description="51" url="~/blog/tag/51" />
-        <siteMapNode title="52" description="52" url="~/blog/tag/52" />
-        <siteMapNode title="53" description="53" url="~/blog/tag/53" />
-        <siteMapNode title="54" description="54" url="~/blog/tag/54" />
-        <siteMapNode title="55" description="55" url="~/blog/tag/55" />
-        <siteMapNode title="56" description="56" url="~/blog/tag/56" />
-        <siteMapNode title="57" description="57" url="~/blog/tag/57" />
-        <siteMapNode title="58" description="58" url="~/blog/tag/58" />
-        <siteMapNode title="59" description="59" url="~/blog/tag/59" />
-        <siteMapNode title="6" description="6" url="~/blog/tag/6" />
-        <siteMapNode title="60" description="60" url="~/blog/tag/60" />
-        <siteMapNode title="61" description="61" url="~/blog/tag/61" />
-        <siteMapNode title="62" description="62" url="~/blog/tag/62" />
-        <siteMapNode title="63" description="63" url="~/blog/tag/63" />
-        <siteMapNode title="64" description="64" url="~/blog/tag/64" />
-        <siteMapNode title="65" description="65" url="~/blog/tag/65" />
-        <siteMapNode title="66" description="66" url="~/blog/tag/66" />
-        <siteMapNode title="67" description="67" url="~/blog/tag/67" />
-        <siteMapNode title="68" description="68" url="~/blog/tag/68" />
-        <siteMapNode title="69" description="69" url="~/blog/tag/69" />
-        <siteMapNode title="7" description="7" url="~/blog/tag/7" />
-        <siteMapNode title="70" description="70" url="~/blog/tag/70" />
-        <siteMapNode title="71" description="71" url="~/blog/tag/71" />
-        <siteMapNode title="72" description="72" url="~/blog/tag/72" />
-        <siteMapNode title="73" description="73" url="~/blog/tag/73" />
-        <siteMapNode title="74" description="74" url="~/blog/tag/74" />
-        <siteMapNode title="75" description="75" url="~/blog/tag/75" />
-        <siteMapNode title="76" description="76" url="~/blog/tag/76" />
-        <siteMapNode title="77" description="77" url="~/blog/tag/77" />
-        <siteMapNode title="78" description="78" url="~/blog/tag/78" />
-        <siteMapNode title="79" description="79" url="~/blog/tag/79" />
-        <siteMapNode title="8" description="8" url="~/blog/tag/8" />
-        <siteMapNode title="80" description="80" url="~/blog/tag/80" />
-        <siteMapNode title="81" description="81" url="~/blog/tag/81" />
-        <siteMapNode title="82" description="82" url="~/blog/tag/82" />
-        <siteMapNode title="83" description="83" url="~/blog/tag/83" />
-        <siteMapNode title="84" description="84" url="~/blog/tag/84" />
-        <siteMapNode title="85" description="85" url="~/blog/tag/85" />
-        <siteMapNode title="86" description="86" url="~/blog/tag/86" />
-        <siteMapNode title="87" description="87" url="~/blog/tag/87" />
-        <siteMapNode title="88" description="88" url="~/blog/tag/88" />
-        <siteMapNode title="89" description="89" url="~/blog/tag/89" />
-        <siteMapNode title="9" description="9" url="~/blog/tag/9" />
-        <siteMapNode title="90" description="90" url="~/blog/tag/90" />
-        <siteMapNode title="91" description="91" url="~/blog/tag/91" />
-        <siteMapNode title="92" description="92" url="~/blog/tag/92" />
-        <siteMapNode title="93" description="93" url="~/blog/tag/93" />
-        <siteMapNode title="94" description="94" url="~/blog/tag/94" />
-        <siteMapNode title="95" description="95" url="~/blog/tag/95" />
-        <siteMapNode title="96" description="96" url="~/blog/tag/96" />
-        <siteMapNode title="97" description="97" url="~/blog/tag/97" />
-        <siteMapNode title="98" description="98" url="~/blog/tag/98" />
-        <siteMapNode title="99" description="99" url="~/blog/tag/99" />
-      </siteMapNode>
       <siteMapNode title="Tencuiala Decorativa Aplicare" description="Tencuiala decorativa se va aplica urmarind indicatiile din fisa tehnica pentru a obtine caracteristici superioare si durata de viata de minim 10 ani" url="~/blog/tencuiala-decorativa-aplicare" />
       <siteMapNode title="Tencuiala Decorativa Emex Aqua Protect" description="Tencuiala decorativa impermeabila are capacitatea de a hidroizola peretii fata de umezeala permitand totusi o respiratie corecta a porilor zidariei" url="~/blog/tencuiala-decorativa-emex-aqua-protect" />
       <siteMapNode title="Tencuiala Decorativa Protectie Cu Personalitate" description="Tencuiala decorativa structurata este destinata decorarii fatadelor sau tencuielilor exterioare si protectiei fata de intemperii, uzuza, radiatii UV." url="~/blog/tencuiala-decorativa-protectie-cu-personalitate" />
       <siteMapNode title="Tencuieli Decorative Profesionale Emex" description="Tencuielile decorative profesionale asigura protectie fata de factorii corozivi de mediu umezeala ridicata inghet-dezghet ceata salina si intemperii" url="~/blog/tencuieli-decorative-profesionale-emex" />
       <siteMapNode title="Vopsea De Tigla Emex Protectie La Superlativ" description="Vopsea acrilica pentru tigla si azbociment cu putere mare de acoperire, protectie la intemperii, radiatii UV si uzura in timp, cu durata mare de viata." url="~/blog/vopsea-de-tigla-emex-protectie-la-superlativ" />
       <siteMapNode title="Vopsea Emex Pentru Temperaturi Ridicate" description="Vopseaua termorezistenta siliconica este un produs profesional pentru protectia performanta a suprafetelor din metal impotriva temperaturilor ridicate" url="~/blog/vopsea-emex-pentru-temperaturi-ridicate" />
+      <siteMapNode title="Vopsea Epoxidica Pentru Pardoseli Beton" description="Vopsea epoxidica Emex pentru beton - ideala pentru trafic intens, protectie chimica si aspect profesional. Ghid informativ de utilizare." url="~/blog/vopsea-epoxidica-pentru-pardoseli-beton" />
       <siteMapNode title="Vopsea Metalizata Hamerschlag" description="Email metalizat pentru suprafete metalice hammerschlag numit si lovitura de ciocan – produs performant anticoroziv cu aspect de coaja de portocala" url="~/blog/vopsea-metalizata-hamerschlag" />
       <siteMapNode title="Vopsea Pentru Tigla De Acoperis" description="Vopseaua pentru tigla si azbociment se remarca prin caracteristici superioare de protectie fata de agentii corozivi din atmosfera sau factorii de mediu" url="~/blog/vopsea-pentru-tigla-de-acoperis" />
       <siteMapNode title="Vopsea Termorezistenta Siliconica" description="Vopsea Termorezistenta Siliconica" url="~/blog/vopsea-termorezistenta-siliconica" />
@@ -374,145 +87,148 @@
     <siteMapNode title="Catalog Emex" description="Catalog Emex" url="~/catalog-emex.pdf" />
     <siteMapNode title="Certificari Iso" description="Certificarea sistemului de management integrat al calitatii pentru producerea de lacuri, vopsele, tencuieli decorative si pardoseli epoxidice" url="~/certificari-iso" />
     <siteMapNode title="Confidentialitate Gdpr" description="Politica de confidentialitate a Romtehnochim si utilizarea datelor personale" url="~/confidentialitate-gdpr" />
-    <siteMapNode title="Consum Acrilica Metal" description="Produs Profesional ⭐ Vopsea Acrilica pentru Metal pe Baza de Apa ✅ cu Aderenta si Rezistenta Deosebita la Agenti Corozivi Factori de Mediu si Uzura." url="~/consum-acrilica-metal" />
-    <siteMapNode title="Consum Acrilica Mobila" description="Produs de Inalta Calitate ⭐ Vopsea Acrilica de Mobila Solubila in Apa &amp;ldquo;Emex&amp;rdquo; ✅ Lucioasa sau Mata cu Aderenta, Rezistenta la Patare, Uzura si Frecare." url="~/consum-acrilica-mobila" />
-    <siteMapNode title="Consum Acrilica Universala" description="Pe Baza de Apa ⭐ Vopsea Acrilica Universala Pentru Lemn Metal Zidarie sau Plastic ✅ Rezistenta la Factori de Mediu si Rugina. Durabilitate indelungata" url="~/consum-acrilica-universala" />
-    <siteMapNode title="Consum Amorsa Acrilica" description="Pentru Zugravire cu Vopsele Lavabile ⭐ Amorsa de Perete Acrilica pentru Zidarie si Tencuieli interior/ Exterior si Aplicare Tencuiala Decorativa" url="~/consum-amorsa-acrilica" />
-    <siteMapNode title="Consum Amorsa Antimucegai" description="Pentru Vopsele Lavabile Si Tencuieli Decorative ⭐ Amorsa Antimucegai De Perete ✅ Antifungic si Inhibitor de Igrasie - Impotriva Mucegaiului la Zidarie" url="~/consum-amorsa-antimucegai" />
-    <siteMapNode title="Consum Amorsa Clorcauciuc Impregnare" description="Primer pentru Beton ⭐ Amorsa Clorcauciuc pentru Pardoseli si Piscine ✅ Amorsare Fixare si Pregatire Suprafete Inaintea Aplicarii de Vopsea Clorcauciuc" url="~/consum-amorsa-clorcauciuc-impregnare" />
-    <siteMapNode title="Consum Amorsa Epoxidica Baza Apa" description="Primer pe Baza de Apa ⭐ Amorsa Epoxidica Emulsionata pentru Lemn Beton Zidarie ✅ Vopsire cu Vopsele Epoxidice Bicomponente pe Baza de Apa" url="~/consum-amorsa-epoxidica-baza-apa" />
-    <siteMapNode title="Consum Amorsa Epoxidica Impregnare" description="Primer pentru Beton ⭐ Grund Epoxidic de Amorsare Pardoseli pentru ✅ Pregatirea Suprafetelor in vederea aplicarii de Pardoseli sau Vopsele Epoxidice" url="~/consum-amorsa-epoxidica-impregnare" />
-    <siteMapNode title="Consum Amorsa Epoxidica Lemn Fibra Sticla" description="Primer pentru Lemn si Fibra de Sticla ⭐ Amorsa Epoxidica pentru Pregatirea Suprafetelor de vopsire cu Email Epoxidic, Poliuretanic sau Poliesteric" url="~/consum-amorsa-epoxidica-lemn-fibra-sticla" />
-    <siteMapNode title="Consum Amorsa Poliuretanica Pardoseli" description="Primer pentru Beton ⭐ Grund Poliuretanic de Amorsare Pardoseli ✅ Pregatire si Fixare Suprafete pentru Aplicare Vopsele Poliuretanice de Pardoseala !" url="~/consum-amorsa-poliuretanica-pardoseli" />
-    <siteMapNode title="Consum Amorsa Poliuretanica Solvent Free" description="Produs Profesional ⭐ Amorsa Poliuretanica Nesolventata de Impregnare ✅ Fixare Suport si Inchidere Pori pentru Aplicarea de Pardoseli Poliuretanice." url="~/consum-amorsa-poliuretanica-solvent-free" />
-    <siteMapNode title="Consum Amorsa Silicatica" description="Prima Alegere in Restaurari ⭐ Amorsa de Perete Silicatica Profesionala cu Mare Duritate ✅ pentru Vopsele Lavabile sau Tencuieli Decorative Silicatice" url="~/consum-amorsa-silicatica" />
-    <siteMapNode title="Consum Amorsa Siliconica" description="Produs Premium ⭐ Amorsa de Perete Siliconica &amp;ldquo;Emex&amp;rdquo; cu ✅ Aderenta, Putere Mare de Penetrare a Suportului si Elasticitate Avansata, pentru Zugraveli." url="~/consum-amorsa-siliconica" />
-    <siteMapNode title="Consum Bronz Aluminiu" description="Vopsea Argintie Bronz Aluminiu Metalizat ⭐ Utilizata ca Vopsea pentru Fier Forjat Tabla Zincata sau Jante din Metal. ✅️ Aspect si Luciu de Exceptie !" url="~/consum-bronz-aluminiu" />
-    <siteMapNode title="Consum Convertor Rugina" description="Sistem ⭐ Convertor si Inhibitor de Rugina. Asigura Curatare si Neutralizare Rugina prin Chelare. ✅ Solutie Antirugina pentru Protectie Anticoroziva !" url="~/consum-convertor-rugina" />
-    <siteMapNode title="Consum Covor Poliuretanic De Piatra" description="Sistem Tricomponent Modern⭐ Pardoseala Poliuretanica Decorativa &amp;ldquo;Emex Pebble&amp;rdquo; - Covor de Piatra este un✅ Produs din Rasina Poliuretanica Solvent-Free" url="~/consum-covor-poliuretanic-de-piatra" />
-    <siteMapNode title="Consum Decapant Cm Cleaner" description="Produs Profesional ⭐ Decapant pentru Vopsea sub Forma de Pasta ✅ Produs de Mare Eficacitate pentru Curatare Vopsea Veche de pe Metal !" url="~/consum-decapant-cm-cleaner" />
-    <siteMapNode title="Consum Email Alchido Stirenic" description="Pentru Metal Aluminiu sau Lemn ⭐ Vopsea Profesionala Alchido-Stirenica de Inalta Calitate ✅ Putere de Acoperire, Rezistenta, Luciu si Uscare Rapida !" url="~/consum-email-alchido-stirenic" />
-    <siteMapNode title="Consum Email Epoxidic Emulsionat Apa" description="Sistem Profesional ⭐ Email Epoxidic pe Baza de Apa pentru Lemn si Metal, cu Rezistenta Mare la Apa si Agresiuni Chimice ✅ Durabilitate Minima 5 ani !" url="~/consum-email-epoxidic-emulsionat-apa" />
-    <siteMapNode title="Consum Email Epoxidic Medii Agresive" description="Sistem Profesional de Noua Generatie ⭐ Emailul Epoxidic pentru Medii Agresive &amp;ldquo;Emex EFS-323&amp;rdquo; Contine ✅ Microfulgi de Sticla pentru Rezistenta Marita" url="~/consum-email-epoxidic-medii-agresive" />
-    <siteMapNode title="Consum Email Epoxidic Placi Ceramice" description="Sistem Bicomponent ⭐ Emailul Epoxidic pentru Gresie si Faianta &amp;ldquo;Emex QSF-3E&amp;rdquo; ✅ Solutie Moderna de Acoperire pe Baza de Rasina Epoxidica Hidrosolubila" url="~/consum-email-epoxidic-placi-ceramice" />
-    <siteMapNode title="Consum Email Nitro Combinat" description="Produs Profesional ⭐ Emailul Nitro-Combinat &amp;ldquo;Emex QN-212&amp;rdquo; este Fabricat pe Baza de ✅ Nitroceluloza si Rasini Alchido-Acrilice pentru Lemn sau Metal" url="~/consum-email-nitro-combinat" />
-    <siteMapNode title="Consum Email Panouri Sandwich" description="Produs Profesional ⭐ Email Acrilo-Stirenic &amp;ldquo;Emex Panel&amp;rdquo; - Fabricat Special Pentru Vopsirea ✅️ Panourilor Sandwich si Acoperisurilor din Tigla Metalica" url="~/consum-email-panouri-sandwich" />
-    <siteMapNode title="Consum Email Premium Gold" description="Ideal pentru Interior sau Exterior ⭐ Email Ultraacoperitor intr-un Singur Strat ✅ Acoperitor Excepțional, Durabil și Rezistent. Calcul de Consum" url="~/consum-email-premium-gold" />
-    <siteMapNode title="Consum Emex Dual Protect" description="In Culori RAL ⭐ Vopsea pentru Metal cu Luciu Superior cu Grund Anticoroziv Inclus si Inhibitor de Coroziune  ✅ Sistem Protectie Anticoroziva 2 in 1" url="~/consum-emex-dual-protect" />
-    <siteMapNode title="Consum Emex Extracolor" description="Pentru Interior sau Exterior ⭐ Vopsea Decorativa Alchidica pentru Suporturi din Lemn Metal Zidarie. Luciu Intens, Putere de Acoperire ✅ Pret Decent !" url="~/consum-emex-extracolor" />
-    <siteMapNode title="Consum Epoxidica Pardoseli Cu Microfulgi" description="Sistem Profesional ⭐ Vopsea Epoxidica de Pardoseala cu Microfulgi de Sticla ✅ Vopsiri Epoxidice de Inalta Performanta cu Durabilitate Indelungata !" url="~/consum-epoxidica-pardoseli-cu-microfulgi" />
-    <siteMapNode title="Consum Grund Acrilo Stirenic Zinc Microfibra" description="Produs Profesional ⭐ Grundul Anticoroziv Acrilo-Stirenic cu Microfibra si Zinc &amp;ldquo;Emex MZ-801&amp;rdquo; Contine ✅️ Agenti Anticorozivi si Inhibitori de Coroziune" url="~/consum-grund-acrilo-stirenic-zinc-microfibra" />
-    <siteMapNode title="Consum Grund Alchidic Anticoroziv" description="Rezistent La Intemperii si Factori Chimici ⭐ Grundul Anticoroziv Alchidic Asigura ✅ Protectie Anticoroziva a Elementelor din Metal impotriva Ruginii" url="~/consum-grund-alchidic-anticoroziv" />
-    <siteMapNode title="Consum Grund Amorsa Tencuiala" description="Pentru Aderenta Superioara ⭐ Amorsa cu Cuart pentru Tencuieli Decorative ✅ Creeaza Puncte de Ancora si Mareste Durabilitatea Tencuielii Structurate." url="~/consum-grund-amorsa-tencuiala" />
-    <siteMapNode title="Consum Grund Amorsare Pereti" description="Pregatirea Peretilor ⭐ Grund de Amorsare Egalizare si Umplere Pori Slefuibil ✅ pentru Pregatire de Aplicare Vopsele Lavabile si Tencuieli Decorative." url="~/consum-grund-amorsare-pereti" />
-    <siteMapNode title="Consum Grund Anticoroziv Alchido Stirenic" description="Produs Profesional ⭐ Grund Anticoroziv Alchido-Stirenic ✅ Protectie Anticoroziva Superioara pentru Suporturile Metalice Expuse la Aparitia Ruginii !" url="~/consum-grund-anticoroziv-alchido-stirenic" />
-    <siteMapNode title="Consum Grund Anticoroziv Clorcauciuc" description="Pe Baza De Cauciuc Clorurat ⭐ Grund Anticoroziv Clorcauciuc Impotriva Ruginii ✅ pentru Protectia Suporturilor de Metal. Contine inhibitor de Coroziune" url="~/consum-grund-anticoroziv-clorcauciuc" />
-    <siteMapNode title="Consum Grund Anticoroziv Cuptor" description="Produs Industrial ⭐ Grund Anticoroziv de Cuptor din Rasini Sintetice ✅ Protectie Superioara Impotriva Ruginii, Rezistenta la Apa si Agenti Chimici !" url="~/consum-grund-anticoroziv-cuptor" />
-    <siteMapNode title="Consum Grund Anticoroziv Emex" description="Grund ⭐ Alchidic Anticoroziv pentru Protectia Suporturilor din Metal Impotriva Ruginii cu ✅ Agenti Anticorozivi si Inhibitor de Coroziune" url="~/consum-grund-anticoroziv-emex" />
-    <siteMapNode title="Consum Grund Anticoroziv Epoxi Ester" description="Monocomponent ⭐ Grund Epoxidic Anticoroziv pentru Metal pe Baza de Rasina Epoxidica Modificata ✅ Rezistenta si Protectie Maxima la Coroziune !" url="~/consum-grund-anticoroziv-epoxi-ester" />
-    <siteMapNode title="Consum Grund Anticoroziv Poliesteric" description="Produs Profesional ⭐ Grund Bicomponent Poliesteric Anticoroziv - Protectie Profesionala ✅ Inaintea Aplicarii de Vopsele pe Baza de Rasini Poliesterice" url="~/consum-grund-anticoroziv-poliesteric" />
-    <siteMapNode title="Consum Grund Auto Utilaje" description="Pentru Protectia de Utilaje si Caroserii Auto Impotriva Ruginii ⭐ Grund Anticoroziv Tip Auto pentru Utilaje ✅ Duritate, Durabilitate, Rezistenta !" url="~/consum-grund-auto-utilaje" />
-    <siteMapNode title="Consum Grund Epoxi Poliamidic Cu Zinc" description="Produs Profesional ⭐ Grundul Anticoroziv Epoxy-Poliamidic cu Zinc este Destinat Elementelor Metalice Expuse la Medii de Agresivitate Mare/ Foarte Mare" url="~/consum-grund-epoxi-poliamidic-cu-zinc" />
-    <siteMapNode title="Consum Grund Epoxidic Anticoroziv" description="Fabricat pe Baza de Rasina Epoxidica ⭐ Grund Epoxidic Anticoroziv Eficient Impotriva Ruginii ✅ cu Rezistenta la Coroziune in Medii Chimic Agresive" url="~/consum-grund-epoxidic-anticoroziv" />
-    <siteMapNode title="Consum Grund Epoxidic Solubil Apa" description="Pe Baza de Rasini Epoxidice Solubile in Apa ⭐ Grund Anticoroziv Bicomponent ✅ Rezistent la Coroziune Medii Chimic Agresive Factori Corozivi Intemperii" url="~/consum-grund-epoxidic-solubil-apa" />
-    <siteMapNode title="Consum Grund Hidrosolubil" description="Produs Profesional ⭐ Grund Anticoroziv Solubil in Apa ✅ Protectie Anticoroziva de Mare Eficienta. Fara Emisii Volatile, pentru Suporturi Metalice" url="~/consum-grund-hidrosolubil" />
-    <siteMapNode title="Consum Grund Lemn Binale" description="Produs Superior ⭐ Grund Alchidic pentru Lemn si Binale &amp;ldquo;Emex&amp;rdquo; ✅ Asigura Egalizare si Umplere Pori. Destinat Pregatirii Lemnului Inaintea Vopsirii" url="~/consum-grund-lemn-binale" />
-    <siteMapNode title="Consum Grund Nitrocelulozic Anticoroziv" description="Inhibitor Anticoroziv ⭐ Grundul Nitro-Combinat &amp;ldquo;Emex FZ-214&amp;rdquo; este Fabricat pe ✅️ Baza de Nitroceluloza, Agenti Anticorozivi si Inhibitori de Coroziune" url="~/consum-grund-nitrocelulozic-anticoroziv" />
-    <siteMapNode title="Consum Grund Poliuretanic Anticoroziv" description="Produs de Noua Generatie ⭐ Grundul Poliuretanic Anticoroziv Bicomponent &amp;ldquo;Emex&amp;rdquo; Prezinta ✅ Rezistenta Mare la Coroziune si Medii Chimic Agresive" url="~/consum-grund-poliuretanic-anticoroziv" />
-    <siteMapNode title="Consum Grund Silicatic Tencuiala" description="Destinata Restaurarilor⭐ Amorsa cu Cuart pentru Tencuieli Silicatice ✅ are Duritate Superioara si Rezistenta Mare la Factori de Mediu si Imbatranire" url="~/consum-grund-silicatic-tencuiala" />
-    <siteMapNode title="Consum Grund Siliconic Tencuiala" description="Pentru Aderenta Superioara ⭐ Amorsa cu Cuart pentru Tencuieli Siliconice ✅ Elasticitate Mare Flexibilitate si Rezistenta in Timp - Fixeaza Suportul" url="~/consum-grund-siliconic-tencuiala" />
-    <siteMapNode title="Consum Grund Solubil Apa" description="Produs Profesional ⭐ Grund Anticoroziv de Imersie Impotriva Ruginii ✅ Solubil in Apa cu Inhibitor de Coroziune pentru Metal cu Emisii COV Reduse" url="~/consum-grund-solubil-apa" />
-    <siteMapNode title="Consum Grund Termorezistent Anticoroziv" description="Rezistent la Temperaturi Inalte ⭐ Grundul Anticoroziv Termorezistent Siliconic cu Inhibitori de Coroziune ✅ Creaza Pelicule ce Opresc Formarea Ruginii" url="~/consum-grund-termorezistent-anticoroziv" />
-    <siteMapNode title="Consum Impregnant Hidrofobizare" description="Protectie Eficienta a Zidariei la Agenti Corozovi ⭐ Impregnant de Hidrofobizare Beton ✅ Nu Permite Infiltrarea Apei dar Permite Respiratia Peretilor" url="~/consum-impregnant-hidrofobizare" />
-    <siteMapNode title="Consum Lac Acrilic Mobila" description="Produs Transparent ⭐ Lac pentru Mobila pe Baza de Apa din Rasini Acrilice ✅ Lucios Sau Mat, Rezistent la Patare, UV si Uzura, cu Aderenta Mare." url="~/consum-lac-acrilic-mobila" />
-    <siteMapNode title="Consum Lac Alchidic" description="Lac Alchidic Transparent Lucios pentru Lemn ⭐ Calitati Superioare de Impregnare Acoperire si Finisare a Suprafetelor si Decoratiunilor din Lemn" url="~/consum-lac-alchidic" />
-    <siteMapNode title="Consum Lac Beton Amprentat" description="Noua Generatie ⭐ Lac Protectie pentru Beton Amprentat - Rezistent la Trafic, Apa, Inghet-Dezghet ✅ Fixeaza Pardoseli Macinate si Fisurate !" url="~/consum-lac-beton-amprentat" />
-    <siteMapNode title="Consum Lac Epoxidic Sigilare" description="Fabricat din Rasina Epoxidica Free ⭐ Lac Epoxidic pentru Beton pentru Protectia Pardoselilor Impotriva Macinarii si Fisurarii. ✅ Lacuire Top Coat !" url="~/consum-lac-epoxidic-sigilare" />
-    <siteMapNode title="Consum Lac Epoxidic Solventat" description="Pentru Decorare Si Protectie ⭐ Lac Epoxidic Solventat Metal si Beton ✅ Bun Sigilant, Rezistent la Apa, Cicluri Inghet – Dezghet, Medii Agresive !" url="~/consum-lac-epoxidic-solventat" />
-    <siteMapNode title="Consum Lac Exterior Uretan" description="Unul dintre cele mai Performante Lacuri ⭐ Lac pentru Decoratiuni din Lemn si Mobilier de Gradina ✅ Lac Rezistent la Apa, Intemperii, Lumina si UV !" url="~/consum-lac-exterior-uretan" />
-    <siteMapNode title="Consum Lac Parchet" description="Pe Baza de Rasini Alchido-Uretanizate ⭐ Lac Monocomponent pentru Parchet - Lucios, Transparent si Rezistent ✅ Lacuri de Parchet cu Aspect Profesional" url="~/consum-lac-parchet" />
-    <siteMapNode title="Consum Lac Piatra" description="Produs de Inalta Calitate ⭐ Lac Acrilic Solventat pentru Piatra Naturala ✅ Rezistent la Intemperii, Apa, Infiltratii, Factori de Mediu si Radiatii UV" url="~/consum-lac-piatra" />
-    <siteMapNode title="Consum Lac Piatra Apa" description="Lac pentru Piatra Acrilic Solubil in Apa ⭐ Fabricat din Rasini Diluabile cu Apa cu ✅ Mare Putere de Penetrare Rezistent la Apa Factori de Mediu si UV" url="~/consum-lac-piatra-apa" />
-    <siteMapNode title="Consum Lac Pigmentat" description="Produs Profesional de Inalta Calitate⭐ Lazura/ Lac Transparent sau Nuantat pe Baza de Rasini Sintetice ✅ Gama Larga de Culori de Interior sau Exterior" url="~/consum-lac-pigmentat" />
-    <siteMapNode title="Consum Lac Poliaspartic Antizgariere" description="Pentru Protectii cu Rezistenta Mecanica Superioara ⭐ Sistem Inovator, de Inalta Performanta, Bicomponent, cu Uscare si Intarire Foarte Rapida, la Aer" url="~/consum-lac-poliaspartic-antizgariere" />
-    <siteMapNode title="Consum Lac Poliuretanic Beton Amprentat" description="Protectie Avansata Dale, Placi, Pavele Ornamentale ⭐ Lac Poliuretanic pentru Beton Amprentat ✅ Rezistent la Trafic, Apa, Inghet-Dezghet, Radiatii UV !" url="~/consum-lac-poliuretanic-beton-amprentat" />
-    <siteMapNode title="Consum Lac Poliuretanic Mobila" description="Pe Baza de Rasini Poliuretanice ⭐ Lac Poliuretanic Bicomponent de Mobila si Mobilier ✅ Lucios cu Rezistenta Mare la Intemperii Frecare Patare si UV" url="~/consum-lac-poliuretanic-mobila" />
-    <siteMapNode title="Consum Lac Poliuretanic Pardoseli Polimat" description="Produs de Inalta Performanta ⭐ Lac Poliuretanic pe Baza de Apa &amp;ldquo;Emex Polimat&amp;rdquo; ✅️ Utilizat pentru Protectia si/ sau Corectia Acoperirilor de Pardoseala" url="~/consum-lac-poliuretanic-pardoseli-polimat" />
-    <siteMapNode title="Consum Lac Poliuretanic Protectie" description="Filtru pentru Radiatii UV ⭐ Lac Poliuretanic Transparent de Protectie pentru Yachturi Barci si Ambarcatiuni de Agrement ✅ Rezistent la Apa si Zgariere" url="~/consum-lac-poliuretanic-protectie" />
-    <siteMapNode title="Consum Lac Protectie Beton" description="Produs de Calitate ⭐ Lac Protectie Beton cu Xilani pentru Impermeabilizare ✅ pentru Protejare si Fixare Betoane si Mortare Impotriva Efectelor Apei" url="~/consum-lac-protectie-beton" />
-    <siteMapNode title="Consum Lac Protectie Metal" description="Produs Profesional de Inalta Performanta ⭐ Lacul Acrilic pentru Metal &amp;ldquo;Emex Bliss&amp;rdquo; pentru ✅ Suprafete Metalice, cu Precadere pentru Neferoase" url="~/consum-lac-protectie-metal" />
-    <siteMapNode title="Consum Lavabila Antimucegai" description="Calcul de Consum pentru ⭐ Vopsea Lavabila Antimucegai pentru Zugraveli de Interior ✅ Protectie Antifungica Impotriva Igrasiei si Bacteriilor !" url="~/consum-lavabila-antimucegai" />
-    <siteMapNode title="Consum Lavabila Ceramica" description="Pentru Protectia Spatiilor de Baie si Bucatarie ⭐ Vopsea Ultralavabila Ceramica Anticondens ✅ cu Nanosfere Ceramice. Termoizolare, Lavabilitate Mare" url="~/consum-lavabila-ceramica" />
-    <siteMapNode title="Consum Lavabila Cuartz Exterior" description="Calcul de Consum ⭐ Vopsea Lavabila Profesionala de Exterior Cu Adaos de Faina Cuartz ✅ pentru Tencuieli Exterioare cu Duritate si Rezistenta" url="~/consum-lavabila-cuartz-exterior" />
-    <siteMapNode title="Consum Lavabila Efect Culoare" description="Pe Baza de Latex ⭐ Vopsea Lavabila Premium cu Efect de Colorare are Inclusa o Substanta de Nuantare si Capacitatea de a Usura Vizualizarea Defectelor" url="~/consum-lavabila-efect-culoare" />
-    <siteMapNode title="Consum Lavabila Lucioasa" description="Pe Baza de Latex ⭐ Vopsea Lavabila Lucioasa Premium de Interior ✅ pentru Zugraveli Lavabile Impecabile cu Mare Putere de Acoperire si Luciu Superior !" url="~/consum-lavabila-lucioasa" />
-    <siteMapNode title="Consum Lavabila Neomatt Exterior" description="Pe Baza de Latex ⭐ Vopsea Lavabila Exterior Economica pentru Finisarea Tencuielilor Exterioare cu Putere De Acoperire Aderenta si Grad Mare de Alb" url="~/consum-lavabila-neomatt-exterior" />
-    <siteMapNode title="Consum Lavabila Neomatt Plus Interior" description="Pe Baza de Polimeri Stiren-Acrilici ⭐ Vopsea Lavabila de Interior Practica “Neomatt Plus” pentru Gleturi si Tencuieli Interioare - Calcul de Consum" url="~/consum-lavabila-neomatt-plus-interior" />
-    <siteMapNode title="Consum Lavabila Premium Gold" description="Pentru Zugraveli Interioare Profesionale ⭐ Vopsea Lavabila Premium de Interior ✅ Acoperire la 1 strat. Acoperire , Durabilitate si Pret Excelent pe mp" url="~/consum-lavabila-premium-gold" />
-    <siteMapNode title="Consum Lavabila Reflectorizanta" description="Pe Baza de Latex ⭐ Vopsea Lavabila Reflectorizanta cu Microsfere de Sticla ✅ Efect Luminiscent de Stalucire Intensa Datorita Capacitatii de Reflexie" url="~/consum-lavabila-reflectorizanta" />
-    <siteMapNode title="Consum Lavabila Satinata" description="Emex Silk ⭐ Vopsea Lavabila Profesionala cu Aspect Satinat pentru tencuieli interioare cu mare putere de acoperire, grad mare de alb si aderenta mare" url="~/consum-lavabila-satinata" />
-    <siteMapNode title="Consum Lavabila Silicatica Exterior" description="Vopsea Profesionala ⭐ Superlavabila Silicatica pentru Finisarea Tencuielilor Exterioare cu ✅ Autocuratare, Duritate Excelenta si Putere de Acoperire" url="~/consum-lavabila-silicatica-exterior" />
-    <siteMapNode title="Consum Lavabila Silicatica Interior" description="Pentru Zugraveli Interioare ⭐ Lavabila Silicatica de Interior cu Autocuratare si Duritate Excelenta, Asigura ✅ Finisare Profesionala a Tencuielilor" url="~/consum-lavabila-silicatica-interior" />
-    <siteMapNode title="Consum Lavabila Siliconica Exterior" description="Produs Profesional ⭐ Vopsea Lavabila Siliconica de Exterior &amp;ldquo;Emex&amp;rdquo; ✅ Finisare Tencuieli si Gleturi Exterioare. Elasticitate si Putere Mare de Acoperire" url="~/consum-lavabila-siliconica-exterior" />
-    <siteMapNode title="Consum Lavabila Siliconica Interior" description="Pe baza de Rasina Siliconica ⭐ Vopsea Lavabila Siliconica de Interior Alba sau Colorata are ✅ Proprietati Antimurdarire, Rezistenta si Elasticitate !" url="~/consum-lavabila-siliconica-interior" />
-    <siteMapNode title="Consum Lovitura De Ciocan" description="Vopsea Profesionala ⭐ Lovitura de Ciocan Hammerschlag sau Hammerite pentru Metal ✅️ Metalizata Rezistenta la Coroziune Aspect Decorativ in Relief !" url="~/consum-lovitura-de-ciocan" />
-    <siteMapNode title="Consum Marcaj Rutier Apa Wt Urban" description="Produs Profesional ⭐ Vopsea pentru Marcaj Rutier pe Baza de Apa &amp;ldquo;Emex WT-Urban&amp;rdquo; ✅ pentru Marcaje Rutiere, Borduri sau pe Gazon Natural sau Sintetic" url="~/consum-marcaj-rutier-apa-wt-urban" />
-    <siteMapNode title="Consum Masa Epoxidica Spaclu" description="Produs Profesional ⭐ Masa Epoxidica de Spaclu &amp;ldquo;Emex MSE 31&amp;rdquo; ✅ Inalta Performanta pentru Pregatire Sisteme de Pardoseli sau Vopsiri Bicomponente" url="~/consum-masa-epoxidica-spaclu" />
-    <siteMapNode title="Consum Membrana Acrilica Hidroizolanta" description="Sistem Acrilic ⭐ Membrana Acrilica Hidroizolanta 2k &amp;ldquo;Emex HyPro&amp;rdquo; cu ✅ Elasticitate Ridicata si Stabilitate la Temperaturi intre -20°C si +60°C" url="~/consum-membrana-acrilica-hidroizolanta" />
-    <siteMapNode title="Consum Membrana Cauciucata Elastomerica" description="Pe Baza de Rasini Acrilice Pure ⭐ Membrana Impermeabilizanta Cauciucata ✅ Elasticitate Mare, Stabilitate, Rezistenta La Intemperii, Impact, Vibratii" url="~/consum-membrana-cauciucata-elastomerica" />
-    <siteMapNode title="Consum Membrana Poliuretanica Hidroizolanta" description="Produs Profesional ⭐ Membrana Poliuretanica Hidroizolanta Lichida ✅ Realizeaza Hidroizolatii de Terase Balcoane sau Impermeabilizare Pardoseli Beton !" url="~/consum-membrana-poliuretanica-hidroizolanta" />
-    <siteMapNode title="Consum Metalizata Acrilica" description="Produs Profesional ⭐ Vopsea Metalizata Aurie sau Argintie. Bronz-Aluminiu pentru Suprafete Metalice si Fier Forjat ✅ Produs de Inalta Calitate !" url="~/consum-metalizata-acrilica" />
-    <siteMapNode title="Consum Pardoseala Epoxidica" description="Produs Profesional ⭐ Pardoseala Autonivelanta Epoxidica ✅ Inalta Calitate, Luciu Intens, Duritate Remarcabila - Pardoseli Industriale Epoxidice !" url="~/consum-pardoseala-epoxidica" />
-    <siteMapNode title="Consum Pardoseala Epoxidica Antiderapanta" description="Produs Anti Alunecare ⭐ Pardoseala Antiderapanta Epoxidica ✅ Anti Slipping, Calitate, Duritate Remarcabila - Pardoseli Industriale sau Rezidentiale !" url="~/consum-pardoseala-epoxidica-antiderapanta" />
-    <siteMapNode title="Consum Pardoseala Epoxidica Cuart" description="Sistem Profesional ⭐ Pardoseala Epoxidica Decorativa STB - Covor de Piatra ✅ Pardoseli Industriale cu Cuart de Mare Duritate si Rezistenta !" url="~/consum-pardoseala-epoxidica-cuart" />
-    <siteMapNode title="Consum Pardoseala Epoxidica Multicolor" description="Produs Profesional ⭐ Pardoseala Decorativa din Rasina Epoxidica Solvent-Free cu Plachete sau Fulgi Colorati ✅ Rezistenta, Duritate, Durabilitate." url="~/consum-pardoseala-epoxidica-multicolor" />
-    <siteMapNode title="Consum Pardoseala Poliuretanica Antiderapanta" description="Preventie Eficienta Antialunecare ⭐ Pardoseala Poliuretanica Antiderapanta - Rezistenta, Duritate si Durabilitate ✅ Pardoseli Poliuretanice Durabile !" url="~/consum-pardoseala-poliuretanica-antiderapanta" />
-    <siteMapNode title="Consum Pardoseala Poliuretanica Autonivelanta" description="Sistem Bicomponent ⭐ Pardoseala Poliuretanica Autonivelanta ✅ Aderenta Mare, Durabilitate, Rezistenta la UV si Medii Agresive - Pardoseli Industriale." url="~/consum-pardoseala-poliuretanica-autonivelanta" />
-    <siteMapNode title="Consum Pardoseala Poliuretanica Elastica" description="Elasticitate, Flexibilitate, Rezistenta la Uzura ⭐ Pardoseala Poliuretanica Elastica Profesionala ✅ pentru Sali de Sport, Fitness sau Gym" url="~/consum-pardoseala-poliuretanica-elastica" />
-    <siteMapNode title="Consum Poliuretanica Mobila" description="Sistem Profesional ⭐ Vopsea Poliuretanica de Mobila din Rasini Poliuretanice cu Mare Duritate ✅ Luciu Superior, Rezistenta la Apa, Uzura si Pete" url="~/consum-poliuretanica-mobila" />
-    <siteMapNode title="Consum Rasina Epoxidica Turnare Strat Gros" description="Calcul de Consum pentru ⭐ Rasina Epoxidica de Turnare in Strat Gros “Emex TopCast” ✅ Utilizata pentru Mese, Pardoseli si Elemente Decorative" url="~/consum-rasina-epoxidica-turnare-strat-gros" />
-    <siteMapNode title="Consum Sapa Epoxidica" description="Pregatire Suporturi Deteriorate ⭐ Sapa Epoxidica Cimentica de Egalizare pentru ✅ Aplicare Pardoseli Industriale Epoxidice Poliuretanice Poliesterice" url="~/consum-sapa-epoxidica" />
-    <siteMapNode title="Consum Solutie Anti Mucegai" description="Pentru Tencuieli Gleturi Zidarie ⭐ Solutie Antimucegai Antimicrobiana de Sanitizare ✅ Efect in Profunzime de Eliminare Igrasie Alge Bacterii Mucegai" url="~/consum-solutie-anti-mucegai" />
-    <siteMapNode title="Consum Superlavabila Exterior" description="Pe Baza de Latex pentru Tencuieli Exterioare ⭐ Vopsea Superlavabila Exterior &amp;ldquo;Emex&amp;rdquo; ✅ Putere Mare de Acoperire Grad de Alb si Rezistenta la UV" url="~/consum-superlavabila-exterior" />
-    <siteMapNode title="Consum Superlavabila Interior" description="Pentru Zugraveli Interioare Profesionale ⭐ Vopsea Superlavabila cu Putere Mare de Acoperire ✅ Calitate si Rezistenta Excelente - Pret de Producator !" url="~/consum-superlavabila-interior" />
-    <siteMapNode title="Consum Tencuiala Acrilica" description="Cu Latex si Granule de Marmura ⭐ Tencuiala Decorativa Structurata de Exterior sau Interior Alba sau Colorata ✅ Durabilitate 10 ani. Preturi Decente !" url="~/consum-tencuiala-acrilica" />
-    <siteMapNode title="Consum Tencuiala Cu Fibra Sticla" description="Emex GF-Mesh este o ⭐ Tencuiala Decorativa Structurata Ranforsata cu Fibra de Sticla cu ✅ Elasticitate Mare, Duritate si Durabilitate de Peste 10 ani" url="~/consum-tencuiala-cu-fibra-sticla" />
-    <siteMapNode title="Consum Tencuiala Hidroizolanta" description="Cu Rasini Siliconice si Granule de Marmura ⭐ Tencuiala Decorativa Exterior Siliconata Impermeabila Aspect Striat ✅ Protectie Eficienta Contra Apei !" url="~/consum-tencuiala-hidroizolanta" />
-    <siteMapNode title="Consum Tencuiala Periata" description="Produs Profesional ⭐ Tencuiala Decorativa Periata cu Cuart si Granule de Marmura ✅ Structurare Circulara in Orice Culoare. Calitate Incontestabila !" url="~/consum-tencuiala-periata" />
-    <siteMapNode title="Consum Tencuiala Praf Piatra" description="Cu Granule de Marmura si Cuartz ⭐ Tencuiala Decorativa Granulata tip Bob de Orez sau Praf de Piatra in Culori Diverse ✅ Calitate la Pret de Producator" url="~/consum-tencuiala-praf-piatra" />
-    <siteMapNode title="Consum Tencuiala Silicatica" description="Cu Silicat de Potasiu si Granule de Marmura ⭐ Tencuiala Decorativa Silicatica Structurata ✅ Restaurari Tencuieli si Fatade Exterioare in Orice Culoare" url="~/consum-tencuiala-silicatica" />
-    <siteMapNode title="Consum Tencuiala Siliconica" description="Produs Profesional ⭐ Tencuiala Decorativa Siliconica Exterior Structurata cu Cuart si Granule de Marmura in Culori Diverse ✅ Calitate Incontestabila !" url="~/consum-tencuiala-siliconica" />
-    <siteMapNode title="Consum Tencuiala Soclu" description="Rezistenta la Apa si Infiltratii cu Granule Colorate de Cuartz ⭐ Tencuiala Decorativa de Soclu Marmorata sau Mozaicata ✅ Calitate Incontestabila !" url="~/consum-tencuiala-soclu" />
-    <siteMapNode title="Consum Vopsea 3 In 1 Epoxi Ester" description="Produs Profesional de Inalta Performanta ⭐ Vopsea Epoxy-Ester 3 in 1 &amp;ldquo;Emex Q3-Guard&amp;rdquo; ✅ Direct pe Suporturi Ruginite fara Necesitatea unui Grund" url="~/consum-vopsea-3-in-1-epoxi-ester" />
-    <siteMapNode title="Consum Vopsea Acrilica 2k Noiso" description="Sistem Profesional de Inalta Calitate ⭐ Vopsea Acrilica Bicomponenta fara Izocianat &amp;ldquo;Emex Hybrid&amp;rdquo; ✅ Reticulabila cu Rasina Epoxidica Solvent-Free" url="~/consum-vopsea-acrilica-2k-noiso" />
-    <siteMapNode title="Consum Vopsea Acrilica 3 In 1 Anticoroziva" description="Produs de Noua Generatie ⭐ Vopseaua Acrilica 3 in 1 peste Rugina Emex Aegis G3 ✅ se Aplica Direct pe Suporturi Ruginite fara Necesitatea unui Grund" url="~/consum-vopsea-acrilica-3-in-1-anticoroziva" />
-    <siteMapNode title="Consum Vopsea Alchidica Lemn Metal" description="Vopsea Profesionala Alchidica Uretanizata ⭐ Utilizata pentru Metal si Lemn in Special la Exterior ✅ Rezistenta Inclusiv pentru Acoperiri Navale !" url="~/consum-vopsea-alchidica-lemn-metal" />
-    <siteMapNode title="Consum Vopsea Antifonica Apa" description="Calcul de Consum ⭐ Vopsea Antifonica Anticoroziva ✅ Asigura Protectie si Rezistenta la Apa, Sare si Contactul cu Hidrocarburi" url="~/consum-vopsea-antifonica-apa" />
-    <siteMapNode title="Consum Vopsea Clorcauciuc" description="Rezistenta la Apa Intemperii si Agenti Corozivi ⭐ Vopsea Clorcauciuc pentru Metal sau Beton ✅️ Vopsea Cauciucata la Pret si Calitate fara Compromis !" url="~/consum-vopsea-clorcauciuc" />
-    <siteMapNode title="Consum Vopsea Clorcauciuc Pardoseala" description="Produs Profesional ⭐ Vopsea Clorcauciuc pentru Pardoseala din Beton Rezistenta la Trafic Intemperii si Apa ✅ Vopsea Cauciucata de Calitate Premium !" url="~/consum-vopsea-clorcauciuc-pardoseala" />
-    <siteMapNode title="Consum Vopsea Clorcauciuc Piscina" description="Produs Profesional ⭐ Vopsea Clorcauciuc pentru Piscina si Bazine de Beton ✅️ Vopsea Cauciucata Rezistenta la Imersia in Apa. Calitate Fara Compromis !" url="~/consum-vopsea-clorcauciuc-piscina" />
-    <siteMapNode title="Consum Vopsea Elastomerica Tencuieli Exterior" description="Elastica si Flexibila ⭐ Vopsea Elastomerica Rezistenta la Apa si Infiltratii ✅ Pentru Fatade, Tencuieli, Suporturi Minerale, Spume Poliuretanice" url="~/consum-vopsea-elastomerica-tencuieli-exterior" />
-    <siteMapNode title="Consum Vopsea Epoxidica" description="Produs Profesional ⭐ Vopsea Epoxidica pentru Metal, Beton si Lemn pe baza de Rasina Epoxidica Bicomponenta ✅ Email Epoxidic de Noua Generatie !" url="~/consum-vopsea-epoxidica" />
-    <siteMapNode title="Consum Vopsea Epoxidica Baza Apa Pardoseala" description="Sistem Profesional ⭐ Vopsea Epoxidica de Pardoseala pe Baza de Apa - Vopsiri Epoxidice de Pardoseli sau Suprafete din Beton ✅ Durabilitate min 5 ani !" url="~/consum-vopsea-epoxidica-baza-apa-pardoseala" />
-    <siteMapNode title="Consum Vopsea Epoxidica Pardoseli" description="Sistem Profesional ⭐ Vopsea Epoxidica pentru Pardoseala - Vopsiri Epoxidice de Suprafete din Beton cu Duritate si Luciu ✅ Durabilitate min 5 ani !" url="~/consum-vopsea-epoxidica-pardoseli" />
-    <siteMapNode title="Consum Vopsea Epoxy Ester" description="Produs Profesional ⭐ Email Epoxi-Ester Monocomponent pentru Metal ✅ Nu Necesita Intaritor. Aderenta, Rezistenta, Luciu. Calitate Incontestabila !" url="~/consum-vopsea-epoxy-ester" />
-    <siteMapNode title="Consum Vopsea Hidroizolanta" description="Rezistenta la Intemperii si Apa ⭐ Vopsea Hidroizolanta Elastica pentru Piscina Terasa sau Acoperis. Impermeabilizant Mare Rezistenta ✅ Pret Excelent !" url="~/consum-vopsea-hidroizolanta" />
-    <siteMapNode title="Consum Vopsea Intermediara Epoxy Poliamidica" description="Produs Profesional ⭐ Vopsea Intermediara Epoxy-Poliamidica Anticoroziva cu Micaceu ✅ Strat Intermediar pentru Sisteme de Inalta Protectie Anticoroziva" url="~/consum-vopsea-intermediara-epoxy-poliamidica" />
-    <siteMapNode title="Consum Vopsea Marcaj Rutier" description="Vopsea pentru Marcaj Rutier pe Asfalt sau Beton ⭐ Marcaje Rutiere pentru Benzi de Circulatie Treceri de Pietoni si Parcari ✅ Calitate Incontestabila !" url="~/consum-vopsea-marcaj-rutier" />
-    <siteMapNode title="Consum Vopsea Marcaj Rutier 2k" description="Sistem Profesional ⭐ Vopsea Bicomponenta de Marcaj Rutier si Marcaje Rezonatoare pentru Carosabil de Asfalt sau Beton ✅ Calitate premium !" url="~/consum-vopsea-marcaj-rutier-2k" />
-    <siteMapNode title="Consum Vopsea Poliaspartica Pardoseli Rapide" description="Sistem de Inalta Performanta ⭐ Vopsea Poliaspartica Pardoseli &amp;ldquo;Emex P31-AS&amp;rdquo; ✅️ pe Baza de Esteri Aspartici - Uscare Rapida si Proprietati Anti Zgariere" url="~/consum-vopsea-poliaspartica-pardoseli-rapide" />
-    <siteMapNode title="Consum Vopsea Poliesterica" description="Produs de Generatie Noua ⭐ Vopsea Poliesterica pentru Metal ✅ Proprietati Avansate de Pelicula. Rezistenta la Coroziune, Umiditate, Radiatii UV" url="~/consum-vopsea-poliesterica" />
-    <siteMapNode title="Consum Vopsea Poliuretanica" description="Sistem Profesional ⭐ Vopsea Poliuretanica Bicomponenta pentru Metal, Beton, Lemn ✅ Elastica, Rezistenta, Durabila. Pret si Calitate Incontestabile !" url="~/consum-vopsea-poliuretanica" />
-    <siteMapNode title="Consum Vopsea Poliuretanica Elastica" description="Sistem Profesional ⭐ Vopsea Poliuretanica Elastica pentru Beton, Sali si Terenuri de Sport. ✅ Proprietati de Impermeabilizare, Rezistenta ridicata !" url="~/consum-vopsea-poliuretanica-elastica" />
-    <siteMapNode title="Consum Vopsea Poliuretanica Pardoseala" description="Sistem Profesional de Calitate Premium ⭐ Vopsea Poliuretanica de Pardoseala din Beton - Duritate Durabilitate Luciu ✅ Durata de Viata Minim 5 ani !" url="~/consum-vopsea-poliuretanica-pardoseala" />
-    <siteMapNode title="Consum Vopsea Poliuretanica Piscina" description="Produs Profesional ⭐ Vopsea Poliuretanica pentru Piscine din Beton. Elastica Impermeabilizanta Durabila. Rezistenta la UV ✅ Calitate incontestabila !" url="~/consum-vopsea-poliuretanica-piscina" />
-    <siteMapNode title="Consum Vopsea Poliuretanica Yachturi" description="Produs de Noua Generatie⭐ Vopsea Poliuretanica Bicomponenta pentru Yachturi Barci sau Ambarcatiuni de Agrement ✅ Rezistenta la UV si Socuri Mecanice !" url="~/consum-vopsea-poliuretanica-yachturi" />
-    <siteMapNode title="Consum Vopsea Satinata Emcolor" description="Ieftina cu Aspect Satinat ⭐ Vopsea Alchidica Economica Satinata Emcolor pentru Lemn Metal si Zidarie ✅ pe Baza de Rasina Alchidica Emulsionata in Apa" url="~/consum-vopsea-satinata-emcolor" />
-    <siteMapNode title="Consum Vopsea Termorezistenta" description="Pentru Protectia la Temperaturi Inalte ⭐ Vopsea Termorezistenta Siliconica ✅ Vopsea Rezistenta la Temperatura pentru Esapament, Cuptoare Industriale" url="~/consum-vopsea-termorezistenta" />
-    <siteMapNode title="Consum Vopsea Texturata" description="Vopsea ⭐ Texturata Decorativa pe baza de Latex aplicabila cu fier de glet structurata cu trafaletul ✅ Aspect Calcio Vecchio - modele de orice culoare." url="~/consum-vopsea-texturata" />
-    <siteMapNode title="Consum Vopsea Tigla" description="Vopsea pentru ⭐ Acoperis de Tigla din Beton si Azbociment in Orice Culoare cu Putere de Acoperire ✅ Rezistenta Mare la UV - Rezultate Profesionale !" url="~/consum-vopsea-tigla" />
-    <siteMapNode title="Consum Vopsea Tigla Metalica" description="Sistem Profesional de Inalta Performanta ⭐ Email Alchido-Poliuretanic de Tigla Metalica &amp;ldquo;Emex Screenpol&amp;rdquo; cu ✅ Duritate, Rezistenta si Luciu Superior" url="~/consum-vopsea-tigla-metalica" />
-    <siteMapNode title="Consum Vopsea Utilaje" description="Produs Profesional ⭐ Vopsea Tip Auto pentru Utilaje si Caroserii Auto ✅ Uscare Rapida Duritate si Luciu pentru Camioane Utilaje Macarale Stivuitoare" url="~/consum-vopsea-utilaje" />
+    <siteMapNode title="Consum Acrilica Metal" description="Calcul de Consum ⭐ Vopsea Acrilica pe Baza de Apa pentru Metal ✅ Aderenta si Rezistenta la Agenti Corozivi, Factori de Mediu si Uzura." url="~/consum-acrilica-metal" />
+    <siteMapNode title="Consum Acrilica Mobila" description="Calcul de Consum ⭐ Vopsea de Mobila Acrilica pe Baza de Apa &amp;ldquo;Emex&amp;rdquo; ✅ Lucioasa sau Mata cu Aderenta, Rezistenta la Patare, Uzura si Frecare." url="~/consum-acrilica-mobila" />
+    <siteMapNode title="Consum Acrilica Universala" description="Calcul de Consum ⭐ Vopsea Acrilica Universala pe Baza de Apa &amp;ldquo;Emex Spectrum&amp;rdquo; ✅ Spectru Larg de Aplicatii, Pelicula Finala Performanta, Orice Culoare" url="~/consum-acrilica-universala" />
+    <siteMapNode title="Consum Amorsa Acrilica" description="Calcul de Consum pentru ⭐ Amorsa de Perete Acrilica pentru Zidarie si Tencuieli interior/ Exterior sau Tencuieli Decorative Structurate" url="~/consum-amorsa-acrilica" />
+    <siteMapNode title="Consum Amorsa Antimucegai" description="Calcul de Consum pentru ⭐ Amorsa Antimucegai De Perete pentru Vopsele Lavabile ✅ Antifungica si Inhibitor de Igrasie, Impotriva Mucegaiului la Zidarie" url="~/consum-amorsa-antimucegai" />
+    <siteMapNode title="Consum Amorsa Clorcauciuc Impregnare" description="Calcul Consum pentru ⭐ Amorsa Clorcauciuc pentru Pardoseli din Beton ✅ Se aplica Inaintea Vopselelor Clorcauciuc pentru Amorsare si Fixare Suport" url="~/consum-amorsa-clorcauciuc-impregnare" />
+    <siteMapNode title="Consum Amorsa Elastomerica" description="Consum amorsa elastomerica universala &quot;Emex Core-AQX&quot; - aderenta, elastica si cu rezistenta. Ideala inainte de aplicarea vopselelor si membranelor." url="~/consum-amorsa-elastomerica" />
+    <siteMapNode title="Consum Amorsa Epoxidica Baza Apa" description="Calcul Consumului de ⭐ Amorsa Epoxidica Emulsionata pentru Pregatire Suprafete Lemn, Beton ✅ Vopsire cu Vopsele Epoxidice Bicomponente pe Baza de Apa" url="~/consum-amorsa-epoxidica-baza-apa" />
+    <siteMapNode title="Consum Amorsa Epoxidica Impregnare" description="Calcul de Consum pentru ⭐ Grund Epoxidic de Amorsare Pardoseli. Produs ideal pentru pregatirea suprafetelor pentru aplicare de ✅ Vopsele Epoxidice" url="~/consum-amorsa-epoxidica-impregnare" />
+    <siteMapNode title="Consum Amorsa Epoxidica Lemn Fibra Sticla" description="Calcul Consum pentru ⭐ Amorsa Epoxidica Lemn si Fibra de Sticla Destinata Pregatirii Suporturilor pentru Vopsire Epoxidica sau Poliuretanica" url="~/consum-amorsa-epoxidica-lemn-fibra-sticla" />
+    <siteMapNode title="Consum Amorsa Poliuretanica Pardoseli" description="Calcul de Consum ⭐ Amorsa Poliuretanica Pentru Impregnare Beton✅ Fixare Suprafete. Capacitate de Neutralizare a Suportului pentru Compatibilizare" url="~/consum-amorsa-poliuretanica-pardoseli" />
+    <siteMapNode title="Consum Amorsa Poliuretanica Solvent Free" description="Calcul de Consum ⭐ Amorsa Poliuretanica Nesolventata &amp;ldquo;Emex HS100&amp;rdquo; ✅ Produs Profesional pentru Fixare Suport si Aplicare de Pardoseli Poliuretanice." url="~/consum-amorsa-poliuretanica-solvent-free" />
+    <siteMapNode title="Consum Amorsa Silicatica" description="Calcul de Consum ⭐ Amorsa de Perete Silicatica - Produs Profesional de Mare Duritate pe Baza de Silicat de Potasiu ✅ Prima Alegere in Restaurari" url="~/consum-amorsa-silicatica" />
+    <siteMapNode title="Consum Amorsa Siliconica" description="Calcul de Consum ⭐ Amorsa de Perete Siliconica &amp;ldquo;Emex&amp;rdquo; cu ✅ Aderenta, Putere Mare de Penetrare a Suportului si Elasticitate Avansata, pentru Zugraveli" url="~/consum-amorsa-siliconica" />
+    <siteMapNode title="Consum Bronz Aluminiu" description="Calcul de Consum pentru ⭐ Vopsea Argintie Bronz-Aluminiu Metalizat pentru Suporturi Metalice sau Lemn. ✅️ Aspect si luciu de exceptie !" url="~/consum-bronz-aluminiu" />
+    <siteMapNode title="Consum Convertor Rugina" description="Calcul de Consum ⭐ Sistem Convertor si Inhibitor de Rugina, ce Asigura Neutralizarea Ruginii prin Chelare ✅ Solutie pentru Protectie Anticoroziva !" url="~/consum-convertor-rugina" />
+    <siteMapNode title="Consum Covor Poliuretanic De Piatra" description="Calcul de Consum ⭐ Pardoseala Poliuretanica Decorativa &amp;ldquo;Emex Pebble&amp;rdquo; - Covor Poliuretanic de Piatra pe Baza de ✅ Rasina Poliuretanica Solvent-Free" url="~/consum-covor-poliuretanic-de-piatra" />
+    <siteMapNode title="Consum Decapant Cleaner" description="Calcul de Consum pentru ⭐ Decapant Vopsea pentru Suprafete fara Pori ✅ Produs de Mare Eficienta pentru Curatare Vopsea Veche de pe Metal sau Beton !" url="~/consum-decapant-cleaner" />
+    <siteMapNode title="Consum Decapant Cm Cleaner" description="Consum Decapant Cm Cleaner" url="~/consum-decapant-cm-cleaner" />
+    <siteMapNode title="Consum Email Alchido Stirenic" description="Calcul Consum Vopsea Profesionala de Noua Generatie ⭐ Email Alchido-Stirenic &amp;ldquo;Emex&amp;rdquo; cu Capacitate Avansata de ✅️ Protectie pentru Interior sau Exterior" url="~/consum-email-alchido-stirenic" />
+    <siteMapNode title="Consum Email Epoxidic Emulsionat Apa" description="Calcul Consum pentru ⭐ Email Epoxidic Pe Baza de Apa Pentru Lemn si Metal. Email Epoxidic de Noua Generatie ✅ Rezistenta la Apa si Agresiuni Chimice" url="~/consum-email-epoxidic-emulsionat-apa" />
+    <siteMapNode title="Consum Email Epoxidic Medii Agresive" description="Calcul de Consum ⭐ Email Epoxidic pentru Medii Agresive &amp;ldquo;Emex EFS-323&amp;rdquo; cu Adaos de ✅ Microfulgi de Sticla. Sistem Performant de Noua Generatie" url="~/consum-email-epoxidic-medii-agresive" />
+    <siteMapNode title="Consum Email Epoxidic Placi Ceramice" description="Calcul Consum pentru ⭐ Email Epoxidic pentru Gresie si Faianta &amp;ldquo;Emex QSF-3E&amp;rdquo; ✅ Email Epoxidic Solubil in Apa, de Noua Generatie pentru Placi Ceramice" url="~/consum-email-epoxidic-placi-ceramice" />
+    <siteMapNode title="Consum Email Nitro Combinat" description="Calculul Consumului de ⭐ Email Nitro-Combinat &amp;ldquo;Emex QN-212&amp;rdquo; Realizat din Procesarea de Nitroceluloza si Rasini Alchido-Acrilice, cu Luciu Ridicat" url="~/consum-email-nitro-combinat" />
+    <siteMapNode title="Consum Email Panouri Sandwich" description="Calculul Consumului de ⭐ Email Acrilo-Stirenic &amp;ldquo;Emex Panel&amp;rdquo; de inalta calitate ✅️ cu Microfulgi de Sticla pentru Panouri Sandwich sau Tigla Metalica" url="~/consum-email-panouri-sandwich" />
+    <siteMapNode title="Consum Email Premium Gold" description="Calcul de Consum pentru ⭐ Vopsea Alchidica Premium, lucioasa, pentru interior sau exterior. ✅️ Email Ultraacoperitor cu Rezistenta si Durabilitate !" url="~/consum-email-premium-gold" />
+    <siteMapNode title="Consum Emex Dual Protect" description="Calcul de Consum ⭐ Sistem Protectie Anticoroziva 3 in 1 - cu Grund Anticoroziv Inclus si Inhibitor de Coroziune in Culori RAL. Email Profesional Metal" url="~/consum-emex-dual-protect" />
+    <siteMapNode title="Consum Emex Extracolor" description="Consum ⭐ Vopsea Decorativa Alchidica Superioara pentru Lemn Metal Zidarie, de Interior sau Exterior ✅ Luciu Intens, Putere de Acoperire, Pret Decent !" url="~/consum-emex-extracolor" />
+    <siteMapNode title="Consum Epoxidica Pardoseli Cu Microfulgi" description="Calcul de Consum ⭐ Vopsea Epoxidica de Pardoseala cu Microfulgi de Sticla ✅ Protectii Profesionale cu Rezistenta Excelenta si Durabilitate Mare" url="~/consum-epoxidica-pardoseli-cu-microfulgi" />
+    <siteMapNode title="Consum Grund Acrilo Stirenic Zinc Microfibra" description="Calcul de Consum ⭐ Grund Anticoroziv Acrilo-Stirenic cu Microfibra si Zinc &amp;ldquo;Emex MZ-801&amp;rdquo; Utilizabil atat pe Suprafete Feroase, cat si pe Neferoase" url="~/consum-grund-acrilo-stirenic-zinc-microfibra" />
+    <siteMapNode title="Consum Grund Alchidic Anticoroziv" description="Calcul de Consum pentru ⭐ Grund Anticoroziv Alchidic Rezistent La Intemperii si Factori Chimici ✅ Protectie Anticoroziva Metal impotriva Ruginii" url="~/consum-grund-alchidic-anticoroziv" />
+    <siteMapNode title="Consum Grund Amorsa Tencuiala" description="Consum Grund Amorsa Tencuiala" url="~/consum-grund-amorsa-tencuiala" />
+    <siteMapNode title="Consum Grund Amorsare Pereti" description="Calcul de Consum ⭐ Grund de Amorsare Egalizare si Umplere Pori &amp;ldquo;Emex&amp;rdquo; ✅ Usor Slefuibil, Asigura Pregatirea pentru Zugraveli Mate cu Aspect Profesional" url="~/consum-grund-amorsare-pereti" />
+    <siteMapNode title="Consum Grund Anticoroziv Alchido Stirenic" description="Calcul de Consum ⭐ Grund Anticoroziv Alchido-Stirenic ✅ Actiune Intensa de Inhibare a Ruginii pentru Suporturile Metalice Expuse la Factori Corozivi !" url="~/consum-grund-anticoroziv-alchido-stirenic" />
+    <siteMapNode title="Consum Grund Anticoroziv Clorcauciuc" description="Calcul de Consum ⭐ Grund Anticoroziv Clorcauciuc pe Baza de Cauciuc Clorurat ✅ Contine inhibitor de Coroziune pentru Protectia Suporturilor de Metal" url="~/consum-grund-anticoroziv-clorcauciuc" />
+    <siteMapNode title="Consum Grund Anticoroziv Cuptor" description="Consum Grund Anticoroziv Cuptor" url="~/consum-grund-anticoroziv-cuptor" />
+    <siteMapNode title="Consum Grund Anticoroziv Emex" description="Calcul de Consum ⭐ Grund Alchidic Anticoroziv pentru Protectia Suporturilor din Metal Impotriva Ruginii. Contine pigmenti si inhibitori anticorozivi !" url="~/consum-grund-anticoroziv-emex" />
+    <siteMapNode title="Consum Grund Anticoroziv Epoxi Ester" description="Calcul Consum ⭐ Grund Anticoroziv pe Baza de Rasina Alchidica Modificata cu Grupari Epoxidice ✅ Rezistenta si Protectie Maxima la Coroziune !" url="~/consum-grund-anticoroziv-epoxi-ester" />
+    <siteMapNode title="Consum Grund Anticoroziv Poliesteric" description="Calcul de Consum pentru ⭐ Grund Anticoroziv Bicomponent ✅ Aplicat in Sisteme Poliesterice de Vopsire de Inalta Calitate - Protectie Profesionala" url="~/consum-grund-anticoroziv-poliesteric" />
+    <siteMapNode title="Consum Grund Auto Utilaje" description="Calcul de Consum ⭐ Grund Anticoroziv pentru Caroserii Auto si Utilaje ✅ pentru Protectia de Utilaje si Caroserii Auto Impotriva Ruginii" url="~/consum-grund-auto-utilaje" />
+    <siteMapNode title="Consum Grund Epoxi Poliamidic Cu Zinc" description="Calcul de Consum pentru ⭐ Grundul Anticoroziv Epoxy-Poliamidic cu Zinc. Produs Profesional Performant cu Agenti Anticorozivi si Pulbere de Zinc" url="~/consum-grund-epoxi-poliamidic-cu-zinc" />
+    <siteMapNode title="Consum Grund Epoxidic Anticoroziv" description="Calcul de consum pentru ⭐ Grund Epoxidic Anticoroziv Bicomponent ✅ Rezistent la Coroziune si Medii Chimic Agresive. Eficient Impotriva Ruginii" url="~/consum-grund-epoxidic-anticoroziv" />
+    <siteMapNode title="Consum Grund Epoxidic Solubil Apa" description="Calcul de Consum pentru ⭐ Grund Anticoroziv Bicomponent pe Baza de Rasini Epoxidice Solubile in Apa ✅ Rezistent la Coroziune si Medii Chimic Agresive" url="~/consum-grund-epoxidic-solubil-apa" />
+    <siteMapNode title="Consum Grund Hidrosolubil" description="Calculul Consumului de ⭐ Grund Anticoroziv Solubil in Apa &amp;ldquo;Emex AQ Eco&amp;rdquo; ✅ Protectie Anticoroziva Profesionala pentru Suporturi Metalice, cu COV Redus" url="~/consum-grund-hidrosolubil" />
+    <siteMapNode title="Consum Grund Lemn Binale" description="Calculul Consumului ⭐ Grund Alchidic pentru Lemn si Binale &amp;ldquo;Emex&amp;rdquo; ✅ Produs de Mare Eficienta Destinat Pregatirii Lemnului Inaintea Vopsirii" url="~/consum-grund-lemn-binale" />
+    <siteMapNode title="Consum Grund Nitrocelulozic Anticoroziv" description="Calculul Consumului de ⭐ Grund Nitro-Combinat &amp;ldquo;Emex FZ-214&amp;rdquo; Fabricat pe ✅️ Baza de Nitroceluloza si Agenti Anticorozivi cu Capacitate Mare de Protectie" url="~/consum-grund-nitrocelulozic-anticoroziv" />
+    <siteMapNode title="Consum Grund Poliuretanic Anticoroziv" description="Calculul Consumului pentru ⭐ Grund Poliuretanic Anticoroziv Bicomponent &amp;ldquo;Emex&amp;rdquo; cu ✅ Rezistenta la Coroziune - Rugina de Suprafata sau de Profunzime" url="~/consum-grund-poliuretanic-anticoroziv" />
+    <siteMapNode title="Consum Grund Silicatic Tencuiala" description="Consum Grund Silicatic Tencuiala" url="~/consum-grund-silicatic-tencuiala" />
+    <siteMapNode title="Consum Grund Siliconic Tencuiala" description="Calcul de Consum pentru ⭐ Grund Siliconic de Amorsare cu Cuart pentru Tencuieli Decorative &amp;ldquo;Emex&amp;rdquo; ☎️ 0724-509.552 - Calitate la Pret de Producator !" url="~/consum-grund-siliconic-tencuiala" />
+    <siteMapNode title="Consum Grund Solubil Apa" description="Calcul de Consum pentru ⭐ Grund Anticoroziv Hidrosolubil Impotriva Ruginii ✅ Solubil in Apa cu Inhibitor de Coroziune pentru Metal si Emisii COV Reduse" url="~/consum-grund-solubil-apa" />
+    <siteMapNode title="Consum Grund Termorezistent Anticoroziv" description="Calcul de Consum ⭐ Grund Anticoroziv Termorezistent Siliconic - Contine Inhibitori de Coroziune ✅ Rezistenta la Temperaturi Ridicate si Rugina" url="~/consum-grund-termorezistent-anticoroziv" />
+    <siteMapNode title="Consum Impregnant Hidrofobizare" description="Consum Impregnant Hidrofobizare" url="~/consum-impregnant-hidrofobizare" />
+    <siteMapNode title="Consum Lac Acrilic Mobila" description="Calcul de Consum ⭐ Lac pentru Mobila pe Baza de Apa din Rasini Acrilice Lucios sau Mat ✅ Transparent, Aderenta Mare, Rezistent la Patare, UV si Uzura" url="~/consum-lac-acrilic-mobila" />
+    <siteMapNode title="Consum Lac Alchidic" description="Calcul de Consum ⭐ Lac Alchidic pentru Lemn ✅ Calitati Superioare de Impregnare Acoperire si Finisare a Suprafetelor si Decoratiunilor din Lemn" url="~/consum-lac-alchidic" />
+    <siteMapNode title="Consum Lac Beton Amprentat" description="Calcul de Consum ⭐ Lac Protectie Beton Amprentat - Produs de Generatie Noua, Rezistent la Trafic ✅ Fixeaza Suporturi Macinate sau Fisurate !" url="~/consum-lac-beton-amprentat" />
+    <siteMapNode title="Consum Lac Epoxidic Sigilare" description="Calcul de Consum pentru ⭐ Lac Epoxidic de Protectie a Pardoselilor Impotriva Macinarii si Fisurarii ✅ Bariera de Vapori, Sigilant, Top Coat Superior !" url="~/consum-lac-epoxidic-sigilare" />
+    <siteMapNode title="Consum Lac Epoxidic Solventat" description="Calcul de consum ⭐ Lac Epoxidic Solventat pentru Metal, Beton, Lemn sau Fibra de Sticla ✅ Rezistent la Apa Cicluri Inghet Dezghet Medii Agresive" url="~/consum-lac-epoxidic-solventat" />
+    <siteMapNode title="Consum Lac Exterior Uretan" description="Calcul de Consum ⭐ Lac pentru Decoratiuni din Lemn si Mobilier de Gradina ✅ Produs Profesional Rezistent la Apa, Intemperii, Lumina si UV !" url="~/consum-lac-exterior-uretan" />
+    <siteMapNode title="Consum Lac Parchet" description="Calcul de Consum pentru⭐ Lacul Monocomponent de Parchet cu ✅ Calitati Superioare de Finisare, Duritate, Rezistenta la Agenti de Patare si Detergenti" url="~/consum-lac-parchet" />
+    <siteMapNode title="Consum Lac Piatra" description="Calcul de Consum ⭐ Lac Acrilic pentru Piatra in Solvent ✅ Produs de Inalta Calitate Rezistent la Intemperii Apa Infiltratii si Factori de Mediu" url="~/consum-lac-piatra" />
+    <siteMapNode title="Consum Lac Piatra Apa" description="Calcul de Consum ⭐ Lac de Piatra Fabricat din Rasini Acrilice Solubile in Apa ✅ Asigura Protectie Remarcabila cu Duritate si Putere Mare de Penetrare" url="~/consum-lac-piatra-apa" />
+    <siteMapNode title="Consum Lac Pigmentat" description="Calcul de Consum ⭐ Lazura Transparent cu Potential de Colorare la Comanda ✅ Gama Larga de Culori de Interior sau Exterior. Produs Profesional" url="~/consum-lac-pigmentat" />
+    <siteMapNode title="Consum Lac Poliaspartic Antizgariere" description="Consum Lac Poliaspartic Antizgariere" url="~/consum-lac-poliaspartic-antizgariere" />
+    <siteMapNode title="Consum Lac Poliuretanic Beton Amprentat" description="Calcul de Consum ⭐ Lac Poliuretanic pentru Beton Amprentat ✅ Protectie Avansata Rezistenta la Trafic, Apa, Inghet-Dezghet. Pentru Dale, Placi, Pavele." url="~/consum-lac-poliuretanic-beton-amprentat" />
+    <siteMapNode title="Consum Lac Poliuretanic Mobila" description="Calcul de Consum pentru ⭐ Lac Poliuretanic de Mobila si Mobilier ✅ Produs de Generatie Noua, cu Rezistenta Mare la Intemperii Frecare Patare si UV !" url="~/consum-lac-poliuretanic-mobila" />
+    <siteMapNode title="Consum Lac Poliuretanic Pardoseli Polimat" description="Calculul Consumului pentru ⭐ Lac Poliuretanic pe Baza de Apa &amp;ldquo;Emex Polimat&amp;rdquo; ✅️ Utilizat pentru Protectia si/ sau Corectia Acoperirilor de Pardoseala" url="~/consum-lac-poliuretanic-pardoseli-polimat" />
+    <siteMapNode title="Consum Lac Poliuretanic Protectie" description="Calcul Consum ⭐ Lac Poliuretanic de Protectie UV Rezistent la Apa si Zgariere ✅ Filtru contra Radiatii pentru Yachturi barci sau ambarcatiuni" url="~/consum-lac-poliuretanic-protectie" />
+    <siteMapNode title="Consum Lac Protectie Beton" description="Calcul de Consum pentru ⭐ Lac de Impermeabilizare si Protectie Beton si Zidarie ✅ Contine Agenti Impermeabilizanti tip Xilan Impotriva Efectelor Apei" url="~/consum-lac-protectie-beton" />
+    <siteMapNode title="Consum Lac Protectie Metal" description="Calcul de Consum ⭐ Lac Acrilic pentru Metal &amp;ldquo;Emex Bliss&amp;rdquo; pentru ✅ Protectia Suporturilor Metalice Feroase sau Neferoase la Fenomene de Oxidare" url="~/consum-lac-protectie-metal" />
+    <siteMapNode title="Consum Lavabila Antimucegai" description="Calcul de consum pentru ⭐ Vopsea Lavabila Antimucegai cu Biocizi Impotriva Mucegai Bacterii si Igrasie ✅ Protectie Antimicrobiana, Antibacteriana !" url="~/consum-lavabila-antimucegai" />
+    <siteMapNode title="Consum Lavabila Ceramica" description="Calcul de Consum pentru ⭐ Vopsea Ultralavabila Anticondens cu Nanosfere Ceramice. Nu Permite Aparitia Condensului in Zone Expuse la Vapori sau Abur." url="~/consum-lavabila-ceramica" />
+    <siteMapNode title="Consum Lavabila Cuartz Exterior" description="Calcul de Consum pentru ⭐ Vopsea Lavabila Profesionala de Exterior cu Cuartz, pentru ✅ Finisare Decorativa cu Duritate si Rezistenta a Fatadelor." url="~/consum-lavabila-cuartz-exterior" />
+    <siteMapNode title="Consum Lavabila Efect Culoare" description="Consum Lavabila Efect Culoare" url="~/consum-lavabila-efect-culoare" />
+    <siteMapNode title="Consum Lavabila Lucioasa" description="Calcul de consum ⭐ Vopsea Lavabila Lucioasa Premium pe baza de latex cu putere de acoperire si luciu superior ✅ pentru Zugraveli Lavabile Perfecte !" url="~/consum-lavabila-lucioasa" />
+    <siteMapNode title="Consum Lavabila Neomatt Exterior" description="Calcul de Consum ⭐ Vopsea Lavabila Exterior Economica Pe Baza de Latex pentru Finisarea Tencuielilor Exterioare. Aderenta si Putere de Acoperire" url="~/consum-lavabila-neomatt-exterior" />
+    <siteMapNode title="Consum Lavabila Neomatt Plus Interior" description="Calcul de Consum ⭐ Vopsea Lavabila Practica de Interior pe Baza de Polimeri Acrilici Tip &amp;ldquo;Latex&amp;ldquo; pentru Gleturi si Tencuieli Interioare cu Aspect Mat" url="~/consum-lavabila-neomatt-plus-interior" />
+    <siteMapNode title="Consum Lavabila Premium Gold" description="Calcul de Consum pentru ⭐ Vopsea Lavabila Premium de Interior ✅ Produs de Calitate Premium pentru Realizarea de Zugraveli Interioare Superioare" url="~/consum-lavabila-premium-gold" />
+    <siteMapNode title="Consum Lavabila Reflectorizanta" description="Consum Lavabila Reflectorizanta" url="~/consum-lavabila-reflectorizanta" />
+    <siteMapNode title="Consum Lavabila Satinata" description="Calculul consumului pentru ⭐ Vopsea Lavabila Satinata &amp;ldquo;Emex Silk&amp;rdquo; cu caracteristici superioare de pelicula, grad mare de alb si etalare excelenta" url="~/consum-lavabila-satinata" />
+    <siteMapNode title="Consum Lavabila Silicatica Exterior" description="Calcul de Consum ⭐ Vopsea Superlavabila Silicatica pentru Tencuieli Exterioare cu ✅ Autocuratare, Duritate Excelenta si Rezistenta Superioara in Timp" url="~/consum-lavabila-silicatica-exterior" />
+    <siteMapNode title="Consum Lavabila Silicatica Interior" description="Calcul de Consum pentru ⭐ Vopsea Lavabila Silicatica de Interior &amp;ldquo;Emex&amp;rdquo; ✅ Produs cu Grad de Alb Ridicat, Aderenta, Duritate si Rezistenta Foarte Mari" url="~/consum-lavabila-silicatica-interior" />
+    <siteMapNode title="Consum Lavabila Siliconica Exterior" description="Calcul de Consum ⭐ Vopsea Lavabila Siliconica de Exterior &amp;ldquo;Emex&amp;rdquo; ✅ Finisare Tencuieli si Gleturi Exterioare. Elasticitate si Putere Mare de Acoperire" url="~/consum-lavabila-siliconica-exterior" />
+    <siteMapNode title="Consum Lavabila Siliconica Interior" description="Calcul de Consum ⭐ Vopsea Lavabila Siliconica de Interior cu ✅ Proprietati Antimurdarire, Rezistenta la Apa sau Umiditate si Elasticitate Superioara !" url="~/consum-lavabila-siliconica-interior" />
+    <siteMapNode title="Consum Lovitura De Ciocan" description="Calcul de Consum pentru ⭐ Vopsea Metalizata Lovitura de Ciocan Hammerschlag ✅️ Rezistenta la Coroziune si Intemperii, Aspect Decorativ in Relief !" url="~/consum-lovitura-de-ciocan" />
+    <siteMapNode title="Consum Marcaj Rutier Apa Wt Urban" description="Calcul Consum ⭐ Vopsea de Marcaj Rutier pe Baza de Apa &amp;ldquo;Emex WT-Urban&amp;rdquo; ✅ Emulsii Acrilice pentru Marcaje Profesionale, Rutiere sau Terenuri de Sport" url="~/consum-marcaj-rutier-apa-wt-urban" />
+    <siteMapNode title="Consum Masa Epoxidica Spaclu" description="Calcul de Consum ⭐ Masa Epoxidica de Spaclu &amp;ldquo;Emex MSE 31&amp;rdquo; ✅ Produs Profesional - Inalta Performanta ce Sustine si Maximizeaza Performantele Sistemelor" url="~/consum-masa-epoxidica-spaclu" />
+    <siteMapNode title="Consum Membrana Acrilica Hidroizolanta" description="Calculul Consumului de ⭐ Membrana Acrilica Hidroizolanta 2k &amp;ldquo;Emex HyPro&amp;rdquo; pentru ✅ hidroizolarea primara a piscinelor, cu elasticitate ridicata" url="~/consum-membrana-acrilica-hidroizolanta" />
+    <siteMapNode title="Consum Membrana Cauciucata Elastomerica" description="Consum Membrana Cauciucata Hidroizolanta din polimeri acrilici puri cu elasticitate si flexibilitate foarte mari. Asigura protectie la vibratii." url="~/consum-membrana-cauciucata-elastomerica" />
+    <siteMapNode title="Consum Membrana Poliuretanica Hidroizolanta" description="Calcul de Consum ⭐ Membrana Poliuretanica Hidroizolanta Lichida ✅ Realizeaza Hidroizolatii de Terase Balcoane sau Impermeabilizare Pardoseli Beton !" url="~/consum-membrana-poliuretanica-hidroizolanta" />
+    <siteMapNode title="Consum Metalizata Acrilica" description="Calculul Consumului de ⭐ Vopsea Metalizata Aurie sau Argintie pentru Metalic ✅ Produs de Inalta Calitate. Asigura Suporturilor un Aspect Metalizat" url="~/consum-metalizata-acrilica" />
+    <siteMapNode title="Consum Pardoseala Epoxidica" description="Calcul de Consum ⭐ Pardoseala Epoxidica Autonivelanta ✅ Calitate Avansata, cu Luciu Intens si Duritate Remarcabila – Un Produs Profesional &amp;ldquo;Emex&amp;rdquo; !" url="~/consum-pardoseala-epoxidica" />
+    <siteMapNode title="Consum Pardoseala Epoxidica Antiderapanta" description="Calcul Consum ⭐ Pardoseala Antiderapanta Epoxidica ✅ Anti Slipping, Calitate, Duritate Remarcabila - pentru Pardoseli Industriale sau Rezidentiale !" url="~/consum-pardoseala-epoxidica-antiderapanta" />
+    <siteMapNode title="Consum Pardoseala Epoxidica Cuart" description="Calcul de Consum pentru ⭐ Covor Epoxidic Decorativ de Cuartz ✅ Pardoseli Industriale cu Cuart de Mare Duritate, cu Rezistenta la Socuri Mecanice !" url="~/consum-pardoseala-epoxidica-cuart" />
+    <siteMapNode title="Consum Pardoseala Epoxidica Multicolor" description="Calculul Consumului pentru ⭐ Pardoseala Epoxidica Decorativa Bicomponenta Solvent-Free, cu ✅ Plachete Decorative, Chipsuri, Lamele sau Fulgi Colorati" url="~/consum-pardoseala-epoxidica-multicolor" />
+    <siteMapNode title="Consum Pardoseala Poliuretanica Antiderapanta" description="Calcul de Consum ⭐ Pardoseala Poliuretanica Antiderapanta cu Rezistenta si Durabilitate ✅ Pardoseli Poliuretanice Performante de Noua Generatie !" url="~/consum-pardoseala-poliuretanica-antiderapanta" />
+    <siteMapNode title="Consum Pardoseala Poliuretanica Autonivelanta" description="Calcul de Consum pentru ⭐ Pardoseala Poliuretanica Autonivelanta ✅ Aderenta, Durabilitate, Rezistenta la UV si Medii Agresive - Pardoseli Industriale." url="~/consum-pardoseala-poliuretanica-autonivelanta" />
+    <siteMapNode title="Consum Pardoseala Poliuretanica Elastica" description="Calcul de Consum ⭐ Pardoseala Poliuretanica Elastica Bicomponenta ✅ Elastica, Flexibila, Rezistenta la Uzura. Pentru Sali de Sport, Fitness sau Gym" url="~/consum-pardoseala-poliuretanica-elastica" />
+    <siteMapNode title="Consum Poliuretanica Mobila" description="Calcul Consum pentru ⭐ Vopsea Poliuretanica - Mobilier Industrial sau Artizanal ✅ Rezistenta la Apa, Uzura si Pete, Produse Alimentare sau Chimice." url="~/consum-poliuretanica-mobila" />
+    <siteMapNode title="Consum Rasina Epoxidica Turnare Strat Gros" description="Calcul de consum ⭐ rasina epoxidica de turnare in strat gros &amp;ldquo;emex topcast&amp;rdquo; ✅ sistem epoxidic decorativ, de inalta performanta pentru straturi groase" url="~/consum-rasina-epoxidica-turnare-strat-gros" />
+    <siteMapNode title="Consum Sapa Epoxidica" description="Calcul de Consum ⭐ Sapa Epoxy-Cimentica de Egalizare. Produs tricomponent pentru egalizarea suporturilor de beton ✅ Ideal pentru Pardoseli Industriale" url="~/consum-sapa-epoxidica" />
+    <siteMapNode title="Consum Solutie Anti Mucegai" description="Consum ⭐ Sanitizant Antimucegai &amp;ldquo;Emex Forte&amp;rdquo; cu Biocizi Netoxici, Impotriva Igrasiei, Generate de Microorganisme, Mucegaiuri, Fungi sau Micro-Alge" url="~/consum-solutie-anti-mucegai" />
+    <siteMapNode title="Consum Superlavabila Exterior" description="Calcul de Consum ⭐ Vopsea Superlavabila Exterior Emex - Rasini Latex pentru Tencuieli Exterioare ✅ Putere de Acoperire, Grad de Alb, Rezistenta la UV" url="~/consum-superlavabila-exterior" />
+    <siteMapNode title="Consum Superlavabila Interior" description="Calcul de consum pentru ⭐ Vopsea Superlavabila pentru zugraveli interioare profesionale ✅ Putere mare de acoperire. Calitate la Preturi Decente !" url="~/consum-superlavabila-interior" />
+    <siteMapNode title="Consum Tencuiala Acrilica" description="Calcul de consum pentru ⭐ Tencuiala Decorativa Structurata pe baza de Latex pentru zidarii si fatade ✅ Durabilitate 10 ani. Preturi Decente !" url="~/consum-tencuiala-acrilica" />
+    <siteMapNode title="Consum Tencuiala Cu Fibra Sticla" description="Calcul de Consum ⭐ Tencuiala Decorativa cu Adaos de Cuartz si Fibra de Sticla &amp;ldquo;Emex GF-Mesh&amp;rdquo; ✅ Produs de Inalta Calitate cu Granule de Marmura" url="~/consum-tencuiala-cu-fibra-sticla" />
+    <siteMapNode title="Consum Tencuiala Hidroizolanta" description="Calcul de Consum pentru ⭐ Tencuiala Decorativa Impermeabila de Exterior Siliconata, cu Granule de Marmura ✅ Protectie Eficienta contra Apei !" url="~/consum-tencuiala-hidroizolanta" />
+    <siteMapNode title="Consum Tencuiala Periata" description="Calcul de Consum ⭐ Tencuiala Decorativa Periata cu Cuart si Granule de Marmura cu Structura Periata, Circulara ✅ Calitate Profesionala !" url="~/consum-tencuiala-periata" />
+    <siteMapNode title="Consum Tencuiala Praf Piatra" description="Calcul de Consum ⭐ Tencuiala Decorativa Bob de Orez sau Praf de Piatra cu Granule de Marmura si Cuartz ✅ Durabilitate 10 ani. Preturi Decente !" url="~/consum-tencuiala-praf-piatra" />
+    <siteMapNode title="Consum Tencuiala Silicatica" description="Calcul de Consum ⭐ Tencuiala Decorativa Silicatica Structurata din Apa de Sticla si Agregate de Marmura ✅ Restaurari Tencuieli si Fatade Exterioare" url="~/consum-tencuiala-silicatica" />
+    <siteMapNode title="Consum Tencuiala Siliconica" description="Calcul de Consum ⭐ Tencuiala Decorativa Siliconica Elastica Exterior cu Granule Colorate de Marmura ✅ Calitate Profesionala la Pret de Producator !" url="~/consum-tencuiala-siliconica" />
+    <siteMapNode title="Consum Tencuiala Soclu" description="Calcul de Consum pentru ⭐ Tencuiala Decorativa de Soclu Marmorata sau Mozaicata ✅ Rezistenta la Apa si Infiltratii. Calitate Incontestabila !" url="~/consum-tencuiala-soclu" />
+    <siteMapNode title="Consum Vopsea 3 In 1 Epoxi Ester" description="Calcul de Consum pentru ⭐ Vopsea Epoxy-Ester 3 in 1 &amp;ldquo;Emex Q3-Guard&amp;rdquo; ✅ Protectie Anticoroziva Profesionala de Inalta Performanta, fara Necesar de Grund" url="~/consum-vopsea-3-in-1-epoxi-ester" />
+    <siteMapNode title="Consum Vopsea Acrilica 2k Noiso" description="Calcul de Consum pentru ⭐ Vopsea Acrilica Bicomponenta fara Izocianat &amp;ldquo;Emex Hybrid&amp;rdquo; ✅ Reticulabila cu Rasina Epoxidica Solvent-Free cu Rezistenta Mare" url="~/consum-vopsea-acrilica-2k-noiso" />
+    <siteMapNode title="Consum Vopsea Acrilica 3 In 1 Anticoroziva" description="Consum Vopsea Acrilica 3 In 1 Anticoroziva" url="~/consum-vopsea-acrilica-3-in-1-anticoroziva" />
+    <siteMapNode title="Consum Vopsea Alchidica Lemn Metal" description="Calcul de Consum ⭐ Email Alchidic Uretanizat, pentru Lemn, Metal si Beton, cu Precadere la Exterior ✅ Rezistenta inclusiv pentru Acoperiri Navale !" url="~/consum-vopsea-alchidica-lemn-metal" />
+    <siteMapNode title="Consum Vopsea Antifonica Apa" description="Calcul Consum ⭐ Vopsea Antifonica Hidroizolanta ✅ pentru Protectie Anticoroziva Rezistenta la Apa, Intemperii, Agenti Chimici, Sare, Uleiuri" url="~/consum-vopsea-antifonica-apa" />
+    <siteMapNode title="Consum Vopsea Clorcauciuc" description="Calcul de Consum Vopsea Clorcauciuc ⭐ Vopsea Cauciucata pentru Metal, Beton sau Marcaj Rutier. Elasticitate si capacitate de protectie a suportului." url="~/consum-vopsea-clorcauciuc" />
+    <siteMapNode title="Consum Vopsea Clorcauciuc Pardoseala" description="Calcul de Consum ⭐ Vopsea Clorcauciuc pentru Pardoseala din Beton &amp;ldquo;Emex&amp;rdquo; ✅ Cauciucata, Rezistenta la Intemperii si Apa, la Frecare sau Abraziune" url="~/consum-vopsea-clorcauciuc-pardoseala" />
+    <siteMapNode title="Consum Vopsea Clorcauciuc Piscina" description="Calcul de Consum pentru ⭐ Vopsea Clorcauciuc pentru Piscine. Profesionala de calitate avansata, indicata pentru piscine, bazine din beton, stranduri." url="~/consum-vopsea-clorcauciuc-piscina" />
+    <siteMapNode title="Consum Vopsea Elastomerica Tencuieli Exterior" description="Calcul de consum pentru Vopseaua Elastomerica de Exterior &amp;ldquo;Emex Flexio&amp;rdquo;. Produs recomandat pentru tencuieli si zidarii exterioare" url="~/consum-vopsea-elastomerica-tencuieli-exterior" />
+    <siteMapNode title="Consum Vopsea Epoxidica" description="Calcul de consum - Email Epoxidic Bicomponent pentru Metal, Zidarie sau Lemn. Sistem de Noua Generatie cu Durabilitate si Rezultate Profesionale" url="~/consum-vopsea-epoxidica" />
+    <siteMapNode title="Consum Vopsea Epoxidica Baza Apa Pardoseala" description="Calcul de Consum ⭐ Vopsea Epoxidica de Pardoseala pe Baza de Apa. Protectie Avansata pe baza de Rasini Epoxidice Solubile in Apa. Duritate superioara." url="~/consum-vopsea-epoxidica-baza-apa-pardoseala" />
+    <siteMapNode title="Consum Vopsea Epoxidica Pardoseli" description="Calcul de Consum pentru Vopsea Epoxidica Bicomponenta de Pardoseala. Pentru o Protectie Superioara a Pardoselilor Industriale sau Rezidentiale !" url="~/consum-vopsea-epoxidica-pardoseli" />
+    <siteMapNode title="Consum Vopsea Epoxy Ester" description="Calcul de consum pentru Email Epoxidic Monocomponent Fara Intaritor. Caracteristici avansate, profesionale de pelicula, aderenta, rezistenta si luciu" url="~/consum-vopsea-epoxy-ester" />
+    <siteMapNode title="Consum Vopsea Hidroizolanta" description="Calcul de consum pentru ⭐ Vopsea Hidroizolanta Elastica pentru Piscina Terasa sau Acoperis. Impermeabilizant de durata ✅ Calitate si Pret Excelent !" url="~/consum-vopsea-hidroizolanta" />
+    <siteMapNode title="Consum Vopsea Intermediara Epoxy Poliamidica" description="Calculul Consumului de ⭐ Vopsea Intermediara Epoxy-Poliamidica Anticoroziva cu Micaceu ✅ Strat Intermediar in Zone de Agresivitate Mare si Foarte Mare" url="~/consum-vopsea-intermediara-epoxy-poliamidica" />
+    <siteMapNode title="Consum Vopsea Marcaj Rutier" description="Consum ⭐ Vopsea de Marcaje Rutiere - Marcare Beton si Asfalt Benzi de Circulatie Auto Treceri Pietoni Parcari ✅ Vopsea Acrilica de Marcaj in Solvent" url="~/consum-vopsea-marcaj-rutier" />
+    <siteMapNode title="Consum Vopsea Marcaj Rutier 2k" description="Calcul de Consum ⭐ Vopsea Bicomponenta de Marcaj Rutier - Rezonatoare - pentru Carosabil de Asfalt sau Beton ✅ Produs Profesional de Inalta Calitate !" url="~/consum-vopsea-marcaj-rutier-2k" />
+    <siteMapNode title="Consum Vopsea Poliaspartica Pardoseli Rapide" description="Calcul de Consum pentru ⭐ Vopsea Poliaspartica Pardoseli &amp;ldquo;Emex P31-AS&amp;rdquo; ✅️ pe Baza de Rasini Poliaspartice - Uscare Rapida si Proprietati Anti Zgariere" url="~/consum-vopsea-poliaspartica-pardoseli-rapide" />
+    <siteMapNode title="Consum Vopsea Poliesterica" description="Calcul de Consum ⭐ Vopsea Poliesterica Saturata Metal de Ultima Generatie ✅ Proprietati Avansate de pelicula. Rezistenta la Coroziune si Umiditate." url="~/consum-vopsea-poliesterica" />
+    <siteMapNode title="Consum Vopsea Poliuretanica" description="Calcul consum ⭐ Email Poliuretanic Bicomponent Profesional pentru Metal Beton Lemn si Zidarie. Rezistenta si Durabilitate ✅ Calitate incontestabila !" url="~/consum-vopsea-poliuretanica" />
+    <siteMapNode title="Consum Vopsea Poliuretanica Elastica" description="Calcul de Consum pentru ⭐ Vopsea Cauciucata Elastica de Impermeabilizare pe Baza de Rasina Poliuretanica ✅ Calitate Superioara la Pret de Producator !" url="~/consum-vopsea-poliuretanica-elastica" />
+    <siteMapNode title="Consum Vopsea Poliuretanica Pardoseala" description="Calcul de consum pentru ⭐ Vopsea Poliuretanica de Pardoseala din Beton ✅ Sistem Profesional de Calitate Premium. Duritate si Durabilitate Superioare." url="~/consum-vopsea-poliuretanica-pardoseala" />
+    <siteMapNode title="Consum Vopsea Poliuretanica Piscina" description="Calcul de consum pentru Vopsea Poliuretanica Piscine din Beton, Sistem Profesional Bicomponent cu Aderenta, Stabilitate la Imersie si Rezistenta la UV" url="~/consum-vopsea-poliuretanica-piscina" />
+    <siteMapNode title="Consum Vopsea Poliuretanica Yachturi" description="Calcul de Consum pentru ⭐ Vopsea Poliuretanica pentru Yachturi si Ambarcatiuni de apa dulce sau sarata ✅ Rezistenta la UV si Socuri Mecanice !" url="~/consum-vopsea-poliuretanica-yachturi" />
+    <siteMapNode title="Consum Vopsea Satinata Emcolor" description="Calcul de Consum Email Alchidic Satinat din Rasini Solubile in Apa - Email Emulsionat Ieftin pentru Vopsirea de Suporturi din Lemn Metal si Zidarie" url="~/consum-vopsea-satinata-emcolor" />
+    <siteMapNode title="Consum Vopsea Termorezistenta" description="Calcul de Consum ⭐ Vopsea Termorezistenta pentru Protectia la Temperaturi Inalte de Esapamente, Cuptoare Industriale ✅ Rezultate Profesionale !" url="~/consum-vopsea-termorezistenta" />
+    <siteMapNode title="Consum Vopsea Texturata" description="Consum Vopsea Texturata" url="~/consum-vopsea-texturata" />
+    <siteMapNode title="Consum Vopsea Tigla" description="Calcul de consum ⭐ Vopsea de Tigla din Beton si Azbociment. Orice culoare cu putere de acoperire ✅ Rezistenta Mare la UV - Rezultate Profesionale !" url="~/consum-vopsea-tigla" />
+    <siteMapNode title="Consum Vopsea Tigla Metalica" description="Calculul Consumului de ⭐ Email Alchido-Poliuretanic pentru Tigla Metalica &amp;ldquo;Emex Screenpol&amp;rdquo; ✅ Sistem Profesional cu Duritate, Rezistenta si Luciu." url="~/consum-vopsea-tigla-metalica" />
+    <siteMapNode title="Consum Vopsea Utilaje" description="Calcul de Consum pentru ⭐ Vopsea Tip Auto de Utilaje si Caroserii cu ✅ Uscare Rapida Duritate, Durabilitate si Luciu. Produs de Calitate Superioara !" url="~/consum-vopsea-utilaje" />
+    <siteMapNode title="Consum Zinc Pur Epoxy Exter" description="Descreiere sumara a produsului" url="~/consum-zinc-pur-epoxy-exter" />
     <siteMapNode title="Consum" description="Consum" url="~/consum/">
     </siteMapNode>
     <siteMapNode title="Contact" description="Pagina de contact pentru comenzi sau informatii legate de servicii sau vopsele marca Emex furnizate de producatorul Romtehnochim" url="~/contact" />
@@ -631,6 +347,7 @@
     <siteMapNode title="Pardoseli Trafic?per Page=6" description="Romtehnochim produce pardoseli turnate epoxidice sau poliuretanice pentru hale industriale sau pardoseli decorative expozitii sau supermarketuri" url="~/pardoseli-trafic?per_page=6" />
     <siteMapNode title="Pasta Pentru Decapare" description="Produs Superior ⭐ Solutie pentru Decaparea Ecologica a Vopselelor Vechi a Tencuielilor sau a altor Contaminanti sau Grasimi de pe Orice Suprafata" url="~/pasta-pentru-decapare" />
     <siteMapNode title="Politica De Calitate" description="Politica de calitate Emex by Romtehnochim producator de lacuri vopsele tencuieli pardoseli - certificat ISO 9001, ISO 14001, OHSAS 18001" url="~/politica-de-calitate" />
+    <siteMapNode title="Politica De Licentiere" description="Politica De Licentiere" url="~/politica-de-licentiere" />
     <siteMapNode title="Politica De Mediu" description="Politica de mediu Emex by Romtehnochim producator de tencuieli pardoseli emailuri grunduri vopsele lavabile - certificat ISO 14001" url="~/politica-de-mediu" />
     <siteMapNode title="Politica De Retur" description="Politica de retur sau restituire plati pentru produsele Emex realizate de compania Romtehnochim." url="~/politica-de-retur" />
     <siteMapNode title="Politica Sanatate Securitate" description="Politica de sanatate si securitate a muncii Emex by Romtehnochim producator de pardoseli vopsele lavabile si tencuieli - certificat OHSAS 18001:2007" url="~/politica-sanatate-securitate" />
@@ -641,10 +358,6 @@
     <siteMapNode title="Produse?per Page=72" description="Romtehnochim produce o gama variata de lacuri vopsele tencuieli si pardoseli de calitate superioara cu aplicare in zonele de industrie si constructii" url="~/produse?per_page=72" />
     <siteMapNode title="Produse?per Page=9" description="Romtehnochim produce o gama variata de lacuri vopsele tencuieli si pardoseli de calitate superioara cu aplicare in zonele de industrie si constructii" url="~/produse?per_page=9" />
     <siteMapNode title="Public" description="Public" url="~/public/">
-      <siteMapNode title="Blog" description="Blog" url="~/public/blog/">
-        <siteMapNode title="Tag" description="Tag" url="~/public/blog/tag/">
-        </siteMapNode>
-      </siteMapNode>
       <siteMapNode title="Storage" description="Storage" url="~/public/storage/">
         <siteMapNode title="Media" description="Media" url="~/public/storage/media/">
           <siteMapNode title="Technical Files" description="Technical Files" url="~/public/storage/media/technical-files/">
@@ -684,6 +397,7 @@
           <siteMapNode title="Amorsa Acrilica Antimucegai" description="Amorsa Acrilica Antimucegai" url="~/storage/media/technical-files/amorsa-acrilica-antimucegai.pdf" />
           <siteMapNode title="Amorsa Acrilica Economica" description="Amorsa Acrilica Economica" url="~/storage/media/technical-files/amorsa-acrilica-economica.pdf" />
           <siteMapNode title="Amorsa Acrilica Perete" description="Amorsa Acrilica Perete" url="~/storage/media/technical-files/amorsa-acrilica-perete.pdf" />
+          <siteMapNode title="Amorsa Elastomerica Universala" description="Amorsa Elastomerica Universala" url="~/storage/media/technical-files/amorsa-elastomerica-universala.pdf" />
           <siteMapNode title="Amorsa Epoxidica Pe Baza Apa" description="Amorsa Epoxidica Pe Baza Apa" url="~/storage/media/technical-files/amorsa-epoxidica-pe-baza-apa.pdf" />
           <siteMapNode title="Amorsa Epoxidica Solvent Free" description="Amorsa Epoxidica Solvent Free" url="~/storage/media/technical-files/amorsa-epoxidica-solvent-free.pdf" />
           <siteMapNode title="Amorsa Epoxidice Yacht Lemn" description="Amorsa Epoxidice Yacht Lemn" url="~/storage/media/technical-files/amorsa-epoxidice-yacht-lemn.pdf" />
@@ -835,6 +549,7 @@
           <siteMapNode title="Vopsea Superlavabila Interior Emex" description="Vopsea Superlavabila Interior Emex" url="~/storage/media/technical-files/vopsea-superlavabila-interior-emex.pdf" />
           <siteMapNode title="Vopsea Termorezistenta Emex Trs 700" description="Vopsea Termorezistenta Emex Trs 700" url="~/storage/media/technical-files/vopsea-termorezistenta-emex-trs-700.pdf" />
           <siteMapNode title="Vopsea Tigla Azbociment Emex" description="Vopsea Tigla Azbociment Emex" url="~/storage/media/technical-files/vopsea-tigla-azbociment-emex.pdf" />
+          <siteMapNode title="Zinc Epoxy Exter Pentru Galvanizare La Rece" description="Zinc Epoxy Exter Pentru Galvanizare La Rece" url="~/storage/media/technical-files/zinc-epoxy-exter-pentru-galvanizare-la-rece.pdf" />
         </siteMapNode>
       </siteMapNode>
     </siteMapNode>
@@ -888,7 +603,7 @@
     <siteMapNode title="Vopsea Poliuretanica Pardoseli" description="Sistem Profesional de Calitate Premium ⭐ Vopsea Poliuretanica de Pardoseala din Beton - Duritate Durabilitate Luciu ✅ Durata de Viata Minim 5 ani !" url="~/vopsea-poliuretanica-pardoseli" />
     <siteMapNode title="Vopsea Poliuretanica Piscina" description="Produs Profesional ⭐ Vopsea Poliuretanica pentru Piscine din Beton. Elastica Impermeabilizanta Durabila. Rezistenta la UV ✅ Calitate incontestabila !" url="~/vopsea-poliuretanica-piscina" />
     <siteMapNode title="Vopsea Satinata Emcolor" description="Ieftina cu Aspect Satinat ⭐ Vopsea Alchidica Economica Satinata Emcolor pentru Lemn Metal si Zidarie ✅ pe Baza de Rasina Alchidica Emulsionata in Apa" url="~/vopsea-satinata-emcolor" />
-    <siteMapNode title="Vopsea Termorezistenta Siliconica" description="Pentru Protectia la Temperaturi Inalte ⭐ Vopsea Termorezistenta Siliconica ✅ Vopsea Rezistenta la Temperatura pentru Esapament, Cuptoare Industriale" url="~/vopsea-termorezistenta-siliconica" />
+    <siteMapNode title="Vopsea Termorezistenta Siliconica" description="Vopsea &quot;Emex TRS 700&quot; ⭐ Vopsea Siliconica Termorezistenta pana la 700°C ✅ Monocomponenta pentru Metal, Cuptoare, Tevi Evacuare. Rezistenta Superioara" url="~/vopsea-termorezistenta-siliconica" />
     <siteMapNode title="Vopsea Texturata Emex" description="Vopsea ⭐ Texturata Decorativa pe baza de Latex aplicabila cu fier de glet structurata cu trafaletul ✅ Aspect Calcio Vecchio - modele de orice culoare." url="~/vopsea-texturata-emex" />
     <siteMapNode title="Vopsea Tigla Emex" description="Vopsea pentru ⭐ Acoperis de Tigla din Beton si Azbociment in Orice Culoare cu Putere de Acoperire ✅ Rezistenta Mare la UV - Rezultate Profesionale !" url="~/vopsea-tigla-emex" />
     <siteMapNode title="Vopsea Tigla Metalica Screenpol" description="Sistem Profesional de Inalta Performanta ⭐ Email Alchido-Poliuretanic de Tigla Metalica &amp;ldquo;Emex Screenpol&amp;rdquo; cu ✅ Duritate, Rezistenta si Luciu Superior" url="~/vopsea-tigla-metalica-screenpol" />
@@ -921,5 +636,6 @@
     <siteMapNode title="Vopsele Trafic Pardoseala?per Page=6" description="Capitol ⭐ Vopsea pentru Pardoseala Beton Cauciucata Epoxidica Poliuretanica Poliesterica Marcaj Rutier ✅ Agrement Sanitar pentru Industria Alimentara !" url="~/vopsele-trafic-pardoseala?per_page=6" />
     <siteMapNode title="Vopsire Epoxidica Pardoseli" description="Vopsire Epoxidica Pardoseli" url="~/vopsire-epoxidica-pardoseli" />
     <siteMapNode title="Wishlist" description="Wishlist" url="~/wishlist" />
+    <siteMapNode title="Zinc Epoxy Exter Pentru Galvanizare" description="descreierea produsului" url="~/zinc-epoxy-exter-pentru-galvanizare" />
   </siteMapNode>
 </siteMap>
