@@ -11,7 +11,17 @@ class BlogArticleController extends Controller
     // Show the list of articles
     public function index()
     {
-        $blogArticles = BlogArticle::with(['tags', 'featuredImage'])->orderBy('created_at', 'desc')->paginate(10);
+        $sort = $request->get('sort', 'updated'); // default is 'updated'
+
+        $query = BlogArticle::with(['tags', 'featuredImage'])->where('is_active', true);
+
+        if ($sort === 'relevance') {
+            $query->orderBy('sort_order', 'asc')->orderBy('updated_at', 'desc');
+        } else {
+            $query->orderBy('updated_at', 'desc');
+        }
+
+        $blogArticles = $query->paginate(10);
 
         $archive = null; 
         $tagFilter = null; 

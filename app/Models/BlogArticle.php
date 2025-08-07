@@ -18,7 +18,9 @@ class BlogArticle extends Model
         'slug',
         'body',
         'seo',
-        'jsonld'
+        'jsonld',
+        'sort_order', 
+        'is_active',
     ];
 
     protected $casts = [
