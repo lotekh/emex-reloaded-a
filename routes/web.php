@@ -155,6 +155,10 @@ require __DIR__.'/auth.php';
     Route::post('/goleste-cosul', [OrdersController::class, 'emptyCart'])->name('orders.empty');
     Route::get('/invoice/{orderId}', [OrdersController::class, 'showInvoicePage'])->name('invoice.page');
     Route::post('/orders/update-mention', [OrdersController::class, 'updateMention'])->name('orders.updateMention');
+    Route::post('/cart/apply-discount', [OrdersController::class, 'applyDiscountCode'])->name('orders.applyDiscount');
+    Route::post('/cart/remove-discount', [OrdersController::class, 'removeDiscountCode'])->name('orders.removeDiscount');
+
+
     
     Route::post('/validate-account', [OrdersController::class, 'validateAccount'])->name('checkout.validateAccount');
     

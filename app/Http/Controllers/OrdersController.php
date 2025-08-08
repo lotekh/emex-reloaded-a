@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use App\Models\OrdersProductVariation;
 use App\Helpers\TvaHelper;
+use App\Models\DiscountCode;
 
 class OrdersController extends Controller
 {
@@ -301,7 +302,60 @@ class OrdersController extends Controller
 
     }
 
+    public function applyDiscountCode(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|string'
+        ]);
 
+        $codeInput = trim($request->input('code'));
+        $discount = DiscountCode::where('code', $codeInput)->where('is_active', true)->first();
+
+        if (!$discount) {
+            return redirect()->back()->with('error', 'Codul introdus nu este valid sau nu mai este activ.');
+        }
+
+        $sessionDiscount = session()->get('discount');
+
+        // If there is a bulk discount already applied, you can't add a new product discount
+        if ($sessionDiscount && $sessionDiscount['product_id'] === null && $discount->product_id !== null) {
+            return redirect()->back()->with('warning', 'Ai deja un cod de reducere aplicat pentru toate produsele. Codurile nu pot fi cumulate.');
+        }
+
+        // If there is a product discount already applied and you want to apply a bulk discount
+        if ($sessionDiscount && $sessionDiscount['product_id'] !== null && $discount->product_id === null) {
+            session()->put('pending_discount', [
+                'code' => $discount->code,
+                'product_id' => null,
+                'percentage' => $discount->percentage,
+            ]);
+
+            return redirect()->back()->with('confirm_replace', 'Aplicarea acestui cod va înlocui reducerea de produs deja existentă.');
+        }
+
+        $discountData = [
+            'code' => $discount->code,
+            'percentage' => $discount->percentage,
+            'product_id' => $discount->product_id,
+        ];
+
+        if ($discount->product_id) {
+            $product = $discount->product;
+            $discountData['product_name'] = $product->name;
+            $discountData['product_slug'] = $product->slug;
+        }
+
+        session(['discount' => $discountData]);
+
+        return redirect()->back()->with('success', 'Codul de reducere a fost aplicat cu succes.');
+    }
+
+    public function removeDiscountCode()
+    {
+        session()->forget('discount');
+
+        return redirect()->back()->with('success', 'Codul de reducere a fost eliminat.');
+    }
 
     public function processCheckout(Request $request)
     {

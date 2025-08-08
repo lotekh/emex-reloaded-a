@@ -16,7 +16,6 @@ class ProductsController extends Controller
         $currentPage = $request->get('current_page_number', 1);
         $filters = $request->except(['per_page', 'current_page_number', '_token']);
         $filtersString = count($filters) ? '?' . http_build_query($filters) : '';
-        // dd($filters, $filtersString);
 
         // Query for active products
         $productsQuery = Product::select('products.*')
@@ -72,16 +71,13 @@ class ProductsController extends Controller
 
     public function showProduct($slug, Request $request)
     {
-        // $product = Product::where('slug', $slug)->with('largeImage', 'variations', 'reviews')->firstOrFail();
         $product = Product::where('slug', $slug)
         ->with(['largeImage', 'variations.measurementUnit', 'reviews']) 
         ->firstOrFail();
 
-        Log::info(json_encode($product));
         $productId = $product->id;
         $activeTab = session("last_active_tab_{$productId}", 'Descriere');
         $categories_products = $product->categories;
-        Log::info(json_encode($categories_products));
 
         $initialPrice = $product->variations->first()->price ?? 0;
         $initialPackaging = $product->variations->first()->packaging ?? '';
