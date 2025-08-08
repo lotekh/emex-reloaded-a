@@ -347,3 +347,33 @@ use App\Helpers\TvaHelper;
         <td colspan="2" style="text-align: center; padding: 10px 5px; font-weight: bold" class="ta_r table-borders-none">{{ number_format($order['total'], 2, '.', ',') }} lei</td>
     </tr>
 </table>
+
+
+@if ($order->discountCodes && $order->discountCodes->count() > 0)
+    <table style="width: 100%; font-size: 13px; margin: 30px 50px 0;">
+        <tr>
+            <td style="font-weight: bold; color: #001d4d; padding: 0;">Coduri de discount folosite:</td>
+        </tr>
+        <tr>
+            <td>
+                <ul style="margin: 5px 0 0 15px; padding: 0;">
+                    @foreach ($order->discountCodes as $discountCode)
+                        <li style="margin-bottom: 5px;">
+                            <strong>{{ $discountCode->code }}</strong> – {{ $discountCode->percentage }}% reducere
+                            @if ($discountCode->product)
+                                doar pentru produsul:
+                                <span>
+                                    {{ html_entity_decode(strip_tags($discountCode->product->name ?? 'Produs indisponibil')) }}
+                                </span>
+                            @else
+                                pentru toate produsele
+                            @endif
+                        </li>
+                    @endforeach
+                </ul>
+            </td>
+        </tr>
+    </table>
+@endif
+
+
