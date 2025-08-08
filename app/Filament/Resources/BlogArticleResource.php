@@ -21,6 +21,10 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Filament\Tables\Actions\Action;
+
+
 
 class BlogArticleResource extends Resource
 {
