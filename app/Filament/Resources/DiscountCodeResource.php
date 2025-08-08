@@ -37,6 +37,12 @@ class DiscountCodeResource extends Resource
                     ->numeric(),
                 Forms\Components\Toggle::make('is_active')
                     ->required(),
+                 Forms\Components\Select::make('product_id')
+                    ->label('Associated product (optional)')
+                    ->relationship('product', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->nullable(),
             ]);
     }
 
@@ -60,6 +66,12 @@ class DiscountCodeResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('product.name')
+                    ->label('Product')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: false),
+
             ])
             ->filters([
                 //
