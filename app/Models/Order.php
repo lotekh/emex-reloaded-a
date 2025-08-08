@@ -101,10 +101,18 @@ class Order extends Model
         return $this->BelongsTo(User::class);
     }
 
-    public function discountCode(): BelongsTo
+    // public function discountCode(): BelongsTo
+    // {
+    //     return $this->belongsTo(DiscountCode::class,);
+    // }
+
+    public function discountCodes(): BelongsToMany
     {
-        return $this->belongsTo(DiscountCode::class,);
+        return $this->belongsToMany(DiscountCode::class, 'discount_code_order')
+                    ->withTimestamps();
     }
+
+
 
     public function deliveryCounty(): belongsTo
     {

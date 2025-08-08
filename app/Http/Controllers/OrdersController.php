@@ -460,7 +460,7 @@ class OrdersController extends Controller
             ]
         );
 
-       $total = 0;
+        $total = 0;
         $discounts = session()->get('discounts', []);
         $hasBulkDiscount = isset($discounts['bulk']);
         $bulkDiscountPercentage = $hasBulkDiscount ? $discounts['bulk']['percentage'] : null;
@@ -501,6 +501,18 @@ class OrdersController extends Controller
 
             $total += $cartItem['quantity'] * $discountedPrice;
         }
+
+        // Save discounts in db
+        foreach ($discounts as $discount) {
+            if (isset($discount['code'])) {
+                $discountModel = DiscountCode::where('code', $discount['code'])->first();
+
+                if ($discountModel) {
+                    $dbOrder->discountCodes()->attach($discountModel->id);
+                }
+            }
+        }
+
 
 
         $dbOrder->total = $total;
@@ -917,6 +929,7 @@ class OrdersController extends Controller
 
             session()->forget('cart');
             session()->forget('order');
+            session()->forget('discounts');
 
             // Redirect the user to summary after order has been processed
             return redirect()->route('order.summary', ['guid' => $dbOrder->guid])->with('success', 'Comanda a fost plasată cu succes.');
@@ -924,6 +937,7 @@ class OrdersController extends Controller
 
         session()->forget('cart');
         session()->forget('order');
+        session()->forget('discounts');
 
         return redirect()->route('/despre-noi');
     }
