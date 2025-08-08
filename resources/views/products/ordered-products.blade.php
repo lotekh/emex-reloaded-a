@@ -355,14 +355,14 @@
             box-sizing: border-box;
           "
         />
-        <button class="btn btn-blue rounded-xl" type="submit">Aplică</button>
+        <button class="btn btn-blue rounded-xl" style="margin-left: 4px;" type="submit">Aplică</button>
       </div>
     </form>
   </div>
 
   @if(session('discounts') && is_array(session('discounts')))
     <div class="mt-4 border p-4 rounded bg-gray-100">
-        <h3>Coduri de reducere active:</h3>
+        <h3 style="margin-bottom: 4px;">Coduri de reducere active:</h3>
 
         @foreach(session('discounts') as $discount)
             <div class="flex justify-between items-center text-sm">
