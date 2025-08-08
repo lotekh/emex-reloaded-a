@@ -339,6 +339,28 @@
                                     </tbody>
                                 </table>
 
+                                @if ($order->discountCodes && $order->discountCodes->count() > 0)
+                                        <div class="mt-8 mb-8 ml-8">
+                                            <p class="font-bold text-sm text-blue-900 mb-2">Coduri de discount folosite:</p>
+                                            <ul class="list-disc list-inside text-sm">
+                                                @foreach ($order->discountCodes as $discountCode)
+                                                    <li class="mb-1">
+                                                        <strong>{{ $discountCode->code }}</strong> – {{ $discountCode->percentage }}% reducere
+                                                        @if ($discountCode->product)
+                                                            doar pentru produsul:
+                                                            <span>
+                                                                {{ html_entity_decode(strip_tags($discountCode->product->name ?? 'Produs indisponibil')) }}
+                                                            </span>
+                                                        @else
+                                                            pentru toate produsele
+                                                        @endif
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                @endif
+
+
                                 <div class="flex ml-8 mt-16 mb-16">
                                     @php
                                     $proformaPath = $order->proforma ? $order->proforma->path : null;
