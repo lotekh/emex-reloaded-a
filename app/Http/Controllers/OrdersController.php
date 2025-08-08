@@ -316,10 +316,13 @@ class OrdersController extends Controller
         }
 
         $sessionDiscounts = session()->get('discounts', []);
-        
-        if ($discount->product_id === null) {
+
+        $isBulk = $discount->product_id === null;
+
+        // If it's a bulk discount code
+        if ($isBulk) {
             if (!empty($sessionDiscounts)) {
-                return redirect()->back()->with('error', 'Ai deja coduri aplicate pentru produse. Codurile generale nu pot fi combinate cu cele individuale.');
+                return redirect()->back()->with('error', 'Aplicarea acestui cod va elimina toate codurile de reducere. Elimina-le mai întâi dacă vrei să continui.');
             }
 
             session(['discounts' => [
@@ -333,12 +336,13 @@ class OrdersController extends Controller
             return redirect()->back()->with('success', 'Codul de reducere pentru toate produsele a fost aplicat cu succes.');
         }
 
+        // If it's not a bulk discount(product discount code)
         if (isset($sessionDiscounts['bulk'])) {
-            return redirect()->back()->with('error', 'Ai deja un cod de reducere aplicat pentru toate produsele. Codurile nu pot fi combinate.');
+            return redirect()->back()->with('error', 'Ai deja un cod de reducere general activ. Codurile pe produse nu pot fi combinate cu cele generale.');
         }
 
         if (array_key_exists($discount->product_id, $sessionDiscounts)) {
-            return redirect()->back()->with('info', 'Ai deja un cod de reducere aplicat pentru acest produs.');
+            return redirect()->back()->with('error', 'Ai deja un cod de reducere aplicat pentru acest produs.');
         }
 
         $discountData = [
@@ -354,11 +358,11 @@ class OrdersController extends Controller
         }
 
         $sessionDiscounts[$discount->product_id] = $discountData;
-
         session(['discounts' => $sessionDiscounts]);
 
-        return redirect()->back()->with('success', 'Codul de reducere a fost aplicat cu succes.');
+        return redirect()->back()->with('success', 'Codul de reducere a fost aplicat cu succes pentru produsul selectat.');
     }
+
 
     public function removeDiscountCode($code)
     {

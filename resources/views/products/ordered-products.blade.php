@@ -342,44 +342,7 @@
         <input type="text" name="code" id="discount_code" value="{{ session('discount.code') }}">
         <button type="submit">Aplică</button>
     </form>
-
-    @if(session('confirm_replace'))
-        <div class="alert alert-warning">
-            {{ session('confirm_replace') }}
-            <form method="POST" action="{{ route('orders.applyDiscount') }}">
-                @csrf
-                <input type="hidden" name="code" value="{{ session('pending_discount.code') }}">
-                <button type="submit">Confirmă înlocuirea</button>
-            </form>
-        </div>
-    @endif
   </div>
-
-  {{-- @if(session('discount'))
-    <div class="mt-4 border p-4 rounded bg-gray-100 relative">
-        <h3 class="font-semibold mb-2">Coduri de reducere active:</h3>
-
-        @if(session('discount.product_id'))
-            <p class="text-sm text-gray-800">
-                <strong>{{ session('discount.code') }}</strong> – {{ session('discount.percentage') }}% reducere doar pentru produsul 
-                <a href="{{ url(session('discount.product_slug')) }}" target="_blank" class="link_color1">
-                    {{ html_entity_decode(strip_tags(session('discount.product_name'))) }}
-                </a>
-            </p>
-        @else
-            <p class="text-sm text-gray-800">
-                <strong>{{ session('discount.code') }}</strong> – {{ session('discount.percentage') }}% reducere pentru toate produsele
-            </p>
-        @endif
-
-        <form method="POST" action="{{ route('orders.removeDiscount') }}" class="absolute top-2 right-2">
-            @csrf
-            <button type="submit" class="text-gray-400 hover:text-red-600 text-xl leading-none" title="Elimină codul de reducere">
-                &times;
-            </button>
-        </form>
-    </div>
-  @endif --}}
 
   @if(session('discounts') && is_array(session('discounts')))
     <div class="mt-4 border p-4 rounded bg-gray-100">
