@@ -467,6 +467,7 @@
                 </div>
             </div>
 
+            {{-- STEP 5 --}}
             <div class="step col" id="step5">
                 <div class="grid grid-3 gap-xs mb-8">
                     <div class="inputs">
@@ -646,6 +647,11 @@
 
                         </tbody>
                     </table>
+
+                    <div id="discount-summary" class="mb-16">
+
+                    </div>
+
                     <div class="flex justify-end align-center mb-16">
                         <label class="switch mr-4">
                             <input type="checkbox" id="agreement" name="Agreement" value="1">
@@ -680,6 +686,8 @@
         multiplier: {{ $tvaMultiplier }},
         priceMultiplier: {{ $tvaPriceMultiplier }}
     };
+
+    window.appliedDiscounts = @json(session('discounts', []));
 </script>
 
 <script src="{{ asset('resources/scripts/order-scripts/step-1.js') }}"></script>
