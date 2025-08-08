@@ -7,6 +7,7 @@ use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class ListBlogArticles extends ListRecords
 {
@@ -27,20 +28,43 @@ class ListBlogArticles extends ListRecords
 
     public function reorderTable(array $order): void
     {
-        $orderColumn = 'sort_order';
+        if (! $this->getTable()->isReorderable()) {
+            return;
+        }
 
-        DB::transaction(function () use ($order, $orderColumn) {
-            DB::table('blog_articles')
-                ->whereIn('id', array_keys($order))
-                ->update([$orderColumn => null]); 
+        $orderColumn = (string) str($this->getTable()->getReorderColumn())->afterLast('.');
 
-            foreach ($order as $recordId => $sortOrder) {
-                DB::table('blog_articles')
-                    ->where('id', $recordId)
+        \App\Models\BlogArticle::withoutTimestamps(function () use ($order, $orderColumn) {
+            DB::transaction(function () use ($order, $orderColumn) {
+                if (
+                    (($relationship = $this->getTable()->getRelationship()) instanceof BelongsToMany) &&
+                    in_array($orderColumn, $relationship->getPivotColumns())
+                ) {
+                    foreach ($order as $index => $recordKey) {
+                        $this->getTableRecord($recordKey)->{$relationship->getPivotAccessor()}->update([
+                            $orderColumn => $index + 1,
+                        ]);
+                    }
+
+                    return;
+                }
+
+                $model = app($this->getTable()->getModel());
+                $modelKeyName = $model->getKeyName();
+
+                $model
+                    ->newModelQuery()
+                    ->whereIn($modelKeyName, array_values($order))
                     ->update([
-                        $orderColumn => $sortOrder,
+                        $orderColumn => DB::raw(
+                            'case ' . collect($order)
+                                ->map(fn ($recordKey, int $recordIndex): string => 'when ' . $modelKeyName . ' = ' . DB::getPdo()->quote($recordKey) . ' then ' . ($recordIndex + 1))
+                                ->implode(' ') . ' end'
+                        ),
                     ]);
-            }
+            });
         });
     }
+
+
 }
