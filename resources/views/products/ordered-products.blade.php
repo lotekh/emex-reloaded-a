@@ -334,22 +334,38 @@
     </div>
   </div>
   @endif
-
+  
   <div class="mt-16">
     <form method="POST" action="{{ route('orders.applyDiscount') }}">
-        @csrf
-        <label for="discount_code">Cod de reducere:</label>
-        <input type="text" name="code" id="discount_code" value="{{ session('discount.code') }}">
-        <button type="submit">Aplică</button>
+      @csrf
+      <label class="bold" for="discount_code">Cod de reducere:</label>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <input 
+          type="text" 
+          name="code" 
+          id="discount_code" 
+          style="
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            color: #333;
+            outline: none;
+            box-sizing: border-box;
+          "
+        />
+        <button class="btn btn-blue rounded-xl" type="submit">Aplică</button>
+      </div>
     </form>
   </div>
 
   @if(session('discounts') && is_array(session('discounts')))
     <div class="mt-4 border p-4 rounded bg-gray-100">
-        <h3 class="font-semibold mb-2">Coduri de reducere active:</h3>
+        <h3>Coduri de reducere active:</h3>
 
         @foreach(session('discounts') as $discount)
-            <div class="flex justify-between items-center text-sm text-gray-800 py-1 border-b last:border-0">
+            <div class="flex justify-between items-center text-sm">
                 <div>
                     <strong>{{ $discount['code'] }}</strong> – {{ $discount['percentage'] }}% reducere
                     @if(!empty($discount['product_id']))
@@ -364,9 +380,11 @@
 
                 <form method="POST" action="{{ route('orders.removeDiscount', $discount['code']) }}" class="ml-4">
                     @csrf
-                    <button type="submit" title="Șterge">
-                        ×
+                    <button type="submit" title="Șterge" aria-label="Sterge codul de reducere">
+                      <img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="14" height="14"
+                        @if ($useLazy) loading="lazy" @endif>
                     </button>
+
                 </form>
 
             </div>
