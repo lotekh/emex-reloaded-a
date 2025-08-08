@@ -354,8 +354,8 @@
                     <strong>{{ $discount['code'] }}</strong> – {{ $discount['percentage'] }}% reducere
                     @if(!empty($discount['product_id']))
                         doar pentru produsul
-                        <a href="{{ url(session('discount.product_slug')) }}" target="_blank" class="link_color1">
-                            {{ html_entity_decode(strip_tags(session('discount.product_name'))) }}
+                        <a href="{{ url($discount['product_slug']) }}" target="_blank" class="link_color1">
+                            {{ html_entity_decode(strip_tags($discount['product_name'])) }}
                         </a>
                     @else
                         pentru toate produsele

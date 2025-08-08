@@ -460,18 +460,49 @@ class OrdersController extends Controller
             ]
         );
 
-        $total = 0;
+       $total = 0;
+        $discounts = session()->get('discounts', []);
+        $hasBulkDiscount = isset($discounts['bulk']);
+        $bulkDiscountPercentage = $hasBulkDiscount ? $discounts['bulk']['percentage'] : null;
+
+        $productVariationIds = array_column($cart, 'product_variation_id');
+        $productVariations = ProductVariation::with('product')->whereIn('id', $productVariationIds)->get();
+
+        // Create map for product_variation_id => product_id
+        $variationToProductMap = [];
+        foreach ($productVariations as $variation) {
+            $variationToProductMap[$variation->id] = $variation->product_id;
+        }
+
         foreach ($cart as $cartItem) {
+            $originalPrice = $cartItem['price'];
+            $originalPriceNoVat = $cartItem['price_no_vat'];
+            $discountedPrice = $originalPrice;
+            $discountedPriceNoVat = $originalPriceNoVat;
+
+            // Get product_id from the map
+            $productId = $variationToProductMap[$cartItem['product_variation_id']] ?? null;
+
+            if ($hasBulkDiscount) {
+                $discountedPrice = round($originalPrice * (1 - $bulkDiscountPercentage / 100), 2);
+                $discountedPriceNoVat = round($originalPriceNoVat * (1 - $bulkDiscountPercentage / 100), 2);
+            } elseif ($productId !== null && array_key_exists($productId, $discounts)) {
+                $productDiscount = $discounts[$productId];
+                $discountedPrice = round($originalPrice * (1 - $productDiscount['percentage'] / 100), 2);
+                $discountedPriceNoVat = round($originalPriceNoVat * (1 - $productDiscount['percentage'] / 100), 2);
+            }
+
             $dbOrder->productVariations()->attach($cartItem['product_variation_id'], [
                 'quantity' => $cartItem['quantity'],
-                'price' => $cartItem['price'],
-                'price_no_vat' => $cartItem['price_no_vat'],
+                'price' => $discountedPrice,
+                'price_no_vat' => $discountedPriceNoVat,
                 'mentions' => $cartItem['mentions'] ?? null,
             ]);
 
-            // Calculate the total
-            $total += $cartItem['quantity'] * $cartItem['price'];
+            $total += $cartItem['quantity'] * $discountedPrice;
         }
+
+
         $dbOrder->total = $total;
         $dbOrder->is_paid = false;
 
