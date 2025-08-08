@@ -343,9 +343,6 @@
         <button type="submit">Aplică</button>
     </form>
 
-    @if(session('warning'))
-        <div class="alert alert-warning">{{ session('warning') }}</div>
-    @endif
     @if(session('confirm_replace'))
         <div class="alert alert-warning">
             {{ session('confirm_replace') }}
@@ -358,7 +355,7 @@
     @endif
   </div>
 
-  @if(session('discount'))
+  {{-- @if(session('discount'))
     <div class="mt-4 border p-4 rounded bg-gray-100 relative">
         <h3 class="font-semibold mb-2">Coduri de reducere active:</h3>
 
@@ -382,7 +379,39 @@
             </button>
         </form>
     </div>
+  @endif --}}
+
+  @if(session('discounts') && is_array(session('discounts')))
+    <div class="mt-4 border p-4 rounded bg-gray-100">
+        <h3 class="font-semibold mb-2">Coduri de reducere active:</h3>
+
+        @foreach(session('discounts') as $discount)
+            <div class="flex justify-between items-center text-sm text-gray-800 py-1 border-b last:border-0">
+                <div>
+                    <strong>{{ $discount['code'] }}</strong> – {{ $discount['percentage'] }}% reducere
+                    @if(!empty($discount['product_id']))
+                        doar pentru produsul
+                        <a href="{{ url(session('discount.product_slug')) }}" target="_blank" class="link_color1">
+                            {{ html_entity_decode(strip_tags(session('discount.product_name'))) }}
+                        </a>
+                    @else
+                        pentru toate produsele
+                    @endif
+                </div>
+
+                <form method="POST" action="{{ route('orders.removeDiscount', $discount['code']) }}" class="ml-4">
+                    @csrf
+                    <button type="submit" title="Șterge">
+                        ×
+                    </button>
+                </form>
+
+            </div>
+        @endforeach
+    </div>
   @endif
+
+
 
 
 

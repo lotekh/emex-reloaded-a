@@ -156,7 +156,9 @@ require __DIR__.'/auth.php';
     Route::get('/invoice/{orderId}', [OrdersController::class, 'showInvoicePage'])->name('invoice.page');
     Route::post('/orders/update-mention', [OrdersController::class, 'updateMention'])->name('orders.updateMention');
     Route::post('/cart/apply-discount', [OrdersController::class, 'applyDiscountCode'])->name('orders.applyDiscount');
-    Route::post('/cart/remove-discount', [OrdersController::class, 'removeDiscountCode'])->name('orders.removeDiscount');
+    // Route::post('/cart/remove-discount', [OrdersController::class, 'removeDiscountCode'])->name('orders.removeDiscount');
+    Route::post('/cart/remove-discount/{code}', [OrdersController::class, 'removeDiscountCode'])->name('orders.removeDiscount');
+
 
 
     

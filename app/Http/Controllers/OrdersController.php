@@ -315,22 +315,30 @@ class OrdersController extends Controller
             return redirect()->back()->with('error', 'Codul introdus nu este valid sau nu mai este activ.');
         }
 
-        $sessionDiscount = session()->get('discount');
+        $sessionDiscounts = session()->get('discounts', []);
+        
+        if ($discount->product_id === null) {
+            if (!empty($sessionDiscounts)) {
+                return redirect()->back()->with('error', 'Ai deja coduri aplicate pentru produse. Codurile generale nu pot fi combinate cu cele individuale.');
+            }
 
-        // If there is a bulk discount already applied, you can't add a new product discount
-        if ($sessionDiscount && $sessionDiscount['product_id'] === null && $discount->product_id !== null) {
-            return redirect()->back()->with('warning', 'Ai deja un cod de reducere aplicat pentru toate produsele. Codurile nu pot fi cumulate.');
+            session(['discounts' => [
+                'bulk' => [
+                    'code' => $discount->code,
+                    'percentage' => $discount->percentage,
+                    'product_id' => null,
+                ]
+            ]]);
+
+            return redirect()->back()->with('success', 'Codul de reducere pentru toate produsele a fost aplicat cu succes.');
         }
 
-        // If there is a product discount already applied and you want to apply a bulk discount
-        if ($sessionDiscount && $sessionDiscount['product_id'] !== null && $discount->product_id === null) {
-            session()->put('pending_discount', [
-                'code' => $discount->code,
-                'product_id' => null,
-                'percentage' => $discount->percentage,
-            ]);
+        if (isset($sessionDiscounts['bulk'])) {
+            return redirect()->back()->with('error', 'Ai deja un cod de reducere aplicat pentru toate produsele. Codurile nu pot fi combinate.');
+        }
 
-            return redirect()->back()->with('confirm_replace', 'Aplicarea acestui cod va înlocui reducerea de produs deja existentă.');
+        if (array_key_exists($discount->product_id, $sessionDiscounts)) {
+            return redirect()->back()->with('info', 'Ai deja un cod de reducere aplicat pentru acest produs.');
         }
 
         $discountData = [
@@ -345,17 +353,30 @@ class OrdersController extends Controller
             $discountData['product_slug'] = $product->slug;
         }
 
-        session(['discount' => $discountData]);
+        $sessionDiscounts[$discount->product_id] = $discountData;
+
+        session(['discounts' => $sessionDiscounts]);
 
         return redirect()->back()->with('success', 'Codul de reducere a fost aplicat cu succes.');
     }
 
-    public function removeDiscountCode()
+    public function removeDiscountCode($code)
     {
-        session()->forget('discount');
+        $discounts = session()->get('discounts', []);
+
+        foreach ($discounts as $key => $discount) {
+            if ($discount['code'] === $code) {
+                unset($discounts[$key]);
+                break;
+            }
+        }
+
+        session(['discounts' => $discounts]);
 
         return redirect()->back()->with('success', 'Codul de reducere a fost eliminat.');
     }
+
+
 
     public function processCheckout(Request $request)
     {
