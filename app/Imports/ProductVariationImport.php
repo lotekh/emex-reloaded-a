@@ -40,7 +40,10 @@ class ProductVariationImport implements ToModel, WithHeadingRow
         $measurementUnit = MeasurementUnit::where('name', $measurementUnitString)->first();
 
         $ean = $row['cod_ean'];
-        $productVariation = ProductVariation::where('ean', $ean)->first();
+        $product = Product::where('slug', $row['link'])->first();
+        $productVariation = ProductVariation::where('ean', $ean)
+            ->where('product_id', $product ? $product->id : null)
+            ->first();
 
         if ($measurementUnit) {
             if ($productVariation) {

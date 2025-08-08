@@ -1857,3 +1857,10 @@ margin-bottom: 0px!important;
 .mt-10 {
 margin-top: 10px;
 }
+
+.lista-links-mt-0,
+.lista-links li {
+  list-style: square!important;
+  margin-left: 16px;
+  margin-top: 0!important;
+}

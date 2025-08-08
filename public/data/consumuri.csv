@@ -46,7 +46,7 @@ https://emex.ro/consum-vopsea-clorcauciuc-piscina.htm,Vopsele Industriale,Vopsea
 https://emex.ro/consum-vopsea-epoxidica.htm,Vopsele Industriale,Vopsea Epoxidica,"Metal, Beton/Tencuiala, Lemn",TipSuprafata,Suprafata,https://emex.ro/consum-vopsea-epoxidica
 https://emex.ro/consum-email-epoxidic-medii-agresive.htm,Vopsele Industriale,Email Epoxidic,"Metal, Lemn, Beton/Ciment",TipSuprafata,Suprafata,https://emex.ro/consum-email-epoxidic-medii-agresive
 https://emex.ro/consum-email-epoxidic-emulsionat-apa.htm,Vopsele Industriale,Vopsea Epoxidica Apa,"Metal, Beton/Tencuiala, Glet, Lemn",TipSuprafata,Suprafata,https://emex.ro/consum-email-epoxidic-emulsionat-apa
-https://emex.ro/consum-email-epoxidic-placi-ceramice.htm,Vopsele Industriale,Vopsea Epoxidica Apa,"Placi Ceramice, Metal, Beton/Tencuiala, Glet, Lemn",TipSuprafata,Suprafata,https://emex.ro/consum-email-epoxidic-placi-ceramice
+https://emex.ro/consum-email-epoxidic-placi-ceramice.htm,Vopsele Industriale,Vopsea Epoxidica Apa,"Placi Ceramice, Beton/Tencuiala, Glet",TipSuprafata,Suprafata,https://emex.ro/consum-email-epoxidic-placi-ceramice
 https://emex.ro/consum-vopsea-poliuretanica.htm,Vopsele Industriale,Vopsea Poliuretanica,"Metal, Beton/Tencuiala, Lemn",TipSuprafata,Suprafata,https://emex.ro/consum-vopsea-poliuretanica
 https://emex.ro/consum-vopsea-acrilica-2k-noiso.htm,Vopsele Industriale,Vopsea Poliuretanica,"Metal, Beton/Ciment",TipSuprafata,Suprafata,https://emex.ro/consum-vopsea-acrilica-2k-noiso
 https://emex.ro/consum-vopsea-tigla-metalica.htm,Vopsele Industriale,Vopsea Poliuretanica Tigla,"Tigla Metalica, Tabla Zincata, Tabla Decapata",TipSuprafata,Suprafata,https://emex.ro/consum-vopsea-tigla-metalica
@@ -65,6 +65,7 @@ https://emex.ro/consum-amorsa-epoxidica-baza-apa.htm,Vopsele Industriale,Amorsa 
 https://emex.ro/consum-vopsea-termorezistenta.htm,Vopsele Industriale,Vopsea Termorezistenta,"Metal - Negru,Metal - Argintiu",TipSuprafata,Suprafata,https://emex.ro/consum-vopsea-termorezistenta
 https://emex.ro/consum-metalizata-acrilica.htm,Vopsele Industriale,Metalizata Acrilica,"Metal, Lemn",TipSuprafata,Suprafata,https://emex.ro/consum-metalizata-acrilica
 https://emex.ro/consum-lovitura-de-ciocan.htm,Vopsele Industriale,Lovitura de Ciocan,Metal,TipSuprafata,Suprafata,https://emex.ro/consum-lovitura-de-ciocan
+https://emex.ro/consum-zinc-pur-epoxy-exter.htm,Vopsele Industriale,Epoxy-Ester Zinc Pur,Metal,TipSuprafata,Suprafata,https://emex.ro/consum-zinc-pur-epoxy-exter
 https://emex.ro/consum-email-nitro-combinat.htm,Vopsele Industriale,Email Nitro-Combinat,"Lemn, Metal",TipSuprafata,Suprafata,https://emex.ro/consum-email-nitro-combinat
 https://emex.ro/consum-vopsea-tigla.htm,Produse Hidrosolubile,Vopsea Tigla,"Tigla din Beton, Azbociment, Zidarie, Tencuiala",TipSuprafata,Suprafata,https://emex.ro/consum-vopsea-tigla
 https://emex.ro/consum-vopsea-hidroizolanta.htm,Produse Hidrosolubile,Vopsea Hidroizolanta,"Beton, Zidarie, Glet, Metal",TipSuprafata,Suprafata,https://emex.ro/consum-vopsea-hidroizolanta
@@ -77,7 +78,7 @@ https://emex.ro/consum-lac-protectie-beton.htm,Produse Hidrosolubile,Lac Protect
 https://emex.ro/consum-vopsea-antifonica-apa.htm,Produse Hidrosolubile,Vopsea Antifonica,"Metal, Beton",TipSuprafata,Suprafata,https://emex.ro/consum-vopsea-antifonica-apa
 https://emex.ro/consum-grund-hidrosolubil.htm,Produse Hidrosolubile,Grund Hidrosolubil,Metal,TipSuprafata,Suprafata,https://emex.ro/consum-grund-hidrosolubil
 https://emex.ro/consum-lac-protectie-rosturi.htm,Produse Hidrosolubile,Lac de Rosturi,"3 mm, 4 mm, 5 mm",TipSuprafata,Suprafata,https://emex.ro/consum-lac-protectie-rosturi
-https://emex.ro/consum-impregnant-hidrofobizare.htm,Produse Hidrosolubile,Lac Protectie Beton,"Piatra, Tencuiala, Zidarie",TipSuprafata,Suprafata,consum-impregnant-hidrofobizare
+https://emex.ro/consum-impregnant-hidrofobizare.htm,Produse Hidrosolubile,Hidrofobizant Beton,"Piatra, Tencuiala, Zidarie",TipSuprafata,Suprafata,https://emex.ro/consum-impregnant-hidrofobizare
 https://emex.ro/consum-solutie-anti-mucegai.htm,Grunduri & Amorse: Apa,Sanitizant Antimucegai,"Piatra, Tencuiala, Zidarie, Rigips",TipSuprafata,Suprafata,consum-solutie-anti-mucegai
 https://emex.ro/consum-pardoseala-epoxidica.htm,Pardoseli Turnate,Epoxidica Autonivelanta,"Sapa, Sapa Sclivisita, Beton Elicopterizat, Mozaic",TipSuprafata,Suprafata,https://emex.ro/consum-pardoseala-epoxidica
 https://emex.ro/consum-rasina-epoxidica-turnare-strat-gros.htm,Pardoseli Turnate,Rasina Epoxidica,"1 cm, 2 cm, 3 cm, 4 cm, 5 cm",TipSuprafata,Suprafata,https://emex.ro/consum-rasina-epoxidica-turnare-strat-gros
