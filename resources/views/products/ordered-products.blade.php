@@ -125,8 +125,8 @@
             if (isset($discounts['bulk'])) {
                 $percentage = $discounts['bulk']['percentage'];
                 $price *= (1 - $percentage / 100);
-            } elseif (isset($discounts[$ordered_product->id])) {
-                $percentage = $discounts[$ordered_product->id]['percentage'];
+            } elseif (isset($discounts[$ordered_product->product_id])) {
+                $percentage = $discounts[$ordered_product->product_id]['percentage'];
                 $price *= (1 - $percentage / 100);
             }
             $totalPrice += $price;
@@ -178,8 +178,8 @@
                 if (isset($discounts['bulk'])) {
                     $appliedDiscount = $discounts['bulk'];
                 }
-                elseif (isset($discounts[$ordered_product->id])) {
-                    $appliedDiscount = $discounts[$ordered_product->id];
+                elseif (isset($discounts[$ordered_product->product_id])) {
+                    $appliedDiscount = $discounts[$ordered_product->product_id];
                 }
 
                 if ($appliedDiscount) {
@@ -277,8 +277,8 @@
       if (isset($discounts['bulk'])) {
           $percentage = $discounts['bulk']['percentage'];
           $price *= (1 - $percentage / 100);
-      } elseif (isset($discounts[$ordered_product->id])) {
-          $percentage = $discounts[$ordered_product->id]['percentage'];
+      } elseif (isset($discounts[$ordered_product->product_id])) {
+          $percentage = $discounts[$ordered_product->product_id]['percentage'];
           $price *= (1 - $percentage / 100);
       }
       $totalPrice += $price;
@@ -340,8 +340,8 @@
                 if (isset($discounts['bulk'])) {
                     $appliedDiscount = $discounts['bulk'];
                 }
-                elseif (isset($discounts[$ordered_product->id])) {
-                    $appliedDiscount = $discounts[$ordered_product->id];
+                elseif (isset($discounts[$ordered_product->product_id])) {
+                    $appliedDiscount = $discounts[$ordered_product->product_id];
                 }
 
                 if ($appliedDiscount) {
@@ -487,7 +487,6 @@
                     @csrf
                     <button type="submit" title="Șterge" aria-label="Sterge codul de reducere">
                       <img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="14" height="14"
-                        @if ($useLazy) loading="lazy" @endif>
                     </button>
 
                 </form>
