@@ -98,6 +98,13 @@ function agree() {
   toggleFinalizeButton(agreement.checked);
 }
 
+function stripHTML(html) {
+  var div = document.createElement("div");
+  div.innerHTML = html;
+  return div.textContent || div.innerText || "";
+}
+
+
 // Funcția care activează/dezactivează butonul în funcție de starea checkbox-ului
 function toggleFinalizeButton(isChecked) {
   if (isChecked) {
@@ -117,6 +124,8 @@ function returnToStep4() {
 }
 
 function populateSummary() {
+  console.log("Discounts aplicate:", window.appliedDiscounts);
+
   let curierSelected =
     document.getElementById("curier").getAttribute("data-checked") === "true";
   let ridicarePersonalaSelected =
@@ -245,6 +254,42 @@ function populateSummary() {
     summaryTransportRow.style.display = "none";
     summaryRambursRow.style.display = "none";
   }
+
+
+  const discountContainer = document.getElementById("discount-summary");
+  discountContainer.innerHTML = ""; // reset
+
+  const discountsArray = Object.values(window.appliedDiscounts || {});
+
+  if (discountsArray.length > 0) {
+    const label = document.createElement("p");
+    label.textContent = "Coduri de discount folosite:";
+    label.style.fontWeight = "bold";
+    label.style.marginBottom = "8px";
+
+    const ul = document.createElement("ul");
+    ul.style.paddingLeft = "20px";
+
+    discountsArray.forEach(discount => {
+      const li = document.createElement("li");
+      let discountText = discount.code;
+      if (discount.percentage) {
+        discountText += ` - ${discount.percentage}% reducere`;
+      }
+      if (discount.product_name) {
+        discountText += ` (produs: ${stripHTML(discount.product_name)})`;
+      }
+      li.textContent = discountText;
+      ul.appendChild(li);
+    });
+
+    discountContainer.appendChild(label);
+    discountContainer.appendChild(ul);
+  } else {
+    discountContainer.textContent = "Nu avem discounturi.";
+  }
+
+
 }
 
 var transportValue = document.getElementById("transport_value");

@@ -467,6 +467,7 @@
                 </div>
             </div>
 
+            {{-- STEP 5 --}}
             <div class="step col" id="step5">
                 <div class="grid grid-3 gap-xs mb-8">
                     <div class="inputs">
@@ -566,31 +567,73 @@
                         </thead>
 
                         <tbody>
+
                             @php
-                            $total_value = 0;
-                            $total_price = 0;
-                            $total_tva = 0;
+                                $total_value = 0;
+                                $total_price = 0;
+                                $total_tva = 0;
+                                $discounts = session('discounts', []);
                             @endphp
 
                             @foreach ($ordered_products as $key => $ordered_product)
-                            @php
-                            $price = $ordered_product['price'] ?? 0;
-                            $price_no_vat = $ordered_product['price_no_vat'] ?? 0;
-                            $quantity = $ordered_product['ordered_quantity'] ?? 0;
-                            $tva = $price - $price_no_vat;
-                            $value = $price_no_vat * $quantity;
+                                @php
+                                    $quantity = intval($ordered_product->ordered_quantity);
+                                    $price = floatval($ordered_product->price); // price with VAT
+                                    $price_no_vat = floatval($ordered_product->price_no_vat ?? $price / 1.19); // fallback if it is not set
+                                    $tva_unit = $price - $price_no_vat;
 
-                            $total_value += $value;
-                            $total_tva += $tva * $quantity;
-                            $total_price += $price * $quantity;
-                            @endphp
-                            <tr>
-                                <td class="ta_l comanda_product_title">{{ $ordered_product['name'] ?? '' }}</td>
-                                <td class="ta_c">{{ $quantity }}</td>
-                                <td class="ta_r">{{ number_format($price_no_vat, 2, '.', '') }}</td>
-                                <td class="ta_r">{{ number_format($value, 2, '.', '') }}</td>
-                                <td class="ta_r">{{ number_format($tva * $quantity, 2, '.', '') }}</td>
-                            </tr>
+                                    // initial values(no discount)
+                                    $value = $price_no_vat * $quantity;
+                                    $line_total_price = $price * $quantity;
+                                    $line_total_value = $value;
+                                    $line_total_tva = $tva_unit * $quantity;
+
+                                    $appliedDiscount = null;
+                                    if (isset($discounts['bulk'])) {
+                                        $appliedDiscount = $discounts['bulk'];
+                                    } elseif (isset($discounts[$ordered_product->product_id])) {
+                                        $appliedDiscount = $discounts[$ordered_product->product_id];
+                                    }
+
+                                    if ($appliedDiscount) {
+                                        $percentage = $appliedDiscount['percentage'];
+                                        $price_discounted = $price * (1 - $percentage / 100);
+                                        $price_no_vat_discounted = $price_no_vat * (1 - $percentage / 100);
+                                        $value_discounted = $price_no_vat_discounted * $quantity;
+                                        $tva_discounted = ($price_discounted - $price_no_vat_discounted) * $quantity;
+
+                                        // adjust total values with discount
+                                        $total_value += $value_discounted;
+                                        $total_tva += $tva_discounted;
+                                        $total_price += $price_discounted * $quantity;
+                                    } else {
+                                        // without discount
+                                        $total_value += $line_total_value;
+                                        $total_tva += $line_total_tva;
+                                        $total_price += $line_total_price;
+                                    }
+                                @endphp
+
+                                <tr>
+                                    <td class="ta_l comanda_product_title">{{ $ordered_product->name ?? '' }}</td>
+                                    <td class="ta_c">{{ $quantity }}</td>
+                                    <td class="ta_r">{{ number_format($price_no_vat, 2, '.', '') }}</td>
+                                    <td class="ta_r">{{ number_format($value, 2, '.', '') }}</td>
+                                    <td class="ta_r">{{ number_format($tva_unit * $quantity, 2, '.', '') }}</td>
+                                </tr>
+
+                                @if ($appliedDiscount)
+                                    <tr class="discount-row" style="background-color:#f0f0f0; font-style: italic;">
+                                        <td class="ta_l comanda_product_title">
+                                            {{ $appliedDiscount['name'] ?? 'Discount' }} ({{ $appliedDiscount['percentage'] }}%)
+                                        </td>
+                                        <td class="ta_c">-</td>
+                                        <td class="ta_r">{{ number_format($price_no_vat_discounted, 2, '.', '') }}</td>
+                                        <td class="ta_r">{{ number_format($value_discounted, 2, '.', '') }}</td>
+                                        <td class="ta_r">{{ number_format($tva_discounted, 2, '.', '') }}</td>
+                                    </tr>
+                                @endif
+                                
                             @endforeach
 
 
@@ -646,6 +689,11 @@
 
                         </tbody>
                     </table>
+
+                    <div id="discount-summary" class="mb-16">
+
+                    </div>
+
                     <div class="flex justify-end align-center mb-16">
                         <label class="switch mr-4">
                             <input type="checkbox" id="agreement" name="Agreement" value="1">
@@ -680,6 +728,8 @@
         multiplier: {{ $tvaMultiplier }},
         priceMultiplier: {{ $tvaPriceMultiplier }}
     };
+
+    window.appliedDiscounts = @json(session('discounts', []));
 </script>
 
 <script src="{{ asset('resources/scripts/order-scripts/step-1.js') }}"></script>

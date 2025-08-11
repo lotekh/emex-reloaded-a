@@ -150,25 +150,6 @@
                             <label>Prenume persoana de contact</label>
                             <input class="w-full" type="text" name="contact_person_first_name" value="{{ $companyInformation['contact_person_first_name'] ?? '' }}">
                         </div>
-                        {{-- <div class="form-group">
-                            <label>Tara</label>
-                            <select class="w-full" name="organization_country_id" id="organization_country_id">
-                                <option value="">Alege tara</option>
-                                @foreach ($countries as $country)
-                                    <option value="{{ $country->id }}" @if (($user->company_information->organization_country_id ?? null) == $country->id) selected @endif>{{ $country->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Judet</label>
-                            <select class="w-full" name="organization_county_id" id="organization_county_id" data-selected-county="{{ $companyInformation['organization_county_id'] ?? '' }}">
-                                <option value="">Alege judetul</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Localitate</label>
-                            <input class="w-full" type="text" name="organization_locality" value="{{ $companyInformation['organization_locality'] ?? '' }}">
-                        </div> --}}
                         <div class="form-group">
                             <label>Județ</label>
                             <select class="w-full" name="organization_county_id" id="organization_county_id" data-selected-county="{{ $companyInformation['organization_county_id'] ?? '' }}">
@@ -338,6 +319,28 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+
+                                @if ($order->discountCodes && $order->discountCodes->count() > 0)
+                                        <div class="mt-8 mb-8 ml-8">
+                                            <p class="font-bold text-sm text-blue-900 mb-2">Coduri de discount folosite:</p>
+                                            <ul class="list-disc list-inside text-sm">
+                                                @foreach ($order->discountCodes as $discountCode)
+                                                    <li class="mb-1">
+                                                        <strong>{{ $discountCode->code }}</strong> – {{ $discountCode->percentage }}% reducere
+                                                        @if ($discountCode->product)
+                                                            doar pentru produsul:
+                                                            <span>
+                                                                {{ html_entity_decode(strip_tags($discountCode->product->name ?? 'Produs indisponibil')) }}
+                                                            </span>
+                                                        @else
+                                                            pentru toate produsele
+                                                        @endif
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                @endif
+
 
                                 <div class="flex ml-8 mt-16 mb-16">
                                     @php
