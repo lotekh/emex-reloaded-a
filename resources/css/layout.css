@@ -3744,3 +3744,17 @@ video:hover::-webkit-media-controls {
     text-align: center;    
     clip-path: inset(0 round 8px); 
 }
+
+.super-pret-badge-small {
+    position: absolute; 
+    bottom: 8px;         
+    right: 8px;         
+    z-index: 10;       
+    background-color: #ef2100; 
+    color: white;             
+    padding: 4px 15px;        
+    font-weight: bold;        
+    font-size: 16px;          
+    text-align: center;    
+    clip-path: inset(0 round 8px); 
+}

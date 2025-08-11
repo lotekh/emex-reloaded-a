@@ -158,7 +158,7 @@
                       @if ($useLazy) loading="lazy" @endif>
                   </picture>
                   @if($productDiscount)
-                    <div class="super-pret-badge">
+                    <div class="super-pret-badge-small">
                         <span>Promo {{$productDiscount->percentage}}%</span>
                     </div>
                   @endif

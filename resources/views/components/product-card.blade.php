@@ -89,7 +89,7 @@
             <img src="{{ $pngSmallImageUrl }}" class="w-full" alt="{{ $product->pngSmallImage ? $product->pngSmallImage->alt : 'imagine'}}" title="{{ $product->pngSmallImage ? $product->pngSmallImage->title : 'imagineprodus'}}" @if (!empty($lazyloading)) loading="lazy" @endif> 
           </picture>
           @if($productDiscount)
-                    <div class="super-pret-badge">
+                    <div class="super-pret-badge-small">
                         <span>Promo {{$productDiscount->percentage}}%</span>
                     </div>
           @endif
