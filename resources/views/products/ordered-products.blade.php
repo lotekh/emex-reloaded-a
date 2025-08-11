@@ -121,26 +121,6 @@
             $totalIndividualPrice = floatval($ordered_product->price) * intval($ordered_product->ordered_quantity);
             $price = floatval($ordered_product->price) * intval($ordered_product->ordered_quantity);
             $useLazy = $ind >= 3;
-            // $totalPrice += $totalIndividualPrice;
-          
-            // foreach ($orderedProducts as $ordered_product) {
-            //       $price = $ordered_product->price;
-            //       $total = $ordered_product->price * $ordered_product->quantity;
-
-            //       if (isset($discounts['bulk'])) {
-            //           $percentage = $discounts['bulk']['percentage'];
-            //           $price = $price * (1 - $percentage / 100);
-            //           $total = $total * (1 - $percentage / 100);
-            //       }
-
-            //       elseif (isset($discounts[$ordered_product->id])) {
-            //           $percentage = $discounts[$ordered_product->id]['percentage'];
-            //           $price = $price * (1 - $percentage / 100);
-            //           $total = $total * (1 - $percentage / 100);
-            //       }
-
-            //       $totalPrice += $total;
-            //   }
 
             if (isset($discounts['bulk'])) {
                 $percentage = $discounts['bulk']['percentage'];
@@ -193,7 +173,6 @@
             <td class="text-center">{{ $ordered_product->colour }}</td>
 
             @php
-                $discounts = session('discounts', []);
                 $appliedDiscount = null;
 
                 if (isset($discounts['bulk'])) {
@@ -354,8 +333,48 @@
               @endif
             </p>
             <p class="mt-8"><span class="bold">Culoare:</span> &nbsp; {{ $ordered_product->colour }}</p>
-            <p class="mt-8"><span class="bold">Pret unitar: </span> &nbsp; {{ number_format($ordered_product->price, 2) }} Lei (TVA inclus)</p>
-            <p class="mb-8 mt-8"><span class="bold">Cost: </span> &nbsp; {{ number_format($totalIndividualPrice, 2) }} Lei (TVA inclus)</p>
+
+            @php
+                $appliedDiscount = null;
+
+                if (isset($discounts['bulk'])) {
+                    $appliedDiscount = $discounts['bulk'];
+                }
+                elseif (isset($discounts[$ordered_product->id])) {
+                    $appliedDiscount = $discounts[$ordered_product->id];
+                }
+
+                if ($appliedDiscount) {
+                    $discountPercent = $appliedDiscount['percentage'];
+                    $discountedPrice = $ordered_product->price * (1 - $discountPercent / 100);
+                    $discountedTotal = $totalIndividualPrice * (1 - $discountPercent / 100);
+                }
+            @endphp
+
+            @if ($appliedDiscount)
+              <p class="mt-8"><span class="bold">Pret unitar: </span> 
+                &nbsp; 
+                <div style="text-decoration: line-through; color: red;"> {{ number_format($ordered_product->price, 2) }} Lei (TVA inclus) </div>
+                <div style="color: green; font-weight: bold;">
+                    {{ number_format($discountedPrice, 2) }} Lei (TVA inclus)
+                </div> 
+              </p>
+
+              <p class="mt-8"><span class="bold">Cost: </span> 
+                &nbsp; 
+                <div style="text-decoration: line-through; color: red;">
+                  {{ number_format($totalIndividualPrice, 2) }} Lei (TVA inclus)
+                </div>
+                <div style="color: green; font-weight: bold;">
+                    {{ number_format($discountedTotal, 2) }} Lei (TVA inclus)
+                </div> 
+              </p>
+            @else
+              <p class="mt-8"><span class="bold">Pret unitar: </span> &nbsp; {{ number_format($ordered_product->price, 2) }} Lei (TVA inclus)</p>
+              <p class="mb-8 mt-8"><span class="bold">Cost: </span> &nbsp; {{ number_format($totalIndividualPrice, 2) }} Lei (TVA inclus)</p>
+            @endif
+
+            
           </div>
 
           <div class="p-8 flex align-end gap-md">
