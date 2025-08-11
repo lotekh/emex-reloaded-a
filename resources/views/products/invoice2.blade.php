@@ -296,8 +296,6 @@ use App\Helpers\TvaHelper;
         <td style="font-weight: bold;" class="ta_r table-borders">TVA</td>
     </tr>
 
-    
-
     @php
         $discountsByProduct = [];
         foreach ($order->discountCodes as $dc) {
@@ -337,10 +335,10 @@ use App\Helpers\TvaHelper;
         @if ($appliedDiscount)
             @php
                 $discountPercent = $appliedDiscount->percentage;
-                // Calculăm prețurile cu discount
+                // Calculate prices with discount
                 $price_no_vat_discounted = round($price_no_vat * (1 - $discountPercent / 100), 2);
                 $total_no_vat_discounted = round($price_no_vat_discounted * $quantity, 2);
-                $price_discounted = $price_no_vat_discounted * 1.19; 
+                $price_discounted = $price_no_vat_discounted * TvaHelper::getPriceWithTvaMultiplier();
                 $tva_discounted = round(($price_discounted - $price_no_vat_discounted) * $quantity, 2);
             @endphp
             <tr style="background-color:#f0f0f0; font-style: italic;">
