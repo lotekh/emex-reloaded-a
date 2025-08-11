@@ -278,7 +278,6 @@ use App\Helpers\TvaHelper;
                 <p>Adresa: {{ $billingInformation['person_address'] ?? '' }}</p>
             @else
             <p>CUI: {{ $companyInformation['organization_cui'] }}</p>
-            {{-- <p>Adresa: {{ $companyInformation['organization_address'] . ', ' . $companyInformation['organization_locality'] . ', jud. ' . $billingCountyName }}</p> --}}
             <p>Adresa: {{ $billingInformation['organization_address'] ?? '' }}, {{ $billingCityName }}, jud. {{ $billingCountyName }}</p>
             <p>IBAN: {{ strtoupper($companyInformation['organization_bank_account']) }}</p>
             <p>Banca: {{ $companyInformation['organization_bank'] }}</p>
@@ -296,19 +295,71 @@ use App\Helpers\TvaHelper;
         <td style="font-weight: bold;" class="ta_r table-borders">Valoare</td>
         <td style="font-weight: bold;" class="ta_r table-borders">TVA</td>
     </tr>
-    @php $i = 0; $sum_no_tva = 0; $sum_tva = 0; @endphp
+
+    
+
+    @php
+        $discountsByProduct = [];
+        foreach ($order->discountCodes as $dc) {
+            if ($dc->product_id) {
+                $discountsByProduct[$dc->product_id] = $dc;
+            } else {
+                // If discount has no product_id, it means it's a bulk discount
+                $bulkDiscount = $dc;
+            }
+        }
+    @endphp
 
     @foreach ($orders_products as $key => $product)
-        @php $i++; @endphp
+        @php
+            $quantity = $product->pivot->quantity;
+            $price_no_vat = round($product->pivot->price_no_vat, 2);
+            $total_no_vat = round($price_no_vat * $quantity, 2);
+            $tva = round(($product->pivot->price - $product->pivot->price_no_vat) * $quantity, 2);
+
+            // Search discount for the product
+            $productId = $product->product_id ?? ($product->product->id ?? null);
+            $discount = $discountsByProduct[$productId] ?? null;
+
+            // If we have no discount for the product, check for bulk discount
+            $appliedDiscount = $discount ?? ($bulkDiscount ?? null);
+        @endphp
+
         <tr>
-            <td style="padding: 10px 5px" class="ta_c table-borders">{{ $i }}</td>
-            <td style="padding: 5px 20px 5px 8px;" class="ta_l table-borders">{{ $product['name'] }}</td>
-            <td style="padding: 10px 5px" class="ta_c table-borders">{{ $product->pivot->quantity }}</td>
-            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format(round($product->pivot->price_no_vat, 2), 2, '.', ',') }}</td>
-            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format(round($product->pivot->price_no_vat * $product->pivot->quantity, 2), 2, '.', ',') }}</td>
-            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format(round($product->pivot->price - $product->pivot->price_no_vat, 2) * $product->pivot->quantity, 2, '.', ',') }}</td>
+            <td style="padding: 10px 5px" class="ta_c table-borders">{{ $loop->iteration }}</td>
+            <td style="padding: 5px 20px 5px 8px;" class="ta_l table-borders">{{ $product->name }}</td>
+            <td style="padding: 10px 5px" class="ta_c table-borders">{{ $quantity }}</td>
+            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format($price_no_vat, 2, '.', ',') }}</td>
+            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format($total_no_vat, 2, '.', ',') }}</td>
+            <td style="padding: 10px 5px" class="ta_r table-borders">{{ number_format($tva, 2, '.', ',') }}</td>
         </tr>
+
+        @if ($appliedDiscount)
+            @php
+                $discountPercent = $appliedDiscount->percentage;
+                // Calculăm prețurile cu discount
+                $price_no_vat_discounted = round($price_no_vat * (1 - $discountPercent / 100), 2);
+                $total_no_vat_discounted = round($price_no_vat_discounted * $quantity, 2);
+                $price_discounted = $price_no_vat_discounted * 1.19; 
+                $tva_discounted = round(($price_discounted - $price_no_vat_discounted) * $quantity, 2);
+            @endphp
+            <tr style="background-color:#f0f0f0; font-style: italic;">
+                <td colspan="2" class="ta_l table-borders">
+                    Discount: {{ $appliedDiscount->code }} ({{ $discountPercent }}%)
+                    @if($appliedDiscount->product)
+                        (Discount pentru produs)
+                    @else
+                        (Discount general)
+                    @endif
+                </td>
+                <td class="ta_c table-borders">-</td>
+                <td class="ta_r table-borders">{{ number_format($price_no_vat_discounted, 2, '.', ',') }}</td>
+                <td class="ta_r table-borders">{{ number_format($total_no_vat_discounted, 2, '.', ',') }}</td>
+                <td class="ta_r table-borders">{{ number_format($tva_discounted, 2, '.', ',') }}</td>
+            </tr>
+        @endif
     @endforeach
+
 
     {{-- Transport --}}
     
