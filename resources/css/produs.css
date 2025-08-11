@@ -1843,14 +1843,13 @@ margin-top: 10px;
     top: 25px;         
     left: -40px;         
     z-index: 10;       
-
     background-color: #ef2100; 
     color: white;             
-    
-    padding: 8px 40px;        
+    padding: 6px 20px;        
     font-weight: bold;        
     font-size: 16px;          
-    text-align: center;     
+    text-align: center;    
+    clip-path: inset(0 round 8px); 
 }
 
 
