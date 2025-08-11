@@ -159,12 +159,56 @@
 
           <td class="text-center">{{ $ordered_product->quantity }} {{$ordered_product->measurementUnit->name}}</td>
           <td class="text-center">{{ $ordered_product->colour }}</td>
-          <td class="price">{{ number_format($ordered_product->price, 2) }} Lei</td>
-          <td class="price">
-            <div class="flex justify-between">
-              <p class="price">{{ number_format($totalIndividualPrice, 2) }} Lei</p>
-            </div>
-          <td>
+
+          @php
+              $discounts = session('discounts', []);
+              $appliedDiscount = null;
+
+              if (isset($discounts['bulk'])) {
+                  $appliedDiscount = $discounts['bulk'];
+              }
+              elseif (isset($discounts[$ordered_product->id])) {
+                  $appliedDiscount = $discounts[$ordered_product->id];
+              }
+
+              if ($appliedDiscount) {
+                  $discountPercent = $appliedDiscount['percentage'];
+                  $discountedPrice = $ordered_product->price * (1 - $discountPercent / 100);
+                  $discountedTotal = $totalIndividualPrice * (1 - $discountPercent / 100);
+              }
+          @endphp
+
+          @if ($appliedDiscount)
+              <td class="price">
+                  <span style="text-decoration: line-through; color: red;">
+                      {{ number_format($ordered_product->price, 2) }} Lei
+                  </span>
+                  <div style="color: green; font-weight: bold; margin-top: 4px;">
+                      {{ number_format($discountedPrice, 2) }} Lei
+                  </div>
+              </td>
+
+              <td class="price">
+                <div class="flex justify-between">
+                  <p style="text-decoration: line-through; color: red;" class="price">{{ number_format($totalIndividualPrice, 2) }} Lei</p>
+                </div>
+                <div style="color: green; font-weight: bold; margin-top: 4px;">
+                    {{ number_format($discountedTotal, 2) }} Lei
+                </div>
+              <td>
+          @else
+              <td class="price">{{ number_format($ordered_product->price, 2) }} Lei</td>
+              <td class="price">
+                <div class="flex justify-between">
+                  <p class="price">{{ number_format($totalIndividualPrice, 2) }} Lei</p>
+                </div>
+              <td>
+          @endif
+
+
+          
+
+ 
             <form method="POST" action="{{ route('orders.removeProduct') }}">
               @csrfWithoutAutocomplete
               <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
@@ -173,6 +217,7 @@
                   @if ($useLazy) loading="lazy" @endif>
               </button>
             </form>
+
           </td>
           <td>
             @php
