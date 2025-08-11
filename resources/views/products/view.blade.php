@@ -133,7 +133,7 @@ $baseUrl = url('/');
     <div class="w-full product-info-grid">
         <div class="col" id="imagine-produs-3">
             <div class="w-full h-full relative img-container" id="imagine-produs-2">
-                 <div class="super-pret-badge">
+                <div class="super-pret-badge">
                     <span>Super Preț</span>
                 </div>
                 @php
@@ -410,6 +410,21 @@ $baseUrl = url('/');
                 @endif
             </div>
         </div>
+
+        <div class="voucher-container mt-16">
+            <div class="voucher-icon">
+                <span>10%</span>
+            </div>
+            <div class="voucher-details" style="text-align: center;">
+                <div class="voucher-title">Voucher -10% Extra</div>
+                <div><button class="cursor-pointer btn-blue font-sm rounded-sm" style="height: 30px; width:250px;">
+                    Adauga in cos
+                </button></div>
+                
+
+            </div>
+        </div>
+
     </div>
 </div>
 
