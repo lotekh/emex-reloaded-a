@@ -49,9 +49,11 @@
                                 @if (!empty($lazyloading)) loading="lazy" @endif
                             >
                         </picture>
-                        <div class="super-pret-badge">
-                            <span>Promo {{$productDiscount->percentage}}%</span>
-                        </div>
+                        @if($productDiscount)
+                            <div class="super-pret-badge">
+                                <span>Promo {{$productDiscount->percentage}}%</span>
+                            </div>
+                        @endif
                     </div>
                 </a>
             </div>

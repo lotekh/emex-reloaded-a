@@ -22,17 +22,17 @@
 
   use App\Models\DiscountCode;
 
-    // Look for product discount first
-    $productDiscount = DiscountCode::where('product_id', $product->id)
-        ->where('is_active', true)
-        ->first();
+  // Look for product discount first
+  $productDiscount = DiscountCode::where('product_id', $product->id)
+      ->where('is_active', true)
+      ->first();
 
-    // If there's no product-specific discount, look for a bulk discount
-    if (!$productDiscount) {
-        $productDiscount = DiscountCode::whereNull('product_id')
-            ->where('is_active', true)
-            ->first();
-    }
+  // If there's no product-specific discount, look for a bulk discount
+  if (!$productDiscount) {
+      $productDiscount = DiscountCode::whereNull('product_id')
+          ->where('is_active', true)
+          ->first();
+  }
 @endphp
 
 <div class="product-card">
@@ -88,9 +88,11 @@
             <source type="image/webp" srcset="{{ $smallImageUrl }}"/>
             <img src="{{ $pngSmallImageUrl }}" class="w-full" alt="{{ $product->pngSmallImage ? $product->pngSmallImage->alt : 'imagine'}}" title="{{ $product->pngSmallImage ? $product->pngSmallImage->title : 'imagineprodus'}}" @if (!empty($lazyloading)) loading="lazy" @endif> 
           </picture>
-          <div class="super-pret-badge">
-              <span>Promo {{$productDiscount->percentage}}%</span>
-          </div>
+          @if($productDiscount)
+                    <div class="super-pret-badge">
+                        <span>Promo {{$productDiscount->percentage}}%</span>
+                    </div>
+          @endif
         </div>
       </a>
     </div>
