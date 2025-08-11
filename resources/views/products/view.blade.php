@@ -133,6 +133,9 @@ $baseUrl = url('/');
     <div class="w-full product-info-grid">
         <div class="col" id="imagine-produs-3">
             <div class="w-full h-full relative img-container" id="imagine-produs-2">
+                 <div class="super-pret-badge">
+                    <span>Super Preț</span>
+                </div>
                 @php
                 $largeImageUrl = $product->largeImage ? asset('storage/' .$product->largeImage->path) : $baseUrl . '/images/default-placeholder.png';
                 $pngLargeImageUrl = $product->pngLargeImage ? asset('storage/' .$product->pngLargeImage->path) : $baseUrl . '/images/default-placeholder.png';
