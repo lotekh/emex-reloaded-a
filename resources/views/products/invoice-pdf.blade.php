@@ -302,6 +302,7 @@ use App\Helpers\TvaHelper;
         </tr>
         
         @php
+        $i = 0;
         $discountsByProduct = [];
         foreach ($order->discountCodes as $dc) {
             if ($dc->product_id) {
@@ -315,6 +316,7 @@ use App\Helpers\TvaHelper;
 
         @foreach ($orders_products as $key => $product)
             @php
+                $i++;
                 $quantity = $product->pivot->quantity;
                 $price_no_vat = round($product->pivot->price_no_vat, 2);
                 $total_no_vat = round($price_no_vat * $quantity, 2);
