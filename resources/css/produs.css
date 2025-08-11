@@ -1838,21 +1838,6 @@ margin-top: 10px;
   margin-top: 0!important;
 }
 
-.super-pret-badge {
-    position: absolute; 
-    top: 25px;         
-    left: -40px;         
-    z-index: 10;       
-    background-color: #ef2100; 
-    color: white;             
-    padding: 6px 20px;        
-    font-weight: bold;        
-    font-size: 16px;          
-    text-align: center;    
-    clip-path: inset(0 round 8px); 
-}
-
-
 .voucher-container {
   display: flex; 
   align-items: center; 
