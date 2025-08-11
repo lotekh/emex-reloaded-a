@@ -68,6 +68,9 @@
 @endsection
 
 @section('content')
+@php
+    use App\Models\DiscountCode;
+@endphp
 <div class="main-container mb-32" id="cart">
   <div class="flex justify-between mb-16">
     <h1>
@@ -130,11 +133,23 @@
                 $price *= (1 - $percentage / 100);
             }
             $totalPrice += $price;
+
+            // Look for product discount first
+            $productDiscount = DiscountCode::where('product_id', $ordered_product->product_id)
+                ->where('is_active', true)
+                ->first();
+
+            // If there's no product-specific discount, look for a bulk discount
+            if (!$productDiscount) {
+                $productDiscount = DiscountCode::whereNull('product_id')
+                    ->where('is_active', true)
+                    ->first();
+            }
           @endphp
           <tr>
             <td>
               <a href="{{ url($ordered_product->product->slug) }}" class="flex align-center">
-                <div>
+                <div class="relative">
                   <picture>
                     <source type="image/webp" srcset="{{ $ordered_product->product->smallImage ? asset('storage/' . $ordered_product->product->smallImage->path) : asset('/images/default-placeholder.png') }}" />
                     <img class="image-cart" layout="fixed" src="{{ $ordered_product->product->pngSmallImage ? asset('storage/' . $ordered_product->product->smallImage->path) : asset('/images/default-placeholder.png') }}"
@@ -142,6 +157,11 @@
                       title="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->title : 'imagineprodus'}}"
                       @if ($useLazy) loading="lazy" @endif>
                   </picture>
+                  @if($productDiscount)
+                    <div class="super-pret-badge">
+                        <span>Promo {{$productDiscount->percentage}}%</span>
+                    </div>
+                  @endif
                 </div>
                 {{-- Get the product name until the first '-' sign --}}
                 <h3 class="normal-weight ml-32">{{ \Illuminate\Support\Str::before($ordered_product->name, ' -') }}</h3>
