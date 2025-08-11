@@ -12,6 +12,8 @@ class BlogArticle extends Model
 {
     use HasFactory, HasSeoImages;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'featured_image_id',
         'title',
@@ -21,11 +23,15 @@ class BlogArticle extends Model
         'jsonld',
         'sort_order', 
         'is_active',
+        'created_at',
+        'updated_at',
     ];
 
     protected $casts = [
         'seo' => 'json',
-        'jsonld' => 'json'
+        'jsonld' => 'json', 
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     public function tags(): BelongsToMany
