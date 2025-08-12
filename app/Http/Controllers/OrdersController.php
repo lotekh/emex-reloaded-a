@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use App\Models\OrdersProductVariation;
 use App\Helpers\TvaHelper;
+use App\Models\DiscountCode;
 
 class OrdersController extends Controller
 {
@@ -301,6 +302,84 @@ class OrdersController extends Controller
 
     }
 
+    public function applyDiscountCode(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|string'
+        ]);
+
+        $codeInput = trim($request->input('code'));
+        $discount = DiscountCode::where('code', $codeInput)->where('is_active', true)->first();
+
+        if (!$discount) {
+            return redirect()->back()->with('error', 'Codul introdus nu este valid sau nu mai este activ.');
+        }
+
+        $sessionDiscounts = session()->get('discounts', []);
+
+        $isBulk = $discount->product_id === null;
+
+        // If it's a bulk discount code
+        if ($isBulk) {
+            if (!empty($sessionDiscounts)) {
+                return redirect()->back()->with('error', 'Aplicarea acestui cod va elimina toate codurile de reducere. Elimina-le mai întâi dacă vrei să continui.');
+            }
+
+            session(['discounts' => [
+                'bulk' => [
+                    'code' => $discount->code,
+                    'percentage' => $discount->percentage,
+                    'product_id' => null,
+                ]
+            ]]);
+
+            return redirect()->back()->with('success', 'Codul de reducere pentru toate produsele a fost aplicat cu succes.');
+        }
+
+        // If it's not a bulk discount(product discount code)
+        if (isset($sessionDiscounts['bulk'])) {
+            return redirect()->back()->with('error', 'Ai deja un cod de reducere general activ. Codurile pe produse nu pot fi combinate cu cele generale.');
+        }
+
+        if (array_key_exists($discount->product_id, $sessionDiscounts)) {
+            return redirect()->back()->with('error', 'Ai deja un cod de reducere aplicat pentru acest produs.');
+        }
+
+        $discountData = [
+            'code' => $discount->code,
+            'percentage' => $discount->percentage,
+            'product_id' => $discount->product_id,
+        ];
+
+        if ($discount->product_id) {
+            $product = $discount->product;
+            $discountData['product_name'] = $product->name;
+            $discountData['product_slug'] = $product->slug;
+        }
+
+        $sessionDiscounts[$discount->product_id] = $discountData;
+        session(['discounts' => $sessionDiscounts]);
+
+        return redirect()->back()->with('success', 'Codul de reducere a fost aplicat cu succes pentru produsul selectat.');
+    }
+
+
+    public function removeDiscountCode($code)
+    {
+        $discounts = session()->get('discounts', []);
+
+        foreach ($discounts as $key => $discount) {
+            if ($discount['code'] === $code) {
+                unset($discounts[$key]);
+                break;
+            }
+        }
+
+        session(['discounts' => $discounts]);
+
+        return redirect()->back()->with('success', 'Codul de reducere a fost eliminat.');
+    }
+
 
 
     public function processCheckout(Request $request)
@@ -382,17 +461,60 @@ class OrdersController extends Controller
         );
 
         $total = 0;
+        $discounts = session()->get('discounts', []);
+        $hasBulkDiscount = isset($discounts['bulk']);
+        $bulkDiscountPercentage = $hasBulkDiscount ? $discounts['bulk']['percentage'] : null;
+
+        $productVariationIds = array_column($cart, 'product_variation_id');
+        $productVariations = ProductVariation::with('product')->whereIn('id', $productVariationIds)->get();
+
+        // Create map for product_variation_id => product_id
+        $variationToProductMap = [];
+        foreach ($productVariations as $variation) {
+            $variationToProductMap[$variation->id] = $variation->product_id;
+        }
+
         foreach ($cart as $cartItem) {
+            $originalPrice = $cartItem['price'];
+            $originalPriceNoVat = $cartItem['price_no_vat'];
+            $discountedPrice = $originalPrice;
+            $discountedPriceNoVat = $originalPriceNoVat;
+
+            // Get product_id from the map
+            $productId = $variationToProductMap[$cartItem['product_variation_id']] ?? null;
+
+            if ($hasBulkDiscount) {
+                $discountedPrice = round($originalPrice * (1 - $bulkDiscountPercentage / 100), 2);
+                $discountedPriceNoVat = round($originalPriceNoVat * (1 - $bulkDiscountPercentage / 100), 2);
+            } elseif ($productId !== null && array_key_exists($productId, $discounts)) {
+                $productDiscount = $discounts[$productId];
+                $discountedPrice = round($originalPrice * (1 - $productDiscount['percentage'] / 100), 2);
+                $discountedPriceNoVat = round($originalPriceNoVat * (1 - $productDiscount['percentage'] / 100), 2);
+            }
+
             $dbOrder->productVariations()->attach($cartItem['product_variation_id'], [
                 'quantity' => $cartItem['quantity'],
-                'price' => $cartItem['price'],
-                'price_no_vat' => $cartItem['price_no_vat'],
+                'price' => $discountedPrice,
+                'price_no_vat' => $discountedPriceNoVat,
                 'mentions' => $cartItem['mentions'] ?? null,
             ]);
 
-            // Calculate the total
-            $total += $cartItem['quantity'] * $cartItem['price'];
+            $total += $cartItem['quantity'] * $discountedPrice;
         }
+
+        // Save discounts in db
+        foreach ($discounts as $discount) {
+            if (isset($discount['code'])) {
+                $discountModel = DiscountCode::where('code', $discount['code'])->first();
+
+                if ($discountModel) {
+                    $dbOrder->discountCodes()->attach($discountModel->id);
+                }
+            }
+        }
+
+
+
         $dbOrder->total = $total;
         $dbOrder->is_paid = false;
 
@@ -807,6 +929,7 @@ class OrdersController extends Controller
 
             session()->forget('cart');
             session()->forget('order');
+            session()->forget('discounts');
 
             // Redirect the user to summary after order has been processed
             return redirect()->route('order.summary', ['guid' => $dbOrder->guid])->with('success', 'Comanda a fost plasată cu succes.');
@@ -814,6 +937,7 @@ class OrdersController extends Controller
 
         session()->forget('cart');
         session()->forget('order');
+        session()->forget('discounts');
 
         return redirect()->route('/despre-noi');
     }

@@ -4,7 +4,7 @@
   $variations = $product->variations;
   $initialVariation = $variations->first();
   $baseUrl = url('/');
-
+  
   $compactVariations = $product->variations->map(function($variation) {
         return [
             'id' => $variation->id,
@@ -19,6 +19,20 @@
             ]
         ];
   });
+
+  use App\Models\DiscountCode;
+
+  // Look for product discount first
+  $productDiscount = DiscountCode::where('product_id', $product->id)
+      ->where('is_active', true)
+      ->first();
+
+  // If there's no product-specific discount, look for a bulk discount
+  if (!$productDiscount) {
+      $productDiscount = DiscountCode::whereNull('product_id')
+          ->where('is_active', true)
+          ->first();
+  }
 @endphp
 
 <div class="product-card">
@@ -69,10 +83,17 @@
       @endphp
 
       <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
-        <picture>
-          <source type="image/webp" srcset="{{ $smallImageUrl }}"/>
-          <img src="{{ $pngSmallImageUrl }}" class="w-full" alt="{{ $product->pngSmallImage ? $product->pngSmallImage->alt : 'imagine'}}" title="{{ $product->pngSmallImage ? $product->pngSmallImage->title : 'imagineprodus'}}" @if (!empty($lazyloading)) loading="lazy" @endif> 
-        </picture>
+        <div>
+          <picture>
+            <source type="image/webp" srcset="{{ $smallImageUrl }}"/>
+            <img src="{{ $pngSmallImageUrl }}" class="w-full" alt="{{ $product->pngSmallImage ? $product->pngSmallImage->alt : 'imagine'}}" title="{{ $product->pngSmallImage ? $product->pngSmallImage->title : 'imagineprodus'}}" @if (!empty($lazyloading)) loading="lazy" @endif> 
+          </picture>
+          @if($productDiscount)
+                    <div class="super-pret-badge-small">
+                        <span>Promo {{$productDiscount->percentage}}%</span>
+                    </div>
+          @endif
+        </div>
       </a>
     </div>
 

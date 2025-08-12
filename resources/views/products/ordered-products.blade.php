@@ -68,6 +68,9 @@
 @endsection
 
 @section('content')
+@php
+    use App\Models\DiscountCode;
+@endphp
 <div class="main-container mb-32" id="cart">
   <div class="flex justify-between mb-16">
     <h1>
@@ -110,100 +113,173 @@
       </thead>
       <tbody>
 
-        @php $totalPrice = 0; @endphp
+        @php 
+          $totalPrice = 0; 
+          $discounts = session('discounts', []);
+        @endphp
 
         @foreach ($ordered_products as $ind => $ordered_product)
 
-        @php
-        $totalIndividualPrice = floatval($ordered_product->price) * intval($ordered_product->ordered_quantity);
-        $totalPrice += $totalIndividualPrice;
-        $useLazy = $ind >= 3;
-        @endphp
-        <tr>
-          <td>
-            <a href="{{ url($ordered_product->product->slug) }}" class="flex align-center">
-              <div>
-                <picture>
-                  <source type="image/webp" srcset="{{ $ordered_product->product->smallImage ? asset('storage/' . $ordered_product->product->smallImage->path) : asset('/images/default-placeholder.png') }}" />
-                  <img class="image-cart" layout="fixed" src="{{ $ordered_product->product->pngSmallImage ? asset('storage/' . $ordered_product->product->smallImage->path) : asset('/images/default-placeholder.png') }}"
-                    alt="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->alt : 'imagine'}}"
-                    title="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->title : 'imagineprodus'}}"
-                    @if ($useLazy) loading="lazy" @endif>
-                </picture>
+          @php
+            $totalIndividualPrice = floatval($ordered_product->price) * intval($ordered_product->ordered_quantity);
+            $price = floatval($ordered_product->price) * intval($ordered_product->ordered_quantity);
+            $useLazy = $ind >= 3;
+
+            if (isset($discounts['bulk'])) {
+                $percentage = $discounts['bulk']['percentage'];
+                $price *= (1 - $percentage / 100);
+            } elseif (isset($discounts[$ordered_product->product_id])) {
+                $percentage = $discounts[$ordered_product->product_id]['percentage'];
+                $price *= (1 - $percentage / 100);
+            }
+            $totalPrice += $price;
+
+            // Look for product discount first
+            $productDiscount = DiscountCode::where('product_id', $ordered_product->product_id)
+                ->where('is_active', true)
+                ->first();
+
+            // If there's no product-specific discount, look for a bulk discount
+            if (!$productDiscount) {
+                $productDiscount = DiscountCode::whereNull('product_id')
+                    ->where('is_active', true)
+                    ->first();
+            }
+          @endphp
+          <tr>
+            <td>
+              <a href="{{ url($ordered_product->product->slug) }}" class="flex align-center">
+                <div class="relative">
+                  <picture>
+                    <source type="image/webp" srcset="{{ $ordered_product->product->smallImage ? asset('storage/' . $ordered_product->product->smallImage->path) : asset('/images/default-placeholder.png') }}" />
+                    <img class="image-cart" layout="fixed" src="{{ $ordered_product->product->pngSmallImage ? asset('storage/' . $ordered_product->product->smallImage->path) : asset('/images/default-placeholder.png') }}"
+                      alt="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->alt : 'imagine'}}"
+                      title="{{ $ordered_product->product->smallImage ? $ordered_product->product->smallImage->title : 'imagineprodus'}}"
+                      @if ($useLazy) loading="lazy" @endif>
+                  </picture>
+                  @if($productDiscount)
+                    <div class="super-pret-badge-small">
+                        <span>Promo {{$productDiscount->percentage}}%</span>
+                    </div>
+                  @endif
+                </div>
+                {{-- Get the product name until the first '-' sign --}}
+                <h3 class="normal-weight ml-32">{{ \Illuminate\Support\Str::before($ordered_product->name, ' -') }}</h3>
+              </a>
+            </td>
+
+            <td class="text-center">
+              <div class="quantity-selector flex text-center">
+                {{-- Lower the quantity by 1 --}}
+                <form method="POST" action="{{ route('orders.updateQuantity') }}">
+                  @csrfWithoutAutocomplete
+                  <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
+                  <input type="hidden" name="quantity" value="{{ max(1, $ordered_product->ordered_quantity - 1) }}">
+                  <button type="submit" aria-label="Scade cantitatea">-</button>
+                </form>
+                <span type="text">{{ $ordered_product->ordered_quantity }}</span>
+                {{-- Up the quantity by 1 --}}
+                <form method="POST" action="{{ route('orders.updateQuantity') }}">
+                  @csrfWithoutAutocomplete
+                  <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
+                  <input type="hidden" name="quantity" value="{{ $ordered_product->ordered_quantity + 1 }}">
+                  <button type="submit" aria-label="Creste cantitatea">+</button>
+                </form>
               </div>
-              {{-- Get the product name until the first '-' sign --}}
-              <h3 class="normal-weight ml-32">{{ \Illuminate\Support\Str::before($ordered_product->name, ' -') }}</h3>
-            </a>
-          </td>
-
-          <td class="text-center">
-            <div class="quantity-selector flex text-center">
-              {{-- Lower the quantity by 1 --}}
-              <form method="POST" action="{{ route('orders.updateQuantity') }}">
-                @csrfWithoutAutocomplete
-                <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
-                <input type="hidden" name="quantity" value="{{ max(1, $ordered_product->ordered_quantity - 1) }}">
-                <button type="submit" aria-label="Scade cantitatea">-</button>
-              </form>
-              <span type="text">{{ $ordered_product->ordered_quantity }}</span>
-              {{-- Up the quantity by 1 --}}
-              <form method="POST" action="{{ route('orders.updateQuantity') }}">
-                @csrfWithoutAutocomplete
-                <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
-                <input type="hidden" name="quantity" value="{{ $ordered_product->ordered_quantity + 1 }}">
-                <button type="submit" aria-label="Creste cantitatea">+</button>
-              </form>
-            </div>
-          </td>
+            </td>
 
 
-          <td class="text-center">{{ $ordered_product->quantity }} {{$ordered_product->measurementUnit->name}}</td>
-          <td class="text-center">{{ $ordered_product->colour }}</td>
-          <td class="price">{{ number_format($ordered_product->price, 2) }} Lei</td>
-          <td class="price">
-            <div class="flex justify-between">
-              <p class="price">{{ number_format($totalIndividualPrice, 2) }} Lei</p>
-            </div>
-          <td>
-            <form method="POST" action="{{ route('orders.removeProduct') }}">
-              @csrfWithoutAutocomplete
-              <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
-              <button aria-label="Sterge produsul">
-                <img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="18" height="18"
-                  @if ($useLazy) loading="lazy" @endif>
-              </button>
-            </form>
-          </td>
-          <td>
+            <td class="text-center">{{ $ordered_product->quantity }} {{$ordered_product->measurementUnit->name}}</td>
+            <td class="text-center">{{ $ordered_product->colour }}</td>
+
             @php
-            $productId = $ordered_product->product->id;
-            $productVariationId = $ordered_product->id;
-            $isInWishlist = app('App\Http\Controllers\WishlistController')->isInWishlist($productId);
+                $appliedDiscount = null;
+
+                if (isset($discounts['bulk'])) {
+                    $appliedDiscount = $discounts['bulk'];
+                }
+                elseif (isset($discounts[$ordered_product->product_id])) {
+                    $appliedDiscount = $discounts[$ordered_product->product_id];
+                }
+
+                if ($appliedDiscount) {
+                    $discountPercent = $appliedDiscount['percentage'];
+                    $discountedPrice = $ordered_product->price * (1 - $discountPercent / 100);
+                    $discountedTotal = $totalIndividualPrice * (1 - $discountPercent / 100);
+                }
             @endphp
-            <div class="flex align-center">
-              <form method="POST" class="addToWishlistBt" id="product_wish_list_form{{ $productId }}" action="{{ route('wishlist.toggle') }}">
+
+            @if ($appliedDiscount)
+                <td class="price">
+                    <span style="text-decoration: line-through; color: red;">
+                        {{ number_format($ordered_product->price, 2) }} Lei
+                    </span>
+                    <div style="color: green; font-weight: bold; margin-top: 4px;">
+                        {{ number_format($discountedPrice, 2) }} Lei
+                    </div>
+                </td>
+
+                <td class="price">
+                  <div class="flex justify-between">
+                    <p style="text-decoration: line-through; color: red;" class="price">{{ number_format($totalIndividualPrice, 2) }} Lei</p>
+                  </div>
+                  <div style="color: green; font-weight: bold; margin-top: 4px;">
+                      {{ number_format($discountedTotal, 2) }} Lei
+                  </div>
+                <td>
+            @else
+                <td class="price">{{ number_format($ordered_product->price, 2) }} Lei</td>
+                <td class="price">
+                  <div class="flex justify-between">
+                    <p class="price">{{ number_format($totalIndividualPrice, 2) }} Lei</p>
+                  </div>
+                <td>
+            @endif
+
+
+            
+
+  
+              <form method="POST" action="{{ route('orders.removeProduct') }}">
                 @csrfWithoutAutocomplete
-                <input type="hidden" name="product_id" value="{{ $productId }}">
-                <input type="hidden" name="product_variation_id" value="{{ $productVariationId }}">
-                <input type="hidden" name="remove_from_cart" value="1">
-                <button type="submit" class="wishlist-btn-cos" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
-                  <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}"
-                    title="Muta la Favorite" alt="wishlist" @if ($useLazy) loading="lazy" @endif>
+                <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
+                <button aria-label="Sterge produsul">
+                  <img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="18" height="18"
+                    @if ($useLazy) loading="lazy" @endif>
                 </button>
               </form>
-            </div>
-          </td>
 
-          <td>
-            <button type="button" class="edit-btn mb-4 mention-btn" data-product-id="{{ $ordered_product->id }}" data-current-mention="{{ $ordered_product->mentions ?? '' }}" title="Mentiuni">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z" />
-              </svg>
-            </button>
+            </td>
+            <td>
+              @php
+              $productId = $ordered_product->product->id;
+              $productVariationId = $ordered_product->id;
+              $isInWishlist = app('App\Http\Controllers\WishlistController')->isInWishlist($productId);
+              @endphp
+              <div class="flex align-center">
+                <form method="POST" class="addToWishlistBt" id="product_wish_list_form{{ $productId }}" action="{{ route('wishlist.toggle') }}">
+                  @csrfWithoutAutocomplete
+                  <input type="hidden" name="product_id" value="{{ $productId }}">
+                  <input type="hidden" name="product_variation_id" value="{{ $productVariationId }}">
+                  <input type="hidden" name="remove_from_cart" value="1">
+                  <button type="submit" class="wishlist-btn-cos" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
+                    <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}"
+                      title="Muta la Favorite" alt="wishlist" @if ($useLazy) loading="lazy" @endif>
+                  </button>
+                </form>
+              </div>
+            </td>
 
-          </td>
+            <td>
+              <button type="button" class="edit-btn mb-4 mention-btn" data-product-id="{{ $ordered_product->id }}" data-current-mention="{{ $ordered_product->mentions ?? '' }}" title="Mentiuni">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z" />
+                </svg>
+              </button>
 
-        </tr>
+            </td>
+
+          </tr>
         @endforeach
 
       </tbody>
@@ -215,96 +291,145 @@
 
     @foreach ($ordered_products as $ind => $ordered_product)
 
-    @php
-    $totalIndividualPrice = floatval($ordered_product->price) * intval($ordered_product->ordered_quantity);
-    $totalPrice += $totalIndividualPrice;
-    $addon_quantity = '';
-    $useLazy = $ind >= 3;
+      @php
+      $totalIndividualPrice = floatval($ordered_product->price) * intval($ordered_product->ordered_quantity);
+      $price = floatval($ordered_product->price) * intval($ordered_product->ordered_quantity);
+      if (isset($discounts['bulk'])) {
+          $percentage = $discounts['bulk']['percentage'];
+          $price *= (1 - $percentage / 100);
+      } elseif (isset($discounts[$ordered_product->product_id])) {
+          $percentage = $discounts[$ordered_product->product_id]['percentage'];
+          $price *= (1 - $percentage / 100);
+      }
+      $totalPrice += $price;
+      
+      $addon_quantity = '';
+      $useLazy = $ind >= 3;
 
-    if ($ordered_product->addon_quantity) {
-    $str = $ordered_product->addon_quantity;
-    $str = substr($str, strpos($str, 'Bid.') + 4);
-    $addon_quantity = number_format((float) filter_var($str, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION), 2, '.', '');
-    }
-    @endphp
+      if ($ordered_product->addon_quantity) {
+      $str = $ordered_product->addon_quantity;
+      $str = substr($str, strpos($str, 'Bid.') + 4);
+      $addon_quantity = number_format((float) filter_var($str, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION), 2, '.', '');
+      }
+      @endphp
 
-    <div class="product-card relative col justify-between h-full mb-16">
-      <div class="w-full">
-        <div class="px-8">
-          <p class="title text-center">{{ \Illuminate\Support\Str::before($ordered_product->name, ' -') }}
-            @if ($ordered_product->addon_quantity)
-            + Intaritor
-            @endif
-          </p>
+      <div class="product-card relative col justify-between h-full mb-16">
+        <div class="w-full">
+          <div class="px-8">
+            <p class="title text-center">{{ \Illuminate\Support\Str::before($ordered_product->name, ' -') }}
+              @if ($ordered_product->addon_quantity)
+              + Intaritor
+              @endif
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="w-full flex justify-between px-8">
-        <div class="col">
-          <div class="flex align-center mt-16">
-            <span class="bold mr-8">Cantitate: </span>
-            <div class="quantity-selector quantity-selector-mobile flex">
-              {{-- Lower the quantity --}}
-              <form method="POST" action="{{ route('orders.updateQuantity') }}">
-                @csrfWithoutAutocomplete
-                <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
-                <input type="hidden" name="quantity" value="{{ max(1, $ordered_product->ordered_quantity - 1) }}">
-                <button type="submit" aria-label="Scade cantitatea">-</button>
-              </form>
-              {{ $ordered_product->ordered_quantity }}
-              {{-- Up the quantity --}}
-              <form method="POST" action="{{ route('orders.updateQuantity') }}">
-                @csrfWithoutAutocomplete
-                <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
-                <input type="hidden" name="quantity" value="{{ $ordered_product->ordered_quantity + 1 }}">
-                <button type="submit" aria-label="Creste cantitatea">+</button>
-              </form>
+        <div class="w-full flex justify-between px-8">
+          <div class="col">
+            <div class="flex align-center mt-16">
+              <span class="bold mr-8">Cantitate: </span>
+              <div class="quantity-selector quantity-selector-mobile flex">
+                {{-- Lower the quantity --}}
+                <form method="POST" action="{{ route('orders.updateQuantity') }}">
+                  @csrfWithoutAutocomplete
+                  <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
+                  <input type="hidden" name="quantity" value="{{ max(1, $ordered_product->ordered_quantity - 1) }}">
+                  <button type="submit" aria-label="Scade cantitatea">-</button>
+                </form>
+                {{ $ordered_product->ordered_quantity }}
+                {{-- Up the quantity --}}
+                <form method="POST" action="{{ route('orders.updateQuantity') }}">
+                  @csrfWithoutAutocomplete
+                  <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
+                  <input type="hidden" name="quantity" value="{{ $ordered_product->ordered_quantity + 1 }}">
+                  <button type="submit" aria-label="Creste cantitatea">+</button>
+                </form>
+              </div>
             </div>
+
+
+            <p class="mt-8"><span class="bold">Ambalare:</span> &nbsp; {{ $ordered_product->quantity }} {{ $ordered_product->measurementUnit->name }}
+              @if ($ordered_product->addon_quantity)
+              + {{ $addon_quantity }} Kg
+              @endif
+            </p>
+            <p class="mt-8"><span class="bold">Culoare:</span> &nbsp; {{ $ordered_product->colour }}</p>
+
+            @php
+                $appliedDiscount = null;
+
+                if (isset($discounts['bulk'])) {
+                    $appliedDiscount = $discounts['bulk'];
+                }
+                elseif (isset($discounts[$ordered_product->product_id])) {
+                    $appliedDiscount = $discounts[$ordered_product->product_id];
+                }
+
+                if ($appliedDiscount) {
+                    $discountPercent = $appliedDiscount['percentage'];
+                    $discountedPrice = $ordered_product->price * (1 - $discountPercent / 100);
+                    $discountedTotal = $totalIndividualPrice * (1 - $discountPercent / 100);
+                }
+            @endphp
+
+            @if ($appliedDiscount)
+              <p class="mt-8"><span class="bold">Pret unitar: </span> 
+                &nbsp; 
+                <div style="text-decoration: line-through; color: red;"> {{ number_format($ordered_product->price, 2) }} Lei (TVA inclus) </div>
+                <div style="color: green; font-weight: bold;">
+                    {{ number_format($discountedPrice, 2) }} Lei (TVA inclus)
+                </div> 
+              </p>
+
+              <p class="mt-8"><span class="bold">Cost: </span> 
+                &nbsp; 
+                <div style="text-decoration: line-through; color: red;">
+                  {{ number_format($totalIndividualPrice, 2) }} Lei (TVA inclus)
+                </div>
+                <div style="color: green; font-weight: bold;">
+                    {{ number_format($discountedTotal, 2) }} Lei (TVA inclus)
+                </div> 
+              </p>
+            @else
+              <p class="mt-8"><span class="bold">Pret unitar: </span> &nbsp; {{ number_format($ordered_product->price, 2) }} Lei (TVA inclus)</p>
+              <p class="mb-8 mt-8"><span class="bold">Cost: </span> &nbsp; {{ number_format($totalIndividualPrice, 2) }} Lei (TVA inclus)</p>
+            @endif
+
+            
           </div>
 
+          <div class="p-8 flex align-end gap-md">
+            {{-- Remove Product button --}}
+            <form method="POST" action="{{ route('orders.removeProduct') }}">
+              @csrfWithoutAutocomplete
+              <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
+              <button class="delete" aria-label="Sterge produsul">
+                <img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="18" height="18"
+                  alt="Sterge produsul" @if ($useLazy) loading="lazy" @endif>
+              </button>
+            </form>
 
-          <p class="mt-8"><span class="bold">Ambalare:</span> &nbsp; {{ $ordered_product->quantity }} {{ $ordered_product->measurementUnit->name }}
-            @if ($ordered_product->addon_quantity)
-            + {{ $addon_quantity }} Kg
-            @endif
-          </p>
-          <p class="mt-8"><span class="bold">Culoare:</span> &nbsp; {{ $ordered_product->colour }}</p>
-          <p class="mt-8"><span class="bold">Pret unitar: </span> &nbsp; {{ number_format($ordered_product->price, 2) }} Lei (TVA inclus)</p>
-          <p class="mb-8 mt-8"><span class="bold">Cost: </span> &nbsp; {{ number_format($totalIndividualPrice, 2) }} Lei (TVA inclus)</p>
-        </div>
+            {{-- Wishlist button --}}
+            <form method="POST" class="addToWishlistBt" action="{{ route('wishlist.toggle') }}">
+              @csrfWithoutAutocomplete
+              <input type="hidden" name="product_id" value="{{ $ordered_product->product->id }}">
+              <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
+              <input type="hidden" name="remove_from_cart" value="1">
+              <button class="wishlist-btn-cos" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
+                <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}"
+                  title="Muta la Favorite" alt="wishlist" @if ($useLazy) loading="lazy" @endif>
+              </button>
+            </form>
 
-        <div class="p-8 flex align-end gap-md">
-          {{-- Remove Product button --}}
-          <form method="POST" action="{{ route('orders.removeProduct') }}">
-            @csrfWithoutAutocomplete
-            <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
-            <button class="delete" aria-label="Sterge produsul">
-              <img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="18" height="18"
-                alt="Sterge produsul" @if ($useLazy) loading="lazy" @endif>
+            {{-- Mentions button --}}
+            <button class="edit-btn mb-4 mention-btn" aria-label="Editează produsul" data-product-id="{{ $ordered_product->id }}" data-current-mention="{{ $ordered_product->mentions ?? '' }}" title="Mentiuni">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z" />
+              </svg>
             </button>
-          </form>
+          </div>
 
-          {{-- Wishlist button --}}
-          <form method="POST" class="addToWishlistBt" action="{{ route('wishlist.toggle') }}">
-            @csrfWithoutAutocomplete
-            <input type="hidden" name="product_id" value="{{ $ordered_product->product->id }}">
-            <input type="hidden" name="product_variation_id" value="{{ $ordered_product->id }}">
-            <input type="hidden" name="remove_from_cart" value="1">
-            <button class="wishlist-btn-cos" aria-label="{{ $isInWishlist ? 'Elimină din favorite' : 'Adaugă la favorite' }}">
-              <img width="20" height="20" src="{{ $isInWishlist ? asset('resources/new_design/icons/star-fill.svg') : asset('resources/new_design/icons/star.svg') }}"
-                title="Muta la Favorite" alt="wishlist" @if ($useLazy) loading="lazy" @endif>
-            </button>
-          </form>
-
-          {{-- Mentions button --}}
-          <button class="edit-btn mb-4 mention-btn" aria-label="Editează produsul" data-product-id="{{ $ordered_product->id }}" data-current-mention="{{ $ordered_product->mentions ?? '' }}" title="Mentiuni">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-              <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z" />
-            </svg>
-          </button>
         </div>
-
       </div>
-    </div>
     @endforeach
   </div>
 
@@ -334,7 +459,70 @@
     </div>
   </div>
   @endif
+  
+  <div class="mt-16">
+    <form method="POST" action="{{ route('orders.applyDiscount') }}">
+      @csrf
+      <label class="bold" for="discount_code">Cod de reducere:</label>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <input 
+          type="text" 
+          name="code" 
+          id="discount_code" 
+          style="
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            color: #333;
+            outline: none;
+            box-sizing: border-box;
+          "
+        />
+        <button class="btn btn-blue rounded-xl" style="margin-left: 4px;" type="submit">Aplică</button>
+      </div>
+    </form>
+  </div>
+
+  @if(session('discounts') && is_array(session('discounts')))
+    <div class="mt-4 border p-4 rounded bg-gray-100">
+        <h3 style="margin-bottom: 4px;">Coduri de reducere active:</h3>
+
+        @foreach(session('discounts') as $discount)
+            <div class="flex justify-between items-center text-sm">
+                <div>
+                    <strong>{{ $discount['code'] }}</strong> – {{ $discount['percentage'] }}% reducere
+                    @if(!empty($discount['product_id']))
+                        doar pentru produsul
+                        <a href="{{ url($discount['product_slug']) }}" target="_blank" class="link_color1">
+                            {{ html_entity_decode(strip_tags($discount['product_name'])) }}
+                        </a>
+                    @else
+                        pentru toate produsele
+                    @endif
+                </div>
+
+                <form method="POST" action="{{ route('orders.removeDiscount', $discount['code']) }}" class="ml-4">
+                    @csrf
+                    <button type="submit" title="Șterge" aria-label="Sterge codul de reducere">
+                      <img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="14" height="14"
+                    </button>
+
+                </form>
+
+            </div>
+        @endforeach
+    </div>
+  @endif
+
+
+
+
+
 </div>
+
+
 
 <div id="mentionModal" class="lightbox-container hidden-important">
   <div class="bg-white p-8" id="mention-modal-box">

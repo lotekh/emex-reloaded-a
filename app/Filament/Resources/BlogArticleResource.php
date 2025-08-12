@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Filament\Tables\Actions\Action;
+use Filament\Forms\Components\DateTimePicker;
 
 
 
@@ -79,7 +80,13 @@ class BlogArticleResource extends Resource
                                 Forms\Components\Toggle::make('is_active')
                                     ->label('Is_Active')
                                     ->default(true)
-                                    ->inline(false)
+                                    ->inline(false),
+                                DateTimePicker::make('created_at')
+                                    ->label('Created At')
+                                    ->required(),
+                                DateTimePicker::make('updated_at')
+                                    ->label('Updated At')
+                                    ->required(),
                             ]),
                         Tabs\Tab::make('SEO')
                         ->schema(SeoForm::make()),

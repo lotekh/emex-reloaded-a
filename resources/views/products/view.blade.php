@@ -118,12 +118,29 @@
 @endsection
 
 @section('content')
+
 @php
 $averageRating = $product->reviews->avg('rating') ?? 5;
 $reviewCount = ($product->reviews->count() === 0) ? 1 : $product->reviews->count();
 $variations = $product->variations;
 $initialVariation = $variations->first();
 $baseUrl = url('/');
+@endphp
+
+@php
+    use App\Models\DiscountCode;
+
+    // Look for product discount first
+    $productDiscount = DiscountCode::where('product_id', $product->id)
+        ->where('is_active', true)
+        ->first();
+
+    // If there's no product-specific discount, look for a bulk discount
+    if (!$productDiscount) {
+        $productDiscount = DiscountCode::whereNull('product_id')
+            ->where('is_active', true)
+            ->first();
+    }
 @endphp
 
 <div class="main-container product-page" id="product_container">
@@ -133,9 +150,16 @@ $baseUrl = url('/');
     <div class="w-full product-info-grid">
         <div class="col" id="imagine-produs-3">
             <div class="w-full h-full relative img-container" id="imagine-produs-2">
+
+                @if($productDiscount)
+                    <div class="super-pret-badge">
+                        <span>Promo {{$productDiscount->percentage}}%</span>
+                    </div>
+                @endif
+
                 @php
-                $largeImageUrl = $product->largeImage ? asset('storage/' .$product->largeImage->path) : $baseUrl . '/images/default-placeholder.png';
-                $pngLargeImageUrl = $product->pngLargeImage ? asset('storage/' .$product->pngLargeImage->path) : $baseUrl . '/images/default-placeholder.png';
+                    $largeImageUrl = $product->largeImage ? asset('storage/' .$product->largeImage->path) : $baseUrl . '/images/default-placeholder.png';
+                    $pngLargeImageUrl = $product->pngLargeImage ? asset('storage/' .$product->pngLargeImage->path) : $baseUrl . '/images/default-placeholder.png';
                 @endphp
 
                 <picture>
@@ -407,6 +431,34 @@ $baseUrl = url('/');
                 @endif
             </div>
         </div>
+
+        @if($productDiscount)
+            <div class="voucher-container mt-16">
+                <div class="voucher-icon">
+                    <span>{{ $productDiscount->percentage }}%</span>
+                </div>
+                <div class="voucher-details" style="text-align: center;">
+                    <div class="voucher-title">
+                        Cod voucher: {{ $productDiscount->code}}
+                    </div>
+                    <div>
+                        <form action="{{ route('orders.applyDiscount') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="code" value="{{ $productDiscount->code }}">
+                            <button type="submit" class="cursor-pointer btn-blue font-sm rounded-sm"
+                                style="height: 30px; width:250px;">
+                                Aplica discount
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+
+
+        
+
     </div>
 </div>
 

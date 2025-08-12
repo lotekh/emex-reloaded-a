@@ -3730,3 +3730,31 @@ video:hover::-webkit-media-controls {
 .background-position-left {
   background-position: left !important;
 }
+
+.super-pret-badge {
+    position: absolute; 
+    bottom: 25px;         
+    right: 25px;         
+    z-index: 10;       
+    background-color: #ef2100; 
+    color: white;             
+    padding: 6px 20px;        
+    font-weight: bold;        
+    font-size: 16px;          
+    text-align: center;    
+    clip-path: inset(0 round 8px); 
+}
+
+.super-pret-badge-small {
+    position: absolute; 
+    bottom: 8px;         
+    right: 8px;         
+    z-index: 10;       
+    background-color: #ef2100; 
+    color: white;             
+    padding: 4px 15px;        
+    font-weight: bold;        
+    font-size: 16px;          
+    text-align: center;    
+    clip-path: inset(0 round 8px); 
+}
