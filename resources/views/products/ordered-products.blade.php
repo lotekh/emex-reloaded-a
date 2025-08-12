@@ -490,7 +490,7 @@
         <h3 style="margin-bottom: 4px;">Coduri de reducere active:</h3>
 
         @foreach(session('discounts') as $discount)
-            <div class="flex justify-between items-center text-sm">
+            <div class="flex items-center text-sm">
                 <div>
                     <strong>{{ $discount['code'] }}</strong> – {{ $discount['percentage'] }}% reducere
                     @if(!empty($discount['product_id']))
