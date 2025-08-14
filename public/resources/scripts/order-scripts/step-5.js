@@ -270,24 +270,36 @@ function populateSummary() {
     const ul = document.createElement("ul");
     ul.style.paddingLeft = "20px";
 
+    const groupedDiscounts = {};
+
     discountsArray.forEach(discount => {
-      const li = document.createElement("li");
-      let discountText = discount.code;
-      if (discount.percentage) {
-        discountText += ` - ${discount.percentage}% reducere`;
-      }
-      if (discount.product_name) {
-        discountText += ` (produs: ${stripHTML(discount.product_name)})`;
-      }
-      li.textContent = discountText;
-      ul.appendChild(li);
+        if (!groupedDiscounts[discount.code]) {
+            groupedDiscounts[discount.code] = {
+                percentage: discount.percentage,
+                products: []
+            };
+        }
+        if (discount.product_name) {
+            groupedDiscounts[discount.code].products.push(stripHTML(discount.product_name));
+        }
+    });
+
+    Object.keys(groupedDiscounts).forEach(code => {
+        const li = document.createElement("li");
+        const d = groupedDiscounts[code];
+        let discountText = `${code} - ${d.percentage}% reducere`;
+        if (d.products.length > 0) {
+            discountText += ` (produse: ${d.products.join(", ")})`;
+        }
+        li.textContent = discountText;
+        ul.appendChild(li);
     });
 
     discountContainer.appendChild(label);
     discountContainer.appendChild(ul);
-  } else {
+} else {
     discountContainer.textContent = "Nu avem discounturi.";
-  }
+}
 
 
 }
