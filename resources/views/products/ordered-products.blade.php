@@ -70,8 +70,9 @@
 @section('content')
 
 @php
-    use App\Models\DiscountCode;
-    $discounts = session('discounts', []);
+  use App\Models\DiscountCode;
+  $discounts = session('discounts', []);
+  use Illuminate\Support\Str;
 @endphp
 
 <div class="main-container mb-32" id="cart">
@@ -496,10 +497,11 @@
                     @if($data['bulk'])
                         pentru toate produsele
                     @elseif(!empty($data['products']))
-                        doar pentru produsul{{ count($data['products']) > 1 ? 'e' : '' }}:
+                        pentru produsul{{ count($data['products']) > 1 ? 'e' : '' }}:
                         @foreach($data['products'] as $product)
                             <a href="{{ url($product['slug']) }}" target="_blank" class="link_color1">
-                                {{ html_entity_decode(strip_tags($product['name'])) }}
+                                {{-- {{ html_entity_decode(strip_tags($product['name'])) }} --}}
+                                {{ Str::ucfirst(Str::lower(html_entity_decode(strip_tags($product['name'] ?? 'Produs indisponibil')))) }}
                             </a>{{ !$loop->last ? ',' : '' }}
                         @endforeach
                     @endif
