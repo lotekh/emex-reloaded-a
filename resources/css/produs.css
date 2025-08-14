@@ -1874,3 +1874,17 @@ margin-top: 10px;
 	margin-left: 4px;
   }
 }
+.Utilizare {
+/*  border-bottom: 1px dotted #f90;
+  border-top: 1px dotted #f90;
+ margin-top: 20px;    
+    */
+  color: #009;
+  font-size: 15px;
+ 
+  padding: 3px 3px 3px 0;
+  margin-left: 15px;
+  width: 100%;
+  max-width: 450px;
+  margin-bottom: 10px;
+}
