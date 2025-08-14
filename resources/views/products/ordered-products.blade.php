@@ -68,9 +68,12 @@
 @endsection
 
 @section('content')
+
 @php
     use App\Models\DiscountCode;
+    $discounts = session('discounts', []);
 @endphp
+
 <div class="main-container mb-32" id="cart">
   <div class="flex justify-between mb-16">
     <h1>
@@ -114,8 +117,7 @@
       <tbody>
 
         @php 
-          $totalPrice = 0; 
-          $discounts = session('discounts', []);
+          $totalPrice = 0;
         @endphp
 
         @foreach ($ordered_products as $ind => $ordered_product)
