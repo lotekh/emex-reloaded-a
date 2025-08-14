@@ -854,7 +854,6 @@ class OrdersController extends Controller
                     $productId = $product->product_id ?? ($product->product->id ?? null);
                     $discountsForProduct = $discountsByProduct[$productId] ?? [];
 
-                    // Dacă nu există discounturi specifice, aplicăm bulk
                     if (empty($discountsForProduct) && !empty($bulkDiscounts)) {
                         $discountsForProduct = $bulkDiscounts;
                     }
