@@ -459,38 +459,13 @@
     </div>
   </div>
   @endif
-  
-  <div class="mt-16">
-    <form method="POST" action="{{ route('orders.applyDiscount') }}">
-      @csrf
-      <label class="bold" for="discount_code">Cod de reducere:</label>
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <input 
-          type="text" 
-          name="code" 
-          id="discount_code" 
-          style="
-            padding: 8px 12px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-            font-family: Arial, sans-serif;
-            color: #333;
-            outline: none;
-            box-sizing: border-box;
-          "
-        />
-        <button class="btn btn-blue rounded-xl" style="margin-left: 4px;" type="submit">Aplică</button>
-      </div>
-    </form>
-  </div>
 
   @if(session('discounts') && is_array(session('discounts')))
     <div class="mt-4 border p-4 rounded bg-gray-100">
         <h3 style="margin-bottom: 4px;">Coduri de reducere active:</h3>
 
         @foreach(session('discounts') as $discount)
-            <div class="flex justify-between items-center text-sm">
+            <div class="flex items-center text-sm">
                 <div>
                     <strong>{{ $discount['code'] }}</strong> – {{ $discount['percentage'] }}% reducere
                     @if(!empty($discount['product_id']))
