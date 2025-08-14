@@ -274,6 +274,10 @@
         </div>
 
         <!-- Istoric -->
+        @php
+            use Illuminate\Support\Str;
+        @endphp
+
         <div id="istoric-content" class="tab-content" style="display:none;">
             <div class="tabs-content" id="tabsCM">
                 @php $visCount = 0; @endphp
@@ -312,8 +316,10 @@
                                             $bulkDiscount = null;
 
                                             foreach ($order->discountCodes as $dc) {
-                                                if ($dc->product_id) {
-                                                    $discountsByProduct[$dc->product_id] = $dc;
+                                                if ($dc->products->count() > 0) {
+                                                    foreach ($dc->products as $p) {
+                                                        $discountsByProduct[$p->id] = $dc;
+                                                    }
                                                 } else {
                                                     $bulkDiscount = $dc;
                                                 }
@@ -327,11 +333,8 @@
 
                                                 $quantity = $productVariation->pivot->quantity;
                                                 $price_no_vat = round($productVariation->pivot->price_no_vat, 2);
-
-                                                // Final price with VAT
                                                 $final_price = round($productVariation->pivot->price, 2);
 
-                                                // If we have discount, we calculate the initial price
                                                 $initial_price = null;
                                                 if ($discount) {
                                                     $initial_price_no_vat = round($price_no_vat / (1 - $discount->percentage / 100), 2);
@@ -339,7 +342,6 @@
                                                 }
                                             @endphp
 
-                                            {{-- First row: inital price --}}
                                             <tr>
                                                 <td>{{ \Illuminate\Support\Str::before(html_entity_decode($productVariation->name), ' -') }}</td>
                                                 <td>{{ $quantity }}</td>
@@ -354,12 +356,11 @@
                                                 </td>
                                             </tr>
 
-                                            {{-- Second row, if we have discount --}}
                                             @if ($discount)
                                                 <tr style="background-color: #f0f0f0; font-style: italic;">
                                                     <td colspan="4">
                                                         Discount: <strong>{{ $discount->code }}</strong> ({{ $discount->percentage }}%)
-                                                        @if ($discount->product_id)
+                                                        @if ($discount->products->count() > 0)
                                                             — aplicat doar pentru acest produs
                                                         @else
                                                             — aplicat pentru întreaga comandă
@@ -372,30 +373,43 @@
                                             @endif
                                         @endforeach
                                     </tbody>
-
                                 </table>
 
-                                @if ($order->discountCodes && $order->discountCodes->count() > 0)
-                                        <div class="mt-8 mb-8 ml-8">
-                                            <p class="font-bold text-sm text-blue-900 mb-2">Coduri de discount folosite:</p>
-                                            <ul class="list-disc list-inside text-sm">
-                                                @foreach ($order->discountCodes as $discountCode)
-                                                    <li class="mb-1">
-                                                        <strong>{{ $discountCode->code }}</strong> – {{ $discountCode->percentage }}% reducere
-                                                        @if ($discountCode->product)
-                                                            doar pentru produsul:
-                                                            <span>
-                                                                {{ html_entity_decode(strip_tags($discountCode->product->name ?? 'Produs indisponibil')) }}
-                                                            </span>
-                                                        @else
-                                                            pentru toate produsele
-                                                        @endif
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                @endif
+                                @php
+                                    $discountCodesGrouped = $order->discountCodes->groupBy('code');
+                                @endphp
 
+                                @if ($discountCodesGrouped && $discountCodesGrouped->count() > 0)
+                                    <div class="mt-8 mb-8 ml-8">
+                                        <p class="font-bold text-sm text-blue-900 mb-2">Coduri de discount folosite:</p>
+                                        <ul class="list-disc list-inside text-sm">
+                                            @foreach ($discountCodesGrouped as $code => $discounts)
+                                                @php
+                                                    $discount = $discounts->first();
+                                                @endphp
+                                                <li class="mb-1">
+                                                    <strong>{{ $discount->code }}</strong> – {{ $discount->percentage }}% reducere
+                                                    
+                                                    @if ($discount->products->count() > 0)
+                                                        pentru produs{{ $discount->products->count() > 1 ? 'e' : '' }}:
+                                                        <span>
+                                                            @foreach($discount->products as $index => $p)
+                                                                @php
+                                                                    $name = Str::ucfirst(Str::lower(html_entity_decode(strip_tags($p->name ?? 'Produs indisponibil'))));
+                                                                @endphp
+                                                                <a target="_blank" href="{{ $p->slug }}" class="link_color1">
+                                                                    {{ $name }}
+                                                                </a>@if(!$loop->last), @endif
+                                                            @endforeach
+                                                        </span>
+                                                    @else
+                                                        pentru toate produsele
+                                                    @endif
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
 
                                 <div class="flex ml-8 mt-16 mb-16">
                                     @php
@@ -410,14 +424,15 @@
                                         <p class="text-gray-500">Proforma indisponibilă</p>
                                     @endif
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
-            
         </div>
+
+        
     </div>
 </div>
 

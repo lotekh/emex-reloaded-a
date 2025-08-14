@@ -270,24 +270,45 @@ function populateSummary() {
     const ul = document.createElement("ul");
     ul.style.paddingLeft = "20px";
 
+    // Grupăm produsele după cod
+    const groupedDiscounts = {};
+
     discountsArray.forEach(discount => {
-      const li = document.createElement("li");
-      let discountText = discount.code;
-      if (discount.percentage) {
-        discountText += ` - ${discount.percentage}% reducere`;
-      }
-      if (discount.product_name) {
-        discountText += ` (produs: ${stripHTML(discount.product_name)})`;
-      }
-      li.textContent = discountText;
-      ul.appendChild(li);
+        if (!groupedDiscounts[discount.code]) {
+            groupedDiscounts[discount.code] = {
+                percentage: discount.percentage,
+                products: [],
+                isBulk: discount.product_id == null
+            };
+        }
+        if (discount.product_name) {
+            groupedDiscounts[discount.code].products.push(stripHTML(discount.product_name));
+        }
+    });
+
+    // Creăm lista finală
+    Object.keys(groupedDiscounts).forEach(code => {
+        const li = document.createElement("li");
+        const d = groupedDiscounts[code];
+        let discountText = `${code} - ${d.percentage}% reducere`;
+
+        if (d.isBulk) {
+            discountText += " (pentru toate produsele)";
+        } else if (d.products.length === 1) {
+            discountText += ` (produs: ${d.products[0]})`;
+        } else if (d.products.length > 1) {
+            discountText += ` (produse: ${d.products.join(", ")})`;
+        }
+
+        li.textContent = discountText;
+        ul.appendChild(li);
     });
 
     discountContainer.appendChild(label);
     discountContainer.appendChild(ul);
   } else {
-    discountContainer.textContent = "Nu avem discounturi.";
-  }
+        discountContainer.textContent = "Nu avem discounturi.";
+    }
 
 
 }

@@ -16,7 +16,6 @@ class DiscountCode extends Model
         'code',
         'percentage',
         'is_active',
-        'product_id',
     ];
 
     public function orders(): BelongsToMany
@@ -25,9 +24,10 @@ class DiscountCode extends Model
                     ->withTimestamps();
     }
 
-    public function product(): BelongsTo
+    public function products(): BelongsToMany
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsToMany(Product::class, 'discount_code_product')
+                    ->withTimestamps();
     }
 
 }
