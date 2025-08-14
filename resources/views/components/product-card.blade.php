@@ -21,18 +21,17 @@
   });
 
   use App\Models\DiscountCode;
+  
+  // Look for a product-specific discount
+  $productDiscount = $product->discountCodes()->where('is_active', true)->first();
 
-  // Look for product discount first
-  $productDiscount = DiscountCode::where('product_id', $product->id)
-      ->where('is_active', true)
-      ->first();
-
-  // If there's no product-specific discount, look for a bulk discount
+  // If we have no product-specific discount, look for a general(bulk) discount
   if (!$productDiscount) {
-      $productDiscount = DiscountCode::whereNull('product_id')
-          ->where('is_active', true)
-          ->first();
+    $productDiscount = DiscountCode::whereDoesntHave('products')
+        ->where('is_active', true)
+        ->first();
   }
+
 @endphp
 
 <div class="product-card">

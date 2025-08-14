@@ -68,9 +68,13 @@
 @endsection
 
 @section('content')
+
 @php
-    use App\Models\DiscountCode;
+  use App\Models\DiscountCode;
+  $discounts = session('discounts', []);
+  use Illuminate\Support\Str;
 @endphp
+
 <div class="main-container mb-32" id="cart">
   <div class="flex justify-between mb-16">
     <h1>
@@ -114,8 +118,7 @@
       <tbody>
 
         @php 
-          $totalPrice = 0; 
-          $discounts = session('discounts', []);
+          $totalPrice = 0;
         @endphp
 
         @foreach ($ordered_products as $ind => $ordered_product)
@@ -134,16 +137,14 @@
             }
             $totalPrice += $price;
 
+            $product = $ordered_product->product;
             // Look for product discount first
-            $productDiscount = DiscountCode::where('product_id', $ordered_product->product_id)
-                ->where('is_active', true)
-                ->first();
-
+            $productDiscount = $product->discountCodes()->where('is_active', true)->first();
             // If there's no product-specific discount, look for a bulk discount
             if (!$productDiscount) {
-                $productDiscount = DiscountCode::whereNull('product_id')
-                    ->where('is_active', true)
-                    ->first();
+            $productDiscount = DiscountCode::whereDoesntHave('products')
+                ->where('is_active', true)
+                ->first();
             }
           @endphp
           <tr>
@@ -460,36 +461,63 @@
   </div>
   @endif
 
-  @if(session('discounts') && is_array(session('discounts')))
+
+
+  @php
+    $groupedDiscounts = [];
+
+    foreach ($discounts as $key => $discount) {
+        $code = $discount['code'];
+
+        if (!isset($groupedDiscounts[$code])) {
+            $groupedDiscounts[$code] = [
+                'percentage' => $discount['percentage'],
+                'products' => [],
+                'bulk' => empty($discount['product_id'])
+            ];
+        }
+
+        if (!empty($discount['product_id'])) {
+            $groupedDiscounts[$code]['products'][] = [
+                'name' => $discount['product_name'],
+                'slug' => $discount['product_slug']
+            ];
+        }
+    }
+  @endphp
+
+  @if(!empty($groupedDiscounts))
     <div class="mt-4 border p-4 rounded bg-gray-100">
         <h3 style="margin-bottom: 4px;">Coduri de reducere active:</h3>
 
-        @foreach(session('discounts') as $discount)
+        @foreach($groupedDiscounts as $code => $data)
             <div class="flex items-center text-sm">
                 <div>
-                    <strong>{{ $discount['code'] }}</strong> – {{ $discount['percentage'] }}% reducere
-                    @if(!empty($discount['product_id']))
-                        doar pentru produsul
-                        <a href="{{ url($discount['product_slug']) }}" target="_blank" class="link_color1">
-                            {{ html_entity_decode(strip_tags($discount['product_name'])) }}
-                        </a>
-                    @else
+                    <strong>{{ $code }}</strong> – {{ $data['percentage'] }}% reducere
+                    @if($data['bulk'])
                         pentru toate produsele
+                    @elseif(!empty($data['products']))
+                        pentru produsul{{ count($data['products']) > 1 ? 'e' : '' }}:
+                        @foreach($data['products'] as $product)
+                            <a href="{{ url($product['slug']) }}" target="_blank" class="link_color1">
+                                {{-- {{ html_entity_decode(strip_tags($product['name'])) }} --}}
+                                {{ Str::ucfirst(Str::lower(html_entity_decode(strip_tags($product['name'] ?? 'Produs indisponibil')))) }}
+                            </a>{{ !$loop->last ? ',' : '' }}
+                        @endforeach
                     @endif
                 </div>
 
-                <form method="POST" action="{{ route('orders.removeDiscount', $discount['code']) }}" class="ml-4">
+                <form method="POST" action="{{ route('orders.removeDiscount', $code) }}" class="ml-4">
                     @csrf
                     <button type="submit" title="Șterge" aria-label="Sterge codul de reducere">
-                      <img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="14" height="14"
+                        <img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="14" height="14">
                     </button>
-
                 </form>
-
             </div>
         @endforeach
     </div>
   @endif
+
 
 
 

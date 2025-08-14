@@ -37,12 +37,12 @@ class DiscountCodeResource extends Resource
                     ->numeric(),
                 Forms\Components\Toggle::make('is_active')
                     ->required(),
-                 Forms\Components\Select::make('product_id')
-                    ->label('Associated product (optional)')
-                    ->relationship('product', 'name')
+                Forms\Components\Select::make('products')
+                    ->label('Associated products (leave empty for bulk)')
+                    ->multiple()
+                    ->relationship('products', 'name')
                     ->searchable()
-                    ->preload()
-                    ->nullable(),
+                    ->preload(),
             ]);
     }
 
@@ -66,10 +66,13 @@ class DiscountCodeResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('product.name')
-                    ->label('Product')
-                    ->sortable()
-                    ->searchable()
+                Tables\Columns\TextColumn::make('products')
+                    ->label('Products')
+                    ->formatStateUsing(fn ($state, $record) => 
+                        $record->products->isEmpty() 
+                            ? 'Bulk' 
+                            : $record->products->pluck('name')->join(', ')
+                    )
                     ->toggleable(isToggledHiddenByDefault: false),
 
             ])
