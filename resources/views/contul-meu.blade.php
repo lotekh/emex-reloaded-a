@@ -305,19 +305,74 @@
                                             <th>Pret (RON)</th>
                                         </tr>
                                     </thead>
+                                    
                                     <tbody>
+                                        @php
+                                            $discountsByProduct = [];
+                                            $bulkDiscount = null;
+
+                                            foreach ($order->discountCodes as $dc) {
+                                                if ($dc->product_id) {
+                                                    $discountsByProduct[$dc->product_id] = $dc;
+                                                } else {
+                                                    $bulkDiscount = $dc;
+                                                }
+                                            }
+                                        @endphp
+
                                         @foreach ($order->productVariations as $productVariation)
+                                            @php
+                                                $productId = $productVariation->product_id ?? ($productVariation->product->id ?? null);
+                                                $discount = $discountsByProduct[$productId] ?? $bulkDiscount ?? null;
+
+                                                $quantity = $productVariation->pivot->quantity;
+                                                $price_no_vat = round($productVariation->pivot->price_no_vat, 2);
+
+                                                // Final price with VAT
+                                                $final_price = round($productVariation->pivot->price, 2);
+
+                                                // If we have discount, we calculate the initial price
+                                                $initial_price = null;
+                                                if ($discount) {
+                                                    $initial_price_no_vat = round($price_no_vat / (1 - $discount->percentage / 100), 2);
+                                                    $initial_price = round($initial_price_no_vat * \App\Helpers\TvaHelper::getPriceWithTvaMultiplier(), 2);
+                                                }
+                                            @endphp
+
+                                            {{-- First row: inital price --}}
                                             <tr>
                                                 <td>{{ \Illuminate\Support\Str::before(html_entity_decode($productVariation->name), ' -') }}</td>
-                                                <td>{{ $productVariation->pivot->quantity }}</td>
-                    
+                                                <td>{{ $quantity }}</td>
                                                 <td>{{ $productVariation->quantity }} {{ $productVariation->measurementUnit->name ?? '-' }}</td>
-
                                                 <td>{{ $productVariation->pivot->mentions ?? '-' }}</td>
-                                                <td>{{ number_format($productVariation->pivot->price, 2) }}</td>
+                                                <td>
+                                                    @if ($discount)
+                                                        {{ number_format($initial_price, 2) }}
+                                                    @else
+                                                        {{ number_format($final_price, 2) }}
+                                                    @endif
+                                                </td>
                                             </tr>
+
+                                            {{-- Second row, if we have discount --}}
+                                            @if ($discount)
+                                                <tr style="background-color: #f0f0f0; font-style: italic;">
+                                                    <td colspan="4">
+                                                        Discount: <strong>{{ $discount->code }}</strong> ({{ $discount->percentage }}%)
+                                                        @if ($discount->product_id)
+                                                            — aplicat doar pentru acest produs
+                                                        @else
+                                                            — aplicat pentru întreaga comandă
+                                                        @endif
+                                                    </td>
+                                                    <td style="font-weight: bold;">
+                                                        {{ number_format($final_price, 2) }}
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         @endforeach
                                     </tbody>
+
                                 </table>
 
                                 @if ($order->discountCodes && $order->discountCodes->count() > 0)
