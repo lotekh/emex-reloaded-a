@@ -458,36 +458,62 @@
   </div>
   @endif
 
-  @if(session('discounts') && is_array(session('discounts')))
+
+
+  @php
+    $groupedDiscounts = [];
+
+    foreach ($discounts as $key => $discount) {
+        $code = $discount['code'];
+
+        if (!isset($groupedDiscounts[$code])) {
+            $groupedDiscounts[$code] = [
+                'percentage' => $discount['percentage'],
+                'products' => [],
+                'bulk' => empty($discount['product_id'])
+            ];
+        }
+
+        if (!empty($discount['product_id'])) {
+            $groupedDiscounts[$code]['products'][] = [
+                'name' => $discount['product_name'],
+                'slug' => $discount['product_slug']
+            ];
+        }
+    }
+  @endphp
+
+  @if(!empty($groupedDiscounts))
     <div class="mt-4 border p-4 rounded bg-gray-100">
         <h3 style="margin-bottom: 4px;">Coduri de reducere active:</h3>
 
-        @foreach(session('discounts') as $discount)
+        @foreach($groupedDiscounts as $code => $data)
             <div class="flex items-center text-sm">
                 <div>
-                    <strong>{{ $discount['code'] }}</strong> – {{ $discount['percentage'] }}% reducere
-                    @if(!empty($discount['product_id']))
-                        doar pentru produsul
-                        <a href="{{ url($discount['product_slug']) }}" target="_blank" class="link_color1">
-                            {{ html_entity_decode(strip_tags($discount['product_name'])) }}
-                        </a>
-                    @else
+                    <strong>{{ $code }}</strong> – {{ $data['percentage'] }}% reducere
+                    @if($data['bulk'])
                         pentru toate produsele
+                    @elseif(!empty($data['products']))
+                        doar pentru produsul{{ count($data['products']) > 1 ? 'e' : '' }}:
+                        @foreach($data['products'] as $product)
+                            <a href="{{ url($product['slug']) }}" target="_blank" class="link_color1">
+                                {{ html_entity_decode(strip_tags($product['name'])) }}
+                            </a>{{ !$loop->last ? ',' : '' }}
+                        @endforeach
                     @endif
                 </div>
 
-                <form method="POST" action="{{ route('orders.removeDiscount', $discount['code']) }}" class="ml-4">
+                <form method="POST" action="{{ route('orders.removeDiscount', $code) }}" class="ml-4">
                     @csrf
                     <button type="submit" title="Șterge" aria-label="Sterge codul de reducere">
-                      <img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="14" height="14"
+                        <img src="{{ asset('resources/new_design/icons/bin.svg') }}" width="14" height="14">
                     </button>
-
                 </form>
-
             </div>
         @endforeach
     </div>
   @endif
+
 
 
 

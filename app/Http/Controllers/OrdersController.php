@@ -317,7 +317,7 @@ class OrdersController extends Controller
 
         $sessionDiscounts = session()->get('discounts', []);
 
-        $isBulk = $discount->product_id === null;
+        $isBulk = $discount->products()->count() === 0;
 
         // If it's a bulk discount code
         if ($isBulk) {
@@ -341,26 +341,27 @@ class OrdersController extends Controller
             return redirect()->back()->with('error', 'Ai deja un cod de reducere general activ. Codurile pe produse nu pot fi combinate cu cele generale.');
         }
 
-        if (array_key_exists($discount->product_id, $sessionDiscounts)) {
-            return redirect()->back()->with('error', 'Ai deja un cod de reducere aplicat pentru acest produs.');
+        // Product Discount -> Apply the discount code for every product 
+        $appliedProducts = [];
+        foreach ($discount->products as $product) {
+            if (isset($sessionDiscounts[$product->id])) {
+                return redirect()->back()->with('error', "Ai deja un cod de reducere aplicat pentru produsul: {$product->name}.");
+            }
+
+            $sessionDiscounts[$product->id] = [
+                'code' => $discount->code,
+                'percentage' => $discount->percentage,
+                'product_id' => $product->id,
+                'product_name' => $product->name,
+                'product_slug' => $product->slug,
+            ];
+
+            $appliedProducts[] = $product->name;
         }
 
-        $discountData = [
-            'code' => $discount->code,
-            'percentage' => $discount->percentage,
-            'product_id' => $discount->product_id,
-        ];
-
-        if ($discount->product_id) {
-            $product = $discount->product;
-            $discountData['product_name'] = $product->name;
-            $discountData['product_slug'] = $product->slug;
-        }
-
-        $sessionDiscounts[$discount->product_id] = $discountData;
         session(['discounts' => $sessionDiscounts]);
 
-        return redirect()->back()->with('success', 'Codul de reducere a fost aplicat cu succes pentru produsul selectat.');
+        return redirect()->back()->with('success', 'Codul de reducere a fost aplicat cu succes.');
     }
 
 
@@ -368,17 +369,14 @@ class OrdersController extends Controller
     {
         $discounts = session()->get('discounts', []);
 
-        foreach ($discounts as $key => $discount) {
-            if ($discount['code'] === $code) {
-                unset($discounts[$key]);
-                break;
-            }
-        }
+        // Remove the discount code from the session
+        $discounts = array_filter($discounts, fn($discount) => $discount['code'] !== $code);
 
         session(['discounts' => $discounts]);
 
         return redirect()->back()->with('success', 'Codul de reducere a fost eliminat.');
     }
+
 
 
 
