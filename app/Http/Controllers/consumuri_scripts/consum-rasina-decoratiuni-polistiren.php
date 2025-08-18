@@ -4,8 +4,8 @@ $suprafata = $_GET[ 'Suprafata' ];
 $tipvopsea = $_GET[ 'TipProdus' ];
 if ( $tipsuprafata == "Polistiren Expandat" ) {
   $consum_vopsea = $suprafata * 1.00;
-  //$cons_total = $consum_vopsea + $intaritor;
   $faina_cuart = $suprafata * 0.6;
+  $cons_total = $consum_vopsea;
   $consum_vopsea = number_format( $consum_vopsea, 2, ",", "." );
   $faina_cuart = number_format( $faina_cuart, 2, ",", "." );
   $cons_total = number_format( $cons_total, 2, ",", "." );
@@ -41,7 +41,7 @@ if ( $tipsuprafata == "Suporturi Minerale" ) {
           echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>:<br /> va fi cca. <span class='RaspunsEchoBold'>$consum_vopsea Kg</span> rasina poliuretanica monocomponenta.<br />";
 
           echo "<span id='consumurile_indirecte'>Consum indirect</span>:<br />";
-         
+
           echo "in medie <span class='RaspunsEchoBold'>$faina_cuart Kg</span> faina de cuartz.<br />";
           echo "<span class='strat mark'><strong>Nu se va folosi diluant</strong></span>.<br />";
         }
