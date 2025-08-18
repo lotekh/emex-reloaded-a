@@ -3,9 +3,9 @@ $tipsuprafata = $_GET[ 'TipSuprafata' ];
 $suprafata = $_GET[ 'Suprafata' ];
 $tipvopsea = $_GET[ 'TipProdus' ];
 if ( $tipsuprafata == "Polistiren Expandat" ) {
-  $consum_vopsea = $suprafata * 1.42;
-  $cons_total = $consum_vopsea + $intaritor;
-  $faina_cuart = $suprafata * 1.3;
+  $consum_vopsea = $suprafata * 1.00;
+  //$cons_total = $consum_vopsea + $intaritor;
+  $faina_cuart = $suprafata * 0.6;
   $consum_vopsea = number_format( $consum_vopsea, 2, ",", "." );
   $faina_cuart = number_format( $faina_cuart, 2, ",", "." );
   $cons_total = number_format( $cons_total, 2, ",", "." );
@@ -31,7 +31,7 @@ if ( $tipsuprafata == "Suporturi Minerale" ) {
   <div class="results">
     <div class="cosum text-center">
       <p class="p-space"><strong>Consumul Total:</strong></p>
-      <span class="small">la strat de 1 mm</span>
+      <span class="small">la 2 straturi</span>
       <p class="num-res"><?php echo $cons_total ?></p>
       <p><strong>Kg produs</strong></p>
       <p>
