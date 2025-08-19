@@ -497,7 +497,7 @@
                     @if($data['bulk'])
                         pentru toate produsele
                     @elseif(!empty($data['products']))
-                        pentru produsul{{ count($data['products']) > 1 ? 'e' : '' }}:
+                        pentru produsel{{ count($data['products']) > 1 ? 'e' : '' }}:
                         @foreach($data['products'] as $product)
                             <a href="{{ url($product['slug']) }}" target="_blank" class="link_color1">
                                 {{-- {{ html_entity_decode(strip_tags($product['name'])) }} --}}
