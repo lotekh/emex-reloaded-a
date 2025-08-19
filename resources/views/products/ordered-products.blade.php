@@ -488,8 +488,7 @@
 
   @if(!empty($groupedDiscounts))
     <div class="mt-4 border p-4 rounded bg-gray-100">
-        <!--h3 style="margin-bottom: 4px;">Coduri de reducere active:</h3-->
-<span style="margin-bottom: 4px;"><strong><em>Coduri de reducere active</em><strong>:</span>
+        <h3 style="margin-bottom: 4px;">Coduri de reducere active:</h3>
         @foreach($groupedDiscounts as $code => $data)
             <div class="flex items-center text-sm">
                 <div>
