@@ -345,7 +345,7 @@ class OrdersController extends Controller
         $appliedProducts = [];
         foreach ($discount->products as $product) {
             if (isset($sessionDiscounts[$product->id])) {
-                return redirect()->back()->with('error', "Ai deja un cod de reducere aplicat pentru produsul: {$product->name}.");
+              //  return redirect()->back()->with('error', "Ai deja un cod de reducere aplicat pentru produsul: {$product->name}.");
             }
 
             $sessionDiscounts[$product->id] = [
