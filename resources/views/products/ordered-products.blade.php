@@ -493,7 +493,7 @@
         @foreach($groupedDiscounts as $code => $data)
             <div class="flex items-center text-sm">
                 <div>
-                    <strong>{{ $code }}</strong> – {{ $data['percentage'] }}% reducere
+                    <strong>{{ $code }}</strong> - {{ $data['percentage'] }}% reducere
                     @if($data['bulk'])
                         pentru toate produsele
                     @elseif(!empty($data['products']))
