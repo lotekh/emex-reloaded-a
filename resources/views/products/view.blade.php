@@ -123,7 +123,7 @@
 $averageRating = $product->reviews->avg('rating') ?? 5;
 $reviewCount = ($product->reviews->count() === 0) ? 1 : $product->reviews->count();
 $variations = $product->variations;
-$initialVariation = $variations->first();
+$initialVariation = $variations->sortBy('quantity')->first();
 $baseUrl = url('/');
 @endphp
 
@@ -314,7 +314,7 @@ $baseUrl = url('/');
                     <div class="form-group">
                         <label class="section-info" id="choose-type">Selecteaza ambalare</label>
                         <select form="adauga-in-cos" aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
-                            @foreach ($product->variations->unique('quantity') as $variation)
+                            @foreach ($product->variations->sortBy('quantity')->unique('quantity') as $variation)
                             <option value="{{ $variation->quantity }}">
                                 {{ fmod($variation->quantity, 1) != 0 ? number_format($variation->quantity, 2) : $variation->quantity }}
                                 {{ $variation->measurementUnit->name }}
