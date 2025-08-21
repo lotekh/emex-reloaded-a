@@ -1,5 +1,5 @@
 @php
-    $initialVariation = $product->variations->first();
+    $initialVariation = $product->variations->sortBy('quantity')->first();
     $initialPrice = $initialVariation->price ?? null;
     $initialPackaging = $initialVariation->quantity ?? null;
     $initialColor = $initialVariation->colour ?? null;
@@ -19,14 +19,12 @@
 
     use App\Models\DiscountCode;
 
-    // Look for product discount first
-    $productDiscount = DiscountCode::where('product_id', $product->id)
-        ->where('is_active', true)
-        ->first();
+    // Look for a product-specific discount
+    $productDiscount = $product->discountCodes()->where('is_active', true)->first();
 
-    // If there's no product-specific discount, look for a bulk discount
+    // If we have no product-specific discount, look for a general(bulk) discount
     if (!$productDiscount) {
-        $productDiscount = DiscountCode::whereNull('product_id')
+        $productDiscount = DiscountCode::whereDoesntHave('products')
             ->where('is_active', true)
             ->first();
     }
@@ -95,7 +93,7 @@
                         <div class="form-group mr-8">
                             <label class="section-info" id="choose-type">Ambalare</label>
                             <select aria-labelledby="choose-type" class="w-full" name="ambalare" id="packagingSelect{{ $product->id }}">
-                                @foreach ($product->variations->unique('quantity') as $variation)
+                                @foreach ($product->variations->sortBy('quantity')->unique('quantity') as $variation)
                                     <option value="{{ $variation->quantity }}">
                                         {{ $variation->quantity }} {{ $variation->measurementUnit->name }}
                                     </option>

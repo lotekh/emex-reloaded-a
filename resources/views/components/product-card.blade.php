@@ -2,7 +2,8 @@
   $averageRating = $product->reviews->avg('rating') ?? 5;
   $reviewCount = ($product->reviews->count() === 0) ? 1 : $product->reviews->count();
   $variations = $product->variations;
-  $initialVariation = $variations->first();
+  // $initialVariation = $variations->first();
+  $initialVariation = $variations->sortBy('quantity')->first();
   $baseUrl = url('/');
   
   $compactVariations = $product->variations->map(function($variation) {
@@ -141,7 +142,7 @@
         <div class="row no-wrap w-full gap-xs">
           <div class="relative row w-full">
             <select aria-label="Ambalare" name="ambalare" id="ambalareSelect{{$product->id}}">
-              @foreach ($product->variations->unique('quantity') as $variation)
+              @foreach ($product->variations->sortBy('quantity')->unique('quantity') as $variation)
                   <option value="{{ $variation->quantity }}" {{ $variation->quantity == $initialVariation->quantity ? 'selected' : '' }}>
                       {{ $variation->quantity }} {{ $variation->measurementUnit->name }}
                   </option>
