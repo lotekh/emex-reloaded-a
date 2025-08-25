@@ -1,5 +1,6 @@
 @php
 use App\Helpers\TvaHelper;
+use Illuminate\Support\Str;
 @endphp
 
 <style>
@@ -297,33 +298,33 @@ use App\Helpers\TvaHelper;
     </tr>
 
     @php
-        $i = 0;
-        $discountsByProduct = [];
-        foreach ($order->discountCodes as $dc) {
-            if ($dc->product_id) {
-                $discountsByProduct[$dc->product_id] = $dc;
-            } else {
-                // If discount has no product_id, it means it's a bulk discount
-                $bulkDiscount = $dc;
+    $i = 0;
+    $discountsByProduct = [];
+    $bulkDiscount = null;
+
+    foreach ($order->discountCodes as $dc) {
+        if ($dc->products->count() > 0) {
+            foreach ($dc->products as $product) {
+                $discountsByProduct[$product->id] = $dc;
             }
+        } else {
+            $bulkDiscount = $dc;
         }
+    }
     @endphp
 
     @foreach ($orders_products as $key => $product)
-        @php    
+        @php
             $i++;
             $quantity = $product->pivot->quantity;
             $price_no_vat = round($product->pivot->price_no_vat, 2);
             $total_no_vat = round($price_no_vat * $quantity, 2);
             $tva = round(($product->pivot->price - $product->pivot->price_no_vat) * $quantity, 2);
-            // $tva_initial = round(($price_no_vat_initial * TvaHelper::getTvaMultiplier()) * $quantity, 2);
 
-
-            // Search discount for the product
             $productId = $product->product_id ?? ($product->product->id ?? null);
+
             $discount = $discountsByProduct[$productId] ?? null;
 
-            // If we have no discount for the product, check for bulk discount
             $appliedDiscount = $discount ?? ($bulkDiscount ?? null);
         @endphp
 
@@ -334,14 +335,11 @@ use App\Helpers\TvaHelper;
                 $total_no_vat_initial = round($price_no_vat_initial * $quantity, 2);
                 $tva_initial = round(($price_no_vat_initial * TvaHelper::getTvaMultiplier()) * $quantity, 2);
 
-                // discounted price - it's the one from DB(price_no_vat)
                 $price_no_vat_discounted = $price_no_vat;
                 $total_no_vat_discounted = $total_no_vat;
-
                 $price_discounted = $price_no_vat_discounted * TvaHelper::getPriceWithTvaMultiplier();
                 $tva_discounted = round(($price_discounted - $price_no_vat_discounted) * $quantity, 2);
             } else {
-                // If we have no discount, initial values are the ones from DB
                 $price_no_vat_initial = $price_no_vat;
                 $total_no_vat_initial = $total_no_vat;
                 $tva_initial = round(($price_no_vat * TvaHelper::getTvaMultiplier()) * $quantity, 2);
@@ -364,7 +362,7 @@ use App\Helpers\TvaHelper;
             <tr style="background-color:#f0f0f0; font-style: italic;">
                 <td colspan="2" class="ta_l table-borders">
                     Discount: {{ $appliedDiscount->code }} ({{ $discountPercent }}%)
-                    @if($appliedDiscount->product)
+                    @if ($appliedDiscount->products->count() > 0)
                         (Discount pentru produs)
                     @else
                         (Discount general)
@@ -376,7 +374,6 @@ use App\Helpers\TvaHelper;
                 <td class="ta_r table-borders">{{ number_format($tva_discounted, 2, '.', ',') }}</td>
             </tr>
         @endif
-
     @endforeach
 
 
@@ -418,8 +415,11 @@ use App\Helpers\TvaHelper;
     </tr>
 </table>
 
+@php
+    $discountCodesGrouped = $order->discountCodes->groupBy('code');
+@endphp
 
-@if ($order->discountCodes && $order->discountCodes->count() > 0)
+@if ($discountCodesGrouped && $discountCodesGrouped->count() > 0)
     <table style="width: 100%; font-size: 13px; margin: 30px 50px 0;">
         <tr>
             <td style="font-weight: bold; color: #001d4d; padding: 0;">Coduri de discount folosite:</td>
@@ -427,13 +427,23 @@ use App\Helpers\TvaHelper;
         <tr>
             <td>
                 <ul style="margin: 5px 0 0 15px; padding: 0;">
-                    @foreach ($order->discountCodes as $discountCode)
+                    @foreach ($discountCodesGrouped as $code => $discounts)
+                        @php
+                            $discount = $discounts->first();
+                        @endphp
                         <li style="margin-bottom: 5px;">
-                            <strong>{{ $discountCode->code }}</strong> – {{ $discountCode->percentage }}% reducere
-                            @if ($discountCode->product)
-                                doar pentru produsul:
+                            <strong>{{ $discount->code }}</strong> – {{ $discount->percentage }}% reducere
+                            
+                            @if ($discount->products->count() > 0)
+                                pentru produs{{ $discount->products->count() > 1 ? 'e' : '' }}:
                                 <span>
-                                    {{ html_entity_decode(strip_tags($discountCode->product->name ?? 'Produs indisponibil')) }}
+                                    @foreach($discount->products as $index => $p)
+                                        @php
+                                            $name = Str::ucfirst(Str::lower(html_entity_decode(strip_tags($p->name ?? 'Produs indisponibil'))));
+                                        @endphp
+                                            {{ $name }}
+                                        @if(!$loop->last), @endif
+                                    @endforeach
                                 </span>
                             @else
                                 pentru toate produsele
@@ -445,5 +455,7 @@ use App\Helpers\TvaHelper;
         </tr>
     </table>
 @endif
+
+
 
 

@@ -2,7 +2,8 @@
   $averageRating = $product->reviews->avg('rating') ?? 5;
   $reviewCount = ($product->reviews->count() === 0) ? 1 : $product->reviews->count();
   $variations = $product->variations;
-  $initialVariation = $variations->first();
+  // $initialVariation = $variations->first();
+  $initialVariation = $variations->sortBy('quantity')->first();
   $baseUrl = url('/');
   
   $compactVariations = $product->variations->map(function($variation) {
@@ -21,18 +22,17 @@
   });
 
   use App\Models\DiscountCode;
+  
+  // Look for a product-specific discount
+  $productDiscount = $product->discountCodes()->where('is_active', true)->first();
 
-  // Look for product discount first
-  $productDiscount = DiscountCode::where('product_id', $product->id)
-      ->where('is_active', true)
-      ->first();
-
-  // If there's no product-specific discount, look for a bulk discount
+  // If we have no product-specific discount, look for a general(bulk) discount
   if (!$productDiscount) {
-      $productDiscount = DiscountCode::whereNull('product_id')
-          ->where('is_active', true)
-          ->first();
+    $productDiscount = DiscountCode::whereDoesntHave('products')
+        ->where('is_active', true)
+        ->first();
   }
+
 @endphp
 
 <div class="product-card">
@@ -142,7 +142,7 @@
         <div class="row no-wrap w-full gap-xs">
           <div class="relative row w-full">
             <select aria-label="Ambalare" name="ambalare" id="ambalareSelect{{$product->id}}">
-              @foreach ($product->variations->unique('quantity') as $variation)
+              @foreach ($product->variations->sortBy('quantity')->unique('quantity') as $variation)
                   <option value="{{ $variation->quantity }}" {{ $variation->quantity == $initialVariation->quantity ? 'selected' : '' }}>
                       {{ $variation->quantity }} {{ $variation->measurementUnit->name }}
                   </option>

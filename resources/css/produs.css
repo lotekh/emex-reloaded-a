@@ -1840,15 +1840,17 @@ margin-top: 10px;
 
 .voucher-container {
   display: flex; 
+  flex-wrap: wrap;
   align-items: center; 
-  max-width: 430px; 
+  max-width: 350px; 
   background-color: #f9f9f9; 
   border: 1px solid #e0e0e0; 
   border-radius: 8px; 
   padding: 16px;
   font-family: Arial, sans-serif; 
-  gap: 16px; 
+  gap: 6px; 
   margin: 20px auto 0 auto;
+  flex-direction:column;
 }
 
 .voucher-icon {
@@ -1862,7 +1864,6 @@ margin-top: 10px;
     color: #e53e3e; 
     font-size: 20px;
     font-weight: bold;
-    margin-left: 12px;
 }
 
 .voucher-details {

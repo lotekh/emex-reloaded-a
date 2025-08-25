@@ -317,7 +317,7 @@ class OrdersController extends Controller
 
         $sessionDiscounts = session()->get('discounts', []);
 
-        $isBulk = $discount->product_id === null;
+        $isBulk = $discount->products()->count() === 0;
 
         // If it's a bulk discount code
         if ($isBulk) {
@@ -341,26 +341,27 @@ class OrdersController extends Controller
             return redirect()->back()->with('error', 'Ai deja un cod de reducere general activ. Codurile pe produse nu pot fi combinate cu cele generale.');
         }
 
-        if (array_key_exists($discount->product_id, $sessionDiscounts)) {
-            return redirect()->back()->with('error', 'Ai deja un cod de reducere aplicat pentru acest produs.');
+        // Product Discount -> Apply the discount code for every product 
+        $appliedProducts = [];
+        foreach ($discount->products as $product) {
+            if (isset($sessionDiscounts[$product->id])) {
+                return redirect()->back()->with('error', "Ai deja un cod de reducere aplicat pentru produsul: {$product->name}.");
+            }
+
+            $sessionDiscounts[$product->id] = [
+                'code' => $discount->code,
+                'percentage' => $discount->percentage,
+                'product_id' => $product->id,
+                'product_name' => $product->name,
+                'product_slug' => $product->slug,
+            ];
+
+            $appliedProducts[] = $product->name;
         }
 
-        $discountData = [
-            'code' => $discount->code,
-            'percentage' => $discount->percentage,
-            'product_id' => $discount->product_id,
-        ];
-
-        if ($discount->product_id) {
-            $product = $discount->product;
-            $discountData['product_name'] = $product->name;
-            $discountData['product_slug'] = $product->slug;
-        }
-
-        $sessionDiscounts[$discount->product_id] = $discountData;
         session(['discounts' => $sessionDiscounts]);
 
-        return redirect()->back()->with('success', 'Codul de reducere a fost aplicat cu succes pentru produsul selectat.');
+        return redirect()->back()->with('success', 'Codul de reducere a fost aplicat cu succes.');
     }
 
 
@@ -368,17 +369,14 @@ class OrdersController extends Controller
     {
         $discounts = session()->get('discounts', []);
 
-        foreach ($discounts as $key => $discount) {
-            if ($discount['code'] === $code) {
-                unset($discounts[$key]);
-                break;
-            }
-        }
+        // Remove the discount code from the session
+        $discounts = array_filter($discounts, fn($discount) => $discount['code'] !== $code);
 
         session(['discounts' => $discounts]);
 
         return redirect()->back()->with('success', 'Codul de reducere a fost eliminat.');
     }
+
 
 
 
@@ -502,17 +500,18 @@ class OrdersController extends Controller
             $total += $cartItem['quantity'] * $discountedPrice;
         }
 
-        // Save discounts in db
+        // Save discounts in db - only once per code
+        $discountIds = [];
         foreach ($discounts as $discount) {
             if (isset($discount['code'])) {
                 $discountModel = DiscountCode::where('code', $discount['code'])->first();
-
                 if ($discountModel) {
-                    $dbOrder->discountCodes()->attach($discountModel->id);
+                    $discountIds[] = $discountModel->id;
                 }
             }
         }
-
+        $discountIds = array_unique($discountIds);
+        $dbOrder->discountCodes()->syncWithoutDetaching($discountIds);
 
 
         $dbOrder->total = $total;
@@ -830,53 +829,52 @@ class OrdersController extends Controller
                     : json_decode($dbOrder->company_information, true)['organization_name'];
 
                 // Create the email content
-                // $emailContent = "S-au comandat urmatoarele produse:\n\n";
-                // foreach ($orders_products as $product) {
-                //     $emailContent .= "Produs: " . $product->name . " \n";
-                //     $emailContent .= "Culoare: " . ($product->colour ?? 'Alb') . "\n";
-                //     $emailContent .= "Cantitate: " . $product->pivot->quantity . "\n";
-                //     $emailContent .= "Pret cu TVA: " . number_format($product->pivot->price, 2) . "\n";
-                //     $emailContent .= "Mentiuni: " . $product->pivot->mentions . "\n\n";
-                // }
-
-                // Pregătesc lista de discounturi asociate produselor
+                // Discounts by product
                 $discountsByProduct = [];
-                $bulkDiscount = null;
+                $bulkDiscounts = [];
+
                 foreach ($dbOrder->discountCodes as $dc) {
-                    if ($dc->product_id) {
-                        $discountsByProduct[$dc->product_id] = $dc;
+                    if ($dc->products->count() > 0) {
+                        foreach ($dc->products as $p) {
+                            $discountsByProduct[$p->id][] = $dc;
+                        }
                     } else {
-                        $bulkDiscount = $dc;
+                        $bulkDiscounts[] = $dc;
                     }
                 }
 
-                // Construiesc secțiunea cu produsele
+                // Product section
                 $emailContent = "S-au comandat următoarele produse:\n\n";
+
                 foreach ($orders_products as $product) {
                     $quantity = $product->pivot->quantity;
                     $price_no_vat = round($product->pivot->price_no_vat, 2);
                     $total_no_vat = round($price_no_vat * $quantity, 2);
 
                     $productId = $product->product_id ?? ($product->product->id ?? null);
-                    $discount = $discountsByProduct[$productId] ?? null;
-                    $appliedDiscount = $discount ?? $bulkDiscount;
+                    $discountsForProduct = $discountsByProduct[$productId] ?? [];
+
+                    if (empty($discountsForProduct) && !empty($bulkDiscounts)) {
+                        $discountsForProduct = $bulkDiscounts;
+                    }
 
                     $emailContent .= "Produs: {$product->name}\n";
                     $emailContent .= "Culoare: " . ($product->colour ?? 'Alb') . "\n";
                     $emailContent .= "Cantitate: {$quantity}\n";
-                    // $emailContent .= "Preț fără TVA: " . number_format($price_no_vat, 2) . "\n";
                     $emailContent .= "Preț final cu TVA: " . number_format($product->pivot->price, 2) . "\n";
-                    if ($appliedDiscount) {
-                        $discountPercent = $appliedDiscount->percentage;
+
+                    foreach ($discountsForProduct as $discount) {
+                        $discountPercent = $discount->percentage;
                         $price_no_vat_initial = round($price_no_vat / (1 - $discountPercent / 100), 2);
                         $total_no_vat_initial = round($price_no_vat_initial * $quantity, 2);
 
-                        $emailContent .= "Discount aplicat: {$appliedDiscount->code} ({$discountPercent}%)\n";
-                        // $emailContent .= "      Preț inițial fără TVA: " . number_format($price_no_vat_initial, 2) . "\n";
+                        $emailContent .= "Discount aplicat: {$discount->code} ({$discountPercent}%)\n";
                         $emailContent .= "Preț inițial cu TVA: " . number_format($price_no_vat_initial * TvaHelper::getPriceWithTvaMultiplier(), 2) . "\n";
                     }
-                    $emailContent .= "Mențiuni: " . $product->pivot->mentions . "\n\n";    
+
+                    $emailContent .= "Mențiuni: " . ($product->pivot->mentions ?? '-') . "\n\n";
                 }
+
 
 
                 if ($dbOrder->transport_price > 0) {

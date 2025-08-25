@@ -173,4 +173,11 @@ class Product extends Model
 
         return false;
     }
+
+    public function discountCodes(): BelongsToMany
+    {
+        return $this->belongsToMany(DiscountCode::class, 'discount_code_product')
+                    ->withTimestamps();
+    }
+
 }
