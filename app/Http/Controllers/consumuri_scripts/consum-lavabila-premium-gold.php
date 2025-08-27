@@ -18,7 +18,7 @@ if ( $tipsuprafata == "Tencuiala driscuita" ) {
   $amorsa = number_format( $amorsa, 2, ",", "." );
   $apa = number_format( $apa, 2, ",", "." );
 }
-if ( $tipsuprafata == "Glet de ipsos" ) {
+if ( $tipsuprafata == "Glet de Ipsos" ) {
   $consum_vopsea = $suprafata * 0.26;
   $amorsa = $suprafata * 0.11;
   $apa = ( $consum_vopsea + $amorsa ) * 0.1;
@@ -66,13 +66,13 @@ if ( $tipsuprafata == "Tencuiala driscuita" ) {
   echo "Amorsa (valoare medie): <span class='RaspunsEchoBold'>$amorsa Kg</span>.<br />";
   echo "Apa (valoare medie): <span class='RaspunsEchoBold'>$apa l</span>.<br />";
 }
-if ( $tipsuprafata == "Glet de ipsos" ) {
+if ( $tipsuprafata == "Glet de Ipsos" ) {
   echo "<strong>Consumul Total</strong> <span class='strat mark'>la 2 straturi</span> de <span class='RaspunsEchoBold'>Vopsea Lavabila Premium de Interior “Emex Gold”</span> pentru<br />";
   echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br /> va fi de aprox. <span class='RaspunsEchoBold'>$consum_vopsea Kg</span> produs.<br />";
   echo "<span id='consumurile_indirecte'>Consumuri indirecte</span>:<br />";
-  echo "<b>Recomandat:</b><br />";
+  echo "<strong>Recomandat:</strong><br />";
   echo "Grund de Amorsare si Umplere Pori: <span class='RaspunsEchoBold'>$grund Kg</span>.<br />";
-  echo "<b>Obligatoriu:</b><br />";
+  echo "<strong>Obligatoriu:</strong><br />";
   echo "Amorsa (valoare medie): <span class='RaspunsEchoBold'>$amorsa Kg</span>.<br />";
   echo "Apa (valoare medie): <span class='RaspunsEchoBold'>$apa l</span>.<br />";
 }
@@ -80,9 +80,9 @@ if ( $tipsuprafata == "Rigips" ) {
   echo "<strong>Consumul Total</strong> <span class='strat mark'>la 2 straturi</span> de <span class='RaspunsEchoBold'>Vopsea Lavabila Premium de Interior “Emex Gold”</span> pentru<br />";
   echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br /> va fi de aprox. <span class='RaspunsEchoBold'>$consum_vopsea Kg</span> produs.<br />";
   echo "<span id='consumurile_indirecte'>Consumuri indirecte</span>:<br />";
-  echo "<b>Recomandat:</b><br />";
+  echo "<strong>Recomandat:</strong><br />";
   echo "Grund de Amorsare si Umplere Pori: <span class='RaspunsEchoBold'>$grund Kg</span>.<br />";
-  echo "<b>Obligatoriu:</b><br />";
+  echo "<strong>Obligatoriu:</strong><br />";
   echo "Amorsa (valoare medie): <span class='RaspunsEchoBold'>$amorsa Kg</span>.<br />";
   echo "Apa (valoare medie): <span class='RaspunsEchoBold'>$apa l</span>.<br />";
 }
