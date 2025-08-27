@@ -40,21 +40,21 @@ if ( $granulatie == "1.2 - 1.8 mm" ) {
   echo "<strong>Consumul Mediu</strong> de <span class='RaspunsEchoBold'>Tencuiala Decorativa Bob de Orez “Emex”</span> cu<br />";
   echo "granulatia de <span class='RaspunsEchoBold'>$granulatie</span> pentru o suprafata de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br /> va fi de <span class='RaspunsEchoBold'>aprox. $consum_tencuiala Kg</span> produs.<br />";
   echo "<span id='consumurile_indirecte'>Consumuri indirecte</span>:<br />";
-  echo "Grund de amorsare cu cuart (valoare medie): <span class='RaspunsEchoBold'>$grund Kg</span>.<br />";
+  echo "Grund de amorsare cu cuart aprox.: <span class='RaspunsEchoBold'>$grund Kg</span>.<br />";
   echo "Apa total (tencuiala + amorsa): <span class='RaspunsEchoBold'>cca. $apa l</span>.";
 }
 if ( $granulatie == "1.5 - 2.3 mm" ) {
   echo "<strong>Consumul Mediu</strong> de <span class='RaspunsEchoBold'>Tencuiala Decorativa Bob de Orez “Emex”</span> cu<br />";
   echo "granulatia de <span class='RaspunsEchoBold'>$granulatie</span> pentru o suprafata de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br /> va fi de <span class='RaspunsEchoBold'>aprox. $consum_tencuiala Kg</span> produs.<br />";
   echo "<span id='consumurile_indirecte'>Consumuri indirecte</span>:<br />";
-  echo "Grund de amorsare cu cuart (valoare medie): <span class='RaspunsEchoBold'>$grund Kg</span>.<br />";
+  echo "Grund de amorsare cu cuart aprox.: <span class='RaspunsEchoBold'>$grund Kg</span>.<br />";
   echo "Apa total (tencuiala + amorsa): <span class='RaspunsEchoBold'>cca. $apa l</span>.";
 }
 if ( $granulatie == "2.2 - 3 mm" ) {
   echo "<strong>Consumul Mediu</strong> de <span class='RaspunsEchoBold'>Tencuiala Decorativa Bob de Orez “Emex”</span> cu<br />";
   echo "granulatia de <span class='RaspunsEchoBold'>$granulatie</span> pentru o suprafata de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br /> va fi de <span class='RaspunsEchoBold'>aprox. $consum_tencuiala Kg</span> produs.<br />";
   echo "<span id='consumurile_indirecte'>Consumuri indirecte</span>:<br />";
-  echo "Grund de amorsare cu cuart (valoare medie): <span class='RaspunsEchoBold'>$grund Kg</span>.<br />";
+  echo "Grund de amorsare cu cuart aprox.: <span class='RaspunsEchoBold'>$grund Kg</span>.<br />";
   echo "Apa total (tencuiala + amorsa): <span class='RaspunsEchoBold'>cca. $apa l</span>.";
 }
 ?>
