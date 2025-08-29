@@ -45,11 +45,12 @@
       <siteMapNode title="Emex Vopsea Profesionala Pentru Marcaj Rutier" description="Vopsea de marcaj rutier Emex Route este un produs cu proprietati superioare destinat marcajelor stradale atat pentru traficul auto cat si cel pietonal" url="~/blog/emex-vopsea-profesionala-pentru-marcaj-rutier" />
       <siteMapNode title="Finisare Cu Lac Epoxidic Emex Epoxy Coat" description="Produs bicomponent profesional cu proprietati superioare de protectie, rezistent la variatii de temperatura, socuri mecanice, coroziune, uzura, frecare" url="~/blog/finisare-cu-lac-epoxidic-emex-epoxy-coat" />
       <siteMapNode title="Hammerschlag Vopsea Lovitura De Ciocan" description="Vopseaua hammerschag sau lovitura de ciocan este o vopsea decorativa pe baza de rasini sintetice pasta de bronz aluminiu si pigmenti organici RAL" url="~/blog/hammerschlag-vopsea-lovitura-de-ciocan" />
+      <siteMapNode title="Hidroizolatii Durabile Cu Membrana Elastomerica" description="Membrana elastomerica profesionala - Protectie impotriva infiltratiilor, rezistenta la ploi acide, inghet si UV. Adaptare dinamica la fisuri si vibratii" url="~/blog/hidroizolatii-durabile-cu-membrana-elastomerica" />
       <siteMapNode title="Lac De Piatra Si Beton Amprentat" description="Lac pentru protejare suprafete din beton ciment mozaic sau alte materiale minerale cu capacitate mare de protectie si rezistenta la intemperii si UV" url="~/blog/lac-de-piatra-si-beton-amprentat" />
       <siteMapNode title="Lac De Protectie Beton Emex" description="Lacul de protectie pentru beton are o mare eficienta la protejarea suprafetelor din beton ciment sau suprafete minerale impotriva factorilor de mediu." url="~/blog/lac-de-protectie-beton-emex" />
       <siteMapNode title="Lac Epoxidic Pentru Pardoseli Durabile" description="Lac epoxidic profesional pentru protectia suporturilor din beton, sigilarea si fixarea suporturilor sau lacuirea pardoselilor sau vopsirilor epoxidice" url="~/blog/lac-epoxidic-pentru-pardoseli-durabile" />
       <siteMapNode title="Lacuri Lemn Mobila" description="Romtehnochim produce lacuri de mobila parchet sau lemn sub marca Emex, cu caracteristici superioare de pelicula si rezistenta mare la factori agresori" url="~/blog/lacuri-lemn-mobila" />
-      <siteMapNode title="Marcaj Rutier Siguranta In Trafic" description="Vopseaua pentru marcaj rutier trebuie sa prezinte acele caracteristici care sa asigure o fiabilitate mare si rezistenta la trafic intens si solicitari" url="~/blog/marcaj-rutier-siguranta-in-trafic" />
+      <siteMapNode title="Marcaj Rutier Siguranta In Trafic" description="Marcajele rutiere Emex Route ofera vizibilitate, rezistenta si siguranta in trafic, cu vopsele profesionale pentru drumuri intens circulate" url="~/blog/marcaj-rutier-siguranta-in-trafic" />
       <siteMapNode title="Pardoseala Epoxidica Decorativa Emex" description="Pardoselile epoxidice pentru suprafete exterioare sunt realizarete sin rasini epoxidice special destinate acestui tip de aplicare lacuite la final" url="~/blog/pardoseala-epoxidica-decorativa-emex" />
       <siteMapNode title="Pardoseala Epoxidica Emex Quartz" description="Produs de generatie noua ⭐ Pardoseala Epoxidica cu Cuartz este ideala pentru protectia pardoselilor de beton ✅ Pret Atractiv si Performante Ridicate !" url="~/blog/pardoseala-epoxidica-emex-quartz" />
       <siteMapNode title="Pardoseala Epoxidica Garantia Calitatii Emex" description="Sistemele epoxidice pentru pardoseala exceleaza prin rezistenta lo la facotri chimici si mecanici dar mai ales prin rezistenta mare la trafic intens" url="~/blog/pardoseala-epoxidica-garantia-calitatii-emex" />
@@ -82,6 +83,8 @@
       <siteMapNode title="Vopsirea Suprafetelor Metalice" description="Vopsirea suprafetelor din metal este obligatorie pentru exploatarea pe termen lung in special in zone industriale, expuse la diverse agresiuni" url="~/blog/vopsirea-suprafetelor-metalice" />
     </siteMapNode>
     <siteMapNode title="Blogarchive" description="Blogarchive" url="~/blogarchive" />
+    <siteMapNode title="Cart" description="Cart" url="~/cart/">
+    </siteMapNode>
     <siteMapNode title="Cartela Culori Lavabile" description="Instrument online ⭐ Paleta de Culori pentru Vopsea Lavabila si Tencuieli Decorative. Paletar sau Cartela de culori ✅ Alege Culoarea din Mii de Nuante !" url="~/cartela-culori-lavabile" />
     <siteMapNode title="Cartela Culori Ral Vopsele" description="Pentru o nuantare finala de finete a vopselelor solventate este necesara folosirea unui ⭐ Catalog sau Paletar de Culori RAL - ✅ Cartela RAL de culori !" url="~/cartela-culori-ral-vopsele" />
     <siteMapNode title="Catalog Emex" description="Catalog Emex" url="~/catalog-emex.pdf" />
@@ -185,6 +188,7 @@
     <siteMapNode title="Consum Pardoseala Poliuretanica Autonivelanta" description="Calcul de Consum pentru ⭐ Pardoseala Poliuretanica Autonivelanta ✅ Aderenta, Durabilitate, Rezistenta la UV si Medii Agresive - Pardoseli Industriale." url="~/consum-pardoseala-poliuretanica-autonivelanta" />
     <siteMapNode title="Consum Pardoseala Poliuretanica Elastica" description="Calcul de Consum ⭐ Pardoseala Poliuretanica Elastica Bicomponenta ✅ Elastica, Flexibila, Rezistenta la Uzura. Pentru Sali de Sport, Fitness sau Gym" url="~/consum-pardoseala-poliuretanica-elastica" />
     <siteMapNode title="Consum Poliuretanica Mobila" description="Calcul Consum pentru ⭐ Vopsea Poliuretanica - Mobilier Industrial sau Artizanal ✅ Rezistenta la Apa, Uzura si Pete, Produse Alimentare sau Chimice." url="~/consum-poliuretanica-mobila" />
+    <siteMapNode title="Consum Rasina Decoratiuni Polistiren" description="Afla consumul optim de rasina pentru ornamente din polistiren. Emex Yrocoat HD - protectie durabila si aplicare usoara, interior si exterior" url="~/consum-rasina-decoratiuni-polistiren" />
     <siteMapNode title="Consum Rasina Epoxidica Turnare Strat Gros" description="Calcul de consum ⭐ rasina epoxidica de turnare in strat gros &amp;ldquo;emex topcast&amp;rdquo; ✅ sistem epoxidic decorativ, de inalta performanta pentru straturi groase" url="~/consum-rasina-epoxidica-turnare-strat-gros" />
     <siteMapNode title="Consum Sapa Epoxidica" description="Calcul de Consum ⭐ Sapa Epoxy-Cimentica de Egalizare. Produs tricomponent pentru egalizarea suporturilor de beton ✅ Ideal pentru Pardoseli Industriale" url="~/consum-sapa-epoxidica" />
     <siteMapNode title="Consum Solutie Anti Mucegai" description="Consum ⭐ Sanitizant Antimucegai &amp;ldquo;Emex Forte&amp;rdquo; cu Biocizi Netoxici, Impotriva Igrasiei, Generate de Microorganisme, Mucegaiuri, Fungi sau Micro-Alge" url="~/consum-solutie-anti-mucegai" />
@@ -347,7 +351,7 @@
     <siteMapNode title="Pardoseli Trafic?per Page=6" description="Romtehnochim produce pardoseli turnate epoxidice sau poliuretanice pentru hale industriale sau pardoseli decorative expozitii sau supermarketuri" url="~/pardoseli-trafic?per_page=6" />
     <siteMapNode title="Pasta Pentru Decapare" description="Produs Superior ⭐ Solutie pentru Decaparea Ecologica a Vopselelor Vechi a Tencuielilor sau a altor Contaminanti sau Grasimi de pe Orice Suprafata" url="~/pasta-pentru-decapare" />
     <siteMapNode title="Politica De Calitate" description="Politica de calitate Emex by Romtehnochim producator de lacuri vopsele tencuieli pardoseli - certificat ISO 9001, ISO 14001, OHSAS 18001" url="~/politica-de-calitate" />
-    <siteMapNode title="Politica De Licentiere" description="Politica De Licentiere" url="~/politica-de-licentiere" />
+    <siteMapNode title="Politica De Licentiere" description="Politica de licentiere a Romtehnochim pentru continutul emex.ro" url="~/politica-de-licentiere" />
     <siteMapNode title="Politica De Mediu" description="Politica de mediu Emex by Romtehnochim producator de tencuieli pardoseli emailuri grunduri vopsele lavabile - certificat ISO 14001" url="~/politica-de-mediu" />
     <siteMapNode title="Politica De Retur" description="Politica de retur sau restituire plati pentru produsele Emex realizate de compania Romtehnochim." url="~/politica-de-retur" />
     <siteMapNode title="Politica Sanatate Securitate" description="Politica de sanatate si securitate a muncii Emex by Romtehnochim producator de pardoseli vopsele lavabile si tencuieli - certificat OHSAS 18001:2007" url="~/politica-sanatate-securitate" />
@@ -366,6 +370,7 @@
       </siteMapNode>
     </siteMapNode>
     <siteMapNode title="Rasina Epoxidica Turnare Strat Gros" description="Cu Aplicare Exclusiv Profesionala ⭐ Rasina Epoxidica de Turnare in Strat Gros “Emex TopCast” este un ✅ Sistem Epoxidic Decorativ de Inalta Performanta" url="~/rasina-epoxidica-turnare-strat-gros" />
+    <siteMapNode title="Rasina Pentru Ornamente Decorative Polistiren" description="Emex Yrocoat HD - rasina monocomponenta pentru polistiren decorativ. Elastica, transparenta, rezistenta la impact UV si conditii extreme de mediu" url="~/rasina-pentru-ornamente-decorative-polistiren" />
     <siteMapNode title="Register" description="Register" url="~/register" />
     <siteMapNode title="Sapa Epoxidica Egalizare" description="Pregatire Suporturi Deteriorate ⭐ Sapa Epoxidica Cimentica de Egalizare pentru ✅ Aplicare Pardoseli Industriale Epoxidice Poliuretanice Poliesterice" url="~/sapa-epoxidica-egalizare" />
     <siteMapNode title="Search" description="Search" url="~/search" />
@@ -484,6 +489,7 @@
           <siteMapNode title="Pasta Decapanta Vopsea Adezivi" description="Pasta Decapanta Vopsea Adezivi" url="~/storage/media/technical-files/pasta-decapanta-vopsea-adezivi.pdf" />
           <siteMapNode title="Pasta Ecologica Decapare" description="Pasta Ecologica Decapare" url="~/storage/media/technical-files/pasta-ecologica-decapare.pdf" />
           <siteMapNode title="Rasina Epoxidica Turnare Strat Gros" description="Rasina Epoxidica Turnare Strat Gros" url="~/storage/media/technical-files/rasina-epoxidica-turnare-strat-gros.pdf" />
+          <siteMapNode title="Rasina Pentru Ornamente Decorative Polistiren" description="Rasina Pentru Ornamente Decorative Polistiren" url="~/storage/media/technical-files/rasina-pentru-ornamente-decorative-polistiren.pdf" />
           <siteMapNode title="Sanitizant Antimucegai Emex Forte" description="Sanitizant Antimucegai Emex Forte" url="~/storage/media/technical-files/sanitizant-antimucegai-emex-forte.pdf" />
           <siteMapNode title="Sapa Epoxidica Cimentica Emex Mineral" description="Sapa Epoxidica Cimentica Emex Mineral" url="~/storage/media/technical-files/sapa-epoxidica-cimentica-emex-mineral.pdf" />
           <siteMapNode title="Sistem Anticoroziv Convertor De Rugina" description="Sistem Anticoroziv Convertor De Rugina" url="~/storage/media/technical-files/sistem-anticoroziv-convertor-de-rugina.pdf" />
