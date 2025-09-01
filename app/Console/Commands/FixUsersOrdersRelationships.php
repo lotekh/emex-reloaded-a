@@ -33,7 +33,6 @@ class FixUsersOrdersRelationships extends Command
         $ordersJsons = [
             resource_path('json/orders1.json'),
             resource_path('json/orders2.json'),
-            // resource_path('json/orders3.json'),
             resource_path('json/orders4.json'),
         ];
 
