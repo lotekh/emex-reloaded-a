@@ -8,7 +8,7 @@ if ( $tipsuprafata == "Sapa" ) {
   $cons_total = $consum_vopsea + $intaritor;
   $grund = $suprafata * 0.14;
   $fond = $suprafata * 0.25;
-  $pigment = ( $consum_vopsea + $intaritor ) * 0.05;
+  $pigment = ($consum_vopsea + $intaritor) * 0.05;
   $consum_vopsea = number_format( $consum_vopsea, 2, ",", "." );
   $intaritor = number_format( $intaritor, 2, ",", "." );
   $grund = number_format( $grund, 2, ",", "." );
