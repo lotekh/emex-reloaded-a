@@ -13,7 +13,7 @@ if ( $tipsuprafata == "Sapa" ) {
   $intaritor = number_format( $intaritor, 2, ",", "." );
   $grund = number_format( $grund, 2, ",", "." );
   $fond = number_format( $fond, 2, ",", "." );
-  $pigment = number_format( $fond, 2, ",", "." );
+  $pigment = number_format( $pigment, 2, ",", "." );
   $cons_total = number_format( $cons_total, 2, ",", "." );
 }
 if ( $tipsuprafata == "Sapa Sclivisita" ) {
@@ -27,7 +27,7 @@ if ( $tipsuprafata == "Sapa Sclivisita" ) {
   $intaritor = number_format( $intaritor, 2, ",", "." );
   $grund = number_format( $grund, 2, ",", "." );
   $fond = number_format( $fond, 2, ",", "." );
-  $pigment = number_format( $fond, 2, ",", "." );
+  $pigment = number_format( $pigment, 2, ",", "." );
   $cons_total = number_format( $cons_total, 2, ",", "." );
 }
 if ( $tipsuprafata == "Beton Elicopterizat" ) {
@@ -41,7 +41,7 @@ if ( $tipsuprafata == "Beton Elicopterizat" ) {
   $intaritor = number_format( $intaritor, 2, ",", "." );
   $grund = number_format( $grund, 2, ",", "." );
   $fond = number_format( $fond, 2, ",", "." );
-  $pigment = number_format( $fond, 2, ",", "." );
+  $pigment = number_format( $pigment, 2, ",", "." );
   $cons_total = number_format( $cons_total, 2, ",", "." );
 }
 if ( $tipsuprafata == "Mozaic" ) {
@@ -55,7 +55,7 @@ if ( $tipsuprafata == "Mozaic" ) {
   $intaritor = number_format( $intaritor, 2, ",", "." );
   $grund = number_format( $grund, 2, ",", "." );
   $fond = number_format( $fond, 2, ",", "." );
-  $pigment = number_format( $fond, 2, ",", "." );
+  $pigment = number_format( $pigment, 2, ",", "." );
   $cons_total = number_format( $cons_total, 2, ",", "." );
 }
 ?>
