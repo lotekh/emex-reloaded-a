@@ -74,7 +74,7 @@ if ( $tipsuprafata == "Mozaic" ) {
           echo "<span id='consumurile_indirecte'>Consum indirect</span>:<br />";
           echo "Grund Epoxidic de Amorsare: <span class='RaspunsEchoBold'>$grund Kg</span><br />";
           echo "Vopsea Epoxidica de Pardoseala „Emex”: <span class='RaspunsEchoBold'>$fond Kg</span><br />";
-          echo "Pigment metalic: cca. <span class='RaspunsEchoBold'>$pigment Kg</span><br />";
+          echo "Pigment metalic: cca. <span class='RaspunsEchoBold'>$pigment Kg</span><br /><br />";
           echo "<span class='strat mark no_dil'><strong>Nu se va folosi diluant</strong></span><br />";
         }
         if ( $tipsuprafata == "Sapa Sclivisita" ) {
