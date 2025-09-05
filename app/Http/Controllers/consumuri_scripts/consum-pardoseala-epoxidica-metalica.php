@@ -8,7 +8,7 @@ if ( $tipsuprafata == "Sapa" ) {
   $cons_total = $consum_vopsea + $intaritor;
   $grund = $suprafata * 0.14;
   $fond = $suprafata * 0.25;
-  $pigment = $cons_total * 0.05;
+  $pigment = ( $consum_vopsea + $intaritor ) * 0.05;
   $consum_vopsea = number_format( $consum_vopsea, 2, ",", "." );
   $intaritor = number_format( $intaritor, 2, ",", "." );
   $grund = number_format( $grund, 2, ",", "." );
@@ -75,7 +75,7 @@ if ( $tipsuprafata == "Mozaic" ) {
           echo "Grund Epoxidic de Amorsare: <span class='RaspunsEchoBold'>$grund Kg</span><br />";
           echo "Vopsea Epoxidica de Pardoseala „Emex”: <span class='RaspunsEchoBold'>$fond Kg</span><br />";
           echo "Pigment metalic: cca. <span class='RaspunsEchoBold'>$pigment Kg</span><br />";
-          echo "<span class='strat mark'><strong>Nu se va folosi diluant</strong></span>.<br />";
+          echo "<span class='strat mark'><strong>Nu se va folosi diluant</strong></span><br />";
         }
         if ( $tipsuprafata == "Sapa Sclivisita" ) {
           echo "<strong>Consumul</strong> la 1 strat de <strong class='strat mark'>grosime = 1 mm</strong> de <span class='RaspunsEchoBold'>Pardoseala Epoxidica Autonivelanta cu Pigmenti Metalizati „Emex Lucent SL”</span> pentru<br />";
@@ -84,7 +84,7 @@ if ( $tipsuprafata == "Mozaic" ) {
           echo "Grund Epoxidic de Amorsare: <span class='RaspunsEchoBold'>$grund Kg</span><br />";
           echo "Vopsea Epoxidica de Pardoseala „Emex”: <span class='RaspunsEchoBold'>$fond Kg</span><br />";
           echo "Pigment metalic: cca. <span class='RaspunsEchoBold'>$pigment Kg</span><br />";
-          echo "<span class='strat mark'><strong>Nu se va folosi diluant</strong></span>.<br />";
+          echo "<span class='strat mark'><strong>Nu se va folosi diluant</strong></span><br />";
         }
         if ( $tipsuprafata == "Beton Elicopterizat" ) {
           echo "<strong>Consumul</strong> la 1 strat de <strong class='strat mark'>grosime = 1 mm</strong> de <span class='RaspunsEchoBold'>Pardoseala Epoxidica Autonivelanta cu Pigmenti Metalizati „Emex Lucent SL”</span> pentru<br />";
@@ -93,7 +93,7 @@ if ( $tipsuprafata == "Mozaic" ) {
           echo "Grund Epoxidic de Amorsare: <span class='RaspunsEchoBold'>$grund Kg</span><br />";
           echo "Vopsea Epoxidica de Pardoseala „Emex”: <span class='RaspunsEchoBold'>$fond Kg</span><br />";
           echo "Pigment metalic: cca. <span class='RaspunsEchoBold'>$pigment Kg</span><br />";
-          echo "<span class='strat mark'><strong>Nu se va folosi diluant</strong></span>.<br />";
+          echo "<span class='strat mark'><strong>Nu se va folosi diluant</strong></span><br />";
         }
         if ( $tipsuprafata == "Mozaic" ) {
           echo "<strong>Consumul</strong> la 1 strat de <strong class='strat mark'>grosime = 1 mm</strong> de <span class='RaspunsEchoBold'>Pardoseala Epoxidica Autonivelanta cu Pigmenti Metalizati „Emex Lucent SL”</span> pentru<br />";
@@ -102,7 +102,7 @@ if ( $tipsuprafata == "Mozaic" ) {
           echo "Grund Epoxidic de Amorsare: <span class='RaspunsEchoBold'>$grund Kg</span><br />";
           echo "Vopsea Epoxidica de Pardoseala „Emex”: <span class='RaspunsEchoBold'>$fond Kg</span><br />";
           echo "Pigment metalic: cca. <span class='RaspunsEchoBold'>$pigment Kg</span><br />";
-          echo "<span class='strat mark'><strong>Nu se va folosi diluant</strong></span>.<br />";
+          echo "<span class='strat mark'><strong>Nu se va folosi diluant</strong></span><br />";
         }
         ?>
       </p>
