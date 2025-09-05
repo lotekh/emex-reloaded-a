@@ -191,6 +191,9 @@
 .no_dil {
   border: 1px solid var(--gold);
   padding: 3px 8px 3px 8px;
+    font-style: italic;
+    color: black;
+    background-color: #ffefff;
 }
 .mt-3 {
   margin-top: 3px;
