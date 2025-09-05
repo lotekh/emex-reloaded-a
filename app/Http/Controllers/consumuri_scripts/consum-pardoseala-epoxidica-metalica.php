@@ -62,37 +62,37 @@ if ( $tipsuprafata == "Mozaic" ) {
         <?php
         if ( $tipsuprafata == "Sapa" ) {
           echo "<strong>Consumul</strong> la 1 strat de <strong class='strat mark'>grosime = 1 mm</strong> de <span class='RaspunsEchoBold'>Pardoseala Epoxidica Autonivelanta cu Pigmenti Metalizati „Emex Lucent SL”</span> pentru<br />";
-          echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br /> va fi de aprox. <span class='RaspunsEchoBold'>$consum_vopsea Kg</span> baza epoxidica si <span class='RaspunsEchoBold'>$intaritor Kg</span> intaritor.<br />";
+          echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br /> va fi de aprox. <span class='RaspunsEchoBold'>$consum_vopsea Kg</span> baza si <span class='RaspunsEchoBold'>$intaritor Kg</span> intaritor.<br />";
           echo "<span id='consumurile_indirecte'>Consum indirect</span>:<br />";
-          echo "Grund Epoxidic de Amorsare: <span class='RaspunsEchoBold'>$grund Kg</span>.<br />";
+          echo "Grund Epoxidic de Amorsare: <span class='RaspunsEchoBold'>$grund Kg</span><br />";
 
-          echo "Vopsea Epoxidica de Pardoseala „Emex” <span class='RaspunsEchoBold'>$fond Kg</span>.<br />";
+          echo "Vopsea Epoxidica de Pardoseala „Emex”: <span class='RaspunsEchoBold'>$fond Kg</span><br />";
 
 
           echo "<span class='strat mark'><strong>Nu se va folosi diluant</strong></span>.<br />";
         }
         if ( $tipsuprafata == "Sapa Sclivisita" ) {
           echo "<strong>Consumul</strong> la 1 strat de <strong class='strat mark'>grosime = 1 mm</strong> de <span class='RaspunsEchoBold'>Pardoseala Epoxidica Autonivelanta cu Pigmenti Metalizati „Emex Lucent SL”</span> pentru<br />";
-          echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br /> va fi de aprox. <span class='RaspunsEchoBold'>$consum_vopsea Kg</span> baza epoxidica si <span class='RaspunsEchoBold'>$intaritor Kg</span> intaritor.<br />";
+          echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br /> va fi de aprox. <span class='RaspunsEchoBold'>$consum_vopsea Kg</span> baza si <span class='RaspunsEchoBold'>$intaritor Kg</span> intaritor.<br />";
           echo "<span id='consumurile_indirecte'>Consum indirect</span>:<br />";
-          echo "Grund Epoxidic de Amorsare: <span class='RaspunsEchoBold'>$grund Kg</span>.<br />";
-          echo "Vopsea Epoxidica de Pardoseala „Emex” <span class='RaspunsEchoBold'>$fond Kg</span>.<br />";
+          echo "Grund Epoxidic de Amorsare: <span class='RaspunsEchoBold'>$grund Kg</span><br />";
+          echo "Vopsea Epoxidica de Pardoseala „Emex”: <span class='RaspunsEchoBold'>$fond Kg</span><br />";
           echo "<span class='strat mark'><strong>Nu se va folosi diluant</strong></span>.<br />";
         }
         if ( $tipsuprafata == "Beton Elicopterizat" ) {
           echo "<strong>Consumul</strong> la 1 strat de <strong class='strat mark'>grosime = 1 mm</strong> de <span class='RaspunsEchoBold'>Pardoseala Epoxidica Autonivelanta cu Pigmenti Metalizati „Emex Lucent SL”</span> pentru<br />";
-          echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br /> va fi de aprox. <span class='RaspunsEchoBold'>$consum_vopsea Kg</span> baza epoxidica si <span class='RaspunsEchoBold'>$intaritor Kg</span> intaritor.<br />";
+          echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br /> va fi de aprox. <span class='RaspunsEchoBold'>$consum_vopsea Kg</span> baza si <span class='RaspunsEchoBold'>$intaritor Kg</span> intaritor.<br />";
           echo "<span id='consumurile_indirecte'>Consum indirect</span>:<br />";
-          echo "Grund Epoxidic de Amorsare: <span class='RaspunsEchoBold'>$grund Kg</span>.<br />";
-          echo "Vopsea Epoxidica de Pardoseala „Emex” <span class='RaspunsEchoBold'>$fond Kg</span>.<br />";
+          echo "Grund Epoxidic de Amorsare: <span class='RaspunsEchoBold'>$grund Kg</span><br />";
+          echo "Vopsea Epoxidica de Pardoseala „Emex”: <span class='RaspunsEchoBold'>$fond Kg</span><br />";
           echo "<span class='strat mark'><strong>Nu se va folosi diluant</strong></span>.<br />";
         }
         if ( $tipsuprafata == "Mozaic" ) {
           echo "<strong>Consumul</strong> la 1 strat de <strong class='strat mark'>grosime = 1 mm</strong> de <span class='RaspunsEchoBold'>Pardoseala Epoxidica Autonivelanta cu Pigmenti Metalizati „Emex Lucent SL”</span> pentru<br />";
-          echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br /> va fi de aprox. <span class='RaspunsEchoBold'>$consum_vopsea Kg</span> baza epoxidica si <span class='RaspunsEchoBold'>$intaritor Kg</span> intaritor.<br />";
+          echo "Suprafata de tip <span class='RaspunsEchoBold'>$tipsuprafata</span> de <span class='RaspunsEchoBold'>$suprafata mp</span>,<br /> va fi de aprox. <span class='RaspunsEchoBold'>$consum_vopsea Kg</span> baza si <span class='RaspunsEchoBold'>$intaritor Kg</span> intaritor.<br />";
           echo "<span id='consumurile_indirecte'>Consum indirect</span>:<br />";
-          echo "Grund Epoxidic de Amorsare: <span class='RaspunsEchoBold'>$grund Kg</span>.<br />";
-          echo "Vopsea Epoxidica de Pardoseala „Emex” <span class='RaspunsEchoBold'>$fond Kg</span>.<br />";
+          echo "Grund Epoxidic de Amorsare: <span class='RaspunsEchoBold'>$grund Kg</span><br />";
+          echo "Vopsea Epoxidica de Pardoseala „Emex”: <span class='RaspunsEchoBold'>$fond Kg</span><br />";
           echo "<span class='strat mark'><strong>Nu se va folosi diluant</strong></span>.<br />";
         }
         ?>
