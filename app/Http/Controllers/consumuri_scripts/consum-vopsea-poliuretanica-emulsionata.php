@@ -3,7 +3,7 @@ $tipsuprafata = $_GET[ 'TipSuprafata' ];
 $suprafata = $_GET[ 'Suprafata' ];
 $tipvopsea = $_GET[ 'TipProdus' ];
 if ( $tipsuprafata == "Metal" ) {
-  $consum_vopsea = $suprafata * 0.12;
+  $consum_vopsea = $suprafata * 0.125;
   $intaritor = $consum_vopsea * 0.007;
   $cons_total = $consum_vopsea + $intaritor;
   $grund = $suprafata * 0.14;
