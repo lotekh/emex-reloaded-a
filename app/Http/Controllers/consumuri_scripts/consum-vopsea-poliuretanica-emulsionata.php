@@ -15,8 +15,8 @@ if ( $tipsuprafata == "Metal" ) {
   $cons_total = number_format( $cons_total, 2, ",", "." );
 }
 if ( $tipsuprafata == "Beton/Tencuiala" ) {
-  $consum_vopsea = $suprafata * 0.18;
-  $intaritor = $consum_vopsea * 1.00;
+  $consum_vopsea = $suprafata * 0.29;
+  $intaritor = $consum_vopsea * 0.007;
   $cons_total = $consum_vopsea + $intaritor;
   $grund = $suprafata * 0.14;
   $diluant = ( $consum_vopsea + $intaritor ) * 0.05;
@@ -27,8 +27,8 @@ if ( $tipsuprafata == "Beton/Tencuiala" ) {
   $cons_total = number_format( $cons_total, 2, ",", "." );
 }
 if ( $tipsuprafata == "Glet" ) {
-  $consum_vopsea = $suprafata * 0.14;
-  $intaritor = $consum_vopsea * 1.00;
+  $consum_vopsea = $suprafata * 0.28;
+  $intaritor = $consum_vopsea * 0.007;
   $cons_total = $consum_vopsea + $intaritor;
   $grund = $suprafata * 0.15;
   $diluant = ( $consum_vopsea + $intaritor ) * 0.05;
@@ -39,8 +39,8 @@ if ( $tipsuprafata == "Glet" ) {
   $cons_total = number_format( $cons_total, 2, ",", "." );
 }
 if ( $tipsuprafata == "Lemn" ) {
-  $consum_vopsea = $suprafata * 0.13;
-  $intaritor = $consum_vopsea * 1.00;
+  $consum_vopsea = $suprafata * 0.27;
+  $intaritor = $consum_vopsea * 0.007;
   $cons_total = $consum_vopsea + $intaritor;
   $grund = $suprafata * 0.15;
   $diluant = ( $consum_vopsea + $intaritor ) * 0.05;
