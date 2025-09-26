@@ -490,6 +490,10 @@ input[type="search"] {
 .mt-10 {
 margin-top: 10px;
 }
+.list-mtb-0 {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
 /* ADRIAN CARDURI - TABLES*/
 .card {
   /* background: #fff;
