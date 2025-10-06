@@ -488,11 +488,19 @@ input[type="search"] {
   text-rendering: optimizeLegibility;
 }
 .mt-10 {
-margin-top: 10px;
+  margin-top: 10px;
 }
 .list-mtb-0 {
   margin-top: 0px !important;
   margin-bottom: 0px !important;
+}
+.tit-h2 {
+  text-align: left;
+  margin: 0px;
+  font-size: 1.25em;
+ /* font-style: normal;*/
+  line-height: 1.42857143;
+  text-rendering: optimizeLegibility;
 }
 /* ADRIAN CARDURI - TABLES*/
 .card {
@@ -538,12 +546,10 @@ margin-top: 10px;
 @media (max-width: 768px) {
   .lista-table, .lista-table li {
     list-style: square;
-	margin-left: 4px;
+    margin-left: 4px;
   }
 }
 /* END TABLES*/
 .ta-l {
-text-align: left;
+  text-align: left;
 }
-
-
