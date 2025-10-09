@@ -41,8 +41,4 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
-
-</IfModule>
-<IfModule mod_headers.c> 
-<Files "vopsea-metal-solubila-apa.pdf"> Header add Link "<https://emex.ro/storage/media/technical-files/vopsea-metal-solubila-apa.pdf>; rel=\"canonical\"" </Files>
 </IfModule>
