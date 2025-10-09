@@ -106,3 +106,39 @@ RewriteRule ^$ public/index.php [L]
     Deny from all
     Satisfy All
 </FilesMatch>
+
+########################
+
+       ##SECURE TLS##
+Header always set X-Frame-Options SAMEORIGIN
+Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
+Header always set X-Content-Type-Options nosniff
+Header set X-XSS-Protection "1; mode=block"
+Header set X-Permitted-Cross-Domain-Policies "none"
+Header always set Referrer-Policy "same-origin"
+
+##CONTENT SECURITY POLICY##
+#Header set X-Content-Security-Policy "allow 'self'; media-src *; img-src *; script-src 'self' https://ajax.googleapis.com https://www.googletagmanager.com #https://www.google.com https://www.gstatic.com https://www.google-analytics.com; style-src 'self';"
+
+<IfModule mod_headers.c>
+    Header set Content-Security-Policy "frame-ancestors 'self'; base-uri 'self'"
+</IfModule>
+
+##PERMISSION POLICY##
+
+Header always set Permissions-Policy "accelerometer=(); camera=(); geolocation=(); gyroscope=(); magnetometer=(); microphone=(); speaker=(); usb=(); sync-xhr=(self https://emex.ro)"
+
+     ##FEATURE POLICY##
+#<IfModule mod_headers.c>
+#Header set Feature-Policy "geolocation 'self'; vibrate 'none'"
+#</IfModule>
+
+<ifModule ModSecurity.c>
+  SecServerSignature ''
+</ifModule>
+
+    ##HEADER EXPECT-CT##
+
+#<IfModule mod_headers.c>
+ #Header set Expect-CT "max-age=7776000, enforce"
+#</IfModule>
