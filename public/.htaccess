@@ -7,10 +7,10 @@
     </IfModule>
     RewriteEngine On
 #
-    RewriteRule ^/?doc/([^/]+)\.pdf$ /storage/media/technical-files/$1.pdf [R=301,L]
+    #RewriteRule ^/?doc/([^/]+)\.pdf$ /storage/media/technical-files/$1.pdf [R=301,L]
 
-    RewriteRule ^doc/(.*)$ /storage/media/technical-files/$1 [R=301,L]
-    RewriteRule ^Doc/(.*)$ /storage/media/technical-files/$1 [R=301,L]
+    #RewriteRule ^doc/(.*)$ /storage/media/technical-files/$1 [R=301,L]
+    #RewriteRule ^Doc/(.*)$ /storage/media/technical-files/$1 [R=301,L]
     # Redirect /index.php to /something
     RewriteCond %{THE_REQUEST} \s/index\.php[\s?] [NC]
     RewriteRule ^index\.php/?$ / [R=301,L]
@@ -41,4 +41,5 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
 </IfModule>
