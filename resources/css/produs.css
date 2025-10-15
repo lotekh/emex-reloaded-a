@@ -1734,6 +1734,13 @@ amp-img, amp-lightbox {
   margin-left: 16px;
   margin-top: 0 !important;
 }
+.nota {
+  background-color: #fff3cd;
+  border: 2px solid #ffc107;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 5px;
+}
 .lista-table, .lista-table li {
   list-style: square;
   margin-left: 16px;
@@ -1745,61 +1752,55 @@ amp-img, amp-lightbox {
   }
 }
 .Utilizare {
-    color: #009;
-    font-weight: bold;
-    font-style: italic;
-    margin-left: 15px;
+  color: #009;
+  font-weight: bold;
+  font-style: italic;
+  margin-left: 15px;
 }
 .voucher-container {
-  display: flex; 
+  display: flex;
   flex-wrap: wrap;
-  align-items: center; 
-  max-width: 350px; 
-  background-color: #f9f9f9; 
-  border: 1px solid #e0e0e0; 
-  border-radius: 8px; 
+  align-items: center;
+  max-width: 350px;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
   padding: 16px;
-  font-family: Arial, sans-serif; 
-  gap: 6px; 
+  font-family: Arial, sans-serif;
+  gap: 6px;
   margin: 20px auto 0 auto;
-  flex-direction:column;
+  flex-direction: column;
 }
-
 .voucher-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    height: 60px;
-    background-color: #ffe5e5; 
-    border-radius: 50%; 
-    color: #e53e3e; 
-    font-size: 20px;
-    font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background-color: #ffe5e5;
+  border-radius: 50%;
+  color: #e53e3e;
+  font-size: 20px;
+  font-weight: bold;
 }
-
 .voucher-details {
-    display: flex;
-    flex-direction: column; 
-    flex-grow: 1; 
-    gap: 8px; 
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 8px;
 }
-
 .voucher-title {
-    color: #e53e3e; 
-    font-size: 18px;
-    font-weight: bold;
+  color: #e53e3e;
+  font-size: 18px;
+  font-weight: bold;
 }
-
 .voucher-code {
-    background-color: #e0e0e0; 
-    border: 1px dashed #b0b0b0; 
-    padding: 6px 10px;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    color: #333;
+  background-color: #e0e0e0;
+  border: 1px dashed #b0b0b0;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
 }
-
-       
